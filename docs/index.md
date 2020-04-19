@@ -5,6 +5,10 @@ You've come to the right place!
 
 Welcome to the official EasyBuild tutorial!
 
+*(Apr 19th 2020)*<br/>
+**Note: this is very much a work in progress!**<br/>
+Many pages are still empty, that will hopefully change soon...
+
 ---
 
 <a name="contents"></a>
