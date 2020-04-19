@@ -21,4 +21,4 @@ jobs:
           mkdocs --version
 
     - name: build tutorial
-      run: mkdocs gh-deploy --force
+      run: mkdocs build --strict && mkdocs gh-deploy --force
