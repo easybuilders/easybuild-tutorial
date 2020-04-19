@@ -1,9 +1,7 @@
-# EasyBuild tutorial
-
 <p align="center"><img src="./img/easybuild_logo_alpha.png" width="300px"/></p>
 
-Welcome to the repository that hosts the official [EasyBuild](easybuilders.github.io/easybuild/) tutorial,
-https://boegel.github.io/easybuild-tutorial.
+Welcome to the repository that hosts the sources of the official **[EasyBuild](easybuilders.github.io/easybuild/)
+tutorial**, see https://boegel.github.io/easybuild-tutorial.
 
 ## Basic info
 
