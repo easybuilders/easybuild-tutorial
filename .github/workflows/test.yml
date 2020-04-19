@@ -15,7 +15,7 @@ jobs:
 
     - name: install mkdocs
       run: |
-          pip install mkdocs
+          pip install mkdocs mkdocs-material mkdocs-git-revision-date-localized-plugin
           mkdocs --version
 
     - name: build tutorial

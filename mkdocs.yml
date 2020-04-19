@@ -1,18 +1,52 @@
 site_name: EasyBuild tutorial
-theme: readthedocs
+theme:
+  name: material
+  logo: img/easybuild_logo.png
+  features:
+      - instant
+      - tabs
+repo_name: EasyBuild @ GitHub
+repo_url: https://github.com/easybuilders
+edit_uri: easybuild-tutorial/edit/master/docs
 nav:
-- 1. Introduction to EasyBuild: 01_introduction.md
-- 2. Installation: 02_installation.md
-- 3. Configuration: 03_configuration.md
-- 4. Basic usage: 04_basic_usage.md
-- 5. Installing software with EasyBuild: 05_installing_software.md
-- 6. Troubleshooting: 06_troubleshooting.md
-- 7. Beyond the basics: 07_beyond_the_basics.md
-- 8. Hierarchical module naming schemes: 08_hmns.md
-- 9. Adding support for additional software: 09_adding_support_software.md
-- 10. EasyBuild at Jülich Supercomputing Centre: 10_jsc.md
-- 11. EasyBuild at Compute Canada: 11_computecanada.md
-- 12. The EasyBuild Community: 12_community.md
-- 13. Contributing to EasyBuild: 13_contributing.md
-- 14. Comparison with other tools: 14_comparison_other_tools.md
-- 15. Getting help: 15_getting_help.md
+  - 1. Introduction to EasyBuild: 01_introduction.md
+  - 2. Installation: 02_installation.md
+  - 3. Configuration: 03_configuration.md
+  - 4. Basic usage: 04_basic_usage.md
+  - 5. Installing software with EasyBuild: 05_installing_software.md
+  - 6. Troubleshooting: 06_troubleshooting.md
+  - 7. Beyond the basics: 07_beyond_the_basics.md
+  - 8. Hierarchical module naming schemes: 08_hmns.md
+  - 9. Adding support for additional software: 09_adding_support_software.md
+  - 10. EasyBuild at Jülich Supercomputing Centre: 10_jsc.md
+  - 11. EasyBuild at Compute Canada: 11_computecanada.md
+  - 12. The EasyBuild Community: 12_community.md
+  - 13. Contributing to EasyBuild: 13_contributing.md
+  - 14. Comparison with other tools: 14_comparison_other_tools.md
+  - 15. Getting help: 15_getting_help.md
+plugins:
+  # show revision date at bottom of each page
+  - git-revision-date-localized
+  # necessary for search to work
+  - search
+markdown_extensions:
+  # notes, warnings, hints, ...
+  - admonition
+  # code blocks with syntax highlighting, graphs
+  - pymdownx.superfences
+  # tabbed contents
+  - pymdownx.tabbed
+  - toc:
+      permalink: true
+extra:
+  # add links in bottom right
+  social:
+    - type: github
+      icon: octicons/logo-github
+      link: https://github.com/easybuilders
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/easy_build
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/c/easybuilders
+    - icon: fontawesome/solid/book
+      link: https://easybuild.readthedocs.io

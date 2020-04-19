@@ -1,13 +1,14 @@
-<p align="center"><img src="https://easybuild.readthedocs.io/en/latest/_static/easybuild_logo_alpha.png" alt="EasyBuild logo" width="400px"/></p>
+# Welcome to the official EasyBuild tutorial!
+
+<p align="center"><img src="https://easybuild.readthedocs.io/en/latest/_static/easybuild_logo_alpha.png" alt="EasyBuild logo" width="300px"/></p>
 
 So you want to learn about [EasyBuild](https://easybuilders.github.io/easybuild)...
 You've come to the right place!
 
-Welcome to the official EasyBuild tutorial!
-
-*(Apr 19th 2020)*<br/>
-**Note: this is very much a work in progress!**<br/>
-Many pages are still empty, that will hopefully change soon...
+!!! warning
+    *(Apr 19th 2020)*<br/>
+    **This is very much a work in progress!**<br/>
+    Many pages are still empty, that will hopefully change soon...
 
 ---
 
