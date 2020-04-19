@@ -1,0 +1,18 @@
+site_name: EasyBuild tutorial
+theme: readthedocs
+nav:
+- 1. Introduction to EasyBuild: 01_introduction.md
+- 2. Installation: 02_installation.md
+- 3. Configuration: 03_configuration.md
+- 4. Basic usage: 04_basic_usage.md
+- 5. Installing software with EasyBuild: 05_installing_software.md
+- 6. Troubleshooting: 06_troubleshooting.md
+- 7. Beyond the basics: 07_beyond_the_basics.md
+- 8. Hierarchical module naming schemes: 08_hmns.md
+- 9. Adding support for additional software: 09_adding_support_software.md
+- 10. EasyBuild at Jülich Supercomputing Centre: 10_jsc.md
+- 11. EasyBuild at Compute Canada: 11_computecanada.md
+- 12. The EasyBuild Community: 12_community.md
+- 13. Contributing to EasyBuild: 13_contributing.md
+- 14. Comparison with other tools: 14_comparison_other_tools.md
+- 15. Getting help: 15_getting_help.md
