@@ -1,19 +1,33 @@
-# Welcome to the official EasyBuild tutorial!
-
-<p align="center"><img src="https://easybuild.readthedocs.io/en/latest/_static/easybuild_logo_alpha.png" alt="EasyBuild logo" width="300px"/></p>
-
-So you want to learn about [EasyBuild](https://easybuilders.github.io/easybuild)...
-You've come to the right place!
-
 !!! warning
     *(Apr 19th 2020)*<br/>
     **This is very much a work in progress!**<br/>
     Many pages are still empty, that will hopefully change soon...
 
+# Welcome to the official EasyBuild tutorial!
+
+<p align="center"><img src="https://easybuild.readthedocs.io/en/latest/_static/easybuild_logo_alpha.png" alt="EasyBuild logo" width="300px"/></p>
+
+
 ---
 
-<a name="contents"></a>
-#### Tutorial contents
+## Scope
+
+This is an introductory tutorial to [EasyBuild](https://easybuilders.github.io/easybuild),
+a command line tool for installing (scientific) software on High Performance Computing (HPC) systems.
+
+It aims to explain the core concepts of EasyBuild,
+get you started with using it, make you familiar with some of the features it provides,
+and show how it is used by large HPC sites to maintain their central software stacks.
+
+Through hands-on exercises and demos, you will experience how EasyBuild can help you
+to get scientific software installed in an efficient way.
+
+
+## Intended audience
+
+## Prerequisites
+
+## Tutorial contents
 
 1. [Introduction to EasyBuild](01_introduction.md)
 *  [Installation](02_installation.md) ``(*)``
@@ -32,8 +46,6 @@ You've come to the right place!
 *  [Getting help](15_getting_help.md)
 
 *(sections indicated with* ``(*)`` *involve hands-on exercises)*
-
----
 
 ## Links
 
