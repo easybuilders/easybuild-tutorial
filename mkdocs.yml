@@ -1,4 +1,4 @@
-site_name: "<a href='/'>EasyBuild tutorial</a>"
+site_name: "EasyBuild tutorial"
 theme:
   name: material
   logo: img/easybuild_logo.png
