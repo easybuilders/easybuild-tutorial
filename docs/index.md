@@ -19,13 +19,38 @@ It aims to explain the core concepts of EasyBuild,
 get you started with using it, make you familiar with some of the features it provides,
 and show how it is used by large HPC sites to maintain their central software stacks.
 
-Through hands-on exercises and demos, you will experience how EasyBuild can help you
+Through hands-on exercises and demos, you will learn how EasyBuild can help you
 to get scientific software installed in an efficient way.
 
 
 ## Intended audience
 
+This tutorial is primarily intended for people new to EasyBuild, but even if you're already familiar
+with the project it could be interesting to step through it.
+
+Our main target audience includes:
+
+* HPC system administrators
+* HPC user support team members
+* scientific researchers using HPC systems
+
+
 ## Prerequisites
+
+We expect you to be (a little bit) familiar with:
+
+* using a Linux command line interface
+* the (absolute) basics of compiling software from source
+
+Required software:
+
+* OS: GNU/Linux (any distribution)
+* Python 2.7 or 3.5+
+* an environment modules tool (see the ``module`` command)
+
+    * we warmly recommend [Lmod](https://lmod.readthedocs.io), a modern environment modules tool implemented in Lua
+    * for more information on the environment modules tools supported by EasyBuild, see [here](https://easybuild.readthedocs.io/en/latest/Installation.html#required-modules-tool)
+
 
 ## Tutorial contents
 
