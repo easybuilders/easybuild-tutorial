@@ -9,6 +9,7 @@ repo_name: EasyBuild @ GitHub
 repo_url: https://github.com/easybuilders
 edit_uri: easybuild-tutorial/edit/master/docs
 nav:
+  - "": index.md
   - 1. Introduction to EasyBuild: 01_introduction.md
   - 2. Installation: 02_installation.md
   - 3. Configuration: 03_configuration.md
