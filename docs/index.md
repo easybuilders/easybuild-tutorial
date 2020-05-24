@@ -5,7 +5,7 @@
 
 # Welcome to the official EasyBuild tutorial!
 
-<p align="center"><img src="https://easybuild.readthedocs.io/en/latest/_static/easybuild_logo_alpha.png" alt="EasyBuild logo" width="300px"/></p>
+<p align="center"><img src="https://boegel.github.io/easybuild-tutorial/img/easybuild_logo_alpha.png" alt="EasyBuild logo" width="300px"/></p>
 
 
 ---
@@ -48,7 +48,7 @@ Required software:
 * Python 2.7 or 3.5+
 * an environment modules tool (see the ``module`` command)
 
-    * we warmly recommend [Lmod](https://lmod.readthedocs.io), a modern environment modules tool implemented in Lua
+    * we recommend [Lmod](https://lmod.readthedocs.io), a modern environment modules tool implemented in Lua
     * for more information on the environment modules tools supported by EasyBuild, see [here](https://easybuild.readthedocs.io/en/latest/Installation.html#required-modules-tool)
 
 
@@ -72,7 +72,7 @@ Required software:
 
 *(sections indicated with* ``(*)`` *involve hands-on exercises)*
 
-## Links
+## Additional resources
 
 * website: [https://easybuilders.github.io/easybuild](https://easybuilders.github.io/easybuild)
 * documentation: [https://easybuild.readthedocs.io](https://easybuild.readthedocs.io)
