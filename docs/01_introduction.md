@@ -24,7 +24,7 @@ The project has grown out to be a **platform for collaboration** with HPC sites 
 
 ### *Key features*
 
-EasyBuild is capable of **fully autonomous installs of (scientific) software**,
+EasyBuild is capable of **fully autonomously installing (scientific) software**,
 including making sure that all necessary dependencies are installed,
 and automatically generating environment module files.
 
@@ -33,9 +33,9 @@ to the preferred software installation prefix.
 
 It is [**highly configurable**](https://easybuild.readthedocs.io/en/latest/Configuration.html) via configuration files, environment variables, and command line options.
 The functionality can be [**dynamically extended**](https://easybuild.readthedocs.io/en/latest/Including_additional_Python_modules.html) via plugins,
-and hooks are available for further on-the-fly [**customizations**](https://easybuild.readthedocs.io/en/latest/Hooks.html) if required.
+and hooks are available for further site-specific [**customizations**](https://easybuild.readthedocs.io/en/latest/Hooks.html) if required.
 
-The installation procedure executed by EasyBuild is thoroughly [**logged**](https://easybuild.readthedocs.io/en/latest/Logfiles.html) and easily inspected via [dry run](https://easybuild.readthedocs.io/en/latest/Extended_dry_run.html) and [tracing](https://easybuild.readthedocs.io/en/latest/Tracing_progress.html).
+The installation procedure executed by EasyBuild is thoroughly [**logged**](https://easybuild.readthedocs.io/en/latest/Logfiles.html) and fully transparent via [dry run](https://easybuild.readthedocs.io/en/latest/Extended_dry_run.html) and [tracing](https://easybuild.readthedocs.io/en/latest/Tracing_progress.html).
 
 EasyBuild supports using a **custom module naming scheme**, allows for
 *hierarchical* module naming schemes, and **integrates with various other tools** ranging from  resource managers [(Slurm](https://slurm.schedmd.com) and [GC3Pie](https://github.com/gc3pie/gc3pie)),
@@ -53,13 +53,13 @@ consistent testing of incoming contributions, and thorough regression testing be
 EasyBuild is ***not*** **YABT (Yet Another Build Tool)**: it does not replace established build
 tools like CMake or ``make``, it wraps around them.
 If the installation procedure of a software package involves running some unholy trinity of tools while whispering
-the correct magic incantations, EasyBuild seeks to automate this process for you.
+the correct magic incantations, EasyBuild automates this process for you.
 
 It is ***not*** **a replacement for traditional Linux package manangers** like ``yum``, ``dnf`` or ``apt``.
 EasyBuild relies on certain tools and libraries provided by the operating system. This includes glibc, OpenSSL, Infiniband, GPU drivers, and so on. It is required that these tools are installed and managed by other means. This is typically done via the package management tool that comes with your Linux distribution.
 
 Finally, EasyBuild is ***not a magic solution to all your (software installation) problems**.
-You may, and probably will still, run into compiler errors unless somebody has already taken care of the problem for you.
+You may, and probably will still occasionally, run into compiler errors unless somebody has already taken care of the problem for you.
 
 
 ### *Implementation*
@@ -67,7 +67,7 @@ You may, and probably will still, run into compiler errors unless somebody has a
 <img src="https://boegel.github.io/easybuild-tutorial/img/Python-logo.png" style="border-right: 20px solid white;border-top: 5px solid white; float:left" width="80px"/>
 
 
-EasyBuild is **implemented in [Python](https://www.python.org/)**, and supports both Python 2.7 and 3.5+. Python 2.7 support is required for older environments where 3.5+ is unavailable and the the testing suite for EasyBuild retains the same coverage Python 2.7 as for 3.5+.
+EasyBuild is **implemented in [Python](https://www.python.org/)**, and fully supports both Python 2.7 and 3.5+.
 
 Releases are published via [PyPI](https://pypi.org/project/easybuild/),
 under the [GPLv2 open source license](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html).
