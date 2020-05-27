@@ -4,7 +4,7 @@ ARG EB_VER=4.2.1
 LABEL easybuild_version=${EB_VER}
 # install required packages (EPEL is required for Lmod)
 RUN yum install -y epel-release \
- && yum install -y vim gcc-c++ patch bzip2 git make file unzip which openssl-devel python3-pip Lmod
+ && yum install -y bzip2 file gcc-c++ git Lmod make openssl-devel patch python3-pip unzip vim which
 # install EasBuild & archspec
 RUN pip3 install easybuild==${EB_VER} archspec
 # add 'easybuild' user
