@@ -1,0 +1,17 @@
+FROM easybuilders/test:centos7-eb421-gcc930
+USER easybuild
+# use /easybuild for everything that should persist in the container (software, modules and sources)
+# everything else goes in /scratch, which will be cleaned out
+ENV EASYBUILD_PREFIX=/scratch
+ENV EASYBUILD_INSTALLPATH=/easybuild
+ENV EASYBUILD_SOURCEPATH=/easybuild/sources
+# disable output buffering in Python, so we see EasyBuild output as it progresses
+ENV PYTHONUNBUFFERED=TRUE
+# install software & accompanying modules
+RUN eb foss-2020a.eb --robot \
+  # clean up everything in /scratch
+  && rm -rf /scratch/*
+# finalize /easybuild, no changes can be made in /easybuild that persist!
+VOLUME /easybuild
+# make sure we start in /home/easybuild rather than / when shell in started in container
+WORKDIR /home/easybuild
