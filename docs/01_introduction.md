@@ -1,48 +1,46 @@
 ## What is EasyBuild?
 
 [EasyBuild](http://easybuilders.github.io/easybuild/) is a **software build and installation framework**
-that allows you to manage (scientific) software on [**High Performance Computing (HPC)**](https://en.wikipedia.org/wiki/Supercomputer)
-systems in an efficient way, without compromising on performance.
+that manages (scientific) software in an efficient way, without compromises on performance. Easybuild is especially tailored towards [**High Performance Computing (HPC)**](https://en.wikipedia.org/wiki/Supercomputer)
+ environments.
 
 
 ### *Elevator pitch*
 
 <a href="http://geek-and-poke.com/geekandpoke/2010/5/14/how-to-become-invaluable.html"><img src="https://boegel.github.io/easybuild-tutorial/img/geek-and-poke-invaluable.png" style="float:right" width="350px"/></a>
 
-EasyBuild intends to relieve HPC user support teams of the ubiquitous burden of manually executing
-software installation procedures, and **facilitate providing a consistent and well performing
+EasyBuild intends to relieve HPC support teams from manually managing
+software installations while at the same time **providing a consistent and well performing
 scientific software stack** to end users of HPC systems.
 
-It serves as a **uniform interface for installing scientific software**,
-and saves valuable time (and frustration) by **automating** tedious, boring and repititive tasks.
-As such, it has grown out to be an **expert system** for software installation on HPC systems.
+It serves as a **uniform interface for installing scientific software**
+and saves valuable time (and frustration) by the automation of tedious, boring and repetitive tasks. 
 
-In addition, it can **empower scientific researchers to self-manage their software stack**,
-and it can serve as a tool that can be leveraged for **building optimised container images**.
+In addition, EasyBuild can **empower scientific researchers to self-manage their software stack**,
+and it can serve as a tool that can be leveraged for **building optimized container images**.
 
 The project has grown out to be a **platform for collaboration** with HPC sites worldwide.
 
 
 ### *Key features*
 
-EasyBuild is capable of **fully autonomously install of (scientific) software**,
+EasyBuild is capable of **fully autonomously installing (scientific) software**,
 including making sure that all necessary dependencies are installed,
 and automatically generating environment module files.
 
 ***No*** **admin privileges are required**: it is sufficient to have write permissions
 to the preferred software installation prefix.
 
-It is [**highly configurable**](https://easybuild.readthedocs.io/en/latest/Configuration.html) via configuration files, environment variables and command line options.
+It is [**highly configurable**](https://easybuild.readthedocs.io/en/latest/Configuration.html) via configuration files, environment variables, and command line options.
 The functionality can be [**dynamically extended**](https://easybuild.readthedocs.io/en/latest/Including_additional_Python_modules.html) via plugins,
-and hooks are available to [**customize**](https://easybuild.readthedocs.io/en/latest/Hooks.html) the behaviour if required.
+and hooks are available for further site-specific [**customizations**](https://easybuild.readthedocs.io/en/latest/Hooks.html) if required.
 
-The installation procedure executed by EasyBuild is thoroughly [**logged**](https://easybuild.readthedocs.io/en/latest/Logfiles.html), and is fully **transparent** through a [dry run](https://easybuild.readthedocs.io/en/latest/Extended_dry_run.html) and [tracing](https://easybuild.readthedocs.io/en/latest/Tracing_progress.html) mechanism.
+The installation procedure executed by EasyBuild is thoroughly [**logged**](https://easybuild.readthedocs.io/en/latest/Logfiles.html) and fully transparent via [dry run](https://easybuild.readthedocs.io/en/latest/Extended_dry_run.html) and [tracing](https://easybuild.readthedocs.io/en/latest/Tracing_progress.html).
 
-EasyBuild allow for using of a **custom module naming scheme**, provides support for defining
-*hierarchical* module naming schemes, and **integrates with various other tools** like resource managers
-(like [Slurm](https://slurm.schedmd.com) and [GC3Pie](https://github.com/gc3pie/gc3pie)),
-container tools (like [Singularity](https://github.com/hpcng/singularity) & [Docker](https://www.docker.com)),
-packaging tools (like [FPM](https://fpm.readthedocs.io)), etc.
+EasyBuild supports using a **custom module naming scheme**, allows for
+*hierarchical* module naming schemes, and **integrates with various other tools** ranging from  resource managers [(Slurm](https://slurm.schedmd.com) and [GC3Pie](https://github.com/gc3pie/gc3pie)),
+container tools ([Singularity](https://github.com/hpcng/singularity) and [Docker](https://www.docker.com)),
+packaging tools ([FPM](https://fpm.readthedocs.io)), and so on.
 
 The project is **actively developed** by a worldwide community, with stable versions being
 released every 6-8 weeks since 2012. **Comprehensive testing** practices are applied throughout the
@@ -55,15 +53,13 @@ consistent testing of incoming contributions, and thorough regression testing be
 EasyBuild is ***not*** **YABT (Yet Another Build Tool)**: it does not replace established build
 tools like CMake or ``make``, it wraps around them.
 If the installation procedure of a software package involves running some unholy trinity of tools while whispering
-the correct magic incantations, EasyBuild just automates this process so you don't have to go through it manually.
+the correct magic incantations, EasyBuild automates this process for you.
 
 It is ***not*** **a replacement for traditional Linux package manangers** like ``yum``, ``dnf`` or ``apt``.
-EasyBuild leverages some tools and libraries provided by OS, including glibc, OpenSSL, Infiniband & GPU drivers, etc.,
-so you will still need to use the package management tool that comes with your Linux distribution of choice
-for installing (system) software.
+EasyBuild relies on certain tools and libraries provided by the operating system. This includes glibc, OpenSSL, Infiniband, GPU drivers, and so on. It is required that these tools are installed and managed by other means. This is typically done via the package management tool that comes with your Linux distribution.
 
 Finally, EasyBuild is ***not a magic solution to all your (software installation) problems**.
-* a magic solution to all your (software installation) problems: you may (and will) still run into compiler errors (unless somebody has already taken care of it);
+You may, and probably will still occasionally, run into compiler errors unless somebody has already taken care of the problem for you.
 
 
 ### *Implementation*
@@ -71,7 +67,7 @@ Finally, EasyBuild is ***not a magic solution to all your (software installation
 <img src="https://boegel.github.io/easybuild-tutorial/img/Python-logo.png" style="border-right: 20px solid white;border-top: 5px solid white; float:left" width="80px"/>
 
 
-EasyBuild is **implemented in [Python](https://www.python.org/)**, and supports both Python 2.7 and 3.5+.
+EasyBuild is **implemented in [Python](https://www.python.org/)**, and fully supports both Python 2.7 and 3.5+.
 
 Releases are published via [PyPI](https://pypi.org/project/easybuild/),
 under the [GPLv2 open source license](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html).
@@ -88,7 +84,7 @@ Over the years, we have come up with some terminology specific to EasyBuild
 to refer to particular components, which we use alongside established terminology relevant to the context
 of building and installing software.
 
-It is important that you're familiar with these terms.
+It is important to be familiar with these terms.
 
 [//]: <> (*(click on the tabs below to see the description of each term)*)
 
