@@ -1,2 +1,2 @@
 docker:
-	docker build .
+	./build.sh
