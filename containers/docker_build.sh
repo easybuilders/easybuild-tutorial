@@ -1,12 +1,16 @@
 #!/bin/bash
 set -xe
 
+ORG="easybuilders"
+
 IMG_TEMP_TAG="temp-$$-${RANDOM}"
 if [[ -z ${EB_VER} ]];then
-	docker build -t easybuild/base:${IMG_TEMP_TAG} .
+	docker build -t ${ORG}:${IMG_TEMP_TAG} .
 else
-	docker build --build-arg=EB_VER=${EB_VER} -t easybuild/base:${IMG_TEMP_TAG} .
+	docker build --build-arg=EB_VER=${EB_VER} -t ${ORG}:${IMG_TEMP_TAG} .
 fi
-IMG_TAG=$(docker inspect -f '{{.Config.Labels.easybuild_version}}' easybuild/base:${IMG_TEMP_TAG})
-docker tag easybuild/base:${IMG_TEMP_TAG} easybuild/base:${IMG_TAG}
-docker rmi easybuild/base:${IMG_TEMP_TAG}
+
+# determine final tag using EasyBuild version used in container
+IMG_TAG=base-centos7-eb$(docker inspect -f '{{.Config.Labels.easybuild_version}}' ${ORG}:${IMG_TEMP_TAG})
+docker tag ${ORG}:${IMG_TEMP_TAG} ${ORG}:${IMG_TAG}
+docker rmi ${ORG}:${IMG_TEMP_TAG}
