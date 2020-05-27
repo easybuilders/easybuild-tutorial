@@ -15,7 +15,7 @@ ENV EB_PYTHON=python3
 ENTRYPOINT ["/bin/bash", "-l", "-c"]
 # SHELL defines which login shell will be used within RUN steps
 SHELL ["/bin/bash", "-l", "-c"]
-# By default the container will run into a bash
+# By default the container will start a bash shell
 CMD ["bash"]
 # switch to 'easybuild' user
 USER easybuild
