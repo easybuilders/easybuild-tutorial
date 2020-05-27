@@ -1,4 +1,11 @@
 FROM easybuilders/base:centos7-eb4.2.1
+# CPU_ARCH is expected to be defined in the "docker build" command,
+# for example: docker build --build-arg CPU_ARCH=haswell
+ARG CPU_ARCH
+LABEL cpu_arch=${CPU_ARCH}
+# verify provided CPU_ARCH value, should match with what archspec produces
+RUN test "${CPU_ARCH}" == "$(python3 -c 'import archspec.cpu; print(archspec.cpu.host())')"
+# for example: docker build --build-arg CPU_ARCH=haswell
 # create /scratch & /easybuild directories
 USER root
 RUN mkdir /scratch && chown easybuild:easybuild /scratch
