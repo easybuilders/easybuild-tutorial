@@ -4,11 +4,12 @@ FROM easybuilders/base:centos7-eb4.2.1
 ARG CPU_ARCH
 # make sure CPU_ARCH is defined
 RUN test -n "${CPU_ARCH}" || (echo "\$CPU_ARCH undefined, use 'docker build --build-arg CPU_ARCH=...'" && exit 1)
-LABEL cpu_arch=${CPU_ARCH}
-ENV CPU_ARCH=${CPU_ARCH}
 # verify provided CPU_ARCH value, should match with what archspec produces
 RUN export HOST_CPU_ARCH=$(python3 -c 'import archspec.cpu; print(archspec.cpu.host())') && \
   (test "${CPU_ARCH}" == "$HOST_CPU_ARCH" || (echo "Host CPU arch '${HOST_CPU_ARCH}' doesn't match specified CPU arch '${CPU_ARCH}'!" && exit 1))
+# use $CPU_ARCH to define label and set it as environment variable (to use in subsequent builds
+LABEL cpu_arch=${CPU_ARCH}
+ENV CPU_ARCH=${CPU_ARCH}
 # for example: docker build --build-arg CPU_ARCH=haswell
 # create /scratch & /easybuild directories
 USER root
