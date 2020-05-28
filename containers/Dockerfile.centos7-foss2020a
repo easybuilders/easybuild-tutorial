@@ -1,12 +1,5 @@
 FROM easybuilders/test:centos7-eb421-gcc930
-USER root
-RUN yum install -y rdma-core-devel openssl
-USER easybuild
 # install software & accompanying modules
 RUN (eb foss-2020a.eb --robot || tail -100 `eb --last-log`) \
   # clean up everything in /scratch
   && rm -rf /scratch/*
-# finalize /easybuild, no changes can be made in /easybuild that persist!
-VOLUME /easybuild
-# make sure we start in /home/easybuild rather than / when shell in started in container
-WORKDIR /home/easybuild
