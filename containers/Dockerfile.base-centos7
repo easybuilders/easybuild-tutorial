@@ -10,7 +10,10 @@ RUN pip3 install easybuild==${EB_VER} archspec
 # add 'easybuild' user
 RUN useradd -ms /bin/bash easybuild
 # create /scratch & /easybuild directories
-RUN mkdir /scratch && chown easybuild:easybuild /scratch && mkdir /easybuild && chown easybuild:easybuild /easybuild
+RUN mkdir /scratch && chown easybuild:easybuild /scratch \
+  && mkdir /easybuild && chown easybuild:easybuild /easybuild
+# disable output buffering in Python, so we see EasyBuild output as it progresses
+ENV PYTHONUNBUFFERED=TRUE
 # define $EB_PYTHON to ensure EasyBuild runs with python3
 ENV EB_PYTHON=python3
 # Define the ENTRYPOINT for subsequent commands (CMD)
@@ -22,14 +25,18 @@ CMD ["bash"]
 # switch to 'easybuild' user
 USER easybuild
 # install EasyBuild as a module (& clean up /scratch)
-RUN eb --install-latest-eb-release --prefix /scratch --installpath /easybuild && rm -rf /scratch/*
+RUN eb --install-latest-eb-release --prefix /scratch --installpath /easybuild \
+  && rm -rf /scratch/*
 # print info on Lmod & EasyBuild
-RUN ml use /easybuild/modules/all && ml EasyBuild && ml --version && which -a eb && eb --version & eb --show-system-info
+RUN ml use /easybuild/modules/all \
+  && ml EasyBuild \
+  && ml --version \
+  && which -a eb \
+  && eb --version \
+  && eb --show-system-info
 # remove globally installed EasyBuild, we can use the module going forward
 USER root
 RUN pip3 uninstall -y easybuild
 # switch to 'easybuild' user
 USER easybuild
 WORKDIR /home/easybuild
-# disable output buffering in Python, so we see EasyBuild output as it progresses
-ENV PYTHONUNBUFFERED=TRUE
