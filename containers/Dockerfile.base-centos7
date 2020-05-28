@@ -1,4 +1,10 @@
-FROM centos:7.8.2003
+ARG IMG_REGISTRY=docker.io
+ARG IMG_ORG=library
+ARG IMG_NAME=centos
+ARG IMG_TAG=7.8.2003
+### To allow CI/CD to change all of the above
+FROM ${IMG_REGISTRY}/${IMG_ORG}/${IMG_NAME}:${IMG_TAG}
+
 # Set default easybuild version
 ARG EB_VER=4.2.1
 LABEL easybuild_version=${EB_VER}
