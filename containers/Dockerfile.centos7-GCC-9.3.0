@@ -1,4 +1,10 @@
-FROM easybuilders/base:centos7-eb4.2.1
+ARG IMG_REGISTRY=docker.io
+ARG IMG_ORG=easybuilders
+ARG IMG_NAME=base
+ARG IMG_TAG=centos7-eb4.2.1
+### To allow CI/CD to change all of the above
+FROM ${IMG_REGISTRY}/${IMG_ORG}/${IMG_NAME}:${IMG_TAG}
+
 # CPU_ARCH is expected to be defined in the "docker build" command,
 # for example: docker build --build-arg CPU_ARCH=haswell
 ARG CPU_ARCH
@@ -11,23 +17,8 @@ RUN export HOST_CPU_ARCH=$(python3 -c 'import archspec.cpu; print(archspec.cpu.h
 LABEL cpu_arch=${CPU_ARCH}
 ENV CPU_ARCH=${CPU_ARCH}
 # for example: docker build --build-arg CPU_ARCH=haswell
-# create /scratch & /easybuild directories
-USER root
-RUN mkdir /scratch && chown easybuild:easybuild /scratch
-RUN mkdir /easybuild && chown easybuild:easybuild /easybuild
 USER easybuild
-# use /easybuild for everything that should persist in the container (software, modules and sources)
-# everything else goes in /scratch, which will be cleaned out
-ENV EASYBUILD_PREFIX=/scratch
-ENV EASYBUILD_INSTALLPATH=/easybuild
-ENV EASYBUILD_SOURCEPATH=/easybuild/sources
-# disable output buffering in Python, so we see EasyBuild output as it progresses
-ENV PYTHONUNBUFFERED=TRUE
 # install software & accompanying modules
 RUN eb GCC-9.3.0.eb --robot --trace \
   # clean up everything in /scratch
   && rm -rf /scratch/*
-# finalize /easybuild, no changes can be made in /easybuild that persist!
-VOLUME /easybuild
-# make sure we start in /home/easybuild rather than / when shell in started in container
-WORKDIR /home/easybuild
