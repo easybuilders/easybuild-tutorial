@@ -17,7 +17,17 @@ ENTRYPOINT ["/bin/bash", "-l", "-c"]
 SHELL ["/bin/bash", "-l", "-c"]
 # By default the container will start a bash shell
 CMD ["bash"]
+# create /scratch & /easybuild directories
+RUN mkdir /scratch && chown easybuild:easybuild /scratch
+RUN mkdir /easybuild && chown easybuild:easybuild /easybuild
+ENV EASYBUILD_PREFIX=/scratch
+ENV EASYBUILD_INSTALLPATH=/easybuild
+ENV EASYBUILD_SOURCEPATH=/easybuild/sources
+# disable output buffering in Python, so we see EasyBuild output as it progresses
+ENV PYTHONUNBUFFERED=TRUE
 # switch to 'easybuild' user
 USER easybuild
 # print info on Lmod & EasyBuild
 RUN ml --version && which -a eb && eb --version & eb --show-system-info
+# make sure we start in /home/easybuild rather than / when shell in started in container
+WORKDIR /home/easybuild
