@@ -4,11 +4,13 @@ ARG EB_VER=4.2.1
 LABEL easybuild_version=${EB_VER}
 # install required packages (EPEL is required for Lmod)
 RUN yum install -y epel-release \
- && yum install -y bzip2 file gcc-c++ git Lmod make openssl-devel patch python3-pip unzip vim which
+ && yum install -y bzip2 file gcc-c++ git Lmod make openssl openssl-devel patch python3-pip unzip vim which rdma-core-devel
 # install EasBuild & archspec
 RUN pip3 install easybuild==${EB_VER} archspec
 # add 'easybuild' user
 RUN useradd -ms /bin/bash easybuild
+# create /scratch & /easybuild directories
+RUN mkdir /scratch && chown easybuild:easybuild /scratch && mkdir /easybuild && chown easybuild:easybuild /easybuild
 # define $EB_PYTHON to ensure EasyBuild runs with python3
 ENV EB_PYTHON=python3
 # Define the ENTRYPOINT for subsequent commands (CMD)
@@ -19,5 +21,15 @@ SHELL ["/bin/bash", "-l", "-c"]
 CMD ["bash"]
 # switch to 'easybuild' user
 USER easybuild
+# install EasyBuild as a module (& clean up /scratch)
+RUN eb --install-latest-eb-release --prefix /scratch --installpath /easybuild && rm -rf /scratch/*
 # print info on Lmod & EasyBuild
-RUN ml --version && which -a eb && eb --version & eb --show-system-info
+RUN ml use /easybuild/modules/all && ml EasyBuild && ml --version && which -a eb && eb --version & eb --show-system-info
+# remove globally installed EasyBuild, we can use the module going forward
+USER root
+RUN pip3 uninstall -y easybuild
+# switch to 'easybuild' user
+USER easybuild
+WORKDIR /home/easybuild
+# disable output buffering in Python, so we see EasyBuild output as it progresses
+ENV PYTHONUNBUFFERED=TRUE
