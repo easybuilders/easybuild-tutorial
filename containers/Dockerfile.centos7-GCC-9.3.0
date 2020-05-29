@@ -1,4 +1,10 @@
-FROM easybuilders/base:centos7-eb4.2.1
+ARG IMG_REGISTRY=docker.io
+ARG IMG_ORG=easybuilders
+ARG IMG_NAME=base
+ARG IMG_TAG=centos7-eb4.2.1
+# allow CI/CD to change all of the above
+FROM ${IMG_REGISTRY}/${IMG_ORG}/${IMG_NAME}:${IMG_TAG}
+
 # CPU_ARCH is expected to be defined in the "docker build" command,
 # for example: docker build --build-arg CPU_ARCH=haswell
 ARG CPU_ARCH

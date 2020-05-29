@@ -1,5 +1,10 @@
-FROM centos:7.8.2003
-# Set default easybuild version
+ARG IMG_REGISTRY=docker.io
+ARG IMG_ORG=library
+ARG IMG_NAME=centos
+ARG IMG_TAG=7.8.2003
+# allow CI/CD to change all of the above
+FROM ${IMG_REGISTRY}/${IMG_ORG}/${IMG_NAME}:${IMG_TAG}
+# set default easybuild version
 ARG EB_VER=4.2.1
 LABEL easybuild_version=${EB_VER}
 # install required packages (EPEL is required for Lmod)
@@ -39,4 +44,5 @@ USER root
 RUN pip3 uninstall -y easybuild
 # switch to 'easybuild' user
 USER easybuild
+# make sure we start in /home/easybuild rather than / when shell in started in container
 WORKDIR /home/easybuild
