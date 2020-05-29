@@ -5,9 +5,9 @@ ARG IMG_TAG=centos7-eb4.2.1
 # allow CI/CD to change all of the above
 FROM ${IMG_REGISTRY}/${IMG_ORG}/${IMG_NAME}:${IMG_TAG}
 
-# CPU_ARCH is expected to be defined in the "docker build" command,
+# CPU_ARCH can be specified in the "docker build" command,
 # for example: docker build --build-arg CPU_ARCH=haswell
-ARG CPU_ARCH
+ARG CPU_ARCH=haswell
 # make sure CPU_ARCH is defined
 RUN test -n "${CPU_ARCH}" || (echo "\$CPU_ARCH undefined, use 'docker build --build-arg CPU_ARCH=...'" && exit 1)
 # verify provided CPU_ARCH value, should match with what archspec produces
