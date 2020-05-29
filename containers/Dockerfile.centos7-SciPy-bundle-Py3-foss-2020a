@@ -1,0 +1,11 @@
+ARG IMG_REGISTRY=docker.io
+ARG IMG_ORG=easybuilders
+ARG IMG_NAME=test
+ARG IMG_TAG=centos7-eb421-foss2020a
+# allow CI/CD to change all of the above
+FROM ${IMG_REGISTRY}/${IMG_ORG}/${IMG_NAME}:${IMG_TAG}
+
+# install software & accompanying modules
+RUN (eb SciPy-bundle-2020.03-foss-2020a-Python-3.8.2.eb --robot || tail -100 `eb --last-log`) \
+  # clean up everything in /scratch
+  && rm -rf /scratch/*
