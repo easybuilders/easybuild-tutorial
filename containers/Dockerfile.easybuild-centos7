@@ -16,8 +16,12 @@ RUN export HOST_CPU_ARCH=$(python3 -c 'import archspec.cpu; print(archspec.cpu.h
 # use $CPU_ARCH to define label and set it as environment variable (to use in subsequent builds
 LABEL cpu_arch=${CPU_ARCH}
 ENV CPU_ARCH=${CPU_ARCH}
+
+# use 'docker build --build-arg EASYCONFIG=example.eb' to make EasyBuild install something else
+ARG EASYCONFIG=SciPy-bundle-2020.03-foss-2020a-Python-3.8.2.eb
+
 # use /easybuild for everything that should persist in the container (software, modules and sources)
 # everything else goes in /scratch, which will be cleaned out
-RUN eb --prefix /scratch --installpath /easybuild GCC-9.3.0.eb --robot --trace \
+RUN eb --prefix /scratch --installpath /easybuild ${EASYCONFIG} --robot --trace \
   # clean up everything in /scratch
   && rm -rf /scratch/*
