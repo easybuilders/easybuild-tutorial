@@ -48,7 +48,7 @@ development cycle, with extensive suites of unit and integration tests being run
 consistent testing of incoming contributions, and thorough regression testing before every release.
 
 
-### *What EasyBuild is ***not****
+### *What EasyBuild is* ***not***
 
 EasyBuild is ***not*** **YABT (Yet Another Build Tool)**: it does not replace established build
 tools like CMake or ``make``, it wraps around them.
