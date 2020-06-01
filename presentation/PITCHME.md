@@ -1,21 +1,10 @@
-@title[EasyBuild Tutorial]
+@title[EasyBuild tutorial]
 
-@snap[west span-60]
-## GitPitch
-#### Quickstart Slide Designs
-@snapend
+### Welcome to the EasyBuild tutorial!
 
-@snap[east span-25 h4-white text-center]
-#### [See the Templates Guide @fa[external-link]](https://gitpitch.com/docs/the-template)
-@snapend
+***(this is a work in progress)***
 
-@snap[south-west span-50 text-gray text-smallcaps text-06]
-Powered by markdown snippets.
-@snapend
-
-@snap[south-east span-50 text-white text-smallcaps text-06]
-As simple as copy-n-paste.
-@snapend
+Tutorial is hosted at [https://boegel.github.io/easybuild-tutorial](https://boegel.github.io/easybuild-tutorial).
 
 ---?include=docs/PITCHME.md
 

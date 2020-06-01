@@ -9,11 +9,11 @@ published : true
 # Doc: https://gitpitch.com/docs/themes/default
 #
 theme : template
-theme-background : [ "gray" ]
-theme-headline   : [ "Montserrat", "#333", "none" ]
-theme-byline     : [ "Montserrat", "#333", "none" ]
+theme-background : [ "white" ]
+theme-headline   : [ "Roboto", "#333", "none" ]
+theme-byline     : [ "Roboto", "#333", "none" ]
 theme-text       : [ "Raleway", "#1C1C1C", "none" ]
-theme-links      : [ "#FFF", "#E27924" ]
+theme-links      : [ "#AAAAAA", "#777777" ]
 theme-code       : [ "Fira Code" ]
 theme-controls   : [ "#C0C0C0" ]
 theme-margins    : [ "0", "15px" ]
