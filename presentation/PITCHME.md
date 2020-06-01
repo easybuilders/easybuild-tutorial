@@ -1,12 +1,12 @@
 @title[EasyBuild tutorial]
 
-### Welcome to the EasyBuild tutorial!
+![logo][docs/img/easybuild_logo_alpha.png]
+
+## Tutorial
 
 ***(this is a work in progress)***
 
-Tutorial is hosted at [https://boegel.github.io/easybuild-tutorial](https://boegel.github.io/easybuild-tutorial).
-
----?include=docs/PITCHME.md
+---?include=presentation/slides-start.md
 
 ---?include=docs/01_introduction/PITCHME.md
 
