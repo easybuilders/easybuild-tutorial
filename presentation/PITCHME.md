@@ -1,6 +1,6 @@
 @title[EasyBuild tutorial]
 
-![logo][docs/img/easybuild_logo_alpha.png]
+![logo](docs/img/easybuild_logo_alpha.png)
 
 ## Tutorial
 
