@@ -10,7 +10,7 @@ for the remainder of this tutorial.
 * <a href="#requirements">requirements</a>: Linux, Python 2.7 or 3.5+, environment modules tool (Lmod is recommended)
 * installation methods:
     * <a href=#method-1-using-pip-recommended>``pip install easybuild``</a>
-    * <a href="#bootstrapping-easybuild">bootstrapping EasyBuild</a>
+    * <a href="#method-2-bootstrapping-easybuild">bootstrapping EasyBuild</a>
 * verify EasyBuild installation using `eb --version`, `eb --help`
 
 
@@ -89,6 +89,18 @@ You can install EasyBuild just like you can install any other Python software th
 via the standard *Python Package Index* (PyPI), through one of standard Python installation tools
 (did you catch the irony in that last bit?). And since EasyBuild is a software installation tool
 in its own right, we actually have a couple of additional tricks up our sleeve!
+
+#### Python 2 or Python 3?
+
+It does not matter whether you install EasyBuild on top of Python 2 or Python 3,
+in no way does this affect the functionality.
+Since <a href="https://www.python.org/doc/sunset-python-2/">Python 2 is end-of-life</a>,
+we recommend using Python 3 if you have the choice.
+
+By default EasyBuild will use the `python` command to run, but you can control
+this if needed.
+For more information, see <a href="https://easybuild.readthedocs.io/en/latest/Python-2-3-compatibility.html">
+the EasyBuild documentation</a>.
 
 
 ## Installing EasyBuild
@@ -195,7 +207,7 @@ export PYTHONPATH=$HOME/tools/lib/python3.6/site-packages:$PYTHONPATH
 !!! note
     This section covers an alternative installation method.
 
-    If you already have EasyBuild installed, <a href="#verifying-the-installation">skip ahead to the next section</a>.
+    If you already have EasyBuild installed, you can <a href="#verifying-the-installation">skip ahead to the next section</a>.
 
 If `pip` is not available or if the installation with `pip` is not working out for some reason,
 you can resort to using the [*bootstrapping* procedure for installing EasyBuild](https://easybuild.readthedocs.io/en/latest/Installation.html#bootstrapping-easybuild).
