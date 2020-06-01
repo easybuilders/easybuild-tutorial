@@ -86,10 +86,6 @@ of building and installing software.
 
 It is important to be familiar with these terms.
 
-[//]: <> (*(click on the tabs below to see the description of each term)*)
-
-[//]: <> (=== "framework")
-
 
 ### *Framework*
 
@@ -101,7 +97,7 @@ providing functions for unpacking source files, applying patch files, collecting
 by shell commands that are being run and checking their exit code, generating environment module files, etc.
 
 The EasyBuild framework does not implement any specific installation procedure, it only provides
-the necessary functionality to facilitate this (see <a href="#132-easyblocks">easyblocks</a>).
+the necessary functionality to facilitate this (see <a href="#easyblocks">easyblocks</a>).
 
 
 ### *Easyblocks*
@@ -120,7 +116,7 @@ A **software-specific** easyblock implements an installation procedure that is s
 software packages. Infamous examples include the easyblocks we have for ``GCC``, ``OpenFOAM``, ``TensorFlow``, ...
 
 The installation procedure performed by an easyblock can be controlled by defining so-called
-**easyconfig parameters** (see <a href="#133-easyconfig-files">easyconfig files</a>).
+**easyconfig parameters** (see <a href="#easyconfig-files">easyconfig files</a>).
 
 
 ### *Easyconfig files*
