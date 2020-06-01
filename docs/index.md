@@ -54,21 +54,21 @@ Required software:
 
 ## Tutorial contents
 
-1. [Introduction to EasyBuild](01_introduction.md)
-*  [Installation](02_installation.md) ``(*)``
-*  [Configuration](03_configuration.md) ``(*)``
-*  [Basic usage](04_basic_usage.md) ``(*)``
-*  [Installing software with EasyBuild](05_installing_software.md) ``(*)``
-*  [Troubleshooting](06_troubleshooting.md) ``(*)``
-*  [Beyond the basics](07_beyond_the_basics.md) ``(*)``
-*  [Hierarchical module naming schemes](08_hmns.md) ``(*)``
-*  [Adding support for additional software](09_adding_support_software.md) ``(*)``
-*  [EasyBuild at Jülich Supercomputing Centre](10_jsc.md)
-*  [EasyBuild at Compute Canada](11_computecanada.md)
-*  [The EasyBuild Community](12_community.md)
-*  [Contributing to EasyBuild](13_contributing.md) ``(*)``
-*  [Comparison with other tools](14_comparison_other_tools.md)
-*  [Getting help](15_getting_help.md)
+1. [Introduction to EasyBuild](01_introduction/README.md)
+*  [Installation](02_installation/README.md) ``(*)``
+*  [Configuration](03_configuration/README.md) ``(*)``
+*  [Basic usage](04_basic_usage/README.md) ``(*)``
+*  [Installing software with EasyBuild](05_installing_software/README.md) ``(*)``
+*  [Troubleshooting](06_troubleshooting/README.md) ``(*)``
+*  [Beyond the basics](07_beyond_the_basics/README.md) ``(*)``
+*  [Hierarchical module naming schemes](08_hmns/README.md) ``(*)``
+*  [Adding support for additional software](09_adding_support_software/README.md) ``(*)``
+*  [EasyBuild at Jülich Supercomputing Centre](10_jsc/README.md)
+*  [EasyBuild at Compute Canada](11_computecanada/README.md)
+*  [The EasyBuild Community](12_community/README.md)
+*  [Contributing to EasyBuild](13_contributing/README.md) ``(*)``
+*  [Comparison with other tools](14_comparison_other_tools/README.md)
+*  [Getting help](15_getting_help/README.md)
 
 *(sections indicated with* ``(*)`` *involve hands-on exercises)*
 
