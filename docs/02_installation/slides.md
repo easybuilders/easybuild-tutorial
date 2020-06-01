@@ -1,12 +1,11 @@
-## EasyBuild Learner Profile
+### Installation
 
-This is just a template to get started. Look at https://gitpitch.com/docs/markdown-features/
-for what is possible. 
+To install EasyBuild:
 
-- May have run into dependency hell |
-- Want to minimise the time they spend installing scientific software |
-- Want reliable installations and a way to reproduce them |
+```shell
 
-Note:
+pip install --prefix $HOME/tools easybuild
 
-- Working environment is probably foreign to them
+export PATH=$HOME/tools/bin:$PATH
+export PYTHONPATH=$HOME/tools/lib/python2.7/site-packages:$PYTHONPATH
+```
