@@ -9,12 +9,12 @@ published : true
 # Doc: https://gitpitch.com/docs/themes/default
 #
 theme : template
-theme-background : [ "white" ]
+theme-background : [ "#FFF" ]
 theme-headline   : [ "Roboto", "#333", "none" ]
 theme-byline     : [ "Roboto", "#333", "none" ]
 theme-text       : [ "Raleway", "#1C1C1C", "none" ]
 theme-links      : [ "#AAAAAA", "#777777" ]
-theme-code       : [ "Fira Code" ]
+theme-code       : [ "Source Code Pro" ]
 theme-controls   : [ "#C0C0C0" ]
 theme-margins    : [ "0", "15px" ]
 
