@@ -11,7 +11,7 @@ published : true
 theme : template
 # theme-background : [ "linear-gradient(100deg, white 60%, #1F6ED4 40.2%)" ]
 theme-headline   : [ "Montserrat", "#333", "none" ]
-theme-byline     : [ "Montserrat", "#111111", "none" ]
+theme-byline     : [ "Montserrat", "#333", "none" ]
 theme-text       : [ "Raleway", "#1C1C1C", "none" ]
 theme-links      : [ "#FFF", "#E27924" ]
 theme-code       : [ "Fira Code" ]
