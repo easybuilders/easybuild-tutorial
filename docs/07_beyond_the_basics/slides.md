@@ -1,12 +1,9 @@
-## EasyBuild Learner Profile
+### Beyond the basics: foo
 
-This is just a template to get started. Look at https://gitpitch.com/docs/markdown-features/
-for what is possible. 
+---
 
-- May have run into dependency hell |
-- Want to minimise the time they spend installing scientific software |
-- Want reliable installations and a way to reproduce them |
+### Beyond the basics: bar
 
-Note:
+---
 
-- Working environment is probably foreign to them
+### Beyond the basics: baz
