@@ -18,13 +18,13 @@ theme-code       : [ "Fira Code" ]
 theme-controls   : [ "#C0C0C0" ]
 theme-margins    : [ "0", "15px" ]
 
-theme-override   : assets/css/PITCHME.css
+theme-override   : presentation/slides-style.css
 
 #
 # Logo Setting
 # https://gitpitch.com/docs/settings/logo
 #
-logo : assets/img/easybuild_logo.png
+logo : docs/img/easybuild_logo_alpha.png
 logo-position : top-left
 
 #
