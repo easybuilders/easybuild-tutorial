@@ -1,12 +1,11 @@
-## EasyBuild Learner Profile
+## Introducing EasyBuild (slide 1)
 
-This is just a template to get started. Look at https://gitpitch.com/docs/markdown-features/
-for what is possible. 
+- foo
+- bar
 
-- May have run into dependency hell |
-- Want to minimise the time they spend installing scientific software |
-- Want reliable installations and a way to reproduce them |
+---
 
-Note:
+## Introducing EasyBuild (slide 2)
 
-- Working environment is probably foreign to them
+- blah
+- blah
