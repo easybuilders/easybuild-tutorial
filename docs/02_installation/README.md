@@ -1,3 +1,5 @@
+# Installation
+
 Before deep diving into the wonderful world of EasyBuild and getting your hands dirty with
 the hands on exercises coming up in this tutorial, you will need to install EasyBuild.
 

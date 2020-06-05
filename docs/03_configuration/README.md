@@ -1,3 +1,5 @@
+# Configuration
+
 After installing EasyBuild you should **configure EasyBuild to your preferences**.
 
 Although EasyBuild should work fine out-of-the-box assuming that you are using Lmod
@@ -191,7 +193,7 @@ an optional labels (which corresponds to value of the `versionsuffix` easyconfig
 
 !!! note
     *Using a different module naming scheme is largely out of scope for this tutorial,
-    except when covering [hierarchical module naming schemes](../08_hmns/README.md).*
+    except when covering [hierarchical module naming schemes](../07_hmns/README.md).*
 
 
 ## Configuration levels

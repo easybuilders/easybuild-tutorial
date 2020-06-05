@@ -1,3 +1,5 @@
+# Introduction
+
 ## What is EasyBuild?
 
 [EasyBuild](http://easybuilders.github.io/easybuild/) is a **software build and installation framework**

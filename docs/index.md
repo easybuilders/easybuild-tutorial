@@ -68,17 +68,16 @@ Please see [this page](00_practical_information/README.md) for more details.
 *  [Installation](02_installation/README.md) ``(*)``
 *  [Configuration](03_configuration/README.md) ``(*)``
 *  [Basic usage](04_basic_usage/README.md) ``(*)``
-*  [Installing software with EasyBuild](05_installing_software/README.md) ``(*)``
-*  [Troubleshooting](06_troubleshooting/README.md) ``(*)``
-*  [Beyond the basics](07_beyond_the_basics/README.md) ``(*)``
-*  [Hierarchical module naming schemes](08_hmns/README.md) ``(*)``
-*  [Adding support for additional software](09_adding_support_software/README.md) ``(*)``
-*  [EasyBuild at Jülich Supercomputing Centre](10_jsc/README.md)
-*  [EasyBuild at Compute Canada](11_computecanada/README.md)
-*  [The EasyBuild Community](12_community/README.md)
-*  [Contributing to EasyBuild](13_contributing/README.md) ``(*)``
-*  [Comparison with other tools](14_comparison_other_tools/README.md)
-*  [Getting help](15_getting_help/README.md)
+*  [Troubleshooting](05_troubleshooting/README.md) ``(*)``
+*  [Beyond the basics](06_beyond_the_basics/README.md) ``(*)``
+*  [Hierarchical module naming schemes](07_hmns/README.md) ``(*)``
+*  [Adding support for additional software](08_adding_support_software/README.md) ``(*)``
+*  [EasyBuild at Jülich Supercomputing Centre](09_jsc/README.md)
+*  [EasyBuild at Compute Canada](10_computecanada/README.md)
+*  [The EasyBuild Community](11_community/README.md)
+*  [Contributing to EasyBuild](12_contributing/README.md) ``(*)``
+*  [Comparison with other tools](13_comparison_other_tools/README.md)
+*  [Getting help](14_getting_help/README.md)
 
 *(sections indicated with* ``(*)`` *involve hands-on exercises)*
 
