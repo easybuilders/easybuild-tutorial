@@ -22,10 +22,6 @@ ARG EASYCONFIG=SciPy-bundle-2020.03-foss-2020a-Python-3.8.2.eb
 
 # use /easybuild for everything that should persist in the container (software, modules and sources)
 # everything else goes in /scratch, which will be cleaned out
-RUN  ml use /easybuild/modules/all \
-  && ml EasyBuild \
-  && eb --prefix /scratch --installpath /easybuild ${EASYCONFIG} --robot --trace \
+RUN  eb --prefix /scratch --installpath /easybuild ${EASYCONFIG} --robot --trace \
   # clean up everything in /scratch
-  && rm -rf /scratch/* \
-  && ml EasyBuild \
-  && ml unuse /easybuild/modules/all
+  && rm -rf /scratch/*

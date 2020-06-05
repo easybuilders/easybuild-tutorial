@@ -21,3 +21,6 @@ docker build -f Dockerfile.easybuild-${OS} --build-arg CPU_ARCH=${CPU_ARCH} --bu
 docker build -f Dockerfile.easybuild-${OS} --build-arg CPU_ARCH=${CPU_ARCH} --build-arg IMG_NAME=${REPO} --build-arg IMG_TAG=${OS}-${CPU_ARCH}-${GCC} --build-arg EASYCONFIG=${FOSS}.eb -t ${ORG}/${REPO}:${OS}-${CPU_ARCH}-${FOSS} .
 # build software container with SciPy-bundle for Haswell, on top of foss-2020a container
 docker build -f Dockerfile.easybuild-${OS} --build-arg CPU_ARCH=${CPU_ARCH} --build-arg IMG_NAME=${REPO} --build-arg IMG_TAG=${OS}-${CPU_ARCH}-${FOSS} --build-arg EASYCONFIG=${SCIPY_BUNDLE}.eb -t ${ORG}/${REPO}:${OS}-${CPU_ARCH}-${SCIPY_BUNDLE} .
+
+# build final tutorial image
+docker build -f Dockerfile.easybuild-tutorial --build-arg CPU_ARCH=${CPU_ARCH} --build-arg IMG_NAME=${REPO} --build-arg IMG_TAG=${OS}-${CPU_ARCH}-${SCIPY_BUNDLE} -t ${ORG}/${REPO}:${OS}-${CPU_ARCH}-tutorial

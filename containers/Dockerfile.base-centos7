@@ -38,9 +38,7 @@ RUN ml use /easybuild/modules/all \
   && ml --version \
   && which -a eb \
   && eb --version \
-  && eb --show-system-info \
-  && ml unload EasyBuild \
-  && ml unuse /easybuild/modules/all
+  && eb --show-system-info
 # remove globally installed EasyBuild, we can use the module going forward
 USER root
 RUN pip3 uninstall -y easybuild easybuild-framework easybuild-easyblocks easybuild-easyconfigs
