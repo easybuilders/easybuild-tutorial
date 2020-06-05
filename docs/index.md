@@ -51,6 +51,16 @@ Required software:
     * we recommend [Lmod](https://lmod.readthedocs.io), a modern environment modules tool implemented in Lua
     * for more information on the environment modules tools supported by EasyBuild, see [here](https://easybuild.readthedocs.io/en/latest/Installation.html#required-modules-tool)
 
+## Practical information
+
+For the sake of this tutorial, you can:
+
+* use the `#tutorial` channel in the EasyBuild Slack for asking questions or getting help;
+* use *AWS Cloud9* for the hands-on exercises;
+* use the prepared container image through Docker or Singularity;
+
+Please see [this page](00_practical_information/README.md) for more details.
+
 
 ## Tutorial contents
 

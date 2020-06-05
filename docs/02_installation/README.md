@@ -321,3 +321,8 @@ you are currently using (so it is *not* an in-place update).
 
 The location where this new EasyBuild version will be installed is determined by the active
 EasyBuild configuration.
+
+---
+
+!!! warning
+    **Make sure you have EasyBuild installed before you proceed with the rest of the tutorial!**
