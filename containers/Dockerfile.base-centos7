@@ -31,7 +31,14 @@ CMD ["bash"]
 USER easybuild
 # install EasyBuild as a module (& clean up /scratch)
 RUN eb --install-latest-eb-release --prefix /scratch --installpath /easybuild \
-  && rm -rf /scratch/*
+  && rm -rf /scratch/* \
+  # load EasyBuild module through .bashrc startup script
+  && echo 'ml use /easybuild/modules/all && ml EasyBuild' >> ~/.bashrc
+# remove globally installed EasyBuild, we can use the module going forward
+USER root
+RUN pip3 uninstall -y easybuild easybuild-framework easybuild-easyblocks easybuild-easyconfigs
+# switch to 'easybuild' user
+USER easybuild
 # print info on Lmod & EasyBuild
 RUN ml use /easybuild/modules/all \
   && ml EasyBuild \
@@ -39,10 +46,5 @@ RUN ml use /easybuild/modules/all \
   && which -a eb \
   && eb --version \
   && eb --show-system-info
-# remove globally installed EasyBuild, we can use the module going forward
-USER root
-RUN pip3 uninstall -y easybuild easybuild-framework easybuild-easyblocks easybuild-easyconfigs
-# switch to 'easybuild' user
-USER easybuild
 # make sure we start in /home/easybuild rather than / when shell in started in container
 WORKDIR /home/easybuild

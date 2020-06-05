@@ -5,5 +5,5 @@ ARG IMG_TAG=centos7-eb4.2.1
 # allow CI/CD to change all of the above
 FROM ${IMG_REGISTRY}/${IMG_ORG}/${IMG_NAME}:${IMG_TAG}
 
-# unload EasyBuild module installed /easybuild for tutorial hands-on
-RUN ml unload Easybuild && ml unuse /easybuild/modules/all
+# don't load EasyBuild module via .bashrc startup script
+RUN sed -i 's/^ml use.*EasyBuild//g' ~/.bashrc
