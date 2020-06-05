@@ -38,10 +38,12 @@ RUN ml use /easybuild/modules/all \
   && ml --version \
   && which -a eb \
   && eb --version \
-  && eb --show-system-info
+  && eb --show-system-info \
+  && ml unload EasyBuild \
+  && ml unuse /easybuild/modules/all
 # remove globally installed EasyBuild, we can use the module going forward
 USER root
-RUN pip3 uninstall -y easybuild
+RUN pip3 uninstall -y easybuild easybuild-framework easybuild-easyblocks easybuild-easyconfigs
 # switch to 'easybuild' user
 USER easybuild
 # make sure we start in /home/easybuild rather than / when shell in started in container
