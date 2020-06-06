@@ -1,4 +1,7 @@
 site_name: "EasyBuild tutorial"
+google_analytics:
+    - UA-168742780-1
+    - auto
 theme:
   name: material
   logo: img/easybuild_logo.png
