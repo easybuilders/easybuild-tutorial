@@ -4,7 +4,7 @@ After installing EasyBuild you should **configure EasyBuild to your preferences*
 
 EasyBuild should work fine out-of-the-box if you use Lmod
 as your modules tool. If you are not using Lmod, please see <a href="#modules-tool-module-syntax">here</a> for more information. 
-Either way you should go through the default configuration and expect to make local adaptations.
+The next step is to go through the default configuration and make the appropriate local adaptations.
 
 !!! note
     Configuring EasyBuild is also covered in detail in the EasyBuild documentation, see [here](https://easybuild.readthedocs.io/en/latest/Configuration.html).
@@ -106,7 +106,7 @@ until one of them provides the desired source file. Searching for source files i
 based on filename, and a couple of subdirectories are considered.
 For example, for a software packagamed '`Example'`, EasyBuild will consider locations like `<sourcepath>/e/Example/`, `<sourcepath>/Example/`, and so on.
 
-The first path listed in `sourcepath` will become the root directory where EasyBuild stores downloaded source files,
+The first path listed in `sourcepath` is the location where EasyBuild will store downloaded source files,
 organised by software name through subdirectories.
 
 *Make sure you have write permissions to the first path listed in `sourcepath`, so EasyBuild is able
@@ -312,7 +312,7 @@ is defined the way you want it to be, you can use a command line option.
 There are various configuration settings for which it only makes sense to use the command line option.
 An example of this is letting the `eb` command print the EasyBuild version (via `eb --version`);
 although you could configure EasyBuild to always print its version and then exit whenever the `eb` command is
-run, that would not be less than useful...
+run, that would be less than useful...
 
 *Command line options are typically used to define configuration settings that are only relevant to
 that particular EasyBuild session. One example is doing a test installation into a temporary directory:*

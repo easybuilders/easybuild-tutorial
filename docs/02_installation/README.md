@@ -9,7 +9,7 @@ for the remainder of this tutorial.
 
 ## Executive summary
 
-* <a href="#requirements">requirements</a>: Linux, Python 2.7 or 3.5+ (with SSL support), environment modules tool (Lmod is recommended)
+* <a href="#requirements">requirements</a>: Linux, Python 2.7 or 3.5+, environment modules tool (Lmod is recommended)
 * installation methods:
     * <a href=#method-1-using-pip-recommended>``pip install easybuild``</a>
     * <a href="#method-2-bootstrapping-easybuild">bootstrapping EasyBuild</a>
@@ -31,7 +31,7 @@ like contributing back to the project.
 ### Python
 
 EasyBuild is implemented in Python, and is **compatible with both Python 2.7 and Python 3.5+**
-(that is, Python 3.5 or a newer version of Python 3). The installed Python must support SSL.
+(that is, Python 3.5 or a newer version of Python 3).
 
 To check which Python version you have, use:
 
@@ -89,8 +89,9 @@ that's OK too), so don't worry.
 
 You can install EasyBuild just like you can install any other Python software that is released
 via the standard *Python Package Index* (PyPI), through one of standard Python installation tools.
-There may be some irony involved for this specific solution, and since EasyBuild is a software installation tool
-in its own right, we actually have a couple of additional tricks up our sleeve!
+There may be some irony involved in using the "standard" Python Packaging tool to install Easybuild,
+seeing as EasyBuild is a software installation tool in its own right. However, we actually have a couple
+of additional tricks up our sleeve!
 
 #### Python 2 or Python 3?
 

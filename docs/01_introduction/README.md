@@ -117,7 +117,7 @@ which implements the ubiquitous ``configure``-``make``-``make install`` procedur
 A **software-specific** easyblock implements an installation procedure that is specific to a particular
 software packages. Infamous examples include the easyblocks we have for ``GCC``, ``OpenFOAM``, ``TensorFlow``, ...
 
-The installation procedure performed by an easyblock can be locally customised by defining
+The installation procedure performed by an easyblock can be controlled by defining
 **easyconfig parameters** (see <a href="#easyconfig-files">easyconfig files</a>).
 
 
@@ -145,13 +145,15 @@ Some commonly used optional easyconfig parameters include:
 * ``dependencies`` and ``builddependencies``, which specify (drum roll...) the list of (build) dependencies;
 * ``configopts``, ``buildopts``, and ``installopts``, which specify options for the configuration/build/install commands, respectively;
 
-If these parameters are not provided, default values will be provided or extrapolated. For clarity, specifying at least
-which `èasyblock`` to use is a good idea.
+If these parameters are not provided, default values will be extrapolated and used.
 
 ### *Extensions*
 
 *Extensions* is the collective term we use for **additional software packages that can be installed
 on top of another software package**. Examples are *Python packages*, *R libraries* and *Perl modules*.
+As you can tell, the software terminology here is a mess, so we had to come of up with a unifying term...
+
+<div align="center"><a href="https://xkcd.com/927/"><img src="https://imgs.xkcd.com/comics/standards.png" width="350px"></a></div>
 
 Extensions can be installed in different ways:
 
@@ -167,7 +169,7 @@ A *dependency* is a common term in the context of software. It refers to **a sof
 package that is either strictly required by other software, or that can be leveraged to
 enhance other software** (for example to support specific features).
 
-EasyBuild supports multiple types of dependencies:
+There are three main types of dependencies for computer software:
 
 * a **build dependency** is only required when building/installing a software package;
   once the software package is installed, it is no longer needed to *use* that software;
@@ -177,10 +179,12 @@ EasyBuild supports multiple types of dependencies:
   it is only needed when *linking* a software package; it can become either a build or runtime
   dependency, depending on exactly how the software is installed;
 
+The distinction between link-time and build/runtime dependencies is irrelevant for this tutorial.
+
 ### *Toolchains*
 
 A *compiler toolchain* (or just *toolchain* for short) is a **set of [compilers](https://en.wikipedia.org/wiki/Compiler)**,
-which are used to build software from source, and a set of **additional libraries** that provide further core functionality.
+which are used to build software from source, together with a set of **additional libraries** that provide further core functionality.
 
 We refer to the different parts of a toolchain as **toolchain components**.
 
@@ -214,9 +218,9 @@ specify changes that should be made to one or more
 [shell](https://en.wikipedia.org/wiki/Shell_(computing))-agnostic way. A module file
 is usually written in either [Tcl](https://en.wikipedia.org/wiki/Tcl) or
 [Lua](https://en.wikipedia.org/wiki/Lua_(programming_language)) syntax,
-and specifies for which environment variables should be updated, and how (append,
-prepend, (re)define, undefine, etc.) upon loading the environment module. Upon unloading
-the environment module the shell environment is returned to its previous state.
+and specifies which environment variables should be updated, and how (append,
+prepend, (re)define, undefine, etc.) upon loading the environment module.
+Unloading the environment module will restore the shell environment to its previous state.
 
 Environment module files are processed via a **modules tool**, of which there
 are several conceptually similar yet slighty different implementations.
@@ -239,7 +243,7 @@ The EasyBuild **framework** leverages **easyblocks** to automatically build and 
 (scientific) software, potentially including additional **extensions**, using a particular compiler **toolchain**,
 as specified in **easyconfig files**.
 
-EasyBuild ensures that the specified **dependencies** are met by installing them as required,
+EasyBuild ensures that the specified **dependencies** are met upon a successful install,
 and automatically generates a set of **(environment) modules** that facilitate access to the installed software.
 
 --- 
@@ -256,7 +260,7 @@ which is reflected in some of the design choices that were made.
 EasyBuild strongly prefers to **build software from source code**, whenever possible.
 
 This is important to ensure that the binaries that are installed can maximally exploit
-the capabilities of the machine architecture on which the software will be run.
+the capabilities of the system architecture on which the software will be run.
 
 For that same reason, EasyBuild **optimizes software for the processor architecture of the build host**
 by default, via compiler options like ``-march=native`` (GCC), ``-xHost`` (Intel compilers), etc.
@@ -265,7 +269,7 @@ This behaviour [may be changed via the ``--optarch`` configuration setting](http
 
 ### *Reproducibility*
 
-In addition to performance, **reproducibility of installations** is vital for EasyBuild.
+In addition to performance, **reproducibility of installations** is a core aspect of EasyBuild.
 
 Most software installations performed with EasyBuild use a **particular <a href="#toolchains">toolchain</a>**,
 with which we aim to take control over the build environment and avoid relying on tools and libraries
@@ -323,7 +327,7 @@ which is used and developed by various HPC centres and consortia worldwide, incl
 * [University of Melbourne, Australia](https://dashboard.hpc.unimelb.edu.au/)
 * [HPCNow!](https://hpcnow.com/)
 
-Today, an [experienced team of HPC experts](https://easybuild.readthedocs.io/en/latest/Maintainers.html) actively maintain the project,
+Today, an [experienced team of HPC experts](https://easybuild.readthedocs.io/en/latest/Maintainers.html) actively maintains the project,
 by implementing additional features and bug fixes, and processing incoming contributions.
 
 The EasyBuild documentation is available at [**https://easybuild.readthedocs.io**](https://easybuild.readthedocs.io).
