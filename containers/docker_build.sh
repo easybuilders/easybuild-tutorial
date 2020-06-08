@@ -15,7 +15,7 @@ HDF5="HDF5-1.10.6-gompi-2020a"
 COMMON_TAG=${ORG}/${REPO}:${OS}
 
 # build base container
-docker build -f Dockerfile.base-${OS} -t ${COMMON_TAG}-${EB}
+docker build -f Dockerfile.base-${OS} -t ${COMMON_TAG}-${EB} .
 # build container for GCC-9.3.0 on Haswell
 docker build -f Dockerfile.easybuild-${OS} --build-arg CPU_ARCH=${CPU_ARCH} --build-arg EASYCONFIG=${GCC}.eb -t ${COMMON_TAG}-${CPU_ARCH}-${GCC} .
 # build container for foss-2020a on Haswell, on top of GCC-9.3.0 container
