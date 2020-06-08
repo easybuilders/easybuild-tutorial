@@ -59,25 +59,25 @@ For the sake of this tutorial, you can:
 * use *AWS Cloud9* for the hands-on exercises;
 * use the prepared container image through Docker or Singularity;
 
-Please see [this page](00_practical_information/README.md) for more details.
+Please see [this page](practical_information/README.md) for more details.
 
 
 ## Tutorial contents
 
-1. [Introduction to EasyBuild](01_introduction/README.md)
-*  [Installation](02_installation/README.md) ``(*)``
-*  [Configuration](03_configuration/README.md) ``(*)``
-*  [Basic usage](04_basic_usage/README.md) ``(*)``
-*  [Troubleshooting](05_troubleshooting/README.md) ``(*)``
-*  [Beyond the basics](06_beyond_the_basics/README.md) ``(*)``
-*  [Hierarchical module naming schemes](07_hmns/README.md) ``(*)``
-*  [Adding support for additional software](08_adding_support_software/README.md) ``(*)``
-*  [EasyBuild at Jülich Supercomputing Centre](09_jsc/README.md)
-*  [EasyBuild at Compute Canada](10_computecanada/README.md)
-*  [The EasyBuild Community](11_community/README.md)
-*  [Contributing to EasyBuild](12_contributing/README.md) ``(*)``
-*  [Comparison with other tools](13_comparison_other_tools/README.md)
-*  [Getting help](14_getting_help/README.md)
+1. [Introduction to EasyBuild](introduction/README.md)
+*  [Installation](installation/README.md) ``(*)``
+*  [Configuration](configuration/README.md) ``(*)``
+*  [Basic usage](basic_usage/README.md) ``(*)``
+*  [Troubleshooting](troubleshooting/README.md) ``(*)``
+*  [Beyond the basics](beyond_the_basics/README.md) ``(*)``
+*  [Hierarchical module naming schemes](hmns/README.md) ``(*)``
+*  [Adding support for additional software](adding_support_software/README.md) ``(*)``
+*  [EasyBuild at Jülich Supercomputing Centre](jsc/README.md)
+*  [EasyBuild at Compute Canada](computecanada/README.md)
+*  [The EasyBuild Community](community/README.md)
+*  [Contributing to EasyBuild](contributing/README.md) ``(*)``
+*  [Comparison with other tools](comparison_other_tools/README.md)
+*  [Getting help](getting_help/README.md)
 
 *(sections indicated with* ``(*)`` *involve hands-on exercises)*
 
