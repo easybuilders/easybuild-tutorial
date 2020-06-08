@@ -10,16 +10,16 @@
       
       
       
-      <link rel="shortcut icon" href="assets/images/favicon.png">
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.3">
     
     
       
-        <title>EasyBuild tutorial</title>
+        <title>4. Basic usage - EasyBuild tutorial</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.6e35a1a6.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.6e35a1a6.min.css">
       
       
     
@@ -52,7 +52,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#welcome-to-the-official-easybuild-tutorial" class="md-skip">
+        <a href="#basic-usage" class="md-skip">
           Skip to content
         </a>
       
@@ -63,9 +63,9 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="." title="EasyBuild tutorial" class="md-header-nav__button md-logo" aria-label="EasyBuild tutorial">
+    <a href=".." title="EasyBuild tutorial" class="md-header-nav__button md-logo" aria-label="EasyBuild tutorial">
       
-  <img src="img/easybuild_logo.png" alt="logo">
+  <img src="../img/easybuild_logo.png" alt="logo">
 
     </a>
     <label class="md-header-nav__button md-icon" for="__drawer">
@@ -79,7 +79,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              
+              4. Basic usage
             
           </span>
         </div>
@@ -148,7 +148,7 @@
         
   <li class="md-tabs__item">
     
-      <a href="." class="md-tabs__link md-tabs__link--active">
+      <a href=".." class="md-tabs__link md-tabs__link--active">
         
       </a>
     
@@ -199,9 +199,9 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="EasyBuild tutorial" class="md-nav__button md-logo" aria-label="EasyBuild tutorial">
+    <a href=".." title="EasyBuild tutorial" class="md-nav__button md-logo" aria-label="EasyBuild tutorial">
       
-  <img src="img/easybuild_logo.png" alt="logo">
+  <img src="../img/easybuild_logo.png" alt="logo">
 
     </a>
     EasyBuild tutorial
@@ -226,6 +226,66 @@
       
       
 
+
+  <li class="md-nav__item">
+    <a href=".." title="" class="md-nav__link">
+      
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../practical_information/" title="0. Practical information" class="md-nav__link">
+      0. Practical information
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../introduction/" title="1. Introduction" class="md-nav__link">
+      1. Introduction
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../installation/" title="2. Installation" class="md-nav__link">
+      2. Installation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../configuration/" title="3. Configuration" class="md-nav__link">
+      3. Configuration
+    </a>
+  </li>
+
+    
+      
+      
+      
+
   
 
 
@@ -237,14 +297,14 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        
+        4. Basic usage
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
         </span>
       </label>
     
-    <a href="." title="" class="md-nav__link md-nav__link--active">
-      
+    <a href="./" title="4. Basic usage" class="md-nav__link md-nav__link--active">
+      4. Basic usage
     </a>
     
       
@@ -263,50 +323,77 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#scope" class="md-nav__link">
-    Scope
+  <a href="#workflow" class="md-nav__link">
+    Workflow
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#intended-audience" class="md-nav__link">
-    Intended audience
+  <a href="#searching-for-easyconfigs" class="md-nav__link">
+    Searching for easyconfigs
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    Prerequisites
+  <a href="#checking-dependencies" class="md-nav__link">
+    Checking dependencies
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#practical-information" class="md-nav__link">
-    Practical information
+  <a href="#performing-a-dry-run" class="md-nav__link">
+    Performing a dry run
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#tutorial-contents" class="md-nav__link">
-    Tutorial contents
+  <a href="#installing-software" class="md-nav__link">
+    Installing software
+  </a>
+  
+    <nav class="md-nav" aria-label="Installing software">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enabling-dependency-resolution" class="md-nav__link">
+    Enabling dependency resolution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trace-output" class="md-nav__link">
+    Trace output
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-installed-software" class="md-nav__link">
+    Using installed software
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#contributors" class="md-nav__link">
-    Contributors
+  <a href="#stacking-software" class="md-nav__link">
+    Stacking software
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#additional-resources" class="md-nav__link">
-    Additional resources
+  <a href="#hands-on-exercises" class="md-nav__link">
+    Hands-on exercises
   </a>
   
 </li>
@@ -324,67 +411,7 @@
 
 
   <li class="md-nav__item">
-    <a href="practical_information/" title="0. Practical information" class="md-nav__link">
-      0. Practical information
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="introduction/" title="1. Introduction" class="md-nav__link">
-      1. Introduction
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="installation/" title="2. Installation" class="md-nav__link">
-      2. Installation
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="configuration/" title="3. Configuration" class="md-nav__link">
-      3. Configuration
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="basic_usage/" title="4. Basic usage" class="md-nav__link">
-      4. Basic usage
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="troubleshooting/" title="5. Troubleshooting" class="md-nav__link">
+    <a href="../troubleshooting/" title="5. Troubleshooting" class="md-nav__link">
       5. Troubleshooting
     </a>
   </li>
@@ -396,7 +423,7 @@
 
 
   <li class="md-nav__item">
-    <a href="beyond_the_basics/" title="6. Beyond the basics" class="md-nav__link">
+    <a href="../beyond_the_basics/" title="6. Beyond the basics" class="md-nav__link">
       6. Beyond the basics
     </a>
   </li>
@@ -408,7 +435,7 @@
 
 
   <li class="md-nav__item">
-    <a href="hmns/" title="7. Hierarchical module naming schemes" class="md-nav__link">
+    <a href="../hmns/" title="7. Hierarchical module naming schemes" class="md-nav__link">
       7. Hierarchical module naming schemes
     </a>
   </li>
@@ -420,7 +447,7 @@
 
 
   <li class="md-nav__item">
-    <a href="adding_support_software/" title="8. Adding support for additional software" class="md-nav__link">
+    <a href="../adding_support_software/" title="8. Adding support for additional software" class="md-nav__link">
       8. Adding support for additional software
     </a>
   </li>
@@ -432,7 +459,7 @@
 
 
   <li class="md-nav__item">
-    <a href="jsc/" title="9. EasyBuild at Jülich Supercomputing Centre" class="md-nav__link">
+    <a href="../jsc/" title="9. EasyBuild at Jülich Supercomputing Centre" class="md-nav__link">
       9. EasyBuild at Jülich Supercomputing Centre
     </a>
   </li>
@@ -444,7 +471,7 @@
 
 
   <li class="md-nav__item">
-    <a href="computecanada/" title="10. EasyBuild at Compute Canada" class="md-nav__link">
+    <a href="../computecanada/" title="10. EasyBuild at Compute Canada" class="md-nav__link">
       10. EasyBuild at Compute Canada
     </a>
   </li>
@@ -456,7 +483,7 @@
 
 
   <li class="md-nav__item">
-    <a href="community/" title="11. The EasyBuild Community" class="md-nav__link">
+    <a href="../community/" title="11. The EasyBuild Community" class="md-nav__link">
       11. The EasyBuild Community
     </a>
   </li>
@@ -468,7 +495,7 @@
 
 
   <li class="md-nav__item">
-    <a href="contributing/" title="12. Contributing to EasyBuild" class="md-nav__link">
+    <a href="../contributing/" title="12. Contributing to EasyBuild" class="md-nav__link">
       12. Contributing to EasyBuild
     </a>
   </li>
@@ -480,7 +507,7 @@
 
 
   <li class="md-nav__item">
-    <a href="comparison_other_tools/" title="13. Comparison with other tools" class="md-nav__link">
+    <a href="../comparison_other_tools/" title="13. Comparison with other tools" class="md-nav__link">
       13. Comparison with other tools
     </a>
   </li>
@@ -492,7 +519,7 @@
 
 
   <li class="md-nav__item">
-    <a href="getting_help/" title="14. Getting help" class="md-nav__link">
+    <a href="../getting_help/" title="14. Getting help" class="md-nav__link">
       14. Getting help
     </a>
   </li>
@@ -524,50 +551,77 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#scope" class="md-nav__link">
-    Scope
+  <a href="#workflow" class="md-nav__link">
+    Workflow
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#intended-audience" class="md-nav__link">
-    Intended audience
+  <a href="#searching-for-easyconfigs" class="md-nav__link">
+    Searching for easyconfigs
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    Prerequisites
+  <a href="#checking-dependencies" class="md-nav__link">
+    Checking dependencies
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#practical-information" class="md-nav__link">
-    Practical information
+  <a href="#performing-a-dry-run" class="md-nav__link">
+    Performing a dry run
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#tutorial-contents" class="md-nav__link">
-    Tutorial contents
+  <a href="#installing-software" class="md-nav__link">
+    Installing software
+  </a>
+  
+    <nav class="md-nav" aria-label="Installing software">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enabling-dependency-resolution" class="md-nav__link">
+    Enabling dependency resolution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trace-output" class="md-nav__link">
+    Trace output
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-installed-software" class="md-nav__link">
+    Using installed software
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#contributors" class="md-nav__link">
-    Contributors
+  <a href="#stacking-software" class="md-nav__link">
+    Stacking software
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#additional-resources" class="md-nav__link">
-    Additional resources
+  <a href="#hands-on-exercises" class="md-nav__link">
+    Hands-on exercises
   </a>
   
 </li>
@@ -584,7 +638,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/easybuilders/easybuild-tutorial/edit/master/docs/index.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/easybuilders/easybuild-tutorial/edit/master/docs/basic_usage/README.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -592,93 +646,75 @@
                   
                 
                 
-                <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p><em>(Apr 19th 2020)</em><br/>
-<strong>This is very much a work in progress!</strong><br/>
-Many pages are still empty, that will hopefully change soon...</p>
-</div>
-<h1 id="welcome-to-the-official-easybuild-tutorial">Welcome to the official EasyBuild tutorial!<a class="headerlink" href="#welcome-to-the-official-easybuild-tutorial" title="Permanent link">&para;</a></h1>
-<p align="center"><img src="https://boegel.github.io/easybuild-tutorial/img/easybuild_logo_alpha.png" alt="EasyBuild logo" width="300px"/></p>
+                <h1 id="basic-usage">Basic usage<a class="headerlink" href="#basic-usage" title="Permanent link">&para;</a></h1>
+<h2 id="workflow">Workflow<a class="headerlink" href="#workflow" title="Permanent link">&para;</a></h2>
+<h2 id="searching-for-easyconfigs">Searching for easyconfigs<a class="headerlink" href="#searching-for-easyconfigs" title="Permanent link">&para;</a></h2>
+<p><code>-S</code>, <code>--search</code></p>
+<h2 id="checking-dependencies">Checking dependencies<a class="headerlink" href="#checking-dependencies" title="Permanent link">&para;</a></h2>
+<p><code>-D</code>, <code>-M</code></p>
+<h2 id="performing-a-dry-run">Performing a dry run<a class="headerlink" href="#performing-a-dry-run" title="Permanent link">&para;</a></h2>
+<p><code>-x</code></p>
+<h2 id="installing-software">Installing software<a class="headerlink" href="#installing-software" title="Permanent link">&para;</a></h2>
+<h3 id="enabling-dependency-resolution">Enabling dependency resolution<a class="headerlink" href="#enabling-dependency-resolution" title="Permanent link">&para;</a></h3>
+<h3 id="trace-output">Trace output<a class="headerlink" href="#trace-output" title="Permanent link">&para;</a></h3>
+<p><code>--trace</code></p>
+<h2 id="using-installed-software">Using installed software<a class="headerlink" href="#using-installed-software" title="Permanent link">&para;</a></h2>
+<h2 id="stacking-software">Stacking software<a class="headerlink" href="#stacking-software" title="Permanent link">&para;</a></h2>
+<h2 id="hands-on-exercises">Hands-on exercises<a class="headerlink" href="#hands-on-exercises" title="Permanent link">&para;</a></h2>
+<p><strong><em>Exercise 4.1</em></strong><em> - Searching easyconfigs</em></p>
+<p>See if EasyBuild provides any easyconfig files for TensorFlow 2.2.0.</p>
+<details class="success"><summary>(click to show solution)</summary><div class="highlight"><pre><span></span><code>eb --search TensorFlow-2.2.0
+</code></pre></div>
 
-<hr />
-<h2 id="scope">Scope<a class="headerlink" href="#scope" title="Permanent link">&para;</a></h2>
-<p>This is an introductory tutorial to <a href="https://easybuilders.github.io/easybuild">EasyBuild</a>,
-a command line tool for installing (scientific) software on High Performance Computing (HPC) systems.</p>
-<p>It aims to explain the core concepts of EasyBuild,
-get you started with using it, make you familiar with some of the features it provides,
-and show how it is used by large HPC sites to maintain their central software stacks.</p>
-<p>Through hands-on exercises and demos, you will learn how EasyBuild can help you
-to get scientific software installed in an efficient way.</p>
-<h2 id="intended-audience">Intended audience<a class="headerlink" href="#intended-audience" title="Permanent link">&para;</a></h2>
-<p>This tutorial is primarily intended for people new to EasyBuild, but even if you're already familiar
-with the project it could be interesting to step through it.</p>
-<p>Our main target audience includes:</p>
-<ul>
-<li>HPC system administrators</li>
-<li>HPC user support team members</li>
-<li>scientific researchers using HPC systems</li>
-</ul>
-<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
-<p>We expect you to be (a little bit) familiar with:</p>
-<ul>
-<li>using a Linux command line interface</li>
-<li>the (absolute) basics of compiling software from source</li>
-</ul>
-<p>Required software:</p>
-<ul>
-<li>OS: GNU/Linux (any distribution)</li>
-<li>Python 2.7 or 3.5+</li>
-<li>
-<p>an environment modules tool (see the <code>module</code> command)</p>
-<ul>
-<li>we recommend <a href="https://lmod.readthedocs.io">Lmod</a>, a modern environment modules tool implemented in Lua</li>
-<li>for more information on the environment modules tools supported by EasyBuild, see <a href="https://easybuild.readthedocs.io/en/latest/Installation.html#required-modules-tool">here</a></li>
-</ul>
-</li>
-</ul>
-<h2 id="practical-information">Practical information<a class="headerlink" href="#practical-information" title="Permanent link">&para;</a></h2>
-<p>For the sake of this tutorial, you can:</p>
-<ul>
-<li>use the <code>#tutorial</code> channel in the EasyBuild Slack for asking questions or getting help;</li>
-<li>use <em>AWS Cloud9</em> for the hands-on exercises;</li>
-<li>use the prepared container image through Docker or Singularity;</li>
-</ul>
-<p>Please see <a href="practical_information/">this page</a> for more details.</p>
-<h2 id="tutorial-contents">Tutorial contents<a class="headerlink" href="#tutorial-contents" title="Permanent link">&para;</a></h2>
-<ol>
-<li><a href="introduction/">Introduction to EasyBuild</a></li>
-<li><a href="installation/">Installation</a> <code>(*)</code></li>
-<li><a href="configuration/">Configuration</a> <code>(*)</code></li>
-<li><a href="basic_usage/">Basic usage</a> <code>(*)</code></li>
-<li><a href="troubleshooting/">Troubleshooting</a> <code>(*)</code></li>
-<li><a href="beyond_the_basics/">Beyond the basics</a> <code>(*)</code></li>
-<li><a href="hmns/">Hierarchical module naming schemes</a> <code>(*)</code></li>
-<li><a href="adding_support_software/">Adding support for additional software</a> <code>(*)</code></li>
-<li><a href="jsc/">EasyBuild at Jülich Supercomputing Centre</a></li>
-<li><a href="computecanada/">EasyBuild at Compute Canada</a></li>
-<li><a href="community/">The EasyBuild Community</a></li>
-<li><a href="contributing/">Contributing to EasyBuild</a> <code>(*)</code></li>
-<li><a href="comparison_other_tools/">Comparison with other tools</a></li>
-<li><a href="getting_help/">Getting help</a></li>
-</ol>
-<p><em>(sections indicated with</em> <code>(*)</code> <em>involve hands-on exercises)</em></p>
-<h2 id="contributors">Contributors<a class="headerlink" href="#contributors" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Kenneth Hoste (<a href="https://github.com/boegel"><code>@boegel</code></a>, <a href="https://www.ugent.be/hpc/en">HPC-UGent, Belgium</a>)</li>
-<li>Michael Kelsey (<a href="https://github.com/kelseymh"><code>@kelseymh</code></a>, <a href="https://hprc.tamu.edu/">Texas A&amp;M University, US</a>)</li>
-<li>Christian Kniep (<a href="https://github.com/kniec"><code>@kniec</code></a>, <a href="https://aws.amazon.com">AWS</a>)</li>
-<li>Terje Kvernes (<a href="https://github.com/terjekv"><code>@terjekv</code></a>, <a href="https://www.uio.no/english/">University of Oslo, Norway</a>)</li>
-<li>Alan O'Cais (<a href="https://github.com/ocaisa"><code>@ocaisa</code></a>, <a href="https://www.fz-juelich.de/ias/jsc/EN/Home/home_node.html">Jülich Supercomputing Centre, Germany</a>)</li>
-</ul>
-<h2 id="additional-resources">Additional resources<a class="headerlink" href="#additional-resources" title="Permanent link">&para;</a></h2>
-<ul>
-<li>website: <a href="https://easybuilders.github.io/easybuild">https://easybuilders.github.io/easybuild</a></li>
-<li>documentation: <a href="https://easybuild.readthedocs.io">https://easybuild.readthedocs.io</a></li>
-<li>GitHub: <a href="https://github.com/easybuilders">https://github.com/easybuilders</a></li>
-<li>Slack: <a href="https://easybuild.slack.com">https://easybuild.slack.com</a> (self-request an invite <a href="https://easybuild-slack.herokuapp.com">here</a>)</li>
-<li>mailing list: <a href="https://lists.ugent.be/wws/subscribe/easybuild">https://lists.ugent.be/wws/subscribe/easybuild</a></li>
-</ul>
+</details>
+<p><strong><em>Exercise 4.2</em></strong><em>- Checking dependencies</em></p>
+<p>Check which dependencies are missing to install PETSc 3.12.4 with the <code>foss/2020a</code> toolchain.</p>
+<details class="success"><summary>(click to show solution)</summary><p><div class="highlight"><pre><span></span><code>eb --search <span class="s1">&#39;PETSc-3.12.4.*foss-2020a&#39;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>eb PETSc-3.12.4-foss-2020a-Python-3.8.2.eb --missing
+</code></pre></div></p>
+</details>
+<p><strong><em>Exercise 4.3</em></strong><em>- Performing a dry run</em></p>
+<p>Inspect the installation procedure for <code>GSL-2.6-GCC-9.3.0.eb</code> by performing a dry run.</p>
+<p>Which binaries will EasyBuild check for to sanity check the installation?</p>
+<details class="success"><summary>(click to show solution)</summary><div class="highlight"><pre><span></span><code>eb -x GSL-2.6-GCC-9.3.0.eb
+</code></pre></div>
+
+<p>Binaries: <code>gsl-config</code>, <code>gsl-histogram</code>, <code>gsl-randist</code>.</p>
+</details>
+<p><strong><em>Exercise 4.4</em></strong><em>- Installing software</em></p>
+<p>Install the <code>h5py</code> Python package and all missing dependencies for Python 3.8.2,
+into <code>/tmp/$USER/easybuild</code> and leveraging already install software from <code>/easybuild</code>.</p>
+<p>Enable trace output so you can see which parts of the installation take a while.</p>
+<details class="success"><summary>(click to show solution)</summary><p><div class="highlight"><pre><span></span><code>eb --search <span class="s1">&#39;h5py.*Python-3.8.2&#39;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>module use /easybuild/modules/all
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>eb h5py-2.10.0-foss-2020a-Python-3.8.2.eb --missing
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>eb h5py-2.10.0-foss-2020a-Python-3.8.2.eb --robot --installpath /tmp/<span class="nv">$USER</span>/easybuild
+</code></pre></div></p>
+</details>
+<p><strong><em>Exercise 4.5</em></strong><em>- Using installed software</em></p>
+<p>Using the <code>h5py</code> installation from the previous exercise to create an empty HDF5 file,
+using the following Python statements:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">h5py</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s2">&quot;mytestfile.hdf5&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
+
+<p>Check the resulting file using the <code>h5stat</code> command.</p>
+<details class="success"><summary>(click to show solution)</summary><p><div class="highlight"><pre><span></span><code>module use /tmp/<span class="nv">$USER</span>/easybuild/modules/all
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>module avail h5py
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>module load h5py/2.10.0-foss-2020a-Python-3.8.2
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>python -c <span class="s1">&#39;import h5py; f = h5py.File(&quot;empty.hdf5&quot;, &quot;w&quot;); f.close()&#39;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>h5stat empty.hdf5
+</code></pre></div></p>
+</details>
                 
                   
                     
@@ -710,14 +746,28 @@ with the project it could be interesting to step through it.</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
+          <a href="../configuration/" title="3. Configuration" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                3. Configuration
+              </div>
+            </div>
+          </a>
         
-          <a href="practical_information/" title="0. Practical information" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+        
+          <a href="../troubleshooting/" title="5. Troubleshooting" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                0. Practical information
+                5. Troubleshooting
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
@@ -784,15 +834,15 @@ with the project it could be interesting to step through it.</p>
       
     </div>
     
-      <script src="assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="assets/javascripts/bundle.a45f732b.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../assets/javascripts/bundle.a45f732b.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
-          base: ".",
+          base: "..",
           features: ["instant", "tabs"],
           search: Object.assign({
-            worker: "assets/javascripts/worker/search.c03f0417.min.js"
+            worker: "../assets/javascripts/worker/search.c03f0417.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
