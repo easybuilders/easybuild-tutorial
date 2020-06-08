@@ -330,8 +330,42 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#specifying-easyconfigs" class="md-nav__link">
+    Specifying easyconfigs
+  </a>
+  
+    <nav class="md-nav" aria-label="Specifying easyconfigs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#easyconfig-filenames" class="md-nav__link">
+    Easyconfig filenames
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#searching-for-easyconfigs" class="md-nav__link">
     Searching for easyconfigs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inspecting-easyconfigs" class="md-nav__link">
+    Inspecting easyconfigs
   </a>
   
 </li>
@@ -387,6 +421,13 @@
         <li class="md-nav__item">
   <a href="#stacking-software" class="md-nav__link">
     Stacking software
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    Example
   </a>
   
 </li>
@@ -558,8 +599,42 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#specifying-easyconfigs" class="md-nav__link">
+    Specifying easyconfigs
+  </a>
+  
+    <nav class="md-nav" aria-label="Specifying easyconfigs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#easyconfig-filenames" class="md-nav__link">
+    Easyconfig filenames
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#searching-for-easyconfigs" class="md-nav__link">
     Searching for easyconfigs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inspecting-easyconfigs" class="md-nav__link">
+    Inspecting easyconfigs
   </a>
   
 </li>
@@ -620,6 +695,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#hands-on-exercises" class="md-nav__link">
     Hands-on exercises
   </a>
@@ -647,20 +729,117 @@
                 
                 
                 <h1 id="basic-usage">Basic usage<a class="headerlink" href="#basic-usage" title="Permanent link">&para;</a></h1>
+<p>Now we have installed and configured EasyBuild, we can start using it for what it is intended for:
+getting scientific software installed without breaking a sweat or having to resist the urge to
+shout out four-letter words.</p>
+<p>We will look at the high-level workflow first, and then cover each aspect in more detail.</p>
+<p>We will wrap things up by stepping through an example and offering a couple of exercises that
+will help to make you more familiar with the EasyBuild command line interface.</p>
 <h2 id="workflow">Workflow<a class="headerlink" href="#workflow" title="Permanent link">&para;</a></h2>
-<h2 id="searching-for-easyconfigs">Searching for easyconfigs<a class="headerlink" href="#searching-for-easyconfigs" title="Permanent link">&para;</a></h2>
-<p><code>-S</code>, <code>--search</code></p>
+<p>Installing software with EasyBuild is as easy (hah!) as specifying to the <strong><code>eb</code> command</strong> what we
+want to install, and then sitting back to enjoy a coffee or tea (or whatever beverage you prefer).</p>
+<p>This is typically done by <strong>specifying the name of one or more easyconfig files</strong>, usually in combination
+with the <code>--robot</code> option to enable dependency resolution.</p>
+<p>It is recommended to assess the current situation before letting EasyBuild install the software,
+to check which <strong>dependencies</strong> are already installed and which are still missing. In addition,
+you may want to inspect the specifics of the <strong>installation procedure</strong> that will be performed by EasyBuild
+and ensure that the configuration option are what you would expect, for example.</p>
+<h2 id="specifying-easyconfigs">Specifying easyconfigs<a class="headerlink" href="#specifying-easyconfigs" title="Permanent link">&para;</a></h2>
+<p>Letting EasyBuild know what should be installed can be done by specifying one or more easyconfig files,
+which is also the most common way. Alternative methods like using the <code>--software-name</code> option won't be
+covered in this tutorial, since they are not commonly used. We will briefly cover how to install
+easyconfig files straight from a GitHub pull request later though
+(see <a href="../contributing#using-easyconfigs-from-a-pr">here</a>).</p>
+<p>Arguments passed to the <code>eb</code> command, being anything that is <em>not</em> an option (which starts with <code>-</code> or <code>--</code>) or
+is a value for a preceding option, are assumed to refer to easyconfig files. These could be:</p>
+<ul>
+<li>the <em>(absolute or relative) path</em> to an easyconfig file;</li>
+<li>the <em>name</em> of an easyconfig file;</li>
+<li>the path to a <em>directory</em>;</li>
+</ul>
+<p>Specified paths must of course point to an existing file; if not, EasyBuild will print an appropriate error message:</p>
+<div class="highlight"><pre><span></span><code>$ eb /tmp/does_not_exist.eb
+ERROR: Can<span class="err">&#39;</span>t find path /tmp/does_not_exist.eb
+</code></pre></div>
+
+<p>When only the <em>name</em> of an easyconfig file is specified, EasyBuild will automatically try and locate it.
+First, it will consider the <em>current directory</em>. If no file with the specified name is found,
+then EasyBuild will search for the easyconfig file in the <a href="../configuration#robot-search-path">robot search path</a>.</p>
+<p>If the path to an existing <em>directory</em> is provided, EasyBuild will walk through the entire directory
+(including all subdirectories), retain all files of which the name ends with '<code>.eb</code>', and use these
+as easyconfig files.</p>
+<h4 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h4>
+<p>Suppose we have the current situation in our home directory:</p>
+<ul>
+<li>two (easyconfig) files named <code>example1</code> and <code>example2</code>;</li>
+<li>a subdirectory named <code>some_deps</code>, which has two easyconfig files <code>dep1.eb</code> and <code>dep2.eb</code>
+  alongside a text file named <code>list.txt</code>;</li>
+<li>a subdirectory named <code>more_deps</code> located <em>in</em> the <code>some_deps</code> subdirectory,
+  which contains another easyconfig file <code>dep3.eb</code>;</li>
+</ul>
+<p>Or, visually represented:</p>
+<div class="highlight"><pre><span></span><code>example1
+example2
+some_deps/
+<span class="p">|</span>-- dep1.eb
+<span class="p">|</span>-- dep2.eb
+<span class="p">|</span>-- list.txt
+<span class="p">|</span>-- more_deps/
+    <span class="p">|</span>-- dep3.eb
+</code></pre></div>
+
+<p>In this context, we run the following EasyBuild command from our home directory:</p>
+<div class="highlight"><pre><span></span><code>eb bzip2-1.0.6.eb example1 <span class="nv">$HOME</span>/example2 deps
+</code></pre></div>
+
+<p>EasyBuild will interpret each of these arguments as follows:</p>
+<ul>
+<li><code>bzip2-1.0.6.eb</code> is the name of an easyconfig file to locate via the robot search path
+  (since it does not exist in the current directory);</li>
+<li><code>example1</code> is the name of a file in the current directory, so it can be used directly;</li>
+<li>likewise, <code>$HOME/example2</code> specifies the full path to an existing file, which can be used directly;</li>
+<li><code>some_deps</code> is the relative path to an existing directory, so EasyBuild will scan it and find three
+  easyconfig files: <code>some_deps/dep1.eb</code>, <code>some_deps/dep2.eb</code> and <code>some_deps/more_deps/dep3.eb</code>,
+  ignoring the <code>list.txt</code> file since its name does not end with '<code>.eb</code>';</li>
+</ul>
+<h3 id="easyconfig-filenames">Easyconfig filenames<a class="headerlink" href="#easyconfig-filenames" title="Permanent link">&para;</a></h3>
+<p>Note that EasyBuild does not seem to care how easyconfig files are named, to some extent (the '<code>.eb</code>'
+extension does matter w.r.t. easyconfig files being picked up in subdirectories).</p>
+<p>That is correct with respect to the arguments passed to the <code>eb</code> command,
+but as we will learn soon the name of easyconfig files <em>does</em> matter a lot when EasyBuild
+needs to locate easyconfig files that can be used to resolve a specified dependency
+(see <a href="#enabling-dependency-resolution">here</a>).</p>
+<p>This explains why easyconfig files usually follow a very specific naming scheme,
+which basically corresponds with <code>&lt;name&gt;-&lt;version&gt;-&lt;toolchain&gt;&lt;versionsuffix&gt;.eb</code>,
+where:</p>
+<ul>
+<li><code>&lt;name&gt;</code> represents the software name;</li>
+<li><code>&lt;version&gt;</code> represents the software version;</li>
+<li><code>&lt;toolchain&gt;</code> represents the toolchain label, consisting of the toolchain name and version separated with a dash
+  (<code>-</code>);</li>
+<li><code>&lt;versionsuffix&gt;</code> represents the value of the <code>versionsuffix</code> easyconfig parameter,
+  which is sometimes used to distinguish multiple variants of particular software installations
+  (and is empty by default);</li>
+</ul>
+<p>The <code>-&lt;toolchain&gt;</code> part is omitted when the <a href="../introduction#system-toolchain"><code>system</code> toolchain</a> is used.</p>
+<h3 id="searching-for-easyconfigs">Searching for easyconfigs<a class="headerlink" href="#searching-for-easyconfigs" title="Permanent link">&para;</a></h3>
+<p>The easyconfig 
+<code>-S</code>, <code>--search</code></p>
+<h2 id="inspecting-easyconfigs">Inspecting easyconfigs<a class="headerlink" href="#inspecting-easyconfigs" title="Permanent link">&para;</a></h2>
+<p><code>--show-ec</code></p>
 <h2 id="checking-dependencies">Checking dependencies<a class="headerlink" href="#checking-dependencies" title="Permanent link">&para;</a></h2>
-<p><code>-D</code>, <code>-M</code></p>
+<p><code>--dry-run</code>/<code>-D</code>, <code>--missing</code>/<code>-M</code></p>
 <h2 id="performing-a-dry-run">Performing a dry run<a class="headerlink" href="#performing-a-dry-run" title="Permanent link">&para;</a></h2>
-<p><code>-x</code></p>
+<p><code>--extended-dry-run</code>/<code>-x</code></p>
 <h2 id="installing-software">Installing software<a class="headerlink" href="#installing-software" title="Permanent link">&para;</a></h2>
 <h3 id="enabling-dependency-resolution">Enabling dependency resolution<a class="headerlink" href="#enabling-dependency-resolution" title="Permanent link">&para;</a></h3>
 <h3 id="trace-output">Trace output<a class="headerlink" href="#trace-output" title="Permanent link">&para;</a></h3>
 <p><code>--trace</code></p>
 <h2 id="using-installed-software">Using installed software<a class="headerlink" href="#using-installed-software" title="Permanent link">&para;</a></h2>
 <h2 id="stacking-software">Stacking software<a class="headerlink" href="#stacking-software" title="Permanent link">&para;</a></h2>
+<h2 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h2>
 <h2 id="hands-on-exercises">Hands-on exercises<a class="headerlink" href="#hands-on-exercises" title="Permanent link">&para;</a></h2>
+<p>No peeking!</p>
 <p><strong><em>Exercise 4.1</em></strong><em> - Searching easyconfigs</em></p>
 <p>See if EasyBuild provides any easyconfig files for TensorFlow 2.2.0.</p>
 <details class="success"><summary>(click to show solution)</summary><div class="highlight"><pre><span></span><code>eb --search TensorFlow-2.2.0

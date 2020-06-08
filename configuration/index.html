@@ -871,7 +871,8 @@ This applies to both easyconfig files that were specified using only their filen
 <p>To control the robot search path, two configuration settings are available: <code>robot</code> and <code>robot-paths</code>.
 Both accept a colon-separated list of locations to consider when looking for easyconfig files,
 with <code>robot</code> overriding <code>robot-paths</code>.</p>
-<p>The key difference between both is that <code>robot</code> also makes EasyBuild resolve dependencies alongside
+<p>The key difference between both is that setting <code>robot</code> also enables dependency resolution and
+hence makes EasyBuild install missing dependencies, alongside
 specifying a list of paths to consider when searching for easyconfig files, while defining <code>robot-paths</code>
 does not have this side effect.
 In addition, you can use the <code>--robot</code> command line option without specifying any paths to it to only enable dependency resolution.</p>

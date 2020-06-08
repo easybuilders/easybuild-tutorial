@@ -375,6 +375,19 @@
     Toolchains
   </a>
   
+    <nav class="md-nav" aria-label="Toolchains">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-toolchain" class="md-nav__link">
+    System toolchain
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -714,6 +727,19 @@
     Toolchains
   </a>
   
+    <nav class="md-nav" aria-label="Toolchains">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-toolchain" class="md-nav__link">
+    System toolchain
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -942,6 +968,12 @@ can also be included.</p>
 <p>A toolchain that includes all of these libraries is referred to as a <strong>full toolchain</strong>, while
 a <strong>subtoolchain</strong> is a toolchain that is missing one or more of these libraries.
 A <strong>compiler-only toolchain</strong> only consists of compilers (no additional libraries).</p>
+<h4 id="system-toolchain">System toolchain<a class="headerlink" href="#system-toolchain" title="Permanent link">&para;</a></h4>
+<p>The <strong><code>system</code> toolchain</strong> is a special case which corresponds to using the system-provided
+compilers and libraries, rather than using toolchain components that were installed using EasyBuild.</p>
+<p>It used sparingly, mostly to install software where no actual compilation is done or
+to build a set of toolchain compilers and its dependencies, since the versions of the system tools
+and libraries are beyond the control of EasyBuild, which could affect the reproducibility of the installation.</p>
 <h3 id="modules"><em>Modules</em><a class="headerlink" href="#modules" title="Permanent link">&para;</a></h3>
 <p><em>Module</em> is a massively overloaded term in (scientific) software and IT in general
 (kernel modules, Python modules, and so on).
