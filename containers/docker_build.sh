@@ -9,7 +9,7 @@ CPU_ARCH="haswell"
 
 GCC="GCC-9.3.0"
 FOSS="foss-2020a"
-SCIPY_BUNDLE="SciPy-bundle-foss-2020a-Python-3.8.2"
+SCIPY_BUNDLE="SciPy-bundle-2020.03-foss-2020a-Python-3.8.2"
 HDF5="HDF5-1.10.6-gompi-2020a"
 
 COMMON_TAG=${ORG}/${REPO}:${OS}
