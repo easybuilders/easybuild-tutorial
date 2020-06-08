@@ -207,6 +207,15 @@ A toolchain that includes all of these libraries is referred to as a **full tool
 a **subtoolchain** is a toolchain that is missing one or more of these libraries.
 A **compiler-only toolchain** only consists of compilers (no additional libraries).
 
+#### System toolchain
+
+The **`system` toolchain** is a special case which corresponds to using the system-provided
+compilers and libraries, rather than using toolchain components that were installed using EasyBuild.
+
+It used sparingly, mostly to install software where no actual compilation is done or
+to build a set of toolchain compilers and its dependencies, since the versions of the system tools
+and libraries are beyond the control of EasyBuild, which could affect the reproducibility of the installation.
+
 ### *Modules*
 
 *Module* is a massively overloaded term in (scientific) software and IT in general
