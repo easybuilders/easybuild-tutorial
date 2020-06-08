@@ -117,18 +117,18 @@ which implements the ubiquitous ``configure``-``make``-``make install`` procedur
 A **software-specific** easyblock implements an installation procedure that is specific to a particular
 software packages. Infamous examples include the easyblocks we have for ``GCC``, ``OpenFOAM``, ``TensorFlow``, ...
 
-The installation procedure performed by an easyblock can be controlled by defining so-called
+The installation procedure performed by an easyblock can be controlled by defining
 **easyconfig parameters** (see <a href="#easyconfig-files">easyconfig files</a>).
 
 
 ### *Easyconfig files*
 
-*Easyconfig files* (or *easyconfigs* for short), are **simple text files (written in Python syntax)
+*Easyconfig files* (or *easyconfigs* for short), are **simple text files written in Python syntax
 that specify what EasyBuild should install**.
 They define the different **easyconfig parameters** that collectively form a complete specification
 for a particular software installation.
 
-**Some easyconfig parameters are mandatory**, these *must* be defined in each easyconfig file:
+**Some easyconfig parameters are mandatory**. The following parameters *must* be defined in each easyconfig file:
 
 * ``name`` and ``version``, which specify the name and version of the software to install (surprise!);
 * ``homepage`` and ``description``, which provide key metadata for the software;
@@ -143,60 +143,65 @@ Some commonly used optional easyconfig parameters include:
 * ``easyblock``, which specifies which (generic) easyblock should be used;
 * ``sources`` and ``source_urls``, which specify the list of source files and where to download them;
 * ``dependencies`` and ``builddependencies``, which specify (drum roll...) the list of (build) dependencies;
-* ``configopts``, ``buildopts``, and ``installopts``, which speficy options for the configuration/build/install commands, resp.;
+* ``configopts``, ``buildopts``, and ``installopts``, which specify options for the configuration/build/install commands, respectively;
+
+If these parameters are not provided, the corresponding default value will be used.
 
 ### *Extensions*
 
 *Extensions* is the collective term we use for **additional software packages that can be installed
-on top of another software package**. Examples are *Python packages*, *R libraries* and *Perl modules*
-(can you tell why we had to come up with a different term?).
+on top of another software package**. Examples are *Python packages*, *R libraries* and *Perl modules*.
+
+As you can tell the common terminology here is a mess, so we came up with a unifying term...
+
+<div align="center"><a href="https://xkcd.com/927/"><img src="https://imgs.xkcd.com/comics/standards.png" width="350px"></a></div>
 
 Extensions can be installed in different ways:
 
 * stand-alone, as a separate installation on top of one or more other installations;
 * as a part of a bundle of extensions that collectively form a separate installation;
-* or as, well, an *extension* to a specific installation to yield a "batteries included"
+* or as an actual *extension* to a specific installation to yield a "batteries included"
   type of installation (for examples by adding a bunch of Python packages from PyPI into
   a Python installation);
 
 ### *Dependencies*
 
-A *dependency* is a common term in the context of software, which we probably don't need to define at length,
-but here it goes anyway: it refers to **a software package that is either strictly required by other software, 
-or that can be leveraged to enhance other software** (to support specific features for example).
+A *dependency* is a common term in the context of software. It refers to **a software
+package that is either strictly required by other software, or that can be leveraged to
+enhance other software** (for example to support specific features).
 
-There are multiple types of dependencies:
+There are three main types of dependencies for computer software:
 
 * a **build dependency** is only required when building/installing a software package;
   once the software package is installed, it is no longer needed to *use* that software;
-* a **runtime dependency** (or just *dependency* for short) is a software package that is
+* a **runtime dependency** (often referred to simply as *dependency*) is a software package that is
   required to *use* (or *run*) another software package;
 * a **link-time dependency** is somewhere in between a build and runtime dependency: 
   it is only needed when *linking* a software package; it can become either a build or runtime
-  dependency, depending (hah!) on how the software is installed exactly;
+  dependency, depending on exactly how the software is installed;
 
-The distinction between link-time and build/runtime dependencies is mostly irrelevant for this tutorial though.
+The distinction between link-time and build/runtime dependencies is irrelevant for this tutorial.
 
 ### *Toolchains*
 
 A *compiler toolchain* (or just *toolchain* for short) is a **set of [compilers](https://en.wikipedia.org/wiki/Compiler)**,
-which are used to build software from source, and **additional libraries** which provide specific functionality.
+which are used to build software from source, together with a set of **additional libraries** that provide further core functionality.
 
 We refer to the different parts of a toolchain as **toolchain components**.
 
 The *compiler component* typically consists of [C](https://en.wikipedia.org/wiki/C_(programming_language)),
-[C++](https://en.wikipedia.org/wiki/C%2B%2B) and [Fortran](https://en.wikipedia.org/wiki/Fortran)
+[C++](https://en.wikipedia.org/wiki/C%2B%2B), and [Fortran](https://en.wikipedia.org/wiki/Fortran)
 compilers in the context of HPC, but additional compilers (for example,
 a [CUDA](https://developer.nvidia.com/cuda-zone) compiler for
 [GPGPU](https://en.wikipedia.org/wiki/General-purpose_computing_on_graphics_processing_units) software)
 can also be included.
 
-Additional toolchain components typically are special-purpose libraries:
+Additional toolchain components are usually special-purpose libraries:
 
 * an MPI library to support distributed computations (for example, [Open MPI](https://www.open-mpi.org/));
 * libraries providing efficient linear algebra routines ([BLAS](http://performance.netlib.org/blas/),
   [LAPACK](http://performance.netlib.org/lapack/));
-* a library supporting computing Fast Fourier Tranforms (for example, [FFTW](http://fftw.org/));
+* a library supporting computing Fast Fourier Transformations (for example, [FFTW](http://fftw.org/));
 
 A toolchain that includes all of these libraries is referred to as a **full toolchain**, while
 a **subtoolchain** is a toolchain that is missing one or more of these libraries.
@@ -205,7 +210,7 @@ A **compiler-only toolchain** only consists of compilers (no additional librarie
 ### *Modules*
 
 *Module* is a massively overloaded term in (scientific) software and IT in general
-(kernel modules, Python modules, etc.).
+(kernel modules, Python modules, and so on).
 In the context of EasyBuild, the term 'module' usually refers to an **environment module (file)**.
 
 Environment modules is a well established concept on HPC systems: it is a way to
@@ -214,8 +219,9 @@ specify changes that should be made to one or more
 [shell](https://en.wikipedia.org/wiki/Shell_(computing))-agnostic way. A module file
 is usually written in either [Tcl](https://en.wikipedia.org/wiki/Tcl) or
 [Lua](https://en.wikipedia.org/wiki/Lua_(programming_language)) syntax,
-and specifies for which environment variables the value should be updated, and how (append,
-prepend, (re)define, undefine, etc.).
+and specifies which environment variables should be updated, and how (append,
+prepend, (re)define, undefine, etc.) upon loading the environment module.
+Unloading the environment module will restore the shell environment to its previous state.
 
 Environment module files are processed via a **modules tool**, of which there
 are several conceptually similar yet slighty different implementations.
@@ -238,7 +244,7 @@ The EasyBuild **framework** leverages **easyblocks** to automatically build and 
 (scientific) software, potentially including additional **extensions**, using a particular compiler **toolchain**,
 as specified in **easyconfig files**.
 
-EasyBuild ensures that the specified **dependencies** are installed,
+EasyBuild ensures that the specified **dependencies** are in place,
 and automatically generates a set of **(environment) modules** that facilitate access to the installed software.
 
 --- 
@@ -252,25 +258,25 @@ which is reflected in some of the design choices that were made.
 
 ### *Performance*
 
-We strongly prefer **building software from source**, whenever possible.
+EasyBuild strongly prefers to **build software from source code**, whenever possible.
 
 This is important to ensure that the binaries that are installed can maximally exploit
-the capabilities of processors on which the software will be used.
+the capabilities of the system architecture on which the software will be run.
 
 For that same reason, EasyBuild **optimizes software for the processor architecture of the build host**
 by default, via compiler options like ``-march=native`` (GCC), ``-xHost`` (Intel compilers), etc.
-This behaviour [can be changed via the ``--optarch`` configuration setting](https://easybuild.readthedocs.io/en/latest/Controlling_compiler_optimization_flags.html), if desired.
+This behaviour [may be changed via the ``--optarch`` configuration setting](https://easybuild.readthedocs.io/en/latest/Controlling_compiler_optimization_flags.html).
 
 
 ### *Reproducibility*
 
-In addition to performance, **reproducibility of installations** is another major focus point.
+In addition to performance, **reproducibility of installations** is a core aspect of EasyBuild.
 
-Most software installations done with EasyBuild use a **particular <a href="#toolchains">toolchain</a>**,
-with which we aim to take control over the build environment and avoid relying on tools & libraries
-provided by the OS. For similar reasons, we try to **provide all required dependencies through EasyBuild** as well,
-with a few notable exceptions (like ``OpenSSL`` for security reasons, and Infiniband and GPU drivers which
-are too closely intertwined with the OS).
+Most software installations performed with EasyBuild use a **particular <a href="#toolchains">toolchain</a>**,
+with which we aim to take control over the build environment and avoid relying on tools and libraries
+provided by the operating system. For similar reasons, we try to **provide all required dependencies through EasyBuild** as well,
+with a few notable exceptions, like ``OpenSSL`` for security reasons, and Infiniband and GPU drivers which
+are too closely intertwined with the operating system.
 
 For both toolchains and dependencies, **fixed software versions** are specified in the
 <a href="#easyconfig-files">easyconfig files</a>. That way, easyconfig files can easily be shared with others:
@@ -282,8 +288,8 @@ software stack is controlled by EasyBuild.
 
 In a number of different ways, we try to encourage EasyBuild users to **collaborate** and help each other out.
 
-We actively recommend people to report problems & bugs, to submit ideas for additional features and improvements,
-and to [**contribute back**](https://easybuild.readthedocs.io/en/latest/Contributing.html) when they can, be it
+We actively recommend people to report problems and bugs, to submit ideas for additional features and improvements,
+and to [**contribute back**](https://easybuild.readthedocs.io/en/latest/Contributing.html) when possible, be it
 by opening pull requests to the <a href="#framework">EasyBuild framework</a>, <a href="#easyblocks">easyblocks</a>,
 <a href="#easyconfig-files">easyconfigs</a> repositories, or to the <a href="https://easybuild.readthedocs.io">EasyBuild documentation</a>.
 
@@ -292,10 +298,11 @@ we try to focus the efforts of the EasyBuild community a bit to specific toolcha
 which increases the usefulness of the easyconfig files we collect in the [central repository](https://github.com/easybuilders/easybuild-easyconfigs).
 
 Last but not least, EasyBuild provides various [**GitHub integration features**](https://easybuild.readthedocs.io/en/latest/Integration_with_GitHub.html)
-that greatly facilitate the contribution process: opening new pull requests & updating existing,
-testing pull requests, reviewing incoming contributions, ... can all be done straight from the EasyBuild
-command line. This not only saves time, effort, brain cycles and mouse clicks for contributors,
-it also makes the review process for *maintainers* significantly easier, and it leads to better stability & consistency.
+that greatly facilitate the contribution process: opening, updating, and testing pull requests,
+reviewing incoming contributions, and much more can all be done directly from the EasyBuild
+command line. This not only saves time, effort, brain cycles, and mouse clicks for contributors,
+but it also makes the review process for *maintainers* significantly easier.
+All together this leads to improved stability and consistency.
 
 --- 
 
@@ -306,7 +313,7 @@ EasyBuild was originally created by the [HPC team at Ghent University (Belgium)]
 and was developed in-house before it was publicly released in 2012.
 
 Since then it has grown out to a [**community project**](https://github.com/easybuilders),
-which is used and developed by various HPC centres & consortia worldwide, including (but not limited to):
+which is used and developed by various HPC centres and consortia worldwide, including (but not limited to):
 
 * [Flemish Supercomputer Centre (VSC), Belgium](https://www.vscentrum.be/)
 * [Consortium des Équipements de Calcul Intensif (CÉCI), Belgium](http://www.ceci-hpc.be/)
@@ -328,4 +335,4 @@ by implementing additional features and bug fixes, and processing incoming contr
 The EasyBuild documentation is available at [**https://easybuild.readthedocs.io**](https://easybuild.readthedocs.io).
 You can interact with the EasyBuild community via the [**Slack channel**](https://easybuild.slack.com/)
 (request an invitation [here](https://easybuild-slack.herokuapp.com/)),
-or subscribe to the [**mailing list**](https://lists.ugent.be/wws/subscribe/easybuild).
+or by subscribing to the [**mailing list**](https://lists.ugent.be/wws/subscribe/easybuild).

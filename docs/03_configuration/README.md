@@ -1,10 +1,9 @@
 # Configuration
 
-After installing EasyBuild you should **configure EasyBuild to your preferences**.
-
-Although EasyBuild should work fine out-of-the-box assuming that you are using Lmod
-as modules tool (if not, see <a href="#modules-tool-module-syntax">here</a>),
-you will probably not be happy with the default configuration.
+After installing EasyBuild, you should **configure** it.
+EasyBuild should work fine out-of-the-box if you use Lmod
+as your modules tool; if you are not using Lmod, please see <a href="#modules-tool-module-syntax">here</a> for more information.
+Nevertheless, we strongly recommend you to inspect the default configuration and tailor it to your preferences.
 
 !!! note
     Configuring EasyBuild is also covered in detail in the EasyBuild documentation, see [here](https://easybuild.readthedocs.io/en/latest/Configuration.html).
@@ -12,7 +11,7 @@ you will probably not be happy with the default configuration.
 
 ## Available configuration settings
 
-One of the central policies in the EasyBuid project is to avoid hardcoded settings in the codebase.
+One of the central policies in the EasyBuild project is to avoid hardcoded settings in the codebase.
 While this significantly increases flexibility to configure EasyBuild to your liking, it also results
 in a large amount of available configuration settings.
 
@@ -20,14 +19,14 @@ The full list of configuration settings can be consulted via `eb --help`,
 which shows the corresponding command line option accompanied by a short description.
 At the time of writing, *over 230 different configuration settings* are supported by EasyBuild.
 
-For the sake of this tutorial we will focus on a specific subset of configuration settings,
-which we feel are the most prominent and important ones.
+For the sake of this tutorial we will focus on a specific subset of configuration settings and cover
+the most prominent and important ones.
 
 !!! note
     We will usually refer to configuration settings using the name as it appears in the output of `eb --help`,
     which may includes dashes (`-`). The leading '`--`' is omitted for the sake of clarity.
 
-    Keep in mind that *every* configuration setting can be defined in 3 differeny ways,
+    Keep in mind that *every* configuration setting can be defined in 3 different ways,
     see <a href="#consistency-across-configuration-levels">below</a> for more details.
 
 ### Overall prefix
@@ -59,8 +58,8 @@ Software installation directories will be placed in `<installpath>/software`, wh
 
 The `installpath` location is usually set to a directory on a shared filesystem when installing
 software for an HPC cluster, such that the installation can be performed on one node 
-while being accessible on the whole cluster. Of course, software can also be installed on a local filesystem,
-in particular when testing and evaluating installations.
+while being accessible on the whole cluster. Of course, software can also be installed on a local filesystem.
+This is particularly useful when testing and evaluating installations.
 
 Separate configuration settings are available for both software and modules locations,
 as well as for controlling the `software` and `modules/all` subdirectories.
@@ -94,7 +93,8 @@ So set `buildpath` to `/tmp/$USER` or `/dev/shm/$USER`, for example.*
 
 *(default: `<prefix>/sources`)*
 
-For most supported software, EasyBuild can **automatically download the source files** required for the installation. Before trying to download a source file, it will first check if it is already available.
+For most supported software, EasyBuild can **automatically download the source files** required for the installation.
+Before trying to download a source file, EasyBuild will first check if it is already present in the source path.
 
 The locations considered by EasyBuild when checking for available source files as well as the location to
 stored downloaded source files can be controlled via the ``sourcepath`` configuration setting.
@@ -102,11 +102,11 @@ stored downloaded source files can be controlled via the ``sourcepath`` configur
 The `sourcepath` value is a colon (`:`) separated list of directory paths.
 Each of these paths will be considered in turn when checking for available source files,
 until one of them provides the desired source file. Searching for source files is done
-based on filename, and a couple of subdirectories as considered.
-For example, for a software packagamed '`Example'`, EasyBuild will consider locations like `<sourcepath>/e/Example/`, `<sourcepath>/Example/`, etc.
+based on filename, and a couple of subdirectories are considered.
+For example, for a software packagamed '`Example'`, EasyBuild will consider locations like `<sourcepath>/e/Example/`, `<sourcepath>/Example/`, and so on.
 
-The first path listed in `sourcepath` is the location where EasyBuild will store downloaded source files.
-It will keep them organized by software name through subdirectories.
+The first path listed in `sourcepath` is the location where EasyBuild will store downloaded source files,
+organised by software name through subdirectories.
 
 *Make sure you have write permissions to the first path listed in `sourcepath`, so EasyBuild is able
 to store downloaded files there. Any additional paths can be read-only for the account running EasyBuild.*
@@ -124,7 +124,7 @@ as easyconfigs archive is also supported.
 More information is available [in the EasyBuild documentation](https://easybuild.readthedocs.io/en/latest/Configuration.html#easyconfigs-repository-repository-repositorypath).
 
 *For the sake of this tutorial we recommend sticking to a regular directory,
-and sticking to the default location as specified by the `prefix` configuration setting.*
+and sticking to the default location as a subdirectory of the `prefix` configuration setting.*
 
 
 ### Modules tool & module syntax
@@ -186,7 +186,7 @@ Different types of module naming schemes are supported (flat, hierarchical, ...)
 your own custom module naming scheme if desired. A number of different naming schemes are included
 with EasyBuild, which you can consult via `eb --avail-module-naming-schemes`).
 
-The default `EasyBuildMNS` module naming scheme rougly corresponds to the filename of easyconfig files,
+The default `EasyBuildMNS` module naming scheme roughly corresponds to the filename of easyconfig files,
 and consists of the software name followed by a combination of the software version, toolchain and
 an optional labels (which corresponds to value of the `versionsuffix` easyconfig parameter):
 `<name>/<version><-toolchain><versionsuffix>`.
@@ -202,12 +202,12 @@ Configuring EasyBuild can be done in different ways:
 
 * through one or more configuration files;
 * via `$EASYBUILD_*` environment variables;
-* using `eb` command line options
+* using `eb` command line options;
 
 Each of the methods corresponds to a *configuration level*.
 
 *Every* configuration setting can be defined via one of these
-mechanisms, no exceptions!
+mechanisms, without exception!
 
 ### Configuration level hierarchy
 
@@ -218,10 +218,10 @@ Settings defined via a *configuration file* only override default values.
 A configuration setting that is defined via the corresponding *`$EASYBUILD_*` environment variable*
 takes precedence over the value specified in a configuration file (if any).
 
-Finally, values specified through *`eb` command line options* **always** win,
+Finally, values specified through `eb` command line options* **always** win,
 regardless of whether the corresponding
-configuration setting was already defined some other way (configuration file or
-environment variable).
+configuration setting was already defined some other way, be it via a configuration file or
+an environment variable.
 
 For example, let us consider a fictional configuration setting named `-magic`:
 
@@ -230,9 +230,9 @@ For example, let us consider a fictional configuration setting named `-magic`:
   (`$EASYBUILD_MAGIC`).
   is *not* defined **and** if the `---magic` command line option is *not* used;
 * If the `$EASYBUILD_MAGIC` environment *is* defined however, then its value
-  will be used for the `this-is-magic` configuration setting.
+  will be used for the `this-is-magic` configuration setting;
 * *Unless* the `--magic` command line option is used,
-  since in that case the value provided as an argument there will be used instead.
+  since in that case the value provided as an argument there will be used instead;
 
 ### Configuration files
 
@@ -255,7 +255,7 @@ that should always be in place, regardless of the software you are installing.*
 #### EasyBuild configuration files vs easyconfig files
 
 EasyBuild configuration files are sometimes confused with easyconfig files,
-due to the similar name. These are two entirely different concepts however!
+due to the similar name. However, these are two entirely different concepts!
 
 EasyBuild configuration files are a way of *configuring the general behaviour of EasyBuild*
 across different software installations. They define *configuration settings*,
@@ -308,10 +308,10 @@ As mentioned earlier, the values for configuration settings defined this way ove
 is specified through any other means. So if you want to be sure that a particular configuration setting
 is defined the way you want it to be, you can use a command line option.
 
-There are various configuration settings for which it only really makes sense to use the command line option.
+There are various configuration settings for which it only makes sense to use the command line option.
 An example of this is letting the `eb` command print the EasyBuild version (via `eb --version`);
 although you could configure EasyBuild to always print its version and then exit whenever the `eb` command is
-run, that would not be very useful...
+run, that would be less than useful...
 
 *Command line options are typically used to define configuration settings that are only relevant to
 that particular EasyBuild session. One example is doing a test installation into a temporary directory:*
@@ -323,13 +323,13 @@ eb --installpath /tmp/$USER example.eb
 ## Inspecting the current configuration (`--show-config`)
 
 Given the large amount of available configuration settings in EasyBuild and the different configuration levels,
-you can easily lose track of how EasyBuild is configured exactly.
+you can easily lose track of exactly how EasyBuild is configured.
 
 Therefore, the `--show-config` command line option is provided
 to easily inspect the currently active EasyBuild configuration.
 
 The output includes a sorted list of all configuration settings that are defined to a non-default value,
-along with a couple of important ones that are always shown (like `buildpath`, `installpath`, `sourcepath`, etc.).
+along with a couple of important ones that are always shown (like `buildpath`, `installpath`, `sourcepath`, and so on).
 In addition, it also indicates at which configuration level each setting was defined,
 so you can trace down where it was defined if needed.
 
