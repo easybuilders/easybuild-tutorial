@@ -145,7 +145,7 @@ Some commonly used optional easyconfig parameters include:
 * ``dependencies`` and ``builddependencies``, which specify (drum roll...) the list of (build) dependencies;
 * ``configopts``, ``buildopts``, and ``installopts``, which specify options for the configuration/build/install commands, respectively;
 
-If these parameters are not provided, default values will be extrapolated and used.
+If these parameters are not provided, the corresponding default value will be used.
 
 ### *Extensions*
 
