@@ -88,9 +88,9 @@ Nevertheless, you don't need to be a rocket scientist to install EasyBuild (and 
 that's OK too), so don't worry.
 
 You can install EasyBuild just like you can install any other Python software that is released
-via the standard *Python Package Index* (PyPI), through one of standard Python installation tools.
-There may be some irony involved in using the "standard" Python Packaging tool to install Easybuild,
-seeing as EasyBuild is a software installation tool in its own right. However, we actually have a couple
+via the standard *Python Package Index* (PyPI), through one of the standard Python installation tools
+(like `pip`, `virtualenv`, `pipenv`, ...).
+And since EasyBuild is a software installation tool in its own right, we actually have a couple
 of additional tricks up our sleeve!
 
 #### Python 2 or Python 3?

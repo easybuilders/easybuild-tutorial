@@ -145,13 +145,14 @@ Some commonly used optional easyconfig parameters include:
 * ``dependencies`` and ``builddependencies``, which specify (drum roll...) the list of (build) dependencies;
 * ``configopts``, ``buildopts``, and ``installopts``, which specify options for the configuration/build/install commands, respectively;
 
-If these parameters are not provided, default values will be extrapolated and used.
+If these parameters are not provided, the corresponding default value will be used.
 
 ### *Extensions*
 
 *Extensions* is the collective term we use for **additional software packages that can be installed
 on top of another software package**. Examples are *Python packages*, *R libraries* and *Perl modules*.
-As you can tell, the software terminology here is a mess, so we had to come of up with a unifying term...
+
+As you can tell the common terminology here is a mess, so we came up with a unifying term...
 
 <div align="center"><a href="https://xkcd.com/927/"><img src="https://imgs.xkcd.com/comics/standards.png" width="350px"></a></div>
 
@@ -159,7 +160,7 @@ Extensions can be installed in different ways:
 
 * stand-alone, as a separate installation on top of one or more other installations;
 * as a part of a bundle of extensions that collectively form a separate installation;
-* or as an *extension* to a specific installation to yield a "batteries included"
+* or as an actual *extension* to a specific installation to yield a "batteries included"
   type of installation (for examples by adding a bunch of Python packages from PyPI into
   a Python installation);
 
@@ -243,7 +244,7 @@ The EasyBuild **framework** leverages **easyblocks** to automatically build and 
 (scientific) software, potentially including additional **extensions**, using a particular compiler **toolchain**,
 as specified in **easyconfig files**.
 
-EasyBuild ensures that the specified **dependencies** are met upon a successful install,
+EasyBuild ensures that the specified **dependencies** are in place,
 and automatically generates a set of **(environment) modules** that facilitate access to the installed software.
 
 --- 
@@ -299,8 +300,9 @@ which increases the usefulness of the easyconfig files we collect in the [centra
 Last but not least, EasyBuild provides various [**GitHub integration features**](https://easybuild.readthedocs.io/en/latest/Integration_with_GitHub.html)
 that greatly facilitate the contribution process: opening, updating, and testing pull requests,
 reviewing incoming contributions, and much more can all be done directly from the EasyBuild
-command line. This not only saves time, effort, brain cycles, and mouse clicks for contributors, but 
-it also makes the review process for *maintainers* significantly easier. All together this leads to improved stability and consistency.
+command line. This not only saves time, effort, brain cycles, and mouse clicks for contributors,
+but it also makes the review process for *maintainers* significantly easier.
+All together this leads to improved stability and consistency.
 
 --- 
 
