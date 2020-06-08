@@ -1,10 +1,9 @@
 # Configuration
 
-After installing EasyBuild you should **configure EasyBuild to your preferences**.
-
+After installing EasyBuild, you should **configure** it.
 EasyBuild should work fine out-of-the-box if you use Lmod
-as your modules tool. If you are not using Lmod, please see <a href="#modules-tool-module-syntax">here</a> for more information. 
-The next step is to go through the default configuration and make the appropriate local adaptations.
+as your modules tool; if you are not using Lmod, please see <a href="#modules-tool-module-syntax">here</a> for more information.
+Nevertheless, we strongly recommend you to inspect the default configuration and tailor it to your preferences.
 
 !!! note
     Configuring EasyBuild is also covered in detail in the EasyBuild documentation, see [here](https://easybuild.readthedocs.io/en/latest/Configuration.html).
