@@ -40,9 +40,7 @@ RUN pip3 uninstall -y easybuild easybuild-framework easybuild-easyblocks easybui
 # switch to 'easybuild' user
 USER easybuild
 # print info on Lmod & EasyBuild
-RUN ml use /easybuild/modules/all \
-  && ml EasyBuild \
-  && ml --version \
+RUN ml --version \
   && which -a eb \
   && eb --version \
   && eb --show-system-info
