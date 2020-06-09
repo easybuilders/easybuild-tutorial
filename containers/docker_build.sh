@@ -15,9 +15,9 @@ HDF5="HDF5-1.10.6-gompi-2020a"
 COMMON_TAG=${ORG}/${REPO}:${OS}
 
 # build base container
-docker build -f Dockerfile.base-${OS} -t ${COMMON_TAG}-${EB} .
+docker build -f Dockerfile.base-${OS} -t ${ORG}/base:${OS}-${EB} .
 # build container for GCC-9.3.0 on Haswell
-docker build -f Dockerfile.easybuild-${OS} --build-arg CPU_ARCH=${CPU_ARCH} --build-arg EASYCONFIG=${GCC}.eb -t ${COMMON_TAG}-${CPU_ARCH}-${GCC} .
+docker build -f Dockerfile.easybuild-${OS} --build-arg CPU_ARCH=${CPU_ARCH} --build-arg IMG_NAME=base --build-arg EASYCONFIG=${GCC}.eb -t ${COMMON_TAG}-${CPU_ARCH}-${GCC} .
 # build container for foss-2020a on Haswell, on top of GCC-9.3.0 container
 docker build -f Dockerfile.easybuild-${OS} --build-arg CPU_ARCH=${CPU_ARCH} --build-arg IMG_NAME=${REPO} --build-arg IMG_TAG=${OS}-${CPU_ARCH}-${GCC} --build-arg EASYCONFIG=${FOSS}.eb -t ${ORG}/${REPO}:${OS}-${CPU_ARCH}-${FOSS} .
 # build software container with SciPy-bundle for Haswell, on top of foss-2020a container
