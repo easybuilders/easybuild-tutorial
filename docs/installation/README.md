@@ -3,17 +3,17 @@
 Before deep diving into the wonderful world of EasyBuild and getting your hands dirty with
 the hands on exercises coming up in this tutorial, you will need to install EasyBuild.
 
-In this section we outline the different ways of doing so, and the things you should pay attention to.
+In this section we outline a couple of different ways of doing so, and the things you should pay attention to.
 By the end of it, you will have a functional EasyBuild installation that you can use
 for the remainder of this tutorial.
 
-## Executive summary
+!!! summary
 
-* <a href="#requirements">requirements</a>: Linux, Python 2.7 or 3.5+, environment modules tool (Lmod is recommended)
-* installation methods:
-    * <a href=#method-1-using-pip-recommended>``pip install easybuild``</a>
-    * <a href="#method-2-bootstrapping-easybuild">bootstrapping EasyBuild</a>
-* verify EasyBuild installation using `eb --version` and `eb --help`
+    * <a href="#requirements">requirements</a>: Linux, Python 2.7 or 3.5+, environment modules tool (Lmod is recommended)
+    * installation methods:
+        * <a href=#method-1-using-pip-recommended>``pip install easybuild``</a>
+        * <a href="#method-2-bootstrapping-easybuild">bootstrapping EasyBuild</a>
+    * verify EasyBuild installation using `eb --version` and `eb --help`
 
 
 ## Requirements
