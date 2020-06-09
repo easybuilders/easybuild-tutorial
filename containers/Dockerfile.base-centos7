@@ -19,8 +19,6 @@ RUN mkdir /scratch && chown easybuild:easybuild /scratch \
   && mkdir /easybuild && chown easybuild:easybuild /easybuild
 # disable output buffering in Python, so we see EasyBuild output as it progresses
 ENV PYTHONUNBUFFERED=TRUE
-# define $EB_PYTHON to ensure EasyBuild runs with python3
-ENV EB_PYTHON=python3
 # Define the ENTRYPOINT for subsequent commands (CMD)
 ENTRYPOINT ["/bin/bash", "-l", "-c"]
 # SHELL defines which login shell will be used within RUN steps
@@ -29,20 +27,22 @@ SHELL ["/bin/bash", "-l", "-c"]
 CMD ["bash"]
 # switch to 'easybuild' user
 USER easybuild
-# install EasyBuild as a module (& clean up /scratch)
-RUN eb --install-latest-eb-release --prefix /scratch --installpath /easybuild \
-  && rm -rf /scratch/*
+# install EasyBuild as a module (& clean up /scratch);
+# need to specify EB_PYTHON to ensure python3 is used,
+# since pip3 was used for installation and  /usr/bin/python also exists
+RUN EB_PYTHON=/usr/bin/python3 eb --install-latest-eb-release --prefix /scratch --installpath /easybuild \
+  && rm -rf /scratch/* \
+  # load EasyBuild module through .bashrc startup script
+  && echo 'ml use /easybuild/modules/all && ml EasyBuild' >> ~/.bashrc
+# remove globally installed EasyBuild, we can use the module going forward
+USER root
+RUN pip3 uninstall -y easybuild easybuild-framework easybuild-easyblocks easybuild-easyconfigs
+# switch to 'easybuild' user
+USER easybuild
 # print info on Lmod & EasyBuild
-RUN ml use /easybuild/modules/all \
-  && ml EasyBuild \
-  && ml --version \
+RUN ml --version \
   && which -a eb \
   && eb --version \
   && eb --show-system-info
-# remove globally installed EasyBuild, we can use the module going forward
-USER root
-RUN pip3 uninstall -y easybuild
-# switch to 'easybuild' user
-USER easybuild
 # make sure we start in /home/easybuild rather than / when shell in started in container
 WORKDIR /home/easybuild
