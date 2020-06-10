@@ -35,7 +35,7 @@ that you can use to follow the hands-on exercises in a controlled environment.
 This container image includes a small software stack that was installed using
 EasyBuild, which will come in useful for some of the exercises.
 
-The container is available through the [`easybuilders/tutorial` repository on Docker Hub](https://hub.docker.com/repository/docker/easybuilders/tutorial), and can be used with both Docker and Singularity.
+The container is available through the [`easybuilders/tutorial` repository on Docker Hub](https://hub.docker.com/r/easybuilders/tutorial), and can be used with both Docker and Singularity.
 
 #### Requirements for using the container images
 
