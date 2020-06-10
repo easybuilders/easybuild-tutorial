@@ -49,6 +49,14 @@ common generic easyblocks
 
 `eb -a --easyblock`
 
+## Generating tweaked easyconfigs
+
+`--try-*`
+
+## Copying easyconfigs
+
+`--copy-ec`
+
 ## Implementing easyblocks
 
 (out of scope)

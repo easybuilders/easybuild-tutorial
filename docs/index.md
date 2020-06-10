@@ -59,35 +59,37 @@ For the sake of this tutorial, you can:
 * use *AWS Cloud9* for the hands-on exercises;
 * use the prepared container image through Docker or Singularity;
 
-Please see [this page](00_practical_information/README.md) for more details.
+Please see [this page](practical_information/README.md) for more details.
 
 
 ## Tutorial contents
 
-1. [Introduction to EasyBuild](01_introduction/README.md)
-*  [Installation](02_installation/README.md) ``(*)``
-*  [Configuration](03_configuration/README.md) ``(*)``
-*  [Basic usage](04_basic_usage/README.md) ``(*)``
-*  [Troubleshooting](05_troubleshooting/README.md) ``(*)``
-*  [Beyond the basics](06_beyond_the_basics/README.md) ``(*)``
-*  [Hierarchical module naming schemes](07_hmns/README.md) ``(*)``
-*  [Adding support for additional software](08_adding_support_software/README.md) ``(*)``
-*  [EasyBuild at Jülich Supercomputing Centre](09_jsc/README.md)
-*  [EasyBuild at Compute Canada](10_computecanada/README.md)
-*  [The EasyBuild Community](11_community/README.md)
-*  [Contributing to EasyBuild](12_contributing/README.md) ``(*)``
-*  [Comparison with other tools](13_comparison_other_tools/README.md)
-*  [Getting help](14_getting_help/README.md)
+1. [Introduction to EasyBuild](introduction/README.md)
+*  [Installation](installation/README.md) ``(*)``
+*  [Configuration](configuration/README.md) ``(*)``
+*  [Basic usage](basic_usage/README.md) ``(*)``
+*  [Troubleshooting](troubleshooting/README.md) ``(*)``
+*  [Beyond the basics](beyond_the_basics/README.md) ``(*)``
+*  [Hierarchical module naming schemes](hmns/README.md) ``(*)``
+*  [Adding support for additional software](adding_support_software/README.md) ``(*)``
+*  [EasyBuild at Jülich Supercomputing Centre](jsc/README.md)
+*  [EasyBuild at Compute Canada](computecanada/README.md)
+*  [The EasyBuild Community](community/README.md)
+*  [Contributing to EasyBuild](contributing/README.md) ``(*)``
+*  [Comparison with other tools](comparison_other_tools/README.md)
+*  [Getting help](getting_help/README.md)
 
 *(sections indicated with* ``(*)`` *involve hands-on exercises)*
 
 ## Contributors
 
+* Maxime Boissonneault ([`@mboisson`](https://github.com/mboisson), [Compute Canada](https://www.computecanada.ca))
 * Kenneth Hoste ([`@boegel`](https://github.com/boegel), [HPC-UGent, Belgium](https://www.ugent.be/hpc/en))
 * Michael Kelsey ([`@kelseymh`](https://github.com/kelseymh), [Texas A&M University, US](https://hprc.tamu.edu/))
-* Christian Kniep ([`@kniec`](https://github.com/kniec), [AWS](https://aws.amazon.com))
+* Christian Kniep ([`@ChristianKniep`](https://github.com/ChristianKniep), [AWS](https://aws.amazon.com))
 * Terje Kvernes ([`@terjekv`](https://github.com/terjekv), [University of Oslo, Norway](https://www.uio.no/english/))
 * Alan O'Cais ([`@ocaisa`](https://github.com/ocaisa), [Jülich Supercomputing Centre, Germany](https://www.fz-juelich.de/ias/jsc/EN/Home/home_node.html))
+* Åke Sandgren ([`@akesandgren`](https://github.com/akesandgren), [Umeå University, Sweden](http://www.umu.se/english/))
 
 ## Additional resources
 

@@ -1,10 +1,9 @@
 # Configuration
 
-After installing EasyBuild you should **configure EasyBuild to your preferences**.
-
+After installing EasyBuild, you should **configure** it.
 EasyBuild should work fine out-of-the-box if you use Lmod
-as your modules tool. If you are not using Lmod, please see <a href="#modules-tool-module-syntax">here</a> for more information. 
-The next step is to go through the default configuration and make the appropriate local adaptations.
+as your modules tool; if you are not using Lmod, please see <a href="#modules-tool-module-syntax">here</a> for more information.
+Nevertheless, we strongly recommend you to inspect the default configuration and tailor it to your preferences.
 
 !!! note
     Configuring EasyBuild is also covered in detail in the EasyBuild documentation, see [here](https://easybuild.readthedocs.io/en/latest/Configuration.html).
@@ -161,7 +160,8 @@ To control the robot search path, two configuration settings are available: `rob
 Both accept a colon-separated list of locations to consider when looking for easyconfig files,
 with `robot` overriding `robot-paths`.
 
-The key difference between both is that `robot` also makes EasyBuild resolve dependencies alongside
+The key difference between both is that setting `robot` also enables dependency resolution and
+hence makes EasyBuild install missing dependencies, alongside
 specifying a list of paths to consider when searching for easyconfig files, while defining `robot-paths`
 does not have this side effect.
 In addition, you can use the `--robot` command line option without specifying any paths to it to only enable dependency resolution.
@@ -194,7 +194,7 @@ an optional labels (which corresponds to value of the `versionsuffix` easyconfig
 
 !!! note
     *Using a different module naming scheme is largely out of scope for this tutorial,
-    except when covering [hierarchical module naming schemes](../07_hmns/README.md).*
+    except when covering [hierarchical module naming schemes](../hmns/README.md).*
 
 
 ## Configuration levels
@@ -263,9 +263,9 @@ across different software installations. They define *configuration settings*,
 such as the location where software should be installed, or the syntax that should
 be used when generating module files.
 
-An [easyconfig file](../01_introduction/README.md#easyconfig-files) on the other hand *specifies the details for one particular software installation*.
+An [easyconfig file](../introduction/README.md#easyconfig-files) on the other hand *specifies the details for one particular software installation*.
 It does this by defining a set of *easyconfig parameters*, which tell EasyBuild the name and version
-of the software to install, which [toolchain](../01_introduction/README.md#toolchains) and [easyblock](../01_introduction/README.md#easyblocks) to use, etc.
+of the software to install, which [toolchain](../introduction/README.md#toolchains) and [easyblock](../introduction/README.md#easyblocks) to use, etc.
 
 For each software installation performed by EasyBuild, there is a corresponding easyconfig file.
 There typically are only a handful of configuration files used however, for example a system-level
@@ -346,7 +346,7 @@ buildpath      (D) = /home/example/.local/easybuild/build
 containerpath  (D) = /home/example/.local/easybuild/containers
 installpath    (D) = /home/example/.local/easybuild
 repositorypath (D) = /home/example/.local/easybuild/ebfiles_repo
-robot-paths    (D) = /home/example/.local/easybuild/easyconfigs
+robot-paths    (D) = /easybuild/software/EasyBuild/4.2.1/easybuild/easyconfigs
 sourcepath     (D) = /home/example/.local/easybuild/sources
 ```
 
@@ -358,7 +358,7 @@ Now let us do some basic configuring and inspect the resulting output of `--show
 ```shell
 
 $ export EASYBUILD_PREFIX=$HOME/easybuild
-$ export EASYBUILD_BUILDPATH=/dev/shm
+$ export EASYBUILD_BUILDPATH=/dev/shm/$USER
 $ eb --installpath=/tmp/$USER --show-config
 #
 # Current EasyBuild configuration
@@ -366,11 +366,11 @@ $ eb --installpath=/tmp/$USER --show-config
 #
 buildpath      (E) = /dev/shm/example
 containerpath  (E) = /home/example/easybuild/containers
-installpath    (C) = /tmp/example
+installpath    (C) = /tmp/easybuild
 packagepath    (E) = /home/example/easybuild/packages
 prefix         (E) = /home/example/easybuild
 repositorypath (E) = /home/example/easybuild/ebfiles_repo
-robot-paths    (D) = /home/example/.local/easybuild/easyconfigs
+robot-paths    (D) = /easybuild/software/EasyBuild/4.2.1/easybuild/easyconfigs
 sourcepath     (E) = /home/example/easybuild/sources
 ```
 

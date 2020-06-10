@@ -151,7 +151,8 @@ If these parameters are not provided, the corresponding default value will be us
 
 *Extensions* is the collective term we use for **additional software packages that can be installed
 on top of another software package**. Examples are *Python packages*, *R libraries* and *Perl modules*.
-As you can tell, the software terminology here is a mess, so we had to come of up with a unifying term...
+
+As you can tell the common terminology here is a mess, so we came up with a unifying term...
 
 <div align="center"><a href="https://xkcd.com/927/"><img src="https://imgs.xkcd.com/comics/standards.png" width="350px"></a></div>
 
@@ -159,7 +160,7 @@ Extensions can be installed in different ways:
 
 * stand-alone, as a separate installation on top of one or more other installations;
 * as a part of a bundle of extensions that collectively form a separate installation;
-* or as an *extension* to a specific installation to yield a "batteries included"
+* or as an actual *extension* to a specific installation to yield a "batteries included"
   type of installation (for examples by adding a bunch of Python packages from PyPI into
   a Python installation);
 
@@ -206,6 +207,15 @@ A toolchain that includes all of these libraries is referred to as a **full tool
 a **subtoolchain** is a toolchain that is missing one or more of these libraries.
 A **compiler-only toolchain** only consists of compilers (no additional libraries).
 
+#### System toolchain
+
+The **`system` toolchain** is a special case which corresponds to using the system-provided
+compilers and libraries, rather than using toolchain components that were installed using EasyBuild.
+
+It used sparingly, mostly to install software where no actual compilation is done or
+to build a set of toolchain compilers and its dependencies, since the versions of the system tools
+and libraries are beyond the control of EasyBuild, which could affect the reproducibility of the installation.
+
 ### *Modules*
 
 *Module* is a massively overloaded term in (scientific) software and IT in general
@@ -243,7 +253,7 @@ The EasyBuild **framework** leverages **easyblocks** to automatically build and 
 (scientific) software, potentially including additional **extensions**, using a particular compiler **toolchain**,
 as specified in **easyconfig files**.
 
-EasyBuild ensures that the specified **dependencies** are met upon a successful install,
+EasyBuild ensures that the specified **dependencies** are in place,
 and automatically generates a set of **(environment) modules** that facilitate access to the installed software.
 
 --- 
@@ -299,8 +309,9 @@ which increases the usefulness of the easyconfig files we collect in the [centra
 Last but not least, EasyBuild provides various [**GitHub integration features**](https://easybuild.readthedocs.io/en/latest/Integration_with_GitHub.html)
 that greatly facilitate the contribution process: opening, updating, and testing pull requests,
 reviewing incoming contributions, and much more can all be done directly from the EasyBuild
-command line. This not only saves time, effort, brain cycles, and mouse clicks for contributors, but 
-it also makes the review process for *maintainers* significantly easier. All together this leads to improved stability and consistency.
+command line. This not only saves time, effort, brain cycles, and mouse clicks for contributors,
+but it also makes the review process for *maintainers* significantly easier.
+All together this leads to improved stability and consistency.
 
 --- 
 

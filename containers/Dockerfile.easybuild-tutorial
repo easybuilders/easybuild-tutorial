@@ -1,0 +1,31 @@
+ARG IMG_REGISTRY=docker.io
+ARG IMG_ORG=easybuilders
+ARG IMG_NAME=base
+ARG IMG_TAG=centos7-eb4.2.1
+# allow CI/CD to change all of the above
+FROM ${IMG_REGISTRY}/${IMG_ORG}/${IMG_NAME}:${IMG_TAG}
+
+# don't load EasyBuild module via .bashrc startup script
+RUN sed -i 's/^ml use.*EasyBuild//g' ~/.bashrc
+
+USER root
+RUN yum install -y figlet man && \
+  echo > /etc/motd && \
+  echo 'You are logged in to the prepared environment for the introductory tutorial to' >> /etc/motd && \
+  figlet -w 200 -l "EasyBuild" -k -f big >> /etc/motd && \
+  echo >> /etc/motd && \
+  echo 'The tutorial materials are available at https://easybuilders.github.io/easybuild-tutorial .' >> /etc/motd && \
+  echo >> /etc/motd && \
+  echo -n 'OS: ' >> /etc/motd && \
+  cat /etc/redhat-release >> /etc/motd && \
+  echo "modules tool: Lmod ${LMOD_VERSION}" >> /etc/motd && \
+  echo >> /etc/motd && \
+  echo "To access the pre-installed software run 'module use /easybuild/modules/all'," >> /etc/motd && \
+  echo "and then check which modules are installed using 'module avail'." >> /etc/motd && \
+  echo >> /etc/motd && \
+  echo 'In case of questions or problems contact the tutorial organisers via the #tutorial' >> /etc/motd && \
+  echo 'channel in the EasyBuild Slack, join via https://easybuild-slack.herokuapp.com .' >> /etc/motd && \
+  echo >> /etc/motd
+
+USER easybuild
+CMD ["cat /etc/motd && bash"]

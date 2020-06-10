@@ -5,9 +5,9 @@ ARG IMG_TAG=centos7-eb4.2.1
 # allow CI/CD to change all of the above
 FROM ${IMG_REGISTRY}/${IMG_ORG}/${IMG_NAME}:${IMG_TAG}
 
-# CPU_ARCH is expected to be defined in the "docker build" command,
+# CPU_ARCH can be specified in the "docker build" command,
 # for example: docker build --build-arg CPU_ARCH=haswell
-ARG CPU_ARCH
+ARG CPU_ARCH=haswell
 # make sure CPU_ARCH is defined
 RUN test -n "${CPU_ARCH}" || (echo "\$CPU_ARCH undefined, use 'docker build --build-arg CPU_ARCH=...'" && exit 1)
 # verify provided CPU_ARCH value, should match with what archspec produces
@@ -16,8 +16,12 @@ RUN export HOST_CPU_ARCH=$(python3 -c 'import archspec.cpu; print(archspec.cpu.h
 # use $CPU_ARCH to define label and set it as environment variable (to use in subsequent builds
 LABEL cpu_arch=${CPU_ARCH}
 ENV CPU_ARCH=${CPU_ARCH}
+
+# use 'docker build --build-arg EASYCONFIG=example.eb' to make EasyBuild install something else
+ARG EASYCONFIG=SciPy-bundle-2020.03-foss-2020a-Python-3.8.2.eb
+
 # use /easybuild for everything that should persist in the container (software, modules and sources)
 # everything else goes in /scratch, which will be cleaned out
-RUN eb --prefix /scratch --installpath /easybuild GCC-9.3.0.eb --robot --trace \
+RUN  eb --prefix /scratch --installpath /easybuild ${EASYCONFIG} --robot --trace \
   # clean up everything in /scratch
   && rm -rf /scratch/*

@@ -13,21 +13,21 @@ repo_url: https://github.com/easybuilders
 edit_uri: easybuild-tutorial/edit/master/docs
 nav:
   - "": index.md
-  - 0. Practical information: 00_practical_information/README.md
-  - 1. Introduction: 01_introduction/README.md
-  - 2. Installation: 02_installation/README.md
-  - 3. Configuration: 03_configuration/README.md
-  - 4. Basic usage: 04_basic_usage/README.md
-  - 5. Troubleshooting: 05_troubleshooting/README.md
-  - 6. Beyond the basics: 06_beyond_the_basics/README.md
-  - 7. Hierarchical module naming schemes: 07_hmns/README.md
-  - 8. Adding support for additional software: 08_adding_support_software/README.md
-  - 9. EasyBuild at Jülich Supercomputing Centre: 09_jsc/README.md
-  - 10. EasyBuild at Compute Canada: 10_computecanada/README.md
-  - 11. The EasyBuild Community: 11_community/README.md
-  - 12. Contributing to EasyBuild: 12_contributing/README.md
-  - 13. Comparison with other tools: 13_comparison_other_tools/README.md
-  - 14. Getting help: 14_getting_help/README.md
+  - 0. Practical information: practical_information/README.md
+  - 1. Introduction: introduction/README.md
+  - 2. Installation: installation/README.md
+  - 3. Configuration: configuration/README.md
+  - 4. Basic usage: basic_usage/README.md
+  - 5. Troubleshooting: troubleshooting/README.md
+  - 6. Beyond the basics: beyond_the_basics/README.md
+  - 7. Hierarchical module naming schemes: hmns/README.md
+  - 8. Adding support for additional software: adding_support_software/README.md
+  - 9. EasyBuild at Jülich Supercomputing Centre: jsc/README.md
+  - 10. EasyBuild at Compute Canada: computecanada/README.md
+  - 11. The EasyBuild Community: community/README.md
+  - 12. Contributing to EasyBuild: contributing/README.md
+  - 13. Comparison with other tools: comparison_other_tools/README.md
+  - 14. Getting help: getting_help/README.md
 plugins:
   # show revision date at bottom of each page
   - git-revision-date-localized

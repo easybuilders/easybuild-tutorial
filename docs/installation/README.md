@@ -3,17 +3,17 @@
 Before deep diving into the wonderful world of EasyBuild and getting your hands dirty with
 the hands on exercises coming up in this tutorial, you will need to install EasyBuild.
 
-In this section we outline the different ways of doing so, and the things you should pay attention to.
+In this section we outline a couple of different ways of doing so, and the things you should pay attention to.
 By the end of it, you will have a functional EasyBuild installation that you can use
 for the remainder of this tutorial.
 
-## Executive summary
+!!! summary
 
-* <a href="#requirements">requirements</a>: Linux, Python 2.7 or 3.5+, environment modules tool (Lmod is recommended)
-* installation methods:
-    * <a href=#method-1-using-pip-recommended>``pip install easybuild``</a>
-    * <a href="#method-2-bootstrapping-easybuild">bootstrapping EasyBuild</a>
-* verify EasyBuild installation using `eb --version` and `eb --help`
+    * <a href="#requirements">requirements</a>: Linux, Python 2.7 or 3.5+, environment modules tool (Lmod is recommended)
+    * installation methods:
+        * <a href=#method-1-using-pip-recommended>``pip install easybuild``</a>
+        * <a href="#method-2-bootstrapping-easybuild">bootstrapping EasyBuild</a>
+    * verify EasyBuild installation using `eb --version` and `eb --help`
 
 
 ## Requirements
@@ -88,9 +88,9 @@ Nevertheless, you don't need to be a rocket scientist to install EasyBuild (and 
 that's OK too), so don't worry.
 
 You can install EasyBuild just like you can install any other Python software that is released
-via the standard *Python Package Index* (PyPI), through one of standard Python installation tools.
-There may be some irony involved in using the "standard" Python Packaging tool to install Easybuild,
-seeing as EasyBuild is a software installation tool in its own right. However, we actually have a couple
+via the standard *Python Package Index* (PyPI), through one of the standard Python installation tools
+(like `pip`, `virtualenv`, `pipenv`, ...).
+And since EasyBuild is a software installation tool in its own right, we actually have a couple
 of additional tricks up our sleeve!
 
 #### Python 2 or Python 3?
@@ -154,6 +154,14 @@ However, you may need to slightly change this command depending on the context a
   In this command, you should replace '`_PREFIX_`' with the location where you want to have EasyBuild installed
   (for example, `$HOME/tools` or `/tmp/$USER`).
 
+#### `pip` vs `pip3`
+
+On systems where both Python 2 and Python 3 are installed you may also have different `pip` commands
+available. Or maybe `pip` is not available at all, and only "versioned" `pip` commands like `pip3` are
+available.
+
+If you (only) have `pip3` available, you can replace `pip` with `pip3` in any of the `pip install` commands
+above.
 
 #### Updating your environment
 
@@ -172,7 +180,7 @@ Update the `$PATH` environment variable to make sure the `eb` command is availab
 
 export PATH=_PREFIX_/bin:$PATH
 ```
-Replace '`_PREFIX_`' in this command with the directory path where EasyBuild was installed into
+**Replace '`_PREFIX_`' in this command** with the directory path where EasyBuild was installed into
 (use `$HOME/.local` if you used `pip install --user`).
 
 **`$PYTHONPATH`**
@@ -194,7 +202,7 @@ Here, you need to replace the `X` and `Y` with the major and minor version of yo
 which you can determine by running `python -V`.
 For example, if you are using Python 2.7, make sure you are using '`python2.7`' in the command to update `$PYTHONPATH`.
 
-And of course, you again need to replace '`_PREFIX_`' with the installation prefix where EasyBuild was installed
+And of course, you again need to **replace '`_PREFIX_`'** with the installation prefix where EasyBuild was installed
 into.
 
 For example:
@@ -202,6 +210,18 @@ For example:
 ```shell
 # update $PYTHONPATH if EasyBuild was installed in $HOME/tools with Python 3.6
 export PYTHONPATH=$HOME/tools/lib/python3.6/site-packages:$PYTHONPATH
+```
+
+**`$EB_PYTHON`**
+
+If you want to control which Python version is used to run EasyBuild,
+you can speicfy the name or the full path to the `python` command that should be used by the `eb` command
+via the `$EB_PYTHON` environment variable.
+
+For example, to ensure that `eb` uses `python3`:
+
+```shell
+export EB_PYTHON=python3
 ```
 
 
@@ -241,7 +261,7 @@ and specify the installation prefix as an argument:
 python bootstrap_eb.py _PREFIX_
 ```
 
-Replace '`_PREFIX_`' with the location where you want to have EasyBuild installed (for example, `$HOME/tools`
+**Replace '`_PREFIX_`'** with the location where you want to have EasyBuild installed (for example, `$HOME/tools`
 or `/tmp/$USER`).
 
 #### Step 3: Loading the EasyBuild module
@@ -257,7 +277,7 @@ environment variable `$MODULEPATH`):
 module use _PREFIX_/modules/all
 ```
 
-Replace '`_PREFIX_`' in the same way as you did when running the bootstrap script.
+**Replace '`_PREFIX_`'** in the same way as you did when running the bootstrap script.
 
 Then, load the `EasyBuild` module to update your environment and make EasyBuild available for use:
 
