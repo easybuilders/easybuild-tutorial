@@ -621,14 +621,14 @@ EasyBuild, which will come in useful for some of the exercises.</p>
 <h4 id="using-docker">Using Docker<a class="headerlink" href="#using-docker" title="Permanent link">&para;</a></h4>
 <p>If you want to use the prepared container image via Docker,
 run the following <code>docker</code> command:</p>
-<div class="highlight"><pre><span></span><code>docker run -ti --rm easybuilders/tutorial:isc20
+<div class="highlight"><pre><span></span><code>docker run -ti --rm easybuilders/tutorial:isc20-haswell
 </code></pre></div>
 
 <h4 id="using-singularity">Using Singularity<a class="headerlink" href="#using-singularity" title="Permanent link">&para;</a></h4>
 <p><em>(not available in AWS environment)</em></p>
 <p>To use the prepared container image via Singularity,
 run the following <code>singularity</code> command:</p>
-<div class="highlight"><pre><span></span><code>singularity run --cleanenv --home /tmp/<span class="nv">$USER</span>/fakehome docker://easybuilders/tutorial:isc20
+<div class="highlight"><pre><span></span><code>singularity run --cleanenv --home /tmp/<span class="nv">$USER</span>/isc20 docker://easybuilders/tutorial:isc20-haswell
 </code></pre></div>
 
 <p>The additional options are required to:</p>
@@ -646,7 +646,7 @@ the container, which could interfere with the hands-on exercises.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: June 8, 2020
+      Last update: June 10, 2020
     
   </small>
 </div>
