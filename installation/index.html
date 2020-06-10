@@ -376,6 +376,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#pip-vs-pip3" class="md-nav__link">
+    pip vs pip3
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#updating-your-environment" class="md-nav__link">
     Updating your environment
   </a>
@@ -721,6 +728,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#pip-vs-pip3" class="md-nav__link">
+    pip vs pip3
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#updating-your-environment" class="md-nav__link">
     Updating your environment
   </a>
@@ -953,6 +967,12 @@ instead to install EasyBuild.</p>
   (for example, <code>$HOME/tools</code> or <code>/tmp/$USER</code>).</p>
 </li>
 </ul>
+<h4 id="pip-vs-pip3"><code>pip</code> vs <code>pip3</code><a class="headerlink" href="#pip-vs-pip3" title="Permanent link">&para;</a></h4>
+<p>On systems where both Python 2 and Python 3 are installed you may also have different <code>pip</code> commands
+available. Or maybe <code>pip</code> is not available at all, and only "versioned" <code>pip</code> commands like <code>pip3</code> are
+available.</p>
+<p>If you (only) have <code>pip3</code> available, you can replace <code>pip</code> with <code>pip3</code> in any of the <code>pip install</code> commands
+above.</p>
 <h4 id="updating-your-environment">Updating your environment<a class="headerlink" href="#updating-your-environment" title="Permanent link">&para;</a></h4>
 <p>If you used the <code>--user</code> or <code>--prefix</code> option in the <code>pip install</code> command, 
 you will need to update your environment to make EasyBuild ready for use.
@@ -966,7 +986,7 @@ To avoid this, you can update one of the shell startup scripts in your home dire
 <p>Update the <code>$PATH</code> environment variable to make sure the <code>eb</code> command is available:
 <div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span>_PREFIX_/bin:<span class="nv">$PATH</span>
 </code></pre></div>
-Replace '<code>_PREFIX_</code>' in this command with the directory path where EasyBuild was installed into
+<strong>Replace '<code>_PREFIX_</code>' in this command</strong> with the directory path where EasyBuild was installed into
 (use <code>$HOME/.local</code> if you used <code>pip install --user</code>).</p>
 <p><strong><code>$PYTHONPATH</code></strong></p>
 <p>If you installed EasyBuild to a non-standard location using <code>pip install --prefix</code>,
@@ -981,11 +1001,19 @@ This is not required if you used the <code>--user</code> option, since Python wi
 <p>Here, you need to replace the <code>X</code> and <code>Y</code> with the major and minor version of your Python installation,
 which you can determine by running <code>python -V</code>.
 For example, if you are using Python 2.7, make sure you are using '<code>python2.7</code>' in the command to update <code>$PYTHONPATH</code>.</p>
-<p>And of course, you again need to replace '<code>_PREFIX_</code>' with the installation prefix where EasyBuild was installed
+<p>And of course, you again need to <strong>replace '<code>_PREFIX_</code>'</strong> with the installation prefix where EasyBuild was installed
 into.</p>
 <p>For example:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># update $PYTHONPATH if EasyBuild was installed in $HOME/tools with Python 3.6</span>
 <span class="nb">export</span> <span class="nv">PYTHONPATH</span><span class="o">=</span><span class="nv">$HOME</span>/tools/lib/python3.6/site-packages:<span class="nv">$PYTHONPATH</span>
+</code></pre></div>
+
+<p><strong><code>$EB_PYTHON</code></strong></p>
+<p>If you want to control which Python version is used to run EasyBuild,
+you can speicfy the name or the full path to the <code>python</code> command that should be used by the <code>eb</code> command
+via the <code>$EB_PYTHON</code> environment variable.</p>
+<p>For example, to ensure that <code>eb</code> uses <code>python3</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">EB_PYTHON</span><span class="o">=</span>python3
 </code></pre></div>
 
 <h3 id="method-2-bootstrapping-easybuild">Method 2: Bootstrapping EasyBuild<a class="headerlink" href="#method-2-bootstrapping-easybuild" title="Permanent link">&para;</a></h3>
@@ -1010,7 +1038,7 @@ and specify the installation prefix as an argument:</p>
 <div class="highlight"><pre><span></span><code>python bootstrap_eb.py _PREFIX_
 </code></pre></div>
 
-<p>Replace '<code>_PREFIX_</code>' with the location where you want to have EasyBuild installed (for example, <code>$HOME/tools</code>
+<p><strong>Replace '<code>_PREFIX_</code>'</strong> with the location where you want to have EasyBuild installed (for example, <code>$HOME/tools</code>
 or <code>/tmp/$USER</code>).</p>
 <h4 id="step-3-loading-the-easybuild-module">Step 3: Loading the EasyBuild module<a class="headerlink" href="#step-3-loading-the-easybuild-module" title="Permanent link">&para;</a></h4>
 <p>Once the bootstrap procedure completed, you should be able to load the module that was generated alongside
@@ -1020,7 +1048,7 @@ environment variable <code>$MODULEPATH</code>):</p>
 <div class="highlight"><pre><span></span><code>module use _PREFIX_/modules/all
 </code></pre></div>
 
-<p>Replace '<code>_PREFIX_</code>' in the same way as you did when running the bootstrap script.</p>
+<p><strong>Replace '<code>_PREFIX_</code>'</strong> in the same way as you did when running the bootstrap script.</p>
 <p>Then, load the <code>EasyBuild</code> module to update your environment and make EasyBuild available for use:</p>
 <div class="highlight"><pre><span></span><code>module load EasyBuild
 </code></pre></div>
@@ -1074,7 +1102,7 @@ EasyBuild configuration.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: June 9, 2020
+      Last update: June 10, 2020
     
   </small>
 </div>
