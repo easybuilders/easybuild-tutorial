@@ -1,13 +1,13 @@
 # Basic usage
 
-Now we have installed and configured EasyBuild, we can start using it for what it is intended for:
+Now that we have installed and configured EasyBuild, we can start using it for what it is intended for:
 getting scientific software installed without breaking a sweat or having to resist the urge to
 shout out four-letter words.
 
 We will look at the high-level workflow first, and then cover each aspect in more detail.
 
-We will wrap things up by stepping through an example and offering a couple of exercises that
-will help to make you more familiar with the EasyBuild command line interface.
+A couple of exercises are available at the end to help to make you more familiar with the
+EasyBuild command line interface, so pay attention!
 
 ## Workflow
 
@@ -17,8 +17,8 @@ want to install, and then sitting back to enjoy a coffee or tea (or whatever bev
 This is typically done by **specifying the name of one or more easyconfig files**, usually in combination
 with the `--robot` option to enable dependency resolution.
 
-It is recommended to assess the current situation before letting EasyBuild install the software,
-to check which **dependencies** are already installed and which are still missing. In addition,
+It is recommended to first assess the current situation before letting EasyBuild install the software,
+and to check which **dependencies** are already installed and which are still missing. In addition,
 you may want to inspect the specifics of the **installation procedure** that will be performed by EasyBuild
 and ensure that the configuration option are what you would expect, for example.
 
@@ -35,9 +35,9 @@ is a value for a preceding option, are assumed to refer to easyconfig files. The
 
 * the *(absolute or relative) path* to an easyconfig file;
 * the *name* of an easyconfig file;
-* the path to a *directory*;
+* the path to a *directory* containing easyconfig files;
 
-Specified paths must of course point to an existing file; if not, EasyBuild will print an appropriate error message:
+Specified paths to files must of course point to existing files; if not, EasyBuild will print an appropriate error message:
 
 ```shell
 $ eb /tmp/does_not_exist.eb
@@ -45,11 +45,11 @@ ERROR: Can't find path /tmp/does_not_exist.eb
 ```
 
 When only the *name* of an easyconfig file is specified, EasyBuild will automatically try and locate it.
-First, it will consider the *current directory*. If no file with the specified name is found,
-then EasyBuild will search for the easyconfig file in the [robot search path](../configuration#robot-search-path).
+First, it will consider the *current directory*. If no file with the specified name is found there
+EasyBuild will search for the easyconfig file in the [robot search path](../configuration#robot-search-path).
 
 If the path to an existing *directory* is provided, EasyBuild will walk through the entire directory
-(including all subdirectories), retain all files of which the name ends with '`.eb`', and use these
+(including all subdirectories), retain all files of which the name ends with '`.eb`', and (try to) use these
 as easyconfig files.
 
 
@@ -87,23 +87,23 @@ EasyBuild will interpret each of these arguments as follows:
 * `bzip2-1.0.6.eb` is the name of an easyconfig file to locate via the robot search path
   (since it does not exist in the current directory);
 * `example1` is the name of a file in the current directory, so it can be used directly;
-* likewise, `$HOME/example2` specifies the full path to an existing file, which can be used directly;
+* likewise, `$HOME/example2` specifies the path to an existing file, which can be used directly;
 * `some_deps` is the relative path to an existing directory, so EasyBuild will scan it and find three
   easyconfig files: `some_deps/dep1.eb`, `some_deps/dep2.eb` and `some_deps/more_deps/dep3.eb`,
   ignoring the `list.txt` file since its name does not end with '`.eb`';
 
 ### Easyconfig filenames
 
-Note that the `eb` command does care how easyconfig files are named, at least to some extent: the '`.eb`'
+Note that the `eb` command does not care how easyconfig files are named, at least to some extent: the '`.eb`'
 file extension does matter w.r.t. easyconfig files being picked up in subdirectories.
 
-File names for easyconfigs being irrelevant is only correct with respect to the arguments passed to
+File names for easyconfigs being mostly irrelevant is only correct with respect to the arguments passed to
 the `eb` command however. As we will learn soon, the name of easyconfig files *does* matter when EasyBuild
 needs to locate easyconfigs that can be used to resolve a specified dependency
 (see [here](#enabling-dependency-resolution)).
 
 This explains why easyconfig files usually adher to a very specific naming scheme,
-corresponding to `<name>-<version>-<toolchain><versionsuffix>.eb`:
+corresponding to `<name>-<version>-<toolchain><versionsuffix>.eb`, where:
 
 * `<name>` represents the software name;
 * `<version>` represents the software version;
@@ -124,7 +124,7 @@ which you can do by searching for easyconfigs using **`eb --search`** or **`eb -
 By default all directories listed in the [robot search path](../configuration#robot-search-path) will be
 searched. If you want to search in additional directories without changing the robot search path
 you can use the `search-paths` configuration setting, or you can change the robot search path via either
-`robot` or `robot-paths`.
+the `--robot` or `--robot-paths` option.
 
 Both the `--search` and `-S` options trigger the same search operation, but yield different output:
 `eb --search` will print the full path to each easyconfig file that matches the specified search pattern,
