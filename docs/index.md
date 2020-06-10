@@ -83,11 +83,13 @@ Please see [this page](practical_information/README.md) for more details.
 
 ## Contributors
 
+* Maxime Boissonneault ([`@mboisson`](https://github.com/mboisson), [Compute Canada](https://www.computecanada.ca))
 * Kenneth Hoste ([`@boegel`](https://github.com/boegel), [HPC-UGent, Belgium](https://www.ugent.be/hpc/en))
 * Michael Kelsey ([`@kelseymh`](https://github.com/kelseymh), [Texas A&M University, US](https://hprc.tamu.edu/))
 * Christian Kniep ([`@kniec`](https://github.com/kniec), [AWS](https://aws.amazon.com))
 * Terje Kvernes ([`@terjekv`](https://github.com/terjekv), [University of Oslo, Norway](https://www.uio.no/english/))
 * Alan O'Cais ([`@ocaisa`](https://github.com/ocaisa), [Jülich Supercomputing Centre, Germany](https://www.fz-juelich.de/ias/jsc/EN/Home/home_node.html))
+* Åke Sandgren ([`@akesandgren`](https://github.com/akesandgren), [Umeå University, Sweden](http://www.umu.se/english/))
 
 ## Additional resources
 
