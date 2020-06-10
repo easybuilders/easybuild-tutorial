@@ -1,0 +1,114 @@
+# Basic usage
+
+## Workflow
+
+## Searching for easyconfigs
+
+`-S`, `--search`
+
+## Checking dependencies
+
+`--dry-run`/`-D`, `--missing`/`-M`
+
+## Performing a dry run
+
+`--extended-dry-run`/`-x`
+
+## Installing software
+
+### Enabling dependency resolution
+
+### Trace output
+
+`--trace`
+
+## Using installed software
+
+## Stacking software
+
+## Hands-on exercises
+
+***Exercise 4.1**** - Searching easyconfigs*
+
+See if EasyBuild provides any easyconfig files for TensorFlow 2.2.0.
+
+??? success "(click to show solution)"
+    ```shell
+    eb --search TensorFlow-2.2.0
+    ```
+
+***Exercise 4.2****- Checking dependencies*
+
+Check which dependencies are missing to install PETSc 3.12.4 with the `foss/2020a` toolchain.
+
+??? success "(click to show solution)"
+    ```shell
+    eb --search 'PETSc-3.12.4.*foss-2020a'
+    ```
+    ```shell
+    eb PETSc-3.12.4-foss-2020a-Python-3.8.2.eb --missing
+    ```
+
+***Exercise 4.3****- Performing a dry run*
+
+Inspect the installation procedure for `GSL-2.6-GCC-9.3.0.eb` by performing a dry run.
+
+Which binaries will EasyBuild check for to sanity check the installation?
+
+??? success "(click to show solution)"
+    ```shell
+    eb -x GSL-2.6-GCC-9.3.0.eb
+    ```
+
+    Binaries: `gsl-config`, `gsl-histogram`, `gsl-randist`.
+
+***Exercise 4.4****- Installing software*
+
+Install the `h5py` Python package and all missing dependencies for Python 3.8.2,
+into `/tmp/$USER/easybuild` and leveraging already install software from `/easybuild`.
+
+Enable trace output so you can see which parts of the installation take a while.
+
+??? success "(click to show solution)"
+    ```shell
+    eb --search 'h5py.*Python-3.8.2'
+    ```
+    ```shell
+    module use /easybuild/modules/all
+    ```
+    ```shell
+    eb h5py-2.10.0-foss-2020a-Python-3.8.2.eb --missing
+    ```
+    ```shell
+    eb h5py-2.10.0-foss-2020a-Python-3.8.2.eb --robot --installpath /tmp/$USER/easybuild
+    ```
+
+***Exercise 4.5****- Using installed software*
+
+Using the `h5py` installation from the previous exercise to create an empty HDF5 file,
+using the following Python statements:
+
+```python
+import h5py
+f = h5py.File("mytestfile.hdf5", "w")
+f.close()
+```
+
+Check the resulting file using the `h5stat` command.
+
+??? success "(click to show solution)"
+    ```shell
+    module use /tmp/$USER/easybuild/modules/all
+    ```
+    ```shell
+    module avail h5py
+    ```
+    ```shell
+    module load h5py/2.10.0-foss-2020a-Python-3.8.2
+    ```
+    ```shell
+    python -c 'import h5py; f = h5py.File("empty.hdf5", "w"); f.close()'
+    ```
+    ```shell
+    h5stat empty.hdf5
+    ```
