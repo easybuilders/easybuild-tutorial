@@ -1008,12 +1008,22 @@ into.</p>
 <span class="nb">export</span> <span class="nv">PYTHONPATH</span><span class="o">=</span><span class="nv">$HOME</span>/tools/lib/python3.6/site-packages:<span class="nv">$PYTHONPATH</span>
 </code></pre></div>
 
-<p><strong><code>$EB_PYTHON</code></strong></p>
+<p><strong><code>$EB_PYTHON</code> and <code>$EB_VERBOSE</code></strong></p>
 <p>If you want to control which Python version is used to run EasyBuild,
 you can speicfy the name or the full path to the <code>python</code> command that should be used by the <code>eb</code> command
 via the <code>$EB_PYTHON</code> environment variable.</p>
 <p>For example, to ensure that <code>eb</code> uses <code>python3</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">EB_PYTHON</span><span class="o">=</span>python3
+</code></pre></div>
+
+<p>To get a better view on which <code>python</code> commands are being considered by the <code>eb</code> command,
+you can (temporarily) define the <code>$EB_VERBOSE</code> environment variable. For example:</p>
+<div class="highlight"><pre><span></span><code>$ <span class="nv">EB_VERBOSE</span><span class="o">=</span><span class="m">1</span> eb --version
+&gt;&gt; Considering <span class="s1">&#39;python3&#39;</span>...
+&gt;&gt; <span class="s1">&#39;python3&#39;</span> version: <span class="m">3</span>.6.8, which matches Python <span class="m">3</span> version requirement <span class="o">(</span>&gt;<span class="o">=</span> <span class="m">3</span>.5<span class="o">)</span>
+&gt;&gt; Selected Python command: python3 <span class="o">(</span>/usr/bin/python3<span class="o">)</span>
+&gt;&gt; python3 -m easybuild.main --version
+This is EasyBuild <span class="m">4</span>.2.1 <span class="o">(</span>framework: <span class="m">4</span>.2.1, easyblocks: <span class="m">4</span>.2.1<span class="o">)</span> on host example
 </code></pre></div>
 
 <h3 id="method-2-bootstrapping-easybuild">Method 2: Bootstrapping EasyBuild<a class="headerlink" href="#method-2-bootstrapping-easybuild" title="Permanent link">&para;</a></h3>
