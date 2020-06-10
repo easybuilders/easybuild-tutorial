@@ -51,7 +51,7 @@ If you want to use the prepared container image via Docker,
 run the following `docker` command:
 
 ```
-docker run -ti --rm easybuilders/tutorial:isc20
+docker run -ti --rm easybuilders/tutorial:isc20-haswell
 ```
 
 
@@ -63,7 +63,7 @@ To use the prepared container image via Singularity,
 run the following `singularity` command:
 
 ```shell
-singularity run --cleanenv --home /tmp/$USER/fakehome docker://easybuilders/tutorial:isc20
+singularity run --cleanenv --home /tmp/$USER/isc20 docker://easybuilders/tutorial:isc20-haswell
 ```
 
 The additional options are required to:
