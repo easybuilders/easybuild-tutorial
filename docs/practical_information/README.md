@@ -1,17 +1,19 @@
 # Practical information
 
-Below you can find practical information on the provided resources for this tutorial.
+Contact points, resources, helpful hints, and things to keep in mind for the EasyBuild tutorial.
 
 
 ### Slack
 
-There is a dedicated `#tutorial` channel in the EasyBuild Slack to get in touch with the
-tutorial organisers, where you can ask questions throughout the tutorial, or ask for help if needed.
+There is a dedicated `#tutorial` channel in the EasyBuild Slack where you can get in touch with 
+organisers of the tutorial, other participants, and volunteers. Please use this channel to ask
+questions throughout the tutorial, or for any other assistance related to the tutorial.
 
-To connect, you will need to create an account in the EasyBuild Slack first,
-which you can do via [https://easybuild-slack.herokuapp.com/](https://easybuild-slack.herokuapp.com/).
+To access this channel, you will first need to create an account in the EasyBuild Slack.
+This is done via [https://easybuild-slack.herokuapp.com/](https://easybuild-slack.herokuapp.com/).
 
-Once you have an account, you can join the EasyBuild Slack via [https://easybuild.slack.com/](https://easybuild.slack.com/), and then join the `#tutorial` channel.
+Once you have the account set up, you can join the EasyBuild Slack via [https://easybuild.slack.com/](https://easybuild.slack.com/). From there you can the `#tutorial` channel.
+For more information about Slack, please see the official [documentation](https://slack.com/intl/en-no/help/categories/200111606-Using-Slack).
 
 
 ### AWS resources
@@ -23,8 +25,8 @@ for this tutorial.
 
 You should have received an email with connection information if you have registered in time for this tutorial.
 
-***If you did not register and would still like to use AWS Cloud9 for this tutorial,
-please contact the tutorial organisers via Slack.***
+***If you did not register and would still like to use AWS Cloud9 for this tutorial, or you have not received
+the email with the connection information, please contact the tutorial organisers via Slack.***
 
 
 ### Prepared container image
@@ -42,7 +44,9 @@ The container is available through the [`easybuilders/tutorial` repository on Do
 *(only relevant if you are* ***not*** *using AWS Cloud9)*
 
 * having Docker or Singularity installed
-* a system with a processor compatible with software built for Intel Haswell (AVX2)
+* a system with a processor supporting the AVX2 instruction set. AVX2 is supported by Intel Haswell or AMD Bulldozer (both released in 2012) and onwards.
+
+If you are in doubt about your systems compatibility, see "Testing host compatibility" at the end of this document.
 
 #### Container size
 
@@ -50,6 +54,8 @@ The compressed container image is about 1.1GB in size,
 and will be downloaded automatically from Docker Hub when you run the `docker` or `singularity` command shown below.
 
 #### Using Docker
+
+Please note that docker requires root access, which is available to you in the tutorials AWS environment.
 
 If you want to use the prepared container image via Docker,
 run the following `docker` command:
@@ -85,8 +91,8 @@ By default Singularity keeps its cache at `$HOME/.singularity/cache`.
 Since the uncompressed container image requires about 2.2GB of disk space,
 make sure this will work in your setup.
 
-If your home directory is limited in size you can either make `$HOME/.singularity` as symbolic link to
-`/tmp/$USER/singularity` for example, or define the `$SINGULARITY_CACHEDIR` environment variable
+If your home directory is limited in size you can either make `$HOME/.singularity` a symbolic link to
+`/tmp/$USER/singularity` or a similar spacious volume, or define the `$SINGULARITY_CACHEDIR` environment variable
 to make Singulartiy use a different location:
 
 ```shell
@@ -152,4 +158,4 @@ python -V
 If the last command prints a Python version (like `Python 3.8.2`), then your host is compatible.
 
 If you see a message like "`Illegal instruction (core dumped)`", the processor in your system is *not* compatible
-with the pre-installed software stack.
+with the pre-installed software stack, and you will have to use another system to participate in the tutorial.
