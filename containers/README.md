@@ -3,7 +3,7 @@
 To build the Docker container from the available ``Dockerfile``, use:
 
 ```shell
-make docker
+./docker_build.sh
 ```
 
 

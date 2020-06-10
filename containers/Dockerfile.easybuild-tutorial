@@ -1,0 +1,9 @@
+ARG IMG_REGISTRY=docker.io
+ARG IMG_ORG=easybuilders
+ARG IMG_NAME=base
+ARG IMG_TAG=centos7-eb4.2.1
+# allow CI/CD to change all of the above
+FROM ${IMG_REGISTRY}/${IMG_ORG}/${IMG_NAME}:${IMG_TAG}
+
+# don't load EasyBuild module via .bashrc startup script
+RUN sed -i 's/^ml use.*EasyBuild//g' ~/.bashrc
