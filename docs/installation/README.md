@@ -212,7 +212,7 @@ For example:
 export PYTHONPATH=$HOME/tools/lib/python3.6/site-packages:$PYTHONPATH
 ```
 
-**`$EB_PYTHON`**
+**`$EB_PYTHON` and `$EB_VERBOSE`**
 
 If you want to control which Python version is used to run EasyBuild,
 you can speicfy the name or the full path to the `python` command that should be used by the `eb` command
@@ -222,6 +222,18 @@ For example, to ensure that `eb` uses `python3`:
 
 ```shell
 export EB_PYTHON=python3
+```
+
+To get a better view on which `python` commands are being considered by the `eb` command,
+you can (temporarily) define the `$EB_VERBOSE` environment variable. For example:
+
+```shell
+$ EB_VERBOSE=1 eb --version
+>> Considering 'python3'...
+>> 'python3' version: 3.6.8, which matches Python 3 version requirement (>= 3.5)
+>> Selected Python command: python3 (/usr/bin/python3)
+>> python3 -m easybuild.main --version
+This is EasyBuild 4.2.1 (framework: 4.2.1, easyblocks: 4.2.1) on host example
 ```
 
 
