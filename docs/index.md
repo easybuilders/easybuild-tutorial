@@ -69,7 +69,6 @@ Please see [this page](practical_information/README.md) for more details.
 *  [Configuration](configuration/README.md) ``(*)``
 *  [Basic usage](basic_usage/README.md) ``(*)``
 *  [Troubleshooting](troubleshooting/README.md) ``(*)``
-*  [Beyond the basics](beyond_the_basics/README.md) ``(*)``
 *  [Hierarchical module naming schemes](hmns/README.md) ``(*)``
 *  [Adding support for additional software](adding_support_software/README.md) ``(*)``
 *  [EasyBuild at Jülich Supercomputing Centre](jsc/README.md)

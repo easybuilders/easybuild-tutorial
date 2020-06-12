@@ -4,6 +4,8 @@
 
 ## General info
 
+<img src="https://boegel.github.io/easybuild-tutorial/img/computecanada.png" style="float:right" width="250px"/>
+
 Compute Canada ([https://www.computecanada.ca](https://www.computecanada.ca/)) is a national organization in Canada. Its role is to coordinate the work of regions and institutions to make advanced computing research infrastructures (clusters, cloud, data repositories) available to Canadian academic researchers. It is similar to [XSEDE](https://www.xsede.org/) in the US.
 
 ### Staff & user base
