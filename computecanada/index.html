@@ -51,6 +51,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#compute-canada" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -360,10 +365,59 @@
     
     <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        10. EasyBuild at Compute Canada
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
     
     <a href="./" title="10. EasyBuild at Compute Canada" class="md-nav__link md-nav__link--active">
       10. EasyBuild at Compute Canada
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#staff" class="md-nav__link">
+    Staff
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-base" class="md-nav__link">
+    User base
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    Resources
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -423,6 +477,52 @@
               </div>
             
             
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#staff" class="md-nav__link">
+    Staff
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-base" class="md-nav__link">
+    User base
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    Resources
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
@@ -436,9 +536,42 @@
                   
                 
                 
-                  <h1>10. EasyBuild at Compute Canada</h1>
-                
-                
+                <h1 id="compute-canada">Compute Canada<a class="headerlink" href="#compute-canada" title="Permanent link">&para;</a></h1>
+<p>Compute Canada is a national organization in Canada. Its role is to coordinates the work of regions and institutions to make advanced computing research infrastructures (clusters, cloud, data repositories) available to Canadian academic researchers. It is similar to XSEDE in the USA. </p>
+<h2 id="staff">Staff<a class="headerlink" href="#staff" title="Permanent link">&para;</a></h2>
+<p>Compute Canada has around 200 full time equivalent staff located across almost 40 different institutions, in all provinces of Canada. </p>
+<h2 id="user-base">User base<a class="headerlink" href="#user-base" title="Permanent link">&para;</a></h2>
+<p>Compute Canada's user base is composed of about 15,000 users in all disciplines, with a growth of about 20% per year. </p>
+<h2 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h2>
+<p>Compute Canada and its partners manage 4 main clusters, and 1 main OpenStack cloud. <a href="https://docs.computecanada.ca/wiki/Cedar">Cedar</a> is a general purpose cluster that uses Intel OmniPath, has two generations of GPUs (P100 and V100), and three generations of CPUs (Broadwell, Skylake and Cascade Lake), for a total of nearly 100k cores and 1400 GPUs. <a href="https://docs.computecanada.ca/wiki/Graham">Graham</a> is an InfiniBand cluster with similar characteristics as Cedar, but half its size. <a href="https://docs.computecanada.ca/wiki/B%C3%A9luga/en">Béluga</a> is our third general purpose cluster, also using InfiniBand, with V100 GPUs and Skylake CPUs. <a href="https://docs.computecanada.ca/wiki/Niagara">Niagara</a> is our large parallel cluster, with a dragonfly InfiniBand network technology, and all identical nodes with nearly 80k cores. Finally, <a href="https://docs.computecanada.ca/wiki/Cloud_resources">Arbutus</a> is our primary OpenStack cloud infrastructure with about 15k cores. </p>
+<h1 id="overview-of-the-compute-canada-software-stack">Overview of the Compute Canada software stack<a class="headerlink" href="#overview-of-the-compute-canada-software-stack" title="Permanent link">&para;</a></h1>
+<p>Software installation is amongst the activities that are centralized by Compute Canada. We provide a single user space environment that is available across all of the clusters (all 4 primary clusters, with many legacy clusters also adopting the same environment). This means that users can move across clusters seemlessly, since the same modules are available everywhere. </p>
+<p>For this to happen, especially given the variety of hardware we support, a couple of components are required. These were described in details in the paper presented at PEARC'19, which can be found <a href="https://ssl.linklings.net/conferences/pearc/pearc19_program/views/includes/files/pap139s3-file1.pdf">here</a>. This work was also presented at the EasyBuild User Meeting in January 2020. The <a href="https://www.youtube.com/watch?v=_0j5Shuf2uE">recording</a> and <a href="https://users.ugent.be/~kehoste/eum20/eum20_03_maxime_computecanada.pdf">slides</a> are available.</p>
+<h2 id="software-distribution">Software distribution<a class="headerlink" href="#software-distribution" title="Permanent link">&para;</a></h2>
+<p>One foundational part of the infrastructure comes even before installing any software. It is the distribution mechanism. For this, we use <a href="https://cvmfs.readthedocs.io/en/stable/">CVMFS</a>. This allows any cluster, virtual machine, or event desktop or laptop computer, to access our software stack in a matter of a few minutes. We make this available to our users, as documented <a href="https://docs.computecanada.ca/wiki/Accessing_CVMFS">here</a>. Some users use it for continuous integration, we also use it in virtual clusters in the cloud. </p>
+<h2 id="compatibility-layer">Compatibility layer<a class="headerlink" href="#compatibility-layer" title="Permanent link">&para;</a></h2>
+<p>Because we support multiple clusters, we have to assume that they may not run exactly the same operating system, or don't have exactly the same system packages installed. To avoid issues, we therefore minimize the OS dependencies to an absolute minimum. Our stack contains all system libraries down to the glibc, and the linux loader. Our only dependencies are the kernel and the hardware drivers. For this layer, we have used the <a href="https://github.com/NixOS/nix">Nix</a> package manager, but we are now moving toward using <a href="https://wiki.gentoo.org/wiki/Project:Prefix">Gentoo Prefix</a> instead. </p>
+<h2 id="scientific-layer-and-easybuild">Scientific layer and EasyBuild<a class="headerlink" href="#scientific-layer-and-easybuild" title="Permanent link">&para;</a></h2>
+<p>For every scientific software, our staff go through a process that involves installing it through EasyBuild, then deploying it to CVMFS. As of June 2020, we have over 800 different software packages installed. When combined with version of the software, version of the compiler/MPI/CUDA, and CPU architectures, we have respectively over 1600, 3200 and 6000 combinations of builds. </p>
+<h1 id="usage-of-easybuild-within-compute-canada">Usage of EasyBuild within Compute Canada<a class="headerlink" href="#usage-of-easybuild-within-compute-canada" title="Permanent link">&para;</a></h1>
+<p>To illustrate EasyBuild's flexibility, in this section, we highlight some of the peculiarities of EasyBuild's usage within Compute Canada. </p>
+<h2 id="filtering-out-dependencies">Filtering out dependencies<a class="headerlink" href="#filtering-out-dependencies" title="Permanent link">&para;</a></h2>
+<p>Compute Canada is using EasyBuild to install <em>all</em> packages that you would not normally find installed in an OS (i.e. through <code>yum</code> or <code>apt-get</code>). However, because we provide the compatibility layer, many of the libraries that can be installed through EasyBuild as filtered out. This includes for example <code>binutils</code>, <code>Automake</code>, <code>flex</code>, etc. This is configured through our <a href="https://github.com/ComputeCanada/easybuild-computecanada-config/blob/605bbc14d9312049afa1937090d2ed0d64f8169c/config.cfg#L13">EasyBuild config file</a>. </p>
+<h2 id="custom-toolchains">Custom toolchains<a class="headerlink" href="#custom-toolchains" title="Permanent link">&para;</a></h2>
+<p>Before deploying our new infrastructures, virtually all sites had a long history of using the Intel or GNU Compilers, OpenMPI, and Intel MKL, with very little usage of OpenBLAS or Intel MPI. Therefore, our primary toolchains are based on those tools - i.e. variations of <code>iomkl</code> or <code>gomkl</code>), which are not the ones mostly used by upstream EasyBuild (which are <code>foss</code> or <code>intel</code>). We therefore make a heavy use of the <code>--try-toolchain</code> option of EasyBuild, to use upstream recipes, but with our prefered toolchains.</p>
+<h2 id="custom-module-naming-scheme">Custom module naming scheme<a class="headerlink" href="#custom-module-naming-scheme" title="Permanent link">&para;</a></h2>
+<p>We use a lower-case hierarchical module naming scheme which also includes the CPU architecture that a software is built for as part of the hierarchy. Our module naming scheme also completely drops <code>versionsuffix</code>. If we need to have different flavors of a given recipe, we instead use <code>modaltsoftname</code> to add the flavor to the name of the software package. This is enabled through <a href="https://github.com/ComputeCanada/easybuild-computecanada-config/blob/master/SoftCCHierarchicalMNS.py">this file</a></p>
+<h2 id="using-rpath-and-disabling-ld_library_path">Using <code>RPATH</code> and disabling <code>LD_LIBRARY_PATH</code><a class="headerlink" href="#using-rpath-and-disabling-ld_library_path" title="Permanent link">&para;</a></h2>
+<p>Our compatibility layer has a modified linker which ensures that <code>RPATH</code> is added to every shared library and executable that is compiled. This applies to both EasyBuild's builds and users' builds. We therefore filter out the <code>LD_LIBRARY_PATH</code> from the modules. This is done in our <a href="https://github.com/ComputeCanada/easybuild-computecanada-config/blob/605bbc14d9312049afa1937090d2ed0d64f8169c/config.cfg#L15">config file</a> </p>
+<h2 id="usage-of-hooks">Usage of hooks<a class="headerlink" href="#usage-of-hooks" title="Permanent link">&para;</a></h2>
+<p>We make a rather intensive usage of hooks. For example, we use them to
+* <a href="https://github.com/ComputeCanada/easybuild-computecanada-config/blob/605bbc14d9312049afa1937090d2ed0d64f8169c/cc_hooks.py#L256">inject specific <code>configopts</code> to our OpenMPI builds</a>
+* add <a href="https://github.com/ComputeCanada/easybuild-computecanada-config/blob/605bbc14d9312049afa1937090d2ed0d64f8169c/cc_hooks.py#L460">compiler</a> and <a href="https://github.com/ComputeCanada/easybuild-computecanada-config/blob/605bbc14d9312049afa1937090d2ed0d64f8169c/cc_hooks.py#L477">MPI</a> footers to the modules
+* <a href="https://github.com/ComputeCanada/easybuild-computecanada-config/blob/605bbc14d9312049afa1937090d2ed0d64f8169c/cc_hooks.py#L485">split the installation of the Intel compiler into redistributable and non-redistributable parts</a>
+* <a href="https://github.com/ComputeCanada/easybuild-computecanada-config/blob/605bbc14d9312049afa1937090d2ed0d64f8169c/cc_hooks.py#L578">strip down the installation of Python to a small set of python packages</a></p>
+<h1 id="python-specific-customizations">Python specific customizations<a class="headerlink" href="#python-specific-customizations" title="Permanent link">&para;</a></h1>
+<p>Compute Canada makes heavy usage of the <code>multi_deps</code> option for python. This allows us to build single modules that support multiple versions of python. We also tend to install Python wrappers alongside the primary module when there is a primary module. For example, we install <code>PyQt</code> alongside <code>Qt</code>, in the same module. </p>
+<p>For most python packages however, we do not install them as modules. We instead provide a large repository of binary python packages that we have compiled against our modules, and instruct our users to install them in <a href="https://docs.computecanada.ca/wiki/Python#Creating_and_using_a_virtual_environment">virtual environments</a>. The vast majority of python packages can be built as python wheels with a common script, with minor differences such as loading a prerequisite module or installing a dependency. This script is available on our <a href="https://github.com/ComputeCanada/wheels_builder/">Github wheels_builder repository</a>.</p>
                 
                   
                     
@@ -447,7 +580,7 @@
 <div class="md-source-date">
   <small>
     
-      Last update: June 8, 2020
+      Last update: June 11, 2020
     
   </small>
 </div>
