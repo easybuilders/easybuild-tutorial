@@ -673,20 +673,22 @@
                 
                 
                 <h1 id="practical-information">Practical information<a class="headerlink" href="#practical-information" title="Permanent link">&para;</a></h1>
-<p>Below you can find practical information on the provided resources for this tutorial.</p>
+<p>Contact points, resources, helpful hints, and things to keep in mind for the EasyBuild tutorial.</p>
 <h3 id="slack">Slack<a class="headerlink" href="#slack" title="Permanent link">&para;</a></h3>
-<p>There is a dedicated <code>#tutorial</code> channel in the EasyBuild Slack to get in touch with the
-tutorial organisers, where you can ask questions throughout the tutorial, or ask for help if needed.</p>
-<p>To connect, you will need to create an account in the EasyBuild Slack first,
-which you can do via <a href="https://easybuild-slack.herokuapp.com/">https://easybuild-slack.herokuapp.com/</a>.</p>
-<p>Once you have an account, you can join the EasyBuild Slack via <a href="https://easybuild.slack.com/">https://easybuild.slack.com/</a>, and then join the <code>#tutorial</code> channel.</p>
+<p>There is a dedicated <code>#tutorial</code> channel in the EasyBuild Slack where you can get in touch with 
+organisers of the tutorial, other participants, and volunteers. Please use this channel to ask
+questions throughout the tutorial, or for any other assistance related to the tutorial.</p>
+<p>To access this channel, you will first need to create an account in the EasyBuild Slack.
+This is done via <a href="https://easybuild-slack.herokuapp.com/">https://easybuild-slack.herokuapp.com/</a>.</p>
+<p>Once you have the account set up, you can join the EasyBuild Slack via <a href="https://easybuild.slack.com/">https://easybuild.slack.com/</a>. From there you can join the <code>#tutorial</code> channel.
+For more information about Slack, please see the official <a href="https://slack.com/intl/en-no/help/categories/200111606-Using-Slack">documentation</a>.</p>
 <h3 id="aws-resources">AWS resources<a class="headerlink" href="#aws-resources" title="Permanent link">&para;</a></h3>
 <p><em>(only available during the tutorial on Tuesday June 23rd 2020)</em></p>
 <p>Access to a shell environment on <a href="https://aws.amazon.com/cloud9/">AWS Cloud9</a> is provided
 for this tutorial.</p>
 <p>You should have received an email with connection information if you have registered in time for this tutorial.</p>
-<p><strong><em>If you did not register and would still like to use AWS Cloud9 for this tutorial,
-please contact the tutorial organisers via Slack.</em></strong></p>
+<p><strong><em>If you did not register and would still like to use AWS Cloud9 for this tutorial, or you have not received
+the email with the connection information, please contact the tutorial organisers via Slack.</em></strong></p>
 <h3 id="prepared-container-image">Prepared container image<a class="headerlink" href="#prepared-container-image" title="Permanent link">&para;</a></h3>
 <p>For the purpose of this tutorial, we have prepared a <strong>Docker container</strong>
 that you can use to follow the hands-on exercises in a controlled environment.</p>
@@ -697,8 +699,9 @@ EasyBuild, which will come in useful for some of the exercises.</p>
 <p><em>(only relevant if you are</em> <strong><em>not</em></strong> <em>using AWS Cloud9)</em></p>
 <ul>
 <li>having Docker or Singularity installed</li>
-<li>a system with a processor compatible with software built for Intel Haswell (AVX2)</li>
+<li>a system with a processor supporting the AVX2 instruction set. AVX2 is supported by Intel Haswell or AMD Bulldozer (both released in 2012) and onwards.</li>
 </ul>
+<p>If you are in doubt about your systems compatibility, see "Testing host compatibility" at the end of this document.</p>
 <h4 id="container-size">Container size<a class="headerlink" href="#container-size" title="Permanent link">&para;</a></h4>
 <p>The compressed container image is about 1.1GB in size,
 and will be downloaded automatically from Docker Hub when you run the <code>docker</code> or <code>singularity</code> command shown below.</p>
@@ -727,8 +730,8 @@ the container, which could interfere with the hands-on exercises.</p>
 <p>By default Singularity keeps its cache at <code>$HOME/.singularity/cache</code>.
 Since the uncompressed container image requires about 2.2GB of disk space,
 make sure this will work in your setup.</p>
-<p>If your home directory is limited in size you can either make <code>$HOME/.singularity</code> as symbolic link to
-<code>/tmp/$USER/singularity</code> for example, or define the <code>$SINGULARITY_CACHEDIR</code> environment variable
+<p>If your home directory is limited in size you can either make <code>$HOME/.singularity</code> a symbolic link to
+<code>/tmp/$USER/singularity</code> or a similar spacious volume, or define the <code>$SINGULARITY_CACHEDIR</code> environment variable
 to make Singulartiy use a different location:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">SINGULARITY_CACHEDIR</span><span class="o">=</span>/tmp/<span class="nv">$USER</span>/singularity
 </code></pre></div>
@@ -780,7 +783,7 @@ python -V
 
 <p>If the last command prints a Python version (like <code>Python 3.8.2</code>), then your host is compatible.</p>
 <p>If you see a message like "<code>Illegal instruction (core dumped)</code>", the processor in your system is <em>not</em> compatible
-with the pre-installed software stack.</p>
+with the pre-installed software stack, and you will have to use another system to participate in the tutorial.</p>
                 
                   
                     
@@ -789,7 +792,7 @@ with the pre-installed software stack.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: June 10, 2020
+      Last update: June 12, 2020
     
   </small>
 </div>
