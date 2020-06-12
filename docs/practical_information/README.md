@@ -12,7 +12,7 @@ questions throughout the tutorial, or for any other assistance related to the tu
 To access this channel, you will first need to create an account in the EasyBuild Slack.
 This is done via [https://easybuild-slack.herokuapp.com/](https://easybuild-slack.herokuapp.com/).
 
-Once you have the account set up, you can join the EasyBuild Slack via [https://easybuild.slack.com/](https://easybuild.slack.com/). From there you can the `#tutorial` channel.
+Once you have the account set up, you can join the EasyBuild Slack via [https://easybuild.slack.com/](https://easybuild.slack.com/). From there you can join the `#tutorial` channel.
 For more information about Slack, please see the official [documentation](https://slack.com/intl/en-no/help/categories/200111606-Using-Slack).
 
 
@@ -54,8 +54,6 @@ The compressed container image is about 1.1GB in size,
 and will be downloaded automatically from Docker Hub when you run the `docker` or `singularity` command shown below.
 
 #### Using Docker
-
-Please note that docker requires root access, which is available to you in the tutorials AWS environment.
 
 If you want to use the prepared container image via Docker,
 run the following `docker` command:
