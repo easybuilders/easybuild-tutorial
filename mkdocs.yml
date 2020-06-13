@@ -19,15 +19,14 @@ nav:
   - 3. Configuration: configuration/README.md
   - 4. Basic usage: basic_usage/README.md
   - 5. Troubleshooting: troubleshooting/README.md
-  - 6. Beyond the basics: beyond_the_basics/README.md
-  - 7. Hierarchical module naming schemes: hmns/README.md
-  - 8. Adding support for additional software: adding_support_software/README.md
-  - 9. EasyBuild at Jülich Supercomputing Centre: jsc/README.md
-  - 10. EasyBuild at Compute Canada: computecanada/README.md
-  - 11. The EasyBuild Community: community/README.md
-  - 12. Contributing to EasyBuild: contributing/README.md
-  - 13. Comparison with other tools: comparison_other_tools/README.md
-  - 14. Getting help: getting_help/README.md
+  - 6. Hierarchical module naming schemes: hmns/README.md
+  - 7. Adding support for additional software: adding_support_software/README.md
+  - 8. EasyBuild at Jülich Supercomputing Centre: jsc/README.md
+  - 9. EasyBuild at Compute Canada: computecanada/README.md
+  - 10. The EasyBuild Community: community/README.md
+  - 11. Contributing to EasyBuild: contributing/README.md
+  - 12. Comparison with other tools: comparison_other_tools/README.md
+  - 13. Getting help: getting_help/README.md
 plugins:
   # show revision date at bottom of each page
   - git-revision-date-localized
