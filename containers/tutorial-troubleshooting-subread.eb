@@ -1,0 +1,35 @@
+# This easyconfig file was created for the 'Troubleshooting'
+# part of the EasyBuild tutorial. For more information,
+# see https://easybuilders.github.io/easybuild-tutorial/troubleshooting .
+#
+# It deliberately includes several mistakes that should be
+# corrected, so don't expect it to work as is...
+
+easyblock = 'MakeCp'
+
+name = 'Subread'
+version = '2.0.1'
+
+homepage = 'http://subread.sourceforge.net/'
+description = "High performance read alignment, quantification and mutation discovery"
+
+toolchain = {'name': 'GCC', 'version': '8.4.0'}
+
+# download from https://download.sourceforge.net/subread/subread-2.0.1-source.tar.gz
+sources = ['subread-%(version)s-source.tar.gz']
+checksums = ['d808eb5b1823c572cb45a97c95a3c5acb3d8e29aa47ec74e3ca1eb345787c17b']
+
+start_dir = 'src'
+
+buildopts = '-f Makefile.Linux CFLAGS="-fast"'
+
+files_to_copy = ['bin']
+
+sanity_check_paths = {
+    'files': ['bin/featureCounts', 'bin/subread-align'],
+    'dirs': ['bin/utilities'],
+}
+
+sanity_check_commands = ["featureCounts --version"]
+
+moduleclass = 'bio'

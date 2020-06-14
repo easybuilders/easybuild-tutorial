@@ -1,0 +1,29 @@
+#!/bin/bash
+
+set -e
+
+if [[ $# -ne 1 ]]; then
+    echo "ERROR: Usage: $0 <CPU arch (e.g. 'haswell')" >&2
+    exit 1
+fi
+CPU_ARCH=$1
+
+set -x
+
+ORG="easybuilders"
+REPO="base"
+OS="centos7"
+
+build_args="--build-arg=CPU_ARCH=${CPU_ARCH}"
+
+if [[ -n ${EB_VER} ]]; then
+    build_args="$build_args --build-arg=EB_VER=${EB_VER}"
+fi
+
+IMG_TEMP_TAG="temp-$$-${RANDOM}"
+docker build -f Dockerfile.${REPO}-${OS} $build_args -t ${ORG}/${REPO}:${IMG_TEMP_TAG} .
+
+# determine final tag using EasyBuild version used in container
+IMG_TAG=${OS}-eb$(docker inspect -f '{{.Config.Labels.easybuild_version}}' ${ORG}/${REPO}:${IMG_TEMP_TAG})
+docker tag ${ORG}/${REPO}:${IMG_TEMP_TAG} ${ORG}/${REPO}:${IMG_TAG}
+docker rmi ${ORG}/${REPO}:${IMG_TEMP_TAG}

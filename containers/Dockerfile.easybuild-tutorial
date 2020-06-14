@@ -5,11 +5,20 @@ ARG IMG_TAG=centos7-eb4.2.1
 # allow CI/CD to change all of the above
 FROM ${IMG_REGISTRY}/${IMG_ORG}/${IMG_NAME}:${IMG_TAG}
 
-# don't load EasyBuild module via .bashrc startup script
-RUN sed -i 's/^ml use.*EasyBuild//g' ~/.bashrc
+RUN mkdir /easybuild/tutorial && \
+  # prefetch sources that are needed for exercises in basic usage part
+  eb --fetch Bowtie2-2.4.1-GCC-9.3.0.eb SAMtools-1.10-GCC-9.3.0.eb pkgconfig-1.5.1-GCCcore-9.3.0-Python-3.8.2.eb h5py-2.10.0-foss-2020a-Python-3.8.2.eb --sourcepath $HOME/easybuild/sources && \
+  # don't load EasyBuild module via .bashrc startup script
+  sed -i 's/^ml use.*EasyBuild//g' ~/.bashrc && \
+  # download source tarball for troubleshooting exercise to /easybuild/tutorial
+  curl -OL https://download.sourceforge.net/subread/subread-2.0.1-source.tar.gz && \
+  mv subread-2.0.1-source.tar.gz /easybuild/tutorial/
+
+# copy easyconfig file for troubleshooting exercise
+COPY tutorial-troubleshooting-subread.eb /easybuild/tutorial/subread.eb
 
 USER root
-RUN yum install -y figlet man && \
+RUN yum install -y figlet man emacs nano && \
   echo > /etc/motd && \
   echo 'You are logged in to the prepared environment for the introductory tutorial to' >> /etc/motd && \
   figlet -w 200 -l "EasyBuild" -k -f big >> /etc/motd && \

@@ -50,7 +50,7 @@ If you are in doubt about your systems compatibility, see "Testing host compatib
 
 #### Container size
 
-The compressed container image is about 1.1GB in size,
+The compressed container image is about 1.25GB in size,
 and will be downloaded automatically from Docker Hub when you run the `docker` or `singularity` command shown below.
 
 #### Using Docker
