@@ -315,7 +315,7 @@
        transform="translate(34.320242,-1.5119048)"><tspan
          x="148.54492"
          y="68.046376"><tspan
-           style="font-style:normal;font-weight:normal;font-size:7.05556px;fill:#808080">Core</tspan></tspan></text>
+           style="font-style:normal;font-weight:normal;font-size:7.05556px;fill:#808080">core</tspan></tspan></text>
     <text
        transform="translate(20.871972,21.199496)"
        style="font-style:normal;font-weight:normal;font-size:7.05555999999999983px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1630-2);fill:#000000;fill-opacity:1;stroke:none;"
@@ -323,7 +323,7 @@
        xml:space="preserve"><tspan
          x="148.54492"
          y="68.046376"><tspan
-           style="font-size:7.05556px;fill:#808080">Compiler</tspan></tspan></text>
+           style="font-size:7.05556px;fill:#808080">compiler</tspan></tspan></text>
     <text
        xml:space="preserve"
        id="text1628-6-8"
