@@ -156,8 +156,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="444.90718"
-     inkscape:cy="438.02896"
+     inkscape:cx="450.62147"
+     inkscape:cy="543.74325"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -219,12 +219,12 @@
        id="path10-4-6-4"
        style="mix-blend-mode:normal;fill:none;stroke:#000000;stroke-width:0.481364;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <ellipse
-       style="mix-blend-mode:normal;fill:none;stroke:#000000;stroke-width:0.476423;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="mix-blend-mode:normal;fill:none;stroke:#000000;stroke-width:0.483804;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path10-4-6-4-0"
-       cx="165.54037"
+       cx="164.78442"
        cy="130.42752"
-       rx="23.769533"
-       ry="9.0284615" />
+       rx="24.521795"
+       ry="9.0247707" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#TriangleInM)"
        d="M 81.735017,86.484619 C 89.848062,80.596822 106.57074,76.439084 106.57074,76.439084"
