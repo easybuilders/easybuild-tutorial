@@ -133,6 +133,20 @@
        width="44.223213"
        height="14.363095"
        id="rect1690" />
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="TriangleInM-2"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleInM">
+      <path
+         transform="scale(-0.4)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path1082-9" />
+    </marker>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -186,8 +200,8 @@
     <ellipse
        ry="8.9551067"
        rx="32.578617"
-       cy="98.639412"
-       cx="105.31953"
+       cy="95.615601"
+       cx="66.841545"
        id="path10-4"
        style="mix-blend-mode:normal;fill:none;stroke:#000000;stroke-width:1.23264;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <ellipse
@@ -213,23 +227,23 @@
        ry="9.0166731" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#TriangleInM)"
-       d="m 106.30347,86.862595 c -1.33636,-10.423511 0.26727,-10.423511 0.26727,-10.423511"
+       d="m 84.758827,85.35069 c 8.113045,-5.887797 21.811913,-8.911606 21.811913,-8.911606"
        id="path944"
        sodipodi:nodetypes="cc" />
     <path
        sodipodi:nodetypes="cc"
        id="path944-9"
-       d="M 48.869314,118.44422 C 56.62013,108.28797 80.655393,104.27893 80.655393,104.27893"
+       d="m 42.821695,118.44422 c 7.750816,-10.15625 26.463524,-13.44567 26.463524,-13.44567"
        style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#TriangleInM-8)" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#TriangleInM-8-7)"
-       d="M 150.3569,120.12221 C 143.14062,110.23323 126.7376,105.7545 126.7376,105.7545"
+       d="M 150.3569,120.12221 C 143.14062,110.23323 69.285219,104.99855 69.285219,104.99855"
        id="path944-9-8"
        sodipodi:nodetypes="cc" />
     <path
        sodipodi:nodetypes="cc"
        id="path944-9-8-3"
-       d="m 100.78182,118.29734 0.40484,-9.88898"
+       d="M 95.112177,119.0533 C 90.198487,111.1158 69.285219,104.99855 69.285219,104.99855"
        style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#TriangleInM-8-7-6)" />
     <text
        xml:space="preserve"
@@ -244,13 +258,13 @@
          style="font-weight:bold;font-size:6.35px;stroke-width:0.264583">GCC/9.3.0</tspan></text>
     <text
        id="text1537-1"
-       y="100.5937"
-       x="78.011353"
+       y="97.947861"
+       x="39.155392"
        style="font-style:normal;font-weight:normal;font-size:6.35px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        xml:space="preserve"><tspan
          style="font-weight:bold;font-size:6.35px;stroke-width:0.264583"
-         y="100.5937"
-         x="78.011353"
+         y="97.947861"
+         x="39.155392"
          id="tspan1535-0"
          sodipodi:role="line">OpenMPI/4.0.3</tspan></text>
     <text
@@ -318,5 +332,28 @@
          x="148.54492"
          y="69.333775"><tspan
            style="fill:#808080">MPI</tspan></tspan></text>
+    <ellipse
+       style="mix-blend-mode:normal;fill:none;stroke:#000000;stroke-width:1.13978;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path10-4-9"
+       cx="134.63519"
+       cy="95.25"
+       rx="27.711355"
+       ry="9.0015354" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:6.35px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="111.46475"
+       y="97.40152"
+       id="text1537-1-4"><tspan
+         sodipodi:role="line"
+         id="tspan1535-0-6"
+         x="111.46475"
+         y="97.40152"
+         style="font-weight:bold;font-size:6.35px;stroke-width:0.264583">MPICH/3.3.2</tspan></text>
+    <path
+       sodipodi:nodetypes="cc"
+       id="path944-2"
+       d="M 126.45536,84.942618 C 115.66959,75.275059 106.57074,76.439084 106.57074,76.439084"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#TriangleInM-2)" />
   </g>
 </svg>
