@@ -11,7 +11,7 @@
       
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.3">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.3.0">
     
     
       
@@ -46,6 +46,7 @@
   
     <body dir="ltr">
   
+    
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
@@ -604,7 +605,8 @@ short (and hopefully helpful) error message.</p>
 <p>Things that could go wrong during an installation include:</p>
 <ul>
 <li>missing source or patch files;</li>
-<li>required dependencies that are not specifed in the easyconfig file;</li>
+<li>a checksum error on a downloaded source or patch file;</li>
+<li>required dependencies that are not specified in the easyconfig file;</li>
 <li>failing shell commands;</li>
 <li>running out of available memory or disk space;</li>
 <li>a segmentation fault caused by a flipped bit triggered by a cosmic ray (<a href="https://blogs.oracle.com/linux/attack-of-the-cosmic-rays-v2">really, it happens!</a>);</li>
@@ -615,7 +617,7 @@ potential problems that could result in a failing installation...</p>
 installation, it will check the exit status.
 If the exit status is zero, EasyBuild will usually assume that the shell command
 ran correctly, and it will continue with the rest of the installation procedure.
-If the exit status is different from zero, a problem has occured and the installation will be interrupted.</p>
+If the exit status is anything but zero, a problem has occurred and the installation will be interrupted.</p>
 <h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
 <p>Here is an example of an EasyBuild error message (slightly reformatted for clarity):</p>
 <div class="highlight"><pre><span></span><code>$ eb trouble.eb
@@ -649,10 +651,10 @@ know about the C++14 standard yet...</p>
 out why <code>/usr/bin/g++</code> is being used rather than just <code>g++</code>, which would
 result in using the right compiler version because EasyBuild sets up the build
 environment carefully.</p>
-<p>This is a fictious example of course, but hopefully it gives you a feeling
+<p>This is a fictitious example of course, but hopefully it gives you a feeling
 of how errors that occur during the installation are handled.</p>
 <h2 id="easybuild-log-files">EasyBuild log files<a class="headerlink" href="#easybuild-log-files" title="Permanent link">&para;</a></h2>
-<p>Finding the cause of a problem that made the installation fail is not always that straightforward though...</p>
+<p>Finding the cause of a problem that made the installation fail is, unfortunately, not always that straightforward...</p>
 <p>EasyBuild includes the first 300 characters of the output produced by a failing
 shell command in the error message, which is a sensible way to try include
 actionable information in the error message while not flooding your terminal
@@ -727,8 +729,8 @@ make[1]: Entering directory `/dev/shm/example/HDF5/1.10.6/gompi-2020a/hdf5-1.10.
 ...
 </code></pre></div>
 
-<p>It can be useful to look for the <em>first</em> error that occured in the output of a command, since subsequent errors are
-often just fallout of earlier errors. You can do this by first navigating
+<p>It can be useful to look for the <em>first</em> error that occurred in the output of a command, since subsequent errors are
+often fallout from earlier errors. You can do this by first navigating
 to the start of the output for a command using "<code>INFO running cmd</code>" as a search pattern, and then looking for patterns
 like "<code>error:</code>" from there.</p>
 <h2 id="inspecting-the-build-directory">Inspecting the build directory<a class="headerlink" href="#inspecting-the-build-directory" title="Permanent link">&para;</a></h2>
@@ -742,6 +744,7 @@ This allows you to dive in and check for clues in the files that are stored ther
 <p>For software using a classic <code>configure</code> script, you may have to locate
 and inspect the <code>config.log</code> file in the build directory to determine the underlying cause of an error. For software using CMake as a configuration tool you often have to check in
 <code>CMakeOutput.log</code> or <code>CMakeError.log</code> for clues, which are sneakily hidden by CMake in a <code>CMakeFiles</code> subdirectory of the build directory.</p>
+<p>As a side note here... As EasyBuild does not clean out old and failed builds, you will need to eventually manually clean these failed builds out from your temporary directory.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Let's work our way through a less smooth software installation,
 using the easyconfig file that is provided in <code>/easybuild/tutorial/subread.eb</code>
@@ -877,8 +880,8 @@ So let's try using that instead.</p>
 <p><strong><em>Exercise 5.3</em></strong><em> - Build step</em></p>
 <p>With the first two problems fixed, now we can actually try to build the software.</p>
 <p>Can you fix the next problem you run into?</p>
-<details class="success"><summary>(click to show solution)</summary><p>The compilation fails, but the error message we see is incomplete because
-the command output gets cut off (only the 300 first characters of the output are shown):
+<details class="success"><summary>(click to show solution)</summary><p>The compilation fails, but the error message we see is incomplete due to 
+EasyBuild truncating the command output (only the 300 first characters of the output are shown):
 <div class="highlight"><pre><span></span><code>== FAILED: Installation ended unsuccessfully (build directory: /tmp/easybuild/Subread/2.0.1/GCC-9.3.0): build failed (first 300 chars):
 cmd &quot; make -j 1 -f Makefile.Linux CFLAGS=&quot;-fast&quot;&quot; exited with exit code 2 and output:
 gcc  -mtune=core2  -O3 -DMAKE_FOR_EXON  -D MAKE_STANDALONE -D SUBREAD_VERSION=\&quot;&quot;2.0.1&quot;\&quot;  -D_FILE_OFFSET_BITS=64    -fmessage-length=0  -ggdb  -fast   -c -o core.o core.c
@@ -931,7 +934,7 @@ is "<code>-v</code>" rather than "<code>--version</code>", so we need to fix thi
 </code></pre></div></p>
 <p>After doing so, <strong>you don't have to redo the installation
 from scratch</strong>, you can use the <code>--module-only</code> option to only run the
-sanity check and generate the module file:
+sanity check and generate the module file anew:
 <div class="highlight"><pre><span></span><code>eb subread.eb --module-only
 </code></pre></div></p>
 </details>
@@ -950,7 +953,7 @@ featureCounts v2.0.1
 <div class="md-source-date">
   <small>
     
-      Last update: June 13, 2020
+      Last update: June 15, 2020
     
   </small>
 </div>
@@ -1062,14 +1065,14 @@ featureCounts v2.0.1
     </div>
     
       <script src="../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../assets/javascripts/bundle.a45f732b.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../assets/javascripts/bundle.a14cc5fd.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
           base: "..",
           features: ["instant", "tabs"],
           search: Object.assign({
-            worker: "../assets/javascripts/worker/search.c03f0417.min.js"
+            worker: "../assets/javascripts/worker/search.7a2ea5ba.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
