@@ -192,7 +192,7 @@ For software using a classic `configure` script, you may have to locate
 and inspect the `config.log` file in the build directory to determine the underlying cause of an error. For software using CMake as a configuration tool you often have to check in
 `CMakeOutput.log` or `CMakeError.log` for clues, which are sneakily hidden by CMake in a `CMakeFiles` subdirectory of the build directory.
 
-As a side note here... As EasyBuild does not clean out old and failed builds, you will need to eventually manually clean these failed builds out from your temporary directory.
+As a side note here: as EasyBuild does not clean out old and failed builds you will need to eventually manually remove these build directories from the `buildpath` directory.
 
 ## Exercise
 
@@ -457,7 +457,7 @@ Don't give up now, try one last time and fix the last problem that occurs...
 
     After doing so, **you don't have to redo the installation
     from scratch**, you can use the `--module-only` option to only run the
-    sanity check and generate the module file anew:
+    sanity check and generate the module file again:
     ```
     eb subread.eb --module-only
     ```
