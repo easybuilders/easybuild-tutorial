@@ -20,7 +20,7 @@ short (and hopefully helpful) error message.
 Things that could go wrong during an installation include:
 
 * missing source or patch files;
-* required dependencies that are not specifed in the easyconfig file;
+* required dependencies that are not specified in the easyconfig file;
 * failing shell commands;
 * running out of available memory or disk space;
 * a segmentation fault caused by a flipped bit triggered by a cosmic ray ([really, it happens!](https://blogs.oracle.com/linux/attack-of-the-cosmic-rays-v2));
@@ -32,7 +32,7 @@ For each of the shell commands that EasyBuild executes during an
 installation, it will check the exit status.
 If the exit status is zero, EasyBuild will usually assume that the shell command
 ran correctly, and it will continue with the rest of the installation procedure.
-If the exit status is different from zero, a problem has occured and the installation will be interrupted.
+If the exit status is different from zero, a problem has occurred and the installation will be interrupted.
 
 ### Example
 
@@ -76,7 +76,7 @@ out why `/usr/bin/g++` is being used rather than just `g++`, which would
 result in using the right compiler version because EasyBuild sets up the build
 environment carefully.
 
-This is a fictious example of course, but hopefully it gives you a feeling
+This is a fictitous example of course, but hopefully it gives you a feeling
 of how errors that occur during the installation are handled.
 
 ## EasyBuild log files
@@ -170,7 +170,7 @@ make[1]: Entering directory `/dev/shm/example/HDF5/1.10.6/gompi-2020a/hdf5-1.10.
 ...
 ```
 
-It can be useful to look for the *first* error that occured in the output of a command, since subsequent errors are
+It can be useful to look for the *first* error that occurred in the output of a command, since subsequent errors are
 often just fallout of earlier errors. You can do this by first navigating
 to the start of the output for a command using "`INFO running cmd`" as a search pattern, and then looking for patterns
 like "`error:`" from there.

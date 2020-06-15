@@ -57,7 +57,7 @@ tools like CMake or ``make``, it wraps around them.
 If the installation procedure of a software package involves running some unholy trinity of tools while whispering
 the correct magic incantations, EasyBuild automates this process for you.
 
-It is ***not*** **a replacement for traditional Linux package manangers** like ``yum``, ``dnf`` or ``apt``.
+It is ***not*** **a replacement for traditional Linux package managers** like ``yum``, ``dnf`` or ``apt``.
 EasyBuild relies on certain tools and libraries provided by the operating system. This includes glibc, OpenSSL, Infiniband, GPU drivers, and so on. It is required that these tools are installed and managed by other means. This is typically done via the package management tool that comes with your Linux distribution.
 
 Finally, EasyBuild is ***not a magic solution to all your (software installation) problems**.
@@ -233,7 +233,7 @@ prepend, (re)define, undefine, etc.) upon loading the environment module.
 Unloading the environment module will restore the shell environment to its previous state.
 
 Environment module files are processed via a **modules tool**, of which there
-are several conceptually similar yet slighty different implementations.
+are several conceptually similar yet slightly different implementations.
 The Tcl-based [Environment Modules](https://sourceforge.net/projects/modules/) implementation, and
 [Lmod](https://lmod.readthedocs.io), a more recent Lua-based implementation (which also supports module
 files written in Tcl syntax), are the most commonly used ones.
