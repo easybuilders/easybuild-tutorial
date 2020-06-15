@@ -926,7 +926,7 @@ CFGS1=/easybuild/software/EasyBuild/4.2.1/easybuild/easyconfigs/o/OpenFOAM
 <div class="highlight"><pre><span></span><code>== found valid index for &lt;path&gt;, so using it...
 </code></pre></div>
 
-<p>This indicates that a <strong>search index</strong> was used for this particular directory which signficantly speeds
+<p>This indicates that a <strong>search index</strong> was used for this particular directory which significantly speeds
 up the search procedure, especially when the easyconfig files are located on a shared filesystem where metadata
 operations involving lots of small files are rather slow.</p>
 <p>For the easyconfig files included with an EasyBuild release, a search index is readily provided.
@@ -1108,7 +1108,7 @@ Since all "actions" that would be performed during the installation are actually
 the reported installation procedure could be partially incorrect.</p>
 <p>In addition, the easyblock may trip over the fact that the installation procedure is not actually being
 executed, which sometimes leads to an unexpected error. These situations are handled gracefully by <code>eb -x</code>
-though, which will report any errors that occured and then continue anyway with inspecting the remainder of the
+though, which will report any errors that occurred and then continue anyway with inspecting the remainder of the
 installation procedure. Although this obviously limits the value of the generated output,
 it doesn't make it completely useless.</p>
 </div>
@@ -1150,7 +1150,7 @@ make EasyBuild install the software you require.</p>
 <h3 id="enabling-dependency-resolution">Enabling dependency resolution<a class="headerlink" href="#enabling-dependency-resolution" title="Permanent link">&para;</a></h3>
 <p>The SAMtools installation worked like a charm, but remember that all required dependencies were already
 available (see <a href="#dry-run">above</a>).</p>
-<p>If we try this with the <code>Bowtie2-2.4.1-GCC-9.3.0.eb</code>, for which the required <code>tbb</code> depencency is not available yet, it's less successful:</p>
+<p>If we try this with the <code>Bowtie2-2.4.1-GCC-9.3.0.eb</code>, for which the required <code>tbb</code> dependency is not available yet, it's less successful:</p>
 <div class="highlight"><pre><span></span><code>$ eb Bowtie2-2.4.1-GCC-9.3.0.eb -M
 
 <span class="m">2</span> out of <span class="m">17</span> required modules missing:
@@ -1525,7 +1525,7 @@ and it's a lot to take in at once, take your time...</p>
 <div class="md-source-date">
   <small>
     
-      Last update: June 10, 2020
+      Last update: June 15, 2020
     
   </small>
 </div>
