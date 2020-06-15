@@ -18,6 +18,10 @@ jobs:
 
     - name: Markdown Linting Action
       uses: avto-dev/markdown-lint@v1.2.0
+      with:
+        # rules: '/lint/rules/changelog.js'
+        # config: '/lint/config/changelog.yml'
+        args: '.'
 
     - name: install mkdocs
       run: |
