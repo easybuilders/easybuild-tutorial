@@ -20,6 +20,7 @@ short (and hopefully helpful) error message.
 Things that could go wrong during an installation include:
 
 * missing source or patch files;
+* a checksum error on a downloaded source or patch file;
 * required dependencies that are not specified in the easyconfig file;
 * failing shell commands;
 * running out of available memory or disk space;
@@ -32,7 +33,7 @@ For each of the shell commands that EasyBuild executes during an
 installation, it will check the exit status.
 If the exit status is zero, EasyBuild will usually assume that the shell command
 ran correctly, and it will continue with the rest of the installation procedure.
-If the exit status is different from zero, a problem has occurred and the installation will be interrupted.
+If the exit status is anything but zero, a problem has occurred and the installation will be interrupted.
 
 ### Example
 
@@ -76,12 +77,12 @@ out why `/usr/bin/g++` is being used rather than just `g++`, which would
 result in using the right compiler version because EasyBuild sets up the build
 environment carefully.
 
-This is a fictitous example of course, but hopefully it gives you a feeling
+This is a fictitious example of course, but hopefully it gives you a feeling
 of how errors that occur during the installation are handled.
 
 ## EasyBuild log files
 
-Finding the cause of a problem that made the installation fail is not always that straightforward though...
+Finding the cause of a problem that made the installation fail is, unfortunately, not always that straightforward...
 
 EasyBuild includes the first 300 characters of the output produced by a failing
 shell command in the error message, which is a sensible way to try include
@@ -171,7 +172,7 @@ make[1]: Entering directory `/dev/shm/example/HDF5/1.10.6/gompi-2020a/hdf5-1.10.
 ```
 
 It can be useful to look for the *first* error that occurred in the output of a command, since subsequent errors are
-often just fallout of earlier errors. You can do this by first navigating
+often fallout from earlier errors. You can do this by first navigating
 to the start of the output for a command using "`INFO running cmd`" as a search pattern, and then looking for patterns
 like "`error:`" from there.
 
@@ -190,6 +191,8 @@ The location of the build directory is mentioned in the EasyBuild error message:
 For software using a classic `configure` script, you may have to locate
 and inspect the `config.log` file in the build directory to determine the underlying cause of an error. For software using CMake as a configuration tool you often have to check in
 `CMakeOutput.log` or `CMakeError.log` for clues, which are sneakily hidden by CMake in a `CMakeFiles` subdirectory of the build directory.
+
+As a side note here: as EasyBuild does not clean out old and failed builds you will need to eventually manually remove these build directories from the `buildpath` directory.
 
 ## Exercise
 
@@ -377,8 +380,8 @@ Can you fix the next problem you run into?
 
 ??? success "(click to show solution)"
 
-    The compilation fails, but the error message we see is incomplete because
-    the command output gets cut off (only the 300 first characters of the output are shown):
+    The compilation fails, but the error message we see is incomplete due to 
+    EasyBuild truncating the command output (only the 300 first characters of the output are shown):
     ```
     == FAILED: Installation ended unsuccessfully (build directory: /tmp/easybuild/Subread/2.0.1/GCC-9.3.0): build failed (first 300 chars):
     cmd " make -j 1 -f Makefile.Linux CFLAGS="-fast"" exited with exit code 2 and output:
@@ -454,7 +457,7 @@ Don't give up now, try one last time and fix the last problem that occurs...
 
     After doing so, **you don't have to redo the installation
     from scratch**, you can use the `--module-only` option to only run the
-    sanity check and generate the module file:
+    sanity check and generate the module file again:
     ```
     eb subread.eb --module-only
     ```
