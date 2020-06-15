@@ -8,6 +8,6 @@
   "ul-indent": false,
   "no-inline-html": false,
   "no-bare-urls": false,
-  "fenced-code-language": true,
+  "fenced-code-language": false,
   "first-line-h1": false
 }
