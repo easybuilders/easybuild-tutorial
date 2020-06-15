@@ -170,7 +170,7 @@ When searching for easyconfig files, you may see a message like this pop up:
 == found valid index for <path>, so using it...
 ```
 
-This indicates that a **search index** was used for this particular directory which signficantly speeds
+This indicates that a **search index** was used for this particular directory which significantly speeds
 up the search procedure, especially when the easyconfig files are located on a shared filesystem where metadata
 operations involving lots of small files are rather slow.
 
@@ -386,7 +386,7 @@ If you were concerned about EasyBuild being too much of a black box, that is hop
 
     In addition, the easyblock may trip over the fact that the installation procedure is not actually being
     executed, which sometimes leads to an unexpected error. These situations are handled gracefully by `eb -x`
-    though, which will report any errors that occured and then continue anyway with inspecting the remainder of the
+    though, which will report any errors that occurred and then continue anyway with inspecting the remainder of the
     installation procedure. Although this obviously limits the value of the generated output,
     it doesn't make it completely useless.
 
@@ -436,7 +436,7 @@ That was... easy. Is that really all there is to it? Well, almost...
 The SAMtools installation worked like a charm, but remember that all required dependencies were already
 available (see [above](#dry-run)).
 
-If we try this with the `Bowtie2-2.4.1-GCC-9.3.0.eb`, for which the required `tbb` depencency is not available yet, it's less successful:
+If we try this with the `Bowtie2-2.4.1-GCC-9.3.0.eb`, for which the required `tbb` dependency is not available yet, it's less successful:
 
 ```shell
 $ eb Bowtie2-2.4.1-GCC-9.3.0.eb -M
