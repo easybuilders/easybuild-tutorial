@@ -744,7 +744,7 @@ This allows you to dive in and check for clues in the files that are stored ther
 <p>For software using a classic <code>configure</code> script, you may have to locate
 and inspect the <code>config.log</code> file in the build directory to determine the underlying cause of an error. For software using CMake as a configuration tool you often have to check in
 <code>CMakeOutput.log</code> or <code>CMakeError.log</code> for clues, which are sneakily hidden by CMake in a <code>CMakeFiles</code> subdirectory of the build directory.</p>
-<p>As a side note here... As EasyBuild does not clean out old and failed builds, you will need to eventually manually clean these failed builds out from your temporary directory.</p>
+<p>As a side note here: as EasyBuild does not clean out old and failed builds you will need to eventually manually remove these build directories from the <code>buildpath</code> directory.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Let's work our way through a less smooth software installation,
 using the easyconfig file that is provided in <code>/easybuild/tutorial/subread.eb</code>
@@ -934,7 +934,7 @@ is "<code>-v</code>" rather than "<code>--version</code>", so we need to fix thi
 </code></pre></div></p>
 <p>After doing so, <strong>you don't have to redo the installation
 from scratch</strong>, you can use the <code>--module-only</code> option to only run the
-sanity check and generate the module file anew:
+sanity check and generate the module file again:
 <div class="highlight"><pre><span></span><code>eb subread.eb --module-only
 </code></pre></div></p>
 </details>
