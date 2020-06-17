@@ -30,7 +30,7 @@ Finally, [Arbutus](https://docs.computecanada.ca/wiki/Cloud_resources) is our pr
 
 ## Compute Canada software stack
 
-Software installation is amongst the activities that are centralized by Compute Canada. We provide **a single user space environment that is available across all of the clusters** (all 4 primary clusters, with many legacy clusters also adopting the same environment). This means that users can move across clusters seemlessly, since the same modules are available everywhere.
+Software installation is amongst the activities that are centralized by Compute Canada. We provide **a single user space environment that is available across all of the clusters** (all 4 primary clusters, with many legacy clusters also adopting the same environment). This means that users can move across clusters seamlessly, since the same modules are available everywhere.
 
 For this to happen, especially given the variety of hardware we support, a couple of components are required. These were described in details in the paper presented at PEARC'19, which can be found [here](https://ssl.linklings.net/conferences/pearc/pearc19_program/views/includes/files/pap139s3-file1.pdf).
 
@@ -53,7 +53,7 @@ To illustrate EasyBuild's flexibility, in this section, we highlight some of the
 Compute Canada is using EasyBuild to install *all* packages that you would not normally find installed in an OS (i.e. through `yum` or `apt-get`). However, because we provide the compatibility layer, many of the libraries that can be installed through EasyBuild are filtered out. This includes for example `binutils`, ` Automake`, `flex`, etc. This is configured through our [EasyBuild configuration file](https://github.com/ComputeCanada/easybuild-computecanada-config/blob/605bbc14d9312049afa1937090d2ed0d64f8169c/config.cfg#L13).
 
 ### Custom toolchains
-Before deploying our new infrastructures, virtually all sites had a long history of using the Intel or GNU Compilers, OpenMPI, and Intel MKL, with very little usage of OpenBLAS or Intel MPI. Therefore, our primary toolchains are based on those tools - i.e. variations on the `iomkl` or `gomkl` toolchains, which are not the ones mostly used by upstream EasyBuild (which are the *common* `foss` and `intel` toolchains). We therefore make a heavy use of the `--try-toolchain` option of EasyBuild, to use upstream recipes but with our prefered toolchains.
+Before deploying our new infrastructures, virtually all sites had a long history of using the Intel or GNU Compilers, OpenMPI, and Intel MKL, with very little usage of OpenBLAS or Intel MPI. Therefore, our primary toolchains are based on those tools - i.e. variations on the `iomkl` or `gomkl` toolchains, which are not the ones mostly used by upstream EasyBuild (which are the *common* `foss` and `intel` toolchains). We therefore make a heavy use of the `--try-toolchain` option of EasyBuild, to use upstream recipes but with our preferred toolchains.
 
 ### Custom module naming scheme
 We use a lower-case hierarchical module naming scheme which also includes the CPU architecture that a software is built for as part of the hierarchy. Our module naming scheme also completely drops `versionsuffix`. If we need to have different flavors of a given recipe, we instead use `modaltsoftname` to add the flavor to the name of the software package. This is enabled through [this Python module](https://github.com/ComputeCanada/easybuild-computecanada-config/blob/master/SoftCCHierarchicalMNS.py), which implements our custom module naming scheme.
