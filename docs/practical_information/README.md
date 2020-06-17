@@ -62,6 +62,21 @@ run the following `docker` command:
 docker run -ti --hostname tutorial --rm easybuilders/tutorial:isc20-haswell
 ```
 
+##### Docker and cgroups v2
+
+If you are using a recent Linux distribution that has switched to cgroups v2
+ (e.g. [Fedora >= 31](https://www.redhat.com/sysadmin/fedora-31-control-group-v2)), docker will fail with
+
+```
+OCI runtime create failed: this version of runc doesn't work on cgroups v2
+```
+
+since it is not yet compatible with cgroups v2. Possible workarounds include:
+
+* reverting to cgroups v1 (it can be done via the kernel command-line argument `systemd.unified_cgroup_hierarchy=0`),
+* using [Podman](https://podman.io/) instead, which implements the docker CLI,
+
+or using Singulary.
 
 #### Using Singularity
 
