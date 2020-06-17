@@ -54,17 +54,111 @@ GPU. The JUSUF cluster partition will provide HPC resources for interactive work
 and batch jobs. The cloud partition will enable co-location of (web) services with these
 resources to enable new workflows and support community platforms.
 
-
-## Juelich Supercomputing Centre software stack
-
-### Software *Stages*
-One foundational part of the infrastructure comes even before installing any software: the distribution mechanism. For this, we use [CVMFS](https://cvmfs.readthedocs.io/en/stable/). This allows any cluster, virtual machine, or event desktop or laptop computer, to access our software stack in a matter of a few minutes. We make this available to our users, as documented [here](https://docs.computecanada.ca/wiki/Accessing_CVMFS). Some users use it for continuous integration, we also use it in virtual clusters in the cloud.
-
 ## Usage of EasyBuild within JSC
-To illustrate EasyBuild's flexibility, in this section, we highlight some of the peculiarities of EasyBuild's usage within Compute Canada.
+
+As a large site with diverse requirements, JSC takes advantage of how easily EasyBuild
+can be configured according to site policies, ranging from the software installation
+prefix to
+all aspects of the module naming scheme being used for the modules being generated.
+
+JSC maintains a [public repository of the customisations and development environment
+for EasyBuild](https://github.com/easybuilders/JSC) that we use in our production
+environment. Below we highlight some particular cases of these customisations.
 
 ### Custom toolchains
 
+As of June 2020,
+there are a total of 15 unique toolchain definitions in use, which reflect multiple
+combinations of compilers (`GCCcore`, `GCC`, `Intel` and `PGI`),
+MPI runtimes (`ParaStationMPI`, `OpenMPI`, `IntelMPI` and `MVAPICH2`)
+and mathematical libraries (`MKL`).
+
+Given the proliferation of toolchains at our site, JSC has put a lot of effort into
+increasing the capabilities of the `--try-toolchain` option and has recently
+introduced the
+`--try-update-deps` to more easily adopt upstream changes and adapt them to our
+environment. 
+
 ### Custom module naming scheme
 
+By default
+EasyBuild includes both the flat and hierarchical schemes
+and these can be leveraged as examples for custom schemes.
+JSC employs such a custom scheme (based closely on
+the hierarchical scheme) to control the exact structure of the
+hierarchy and the naming of some specific modules (such as
+the compilers).
+
 ### Usage of hooks
+
+The relatively new *hooks* feature of EasyBuild provides JSC with an opportunity to
+track upstream developments more closely.
+
+We are currently integrating a new hook that provides a lot of useful functionality:
+
+* Allows userspace installations alongside system provided installations
+  * Restricts users from installing non-supported compilers (in particular we don't want
+    people to install their own `GCCcore`) and MPI runtimes (since MPI installations
+    are heavily customised)
+  * Restricts users to only resolve dependencies from our *Golden* repository (and from
+    their own installed software) but allows them to search in the upstream repositories
+    * if they try to install something from the upstream repository, the hook advises
+      them how to do this correctly
+* Customises the final module files
+  * Customises the names of some modules (such as `Intel` over `iccifort` and
+    `IntelMPI` over `impi`)
+  * Injects an `lmod` *family* to our compilers and MPI runtimes
+  * Adds `lmod` *properties* for GPU enabled applications and user installed software
+  * Adds a `site_contact` for all modules
+* Updates the `lmod` cache when an installation is made system-wide
+
+We see our hooks as a great way of encouraging, documenting and automating "correct"
+installation processes for our system.
+
+### Upgrading and retiring software
+
+The expected lifetime of a system like JURECA is roughly five years.
+Within that period one can expect updates to compilers every
+few months and updates to MPI implementations as the latest
+standards are integrated. This would mean that the entire
+software stack will require frequent upgrades. During such
+upgrades it is natural to expect that one would install the latest
+version of any particular software package.
+
+The project cycles at JSC lasts 12 months with two
+cycles per year. When new users get access to the machine,
+we want them to only be exposed to the latest software with the
+latest compilers. For this reason, we have chosen six months
+as our upgrade period and we chose to retire outdated software
+versions with the same frequency. We call these software
+upgrades *stages*. For each *stage*, we select the toolchains that
+we will support and rebuild the latest versions of our supported
+software with these toolchains. We chose a prototype toolchain
+as a template and, once fully populated, migrate the changes
+to our other toolchains.
+
+We expect members of the support team to contribute to
+software installations since it is common that application
+software requires specific knowledge to be installed and tested
+appropriately. We provide a special development *stage* with the
+latest toolchains for the support team where they can prepare
+their easyconfig files for inclusion in the upgrade. Once a
+software package has been successfully built and tested, it is
+added to a *Golden* repository to be used for the *stage* upgrade.
+
+The default *stage* visible to users is controlled by a symbolic
+link. *Stage* upgrades are prepared in a separate environment
+to this default. Once the upgrade has been implemented, users
+are given three weeks notice and the symbolic link is updated
+during a maintenance window. Users are provided with the
+capability of continuing to use a retired *stage* if they wish
+to do so. However, additional software requests are (typically)
+only accepted for the current default *stage*.
+
+While *stage* upgrades may introduce some overhead for
+existing users (they may need to recompile their code and
+modules may be named differently in particular cases), there
+are clear benefits to using the latest compilers and software
+stack. In addition, these upgrades provide us with the opportunity
+to potentially change our module hierarchy or introduce
+new features related to Lmod.
