@@ -5,7 +5,7 @@ which produces module files with names that closely resemble to the names of the
 corresponding easyconfig files.
 For example, when installing `Bowtie2-2.4.1-GCC-9.3.0.eb` the generated module was named `Bowtie2/2.4.1-GCC-9.3.0`.
 
-EasyBuild comes with a couple of other module naming schemes:
+EasyBuild also supports several different module naming schemes:
 
 ```shell
 $ eb --avail-module-naming-schemes
@@ -27,10 +27,10 @@ The default module naming scheme `EasyBuildMNS` is an example of regular *"flat"
 * all module files are directly available for loading;
 * each module name uniquely identifies a particular installation;
 
-In contrast, a *hierarchical* module naming scheme is quite different.
-As the name suggests, it consists of a *hierarchy* of module files.
+In contrast, a *hierarchical* module naming scheme
+consists of a *hierarchy* of module files.
 
-The typical module hierarchy consists of 3 levels:
+The typical module hierarchy has 3 levels:
 
 * a **core** level, where module files for software that was installed using the
   [`system` toolchain](../introduction/#system-toolchain) are kept;
@@ -45,6 +45,9 @@ Here is a simple example of such a 3-level module hierarchy:
 In this example the core level only includes a single module `GCC/9.3.0`,
 while  the compiler level includes two modules: `OpenMPI/4.0.3` and `MPICH/3.3.2`. 
 In the MPI level, three modules are available: one for `FFTW`, one for `ScaLAPACK`, and one for `HDF5`.
+As you will notice, at every level we select the module of the layer we are entering. At core level we
+select our compiler. When in the compiler level we select our MPI implementation, and within the MPI
+level we select our software.
 
 Initially only the modules on the top level of a module hierarchy are available for loading.
 If you run "`module avail`" with the example module hierarchy, you will only see the `GCC/9.3.0` module.
@@ -99,9 +102,9 @@ The output of "`module avail`" can be quite overwhelming if lots of module files
 are installed and a flat module naming scheme is used, since *all* modules are
 *always* available.
 EasyBuild makes it very easy to install lots of software,
-so that may quickly grow to hundreds or even thousands of available modules. Yikes!
+so the number of installed modules can quickly grow into the hundreds or even thousands! Yikes!
 
-This is less of an issue when using a hierarchical module naming scheme, since
+This often explosive growth of modules is less of an issue when using a hierarchical module naming scheme, since
 initially only a modest set of modules are available, and relatively small
 groups of additional modules become available as gateway modules are loaded.
 
@@ -111,12 +114,11 @@ Since all modules are available at once when using a flat module naming scheme, 
 modules together that are not compatible with each other.
 
 Imagine loading two modules that were built with a different compiler toolchain (different compiler,
-different MPI library). That's likely to end in tears, unless you have the necessary techinical expertise
-and you are being very careful...
+different MPI library). That's likely to end in tears, unless you have the necessary technical expertise *and* you are being very careful...
 
 In a module hierarchy this can be prevented, since modules for software that was installed with a different compiler
-and/or a different MPI library is located in a different part of the module hierarchy, and hence these 
-modules can not be loaded together.
+and/or a different MPI library is located in a different part of the module hierarchy, and thus these
+modules will be prevented from being loaded together.
 
 
 #### Visibility of existing modules
@@ -145,7 +147,7 @@ the module hierarchy.
 ## Example
 
 Now that we know more about hierarchical module naming schemes,
-let's see how EasyBuild can help us with generating a hierarchical module tree.
+let us see how EasyBuild can help us with generating a hierarchical module tree.
 
 In this example we will use EasyBuild to generate modules organised in a hierarchy
 for some of the software that is already installed in the prepared environment.
@@ -237,19 +239,19 @@ The other configuration settings are the same as before, and mostly irrelevant f
 
 ### Generating modules for HDF5
 
-Let's now generate a hierarchical module tree for `HDF5` and all of its dependencies,
+Let us now generate a hierarchical module tree for `HDF5` and all of its dependencies,
 including the toolchain. That sounds complicated, and it sort of is since there are
 a lot of details you have to get right for the module hierarchy to works as intended,
 but EasyBuild can do all the hard work for us.
 
-All we need to do is:
+The steps we will have to go through are:
 
 * Tell EasyBuild we want to "install" the `HDF5-1.10.6-gompi-2020a.eb` easyconfig file;
 * Enable dependency resolution via `--robot`;
 * Instruct EasyBuild to only generate the module files, not to install the software (since it is
   there already in `/easybuild/software`), via the `--module-only` option.
 
-That translates to this `eb` command:
+These steps translate to this single `eb` command:
 
 ```
 $ eb HDF5-1.10.6-gompi-2020a.eb --robot --module-only
@@ -286,7 +288,7 @@ $ ls $HOME/hmns/modules/all
 Compiler  Core  MPI
 ```
 
-That's basically the 3 levels in the module hierarchy we showed in our example earlier.
+Those are basically the 3 levels in the module hierarchy we showed in our example earlier.
 
 The starting point is the top level of the module hierarchy named `Core`:
 
@@ -294,7 +296,7 @@ The starting point is the top level of the module hierarchy named `Core`:
 module use $HOME/hmns/modules/all/Core
 ```
 
-Let's see what that gives us in terms of available modules:
+Let us see what that gives us in terms of available modules:
 
 ```
 $ module avail
@@ -308,7 +310,7 @@ $ module avail
 
 Nice and short module names, but only a limited set of them.
 
-The gateway module here is the `GCC/9.3.0` compiler module, so let's load that:
+The gateway module here is the `GCC/9.3.0` compiler module, so let us load that:
 
 ```
 module load GCC/9.3.0
@@ -334,7 +336,7 @@ $ module avail
    GCC/9.3.0   (L)    binutils/2.34        gompi/2020a       zlib/1.2.11
 ```
 
-Now we have additional modules available, great!
+Good news! We now have additional modules available!
 
 The compiler level of our hierarchy actually consists of two directories here: `Compiler/GCCcore/9.3.0`
 and `Compiler/GCC/9.3.0`. The modules in the `GCCcore` directory are ones we can use in other compiler
@@ -364,7 +366,7 @@ $ module spider HDF5
 This output tells us that there does indeed exist a module for `HDF5`, but that
 we need to load *both* the `GCC/9.3.0` and `OpenMPI/4.0.3` modules first.
 
-So, let's do exactly that (remember that `GCC/9.3.0` is already loaded):
+So, let us do exactly that (remember that `GCC/9.3.0` is already loaded):
 
 ```
 module load OpenMPI/4.0.3
