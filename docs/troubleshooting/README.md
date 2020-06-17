@@ -167,7 +167,7 @@ log for `HDF5`):
 == 2020-06-09 13:11:19,968 run.py:222 INFO running cmd:  make install
 == 2020-06-09 13:11:25,186 run.py:538 INFO cmd " make install " exited with exit code 0 and output:
 Making install in src
-make[1]: Entering directory `/dev/shm/example/HDF5/1.10.6/gompi-2020a/hdf5-1.10.6/src'
+make[1]: Entering directory `/tmp/example/HDF5/1.10.6/gompi-2020a/hdf5-1.10.6/src'
 ...
 ```
 

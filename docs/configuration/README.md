@@ -346,7 +346,7 @@ buildpath      (D) = /home/example/.local/easybuild/build
 containerpath  (D) = /home/example/.local/easybuild/containers
 installpath    (D) = /home/example/.local/easybuild
 repositorypath (D) = /home/example/.local/easybuild/ebfiles_repo
-robot-paths    (D) = /easybuild/software/EasyBuild/4.2.1/easybuild/easyconfigs
+robot-paths    (D) = /home/example/.local/easybuild/easyconfigs
 sourcepath     (D) = /home/example/.local/easybuild/sources
 ```
 
@@ -358,19 +358,19 @@ Now let us do some basic configuring and inspect the resulting output of `--show
 ```shell
 
 $ export EASYBUILD_PREFIX=$HOME/easybuild
-$ export EASYBUILD_BUILDPATH=/dev/shm/$USER
+$ export EASYBUILD_BUILDPATH=/tmp/$USER
 $ eb --installpath=/tmp/$USER --show-config
 #
 # Current EasyBuild configuration
 # (C: command line argument, D: default value, E: environment variable, F: configuration file)
 #
-buildpath      (E) = /dev/shm/example
+buildpath      (E) = /tmp/example
 containerpath  (E) = /home/example/easybuild/containers
 installpath    (C) = /tmp/easybuild
 packagepath    (E) = /home/example/easybuild/packages
 prefix         (E) = /home/example/easybuild
 repositorypath (E) = /home/example/easybuild/ebfiles_repo
-robot-paths    (D) = /easybuild/software/EasyBuild/4.2.1/easybuild/easyconfigs
+robot-paths    (D) = /home/example/.local/easybuild/easyconfigs
 sourcepath     (E) = /home/example/easybuild/sources
 ```
 
@@ -382,3 +382,10 @@ settings were specified via an environment variable (some of which indirectly th
 
 !!! warning
     **Make sure you have EasyBuild properly configured before you proceed with the rest of the tutorial!**
+
+    We recommend using the following configuration (unless otherwise specified in the examples/exercises):
+
+    ```shell
+    export EASYBUILD_PREFIX=$HOME/easybuild
+    export EASYBUILD_BUILDPATH=/tmp/$USER
+    ```
