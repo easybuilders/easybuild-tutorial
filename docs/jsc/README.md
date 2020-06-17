@@ -107,7 +107,7 @@ We are currently integrating a new hook that provides a lot of useful functional
 * Customises the final module files
   * Customises the names of some modules (such as `Intel` over `iccifort` and
     `IntelMPI` over `impi`)
-  * Injects an `lmod` *family* to our compilers and MPI runtimes
+  * Injects an `lmod` *family* in the modules of our compilers and MPI runtimes
   * Adds `lmod` *properties* for GPU enabled applications and user installed software
   * Adds a `site_contact` for all modules
 * Updates the `lmod` cache when an installation is made system-wide
