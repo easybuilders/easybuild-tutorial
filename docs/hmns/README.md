@@ -5,7 +5,7 @@ which produces module files with names that closely resemble to the names of the
 corresponding easyconfig files.
 For example, when installing `Bowtie2-2.4.1-GCC-9.3.0.eb` the generated module was named `Bowtie2/2.4.1-GCC-9.3.0`.
 
-EasyBuild also supports several different module naming schemes:
+EasyBuild supports several different module naming schemes:
 
 ```shell
 $ eb --avail-module-naming-schemes
