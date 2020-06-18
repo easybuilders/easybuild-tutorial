@@ -66,7 +66,7 @@ You may, and probably will still occasionally, run into compiler errors unless s
 
 ### *Implementation*
 
-<img src="img/Python-logo.png" style="border-right: 20px solid white;border-top: 5px solid white; float:left" width="80px"/>
+<img src="../img/Python-logo.png" style="border-right: 20px solid white;border-top: 5px solid white; float:left" width="80px"/>
 
 
 EasyBuild is **implemented in [Python](https://www.python.org/)**, and fully supports both Python 2.7 and 3.5+.
