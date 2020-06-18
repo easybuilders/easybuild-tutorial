@@ -1000,7 +1000,7 @@ buildpath      <span class="o">(</span>D<span class="o">)</span> <span class="o"
 containerpath  <span class="o">(</span>D<span class="o">)</span> <span class="o">=</span> /home/example/.local/easybuild/containers
 installpath    <span class="o">(</span>D<span class="o">)</span> <span class="o">=</span> /home/example/.local/easybuild
 repositorypath <span class="o">(</span>D<span class="o">)</span> <span class="o">=</span> /home/example/.local/easybuild/ebfiles_repo
-robot-paths    <span class="o">(</span>D<span class="o">)</span> <span class="o">=</span> /easybuild/software/EasyBuild/4.2.1/easybuild/easyconfigs
+robot-paths    <span class="o">(</span>D<span class="o">)</span> <span class="o">=</span> /home/example/.local/easybuild/easyconfigs
 sourcepath     <span class="o">(</span>D<span class="o">)</span> <span class="o">=</span> /home/example/.local/easybuild/sources
 </code></pre></div>
 
@@ -1008,19 +1008,19 @@ sourcepath     <span class="o">(</span>D<span class="o">)</span> <span class="o"
 and none of the values diverge from the default value, since all entries are marked with <code>(D)</code> for "default value").</p>
 <p>Now let us do some basic configuring and inspect the resulting output of <code>--show-config</code>:</p>
 <div class="highlight"><pre><span></span><code>$ <span class="nb">export</span> <span class="nv">EASYBUILD_PREFIX</span><span class="o">=</span><span class="nv">$HOME</span>/easybuild
-$ <span class="nb">export</span> <span class="nv">EASYBUILD_BUILDPATH</span><span class="o">=</span>/dev/shm/<span class="nv">$USER</span>
+$ <span class="nb">export</span> <span class="nv">EASYBUILD_BUILDPATH</span><span class="o">=</span>/tmp/<span class="nv">$USER</span>
 $ eb --installpath<span class="o">=</span>/tmp/<span class="nv">$USER</span> --show-config
 <span class="c1">#</span>
 <span class="c1"># Current EasyBuild configuration</span>
 <span class="c1"># (C: command line argument, D: default value, E: environment variable, F: configuration file)</span>
 <span class="c1">#</span>
-buildpath      <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /dev/shm/example
+buildpath      <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /tmp/example
 containerpath  <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild/containers
 installpath    <span class="o">(</span>C<span class="o">)</span> <span class="o">=</span> /tmp/easybuild
 packagepath    <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild/packages
 prefix         <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild
 repositorypath <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild/ebfiles_repo
-robot-paths    <span class="o">(</span>D<span class="o">)</span> <span class="o">=</span> /easybuild/software/EasyBuild/4.2.1/easybuild/easyconfigs
+robot-paths    <span class="o">(</span>D<span class="o">)</span> <span class="o">=</span> /home/example/.local/easybuild/easyconfigs
 sourcepath     <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild/sources
 </code></pre></div>
 
@@ -1031,6 +1031,11 @@ settings were specified via an environment variable (some of which indirectly th
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p><strong>Make sure you have EasyBuild properly configured before you proceed with the rest of the tutorial!</strong></p>
+<p>We recommend using the following configuration (unless otherwise specified in the examples/exercises):</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">EASYBUILD_PREFIX</span><span class="o">=</span><span class="nv">$HOME</span>/easybuild
+<span class="nb">export</span> <span class="nv">EASYBUILD_BUILDPATH</span><span class="o">=</span>/tmp/<span class="nv">$USER</span>
+</code></pre></div>
+
 </div>
                 
                   
@@ -1040,7 +1045,7 @@ settings were specified via an environment variable (some of which indirectly th
 <div class="md-source-date">
   <small>
     
-      Last update: June 9, 2020
+      Last update: June 17, 2020
     
   </small>
 </div>
