@@ -4,7 +4,7 @@
 
 ## General info
 
-<img src="https://boegel.github.io/easybuild-tutorial/img/jsc.jpg" style="float:right" width="280px"/>
+<img src="https://easybuilders.github.io/easybuild-tutorial/img/jsc.jpg" style="float:right" width="280px"/>
 
 The Juelich Supercomputing Centre 
 (JSC, [https://www.fz-juelich.de/ias/jsc](https://www.fz-juelich.de/ias/jsc/EN)) at 
