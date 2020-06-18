@@ -1,4 +1,8 @@
----?image=docs/img/jsc.jpg&position=right&size=20% auto
+<!---
+When including images from repo, you must use the path relative to the root directory 
+-->
+
+---?image=docs/img/jsc.jpg&position=right&size=15% auto
 
 ### Jülich Supercomputing Centre (JSC)
 
@@ -12,18 +16,15 @@
   * JURECA - CPU, GPU and KNL. To be replaced by successor in 2020
   * JUWELS - AMD, V100 GPU. Geared towards interactive workflows and community services
   
----
+---?image=docs/img/jsc.jpg&position=right&size=15% auto
 
-<img src="docs/img/jsc.jpg" style="float:left" width="20%"/>
 ### EasyBuild at JSC
 
----
+---?image=docs/img/jsc.jpg&position=right&size=15% auto
 
-<img src="docs/img/jsc.jpg" style="float:left" width="20%"/>
 ### Leveraging hooks for user support
 
----
+---?image=docs/img/jsc.jpg&position=right&size=15% auto
 
-<img src="docs/img/jsc.jpg" style="float:left" width="20%"/>
 ### Upgrading and retiring software
 
