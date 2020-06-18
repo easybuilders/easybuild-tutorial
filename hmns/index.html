@@ -644,7 +644,7 @@
 which produces module files with names that closely resemble to the names of the
 corresponding easyconfig files.
 For example, when installing <code>Bowtie2-2.4.1-GCC-9.3.0.eb</code> the generated module was named <code>Bowtie2/2.4.1-GCC-9.3.0</code>.</p>
-<p>EasyBuild comes with a couple of other module naming schemes:</p>
+<p>EasyBuild supports several different module naming schemes:</p>
 <div class="highlight"><pre><span></span><code>$ eb --avail-module-naming-schemes
 List of supported module naming schemes:
     CategorizedHMNS
@@ -662,9 +662,9 @@ which is the standard <strong>hierarchical</strong> module naming scheme include
 <li>all module files are directly available for loading;</li>
 <li>each module name uniquely identifies a particular installation;</li>
 </ul>
-<p>In contrast, a <em>hierarchical</em> module naming scheme is quite different.
-As the name suggests, it consists of a <em>hierarchy</em> of module files.</p>
-<p>The typical module hierarchy consists of 3 levels:</p>
+<p>In contrast, a <em>hierarchical</em> module naming scheme
+consists of a <em>hierarchy</em> of module files.</p>
+<p>The typical module hierarchy has 3 levels:</p>
 <ul>
 <li>a <strong>core</strong> level, where module files for software that was installed using the
   <a href="../introduction/#system-toolchain"><code>system</code> toolchain</a> are kept;</li>
@@ -677,7 +677,10 @@ As the name suggests, it consists of a <em>hierarchy</em> of module files.</p>
 
 <p>In this example the core level only includes a single module <code>GCC/9.3.0</code>,
 while  the compiler level includes two modules: <code>OpenMPI/4.0.3</code> and <code>MPICH/3.3.2</code>. 
-In the MPI level, three modules are available: one for <code>FFTW</code>, one for <code>ScaLAPACK</code>, and one for <code>HDF5</code>.</p>
+In the MPI level, three modules are available: one for <code>FFTW</code>, one for <code>ScaLAPACK</code>, and one for <code>HDF5</code>.
+As you will notice, at every level we select the module of the layer we are entering. At core level we
+select our compiler. When in the compiler level we select our MPI implementation, and within the MPI
+level we select our software.</p>
 <p>Initially only the modules on the top level of a module hierarchy are available for loading.
 If you run "<code>module avail</code>" with the example module hierarchy, you will only see the <code>GCC/9.3.0</code> module.</p>
 <p>Some modules in the top level of the hierarchy act as a "gateway" to modules in the
@@ -721,19 +724,18 @@ essentials: software name and version. That's way better, nice and clean!</p>
 are installed and a flat module naming scheme is used, since <em>all</em> modules are
 <em>always</em> available.
 EasyBuild makes it very easy to install lots of software,
-so that may quickly grow to hundreds or even thousands of available modules. Yikes!</p>
-<p>This is less of an issue when using a hierarchical module naming scheme, since
+so the number of installed modules can quickly grow into the hundreds or even thousands! Yikes!</p>
+<p>This often explosive growth of modules is less of an issue when using a hierarchical module naming scheme, since
 initially only a modest set of modules are available, and relatively small
 groups of additional modules become available as gateway modules are loaded.</p>
 <h4 id="loading-compatible-modules">Loading compatible modules<a class="headerlink" href="#loading-compatible-modules" title="Permanent link">&para;</a></h4>
 <p>Since all modules are available at once when using a flat module naming scheme, you can easily load
 modules together that are not compatible with each other.</p>
 <p>Imagine loading two modules that were built with a different compiler toolchain (different compiler,
-different MPI library). That's likely to end in tears, unless you have the necessary techinical expertise
-and you are being very careful...</p>
+different MPI library). That's likely to end in tears, unless you have the necessary technical expertise <em>and</em> you are being very careful...</p>
 <p>In a module hierarchy this can be prevented, since modules for software that was installed with a different compiler
-and/or a different MPI library is located in a different part of the module hierarchy, and hence these 
-modules can not be loaded together.</p>
+and/or a different MPI library is located in a different part of the module hierarchy, and thus these
+modules will be prevented from being loaded together.</p>
 <h4 id="visibility-of-existing-modules">Visibility of existing modules<a class="headerlink" href="#visibility-of-existing-modules" title="Permanent link">&para;</a></h4>
 <p>One downside of a module hierarchy is that not all existing modules are directly available for loading
 or are even <em>visible</em> to the user, since the output of "<code>module avail</code>" only shows a subset of all modules.</p>
@@ -753,7 +755,7 @@ recommended versions. More experienced users could then leverage the "<code>modu
 the module hierarchy.</p>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
 <p>Now that we know more about hierarchical module naming schemes,
-let's see how EasyBuild can help us with generating a hierarchical module tree.</p>
+let us see how EasyBuild can help us with generating a hierarchical module tree.</p>
 <p>In this example we will use EasyBuild to generate modules organised in a hierarchy
 for some of the software that is already installed in the prepared environment.</p>
 <p>The good news is that the existing installations can be reused. There is absolutely no need
@@ -824,18 +826,18 @@ sourcepath           <span class="o">(</span>E<span class="o">)</span> <span cla
 </ul>
 <p>The other configuration settings are the same as before, and mostly irrelevant for this example.</p>
 <h3 id="generating-modules-for-hdf5">Generating modules for HDF5<a class="headerlink" href="#generating-modules-for-hdf5" title="Permanent link">&para;</a></h3>
-<p>Let's now generate a hierarchical module tree for <code>HDF5</code> and all of its dependencies,
+<p>Let us now generate a hierarchical module tree for <code>HDF5</code> and all of its dependencies,
 including the toolchain. That sounds complicated, and it sort of is since there are
 a lot of details you have to get right for the module hierarchy to works as intended,
 but EasyBuild can do all the hard work for us.</p>
-<p>All we need to do is:</p>
+<p>The steps we will have to go through are:</p>
 <ul>
 <li>Tell EasyBuild we want to "install" the <code>HDF5-1.10.6-gompi-2020a.eb</code> easyconfig file;</li>
 <li>Enable dependency resolution via <code>--robot</code>;</li>
 <li>Instruct EasyBuild to only generate the module files, not to install the software (since it is
   there already in <code>/easybuild/software</code>), via the <code>--module-only</code> option.</li>
 </ul>
-<p>That translates to this <code>eb</code> command:</p>
+<p>These steps translate to this single <code>eb</code> command:</p>
 <div class="highlight"><pre><span></span><code>$ eb HDF5-1.10.6-gompi-2020a.eb --robot --module-only
 ...
 == building and installing MPI/GCC/9.3.0/OpenMPI/4.0.3/HDF5/1.10.6...
@@ -864,12 +866,12 @@ installation...</p>
 Compiler  Core  MPI
 </code></pre></div>
 
-<p>That's basically the 3 levels in the module hierarchy we showed in our example earlier.</p>
+<p>Those are basically the 3 levels in the module hierarchy we showed in our example earlier.</p>
 <p>The starting point is the top level of the module hierarchy named <code>Core</code>:</p>
 <div class="highlight"><pre><span></span><code>module use $HOME/hmns/modules/all/Core
 </code></pre></div>
 
-<p>Let's see what that gives us in terms of available modules:</p>
+<p>Let us see what that gives us in terms of available modules:</p>
 <div class="highlight"><pre><span></span><code>$ module avail
 
 --------------------- /home/easybuild/hmns/modules/all/Core ---------------------
@@ -879,7 +881,7 @@ Compiler  Core  MPI
 </code></pre></div>
 
 <p>Nice and short module names, but only a limited set of them.</p>
-<p>The gateway module here is the <code>GCC/9.3.0</code> compiler module, so let's load that:</p>
+<p>The gateway module here is the <code>GCC/9.3.0</code> compiler module, so let us load that:</p>
 <div class="highlight"><pre><span></span><code>module load GCC/9.3.0
 </code></pre></div>
 
@@ -901,7 +903,7 @@ Compiler  Core  MPI
    GCC/9.3.0   (L)    binutils/2.34        gompi/2020a       zlib/1.2.11
 </code></pre></div>
 
-<p>Now we have additional modules available, great!</p>
+<p>Good news! We now have additional modules available!</p>
 <p>The compiler level of our hierarchy actually consists of two directories here: <code>Compiler/GCCcore/9.3.0</code>
 and <code>Compiler/GCC/9.3.0</code>. The modules in the <code>GCCcore</code> directory are ones we can use in other compiler
 toolchains that use GCC 9.3.0 as a base compiler (the details of that are out of scope here).</p>
@@ -924,7 +926,7 @@ Use &quot;module spider&quot; to find all possible modules and extensions.
 
 <p>This output tells us that there does indeed exist a module for <code>HDF5</code>, but that
 we need to load <em>both</em> the <code>GCC/9.3.0</code> and <code>OpenMPI/4.0.3</code> modules first.</p>
-<p>So, let's do exactly that (remember that <code>GCC/9.3.0</code> is already loaded):</p>
+<p>So, let us do exactly that (remember that <code>GCC/9.3.0</code> is already loaded):</p>
 <div class="highlight"><pre><span></span><code>module load OpenMPI/4.0.3
 </code></pre></div>
 
