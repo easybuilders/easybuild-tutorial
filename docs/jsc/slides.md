@@ -2,9 +2,9 @@
 
 ### Jülich Supercomputing Centre
 
-* JSC is a German supercomputing centre since 1987
+* JSC is a German supercomputing centre since 1987 |
   * About 200 experts and contacts for all aspects of supercomputing and simulation
-  sciences |
+  sciences
 
 * 3 primary systems at the moment
   * JUWELS - modular supercomputing architecture, will reach 70 petaflops in 2020
