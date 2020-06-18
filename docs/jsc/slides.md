@@ -1,7 +1,7 @@
 ---?image=docs/img/jsc.jpg&position=right&size=15% auto
 
 ### Jülich Supercomputing Centre
-@ul
+@ul[list-hide-fragments]
 * JSC is a German supercomputing centre since 1987
   - About 200 experts for all aspects of supercomputing and simulation sciences
 
@@ -15,7 +15,7 @@
 
 ### EasyBuild at JSC
 
-@ul
+@ul[list-hide-fragments]
 * Geared toward *normal* user experience
   - Hide lots of indirect software
   - Hierarchy
@@ -29,7 +29,7 @@
 
 ### Leveraging hooks for user support
 
-@ul
+@ul[list-hide-fragments]
 * Very powerful alternative to customisations
   - Much more automated and flexible
   - Easier to maintain
@@ -41,7 +41,7 @@
 
 ### Upgrading and retiring software
 
-@ul
+@ul[list-hide-fragments]
 * Provide latest software to new projects by default
   - ***stages*** concept
   - Updates twice per year
