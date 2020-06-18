@@ -1,6 +1,6 @@
 ### Jülich Supercomputing Centre (JSC)
 
-<img src="../docs/img/jsc.jpg" width="40%"/>
+<img src="docs/img/jsc.jpg" width="40%"/>
 
 * JSC is a German supercomputing centre since 1987
 
@@ -14,16 +14,16 @@
   
 ---
 
-<img src="../docs/img/jsc.jpg" style="float:left" width="20%"/>
+<img src="docs/img/jsc.jpg" style="float:left" width="20%"/>
 ### EasyBuild at JSC
 
 ---
 
-<img src="../docs/img/jsc.jpg" style="float:left" width="20%"/>
+<img src="docs/img/jsc.jpg" style="float:left" width="20%"/>
 ### Leveraging hooks for user support
 
 ---
 
-<img src="../docs/img/jsc.jpg" style="float:left" width="20%"/>
+<img src="docs/img/jsc.jpg" style="float:left" width="20%"/>
 ### Upgrading and retiring software
 
