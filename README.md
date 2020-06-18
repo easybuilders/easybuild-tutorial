@@ -1,7 +1,7 @@
 <p align="center"><img src="./docs/img/easybuild_logo_alpha.png" width="300px"/></p>
 
 Welcome to the repository that hosts the sources of the official **[EasyBuild](easybuilders.github.io/easybuild/)
-tutorial**, see https://boegel.github.io/easybuild-tutorial.
+tutorial**, see https://easybuilders.github.io/easybuild-tutorial.
 
 ## Basic info
 
@@ -11,7 +11,7 @@ tutorial**, see https://boegel.github.io/easybuild-tutorial.
 
 * presentation slides are also in Markdown, and use GitPitch
 
-  * see https://gitpitch.com/boegel/easybuild-tutorial?p=presentation
+  * see https://gitpitch.com/easybuilders/easybuild-tutorial?p=presentation
 
 
 ## Getting started
@@ -39,16 +39,16 @@ which makes it very easy to preview the result of the changes you make locally.
 
 ## Automatic updates
 
-The rendered version of this tutorial at https://boegel.github.io/easybuild-tutorial
+The rendered version of this tutorial at https://easybuilders.github.io/easybuild-tutorial
 is automatically updated on every push to the ``master`` branch,
 thanks to the GitHub Actions workflow defined in
-[``.github/workflows/deploy.yml``](https://github.com/boegel/easybuild-tutorial/blob/master/.github/workflows/deploy.yml).
+[``.github/workflows/deploy.yml``](https://github.com/easybuilders/easybuild-tutorial/blob/master/.github/workflows/deploy.yml).
 
-The [``gh-pages``](https://github.com/boegel/easybuild-tutorial/tree/gh-pages) branch in this repository contains the rendered version.
+The [``gh-pages``](https://github.com/easybuilders/easybuild-tutorial/tree/gh-pages) branch in this repository contains the rendered version.
 
-https://boegel.github.io/easybuild-tutorial will only be updated if the tests pass,
+https://easybuilders.github.io/easybuild-tutorial will only be updated if the tests pass,
 see GitHub Actions workflow defined in
-[``.github.workflows/test.yml``](https://github.com/boegel/easybuild-tutorial/blob/master/.github/workflows/test.yml).
+[``.github.workflows/test.yml``](https://github.com/easybuilders/easybuild-tutorial/blob/master/.github/workflows/test.yml).
 
 **Note**: **do *not* change the files in the ``gh-pages`` branch directly!**
 

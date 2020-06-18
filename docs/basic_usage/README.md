@@ -134,15 +134,15 @@ For example, let's check which easyconfig files are available for TensorFlow 2.2
 
 ```shell
 $ eb --search tensorflow-2.2.0
- * /easybuild/software/EasyBuild/4.2.1/easybuild/easyconfigs/t/TensorFlow/TensorFlow-2.2.0-foss-2019b-Python-3.7.4.eb
- * /easybuild/software/EasyBuild/4.2.1/easybuild/easyconfigs/t/TensorFlow/TensorFlow-2.2.0-fosscuda-2019b-Python-3.7.4.eb
+ * /home/example/.local/easybuild/easyconfigs/t/TensorFlow/TensorFlow-2.2.0-foss-2019b-Python-3.7.4.eb
+ * /home/example/.local/easybuild/easyconfigs/t/TensorFlow/TensorFlow-2.2.0-fosscuda-2019b-Python-3.7.4.eb
 ```
 
 This output is a bit more condensed when using `eb -S`:
 
 ```
 $ eb -S tensorflow-2.2.0
-CFGS1=/easybuild/software/EasyBuild/4.2.1/easybuild/easyconfigs/t/TensorFlow
+CFGS1=/home/example/.local/easybuild/easyconfigs/t/TensorFlow
  * $CFGS1/TensorFlow-2.2.0-foss-2019b-Python-3.7.4.eb
  * $CFGS1/TensorFlow-2.2.0-fosscuda-2019b-Python-3.7.4.eb
 ```
@@ -157,7 +157,7 @@ For example, to check which easyconfigs are available to install OpenFOAM with t
 
 ```
 $ eb -S 'openfoam-[0-9].*foss-2019b'
-CFGS1=/easybuild/software/EasyBuild/4.2.1/easybuild/easyconfigs/o/OpenFOAM
+CFGS1=/home/example/.local/easybuild/easyconfigs/o/OpenFOAM
  * $CFGS1/OpenFOAM-6-foss-2019b.eb
  * $CFGS1/OpenFOAM-7-foss-2019b.eb
 ```
@@ -193,7 +193,7 @@ For example, let's inspect the contents of the `bzip2-1.0.6.eb` easyconfig file:
 ```shell
 $ eb --show-ec bzip2-1.0.6.eb
 == temporary log file in case of crash /tmp/eb-jnpzclhl/easybuild-e37cbrj1.log
-== Contents of /easybuild/software/EasyBuild/4.2.1/easybuild/easyconfigs/b/bzip2/bzip2-1.0.6.eb:
+== Contents of /home/example/.local/easybuild/easyconfigs/b/bzip2/bzip2-1.0.6.eb:
 name = 'bzip2'
 version = '1.0.6'
 
@@ -262,9 +262,9 @@ For example, to check which of the dependencies that are required for `SAMtools-
 ```shell
 $ eb SAMtools-1.10-GCC-9.3.0.eb -D
 == temporary log file in case of crash /tmp/eb-x4qofiph/easybuild-ehhi9fb1.log
-== found valid index for /easybuild/software/EasyBuild/4.2.1/easybuild/easyconfigs, so using it...
+== found valid index for /home/example/.local/easybuild/easyconfigs, so using it...
 Dry run: printing build status of easyconfigs and dependencies
-CFGS=/easybuild/software/EasyBuild/4.2.1/easybuild/easyconfigs
+CFGS=/home/example/.local/easybuild/easyconfigs
  ...
  * [x] $CFGS/b/bzip2/bzip2-1.0.8-GCCcore-9.3.0.eb (module: bzip2/1.0.8-GCCcore-9.3.0)
  * [x] $CFGS/x/XZ/XZ-5.2.5-GCCcore-9.3.0.eb (module: XZ/5.2.5-GCCcore-9.3.0)
@@ -346,7 +346,7 @@ Defining build environment...
 configuring... [DRY RUN]
 
 [configure_step method]
-  running command "./bootstrap.sh --with-toolset=gcc --prefix=/dev/shm/example/Boost/1.72.0/gompi-2020a/obj --without-libraries=python"
+  running command "./bootstrap.sh --with-toolset=gcc --prefix=/tmp/example/Boost/1.72.0/gompi-2020a/obj --without-libraries=python"
   (in /tmp/kehoste/fakehome/.local/easybuild/build/Boost/1.72.0/gompi-2020a/Boost-1.72.0)
 file written: user-config.jam
 
@@ -402,8 +402,8 @@ So, let's try to install SAMtools version 1.10:
 ```shell
 $ eb SAMtools-1.10-GCC-9.3.0.eb
 == temporary log file in case of crash /tmp/eb-zh7_fyre/easybuild-4q_lo57b.log
-== found valid index for /easybuild/software/EasyBuild/4.2.1/easybuild/easyconfigs, so using it...
-== processing EasyBuild easyconfig /easybuild/software/EasyBuild/4.2.1/easybuild/easyconfigs/s/SAMtools/SAMtools-1.10-GCC-9.3.0.eb
+== found valid index for /home/example/.local/easybuild/easyconfigs, so using it...
+== processing EasyBuild easyconfig /home/example/.local/easybuild/easyconfigs/s/SAMtools/SAMtools-1.10-GCC-9.3.0.eb
 == building and installing SAMtools/1.10-GCC-9.3.0...
 == fetching files...
 == creating build dir, resetting environment...
@@ -451,9 +451,9 @@ $ eb Bowtie2-2.4.1-GCC-9.3.0.eb -M
 $ eb Bowtie2-2.4.1-GCC-9.3.0.eb   
 ...
 == preparing...
-== FAILED: Installation ended unsuccessfully (build directory: /dev/shm/example/Bowtie2/2.4.1/GCC-9.3.0): build failed (first 300 chars): Missing modules for dependencies (use --robot?): tbb/2020.1-GCCcore-9.3.0 (took 1 min 57 sec)
+== FAILED: Installation ended unsuccessfully (build directory: /tmp/example/Bowtie2/2.4.1/GCC-9.3.0): build failed (first 300 chars): Missing modules for dependencies (use --robot?): tbb/2020.1-GCCcore-9.3.0 (took 1 min 57 sec)
 == Results of the build can be found in the log file(s) /tmp/eb-x5ik_8b5/easybuild-Bowtie2-2.4.1-20200610.200056.qfgfI.log
-ERROR: Build of /easybuild/software/EasyBuild/4.2.1/easybuild/easyconfigs/b/Bowtie2/Bowtie2-2.4.1-GCC-9.3.0.eb failed (err: 'build failed (first 300 chars): Missing modules for dependencies (use --robot?): tbb/2020.1-GCCcore-9.3.0')
+ERROR: Build of /home/example/.local/easybuild/easyconfigs/b/Bowtie2/Bowtie2-2.4.1-GCC-9.3.0.eb failed (err: 'build failed (first 300 chars): Missing modules for dependencies (use --robot?): tbb/2020.1-GCCcore-9.3.0')
 ```
 
 Oh my, what's this all about?
@@ -476,11 +476,11 @@ $ eb Bowtie2-2.4.1-GCC-9.3.0.eb --robot
 ...
 == building and installing tbb/2020.1-GCCcore-9.3.0...
 ...
-== COMPLETED: Installation ended successfully (took 7 sec)
+== COMPLETED: Installation ended successfully (took 1 min 4 sec)
 ...
 == building and installing Bowtie2/2.4.1-GCC-9.3.0...
 ...
-== COMPLETED: Installation ended successfully (took 1 min 4 sec)
+== COMPLETED: Installation ended successfully (took 6 min 39 sec)
 ...
 == Build succeeded for 2 out of 2
 ```
@@ -508,7 +508,7 @@ $ eb Bowtie2-2.4.1-GCC-9.3.0.eb --rebuild
 == building...
   >> running command:
         [started at: 2020-06-10 20:22:13]
-        [working dir: /dev/shm/example/Bowtie2/2.4.1/GCC-9.3.0/bowtie2-2.4.1]
+        [working dir: /tmp/example/Bowtie2/2.4.1/GCC-9.3.0/bowtie2-2.4.1]
         [output logged in /tmp/eb-jx1khbgf/easybuild-run_cmd-frodru6e.log]
         make -j 4  CC="gcc"  CPP="g++" CXX="g++"  RELEASE_FLAGS="-O2 -ftree-vectorize -march=native -fno-math-errno -fPIC -std=gnu++98"
   >> command completed: exit 0, ran in 00h01m03s
@@ -581,7 +581,7 @@ sourcepath     (E) = /home/example/easybuild/sources
 So, what's in this directory?
 
 ```shell
-$ ls -l /tmp/example/isc20/easybuild        
+$ ls -l $HOME/easybuild
 total 16
 drwxrwxr-x 5 example example 4096 Jun 10 20:11 ebfiles_repo
 drwxrwxr-x 5 example example 4096 Jun 10 20:10 modules
@@ -595,7 +595,7 @@ settings, respectively. The `modules` and `software` directories are what we nee
 The `modules` subdirectory consists of multiple subdirectories:
 
 ```shell
-$ ls /home/example/easybuild/modules
+$ ls $HOME/easybuild/modules
 all  bio  lib
 ```
 
@@ -607,7 +607,7 @@ We'll ignore these separate category directories for now.
 Let's inform the modules tool about the existence of these module files using `"module use"`:
 
 ```shell
-module use /home/example/easybuild/modules/all
+module use $HOME/easybuild/modules/all
 ```
 
 This command does little more that updating the `$MODULEPATH` environment variable,
@@ -619,8 +619,8 @@ Now the modules tool should be aware of our brand new installations:
 $ module avail
 
 ------------ /home/example/easybuild/modules/all ------------
-   Bowtie2/2.4.1-GCC-9.3.0    SAMtools/1.10-GCC-9.3.0
-   tbb/2020.1-GCCcore-9.3.0
+   Bowtie2/2.4.1-GCC-9.3.0    tbb/2020.1-GCCcore-9.3.0
+   SAMtools/1.10-GCC-9.3.0
 
 ------------------- /easybuild/modules/all -------------------
     ...
@@ -634,8 +634,7 @@ Let's test this for Bowtie2. In our current environment, the `bowtie2` command i
 
 ```shell
 $ module list
-Currently Loaded Modules:
-  1) EasyBuild/4.2.1
+No modules loaded
 
 $ bowtie2
 bash: bowtie2: command not found
@@ -648,10 +647,12 @@ $ module load Bowtie2/2.4.1-GCC-9.3.0
 
 $ module list
 Currently Loaded Modules:
-  1) EasyBuild/4.2.1                 5) GCC/9.3.0
-  2) GCCcore/9.3.0                   6) tbb/2020.1-GCCcore-9.3.0
-  3) zlib/1.2.11-GCCcore-9.3.0       7) Bowtie2/2.4.1-GCC-9.3.0
-  4) binutils/2.34-GCCcore-9.3.0
+  1) GCCcore/9.3.0
+  2) zlib/1.2.11-GCCcore-9.3.0
+  3) binutils/2.34-GCCcore-9.3.0
+  4) GCC/9.3.0
+  5) tbb/2020.1-GCCcore-9.3.0
+  6) Bowtie2/2.4.1-GCC-9.3.0
 
 $ bowtie2 --version
 /home/example/easybuild/software/Bowtie2/2.4.1-GCC-9.3.0/bin/bowtie2-align-s version 2.4.1
@@ -738,7 +739,7 @@ See if EasyBuild provides any easyconfig files for installing GROMACS version 20
     To check for available easyconfig files, we can use `eb --search` or `eb -S`:
     ```shell
     $ eb -S gromacs-2019.4
-    CFGS1=/easybuild/software/EasyBuild/4.2.1/easybuild/easyconfigs/g/GROMACS
+    CFGS1=/home/example/.local/easybuild/easyconfigs/g/GROMACS
      * $CFGS1/GROMACS-2019.4-foss-2019b.eb
     ```
 
@@ -752,7 +753,7 @@ Check which dependencies are missing to install PETSc version 3.12.4 with the `2
     First, we need to determine the name of the easyconfig file for PETSc version 3.12.4:
     ```shell
     $ eb -S 'PETSc-3.12.4.*foss-2020a'
-    CFGS1=/easybuild/software/EasyBuild/4.2.1/easybuild/easyconfigs/p/PETSc
+    CFGS1=/home/example/.local/easybuild/easyconfigs/p/PETSc
      * $CFGS1/PETSc-3.12.4-foss-2020a-Python-3.8.2.e
     ```
 
@@ -792,9 +793,9 @@ Also, which binaries will EasyBuild check for to sanity check the installation?
     [install_step method]
       >> running command:
             [started at: 2020-06-10 21:38:14]
-            [working dir: /tmp/eb-u3gkcgvv/__ROOT__/dev/shm/example/GSL/2.6/GCC-9.3.0/GSL-2.6]mp/eb-u3gkcgvv/easybuild-run_cmd-7cl9s7xi.log]e install
+            [working dir: /tmp/eb-u3gkcgvv/__ROOT__/tmp/example/GSL/2.6/GCC-9.3.0/GSL-2.6]mp/eb-u3gkcgvv/easybuild-run_cmd-7cl9s7xi.log]e install
       running command "make install"
-      (in /dev/shm/example/GSL/2.6/GCC-9.3.0/GSL-2.6)
+      (in /tmp/example/GSL/2.6/GCC-9.3.0/GSL-2.6)
     ```
 
     The output for the sanity check step shows which binaries are expected to be installed:
@@ -819,7 +820,7 @@ Enable trace output so you can see which parts of the installation take a while.
     First, determine the easyconfig file we can use for this:
     ```shell
     $ eb -S 'h5py.*Python-3.8.2'
-    CFGS1=/easybuild/software/EasyBuild/4.2.1/easybuild/easyconfigs/h/h5py
+    CFGS1=/home/example/.local/easybuild/easyconfigs/h/h5py
     * $CFGS1/h5py-2.10.0-foss-2020a-Python-3.8.2.eb
     ```
 
@@ -851,12 +852,12 @@ Enable trace output so you can see which parts of the installation take a while.
     == building...
       >> running command:
             [started at: 2020-06-10 21:47:32]
-            [working dir: /dev/shm/example/h5py/2.10.0/foss-2020a-Python-3.8.2/h5py-2.10.0]
+            [working dir: /tmp/example/h5py/2.10.0/foss-2020a-Python-3.8.2/h5py-2.10.0]
             [output logged in /tmp/eb-rjjkbqe1/easybuild-run_cmd-d_dkc4iz.log]  
             python setup.py configure --mpi --hdf5=$EBROOTHDF5 && /easybuild/software/Python/3.8.2-GCCcore-9.3.0/bin/python setup.py build
       >> command completed: exit 0, ran in 00h01m27s
     ...
-    == COMPLETED: Installation ended successfully (took 1 min 34 sec)
+    == COMPLETED: Installation ended successfully (took 2 min 46 sec)
     ...
     == Build succeeded for 2 out of 2
     ```

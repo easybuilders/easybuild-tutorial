@@ -7,26 +7,25 @@ theme:
   logo: img/easybuild_logo.png
   features:
       - instant
-      - tabs
 repo_name: EasyBuild @ GitHub
 repo_url: https://github.com/easybuilders
 edit_uri: easybuild-tutorial/edit/master/docs
 nav:
-  - "": index.md
-  - 0. Practical information: practical_information/README.md
-  - 1. Introduction: introduction/README.md
-  - 2. Installation: installation/README.md
-  - 3. Configuration: configuration/README.md
-  - 4. Basic usage: basic_usage/README.md
-  - 5. Troubleshooting: troubleshooting/README.md
-  - 6. Hierarchical module naming schemes: hmns/README.md
-  - 7. Adding support for additional software: adding_support_software/README.md
-  - 8. EasyBuild at Jülich Supercomputing Centre: jsc/README.md
-  - 9. EasyBuild at Compute Canada: computecanada/README.md
-  - 10. The EasyBuild Community: community/README.md
-  - 11. Contributing to EasyBuild: contributing/README.md
-  - 12. Comparison with other tools: comparison_other_tools/README.md
-  - 13. Getting help: getting_help/README.md
+  - "Home": index.md
+  - Practical information: practical_information/README.md
+  - Introduction: introduction/README.md
+  - Installation: installation/README.md
+  - Configuration: configuration/README.md
+  - Basic usage: basic_usage/README.md
+  - Troubleshooting: troubleshooting/README.md
+  - Hierarchical module naming schemes: hmns/README.md
+  - Adding support for additional software: adding_support_software/README.md
+  - EasyBuild at Jülich Supercomputing Centre: jsc/README.md
+  - EasyBuild at Compute Canada: computecanada/README.md
+  - The EasyBuild Community: community/README.md
+  - Contributing to EasyBuild: contributing/README.md
+  - Comparison with other tools: comparison_other_tools/README.md
+  - Getting help: getting_help/README.md
 plugins:
   # show revision date at bottom of each page
   - git-revision-date-localized
