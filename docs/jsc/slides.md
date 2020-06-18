@@ -16,6 +16,7 @@
 
 @ul[list-fade-fragments]
 * Geared toward *normal* user experience
+  @ul[list-fade-fragments](false)
   - Hide lots of indirect software
   - Hierarchy
   - Renaming some modules, lmod tweaks
