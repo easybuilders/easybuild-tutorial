@@ -1,7 +1,3 @@
-<!---
-When including images from repo, you must use the path relative to the root directory 
--->
-
 ---?image=docs/img/jsc.jpg&position=right&size=15% auto
 
 ### Jülich Supercomputing Centre (JSC)
