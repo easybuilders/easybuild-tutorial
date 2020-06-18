@@ -173,7 +173,7 @@ we want them to only be exposed to the latest software with the
 latest compilers. For this reason, we have chosen six months
 as our upgrade period and we chose to retire outdated software
 versions with the same frequency. We call these software
-upgrades *stages*. For each *stage*, we select the toolchains that
+upgrades `stage`s. For each `stage`, we select the toolchains that
 we will support and rebuild the latest versions of our supported
 software with these toolchains. We chose a prototype toolchain
 as a template and, once fully populated, migrate the changes
@@ -182,22 +182,22 @@ to our other toolchains.
 We expect members of the support team to contribute to
 software installations since it is common that application
 software requires specific knowledge to be installed and tested
-appropriately. We provide a special development *stage* with the
+appropriately. We provide a special development `stage` with the
 latest toolchains for the support team where they can prepare
 their easyconfig files for inclusion in the upgrade. Once a
 software package has been successfully built and tested, it is
-added to a *Golden* repository to be used for the *stage* upgrade.
+added to a *Golden* repository to be used for the `stage` upgrade.
 
-The default *stage* visible to users is controlled by a symbolic
-link. *Stage* upgrades are prepared in a separate environment
+The default `stage` visible to users is controlled by a symbolic
+link. `stage` upgrades are prepared in a separate environment
 to this default. Once the upgrade has been implemented, users
 are given three weeks notice and the symbolic link is updated
 during a maintenance window. Users are provided with the
-capability of continuing to use a retired *stage* if they wish
+capability of continuing to use a retired `stage` if they wish
 to do so. However, additional software requests are (typically)
-only accepted for the current default *stage*.
+only accepted for the current default `stage`.
 
-While *stage* upgrades may introduce some overhead for
+While `stage` upgrades may introduce some overhead for
 existing users (they may need to recompile their code and
 modules may be named differently in particular cases), there
 are clear benefits to using the latest compilers and software
