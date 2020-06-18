@@ -1,6 +1,6 @@
-### Jülich Supercomputing Centre (JSC)
+---?image=docs/img/jsc.jpg&position=right&size=20% auto
 
-<img src="docs/img/jsc.jpg" width="40%"/>
+### Jülich Supercomputing Centre (JSC)
 
 * JSC is a German supercomputing centre since 1987
 
