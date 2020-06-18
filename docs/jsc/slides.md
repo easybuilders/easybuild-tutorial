@@ -1,9 +1,10 @@
 ---?image=docs/img/jsc.jpg&position=right&size=15% auto
 
 ### Jülich Supercomputing Centre
-@ul[list-fade-fragments]
+@ul
 * JSC is a German supercomputing centre since 1987
   - About 200 experts for all aspects of supercomputing and simulation sciences
+
 * 3 primary systems at the moment
   - JUWELS - modular supercomputing architecture, will reach 70 petaflops in 2020
   - JURECA - CPU, GPU and KNL. To be replaced by successor in 2020
@@ -14,13 +15,11 @@
 
 ### EasyBuild at JSC
 
-@ul[list-fade-fragments]
+@ul
 * Geared toward *normal* user experience
-  @ul[list-fade-fragments]
   - Hide lots of indirect software
   - Hierarchy
   - Renaming some modules, lmod tweaks
-  @ulend
 * Custom mns, toolchains, easyconfigs, easyblocks
   - Maintenance and contribution issue
   - Working hard to remove this where possible
@@ -30,7 +29,7 @@
 
 ### Leveraging hooks for user support
 
-@ul[list-fade-fragments]
+@ul
 * Very powerful alternative to customisations
   - Much more automated and flexible
   - Easier to maintain
@@ -42,7 +41,7 @@
 
 ### Upgrading and retiring software
 
-@ul[list-fade-fragments]
+@ul
 * Provide latest software to new projects by default
   - ***stages*** concept
   - Updates twice per year
