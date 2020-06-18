@@ -109,7 +109,7 @@ etc.). Arising from this and the
 custom toolchains that we use, we maintain our own reference easyconfig repository (our
 *Golden* repository).
 
-We are actively trying to minimise the differences between the two (see our
+We are actively trying to minimize the differences between the two (see our
 [usage of hooks for easybuild](#usage-of-hooks) below) as we recognise that this
 introduces an additional maintenance burden for us, and inhibits our ability to
 easily contribute back our easyconfigs to EasyBuild.
