@@ -16,10 +16,11 @@
 
 @ul[list-fade-fragments]
 * Geared toward *normal* user experience
-  @ul[list-fade-fragments](false)
+  @ul[list-fade-fragments]
   - Hide lots of indirect software
   - Hierarchy
   - Renaming some modules, lmod tweaks
+  @ulend
 * Custom mns, toolchains, easyconfigs, easyblocks
   - Maintenance and contribution issue
   - Working hard to remove this where possible
