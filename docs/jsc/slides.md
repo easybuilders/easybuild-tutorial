@@ -2,39 +2,48 @@
 
 ### Jülich Supercomputing Centre
 @ul[list-hide-fragments]
-* JSC is a German supercomputing centre since 1987
-  - About 200 experts for all aspects of supercomputing and simulation sciences
+JSC is a German supercomputing centre since 1987
+@ul[list-hide-fragments]
+- About 200 experts for all aspects of supercomputing and simulation sciences
+@ulend
 
-* 3 primary systems at the moment
-  - JUWELS - modular supercomputing architecture, will reach 70 petaflops in 2020
-  - JURECA - CPU, GPU and KNL. To be replaced by successor in 2020
-  - JUWELS - AMD, V100 GPU. Geared towards interactive workflows and community services
+We have 3 primary systems at the moment
+@ul[list-hide-fragments]
+- JUWELS - modular supercomputing architecture, will reach 70 petaflops in 2020
+- JURECA - CPU, GPU and KNL. To be replaced by successor in 2020
+- JUWELS - AMD, V100 GPU. Geared towards interactive workflows and community services
 @ulend
   
 ---?image=docs/img/jsc.jpg&position=right&size=15% auto
 
 ### EasyBuild at JSC
 
+Geared toward *average* user experience
 @ul[list-hide-fragments]
-* Geared toward *normal* user experience
-  - Hide lots of indirect software
-  - Hierarchy
-  - Renaming some modules, lmod tweaks
-* Custom mns, toolchains, easyconfigs, easyblocks
-  - Maintenance and contribution issue
-  - Working hard to remove this where possible
+- Hide lots of indirect software
+- Hierarchy
+- Renaming some modules, lmod tweaks
+@ulend
+
+Custom mns, toolchains, easyconfigs, easyblocks
+@ul[list-hide-fragments]
+- Maintenance and contribution issue
+- Working hard to remove this where possible
 @ulend
 
 ---?image=docs/img/jsc.jpg&position=right&size=15% auto
 
 ### Leveraging hooks for user support
 
+Very powerful alternative to customisations
 @ul[list-hide-fragments]
-* Very powerful alternative to customisations
-  - Much more automated and flexible
-  - Easier to maintain
-* Enable user space installations
-  - *Guide* people on how to do this properly
+- Much more automated and flexible
+- Easier to maintain
+@ulend
+
+Enable user space installations
+@ul[list-hide-fragments]
+- Can be leveraged to *guide* people on how to do this properly
 @ulend
 
 ---?image=docs/img/jsc.jpg&position=right&size=15% auto
