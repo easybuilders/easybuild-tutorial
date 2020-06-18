@@ -17,15 +17,12 @@
 
 @ul[list-spaced-bullets]
 * Geared toward *normal* user experience
-  @ul[text-gray]
   * Hide lots of indirect software
   * Hierarchy
   * Renaming some modules, lmod tweaks
 * Custom mns, toolchains, easyconfigs, easyblocks
-  @ul[text-gray]
   * Maintenance and contribution issue
   * Working hard to remove this where possible
-  @ulend
 @ulend
 
 ---?image=docs/img/jsc.jpg&position=right&size=15% auto
