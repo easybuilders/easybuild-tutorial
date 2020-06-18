@@ -5,7 +5,7 @@
 
 # Welcome to the official EasyBuild tutorial!
 
-<p align="center"><img src="https://boegel.github.io/easybuild-tutorial/img/easybuild_logo_alpha.png" alt="EasyBuild logo" width="300px"/></p>
+<p align="center"><img src="https://easybuilders.github.io/easybuild-tutorial/img/easybuild_logo_alpha.png" alt="EasyBuild logo" width="300px"/></p>
 
 
 ---

@@ -40,7 +40,7 @@ The typical module hierarchy has 3 levels:
 
 Here is a simple example of such a 3-level module hierarchy:
 
-<div align="center"><img src="https://boegel.github.io/easybuild-tutorial/img/hmns.png" width="400px"/></div>
+<div align="center"><img src="https://easybuilders.github.io/easybuild-tutorial/img/hmns.png" width="400px"/></div>
 
 In this example the core level only includes a single module `GCC/9.3.0`,
 while  the compiler level includes two modules: `OpenMPI/4.0.3` and `MPICH/3.3.2`. 
