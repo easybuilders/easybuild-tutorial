@@ -266,6 +266,19 @@
     Using Docker
   </a>
   
+    <nav class="md-nav" aria-label="Using Docker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-and-cgroups-v2" class="md-nav__link">
+    Docker and cgroups v2
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -543,6 +556,19 @@
     Using Docker
   </a>
   
+    <nav class="md-nav" aria-label="Using Docker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-and-cgroups-v2" class="md-nav__link">
+    Docker and cgroups v2
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -650,6 +676,18 @@ run the following <code>docker</code> command:</p>
 <div class="highlight"><pre><span></span><code>docker run -ti --hostname tutorial --rm easybuilders/tutorial:isc20-haswell
 </code></pre></div>
 
+<h5 id="docker-and-cgroups-v2">Docker and cgroups v2<a class="headerlink" href="#docker-and-cgroups-v2" title="Permanent link">&para;</a></h5>
+<p>If you are using a recent Linux distribution that has switched to cgroups v2
+ (e.g. <a href="https://www.redhat.com/sysadmin/fedora-31-control-group-v2">Fedora &gt;= 31</a>), docker will fail with</p>
+<div class="highlight"><pre><span></span><code>OCI runtime create failed: this version of runc doesn&#39;t work on cgroups v2
+</code></pre></div>
+
+<p>since it is not yet compatible with cgroups v2. Possible workarounds include:</p>
+<ul>
+<li>reverting to cgroups v1 (it can be done via the kernel command-line argument <code>systemd.unified_cgroup_hierarchy=0</code>),</li>
+<li>using <a href="https://podman.io/">Podman</a> instead, which implements the docker CLI,</li>
+</ul>
+<p>or using Singulary.</p>
 <h4 id="using-singularity">Using Singularity<a class="headerlink" href="#using-singularity" title="Permanent link">&para;</a></h4>
 <p><em>(not available in AWS environment)</em></p>
 <p>To use the prepared container image via Singularity,
@@ -731,7 +769,7 @@ with the pre-installed software stack, and you will have to use another system t
 <div class="md-source-date">
   <small>
     
-      Last update: June 13, 2020
+      Last update: June 17, 2020
     
   </small>
 </div>
