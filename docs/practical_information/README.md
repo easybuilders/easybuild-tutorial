@@ -73,10 +73,9 @@ OCI runtime create failed: this version of runc doesn't work on cgroups v2
 
 since it is not yet compatible with cgroups v2. Possible workarounds include:
 
-* reverting to cgroups v1 (it can be done via the kernel command-line argument `systemd.unified_cgroup_hierarchy=0`),
-* using [Podman](https://podman.io/) instead, which implements the docker CLI,
-
-or using Singulary.
+* reverting to cgroups v1 (it can be done via the kernel command-line argument `systemd.unified_cgroup_hierarchy=0`);
+* using [Podman](https://podman.io/) instead, which implements the docker CLI;
+* using Singularity instead (see below);
 
 #### Using Singularity
 
