@@ -9,7 +9,7 @@ that manages (scientific) software in an efficient way, without compromises on p
 
 ### *Elevator pitch*
 
-<a href="http://geek-and-poke.com/geekandpoke/2010/5/14/how-to-become-invaluable.html"><img src="https://easybuilders.github.io/easybuild-tutorial/img/geek-and-poke-invaluable.png" style="float:right" width="350px"/></a>
+<a href="http://geek-and-poke.com/geekandpoke/2010/5/14/how-to-become-invaluable.html"><img src="img/geek-and-poke-invaluable.png" style="float:right" width="350px"/></a>
 
 EasyBuild intends to relieve HPC support teams from manually managing
 software installations while at the same time **providing a consistent and well performing
@@ -66,7 +66,7 @@ You may, and probably will still occasionally, run into compiler errors unless s
 
 ### *Implementation*
 
-<img src="https://easybuilders.github.io/easybuild-tutorial/img/Python-logo.png" style="border-right: 20px solid white;border-top: 5px solid white; float:left" width="80px"/>
+<img src="img/Python-logo.png" style="border-right: 20px solid white;border-top: 5px solid white; float:left" width="80px"/>
 
 
 EasyBuild is **implemented in [Python](https://www.python.org/)**, and fully supports both Python 2.7 and 3.5+.
