@@ -29,7 +29,7 @@ In cooperation with hardware and software vendors like IBM, Intel and ParTec,
 JSC meets the challenges that arise from the development of exaflop systems - the
 computers of the next supercomputer generation. As a member of the German Gauss Centre
 for Supercomputing, JSC has also coordinated the construction
-of the European reseach infrastructure "PRACE - Partnership for Advanced Computing in
+of the European research infrastructure "PRACE - Partnership for Advanced Computing in
 Europe" since 2008.
 
 ### Resources
@@ -109,7 +109,7 @@ etc.). Arising from this and the
 custom toolchains that we use, we maintain our own reference easyconfig repository (our
 *Golden* repository).
 
-We are actively trying to minimize the differences between the two (see our
+We are actively trying to minimise the differences between the two (see our
 [usage of hooks for easybuild](#usage-of-hooks) below) as we recognise that this
 introduces an additional maintenance burden for us, and inhibits our ability to
 easily contribute back our easyconfigs to EasyBuild.
