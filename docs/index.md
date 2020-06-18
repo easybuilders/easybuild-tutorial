@@ -84,6 +84,7 @@ Please see [this page](practical_information/README.md) for more details.
 
 * Maxime Boissonneault ([`@mboisson`](https://github.com/mboisson), [Compute Canada](https://www.computecanada.ca))
 * Miguel Dias Costa ([`@migueldiascosta`](https://github.com/migueldiascosta), [National University of Singapore](https://nusit.nus.edu.sg/hpc/))
+* Markus Geimer ([`@geimer`](https://github.com/geimer), [Jülich Supercomputing Centre, Germany](https://www.fz-juelich.de/ias/jsc/EN/Home/home_node.html))
 * Kenneth Hoste ([`@boegel`](https://github.com/boegel), [HPC-UGent, Belgium](https://www.ugent.be/hpc/en))
 * Michael Kelsey ([`@kelseymh`](https://github.com/kelseymh), [Texas A&M University, US](https://hprc.tamu.edu/))
 * Christian Kniep ([`@ChristianKniep`](https://github.com/ChristianKniep), [AWS](https://aws.amazon.com))
