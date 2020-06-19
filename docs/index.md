@@ -75,7 +75,7 @@ Please see [this page](practical_information/README.md) for more details.
 *  [EasyBuild at Jülich Supercomputing Centre](jsc/README.md)
 *  [EasyBuild at Compute Canada](computecanada/README.md)
 *  [The EasyBuild Community](community/README.md)
-*  [Contributing to EasyBuild](contributing/README.md) ``(*)``
+*  [Contributing to EasyBuild](contributing/README.md)
 *  [Comparison with other tools](comparison_other_tools/README.md)
 *  [Getting help](getting_help/README.md)
 
