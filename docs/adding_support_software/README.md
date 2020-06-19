@@ -542,6 +542,6 @@ Please also take this into account:
       template value.
 
     * A good way to check whether the `py-eb-tutorial` command works correctly is by running it as a sanity check
-      command. If the `eb-tutorial` dependency is not included as a depedency the sanity check will fail,
+      command. If the `eb-tutorial` dependency is not included as a dependency the sanity check will fail,
       since the `py-eb-tutorial` command basically just runs the `eb-tutorial` command.
 
