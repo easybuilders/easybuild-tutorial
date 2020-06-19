@@ -89,6 +89,15 @@ b93ec9ec5f20: Waiting
 8ee47766d1ab: Waiting
 ```
 
+followed by:
+
+```
+...
+8ee47766d1ab: Pull complete 
+Digest: sha256:25edb356623dde212b256ef23ae17d2b1dc68921094a9c752eac460c78ba9b4c
+Status: Downloaded newer image for easybuilders/tutorial:isc20
+```
+
 After this, you should see the [welcome message](#welcome-message).
 
 ***Docker and cgroups v2***
@@ -234,3 +243,6 @@ If the last command prints a Python version (like `Python 3.8.2`), then your hos
 
 If you see a message like "`Illegal instruction (core dumped)`", the processor in your system is *not* compatible
 with the pre-installed software stack, and you will have to use another system to participate in the tutorial.
+
+After running this test, you should reset your environment by running "`module purge`", since most of the
+exercises assume you are starting from a clean environment.
