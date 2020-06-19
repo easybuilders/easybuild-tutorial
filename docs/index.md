@@ -1,7 +1,8 @@
 !!! warning
-    *(Apr 19th 2020)*<br/>
-    **This is very much a work in progress!**<br/>
-    Many pages are still empty, that will hopefully change soon...
+    *(June 19th 2020)*<br/>
+    **This tutorial is still being prepared, we hope to finish it soon.**<br/>
+    By Tue June 23rd 2020 it should be fully ready for consumption,
+    see also https://github.com/easybuilders/easybuild/wiki/EasyBuild-tutorial.<br/>
 
 # Welcome to the official EasyBuild tutorial!
 
