@@ -266,45 +266,12 @@
     Using Docker
   </a>
   
-    <nav class="md-nav" aria-label="Using Docker">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#docker-and-cgroups-v2" class="md-nav__link">
-    Docker and cgroups v2
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
   <a href="#using-singularity" class="md-nav__link">
     Using Singularity
   </a>
-  
-    <nav class="md-nav" aria-label="Using Singularity">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#singularity-cache" class="md-nav__link">
-    Singularity cache
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#warning-messages" class="md-nav__link">
-    Warning messages
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -556,45 +523,12 @@
     Using Docker
   </a>
   
-    <nav class="md-nav" aria-label="Using Docker">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#docker-and-cgroups-v2" class="md-nav__link">
-    Docker and cgroups v2
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
   <a href="#using-singularity" class="md-nav__link">
     Using Singularity
   </a>
-  
-    <nav class="md-nav" aria-label="Using Singularity">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#singularity-cache" class="md-nav__link">
-    Singularity cache
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#warning-messages" class="md-nav__link">
-    Warning messages
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -666,17 +600,48 @@ EasyBuild, which will come in useful for some of the exercises.</p>
 <li>having Docker or Singularity installed</li>
 <li>a system with a processor supporting the AVX2 instruction set. AVX2 is supported by Intel Haswell or AMD Bulldozer (both released in 2012) and onwards.</li>
 </ul>
-<p>If you are in doubt about your systems compatibility, see "Testing host compatibility" at the end of this document.</p>
+<p>If you are in doubt about your systems compatibility, see <a href="#testing-host-compatibility">Testing host compatibility</a> at the end of this document.</p>
 <h4 id="container-size">Container size<a class="headerlink" href="#container-size" title="Permanent link">&para;</a></h4>
 <p>The compressed container image is about 1.25GB in size,
 and will be downloaded automatically from Docker Hub when you run the <code>docker</code> or <code>singularity</code> command shown below.</p>
 <h4 id="using-docker">Using Docker<a class="headerlink" href="#using-docker" title="Permanent link">&para;</a></h4>
 <p>If you want to use the prepared container image via Docker,
 run the following <code>docker</code> command:</p>
-<div class="highlight"><pre><span></span><code>docker run -ti --hostname tutorial --rm easybuilders/tutorial:isc20-haswell
+<div class="highlight"><pre><span></span><code>docker run -ti --hostname tutorial --rm easybuilders/tutorial:isc20
 </code></pre></div>
 
-<h5 id="docker-and-cgroups-v2">Docker and cgroups v2<a class="headerlink" href="#docker-and-cgroups-v2" title="Permanent link">&para;</a></h5>
+<p><strong><em>Output</em></strong></p>
+<p>When running the "<code>docker run</code>" command shown above, you should see output like is shown below
+showing that the different layers are being downloaded.</p>
+<p><strong>Take into account that it will take a while for the container image to be downloaded.</strong></p>
+<div class="highlight"><pre><span></span><code>Unable to find image &#39;easybuilders/tutorial:isc20&#39; locally
+isc20: Pulling from easybuilders/tutorial
+9b4ebb48de8d: Pull complete
+f1933cd5add8: Downloading  73.48MB/125.9MB
+7bd84e6bca4a: Download complete 
+0a4ea0f4d48f: Download complete 
+503478215221: Download complete 
+c92d5dd0b39f: Download complete 
+f968b6fd8043: Download complete 
+5bf43b832c15: Download complete 
+0545f7354a51: Downloading  30.56MB/534.8MB
+d1a244ce82da: Waiting 
+c14d5fe9b1e6: Waiting 
+b93ec9ec5f20: Waiting
+239fd4ac6c1a: Waiting 
+9f7279164d6c: Waiting 
+8ee47766d1ab: Waiting
+</code></pre></div>
+
+<p>followed by:</p>
+<div class="highlight"><pre><span></span><code>...
+8ee47766d1ab: Pull complete 
+Digest: sha256:25edb356623dde212b256ef23ae17d2b1dc68921094a9c752eac460c78ba9b4c
+Status: Downloaded newer image for easybuilders/tutorial:isc20
+</code></pre></div>
+
+<p>After this, you should see the <a href="#welcome-message">welcome message</a>.</p>
+<p><strong><em>Docker and cgroups v2</em></strong></p>
 <p>If you are using a recent Linux distribution that has switched to cgroups v2
  (e.g. <a href="https://www.redhat.com/sysadmin/fedora-31-control-group-v2">Fedora &gt;= 31</a>), docker will fail with</p>
 <div class="highlight"><pre><span></span><code>OCI runtime create failed: this version of runc doesn&#39;t work on cgroups v2
@@ -693,7 +658,7 @@ run the following <code>docker</code> command:</p>
 <p>To use the prepared container image via Singularity,
 run the following <code>singularity</code> command:</p>
 <div class="highlight"><pre><span></span><code>mkdir -p /tmp/<span class="nv">$USER</span>/isc20
-singularity run --cleanenv --home /tmp/<span class="nv">$USER</span>/isc20 docker://easybuilders/tutorial:isc20-haswell
+singularity run --cleanenv --home /tmp/<span class="nv">$USER</span>/isc20 docker://easybuilders/tutorial:isc20
 </code></pre></div>
 
 <p>The additional options are required to:</p>
@@ -703,7 +668,36 @@ singularity run --cleanenv --home /tmp/<span class="nv">$USER</span>/isc20 docke
 </ul>
 <p>This is mainly to avoid that anything from the host environment or your home directory "leaks" into
 the container, which could interfere with the hands-on exercises.</p>
-<h5 id="singularity-cache">Singularity cache<a class="headerlink" href="#singularity-cache" title="Permanent link">&para;</a></h5>
+<p><strong><em>Output</em></strong></p>
+<p>When running the "<code>singularity run</code>" command shown above, you should see output like is shown below.</p>
+<p><strong>Take into account that it will take a while for the container image to be downloaded.</strong></p>
+<div class="highlight"><pre><span></span><code>INFO:    Converting OCI blobs to SIF format
+INFO:    Starting build...
+Getting image source signatures
+Copying blob 9b4ebb48de8d done
+Copying blob f1933cd5add8 done
+Copying blob 7bd84e6bca4a done
+Copying blob 0a4ea0f4d48f done
+Copying blob 503478215221 done
+Copying blob c92d5dd0b39f done
+Copying blob f968b6fd8043 done
+Copying blob 5bf43b832c15 done
+Copying blob 0545f7354a51 done
+Copying blob d1a244ce82da done
+Copying blob c14d5fe9b1e6 done
+Copying blob b93ec9ec5f20 done
+Copying blob 239fd4ac6c1a done
+Copying blob 9f7279164d6c done
+Copying blob 8ee47766d1ab done
+Copying config 717b13fece done
+Writing manifest to image destination
+Storing signatures
+...
+INFO:    Creating SIF file...
+</code></pre></div>
+
+<p>After this, you should see the <a href="#welcome-message">welcome message</a>.</p>
+<p><strong><em>Singularity cache</em></strong></p>
 <p>By default Singularity keeps its cache at <code>$HOME/.singularity/cache</code>.
 Since the uncompressed container image requires about 2.2GB of disk space,
 make sure this will work in your setup.</p>
@@ -713,7 +707,7 @@ to make Singulartiy use a different location:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">SINGULARITY_CACHEDIR</span><span class="o">=</span>/tmp/<span class="nv">$USER</span>/singularity
 </code></pre></div>
 
-<h5 id="warning-messages">Warning messages<a class="headerlink" href="#warning-messages" title="Permanent link">&para;</a></h5>
+<p><strong><em>Warning messages</em></strong></p>
 <p>When running the Docker container with Singularity, you may see a bunch of warning messages like
 this pass by:</p>
 <div class="highlight"><pre><span></span><code>warn rootless{path/to/file} ignoring (usually) harmless EPERM on setxattr &quot;user.rootlesscontainers&quot;
@@ -761,6 +755,8 @@ python -V
 <p>If the last command prints a Python version (like <code>Python 3.8.2</code>), then your host is compatible.</p>
 <p>If you see a message like "<code>Illegal instruction (core dumped)</code>", the processor in your system is <em>not</em> compatible
 with the pre-installed software stack, and you will have to use another system to participate in the tutorial.</p>
+<p>After running this test, you should reset your environment by running "<code>module purge</code>", since most of the
+exercises assume you are starting from a clean environment.</p>
                 
                   
                     
@@ -769,7 +765,7 @@ with the pre-installed software stack, and you will have to use another system t
 <div class="md-source-date">
   <small>
     
-      Last update: June 18, 2020
+      Last update: June 19, 2020
     
   </small>
 </div>
