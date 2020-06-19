@@ -288,7 +288,7 @@ buried some scientific software still requires it, and mixing modules where
 some use Python 2 and other use Python 3 doesn't work well.
 The `versionsuffix` label is helpful to inform the user that a particular Python version is required by the installation.
 
-#### Customizing configue, build, test and install commands
+#### Customizing configure, build, test and install commands
 
 When using a generic easyblock like `ConfigureMake` or `CMakeMake`, you will often
 find yourself having to specify options to the configure, build, test or install commands, or to inject additional commands right before them.
@@ -339,7 +339,7 @@ Here we are:
   (where the '`...`' again represents the path to installation directory).
   Even though the
   installation directory is already specified in the configure command, it is
-  apparently blatently ignored by the software we are installing here, and we are expected to specify it
+  apparently blatantly ignored by the software we are installing here, and we are expected to specify it
   this way instead. How rude!
 
 The `$EBROOTHDF5` environment variable we are using in `prebuildopts` corresponds to the path of
