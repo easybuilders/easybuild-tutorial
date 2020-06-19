@@ -79,7 +79,7 @@ some_deps/
 In this context, we run the following EasyBuild command from our home directory:
 
 ```shell
-eb bzip2-1.0.6.eb example1 $HOME/example2 deps
+eb bzip2-1.0.6.eb example1 $HOME/example2 some_deps
 ```
 
 EasyBuild will interpret each of these arguments as follows:

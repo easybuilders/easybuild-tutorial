@@ -1,3 +1,0 @@
-### Configuration
-
-*(coming soon)*
