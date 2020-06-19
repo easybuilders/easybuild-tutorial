@@ -9,11 +9,6 @@ tutorial**, see https://easybuilders.github.io/easybuild-tutorial.
 
 * [Markdown](https://daringfireball.net/projects/markdown) is used as syntax
 
-* presentation slides are also in Markdown, and use GitPitch
-
-  * see https://gitpitch.com/easybuilders/easybuild-tutorial?p=presentation
-
-
 ## Getting started
 
 This tutorial is rendered via [MkDocs](https://www.mkdocs.org/),

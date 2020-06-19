@@ -1,3 +1,0 @@
-### Troubleshooting
-
-In trouble, huh?
