@@ -46,7 +46,7 @@ The container is available through the [`easybuilders/tutorial` repository on Do
 * having Docker or Singularity installed
 * a system with a processor supporting the AVX2 instruction set. AVX2 is supported by Intel Haswell or AMD Bulldozer (both released in 2012) and onwards.
 
-If you are in doubt about your systems compatibility, see "Testing host compatibility" at the end of this document.
+If you are in doubt about your systems compatibility, see [Testing host compatibility](#testing-host-compatibility) at the end of this document.
 
 #### Container size
 
@@ -59,10 +59,39 @@ If you want to use the prepared container image via Docker,
 run the following `docker` command:
 
 ```
-docker run -ti --hostname tutorial --rm easybuilders/tutorial:isc20-haswell
+docker run -ti --hostname tutorial --rm easybuilders/tutorial:isc20
 ```
 
-##### Docker and cgroups v2
+***Output***
+
+When running the "`docker run`" command shown above, you should see output like is shown below
+showing that the different layers are being downloaded.
+
+**Take into account that it will take a while for the container image to be downloaded.**
+
+```
+Unable to find image 'easybuilders/tutorial:isc20' locally
+isc20: Pulling from easybuilders/tutorial
+9b4ebb48de8d: Pull complete
+f1933cd5add8: Downloading  73.48MB/125.9MB
+7bd84e6bca4a: Download complete 
+0a4ea0f4d48f: Download complete 
+503478215221: Download complete 
+c92d5dd0b39f: Download complete 
+f968b6fd8043: Download complete 
+5bf43b832c15: Download complete 
+0545f7354a51: Downloading  30.56MB/534.8MB
+d1a244ce82da: Waiting 
+c14d5fe9b1e6: Waiting 
+b93ec9ec5f20: Waiting
+239fd4ac6c1a: Waiting 
+9f7279164d6c: Waiting 
+8ee47766d1ab: Waiting
+```
+
+After this, you should see the [welcome message](#welcome-message).
+
+***Docker and cgroups v2***
 
 If you are using a recent Linux distribution that has switched to cgroups v2
  (e.g. [Fedora >= 31](https://www.redhat.com/sysadmin/fedora-31-control-group-v2)), docker will fail with
@@ -86,7 +115,7 @@ run the following `singularity` command:
 
 ```shell
 mkdir -p /tmp/$USER/isc20
-singularity run --cleanenv --home /tmp/$USER/isc20 docker://easybuilders/tutorial:isc20-haswell
+singularity run --cleanenv --home /tmp/$USER/isc20 docker://easybuilders/tutorial:isc20
 ```
 
 The additional options are required to:
@@ -97,7 +126,41 @@ The additional options are required to:
 This is mainly to avoid that anything from the host environment or your home directory "leaks" into
 the container, which could interfere with the hands-on exercises.
 
-##### Singularity cache
+***Output***
+
+When running the "`singularity run`" command shown above, you should see output like is shown below.
+
+**Take into account that it will take a while for the container image to be downloaded.**
+
+```
+INFO:    Converting OCI blobs to SIF format
+INFO:    Starting build...
+Getting image source signatures
+Copying blob 9b4ebb48de8d done
+Copying blob f1933cd5add8 done
+Copying blob 7bd84e6bca4a done
+Copying blob 0a4ea0f4d48f done
+Copying blob 503478215221 done
+Copying blob c92d5dd0b39f done
+Copying blob f968b6fd8043 done
+Copying blob 5bf43b832c15 done
+Copying blob 0545f7354a51 done
+Copying blob d1a244ce82da done
+Copying blob c14d5fe9b1e6 done
+Copying blob b93ec9ec5f20 done
+Copying blob 239fd4ac6c1a done
+Copying blob 9f7279164d6c done
+Copying blob 8ee47766d1ab done
+Copying config 717b13fece done
+Writing manifest to image destination
+Storing signatures
+...
+INFO:    Creating SIF file...
+```
+
+After this, you should see the [welcome message](#welcome-message).
+
+***Singularity cache***
 
 By default Singularity keeps its cache at `$HOME/.singularity/cache`.
 Since the uncompressed container image requires about 2.2GB of disk space,
@@ -111,7 +174,7 @@ to make Singulartiy use a different location:
 export SINGULARITY_CACHEDIR=/tmp/$USER/singularity
 ```
 
-##### Warning messages
+***Warning messages***
 
 When running the Docker container with Singularity, you may see a bunch of warning messages like
 this pass by:
