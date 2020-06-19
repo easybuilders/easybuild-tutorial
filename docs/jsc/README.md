@@ -1,17 +1,17 @@
-# Juelich Supercomputing Centre
+# Jülich Supercomputing Centre
 
-(*author: Alan O'Cais, Juelich Supercomputing Centre)*
+(*author: Alan O'Cais, Jülich Supercomputing Centre)*
 
 ## General info
 
 <img src="../img/jsc.jpg" style="float:right" width="40%"/>
 
-The Juelich Supercomputing Centre 
+The Jülich Supercomputing Centre
 (JSC, [https://www.fz-juelich.de/ias/jsc](https://www.fz-juelich.de/ias/jsc/EN)) at 
 Forschungszentrum Jülich has been operating the first German supercomputing centre since
 1987, and with the Jülich Institute for Advanced Simulation it is continuing the long
 tradition of scientific computing at Jülich. JSC operates one of the most powerful
-supercomputers in Europe, JUWELS and computing time at the highest performance
+supercomputers in Europe (JUWELS), and computing time at the highest performance
 level is made available to researchers in Germany and Europe by means of an independent
 peer-review process.
 
@@ -47,7 +47,7 @@ powerful supercomputer in Europe.
 
 [JURECA](https://www.fz-juelich.de/ias/jsc/EN/Expertise/Supercomputers/JURECA/Configuration/Configuration_node.html)
 is the precursor system to JUWELS with 1.8 (CPU) + 0.44 (GPU) + 5 (KNL) Petaflop per
-second peak performance. It is due to be decommissioned at the end of November. The
+second peak performance. It is due to be decommissioned at the end of November 2020. The
 technical details about the successor system, the JURECA DC (data centric) module,
 will be announced soon.
 
@@ -83,17 +83,16 @@ and mathematical libraries (`MKL`).
 
 Given the proliferation of toolchains required at our site, JSC has put a lot of effort
 into increasing the capabilities of the `--try-toolchain` option and has recently
-introduced the option
-`--try-update-deps` to more easily adopt upstream changes and adapt them to our
+introduced the `--try-update-deps` experimental option to more easily adopt upstream changes and adapt them to our
 environment. 
 
 ### Custom module naming scheme
 
 By default
-EasyBuild includes both the flat and hierarchical schemes
+EasyBuild includes both the flat and hierarchical module naming schemes
 and these can be leveraged as examples for custom schemes.
 JSC employs such a
-[custom scheme (based closely on the hierarchical
+[custom scheme (based closely on the standard hierarchical
 scheme)](https://github.com/easybuilders/JSC/blob/master/Custom_MNS/2019a/flexible_custom_hierarchical_mns.py)
 to control the exact structure of the
 hierarchy and the naming of some specific modules (such as
@@ -110,7 +109,7 @@ custom toolchains that we use, we maintain our own reference easyconfig reposito
 *Golden* repository).
 
 We are actively trying to minimise the differences between the two (see our
-[usage of hooks for easybuild](#usage-of-hooks) below) as we recognise that this
+[usage of hooks](#usage-of-hooks) below) as we recognise that this
 introduces an additional maintenance burden for us, and inhibits our ability to
 easily contribute back our easyconfigs to EasyBuild.
 
@@ -118,7 +117,7 @@ easily contribute back our easyconfigs to EasyBuild.
 
 While we provide an extensive set of software, we try to minimize the packages exposed
 to the users by hiding a large set of dependencies which users
-are unlikely to require directly (via the `hide-deps` option). There are currently
+are unlikely to require directly (via the `hide-deps` configuration setting). There are currently
 over 200 such hidden dependencies.  
 
 While hidden dependencies are not visible in the `module` view by default, users can
@@ -129,8 +128,8 @@ module --show-hidden avail
 
 ### Usage of hooks
 
-The relatively new (***hooks***](https://easybuild.readthedocs.io/en/latest/Hooks.html)
-feature of EasyBuild provides JSC with an opportunity to
+The relatively new [***hooks*** feature](https://easybuild.readthedocs.io/en/latest/Hooks.html)
+of EasyBuild provides JSC with an opportunity to
 track upstream developments more closely.
 
 We are currently integrating a new hook that provides a lot of useful functionality:
@@ -148,11 +147,11 @@ We are currently integrating a new hook that provides a lot of useful functional
 * Customises the final module files
   * Customises the names of some modules (such as `Intel` over `iccifort` and
     `IntelMPI` over `impi`)
-  * Injects an `lmod` *family* in the modules of our compilers and MPI runtimes
-  * Adds `lmod` *properties* for GPU enabled applications and user installed software so
+  * Injects an Lmod *family* in the modules of our compilers and MPI runtimes
+  * Adds Lmod *properties* for GPU enabled applications and user installed software so
     that they can be easily identified in the `module` view
   * Adds a `site_contact` for all modules
-* Updates the `lmod` cache when an installation is made system-wide
+* Updates the Lmod cache when an installation is made system-wide
 
 We see potential in the use of hooks as a great way of encouraging, documenting and
 automating "correct" installation processes for our system.
@@ -173,7 +172,7 @@ we want them to only be exposed to the latest software with the
 latest compilers. For this reason, we have chosen six months
 as our upgrade period and we chose to retire outdated software
 versions with the same frequency. We call these software
-upgrades `stage`s. For each `stage`, we select the toolchains that
+upgrades "stages". For each 'stage', we select the toolchains that
 we will support and rebuild the latest versions of our supported
 software with these toolchains. We chose a prototype toolchain
 as a template and, once fully populated, migrate the changes
@@ -182,22 +181,22 @@ to our other toolchains.
 We expect members of the support team to contribute to
 software installations since it is common that application
 software requires specific knowledge to be installed and tested
-appropriately. We provide a special development `stage` with the
+appropriately. We provide a special development stage with the
 latest toolchains for the support team where they can prepare
 their easyconfig files for inclusion in the upgrade. Once a
 software package has been successfully built and tested, it is
-added to a *Golden* repository to be used for the `stage` upgrade.
+added to a *Golden* repository to be used for the stage upgrade.
 
-The default `stage` visible to users is controlled by a symbolic
-link. `stage` upgrades are prepared in a separate environment
+The default stage visible to users is controlled by a symbolic
+link. Stage upgrades are prepared in a separate environment
 to this default. Once the upgrade has been implemented, users
 are given three weeks notice and the symbolic link is updated
 during a maintenance window. Users are provided with the
-capability of continuing to use a retired `stage` if they wish
+capability of continuing to use a retired stage if they wish
 to do so. However, additional software requests are (typically)
-only accepted for the current default `stage`.
+only accepted for the current default stage.
 
-While `stage` upgrades may introduce some overhead for
+While stage upgrades may introduce some overhead for
 existing users (they may need to recompile their code and
 modules may be named differently in particular cases), there
 are clear benefits to using the latest compilers and software
