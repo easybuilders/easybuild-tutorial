@@ -6,7 +6,7 @@
 
 EasyBuild as a project was conceived in 2009 by the [HPC team at Ghent University (Belgium)](https://www.ugent.be/hpc/en).
 The code base was developed in-house, and went through redesign after redesign as
-the team tried to tackle the never-ending corner cases of scientific software installation routines.
+the team tried to tackle the never-ending corner cases of the installation routines of scientific software.
 During these very early days, a small cadre of summer interns were invaluable in their assistance
 in getting refining EasyBuild.
 
