@@ -312,36 +312,3 @@ reviewing incoming contributions, and much more can all be done directly from th
 command line. This not only saves time, effort, brain cycles, and mouse clicks for contributors,
 but it also makes the review process for *maintainers* significantly easier.
 All together this leads to improved stability and consistency.
-
---- 
-
-
-## The EasyBuild community
-
-EasyBuild was originally created by the [HPC team at Ghent University (Belgium)](https://www.ugent.be/hpc/en) in 2009,
-and was developed in-house before it was publicly released in 2012.
-
-Since then it has grown out to a [**community project**](https://github.com/easybuilders),
-which is used and developed by various HPC centres and consortia worldwide, including (but not limited to):
-
-* [Flemish Supercomputer Centre (VSC), Belgium](https://www.vscentrum.be/)
-* [Consortium des Équipements de Calcul Intensif (CÉCI), Belgium](http://www.ceci-hpc.be/)
-* [Jülich Supercomputing Centre (JSC), Germany](https://www.fz-juelich.de/ias/jsc/EN/Home/home_node.html)
-* [Swiss National Supercomputing Centre (CSCS)](https://www.cscs.ch/)
-* [Birmingham Environment for Academic Research (BEAR), UK](https://intranet.birmingham.ac.uk/bear/)
-* [SURFsara, Netherlands](https://www.surf.nl/en/expertises/compute-services)
-* [Swedish National Infrastructure for Computing (SNIC)](https://www.snic.se/)
-* [Compute Canada](https://www.computecanada.ca/)
-* [Fred Hutchinson Cancer Research Center, US](https://www.fredhutch.org)
-* [Texas A&M University (TAMU) High Performance Research Computing (HPRC), US](https://hprc.tamu.edu/)
-* [National University of Singapore (NUS)](https://nusit.nus.edu.sg/hpc/)
-* [University of Melbourne, Australia](https://dashboard.hpc.unimelb.edu.au/)
-* [HPCNow!](https://hpcnow.com/)
-
-Today, an [experienced team of HPC experts](https://easybuild.readthedocs.io/en/latest/Maintainers.html) actively maintains the project,
-by implementing additional features and bug fixes, and processing incoming contributions.
-
-The EasyBuild documentation is available at [**https://easybuild.readthedocs.io**](https://easybuild.readthedocs.io).
-You can interact with the EasyBuild community via the [**Slack channel**](https://easybuild.slack.com/)
-(request an invitation [here](https://easybuild-slack.herokuapp.com/)),
-or by subscribing to the [**mailing list**](https://lists.ugent.be/wws/subscribe/easybuild).
