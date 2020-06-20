@@ -415,8 +415,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../community/" title="The EasyBuild Community" class="md-nav__link">
-      The EasyBuild Community
+    <a href="../community/" title="The EasyBuild community" class="md-nav__link">
+      The EasyBuild community
     </a>
   </li>
 
@@ -598,7 +598,7 @@ EasyBuild, which will come in useful for some of the exercises.</p>
 <p><em>(only relevant if you are</em> <strong><em>not</em></strong> <em>using AWS Cloud9)</em></p>
 <ul>
 <li>having Docker or Singularity installed</li>
-<li>a system with a processor supporting the AVX2 instruction set. AVX2 is supported by Intel Haswell or AMD Bulldozer (both released in 2012) and onwards.</li>
+<li>a system with a processor supporting the <a href="https://en.wikipedia.org/wiki/Advanced_Vector_Extensions">AVX instruction set</a>. AVX is supported by Intel Sandy Bridge or AMD Bulldozer (both released in 2011) and onwards.</li>
 </ul>
 <p>If you are in doubt about your systems compatibility, see <a href="#testing-host-compatibility">Testing host compatibility</a> at the end of this document.</p>
 <h4 id="container-size">Container size<a class="headerlink" href="#container-size" title="Permanent link">&para;</a></h4>
@@ -744,8 +744,8 @@ channel in the EasyBuild Slack, join via https://easybuild-slack.herokuapp.com .
 
 <h4 id="testing-host-compatibility">Testing host compatibility<a class="headerlink" href="#testing-host-compatibility" title="Permanent link">&para;</a></h4>
 <p>To leverage the pre-installed software stack that is included in the container image,
-the processor in your system must be compatible with binaries that use AVX2 instructions
-(Intel Haswell generation, or newer).</p>
+the processor in your system must be compatible with binaries that use AVX instructions
+(Intel Sandy Bridge generation, or newer).</p>
 <p>You can test the compatibility of your host with the following commands:</p>
 <div class="highlight"><pre><span></span><code>module use /easybuild/modules/all
 module load Python
@@ -765,7 +765,7 @@ exercises assume you are starting from a clean environment.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: June 19, 2020
+      Last update: June 20, 2020
     
   </small>
 </div>
