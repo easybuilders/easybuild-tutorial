@@ -4,7 +4,7 @@
 
 <a href="http://ugent.be/hpc"><img src="../img/ugent_logo.png" style="float:left" width="15%"/></a>
 
-EasyBuild as a project was conceived in 2009 at the [HPC team at Ghent University (Belgium)](https://www.ugent.be/hpc/en).
+EasyBuild as a project was conceived in 2009 by the [HPC team at Ghent University (Belgium)](https://www.ugent.be/hpc/en).
 The code base was developed in-house, and went through redesign after redesign as
 the team tried to tackle the never-ending corner cases of scientific software installation routines.
 During these very early days, a small cadre of summer interns were invaluable in their assistance
