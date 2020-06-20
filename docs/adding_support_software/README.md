@@ -13,6 +13,12 @@ In this part of the tutorial we will look at the guts of easyconfig files and ev
 Before we dive into writing [easyconfig files](../introduction/#easyconfig-files),
 let us take a brief look at how they relate to [easyblocks](../introduction/#easyblocks).
 
+As we discussed [earlier](../introduction/#terminology), an easyconfig file (`*.eb`) is required
+for each installation
+performed by EasyBuild which specifies the details of the installation (which software
+version, toolchain, etc.), while the installation procedure is implemented
+in an easyblock (a Python module).
+
 When can we leverage a *generic easyblock*, perhaps via a "fat" easyconfig file that includes
 a lot of carefully defined easyconfig parameters, and when should we use a minimal easyconfig file
 together with a custom *software-specific* easyblock?
@@ -87,6 +93,14 @@ and double quotes for values that do have spaces (sentences). There is no techni
 this, it just feels more natural to some people. There are cases where it is important to use
 the right type of quotes however, we will get back to that later (keep it in mind for the exercises!).
 
+For multi-line descriptions, you will need to use "triple quoting" (which is standard Python syntax):
+
+```python
+description = """This is an example
+ of a multi-line description.
+ It is spread across multiple lines."""
+```
+
 **`toolchain`**
 
 EasyBuild also requires that the [compiler toolchain](../introduction/#toolchains) is specified, via the `toolchain`
@@ -150,7 +164,7 @@ Some things worth pointing out here:
   automatically by EasyBuild when it tries to download the file (only if it's not available already.
 * If multiple download URLs are specified, they are each tried once in order until the download of the source file was
   successful. This can be useful to include backup locations where source files can be downloaded from.
-* Names of source files and patches do not include hardcoded software versions, they usually use a
+* Names of source files and patches should not include hardcoded software versions, they usually use a
   template value like `%(version)s` instead:
   ```python
   sources = ['example-%(version)s-src.tar.gz']

@@ -45,9 +45,9 @@ markdown_extensions:
 extra:
   # add links in bottom right
   social:
-    - type: github
-      icon: octicons/logo-github
-      link: https://github.com/easybuilders
+      #- type: github
+      #icon: octicons/logo-github
+      #link: https://github.com/easybuilders
     - icon: fontawesome/brands/twitter
       link: https://twitter.com/easy_build
     - icon: fontawesome/brands/youtube

@@ -121,6 +121,12 @@ For example:
 /easybuild/software/HDF5/1.10.6-gompi-2020a/easybuild/easybuild-HDF5-1.10.6-20200609.131126.log
 ```
 
+### Last log
+
+```
+vim $(eb --last-log)
+```
+
 ### Navigating log files
 
 Usually you want to go to the end of the log file and then work your way up,
