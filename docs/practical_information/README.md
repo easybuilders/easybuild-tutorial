@@ -44,7 +44,7 @@ The container is available through the [`easybuilders/tutorial` repository on Do
 *(only relevant if you are* ***not*** *using AWS Cloud9)*
 
 * having Docker or Singularity installed
-* a system with a processor supporting the AVX2 instruction set. AVX2 is supported by Intel Haswell or AMD Bulldozer (both released in 2012) and onwards.
+* a system with a processor supporting the AVX instruction set. AVX is supported by Intel Ivy Bridge or AMD Bulldozer (both released in 2011) and onwards.
 
 If you are in doubt about your systems compatibility, see [Testing host compatibility](#testing-host-compatibility) at the end of this document.
 
