@@ -43,7 +43,7 @@ took its place on the presentation floor. At SC'12, EasyBuild's stage was the
 [PyHPC 2012 workshop](http://sc12.supercomputing.org/schedule/event_detail.php-evid=wksp118.html).
 
 Following the public release and the projects introduction into the HPC community,
-other sites starting to use EasyBuild and actively contribute to the project. As odd as it might sound, this
+other sites started to use EasyBuild and actively contribute to the project. As odd as it might sound, this
 was quite unexpected. The EasyBuild team was hoping for feedback. Receiving contributions was a big surprising bonus. 
 Early adopters were the [University of Luxembourg](https://hpc.uni.lu), the [Cyprus Institute](https://www.cyi.ac.cy/),
 the [University of Basel](https://scicore.unibas.ch/), and the [Jülich
