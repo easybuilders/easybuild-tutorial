@@ -44,7 +44,7 @@ The container is available through the [`easybuilders/tutorial` repository on Do
 *(only relevant if you are* ***not*** *using AWS Cloud9)*
 
 * having Docker or Singularity installed
-* a system with a processor supporting the AVX instruction set. AVX is supported by Intel Ivy Bridge or AMD Bulldozer (both released in 2011) and onwards.
+* a system with a processor supporting the [AVX instruction set](https://en.wikipedia.org/wiki/Advanced_Vector_Extensions). AVX is supported by Intel Sandy Bridge or AMD Bulldozer (both released in 2011) and onwards.
 
 If you are in doubt about your systems compatibility, see [Testing host compatibility](#testing-host-compatibility) at the end of this document.
 
@@ -228,8 +228,8 @@ channel in the EasyBuild Slack, join via https://easybuild-slack.herokuapp.com .
 #### Testing host compatibility
 
 To leverage the pre-installed software stack that is included in the container image,
-the processor in your system must be compatible with binaries that use AVX2 instructions
-(Intel Haswell generation, or newer).
+the processor in your system must be compatible with binaries that use AVX instructions
+(Intel Sandy Bridge generation, or newer).
 
 You can test the compatibility of your host with the following commands:
 
