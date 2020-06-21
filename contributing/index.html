@@ -358,8 +358,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#contribution-workflow" class="md-nav__link">
-    Contribution workflow
+  <a href="#contribution-procedure" class="md-nav__link">
+    Contribution procedure
   </a>
   
 </li>
@@ -371,6 +371,13 @@
   
     <nav class="md-nav" aria-label="Github integration features">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requirements-configuration" class="md-nav__link">
+    Requirements &amp; configuration
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#creating-pull-requests" class="md-nav__link">
@@ -393,15 +400,15 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#additional-features" class="md-nav__link">
-    Additional features
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#demo" class="md-nav__link">
+    Demo
+  </a>
   
 </li>
       
@@ -489,8 +496,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#contribution-workflow" class="md-nav__link">
-    Contribution workflow
+  <a href="#contribution-procedure" class="md-nav__link">
+    Contribution procedure
   </a>
   
 </li>
@@ -502,6 +509,13 @@
   
     <nav class="md-nav" aria-label="Github integration features">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requirements-configuration" class="md-nav__link">
+    Requirements &amp; configuration
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#creating-pull-requests" class="md-nav__link">
@@ -524,15 +538,15 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#additional-features" class="md-nav__link">
-    Additional features
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#demo" class="md-nav__link">
+    Demo
+  </a>
   
 </li>
       
@@ -584,41 +598,331 @@
                 
                 
                 <h1 id="contributing-to-easybuild">Contributing to EasyBuild<a class="headerlink" href="#contributing-to-easybuild" title="Permanent link">&para;</a></h1>
-<h2 id="contribution-workflow">Contribution workflow<a class="headerlink" href="#contribution-workflow" title="Permanent link">&para;</a></h2>
+<h2 id="contribution-procedure">Contribution procedure<a class="headerlink" href="#contribution-procedure" title="Permanent link">&para;</a></h2>
+<p>There are several ways to contribute to EasyBuild, including:</p>
+<ul>
+<li>providing feedback;</li>
+<li>reporting bugs;</li>
+<li>joining the discussions (mailing list, Slack, conf calls);</li>
+<li>sharing suggestions/ideas for enhancements &amp; additional features;</li>
+<li>contributing easyconfigs, enhancing easyblocks, adding support for new software, implementing additional features, ...;</li>
+<li>extending &amp; enhancing documentation;</li>
+</ul>
+<p>To contribute changes to the code or easyconfigs, you should:</p>
+<p>0) Create and setup a <a href="https://github.com/join">GitHub account</a> (and register your SSH public key);</p>
+<p>1) First fork and then also clone the appropriate GitHub repository, for example:</p>
+<div class="highlight"><pre><span></span><code>git clone git@github.com:easybuilders/easybuild-easyconfigs.git
+<span class="nb">cd</span> easybuild-easyconfigs
+git remote add my_fork git@github.com:example/easybuild-easyconfigs.git
+</code></pre></div>
+
+<p>You should change '<code>example</code>' in the last line to your own GitHub user name!</p>
+<p>2) Create and check out a new branch:</p>
+<div class="highlight"><pre><span></span><code>git checkout -b example
+</code></pre></div>
+
+<p>3) Stage the changes you want to contribute:</p>
+<div class="highlight"><pre><span></span><code>git add easybuild/easyconfigs/e/example-1.2.3.eb
+</code></pre></div>
+
+<p>4) Commit those changes with a sensible commit message:</p>
+<div class="highlight"><pre><span></span><code>git commit -m <span class="s2">&quot;This is just an example&quot;</span>
+</code></pre></div>
+
+<p>5) Push your branch to your fork of the repository on GitHub:</p>
+<div class="highlight"><pre><span></span><code>git push my_fork example
+</code></pre></div>
+
+<p>6) Open the pull request through the GitHub web interface, making sure that:</p>
+<ul>
+<li>the target branch is correct (should be <code>develop</code>);</li>
+<li>an appropriate title is used;</li>
+<li>a short description of the changes is provided;</li>
+<li>the changes are indeed the ones you want to propose;</li>
+<li>clicking the (correct) green button;</li>
+</ul>
+<p>In addition, for easyconfig files you should make sure that they have the
+<a href="../basic_usage/#easyconfig-filenames">correct filename</a>, and that they are located in the correct subdirectory.</p>
 <div align="center"><img src="../img/pfft.png" alt="Pfft" width="30%"/></div>
 
+<p>That didn't exactly motivate you to contribute, did it...</p>
 <h2 id="github-integration-features">Github integration features<a class="headerlink" href="#github-integration-features" title="Permanent link">&para;</a></h2>
+<p>Over the years we noticed that some people were keen on contributing to EasyBuild,
+but they were not very familiar with Git or GitHub. That meant they had to overcome a
+relatively steep learning curve before they could contribute...</p>
 <div align="center"><img src="../img/no_git.png" alt="Gandalf vs Git" width="50%"/></div>
 
+<p>In addition the contribution workflow can be a bit daunting and time consuming,
+even if you're already familiar with the procedure. You will have dozens of
+branches flying around in no time, and if you get stuck in a weird corner
+with <code>git</code> you may quickly end up demotivated.</p>
+<p>This is frustrating not only for the people who wanted to contribute but
+also for the EasyBuild maintainers, and it doesn't agree with the philosophy of
+a project that aims to <em>automate</em> tedious software installation procedures.</p>
+<p>At the end of 2015 efforts were made to tackle this issue by implementing
+GitHub integration features in EasyBuild, which automate the contribution
+workflow by running <code>git</code> commands and interacting with the <a href="https://developer.github.com/v3/">GitHub API</a> fully autonomously.</p>
+<p>We will briefly go over some of these features here, but they are also covered in detail <a href="https://easybuild.readthedocs.io/en/latest/Integration_with_GitHub.html">in the EasyBuild documentation</a>.</p>
+<h3 id="requirements-configuration">Requirements &amp; configuration<a class="headerlink" href="#requirements-configuration" title="Permanent link">&para;</a></h3>
+<p>First of all, the GitHub integration features impose a couple of additional <a href="https://easybuild.readthedocs.io/en/latest/Integration_with_GitHub.html">requirements</a>
+and configuration.</p>
+<p><strong>Additional dependencies</strong></p>
+<p>Both the <code>GitPython</code> and <code>keyring</code> Python packages as well as the <code>keyrings.cryptfile</code> add-on package must be installed.
+In the prepared environment, you can do this via:</p>
+<div class="highlight"><pre><span></span><code>pip3 install --user GitPython keyring keyrings.cryptfile
+</code></pre></div>
+
+<p><strong>SSH public key in GitHub account</strong></p>
+<p>You need to have a GitHub account that has your SSH public key registered in it
+(via <a href="https://github.com/settings/keys">https://github.com/settings/keys</a>).</p>
+<p>If you need to generate an SSH key pair, you can run the following command:</p>
+<div class="highlight"><pre><span></span><code>ssh-keygen -t rsa -b <span class="m">4096</span>
+</code></pre></div>
+
+<p>You can copy the SSH public key from the output of this command:</p>
+<div class="highlight"><pre><span></span><code>cat .ssh/id_rsa.pub
+</code></pre></div>
+
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you are using the prepared tutorial environment,
+we strongly recommend you:</p>
+<ul>
+<li>to <strong>protect the SSH key pair you create with a password</strong>;</li>
+<li>to <strong>remove the public key from your GitHub account</strong> after completing this
+  part of the tutorial;</li>
+</ul>
+<p>Keep in mind that anyone who obtains your SSH <em>private</em> key and knows
+the password to unlock it can push changes to your GitHub repositories!</p>
+</div>
+<p><strong>Forked repository in GitHub</strong></p>
+<p>In addition, you must have <em>forked</em> the EasyBuild repository you want to contribute to
+(for example <a href="https://github.com/easybuilders/easybuild-easyconfigs">https://github.com/easybuilders/easybuild-easyconfigs</a>).</p>
+<p><strong>EasyBuild configuration, incl. GitHub token</strong></p>
+<p>You also have to configure EasyBuild a bit more, so it knows about your
+GitHub user name <em>and</em> has a GitHub token available in order to perform actions
+in GitHub with your credentials.</p>
+<p>To do this, you should define the <code>github-user</code> configuration option and
+run the "<code>eb --install-github-token</code>" command:</p>
+<div class="highlight"><pre><span></span><code>$ <span class="nb">export</span> <span class="nv">EASYBUILD_GITHUB_USER</span><span class="o">=</span>example
+$ eb --install-github-token
+</code></pre></div>
+
+<p>To create a GitHub token:</p>
+<ul>
+<li>Visit <a href="https://github.com/settings/tokens">https://github.com/settings/tokens</a>.</li>
+<li>Click <em>"Personal access tokens"</em>.</li>
+<li>Click followed by <em>"Generate new token"</em>.</li>
+<li>Give the token a name (for example <em>"Token for EasyBuild"</em>).</li>
+<li>Select both the '<code>repo</code>' and '<code>gist</code>' scopes.</li>
+<li>Click the green <em>"Generate token"</em> button.</li>
+<li>Copy the generated token.</li>
+<li>Paste the token when asked by <code>--install-github-token</code> (and hit <em>Enter</em>).</li>
+<li>Enter a password to encrypt your GitHub token.</li>
+</ul>
+<p>The output should look something like this:</p>
+<div class="highlight"><pre><span></span><code>$ eb --install-github-token
+<span class="o">==</span> temporary log file in <span class="k">case</span> of crash /tmp/eb-9z0bdve9/easybuild-hfpti62w.log
+Token: 
+Validating token...
+Token seems to be valid, installing it.
+Please <span class="nb">set</span> a password <span class="k">for</span> your new keyring: 
+Please confirm the password:
+Token <span class="s1">&#39;fed..987&#39;</span> installed!
+</code></pre></div>
+
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you are using the prepared tutorial environment,
+we strongly recommend you to <strong>revoke the GitHub token</strong> 
+again from your GitHub account after completing this part of the tutorial.</p>
+<p>Anyone who knows the GitHub token can perform actions in your name on GitHub
+through the GitHub API!</p>
+</div>
+<p><strong>Checking status of GitHub integration</strong></p>
+<p>You can check the status of the GitHub integration using "<code>eb --check-github</code>":</p>
+<div class="highlight"><pre><span></span><code>$ eb --check-github
+<span class="o">==</span> temporary log file in <span class="k">case</span> of crash /tmp/eb-4ckdlyfy/easybuild-gp69ev2w.log
+
+Checking status of GitHub integration...
+
+Making sure we<span class="err">&#39;</span>re online...OK
+
+* GitHub user...example<span class="o">=</span>&gt; OK
+Please enter password <span class="k">for</span> encrypted keyring:
+* GitHub token...fed..987 <span class="o">(</span>len: <span class="m">40</span><span class="o">)</span> <span class="o">=</span>&gt; OK <span class="o">(</span>validated<span class="o">)</span>
+* git command...OK <span class="o">(</span><span class="s2">&quot;git version 1.8.3.1; &quot;</span><span class="o">)</span>
+* GitPython module...OK <span class="o">(</span>GitPython version <span class="m">3</span>.1.3<span class="o">)</span>
+* push access to example/easybuild-easyconfigs repo @ GitHub...OK
+* creating gists...OK
+* location to Git working dirs... not found <span class="o">(</span>suboptimal<span class="o">)</span>
+
+All checks PASSed!
+
+Status of GitHub integration:
+* --from-pr: OK
+* --new-pr: OK
+* --review-pr: OK
+* --update-pr: OK
+* --upload-test-report: OK
+</code></pre></div>
+
+<p>If you see '<code>OK</code>' in all lines of the final status, you're all set
+to try out the GitHub integration features!</p>
 <h3 id="creating-pull-requests">Creating pull requests<a class="headerlink" href="#creating-pull-requests" title="Permanent link">&para;</a></h3>
-<p><code>--new-pr</code></p>
-<p><code>--preview-pr</code></p>
-<p><code>--new-github-branch</code>
-<code>--new-pr-from-branch</code></p>
+<p>The GitHub integration in EasyBuild allows you to <strong>create pull requests
+using the <code>eb</code> command</strong>, without even leaving your shell environment.
+How cool is that!</p>
+<p>To create a pull request to the <code>easybuild-easyconfigs</code> repository,
+you can either do it in a single go by
+running "<code>eb --new-pr</code>" and passing it one or more easyconfig files to add
+into the pull request.</p>
+<p>You can first create a branch in your repository fork in GitHub
+via "<code>eb --new-branch-github</code>" and then later open the pull request
+via "<code>eb --new-pr-from-branch</code>". That can be useful when preparing multiple
+interdependent PRs, or to check whether your changes pass the unit tests
+(which are run automatically in the GitHub Actions CI environment for
+all branches pushed to your fork).</p>
+<p>The <code>--new-pr</code> option can also be used to open pull requests to the easyblocks
+and framework repositories, and it will even automatically determine the target
+repository based on the contents of the files you provide. Whoa!</p>
+<p>You can control the target repository for your pull request using
+<code>--pr-target-account</code> (default is <code>easybuilders</code>) and <code>--pr-target-repo</code>.</p>
+<p>If you want you can carefully double check your work before actually
+opening the pull request by doing a dry run via "<code>eb --dry-run --new-pr</code>"
+or "<code>eb -D --new-pr</code>".</p>
+<p>Finally, you can use "<code>eb --preview-pr</code>" to see how the easyconfig files
+for which you plan to create a pull request differ from existing easyconfig
+files.</p>
 <h3 id="updating-pull-requests">Updating pull requests<a class="headerlink" href="#updating-pull-requests" title="Permanent link">&para;</a></h3>
-<p><code>--update-pr</code></p>
-<p><code>--update-branch</code></p>
+<p>To update an existing pull request with additional changes
+you can use "<code>eb --update-pr</code>" and pass the pull request ID,
+alongside the paths to the updated files.</p>
+<p>If you have only created a branch (for example via <code>eb --new-branch-github</code>)
+you can update it via <code>--update-branch-github</code> in the same way,
+passing the branch name instead of a pull request ID.</p>
 <h3 id="using-a-pull-request">Using a pull request<a class="headerlink" href="#using-a-pull-request" title="Permanent link">&para;</a></h3>
-<p><code>--from-pr</code></p>
-<p><code>--robot</code></p>
-<p><code>--include-easyblocks-from-pr</code></p>
-<p>Note: we link to this section from the "Basic usage" part!</p>
-<h3 id="additional-features">Additional features<a class="headerlink" href="#additional-features" title="Permanent link">&para;</a></h3>
-<p><code>--review-pr</code>, <code>--merge-pr</code></p>
+<p>Next to creating and updating branches and pull requests
+you can also <em>use</em> easyconfig files and easyblocks from a pull request,
+regardless of its status (open, merged, or closed). This is particularly
+useful when testing contributions, or to install software for which 
+support is not included in the last EasyBuild release yet.</p>
+<p>Using the <code>--from-pr</code> option you can install easyconfig files from the
+pull request with specified ID. By default all easyconfig files that are
+touched by the pull request will be installed, but you can specify only
+particular ones to use as well. It is generally advised to also use the
+<code>--robot</code> option to ensure that the easyconfig files are installed in the
+correct order with respect to dependencies.</p>
+<p>Similarly, using a new or updated easyblock from a pull request is as simple
+as using the <code>--include-easyblocks-from-pr</code> option. And of course you can
+combine it with <code>--from-pr</code>!</p>
+<h2 id="demo">Demo<a class="headerlink" href="#demo" title="Permanent link">&para;</a></h2>
+<p>That is a lot to digest, so let us make this a bit more concrete with an example:
+we will open a pull request for the <a href="../adding_support_software/#example"><code>eb-tutorial</code> example software</a> to <em>a fork</em> of the <a href="https://github.com/easybuilders/easybuild-easyconfigs"><code>easybuild-easyconfigs</code> repository</a> using the <code>eb</code> command.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Make sure that you have correctly configured the GitHub integration,
+<a href="#requirements-configuration">see above</a>.</p>
+</div>
+<p>We first configure EasyBuild to target the <code>boegel</code> GitHub account rather
+than the default <code>easybuilders</code> GitHub organisation,
+by defining the <code>pr-target-account</code> configuration setting:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">EASYBUILD_PR_TARGET_ACCOUNT</span><span class="o">=</span>boegel
+</code></pre></div>
+
+<p>In the output of "<code>eb --show-config</code>" you should see a line like this:</p>
+<div class="highlight"><pre><span></span><code>pr-target-account (E) = boegel
+</code></pre></div>
+
+<p>We only do this to avoid that lots of pull requests for the <code>eb-tutorial</code>
+example software are opened in the <a href="https://github.com/easybuilders/easybuild-easyconfigs">central easyconfigs repository</a>.</p>
+<p>Opening a pull request is as simple as running "<code>eb --new-pr</code>" and passing
+the easyconfig file:</p>
+<div class="highlight"><pre><span></span><code>$ eb --new-pr eb-tutorial.eb
+<span class="o">==</span> temporary log file in <span class="k">case</span> of crash /tmp/eb-zub2mqhh/easybuild-72guq9zs.log
+<span class="o">==</span> found valid index <span class="k">for</span> /home/example/.local/easybuild/easyconfigs, so using it...
+<span class="o">==</span> fetching branch <span class="s1">&#39;develop&#39;</span> from https://github.com/boegel/easybuild-easyconfigs.git...
+<span class="o">==</span> copying files to /tmp/eb-zub2mqhh/git-working-dirg2nfop_s/easybuild-easyconfigs...
+<span class="o">==</span> pushing branch <span class="s1">&#39;20200621181934_new_pr_eb-tutorial100&#39;</span> to remote <span class="s1">&#39;github_eb-tutorial_jnLIb&#39;</span> <span class="o">(</span>git@github.com:example/easybuild-easyconfigs.git<span class="o">)</span>
+Please enter password <span class="k">for</span> encrypted keyring: 
+
+Opening pull request
+* target: boegel/easybuild-easyconfigs:develop
+* from: example/easybuild-easyconfigs:20200621181934_new_pr_eb-tutorial100
+* title: <span class="s2">&quot;{tools}[GCC/9.3.0] eb-tutorial v1.0.0&quot;</span>
+* labels: new
+* description:
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">(created using `eb --new-pr`)</span>
+
+<span class="s2">&quot;&quot;&quot;</span>
+* overview of changes:
+ easybuild/easyconfigs/e/eb-tutorial/eb-tutorial-1.0.0-GCC-9.3.0.eb <span class="p">|</span> <span class="m">26</span> ++++++++++++++++++++++++++
+ <span class="m">1</span> file changed, <span class="m">26</span> insertions<span class="o">(</span>+<span class="o">)</span>
+
+Opened pull request: https://github.com/boegel/easybuild-easyconfigs/pull/64
+<span class="o">==</span> Temporary log file<span class="o">(</span>s<span class="o">)</span> /tmp/eb-zub2mqhh/easybuild-72guq9zs.log* have been removed.
+<span class="o">==</span> Temporary directory /tmp/eb-zub2mqhh has been removed.
+</code></pre></div>
+
+<p>Take a moment to grasp what we did here: we ran <strong>a single <code>eb</code> command</strong> which
+took care of the <strong><a href="#contribution-procedure">whole contribution procedure</a></strong> for us, including:</p>
+<ul>
+<li>cloning the <code>easybuilders/easybuild-easyconfigs</code> repository and checking out the <code>develop</code> branch (in a temporary
+  directory);</li>
+<li>picking a sensible name for a branch and creating it;</li>
+<li>adding the <code>eb-tutorial</code> easyconfig file to the branch, in the right location
+  (<code>easybuild/easyconfigs/e/eb-tutorial/</code>) and with the correct filename (<code>eb-tutorial-1.0.0-GCC-9.3.0.eb</code>);</li>
+<li>pushing the branch to our fork (<code>example/easybuild-easyconfigs</code>);</li>
+<li>actually opening the pull request, using an informative title;</li>
+</ul>
+<p>That is so... easy!</p>
+<p>This feature not only <em>significantly</em> lowers the bar for contributing,
+it also saves quite a bit of time since you don't need to double check
+various details (like targeting the <code>develop</code> branch) or spend time on
+coming up with a nice looking title or funny branch name (although you
+still can if you really want to).</p>
+<p>There are a couple of nice side effects too, like not having any local branches
+to tidy up on once the pull request gets merged (since <code>--new-pr</code> created the branch only in a temporary directory).</p>
+<p>If many contributions are made via <code>--new-pr</code> it also simplifies the task
+of EasyBuild maintainers, since pull requests opened this way have a particular
+structure to them and thus are easier to digest because they look familiar.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you are using the prepared tutorial environment,
+<strong>do not forget to remove the GitHub public key and GitHub token</strong>
+that you created earlier for this part of the tutorial from your GitHub account!</p>
+</div>
 <h2 id="contribution-stats">Contribution stats<a class="headerlink" href="#contribution-stats" title="Permanent link">&para;</a></h2>
+<p>To wrap up, let us look at some statistics about the contributions that have
+been made to EasyBuild over the years.</p>
 <h3 id="unique-contributors">Unique contributors<a class="headerlink" href="#unique-contributors" title="Permanent link">&para;</a></h3>
+<p>Since EasyBuild went public in 2012 over 250 different people have made
+contributions to the <code>easybuild-easyconfigs</code> repository. We also recently
+passed the threshold of 100 unique contributors in the easyblocks repository,
+and at the time of writing we were just <em>one</em> contributor short of reaching
+100 unique contributors to the EasyBuild framework repository.</p>
 <div align="center"><img src="../img/contributors_overview_all_easybuild_repos.png" alt="EasyBuild contributor overview" width="75%"/></div>
 
-<div align="center"><img src="../img/unique_contributors_per_year.png" alt="Overview of unique contributors per year across EasyBuild repositories" width="75%"/></div>
-
+<p>If we look at unique contributors per year, we see that the number of contributors
+to the easyconfigs repository has been gradually increasing over the years,
+while the number of unique contributors to the framework and easyblocks repositories has largely remained stable in recent years. Making contributions to the latter
+two repositories requires significantly more effort, which explains the difference
+with the easyconfigs repository.
+<div align="center"><img src="../img/unique_contributors_per_year.png" alt="Overview of unique contributors per year across EasyBuild repositories" width="75%"/></div></p>
 <h3 id="pull-requests-per-year-easyconfigs">Pull requests per year (easyconfigs)<a class="headerlink" href="#pull-requests-per-year-easyconfigs" title="Permanent link">&para;</a></h3>
+<p>Plotting the number of pull requests to the easyconfigs repository per year
+clearly shows an increase, with almost 2,100 <em>merged</em> contributions in 2019.
+In total over 2,600 pull requests were merged in 2019 across all EasyBuild repositories.</p>
+<p>It is also worth noting that over 65% of contributions were made by people outside
+the HPC-UGent team in 2019.</p>
 <div align="center"><img src="../img/contrib_stats_easyconfigs_pr_counts.png" alt="Overview of PRs to easybuild-easyconfigs repo, per year" width="70%"/></div>
 
-<p>Almost 2,100 PRs to <code>easybuild-easyconfigs</code> repository in 2019, over 2,600 PRs in total across all repositories.</p>
-<p>65% of all PRs to <code>easybuild-easyconfigs</code> were made by contributors outside of HPC-UGent team in 2019.</p>
+<p>Looking at the ratio of pull requests that were created using <code>--new-pr</code> versus
+the ones that were created manually shows a steady increase in adoption 
+since 2016 the GitHub integration feature.77% of pull requests that were created
+in 2019 were made using <code>--new-pr</code>, and we see this increasing further in 2020.</p>
 <div align="center"><img src="../img/overview_easyconfig_prs_new_pr_vs_manual.png" alt="Overview of PRs to easybuild-easyconfigs, created with --new-pr vs manually" width="70%"/></div>
-
-<div align="center"><img src="../img/supported_software_evolution.png" alt="Overview of growth in supported software" width="70%"/></div>
                 
                   
                     
@@ -627,7 +931,7 @@
 <div class="md-source-date">
   <small>
     
-      Last update: June 20, 2020
+      Last update: June 21, 2020
     
   </small>
 </div>
