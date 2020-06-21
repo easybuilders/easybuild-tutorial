@@ -5,13 +5,17 @@
 <a href="http://ugent.be/hpc"><img src="../img/ugent_logo.png" style="float:left" width="15%"/></a>
 
 EasyBuild as a project was conceived in 2009 by the [HPC team at Ghent University (Belgium)](https://www.ugent.be/hpc/en).
-The code base was developed in-house, and went through redesign after redesign as
-the team tried to tackle the never-ending corner cases of the installation routines of scientific software.
-During these very early days, a small cadre of summer interns were invaluable in their assistance
-in getting refining EasyBuild.
+The codebase was developed in-house, and went through a couple of redesigns as
+the team gradually learned the ropes of developing a sizeable software project
+and tried to tackle the never-ending corner cases of the installation procedures of scientific software.
+During these very early days, several summer interns were invaluable in their assistance
+in refining EasyBuild.
 
-As the project grew and its usefulness became apparent, HPC-UGent begun to desire feedback from
-the HPC community at large. Maybe others would find EasyBuild useful? The first step in this process
+As the project grew and its usefulness became apparent, the HPC-UGent team begun to desire feedback from
+the HPC community at large. Maybe others would find EasyBuild useful? Or maybe
+this was actually a solved problem, and they were unknowingly reinventing the wheel...
+
+The first step in this process
 was to pick a license. As many an in-house project, EasyBuild at the time lacked such formalities. This led to
 a short debate on open source licenses before the team landed on GPLv2. And no, commercial licenses never even made
 it to the table. Like so many open source projects, the goal was simple enough; scratch HPC-UGent's own itch 
@@ -24,21 +28,32 @@ Based on early feedback, the EasyBuild team realised others would indeed find Ea
 produce a stable version to ensure that others could rely on the project if they wanted to.
 
 ([EasyBuild v1.0](https://pypi.org/project/easybuild/1.0.0)) was released in November 2012, barely seven months after
-0.5 was announced. This first stable release coincided with the
+version 0.5 was published. This first stable release coincided with the
 [SC'12 conference in Salt Lake City](http://sc12.supercomputing.org/), where the team handed out stickers and went
 around asking how everyone else installed scientific software. There was never much of a sales pitch, but the
 conversations very quickly took on a rather predictable script...
 
-> EasyBuild team member: *How do you install software?*  
+> EasyBuild team member: *How do you install scientific software?*
+
 > HPC staff: *We do it manually, and spend a lot of time on it.*  
-> EasyBuild team member: *What if there was a tool that could help?*  
+
+> EasyBuild team member: *What if there was a tool that could help?*
+
+> HPC staff: *Nobody in their right mind would develop a tool like that. That's madness.*
+
+> EasyBuild team member: *What if we have a tool like this that you could use?*
+
 > HPC staff: *What does it cost?*  
-> EasyBuild team member: *It's open source.*  
+
+> EasyBuild team member: *It's open source. It's free.*
+
 > HPC staff: *... Yeah, cool. What about the hard stuff? When will you support OpenFOAM?*  
-> EasyBuild team member: *Uhm, we already do?*  
+
+> EasyBuild team member: *We already do. And we support WRF too.*
+
 
 And then suddenly everyone was a friend. Beers and snacks started appearing out of nowhere
-and all our stickers disappeared. Once the beers and snacks had been "processed", EasyBuild
+and all the stickers disappeared. Once the beers and snacks had been "processed", EasyBuild
 took its place on the presentation floor. At SC'12, EasyBuild's stage was the
 [PyHPC 2012 workshop](http://sc12.supercomputing.org/schedule/event_detail.php-evid=wksp118.html).
 
@@ -55,8 +70,7 @@ Over the years EasyBuild has grown into a **community project**,
 which is used and developed by dozens (hundreds?) of HPC centres and consortia worldwide. Starting in 2016,
 the community has gathered for a yearly EasyBuild User Meeting which typically takes place a week before
 or after [FOSDEM](https://fosdem.org). The EasyBuild User Meeting is an open and highly interactive event
-that provides a great opportunity to meet fellow EasyBuild enthusiasts, discuss related topics, and learn
-about new aspects of the tool.
+that provides a great opportunity to meet fellow EasyBuild enthusiasts, discuss related topics, learn about new aspects of the tool, and how other HPC sites leverage it and integrate it with other tools like [Jenkins](https://www.youtube.com/watch?v=bzW45cfRUMU), [Ansible](https://www.youtube.com/watch?v=Qr2udsAjkG0), [CernVM-FS](https://www.youtube.com/watch?v=_0j5Shuf2uE), [ReFrame](https://www.youtube.com/watch?v=KN9QwQIrso4) etc.
 
 The map below shows from which
 cities the [EasyBuild documentation](https://easybuild.readthedocs.io) has
