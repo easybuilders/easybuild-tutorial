@@ -170,7 +170,7 @@ Some things worth pointing out here:
   sources = ['example-%(version)s-src.tar.gz']
   ```
   EasyBuild will use the value of the `version` easyconfig parameter to determine the actual name of the source
-  file. This way the software version is only specified in one places and the easyconfig file is easier to
+  file. This way the software version is only specified in one place and the easyconfig file is easier to
   update to other software versions. A list of template values can be consulted via the EasyBuild command
   line via the `--avail-easyconfig-templates` option, or in the [EasyBuild documentation](https://easybuild.readthedocs.io/en/latest/version-specific/easyconfig_templates.html).
 * Source files can also be specified in ways other than just using a filename, see the [EasyBuild documentation](https://easybuild.readthedocs.io/en/latest/Writing_easyconfig_files.html#common-easyconfig-param-sources-alt) for more information.
