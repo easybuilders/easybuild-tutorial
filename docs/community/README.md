@@ -60,7 +60,7 @@ took its place on the presentation floor. At SC'12, EasyBuild's stage was the
 Following the public release and the projects introduction into the HPC community,
 other sites started to use EasyBuild and actively contribute to the project. As odd as it might sound, this
 was quite unexpected. The EasyBuild team was hoping for feedback. Receiving contributions was a big surprising bonus. 
-Early adopters were the [University of Luxembourg](https://hpc.uni.lu), the [Cyprus Institute](https://www.cyi.ac.cy/),
+Early adopters were the [University of Luxembourg](https://hpc.uni.lu), the [Cyprus Institute](http://hpcf.cyi.ac.cy/),
 the [University of Basel](https://scicore.unibas.ch/), and the [Jülich
 Supercomputing Centre](https://www.fz-juelich.de/ias/jsc).
 
@@ -97,7 +97,7 @@ HPC sites, consortia, and companies that use EasyBuild include (but are not limi
 <a href="https://dashboard.hpc.unimelb.edu.au/"><img src="../img/univ_melbourne_logo.png" alt="University of Melbourne logo" width="16%"></a>
 <a href="https://hpc.uni.lu/"><img src="../img/unilu_logo.png" alt="University of Luxembourg logo" width="18%"></a>
 <a href="https://www.epcc.ed.ac.uk/"><img src="../img/epcc_logo.png" alt="EPCC logo" width="21%"></a>
-<a href="https://www.cyi.ac.cy/"><img src="../img/cyi_logo.png" alt="Cyprus Institute logo" width="26%"></a>
+<a href="http://hpcf.cyi.ac.cy/"><img src="../img/cyi_logo.png" alt="Cyprus Institute logo" width="26%"></a>
 <a href="https://scicore.unibas.ch/"><img src="../img/basel_logo.png" alt="University of Basel logo" width="26%"></a>
 <a href="https://techcommunity.microsoft.com/t5/azure-global/running-long-hpc-jobs-on-azure-with-checkpointing-using-lammps/ba-p/1335148"><img src="../img/microsoft_logo.png" alt="Microsoft logo" width="23%"></a>
 
