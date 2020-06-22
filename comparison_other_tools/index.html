@@ -405,7 +405,7 @@
 
 <p>The project that most compares with EasyBuild is <a href="https://spack.io/">Spack</a>, a flexible package manager for HPC systems.</p>
 <p>It was created by <a href="https://github.com/tgamblin">Todd Gamblin</a> at <a href="https://www.llnl.gov">Lawrence Livermore National Lab
-(LLNL)</a> in the US.</p>
+(LLNL)</a> in California, USA.</p>
 <p>In several ways it looks similar to EasyBuild:</p>
 <ul>
 <li>implemented in Python, compatible with Python 2.6 and 3.5+</li>
@@ -419,9 +419,10 @@
 <li>worldwide community</li>
 <li>broad spectrum of supported software (1000s)</li>
 </ul>
-<p>In other ways, EasyBuild and Spack are quite different however. Spack is released
-under a more permissive open source license (MIT/Apache 2.0 dual license), and
-also provides good support for macOS out-of-the-box, next to Linux and Cray PE (like EasyBuild does).</p>
+<p>In other ways, EasyBuild and Spack are quite different. Spack is released
+under a more permissive open source license (MIT/Apache 2.0 dual license), and 
+whereas EasyBuild supports Linux and Cray PE, Spack also provides good support
+for macOS out-of-the-box.</p>
 <p>The Spack command line interface is quite different from EasyBuild: it
 supports subcommands (like "<code>spack install</code>"), and provides a flexible interface
 for specifying an abstract specification of what to install. Here is an example:</p>
@@ -431,11 +432,10 @@ for specifying an abstract specification of what to install. Here is an example:
 <p>This tells Spack to install <code>mpileaks</code> version 3.3 on top of MPICH version 3.2, using GCC 4.9.3 as compiler.</p>
 <p>This abstract specification is then passed to a <em>concretization algorithm</em>
 which fills in the blanks: it will pick versions of other required dependencies,
-determine which compiler flags to use, etc. This information is fed to the
+determine which compiler flags to use, and so on. This information is fed to the
 Spack package (which is the equivalent of an easyblock in EasyBuild) to perform
 the actual installation.</p>
-<p>There are many other differences between EasyBuild and Spack, too many to cover here in detail. For a more detailed
-comparison, see the <a href="https://archive.fosdem.org/2018/schedule/event/installing_software_for_scientists/"><em>"Installing software for scientists on a multi-user HPC system"</em></a> recorded talk at FOSDEM'18 and the Spack documentation.</p>
+<p>There are many other differences between EasyBuild and Spack as well, too many for this document to cover in detail. See the <a href="https://archive.fosdem.org/2018/schedule/event/installing_software_for_scientists/"><em>"Installing software for scientists on a multi-user HPC system"</em></a> recorded talk at FOSDEM'18 and the Spack documentation for more information.</p>
 <hr />
 <p><img src="../img/nix_logo.png" alt="Nix logo" width="15%"/>
 <img src="../img/guix_logo.png" alt="Guix logo" width="15%"/></p>
@@ -467,8 +467,9 @@ These packages are usually <em>pre-built generic binaries</em> however,
 which significantly impacts the performance of the installations.</p>
 <p>Despite wide adoption in the scientific community <code>conda</code> is not a good fit
 for HPC systems for a number of reasons, including poor support for multi-user
-environment, a lack of focus on performance, heavily relying on the home
-directory (which usually is limited in size on HPC systems), etc. See <a href="https://docs.computecanada.ca/wiki/Anaconda/en">this link</a> for a more detailed discussion.</p>
+environments, a lack of focus on performance, heavily relying on the home
+directory (which usually is limited in size on HPC systems), and more.
+See <a href="https://docs.computecanada.ca/wiki/Anaconda/en">this link</a> for a more detailed discussion.</p>
 <p>In addition, software installed via <code>conda</code> usually does not mix well with
 software installed through environment modules.</p>
                 
