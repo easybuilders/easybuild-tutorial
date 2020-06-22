@@ -5,6 +5,8 @@ Contact points, resources, helpful hints, and things to keep in mind for the Eas
 
 ### Slack
 
+<img src="../img/slack_logo.png" style="float:left" width="20%"/>
+
 There is a dedicated `#tutorial` channel in the EasyBuild Slack where you can get in touch with 
 organisers of the tutorial, other participants, and volunteers. Please use this channel to ask
 questions throughout the tutorial, or for any other assistance related to the tutorial.
@@ -59,6 +61,8 @@ The compressed container image is about 1.25GB in size,
 and will be downloaded automatically from Docker Hub when you run the `docker` or `singularity` command shown below.
 
 #### Using Docker
+
+<img src="../img/docker_logo.png" style="float:left" width="10%"/>
 
 If you want to use the prepared container image via Docker,
 run the following `docker` command:
@@ -130,6 +134,8 @@ since it is not yet compatible with cgroups v2. Possible workarounds include:
 #### Using Singularity
 
 *(not available in AWS environment)*
+
+<img src="../img/singularity_logo.png" style="float:left" width="8%"/>
 
 To use the prepared container image via Singularity,
 run the following `singularity` command:

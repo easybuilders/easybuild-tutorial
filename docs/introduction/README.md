@@ -9,7 +9,7 @@ that manages (scientific) software in an efficient way, without compromises on p
 
 ### *Elevator pitch*
 
-<a href="http://geek-and-poke.com/geekandpoke/2010/5/14/how-to-become-invaluable.html"><img src="../img/geek-and-poke-invaluable.png" style="float:right" width="350px"/></a>
+<a href="http://geek-and-poke.com/geekandpoke/2010/5/14/how-to-become-invaluable.html"><img src="../img/geek-and-poke-invaluable.png" style="float:right" width="50%"/></a>
 
 EasyBuild intends to relieve HPC support teams from manually managing
 software installations while at the same time **providing a consistent and well performing
