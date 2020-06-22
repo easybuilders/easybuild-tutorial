@@ -147,6 +147,15 @@ The additional options are required to:
 This is mainly to avoid that anything from the host environment or your home directory "leaks" into
 the container, which could interfere with the hands-on exercises.
 
+***Limitation: `/easybuild` is read-only***
+
+When the Docker container image is being run with Singularity,
+the `/easybuild` directory is read-only in the container.
+
+This creates problems for the demo and exercise in the [Hierarchical module naming schemes](../hmns) part of the tutorial, because EasyBuild still requires write
+access to `/easybuild/software` even when generating module files in a different
+location outside of `/easybuild`.
+
 ***Output***
 
 When running the "`singularity run`" command shown above, you should see output like is shown below.

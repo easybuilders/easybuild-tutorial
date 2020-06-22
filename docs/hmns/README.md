@@ -146,6 +146,13 @@ the module hierarchy.
 
 ## Example
 
+!!! Warning
+    **This example will not work when running the [prepared container
+    image using Singularity](../practical_information/#using-singularity)**,
+    because the `/easybuild` directory is read-only in this case,
+    and EasyBuild still requires write access to `/easybuild/software`
+    even when generate module files outside of `/easybuild`.
+
 Now that we know more about hierarchical module naming schemes,
 let us see how EasyBuild can help us with generating a hierarchical module tree.
 
@@ -464,3 +471,10 @@ module unuse $MODULEPATH
       $ python -c 'import pandas; print(pandas.__version__)'
       1.0.3
       ```
+
+!!! Warning
+    **This exercise will not work when running the [prepared container
+    image using Singularity](../practical_information/#using-singularity)**,
+    because the `/easybuild` directory is read-only in this case,
+    and EasyBuild still requires write access to `/easybuild/software`
+    even when generate module files outside of `/easybuild`.
