@@ -281,7 +281,7 @@ support is not yet included in the latest EasyBuild release.
 
 Using the `--from-pr` option you can install easyconfig files from the
 pull request with specified ID. By default all easyconfig files that are
-touched by the pull request will be installed, but you can specify only
+touched by the pull request will be installed, but you can specify
 particular ones to use as well. It is generally advised to also use the
 `--robot` option to ensure that the easyconfig files are installed in the
 correct order with respect to dependencies.
