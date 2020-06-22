@@ -914,7 +914,7 @@ you must use square brackets as shown in the example. The default value for each
 <p>Some things worth pointing out here:</p>
 <ul>
 <li>The download URLs specified via <code>source_urls</code> do <em>not</em> include the name of the file, that is added
-  automatically by EasyBuild when it tries to download the file (only if it's not available already.</li>
+  automatically by EasyBuild when it tries to download the file (only if it's not available already.)</li>
 <li>If multiple download URLs are specified, they are each tried once in order until the download of the source file was
   successful. This can be useful to include backup locations where source files can be downloaded from.</li>
 <li>Names of source files and patches should not include hardcoded software versions, they usually use a
@@ -1289,9 +1289,9 @@ to the standard <code>name-version.tar.gz</code> pattern:</p>
 <div class="highlight"><pre><span></span><code><span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="n">SOURCE_TAR_GZ</span><span class="p">]</span>
 </code></pre></div>
 
-<p>See the output of "<code>eb --avail-easyconfig-template</code>" for a list of known templates.</p>
+<p>See the output of "<code>eb --avail-easyconfig-templates</code>" for a list of known templates.</p>
 <h3 id="required-configure-option">Required configure option<a class="headerlink" href="#required-configure-option" title="Permanent link">&para;</a></h3>
-<p>With <code>sources</code> defined, we can try and again. And yet again we see the configure step fail.
+<p>With <code>sources</code> defined, we can try again. And yet again we see the configure step fail.
 Is this a ruse to make you hate CMake with a passion? Maybe...</p>
 <p>Here's what we find in the log file:</p>
 <div class="highlight"><pre><span></span><code>CMake Error at CMakeLists.txt:7 (message):
@@ -1341,7 +1341,9 @@ the sanity check:</p>
 </code></pre></div>
 
 <p>Let us now retry, but use <code>--module-only</code> rather than redoing the whole installation.
-And by enabling trace module via <code>--trace</code> we can get some more information too:</p>
+<code>--module-only</code> still sanity checks the installation, so if it creates
+a module, we know it will work as expected. 
+Also, by enabling tracing of the module via <code>--trace</code> we can get some more information too:</p>
 <div class="highlight"><pre><span></span><code>eb eb-tutorial.eb --module-only --trace
 ...
 <span class="o">==</span> sanity checking...
