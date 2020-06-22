@@ -874,7 +874,7 @@ using the following Python statements:
 
 ```python
 import h5py
-f = h5py.File("mytestfile.hdf5", "w")
+f = h5py.File("empty.hdf5", "w")
 f.close()
 ```
 
