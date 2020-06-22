@@ -9,7 +9,7 @@
 The project that most compares with EasyBuild is <a href="https://spack.io/">Spack</a>, a flexible package manager for HPC systems.
 
 It was created by [Todd Gamblin](https://github.com/tgamblin) at [Lawrence Livermore National Lab
-(LLNL)](https://www.llnl.gov) in the US.
+(LLNL)](https://www.llnl.gov) in California, USA.
 
 In several ways it looks similar to EasyBuild:
 
@@ -24,9 +24,9 @@ In several ways it looks similar to EasyBuild:
 * worldwide community
 * broad spectrum of supported software (1000s)
 
-In other ways, EasyBuild and Spack are quite different however. Spack is released
-under a more permissive open source license (MIT/Apache 2.0 dual license), and
-also provides good support for macOS out-of-the-box, next to Linux and Cray PE (like EasyBuild does).
+In other ways, EasyBuild and Spack are quite different. Spack is released
+under a more permissive open source license (MIT/Apache 2.0 dual license), and 
+whereas EasyBuild supports Linux and Cray PE, Spack adds macOS out-of-the-box.
 
 The Spack command line interface is quite different from EasyBuild: it
 supports subcommands (like "`spack install`"), and provides a flexible interface
@@ -40,12 +40,11 @@ This tells Spack to install `mpileaks` version 3.3 on top of MPICH version 3.2, 
 
 This abstract specification is then passed to a *concretization algorithm*
 which fills in the blanks: it will pick versions of other required dependencies,
-determine which compiler flags to use, etc. This information is fed to the
+determine which compiler flags to use, and so on. This information is fed to the
 Spack package (which is the equivalent of an easyblock in EasyBuild) to perform
 the actual installation.
 
-There are many other differences between EasyBuild and Spack, too many to cover here in detail. For a more detailed
-comparison, see the [*"Installing software for scientists on a multi-user HPC system"*](https://archive.fosdem.org/2018/schedule/event/installing_software_for_scientists/) recorded talk at FOSDEM'18 and the Spack documentation.
+There are many other differences between EasyBuild and Spack as well, too many for this document to cover in detail. See the [*"Installing software for scientists on a multi-user HPC system"*](https://archive.fosdem.org/2018/schedule/event/installing_software_for_scientists/) recorded talk at FOSDEM'18 and the Spack documentation for more information.
 
 
 ---
@@ -88,8 +87,9 @@ which significantly impacts the performance of the installations.
 
 Despite wide adoption in the scientific community `conda` is not a good fit
 for HPC systems for a number of reasons, including poor support for multi-user
-environment, a lack of focus on performance, heavily relying on the home
-directory (which usually is limited in size on HPC systems), etc. See [this link](https://docs.computecanada.ca/wiki/Anaconda/en) for a more detailed discussion.
+environments, a lack of focus on performance, heavily relying on the home
+directory (which usually is limited in size on HPC systems), and more.
+See [this link](https://docs.computecanada.ca/wiki/Anaconda/en) for a more detailed discussion.
 
 In addition, software installed via `conda` usually does not mix well with
 software installed through environment modules.
