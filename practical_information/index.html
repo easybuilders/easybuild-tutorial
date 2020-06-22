@@ -592,8 +592,13 @@ the email with the connection information, please contact the tutorial organiser
 <p>For the purpose of this tutorial, we have prepared a <strong>Docker container</strong>
 that you can use to follow the hands-on exercises in a controlled environment.</p>
 <p>This container image includes a small software stack that was installed using
-EasyBuild, which will come in useful for some of the exercises.</p>
+EasyBuild, which will come in useful for the exercises.</p>
 <p>The container is available through the <a href="https://hub.docker.com/r/easybuilders/tutorial"><code>easybuilders/tutorial</code> repository on Docker Hub</a>, and can be used with both Docker and Singularity.</p>
+<p>Make sure you use the container image tagged with "<code>isc20</code>".</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>The command you should use to run the container can be copy-pasted below.</strong></p>
+</div>
 <h4 id="requirements-for-using-the-container-images">Requirements for using the container images<a class="headerlink" href="#requirements-for-using-the-container-images" title="Permanent link">&para;</a></h4>
 <p><em>(only relevant if you are</em> <strong><em>not</em></strong> <em>using AWS Cloud9)</em></p>
 <ul>
@@ -607,9 +612,15 @@ and will be downloaded automatically from Docker Hub when you run the <code>dock
 <h4 id="using-docker">Using Docker<a class="headerlink" href="#using-docker" title="Permanent link">&para;</a></h4>
 <p>If you want to use the prepared container image via Docker,
 run the following <code>docker</code> command:</p>
-<div class="highlight"><pre><span></span><code>docker run -ti --hostname tutorial --rm easybuilders/tutorial:isc20
+<div class="highlight"><pre><span></span><code>mkdir -p isc20_easybuild_tutorial
+docker run -ti --rm --mount type=bind,source=$PWD/isc20_easybuild_tutorial,target=/home/easybuild --hostname tutorial easybuilders/tutorial:isc20
 </code></pre></div>
 
+<p>Note that we are bind mounting the <code>isc20_easybuild_tutorial</code> directory
+into the container as home directory (<code>/home/easybuild</code>). That way you can easily
+access the files you create when using the container outside of it as well,
+for example to edit them. In addition, it allows you to restart the container
+without losing the contents of your home directory.</p>
 <p><strong><em>Output</em></strong></p>
 <p>When running the "<code>docker run</code>" command shown above, you should see output like is shown below
 showing that the different layers are being downloaded.</p>
@@ -657,14 +668,14 @@ Status: Downloaded newer image for easybuilders/tutorial:isc20
 <p><em>(not available in AWS environment)</em></p>
 <p>To use the prepared container image via Singularity,
 run the following <code>singularity</code> command:</p>
-<div class="highlight"><pre><span></span><code>mkdir -p /tmp/<span class="nv">$USER</span>/isc20
-singularity run --cleanenv --home /tmp/<span class="nv">$USER</span>/isc20 docker://easybuilders/tutorial:isc20
+<div class="highlight"><pre><span></span><code>mkdir -p isc20_easybuild_tutorial
+singularity run --cleanenv --home <span class="nv">$PWD</span>/isc20_easybuild_tutorial docker://easybuilders/tutorial:isc20
 </code></pre></div>
 
 <p>The additional options are required to:</p>
 <ul>
 <li><code>--cleanenv</code>: start with clean environment</li>
-<li><code>--home /tmp/$USER/isc20</code>: use (empty) <code>/tmp/$USER/isc20</code> directory as home directory in container</li>
+<li><code>--home $PWD/isc20_easybuild_tutorial</code>: use the <code>isc20_easybuild_tutorial</code> subdirectory in the current working directory as home directory in the container</li>
 </ul>
 <p>This is mainly to avoid that anything from the host environment or your home directory "leaks" into
 the container, which could interfere with the hands-on exercises.</p>
@@ -765,7 +776,7 @@ exercises assume you are starting from a clean environment.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: June 20, 2020
+      Last update: June 22, 2020
     
   </small>
 </div>
