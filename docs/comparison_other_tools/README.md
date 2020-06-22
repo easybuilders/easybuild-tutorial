@@ -26,7 +26,8 @@ In several ways it looks similar to EasyBuild:
 
 In other ways, EasyBuild and Spack are quite different. Spack is released
 under a more permissive open source license (MIT/Apache 2.0 dual license), and 
-whereas EasyBuild supports Linux and Cray PE, Spack adds macOS out-of-the-box.
+whereas EasyBuild supports Linux and Cray PE, Spack also provides good support
+for macOS out-of-the-box.
 
 The Spack command line interface is quite different from EasyBuild: it
 supports subcommands (like "`spack install`"), and provides a flexible interface
