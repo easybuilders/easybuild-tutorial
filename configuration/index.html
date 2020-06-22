@@ -392,8 +392,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#exercise" class="md-nav__link">
-    Exercise
+  <a href="#exercises" class="md-nav__link">
+    Exercises
   </a>
   
 </li>
@@ -681,8 +681,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#exercise" class="md-nav__link">
-    Exercise
+  <a href="#exercises" class="md-nav__link">
+    Exercises
   </a>
   
 </li>
@@ -1008,7 +1008,8 @@ variable (indicated with <code>(E)</code>), that the <code>robot-paths</code> se
 settings were specified via a configuration file, some of which indirectly through the <code>prefix</code> value (indicated with
 <code>(F)</code>).</p>
 <hr />
-<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<h2 id="exercises">Exercises<a class="headerlink" href="#exercises" title="Permanent link">&para;</a></h2>
+<p><strong><em>Exercise 3.1</em> - Install EasyBuild</strong></p>
 <p>Configure EasyBuild to use the <code>easybuild</code> subdirectory in your home directory for everything, except for:</p>
 <ul>
 <li>the location of the build directories: use <code>/tmp/$USER</code> for this;</li>
@@ -1038,6 +1039,41 @@ robot-paths    <span class="o">(</span>D<span class="o">)</span> <span class="o"
 sourcepath     <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild/sources:/easybuild/sources
 </code></pre></div>
 
+</details>
+<p><strong><em>Exercise 3.2</em> - Install a trivial software package with EasyBuild</strong></p>
+<p>Try running the following command:</p>
+<div class="highlight"><pre><span></span><code>eb bzip2-1.0.6.eb
+</code></pre></div>
+
+<p>Where do you expect to find the installation?</p>
+<details class="success"><summary>(click to show solution)</summary><p>The software was installed in <code>$HOME/easybuild</code>,
+since that's how we configured EasyBuild in <em>Exercise 3.1</em>:</p>
+<div class="highlight"><pre><span></span><code>$ ls <span class="nv">$HOME</span>/easybuild
+ebfiles_repo  modules  software  sources
+</code></pre></div>
+
+<p>The actual installation is in <code>$HOME/easybuild/software</code>,
+while the module file was generated in <code>$HOME/easybuild/modules/all</code>:</p>
+<div class="highlight"><pre><span></span><code>$ ls <span class="nv">$HOME</span>/easybuild/software
+bzip2
+$ ls <span class="nv">$HOME</span>/easybuild/software/bzip2
+<span class="m">1</span>.0.6
+$ ls <span class="nv">$HOME</span>/easybuild/software/bzip2/1.0.6
+bin  easybuild  include  lib  man
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>$ ls <span class="nv">$HOME</span>/easybuild/modules/all
+bzip2
+$ ls <span class="nv">$HOME</span>/easybuild/modules/all/bzip2
+<span class="m">1</span>.0.6.lua
+</code></pre></div>
+
+<p>The source file for bzip2 1.0.6 was downloaded to <code>$HOME/easybuild/sources</code>:</p>
+<div class="highlight"><pre><span></span><code>$ ls <span class="nv">$HOME</span>/easybuild/sources/b/bzip2
+bzip2-1.0.6.tar.gz
+</code></pre></div>
+
+<p>We will discuss this in more detail in the next part of the tutorial.</p>
 </details>
 <hr />
 <p><strong>Make sure EasyBuild is configured as instructed in the exercise before you continue with the rest of this tutorial.</strong></p>
