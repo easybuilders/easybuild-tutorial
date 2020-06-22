@@ -21,7 +21,7 @@ and saves valuable time (and frustration) by the automation of tedious, boring a
 In addition, EasyBuild can **empower scientific researchers to self-manage their software stack**,
 and it can serve as a tool that can be leveraged for **building optimized container images**.
 
-The project has grown out to be a **platform for collaboration** with HPC sites worldwide.
+The project has grown to become a **platform for collaboration** among worldwide HPC sites.
 
 
 ### *Key features*
@@ -37,10 +37,10 @@ It is [**highly configurable**](https://easybuild.readthedocs.io/en/latest/Confi
 The functionality can be [**dynamically extended**](https://easybuild.readthedocs.io/en/latest/Including_additional_Python_modules.html) via plugins,
 and hooks are available for further site-specific [**customizations**](https://easybuild.readthedocs.io/en/latest/Hooks.html) if required.
 
-The installation procedure executed by EasyBuild is thoroughly [**logged**](https://easybuild.readthedocs.io/en/latest/Logfiles.html) and fully transparent via [dry run](https://easybuild.readthedocs.io/en/latest/Extended_dry_run.html) and [tracing](https://easybuild.readthedocs.io/en/latest/Tracing_progress.html).
+The installation procedure executed by EasyBuild is thoroughly [**logged**](https://easybuild.readthedocs.io/en/latest/Logfiles.html) and fully transparent via [dry runs](https://easybuild.readthedocs.io/en/latest/Extended_dry_run.html) and [tracing](https://easybuild.readthedocs.io/en/latest/Tracing_progress.html).
 
 EasyBuild supports using a **custom module naming scheme**, allows for
-*hierarchical* module naming schemes, and **integrates with various other tools** ranging from  resource managers [(Slurm](https://slurm.schedmd.com) and [GC3Pie](https://github.com/gc3pie/gc3pie)),
+*hierarchical* module naming schemes, and **integrates with various other tools** ranging from  resource managers ([Slurm](https://slurm.schedmd.com) and [GC3Pie](https://github.com/gc3pie/gc3pie)),
 container tools ([Singularity](https://github.com/hpcng/singularity) and [Docker](https://www.docker.com)),
 packaging tools ([FPM](https://fpm.readthedocs.io)), and so on.
 
@@ -60,7 +60,7 @@ the correct magic incantations, EasyBuild automates this process for you.
 It is ***not*** **a replacement for traditional Linux package managers** like ``yum``, ``dnf`` or ``apt``.
 EasyBuild relies on certain tools and libraries provided by the operating system. This includes glibc, OpenSSL, Infiniband, GPU drivers, and so on. It is required that these tools are installed and managed by other means. This is typically done via the package management tool that comes with your Linux distribution.
 
-Finally, EasyBuild is ***not a magic solution to all your (software installation) problems**.
+Finally, EasyBuild is ***not*** **a magic solution to all your (software installation) problems**.
 You may, and probably will still occasionally, run into compiler errors unless somebody has already taken care of the problem for you.
 
 
