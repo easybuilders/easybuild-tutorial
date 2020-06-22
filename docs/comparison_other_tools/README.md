@@ -70,7 +70,7 @@ There is a dedicated [Guix HPC](https://hpc.guix.info/) community that focuses o
 Packages in Guix are implemented in Guile Scheme, and many advanced features
 like transactional upgrades and rollbacks are supported.
 
-To the best of our knowledge, neiter of these tools have seen wide adoption
+To the best of our knowledge, neither of these tools have seen wide adoption
 in the HPC community to date.
 
 ---

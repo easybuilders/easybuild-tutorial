@@ -154,8 +154,6 @@ on top of another software package**. Examples are *Python packages*, *R librari
 
 As you can tell the common terminology here is a mess, so we came up with a unifying term...
 
-<div align="center"><a href="https://xkcd.com/927/"><img src="https://imgs.xkcd.com/comics/standards.png" width="350px"></a></div>
-
 Extensions can be installed in different ways:
 
 * stand-alone, as a separate installation on top of one or more other installations;

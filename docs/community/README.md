@@ -2,7 +2,7 @@
 
 ## The early years
 
-<a href="http://ugent.be/hpc"><img src="../img/ugent_logo.png" style="float:left" width="15%"/></a>
+<img src="../img/ugent_logo.png" style="float:left" width="15%"/>
 
 EasyBuild as a project was conceived in 2009 by the [HPC team at Ghent University (Belgium)](https://www.ugent.be/hpc/en).
 The codebase was developed in-house, and went through a couple of redesigns as
