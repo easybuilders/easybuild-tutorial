@@ -80,7 +80,7 @@ To control the location where these build directories are created, you can use t
 Keep in mind that build directories may grow out to several GBs in size during an installation,
 and that the commands that run in there can be fairly I/O-intensive since they may involve
 manipulating lots of small files. In addition, a build directory that corresponds to a failing installation
-is *not* cleaned up automatically, but it will be cleaned up and recycled when the same installation is reattempted.
+is *not* cleaned up automatically, but it will be cleaned up and recycled when the same installation is re-attempted.
 Running out of disk space in the location where build directories are created will result in failing
 installations.
 
