@@ -35,9 +35,14 @@ For the purpose of this tutorial, we have prepared a **Docker container**
 that you can use to follow the hands-on exercises in a controlled environment.
 
 This container image includes a small software stack that was installed using
-EasyBuild, which will come in useful for some of the exercises.
+EasyBuild, which will come in useful for the exercises.
 
 The container is available through the [`easybuilders/tutorial` repository on Docker Hub](https://hub.docker.com/r/easybuilders/tutorial), and can be used with both Docker and Singularity.
+
+Make sure you use the container image tagged with "`isc20`".
+
+!!! Note
+    **The command you should use to run the container can be copy-pasted below.**
 
 #### Requirements for using the container images
 
@@ -59,8 +64,15 @@ If you want to use the prepared container image via Docker,
 run the following `docker` command:
 
 ```
-docker run -ti --hostname tutorial --rm easybuilders/tutorial:isc20
+mkdir -p isc20_easybuild_tutorial
+docker run -ti --rm --mount type=bind,source=$PWD/isc20_easybuild_tutorial,target=/home/easybuild --hostname tutorial easybuilders/tutorial:isc20
 ```
+
+Note that we are bind mounting the `isc20_easybuild_tutorial` directory
+into the container as home directory (`/home/easybuild`). That way you can easily
+access the files you create when using the container outside of it as well,
+for example to edit them. In addition, it allows you to restart the container
+without losing the contents of your home directory.
 
 ***Output***
 
@@ -123,14 +135,14 @@ To use the prepared container image via Singularity,
 run the following `singularity` command:
 
 ```shell
-mkdir -p /tmp/$USER/isc20
-singularity run --cleanenv --home /tmp/$USER/isc20 docker://easybuilders/tutorial:isc20
+mkdir -p isc20_easybuild_tutorial
+singularity run --cleanenv --home $PWD/isc20_easybuild_tutorial docker://easybuilders/tutorial:isc20
 ```
 
 The additional options are required to:
 
 * `--cleanenv`: start with clean environment
-* `--home /tmp/$USER/isc20`: use (empty) `/tmp/$USER/isc20` directory as home directory in container
+* `--home $PWD/isc20_easybuild_tutorial`: use the `isc20_easybuild_tutorial` subdirectory in the current working directory as home directory in the container
 
 This is mainly to avoid that anything from the host environment or your home directory "leaks" into
 the container, which could interfere with the hands-on exercises.
