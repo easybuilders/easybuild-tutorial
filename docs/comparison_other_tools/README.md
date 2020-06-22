@@ -6,7 +6,7 @@
 
 <p><img src="../img/spack_logo.png" alt="Spack logo" width="25%"/></p>
 
-The project that resembles most with EasyBuild is <a href="https://spack.io/">Spack</a>, a flexible package manager for HPC systems.
+The project that most compares with EasyBuild is <a href="https://spack.io/">Spack</a>, a flexible package manager for HPC systems.
 
 It was created by [Todd Gamblin](https://github.com/tgamblin) at [Lawrence Livermore National Lab
 (LLNL)](https://www.llnl.gov) in the US.
@@ -20,11 +20,11 @@ In several ways it looks similar to EasyBuild:
 * strong focus on HPC and performance
 * highly configurable
 * well documented (see [https://spack.readthedocs.io/](https://spack.readthedocs.io))
-* generated environment modules files
+* generates environment modules files
 * worldwide community
 * broad spectrum of supported software (1000s)
 
-In other ways EasyBuild and Spack are quite different however. Spack is released
+In other ways, EasyBuild and Spack are quite different however. Spack is released
 under a more permissive open source license (MIT/Apache 2.0 dual license), and
 also provides good support for macOS out-of-the-box, next to Linux and Cray PE (like EasyBuild does).
 
