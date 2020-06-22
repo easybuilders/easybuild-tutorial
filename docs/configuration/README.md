@@ -335,7 +335,8 @@ In addition, it also indicates at which configuration level each setting was def
 so you can trace down where it was defined if needed.
 
 This is the output produces by `eb --show-config` for the default EasyBuild configuration,
-where EasyBuild was installed via `pip install --user`:
+where EasyBuild was installed via `pip install --user` (which affects the
+`robot-paths` configuration setting):
 
 ```shell
 #
@@ -353,39 +354,89 @@ sourcepath     (D) = /home/example/.local/easybuild/sources
 As shown here, all configuration settings shown follow the default `prefix` value (`$HOME/.local/easybuild`)
 and none of the values diverge from the default value, since all entries are marked with `(D)` for "default value").
 
-Now let us do some basic configuring and inspect the resulting output of `--show-config`:
+Now let us do some basic configuring and inspect the resulting output of `--show-config`.
+
+First, create a user-level EasyBuild configuration file to define the `prefix` configuration setting:
 
 ```shell
+mkdir -p $HOME/.config/easybuild
+echo '[config]' > $HOME/.config/easybuild/config.cfg
+echo 'prefix=/apps' >> $HOME/.config/easybuild/config.cfg
+```
 
-$ export EASYBUILD_PREFIX=$HOME/easybuild
-$ export EASYBUILD_BUILDPATH=/tmp/$USER
+Define the `buildpath` configuration setting using the corresponding
+environment variable:
+
+```shell
+export EASYBUILD_BUILDPATH=/tmp/$USER
+```
+
+Then run `--show-config` while you specify that the `installpath` configuration
+setting should be defined as `/tmp/$USER`:
+
+```shell
 $ eb --installpath=/tmp/$USER --show-config
 #
 # Current EasyBuild configuration
 # (C: command line argument, D: default value, E: environment variable, F: configuration file)
 #
-buildpath      (E) = /tmp/example
-containerpath  (E) = /home/example/easybuild/containers
+buildpath      (E) = /tmp/easybuild
+containerpath  (F) = /apps/containers
 installpath    (C) = /tmp/easybuild
-packagepath    (E) = /home/example/easybuild/packages
-prefix         (E) = /home/example/easybuild
-repositorypath (E) = /home/example/easybuild/ebfiles_repo
+packagepath    (F) = /apps/packages
+prefix         (F) = /apps
+repositorypath (F) = /apps/ebfiles_repo
 robot-paths    (D) = /home/example/.local/easybuild/easyconfigs
-sourcepath     (E) = /home/example/easybuild/sources
+sourcepath     (F) = /apps/sources
 ```
 
 The output indicates that the `installpath` setting was specified through a command line option (indicated
-with '`(C)`'), that the `robot-paths` setting still has the default values, and that all other configuration
-settings were specified via an environment variable (some of which indirectly through the `prefix` value).
+with '`(C)`'), that the `buildpath` setting was defined via an environment
+variable (indicated with `(E)`), that the `robot-paths` setting still has the default value (indicated with `(D)`), and that all other configuration
+settings were specified via a configuration file, some of which indirectly through the `prefix` value (indicated with
+`(F)`).
 
 ---
 
-!!! warning
-    **Make sure you have EasyBuild properly configured before you proceed with the rest of the tutorial!**
+## Exercise
 
-    We recommend using the following configuration (unless otherwise specified in the examples/exercises):
+Configure EasyBuild to use the `easybuild` subdirectory in your home directory for everything, except for:
+
+* the location of the build directories: use `/tmp/$USER` for this;
+* the locations that should be considered when searching for source files:
+  include both `$HOME/easybuild/sources` and `/easybuild/sources`, but make
+  sure that source files that are downloaded by EasyBuild are stored in
+  `$HOME/easybuild/sources`
+
+Leave other configuration settings set to their defaults.
+
+??? success "(click to show solution)"
+
+    This is pretty straightforward.
+
+    Here we just define the corresponding environment variables:
 
     ```shell
     export EASYBUILD_PREFIX=$HOME/easybuild
     export EASYBUILD_BUILDPATH=/tmp/$USER
+    export EASYBUILD_SOURCEPATH=$HOME/easybuild/sources:/easybuild/sources
     ```
+
+    The location where EasyBuild should download source files to
+    must be listed first in the `sourcepath` configuration setting.
+
+    The output of `--show-config` should look like this:
+
+    ```shell
+    buildpath      (E) = /tmp/example
+    containerpath  (E) = /home/example/easybuild/containers
+    installpath    (E) = /home/example/easybuild
+    packagepath    (E) = /home/example/easybuild/packages
+    prefix         (E) = /home/example/easybuild
+    repositorypath (E) = /home/example/easybuild/ebfiles_repo
+    robot-paths    (D) = /home/example/easybuild/easyconfigs
+    sourcepath     (E) = /home/example/easybuild/sources:/easybuild/sources
+    ```
+---
+
+**Make sure EasyBuild is configured as instructed in the exercise before you continue with the rest of this tutorial.**
