@@ -323,7 +323,6 @@ You can consult the help output of the `eb` command, which produces a long list 
 along with a short informative message.
 
 ```shell
-
 eb --help
 ```
 
@@ -332,12 +331,20 @@ eb --help
 To inspect the current EasyBuild configuration, you can use this command:
 
 ```shell
-
 eb --show-config
 ```
 
 This should tell you that EasyBuild (ab)uses `$HOME/.local/easybuild` as a default location.
 More on configuring EasyBuild in the next part of the tutorial.
+
+#### System information
+
+You ask EasyBuild to collect and print some information about the
+system you are using it on (OS, CPU, Python, etc.) using this command:
+
+```shell
+eb --show-system-info
+```
 
 ## Updating EasyBuild
 
@@ -359,5 +366,82 @@ EasyBuild configuration.
 
 ---
 
-!!! warning
-    **Make sure you have EasyBuild installed before you proceed with the rest of the tutorial!**
+## Exercise
+
+Install EasyBuild in your home directory
+
+Make sure that the EasyBuild installation uses the `python3` command to run,
+rather than the standard `python` command.
+
+Choose your own adventure (or try both installation methods)!
+
+* perform a bootstrap installation into `$HOME/easybuild`
+* install EasyBuild with `pip` (or another very similar command...) using either the `--user` or `--prefix` option
+
+Check that the installation works by running the verification commands outlined
+[above](#verifying-the-installation).
+
+
+??? success "(click to show solution using bootstrapping)"
+    To perform a bootstrap installation, it suffices to download
+    the bootstrap script and run it using the `python3` command.
+
+    ```
+    $ curl -O https://raw.githubusercontent.com/easybuilders/easybuild-framework/develop/easybuild/scripts/bootstrap_eb.py
+    ...
+    $ python3 bootstrap_eb.py $HOME/easybuild
+    [[INFO]] EasyBuild bootstrap script (version 20200203.01, MD5: fcb6314d4e0747db9c28a71f8bb2870c)
+    [[INFO]] Found Python 3.6.8 (default, Apr  2 2020, 13:34:55) ; [GCC 4.8.5 20150623 (Red Hat 4.8.5-39)]
+
+    [[INFO]] Installation prefix /home/easybuild/easybuild
+    ...
+    ```
+
+    Afterwards we can just load the generated module, which already
+    takes care of correctly setting `$EB_PYTHON` to ensure the right
+    `python` command is used:
+
+    ```
+    $ module use $HOME/easybuild/modules/all
+    $ module load EasyBuild
+    $ echo $EB_PYTHON
+    /usr/bin/python3
+    $ eb --version
+    This is EasyBuild 4.2.1 (framework: 4.2.1, easyblocks: 4.2.1) on host example.
+    ```
+
+??? success "(click to show solution using pip)"
+
+    To ensure that EasyBuild is installed with Python 3,
+    we need to use the `pip3` command rather than just `pip`.
+
+    We can install EasyBuild using `pip3 install --user`,
+    and update `$PATH` and define `$EB_PYTHON` to ensure the right
+    `python` command is used (the order in which we do this doesn't matter):
+
+    ```shell
+    export PATH=$HOME/.local/bin:$PATH
+    export EB_PYTHON=python3
+    pip3 install --user easybuild
+    ```
+
+    Or we can use `pip3 install --prefix`, but then we need to update *both*
+    `$PATH` and `$PYTHONPATH` (after checking the Python version),
+    and also define `$EB_PTYHON`:
+
+    ```shell
+    $ python -V
+    Python 3.6.8
+    ```
+
+    ```shell
+    export PATH=$HOME/bin:$PATH
+    export PYTHONPATH=$HOME/lib/python3.6/site-packages:$PATH
+    export EB_PYTHON=python3
+    pip3 install --prefix $HOME easybuild
+    ```
+
+---
+
+**Make sure you have a working EasyBuild installation before proceeding
+with the rest of the tutorial!**
