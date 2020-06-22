@@ -819,7 +819,7 @@ which is a trivial version bump compared to version 1.0.0.
 The sources are available via:
 
 ```
-https://github.com/easybuilders/easybuild-tutorial/raw/master/docs/files/py-eb-tutorial-1.1.0.tar.gz
+https://github.com/easybuilders/easybuild-tutorial/raw/master/docs/files/eb-tutorial-1.1.0.tar.gz
 ```
 
 You can leverage the `eb-tutorial` easyconfig file we have composed in the example above,
