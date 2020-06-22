@@ -619,8 +619,8 @@ Now the modules tool should be aware of our brand new installations:
 $ module avail
 
 ------------ /home/example/easybuild/modules/all ------------
-   Bowtie2/2.4.1-GCC-9.3.0    tbb/2020.1-GCCcore-9.3.0
-   SAMtools/1.10-GCC-9.3.0
+   Bowtie2/2.4.1-GCC-9.3.0    bzip2/1.0.6
+   SAMtools/1.10-GCC-9.3.0    tbb/2020.1-GCCcore-9.3.0
 
 ------------------- /easybuild/modules/all -------------------
     ...

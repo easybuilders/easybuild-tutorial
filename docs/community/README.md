@@ -103,8 +103,8 @@ HPC sites, consortia, and companies that use EasyBuild include (but are not limi
 
 ## Development
 
-The EasyBuild community develops the project through the [*easybuilders* GitHub organisation](https://github.com/easybuilders) as set of repositories:
-<a href="http://github.com"><img src="../img/github_logo.png" style="float:right" width="30%"/></a>
+<a href="http://github.com"><img src="../img/github_logo.png" style="float:left" width="15%"/></a>
+The EasyBuild community develops the project through the [*easybuilders* GitHub organisation](https://github.com/easybuilders) as set of repositories:<br/><br/><br/>
 
 * [easybuild-framework](https://github.com/easybuilders/easybuild-framework) (EasyBuild framework codebase)
 * [easybuild-easyblocks](https://github.com/easybuilders/easybuild-easyblocks) (collection of easyblocks)
