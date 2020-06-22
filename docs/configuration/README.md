@@ -398,7 +398,9 @@ settings were specified via a configuration file, some of which indirectly throu
 
 ---
 
-## Exercise
+## Exercises
+
+***Exercise 3.1* - Install EasyBuild**
 
 Configure EasyBuild to use the `easybuild` subdirectory in your home directory for everything, except for:
 
@@ -437,6 +439,55 @@ Leave other configuration settings set to their defaults.
     robot-paths    (D) = /home/example/easybuild/easyconfigs
     sourcepath     (E) = /home/example/easybuild/sources:/easybuild/sources
     ```
+
+***Exercise 3.2* - Install a trivial software package with EasyBuild**
+
+Try running the following command:
+
+```shell
+eb bzip2-1.0.6.eb
+```
+
+Where do you expect to find the installation?
+
+??? success "(click to show solution)"
+
+    The software was installed in `$HOME/easybuild`,
+    since that's how we configured EasyBuild in *Exercise 3.1*:
+
+    ```shell
+    $ ls $HOME/easybuild
+    ebfiles_repo  modules  software  sources
+    ```
+
+    The actual installation is in `$HOME/easybuild/software`,
+    while the module file was generated in `$HOME/easybuild/modules/all`:
+
+    ```shell
+    $ ls $HOME/easybuild/software
+    bzip2
+    $ ls $HOME/easybuild/software/bzip2
+    1.0.6
+    $ ls $HOME/easybuild/software/bzip2/1.0.6
+    bin  easybuild  include  lib  man
+    ```
+
+    ```shell
+    $ ls $HOME/easybuild/modules/all
+    bzip2
+    $ ls $HOME/easybuild/modules/all/bzip2
+    1.0.6.lua
+    ```
+
+    The source file for bzip2 1.0.6 was downloaded to `$HOME/easybuild/sources`:
+
+    ```shell
+    $ ls $HOME/easybuild/sources/b/bzip2
+    bzip2-1.0.6.tar.gz
+    ```
+
+    We will discuss this in more detail in the next part of the tutorial.
+
 ---
 
 **Make sure EasyBuild is configured as instructed in the exercise before you continue with the rest of this tutorial.**
