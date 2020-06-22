@@ -650,7 +650,7 @@
 </ul>
 <p>To contribute changes to the code or easyconfigs, you should:</p>
 <p>0) Create and setup a <a href="https://github.com/join">GitHub account</a> (and register your SSH public key);</p>
-<p>1) First fork and then also clone the appropriate GitHub repository, for example:</p>
+<p>1) First clone and fork the appropriate GitHub repository, for example:</p>
 <div class="highlight"><pre><span></span><code>git clone git@github.com:easybuilders/easybuild-easyconfigs.git
 <span class="nb">cd</span> easybuild-easyconfigs
 git remote add my_fork git@github.com:example/easybuild-easyconfigs.git
@@ -692,7 +692,7 @@ but they were not very familiar with Git or GitHub. That meant they had to overc
 relatively steep learning curve before they could contribute...</p>
 <div align="center"><img src="../img/no_git.png" alt="Gandalf vs Git" width="50%"/></div>
 
-<p>In addition the contribution workflow can be a bit daunting and time consuming,
+<p>In addition, the contribution workflow can be a bit daunting and time consuming,
 even if you're already familiar with the procedure. You will have dozens of
 branches flying around in no time, and if you get stuck in a weird corner
 with <code>git</code> you may quickly end up demotivated.</p>
@@ -701,7 +701,7 @@ also for the EasyBuild maintainers, and it doesn't agree with the philosophy of
 a project that aims to <em>automate</em> tedious software installation procedures.</p>
 <p>At the end of 2015 efforts were made to tackle this issue by implementing
 GitHub integration features in EasyBuild, which automate the contribution
-workflow by running <code>git</code> commands and interacting with the <a href="https://developer.github.com/v3/">GitHub API</a> fully autonomously.</p>
+workflow by running <code>git</code> commands and interacting with the <a href="https://developer.github.com/v3/">GitHub API</a>.</p>
 <p>We will briefly go over some of these features here, but they are also covered in detail <a href="https://easybuild.readthedocs.io/en/latest/Integration_with_GitHub.html">in the EasyBuild documentation</a>.</p>
 <h3 id="requirements-configuration">Requirements &amp; configuration<a class="headerlink" href="#requirements-configuration" title="Permanent link">&para;</a></h3>
 <p>First of all, the GitHub integration features impose a couple of additional <a href="https://easybuild.readthedocs.io/en/latest/Integration_with_GitHub.html">requirements</a>
@@ -811,7 +811,7 @@ Status of GitHub integration:
 * --upload-test-report: OK
 </code></pre></div>
 
-<p>If you see '<code>OK</code>' in all lines of the final status, you're all set
+<p>If you see '<code>OK</code>' for each of the status checks, you're all set
 to try out the GitHub integration features!</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -822,15 +822,15 @@ to enter your password a couple of times when running "<code>eb --check-github</
 <h3 id="creating-pull-requests">Creating pull requests<a class="headerlink" href="#creating-pull-requests" title="Permanent link">&para;</a></h3>
 <p>The GitHub integration in EasyBuild allows you to <strong>create pull requests
 using the <code>eb</code> command</strong>, without even leaving your shell environment.
-How cool is that!</p>
+How cool is that‽</p>
 <p>To create a pull request to the <code>easybuild-easyconfigs</code> repository,
 you can either do it in a single go by
 running "<code>eb --new-pr</code>" and passing it one or more easyconfig files to add
 into the pull request.</p>
-<p>You can first create a branch in your repository fork in GitHub
-via "<code>eb --new-branch-github</code>" and then later open the pull request
-via "<code>eb --new-pr-from-branch</code>". That can be useful when preparing multiple
-interdependent PRs, or to check whether your changes pass the unit tests
+<p>The more detailed option is to first create a branch in your repository fork
+in GitHub via "<code>eb --new-branch-github</code>" and then later open the pull request
+via "<code>eb --new-pr-from-branch</code>". This method can be useful when preparing multiple
+interdependent pull requests, or to check whether your changes pass the unit tests
 (which are run automatically in the GitHub Actions CI environment for
 all branches pushed to your fork).</p>
 <p>The <code>--new-pr</code> option can also be used to open pull requests to the easyblocks
@@ -856,7 +856,7 @@ passing the branch name instead of a pull request ID.</p>
 you can also <em>use</em> easyconfig files and easyblocks from a pull request,
 regardless of its status (open, merged, or closed). This is particularly
 useful when testing contributions, or to install software for which 
-support is not included in the last EasyBuild release yet.</p>
+support is not yet included in the latest EasyBuild release.</p>
 <p>Using the <code>--from-pr</code> option you can install easyconfig files from the
 pull request with specified ID. By default all easyconfig files that are
 touched by the pull request will be installed, but you can specify only
@@ -928,7 +928,7 @@ took care of the <strong><a href="#contribution-procedure">whole contribution pr
 <li>Cloning the <code>easybuilders/easybuild-easyconfigs</code> repository and checking out the <code>develop</code> branch (in a temporary
   directory);</li>
 <li>Picking a sensible name for a branch and creating it;</li>
-<li>Adding the <code>eb-tutorial</code> easyconfig file to the branch, in the right location
+<li>Adding the <code>eb-tutorial</code> easyconfig file to the branch, in the correct location
   (<code>easybuild/easyconfigs/e/eb-tutorial/</code>) and with the correct filename (<code>eb-tutorial-1.0.0-GCC-9.3.0.eb</code>);</li>
 <li>Pushing the branch to our fork (<code>example/easybuild-easyconfigs</code>);</li>
 <li>Actually opening the pull request, using an informative title.</li>
@@ -940,7 +940,8 @@ various details (like targeting the <code>develop</code> branch) or spend time o
 coming up with a nice looking title or funny branch name (although you
 still can if you really want to).</p>
 <p>There are a couple of nice side effects too, like not having any local branches
-to tidy up on once the pull request gets merged (since <code>--new-pr</code> created the branch only in a temporary directory).</p>
+to tidy up on once the pull request gets merged (since <code>--new-pr</code> created the
+branch only in a temporary directory).</p>
 <p>If many contributions are made via <code>--new-pr</code> it also simplifies the task
 of EasyBuild maintainers, since pull requests opened this way have a particular
 structure to them and thus are easier to digest because they look familiar.</p>
@@ -1000,7 +1001,7 @@ See https://gist.github.com/f7c74159c809029afd99e30e4d994ef1 <span class="k">for
 <p>To wrap up, let us look at some statistics about the contributions that have
 been made to EasyBuild over the years.</p>
 <h3 id="unique-contributors">Unique contributors<a class="headerlink" href="#unique-contributors" title="Permanent link">&para;</a></h3>
-<p>Since EasyBuild went public in 2012 over 250 different people have made
+<p>Since EasyBuild went public in 2012 more than 250 different people have made
 contributions to the <code>easybuild-easyconfigs</code> repository. We also recently
 passed the threshold of 100 unique contributors in the easyblocks repository,
 and at the time of writing we were just <em>one</em> contributor short of reaching
@@ -1009,7 +1010,8 @@ and at the time of writing we were just <em>one</em> contributor short of reachi
 
 <p>If we look at unique contributors per year, we see that the number of contributors
 to the easyconfigs repository has been gradually increasing over the years,
-while the number of unique contributors to the framework and easyblocks repositories has largely remained stable in recent years. Making contributions to the latter
+while the number of unique contributors to the framework and easyblocks repositories has
+largely remained stable. Making contributions to the latter
 two repositories requires significantly more effort, which explains the difference
 with the easyconfigs repository.
 <div align="center"><img src="../img/unique_contributors_per_year.png" alt="Overview of unique contributors per year across EasyBuild repositories" width="75%"/></div></p>
@@ -1017,14 +1019,14 @@ with the easyconfigs repository.
 <p>Plotting the number of pull requests to the easyconfigs repository per year
 clearly shows an increase, with almost 2,100 <em>merged</em> contributions in 2019.
 In total over 2,600 pull requests were merged in 2019 across all EasyBuild repositories.</p>
-<p>It is also worth noting that over 65% of contributions were made by people outside
-the HPC-UGent team in 2019.</p>
+<p>It is also worth noting that in 2019 about two thirds of all contributions were made by people outside
+of the HPC-UGent team.</p>
 <div align="center"><img src="../img/contrib_stats_easyconfigs_pr_counts.png" alt="Overview of PRs to easybuild-easyconfigs repo, per year" width="70%"/></div>
 
 <p>Looking at the ratio of pull requests that were created using <code>--new-pr</code> versus
 the ones that were created manually shows a steady increase in adoption 
-since 2016 the GitHub integration feature.77% of pull requests that were created
-in 2019 were made using <code>--new-pr</code>, and we see this increasing further in 2020.</p>
+since 2016 the GitHub integration feature. Throughout 2019, 77% of all pull requests
+were made using <code>--new-pr</code>, and we see this increasing further in 2020.</p>
 <div align="center"><img src="../img/overview_easyconfig_prs_new_pr_vs_manual.png" alt="Overview of PRs to easybuild-easyconfigs, created with --new-pr vs manually" width="70%"/></div>
                 
                   
