@@ -336,6 +336,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#common-toolchains" class="md-nav__link">
+    Common toolchains
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -669,6 +676,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#common-toolchains" class="md-nav__link">
+    Common toolchains
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -897,6 +911,17 @@ compilers and libraries, rather than using toolchain components that were instal
 <p>It used sparingly, mostly to install software where no actual compilation is done or
 to build a set of toolchain compilers and its dependencies, since the versions of the system tools
 and libraries are beyond the control of EasyBuild, which could affect the reproducibility of the installation.</p>
+<h4 id="common-toolchains">Common toolchains<a class="headerlink" href="#common-toolchains" title="Permanent link">&para;</a></h4>
+<p>The <code>foss</code> and <code>intel</code> toolchains are also known as the <em>common toolchains</em>,
+because they are widely adopted by the EasyBuild community.</p>
+<p>The <code>foss</code> toolchain consists of all open source components (hence the name:
+"FOSS" stands for Free &amp; Open Source Software): <a href="https://gcc.gnu.org/">GCC</a>, <a href="https://www.open-mpi.org/">Open MPI</a>, <a href="https://www.openblas.net/">OpenBLAS</a>,
+<a href="https://www.netlib.org/scalapack/">ScaLAPACK</a> and <a href="http://fftw.org/">FFTW</a>.</p>
+<p>The <code>intel</code> toolchain consists of the <a href="https://software.intel.com/content/www/us/en/develop/tools/compilers.html">Intel C, C++ and Fortran compilers</a> (on top of a <code>GCC</code> version
+controlled through EasyBuild) alongside the <a href="https://software.intel.com/content/www/us/en/develop/tools/mpi-library.html">Intel MPI</a> and <a href="https://software.intel.com/content/www/us/en/develop/tools/math-kernel-library.html">Intel MKL</a> libraries.</p>
+<p>Roughly every 6 months, a new version of these common toolchains is agreed upon
+in the EasyBuild community, after extensive testing.</p>
+<p>More information on these toolchains is available <a href="https://easybuild.readthedocs.io/en/latest/Common-toolchains.html">in the EasyBuild documentation</a>.</p>
 <h3 id="modules"><em>Modules</em><a class="headerlink" href="#modules" title="Permanent link">&para;</a></h3>
 <p><em>Module</em> is a massively overloaded term in (scientific) software and IT in general
 (kernel modules, Python modules, and so on).
