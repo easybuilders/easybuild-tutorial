@@ -10,7 +10,7 @@ one of these channels.
 
 Make sure to check the EasyBuild documentation first, which is available at [**https://easybuild.readthedocs.io**](https://easybuild.readthedocs.io).
 
-It is not unlikely that an answer to your question is avaialable
+It is not unlikely that an answer to your question is available
 there already.
 The search box on the top left may be helpful.
 
@@ -41,7 +41,7 @@ Feel free to ask any questions or provide feedback via the EasyBuild mailing lis
 <a href="mailto:easybuild@lists.ugent.be">`easybuild@lists.ugent.be`</a>.
 
 Keep in mind that you need to be subscribed to the mailing list in order to
-post messsages there! You can subscribe via [this link](https://lists.ugent.be/wws/subscribe/easybuild).
+post messages there! You can subscribe via [this link](https://lists.ugent.be/wws/subscribe/easybuild).
 
 In 2016-2017 over 1,000 messages were posted to the EasyBuild mailing list.
 More recently this has decreased to about 700 messages per year, mostly due
