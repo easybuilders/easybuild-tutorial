@@ -3,8 +3,8 @@
 Before deep diving into the wonderful world of EasyBuild and getting your hands dirty with
 the hands on exercises coming up in this tutorial, you will need to install EasyBuild.
 
-In this section we outline a couple of different ways of doing so, and the things you should pay attention to.
-By the end of it, you will have a functional EasyBuild installation that you can use
+In this section we outline a couple of different ways of doing this, and also the things you should pay attention to.
+By the end, you will have a functional EasyBuild installation that you can use
 for the remainder of this tutorial.
 
 !!! summary
@@ -215,7 +215,7 @@ export PYTHONPATH=$HOME/tools/lib/python3.6/site-packages:$PYTHONPATH
 **`$EB_PYTHON` and `$EB_VERBOSE`**
 
 If you want to control which Python version is used to run EasyBuild,
-you can speicfy the name or the full path to the `python` command that should be used by the `eb` command
+you can specify the name or the full path to the `python` command that should be used by the `eb` command
 via the `$EB_PYTHON` environment variable.
 
 For example, to ensure that `eb` uses `python3`:
