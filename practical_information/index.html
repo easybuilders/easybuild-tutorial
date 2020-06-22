@@ -679,6 +679,12 @@ singularity run --cleanenv --home <span class="nv">$PWD</span>/isc20_easybuild_t
 </ul>
 <p>This is mainly to avoid that anything from the host environment or your home directory "leaks" into
 the container, which could interfere with the hands-on exercises.</p>
+<p><strong><em>Limitation: <code>/easybuild</code> is read-only</em></strong></p>
+<p>When the Docker container image is being run with Singularity,
+the <code>/easybuild</code> directory is read-only in the container.</p>
+<p>This creates problems for the demo and exercise in the <a href="../hmns">Hierarchical module naming schemes</a> part of the tutorial, because EasyBuild still requires write
+access to <code>/easybuild/software</code> even when generating module files in a different
+location outside of <code>/easybuild</code>.</p>
 <p><strong><em>Output</em></strong></p>
 <p>When running the "<code>singularity run</code>" command shown above, you should see output like is shown below.</p>
 <p><strong>Take into account that it will take a while for the container image to be downloaded.</strong></p>

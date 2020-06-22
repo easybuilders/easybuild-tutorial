@@ -754,6 +754,14 @@ is available right after login, which could be the ones used in the most recent 
 recommended versions. More experienced users could then leverage the "<code>module spider</code>" command to navigate
 the module hierarchy.</p>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>This example will not work when running the <a href="../practical_information/#using-singularity">prepared container
+image using Singularity</a></strong>,
+because the <code>/easybuild</code> directory is read-only in this case,
+and EasyBuild still requires write access to <code>/easybuild/software</code>
+even when generate module files outside of <code>/easybuild</code>.</p>
+</div>
 <p>Now that we know more about hierarchical module naming schemes,
 let us see how EasyBuild can help us with generating a hierarchical module tree.</p>
 <p>In this example we will use EasyBuild to generate modules organised in a hierarchy
@@ -1008,6 +1016,14 @@ module spider SciPy-bundle/2020.03-Python-3.8.2
 </code></pre></div></li>
 </ul>
 </details>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>This exercise will not work when running the <a href="../practical_information/#using-singularity">prepared container
+image using Singularity</a></strong>,
+because the <code>/easybuild</code> directory is read-only in this case,
+and EasyBuild still requires write access to <code>/easybuild/software</code>
+even when generate module files outside of <code>/easybuild</code>.</p>
+</div>
                 
                   
                     
