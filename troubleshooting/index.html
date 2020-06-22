@@ -835,8 +835,13 @@ should be used as toolchain:
 == FAILED: Installation ended unsuccessfully (build directory: /tmp/easybuild/Subread/2.0.1/GCC-8.3.0): build failed (first 300 chars):
 No module found for toolchain: GCC/8.4.0 (took 1 sec)
 </code></pre></div></p>
-<p>We don't have this GCC version installed, but we do have GCC 9.3.0.
-So let's try using that instead.</p>
+<p>We don't have this GCC version installed, but we do have GCC 9.3.0:</p>
+<div class="highlight"><pre><span></span><code>$ module avail GCC/
+----------------- /easybuild/modules/all ------------------
+   GCC/9.3.0
+</code></pre></div>
+
+<p>So let's try using that instead.</p>
 <p>Edit the easyconfig file so it contains this:</p>
 <div class="highlight"><pre><span></span><code><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;GCC&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;9.3.0&#39;</span><span class="p">}</span>
 </code></pre></div>
@@ -923,7 +928,7 @@ featureCounts v2.0.1
 <div class="md-source-date">
   <small>
     
-      Last update: June 20, 2020
+      Last update: June 22, 2020
     
   </small>
 </div>
