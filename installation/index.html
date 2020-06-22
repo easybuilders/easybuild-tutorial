@@ -413,6 +413,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#system-information" class="md-nav__link">
+    System information
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -421,6 +428,13 @@
         <li class="md-nav__item">
   <a href="#updating-easybuild" class="md-nav__link">
     Updating EasyBuild
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    Exercise
   </a>
   
 </li>
@@ -753,6 +767,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#system-information" class="md-nav__link">
+    System information
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -761,6 +782,13 @@
         <li class="md-nav__item">
   <a href="#updating-easybuild" class="md-nav__link">
     Updating EasyBuild
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    Exercise
   </a>
   
 </li>
@@ -1027,6 +1055,12 @@ along with a short informative message.</p>
 
 <p>This should tell you that EasyBuild (ab)uses <code>$HOME/.local/easybuild</code> as a default location.
 More on configuring EasyBuild in the next part of the tutorial.</p>
+<h4 id="system-information">System information<a class="headerlink" href="#system-information" title="Permanent link">&para;</a></h4>
+<p>You ask EasyBuild to collect and print some information about the
+system you are using it on (OS, CPU, Python, etc.) using this command:</p>
+<div class="highlight"><pre><span></span><code>eb --show-system-info
+</code></pre></div>
+
 <h2 id="updating-easybuild">Updating EasyBuild<a class="headerlink" href="#updating-easybuild" title="Permanent link">&para;</a></h2>
 <p>Before we wrap up here, a brief word about updating EasyBuild.</p>
 <p>Once you have EasyBuild installed, the easiest way to update to a newer version is by instructing EasyBuild
@@ -1039,10 +1073,68 @@ you are currently using (so it is <em>not</em> an in-place update).</p>
 <p>The location where this new EasyBuild version will be installed is determined by the active
 EasyBuild configuration.</p>
 <hr />
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p><strong>Make sure you have EasyBuild installed before you proceed with the rest of the tutorial!</strong></p>
-</div>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Install EasyBuild in your home directory</p>
+<p>Make sure that the EasyBuild installation uses the <code>python3</code> command to run,
+rather than the standard <code>python</code> command.</p>
+<p>Choose your own adventure (or try both installation methods)!</p>
+<ul>
+<li>perform a bootstrap installation into <code>$HOME/easybuild</code></li>
+<li>install EasyBuild with <code>pip</code> (or another very similar command...) using either the <code>--user</code> or <code>--prefix</code> option</li>
+</ul>
+<p>Check that the installation works by running the verification commands outlined
+<a href="#verifying-the-installation">above</a>.</p>
+<details class="success"><summary>(click to show solution using bootstrapping)</summary><p>To perform a bootstrap installation, it suffices to download
+the bootstrap script and run it using the <code>python3</code> command.</p>
+<div class="highlight"><pre><span></span><code>$ curl -O https://raw.githubusercontent.com/easybuilders/easybuild-framework/develop/easybuild/scripts/bootstrap_eb.py
+...
+$ python3 bootstrap_eb.py $HOME/easybuild
+[[INFO]] EasyBuild bootstrap script (version 20200203.01, MD5: fcb6314d4e0747db9c28a71f8bb2870c)
+[[INFO]] Found Python 3.6.8 (default, Apr  2 2020, 13:34:55) ; [GCC 4.8.5 20150623 (Red Hat 4.8.5-39)]
+
+[[INFO]] Installation prefix /home/easybuild/easybuild
+...
+</code></pre></div>
+
+<p>Afterwards we can just load the generated module, which already
+takes care of correctly setting <code>$EB_PYTHON</code> to ensure the right
+<code>python</code> command is used:</p>
+<div class="highlight"><pre><span></span><code>$ module use $HOME/easybuild/modules/all
+$ module load EasyBuild
+$ echo $EB_PYTHON
+/usr/bin/python3
+$ eb --version
+This is EasyBuild 4.2.1 (framework: 4.2.1, easyblocks: 4.2.1) on host example.
+</code></pre></div>
+
+</details>
+<details class="success"><summary>(click to show solution using pip)</summary><p>To ensure that EasyBuild is installed with Python 3,
+we need to use the <code>pip3</code> command rather than just <code>pip</code>.</p>
+<p>We can install EasyBuild using <code>pip3 install --user</code>,
+and update <code>$PATH</code> and define <code>$EB_PYTHON</code> to ensure the right
+<code>python</code> command is used (the order in which we do this doesn't matter):</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$HOME</span>/.local/bin:<span class="nv">$PATH</span>
+<span class="nb">export</span> <span class="nv">EB_PYTHON</span><span class="o">=</span>python3
+pip3 install --user easybuild
+</code></pre></div>
+
+<p>Or we can use <code>pip3 install --prefix</code>, but then we need to update <em>both</em>
+<code>$PATH</code> and <code>$PYTHONPATH</code> (after checking the Python version),
+and also define <code>$EB_PTYHON</code>:</p>
+<div class="highlight"><pre><span></span><code>$ python -V
+Python <span class="m">3</span>.6.8
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$HOME</span>/bin:<span class="nv">$PATH</span>
+<span class="nb">export</span> <span class="nv">PYTHONPATH</span><span class="o">=</span><span class="nv">$HOME</span>/lib/python3.6/site-packages:<span class="nv">$PATH</span>
+<span class="nb">export</span> <span class="nv">EB_PYTHON</span><span class="o">=</span>python3
+pip3 install --prefix <span class="nv">$HOME</span> easybuild
+</code></pre></div>
+
+</details>
+<hr />
+<p><strong>Make sure you have a working EasyBuild installation before proceeding
+with the rest of the tutorial!</strong></p>
                 
                   
                     
