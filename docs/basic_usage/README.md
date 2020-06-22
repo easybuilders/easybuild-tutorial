@@ -20,7 +20,7 @@ with the `--robot` option to enable dependency resolution.
 It is recommended to first assess the current situation before letting EasyBuild install the software,
 and to check which **dependencies** are already installed and which are still missing. In addition,
 you may want to inspect the specifics of the **installation procedure** that will be performed by EasyBuild
-and ensure that the configuration option are what you would expect, for example.
+and ensure that the configuration options are what you would expect, for example.
 
 ## Specifying easyconfigs
 
