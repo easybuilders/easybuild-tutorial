@@ -543,7 +543,7 @@ easyblock = 'CMakeMake'
 ```
 
 The "`easyblock =`" line is usually at the top of the easyconfig file, but strictly speaking
-the order of the parameter definitions doesn't matter (unless one is defined the terms of another one).
+the order of the parameter definitions doesn't matter (unless one is defined in terms of another one).
 
 ### CMake build dependency
 
