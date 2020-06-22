@@ -391,6 +391,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    Exercise
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -673,6 +680,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    Exercise
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -943,7 +957,8 @@ along with a couple of important ones that are always shown (like <code>buildpat
 In addition, it also indicates at which configuration level each setting was defined,
 so you can trace down where it was defined if needed.</p>
 <p>This is the output produces by <code>eb --show-config</code> for the default EasyBuild configuration,
-where EasyBuild was installed via <code>pip install --user</code>:</p>
+where EasyBuild was installed via <code>pip install --user</code> (which affects the
+<code>robot-paths</code> configuration setting):</p>
 <div class="highlight"><pre><span></span><code><span class="c1">#</span>
 <span class="c1"># Current EasyBuild configuration</span>
 <span class="c1"># (C: command line argument, D: default value, E: environment variable, F: configuration file)</span>
@@ -958,37 +973,74 @@ sourcepath     <span class="o">(</span>D<span class="o">)</span> <span class="o"
 
 <p>As shown here, all configuration settings shown follow the default <code>prefix</code> value (<code>$HOME/.local/easybuild</code>)
 and none of the values diverge from the default value, since all entries are marked with <code>(D)</code> for "default value").</p>
-<p>Now let us do some basic configuring and inspect the resulting output of <code>--show-config</code>:</p>
-<div class="highlight"><pre><span></span><code>$ <span class="nb">export</span> <span class="nv">EASYBUILD_PREFIX</span><span class="o">=</span><span class="nv">$HOME</span>/easybuild
-$ <span class="nb">export</span> <span class="nv">EASYBUILD_BUILDPATH</span><span class="o">=</span>/tmp/<span class="nv">$USER</span>
-$ eb --installpath<span class="o">=</span>/tmp/<span class="nv">$USER</span> --show-config
+<p>Now let us do some basic configuring and inspect the resulting output of <code>--show-config</code>.</p>
+<p>First, create a user-level EasyBuild configuration file to define the <code>prefix</code> configuration setting:</p>
+<div class="highlight"><pre><span></span><code>mkdir -p <span class="nv">$HOME</span>/.config/easybuild
+<span class="nb">echo</span> <span class="s1">&#39;[config]&#39;</span> &gt; <span class="nv">$HOME</span>/.config/easybuild/config.cfg
+<span class="nb">echo</span> <span class="s1">&#39;prefix=/apps&#39;</span> &gt;&gt; <span class="nv">$HOME</span>/.config/easybuild/config.cfg
+</code></pre></div>
+
+<p>Define the <code>buildpath</code> configuration setting using the corresponding
+environment variable:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">EASYBUILD_BUILDPATH</span><span class="o">=</span>/tmp/<span class="nv">$USER</span>
+</code></pre></div>
+
+<p>Then run <code>--show-config</code> while you specify that the <code>installpath</code> configuration
+setting should be defined as <code>/tmp/$USER</code>:</p>
+<div class="highlight"><pre><span></span><code>$ eb --installpath<span class="o">=</span>/tmp/<span class="nv">$USER</span> --show-config
 <span class="c1">#</span>
 <span class="c1"># Current EasyBuild configuration</span>
 <span class="c1"># (C: command line argument, D: default value, E: environment variable, F: configuration file)</span>
 <span class="c1">#</span>
-buildpath      <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /tmp/example
-containerpath  <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild/containers
+buildpath      <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /tmp/easybuild
+containerpath  <span class="o">(</span>F<span class="o">)</span> <span class="o">=</span> /apps/containers
 installpath    <span class="o">(</span>C<span class="o">)</span> <span class="o">=</span> /tmp/easybuild
-packagepath    <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild/packages
-prefix         <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild
-repositorypath <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild/ebfiles_repo
+packagepath    <span class="o">(</span>F<span class="o">)</span> <span class="o">=</span> /apps/packages
+prefix         <span class="o">(</span>F<span class="o">)</span> <span class="o">=</span> /apps
+repositorypath <span class="o">(</span>F<span class="o">)</span> <span class="o">=</span> /apps/ebfiles_repo
 robot-paths    <span class="o">(</span>D<span class="o">)</span> <span class="o">=</span> /home/example/.local/easybuild/easyconfigs
-sourcepath     <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild/sources
+sourcepath     <span class="o">(</span>F<span class="o">)</span> <span class="o">=</span> /apps/sources
 </code></pre></div>
 
 <p>The output indicates that the <code>installpath</code> setting was specified through a command line option (indicated
-with '<code>(C)</code>'), that the <code>robot-paths</code> setting still has the default values, and that all other configuration
-settings were specified via an environment variable (some of which indirectly through the <code>prefix</code> value).</p>
+with '<code>(C)</code>'), that the <code>buildpath</code> setting was defined via an environment
+variable (indicated with <code>(E)</code>), that the <code>robot-paths</code> setting still has the default value (indicated with <code>(D)</code>), and that all other configuration
+settings were specified via a configuration file, some of which indirectly through the <code>prefix</code> value (indicated with
+<code>(F)</code>).</p>
 <hr />
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p><strong>Make sure you have EasyBuild properly configured before you proceed with the rest of the tutorial!</strong></p>
-<p>We recommend using the following configuration (unless otherwise specified in the examples/exercises):</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Configure EasyBuild to use the <code>easybuild</code> subdirectory in your home directory for everything, except for:</p>
+<ul>
+<li>the location of the build directories: use <code>/tmp/$USER</code> for this;</li>
+<li>the locations that should be considered when searching for source files:
+  include both <code>$HOME/easybuild/sources</code> and <code>/easybuild/sources</code>, but make
+  sure that source files that are downloaded by EasyBuild are stored in
+  <code>$HOME/easybuild/sources</code></li>
+</ul>
+<p>Leave other configuration settings set to their defaults.</p>
+<details class="success"><summary>(click to show solution)</summary><p>This is pretty straightforward.</p>
+<p>Here we just define the corresponding environment variables:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">EASYBUILD_PREFIX</span><span class="o">=</span><span class="nv">$HOME</span>/easybuild
 <span class="nb">export</span> <span class="nv">EASYBUILD_BUILDPATH</span><span class="o">=</span>/tmp/<span class="nv">$USER</span>
+<span class="nb">export</span> <span class="nv">EASYBUILD_SOURCEPATH</span><span class="o">=</span><span class="nv">$HOME</span>/easybuild/sources:/easybuild/sources
 </code></pre></div>
 
-</div>
+<p>The location where EasyBuild should download source files to
+must be listed first in the <code>sourcepath</code> configuration setting.</p>
+<p>The output of <code>--show-config</code> should look like this:</p>
+<div class="highlight"><pre><span></span><code>buildpath      <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /tmp/example
+containerpath  <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild/containers
+installpath    <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild
+packagepath    <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild/packages
+prefix         <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild
+repositorypath <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild/ebfiles_repo
+robot-paths    <span class="o">(</span>D<span class="o">)</span> <span class="o">=</span> /home/example/easybuild/easyconfigs
+sourcepath     <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild/sources:/easybuild/sources
+</code></pre></div>
+
+</details>
+<hr />
+<p><strong>Make sure EasyBuild is configured as instructed in the exercise before you continue with the rest of this tutorial.</strong></p>
                 
                   
                     
