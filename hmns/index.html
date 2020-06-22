@@ -889,7 +889,26 @@ Compiler  Core  MPI
 </code></pre></div>
 
 <p>Nice and short module names, but only a limited set of them.</p>
-<p>The gateway module here is the <code>GCC/9.3.0</code> compiler module, so let us load that:</p>
+<p>We know a module file exists for <code>HDF5</code>, but we can't see it yet (and hence
+we can't load it either).</p>
+<div class="highlight"><pre><span></span><code>$ module avail HDF5
+No module(s) or extension(s) found!
+Use &quot;module spider&quot; to find all possible modules and extensions.
+</code></pre></div>
+
+<p>Let us see if <code>module spider</code> is of any help, as "<code>module avail</code>" so kindly suggests:</p>
+<div class="highlight"><pre><span></span><code>$ module spider HDF5
+...
+
+    You will need to load all module(s) on any one of the lines below
+    before the &quot;HDF5/1.10.6&quot; module is available to load.
+
+      GCC/9.3.0  OpenMPI/4.0.3
+</code></pre></div>
+
+<p>This tells us we need to load two gateway modules before we can load the module
+for HDF5.</p>
+<p>Let us start with loading the <code>GCC</code> compiler module:</p>
 <div class="highlight"><pre><span></span><code>module load GCC/9.3.0
 </code></pre></div>
 
@@ -911,28 +930,12 @@ Compiler  Core  MPI
    GCC/9.3.0   (L)    binutils/2.34        gompi/2020a       zlib/1.2.11
 </code></pre></div>
 
-<p>Good news! We now have additional modules available!</p>
+<p>Good news, we now have additional modules available!</p>
 <p>The compiler level of our hierarchy actually consists of two directories here: <code>Compiler/GCCcore/9.3.0</code>
 and <code>Compiler/GCC/9.3.0</code>. The modules in the <code>GCCcore</code> directory are ones we can use in other compiler
 toolchains that use GCC 9.3.0 as a base compiler (the details of that are out of scope here).</p>
 <p>The module we are interested in is <code>OpenMPI/4.0.3</code>, which is another gateway module.</p>
-<p>We can figure this out by asking Lmod whether a module exists for HDF5 using the "<code>module spider</code>" command,
-as suggested in the output of "<code>module avail HDF5</code>":</p>
-<div class="highlight"><pre><span></span><code>$ module avail HDF5
-No module(s) or extension(s) found!
-Use &quot;module spider&quot; to find all possible modules and extensions.
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>$ module spider HDF5
-...
-
-    You will need to load all module(s) on any one of the lines below
-    before the &quot;HDF5/1.10.6&quot; module is available to load.
-
-      GCC/9.3.0  OpenMPI/4.0.3
-</code></pre></div>
-
-<p>This output tells us that there does indeed exist a module for <code>HDF5</code>, but that
+<p>Remember that the "<code>module spider</code>" output told us that there does indeed exist a module for <code>HDF5</code>, but that
 we need to load <em>both</em> the <code>GCC/9.3.0</code> and <code>OpenMPI/4.0.3</code> modules first.</p>
 <p>So, let us do exactly that (remember that <code>GCC/9.3.0</code> is already loaded):</p>
 <div class="highlight"><pre><span></span><code>module load OpenMPI/4.0.3
@@ -960,7 +963,16 @@ h5dump: Version 1.10.6
 </code></pre></div>
 
 <p>If you now check which modules are loaded via "<code>module list</code>", you will notice that all module names
-and nice and short now, which is one of the advantages of using a hierarchical module tree.</p>
+and nice and short now, which is one of the advantages of using a hierarchical module tree:</p>
+<div class="highlight"><pre><span></span><code>$ module list
+
+Currently Loaded Modules:
+  <span class="m">1</span><span class="o">)</span> GCCcore/9.3.0   <span class="m">5</span><span class="o">)</span> numactl/2.0.13      <span class="m">9</span><span class="o">)</span> hwloc/2.2.0    <span class="m">13</span><span class="o">)</span> HDF5/1.10.6
+  <span class="m">2</span><span class="o">)</span> zlib/1.2.11     <span class="m">6</span><span class="o">)</span> XZ/5.2.5           <span class="m">10</span><span class="o">)</span> UCX/1.8.0
+  <span class="m">3</span><span class="o">)</span> binutils/2.34   <span class="m">7</span><span class="o">)</span> libxml2/2.9.10     <span class="m">11</span><span class="o">)</span> OpenMPI/4.0.3
+  <span class="m">4</span><span class="o">)</span> GCC/9.3.0       <span class="m">8</span><span class="o">)</span> libpciaccess/0.16  <span class="m">12</span><span class="o">)</span> Szip/2.1.1
+</code></pre></div>
+
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Now it is your turn!</p>
 <p>Try to get a feeling for how a hierarchical module tree works by:</p>
