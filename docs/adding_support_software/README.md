@@ -199,6 +199,7 @@ Here are a couple of commonly used generic easyblocks:
 * `CMakeMake`: same as `ConfigureMake`, but with `./configure` replaced with `cmake` for the configuration step;
 * `PythonPackage`: implements the installation procedure for a single Python package, by default using
    "`python setup.py install`" but other methods like using "`pip install`" are also supported;
+* `Bundle`: a simple generic easyblock to bundle a set of software packages together under a single module file;
 * `PythonBundle`: a customized version of the `Bundle` generic easyblock to install a bundle of Python packages
   in a single installation directory;
 
