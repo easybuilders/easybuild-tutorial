@@ -14,6 +14,8 @@ It is not unlikely that an answer to your question is avaialable
 there already.
 The search box on the top left may be helpful.
 
+<div align="center"><a href="https://easybuild.readthedocs.io/en/latest/search.html"><img src="../img/readthedocs_search.png" alt="GitHub search" width="30%"/></a></div>
+
 ---
 
 <p><img src="../img/github_logo.png" style="float:left" alt="GitHub logo" width="15%"/></p>
@@ -29,7 +31,7 @@ the EasyBuild maintainers can move your issue if deemed appropriate.
 You can also use the search box on the top left to see if somebody else
 has already asked a similar question.
 
-<div align="center"><img src="../img/github_search.png" alt="GitHub search" width="50%"/></div>
+<div align="center"><a href="https://github.com/easybuilders"><img src="../img/github_search.png" alt="GitHub search" width="50%"/></a></div>
 
 ---
 
@@ -40,6 +42,10 @@ Feel free to ask any questions or provide feedback via the EasyBuild mailing lis
 
 Keep in mind that you need to be subscribed to the mailing list in order to
 post messsages there! You can subscribe via [this link](https://lists.ugent.be/wws/subscribe/easybuild).
+
+In 2016-2017 over 1,000 messages were posted to the EasyBuild mailing list.
+More recently this has decreased to about 700 messages per year, mostly due
+to the EasyBuild Slack channel.
 
 ---
 
