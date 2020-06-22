@@ -362,7 +362,14 @@ the *toolchain* here...
     No module found for toolchain: GCC/8.4.0 (took 1 sec)
     ```
 
-    We don't have this GCC version installed, but we do have GCC 9.3.0.
+    We don't have this GCC version installed, but we do have GCC 9.3.0:
+
+    ```shell
+    $ module avail GCC/
+    ----------------- /easybuild/modules/all ------------------
+       GCC/9.3.0
+    ```
+
     So let's try using that instead.
 
     Edit the easyconfig file so it contains this:
