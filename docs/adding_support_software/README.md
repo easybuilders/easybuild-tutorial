@@ -161,7 +161,7 @@ you must use square brackets as shown in the example. The default value for each
 Some things worth pointing out here:
 
 * The download URLs specified via `source_urls` do *not* include the name of the file, that is added
-  automatically by EasyBuild when it tries to download the file (only if it's not available already.
+  automatically by EasyBuild when it tries to download the file (only if it's not available already.)
 * If multiple download URLs are specified, they are each tried once in order until the download of the source file was
   successful. This can be useful to include backup locations where source files can be downloaded from.
 * Names of source files and patches should not include hardcoded software versions, they usually use a
@@ -655,11 +655,11 @@ to the standard `name-version.tar.gz` pattern:
 sources = [SOURCE_TAR_GZ]
 ```
 
-See the output of "`eb --avail-easyconfig-template`" for a list of known templates.
+See the output of "`eb --avail-easyconfig-templates`" for a list of known templates.
 
 ### Required configure option
 
-With `sources` defined, we can try and again. And yet again we see the configure step fail.
+With `sources` defined, we can try again. And yet again we see the configure step fail.
 Is this a ruse to make you hate CMake with a passion? Maybe...
 
 Here's what we find in the log file:
@@ -726,7 +726,9 @@ sanity_check_commands = ['eb-tutorial']
 ```
 
 Let us now retry, but use `--module-only` rather than redoing the whole installation.
-And by enabling trace module via `--trace` we can get some more information too:
+`--module-only` still sanity checks the installation, so if it creates
+a module, we know it will work as expected. 
+Also, by enabling tracing of the module via `--trace` we can get some more information too:
 
 ```shell
 eb eb-tutorial.eb --module-only --trace
