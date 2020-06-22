@@ -146,7 +146,8 @@ To do this, you should define the `github-user` configuration option and
 run the "`eb --install-github-token`" command:
 
 ```shell
-$ export EASYBUILD_GITHUB_USER=example
+# replace 'ebtutorial' with your own GitHub username!
+$ export EASYBUILD_GITHUB_USER=ebtutorial
 $ eb --install-github-token
 ```
 
@@ -196,12 +197,15 @@ Checking status of GitHub integration...
 
 Making sure we're online...OK
 
-* GitHub user...example=> OK
+* GitHub user...ebtutorial=> OK
 Please enter password for encrypted keyring:
 * GitHub token...fed..987 (len: 40) => OK (validated)
 * git command...OK ("git version 1.8.3.1; ")
 * GitPython module...OK (GitPython version 3.1.3)
-* push access to example/easybuild-easyconfigs repo @ GitHub...OK
+Enter passphrase for key '/home/easybuild/.ssh/id_rsa': 
+Enter passphrase for key '/home/easybuild/.ssh/id_rsa': 
+* push access to ebtutorial/easybuild-easyconfigs repo @ GitHub...OK
+Enter passphrase for key '/home/easybuild/.ssh/id_rsa':
 * creating gists...OK
 * location to Git working dirs... not found (suboptimal)
 
@@ -217,6 +221,12 @@ Status of GitHub integration:
 
 If you see '`OK`' in all lines of the final status, you're all set
 to try out the GitHub integration features!
+
+!!! Note
+    If your SSH private key is protected with a password, you may need
+    to enter your password a couple of times when running "`eb --check-github`".
+
+    You can avoid this by [using an SSH agent](https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent).
 
 ### Creating pull requests
 
@@ -280,14 +290,22 @@ Similarly, using a new or updated easyblock from a pull request is as simple
 as using the `--include-easyblocks-from-pr` option. And of course you can
 combine it with `--from-pr`!
 
+Via `--upload-test-report` you can let EasyBuild submit a comment into the
+easyconfig pull request to show that the installation worked on your system. This is
+useful for others to know, in particular EasyBuild maintainers, since the comment
+will include information about your system (OS, processor, etc.) and your EasyBuild configuration.
+
 ## Demo
 
 That is a lot to digest, so let us make this a bit more concrete with an example:
-we will open a pull request for the [`eb-tutorial` example software](../adding_support_software/#example) to *a fork* of the [`easybuild-easyconfigs` repository](https://github.com/easybuilders/easybuild-easyconfigs) using the `eb` command.
+we will open a pull request for the [`eb-tutorial` example software](../adding_support_software/#example) to *a fork* of the [`easybuild-easyconfigs` repository](https://github.com/easybuilders/easybuild-easyconfigs) using the `eb` command,
+and submit a test report in it.
 
 !!! Note
     Make sure that you have correctly configured the GitHub integration,
     [see above](#requirements-configuration).
+
+### Creating pull request
 
 We first configure EasyBuild to target the `boegel` GitHub account rather
 than the default `easybuilders` GitHub organisation,
@@ -310,17 +328,18 @@ Opening a pull request is as simple as running "`eb --new-pr`" and passing
 the easyconfig file:
 
 ```shell
-$ eb --new-pr eb-tutorial.eb
-== temporary log file in case of crash /tmp/eb-zub2mqhh/easybuild-72guq9zs.log
+$ eb --new-pr eb-tutorial.eb 
+== temporary log file in case of crash /tmp/eb-ggr6scbq/easybuild-hnk271xj.log
 == found valid index for /home/example/.local/easybuild/easyconfigs, so using it...
 == fetching branch 'develop' from https://github.com/boegel/easybuild-easyconfigs.git...
-== copying files to /tmp/eb-zub2mqhh/git-working-dirg2nfop_s/easybuild-easyconfigs...
-== pushing branch '20200621181934_new_pr_eb-tutorial100' to remote 'github_eb-tutorial_jnLIb' (git@github.com:example/easybuild-easyconfigs.git)
+== copying files to /tmp/eb-ggr6scbq/git-working-dirxwk1fzaw/easybuild-easyconfigs...
+== pushing branch '20200622095415_new_pr_eb-tutorial100' to remote 'github_ebtutorial_qgtfU' (git@github.com:ebtutorial/easybuild-easyconfigs.git)
+Enter passphrase for key '/home/example/.ssh/id_rsa': 
 Please enter password for encrypted keyring: 
 
 Opening pull request
 * target: boegel/easybuild-easyconfigs:develop
-* from: example/easybuild-easyconfigs:20200621181934_new_pr_eb-tutorial100
+* from: ebtutorial/easybuild-easyconfigs:20200622095415_new_pr_eb-tutorial100
 * title: "{tools}[GCC/9.3.0] eb-tutorial v1.0.0"
 * labels: new
 * description:
@@ -332,21 +351,21 @@ Opening pull request
  easybuild/easyconfigs/e/eb-tutorial/eb-tutorial-1.0.0-GCC-9.3.0.eb | 26 ++++++++++++++++++++++++++
  1 file changed, 26 insertions(+)
 
-Opened pull request: https://github.com/boegel/easybuild-easyconfigs/pull/64
-== Temporary log file(s) /tmp/eb-zub2mqhh/easybuild-72guq9zs.log* have been removed.
-== Temporary directory /tmp/eb-zub2mqhh has been removed.
+Opened pull request: https://github.com/boegel/easybuild-easyconfigs/pull/65
+== Temporary log file(s) /tmp/eb-ggr6scbq/easybuild-hnk271xj.log* have been removed.
+== Temporary directory /tmp/eb-ggr6scbq has been removed.
 ```
 
 Take a moment to grasp what we did here: we ran **a single `eb` command** which
 took care of the **[whole contribution procedure](#contribution-procedure)** for us, including:
 
-* cloning the `easybuilders/easybuild-easyconfigs` repository and checking out the `develop` branch (in a temporary
+* Cloning the `easybuilders/easybuild-easyconfigs` repository and checking out the `develop` branch (in a temporary
   directory);
-* picking a sensible name for a branch and creating it;
-* adding the `eb-tutorial` easyconfig file to the branch, in the right location
+* Picking a sensible name for a branch and creating it;
+* Adding the `eb-tutorial` easyconfig file to the branch, in the right location
   (`easybuild/easyconfigs/e/eb-tutorial/`) and with the correct filename (`eb-tutorial-1.0.0-GCC-9.3.0.eb`);
-* pushing the branch to our fork (`example/easybuild-easyconfigs`);
-* actually opening the pull request, using an informative title;
+* Pushing the branch to our fork (`example/easybuild-easyconfigs`);
+* Actually opening the pull request, using an informative title.
 
 That is so... easy!
 
@@ -367,6 +386,63 @@ structure to them and thus are easier to digest because they look familiar.
     If you are using the prepared tutorial environment,
     **do not forget to remove the GitHub public key and GitHub token**
     that you created earlier for this part of the tutorial from your GitHub account!
+
+### Uploading test report
+
+After opening the pull request, we should also upload a test report to show that the installation is working.
+This is just as easy as creating the pull request.
+
+First make sure that the pre-installed software in the prepared environment
+is available, since the required dependencies for `eb-tutorial` are already
+installed there:
+
+```shell
+module use /easybuild/modules/all
+```
+
+You can verify which dependencies are still missing using `--from-pr` combined with `--missing`:
+
+```shell
+# change '65' to the ID of your own pull request (see output of --new-pr)
+$ eb --from-pr 65 --missing
+== temporary log file in case of crash /tmp/eb-ioi9ywm1/easybuild-e3v0xa1b.log
+Please enter password for encrypted keyring: 
+== found valid index for /home/example/.local/easybuild/easyconfigs, so using it...
+
+1 out of 20 required modules missing:
+
+* eb-tutorial/1.0.0-GCC-9.3.0 (eb-tutorial-1.0.0-GCC-9.3.0.eb)
+```
+
+Uploading a test report boils down to combining `--from-pr` with `--upload-test-report`:
+
+```shell
+# change '65' to the ID of your own pull request (see output of --new-pr)
+$ eb --rebuild --from-pr 65 --upload-test-report
+Please enter password for encrypted keyring: 
+...
+== processing EasyBuild easyconfig /tmp/eb-bnb1pv3n/files_pr65/e/eb-tutorial/eb-tutorial-1.0.0-GCC-9.3.0.eb
+== building and installing eb-tutorial/1.0.0-GCC-9.3.0...
+...
+== COMPLETED: Installation ended successfully (took 2 sec)
+...
+Adding comment to easybuild-easyconfigs issue #65: 'Test report by @ebtutorial
+**SUCCESS**
+Build succeeded for 1 out of 1 (1 easyconfigs in this PR)
+example - Linux centos linux 7.8.2003, x86_64, Intel(R) Core(TM) i5-7360U CPU @ 2.30GHz (haswell), Python 3.6.8
+See https://gist.github.com/f7c74159c809029afd99e30e4d994ef1 for a full test report.'
+== Test report uploaded to https://gist.github.com/f7c74159c809029afd99e30e4d994ef1 and mentioned in a comment in easyconfigs PR#65
+```
+
+Note that we may need to use `--rebuild` here since `eb-tutorial` may already be installed.
+
+This results in a comment being added to the pull request:
+
+<div align="center"><img src="../img/test_report_comment.png" alt="Test report comment" width="75%"/></div>
+
+The gist linked from this comment provides more detailed information:
+
+<div align="center"><img src="../img/test_report_gist.png" alt="Test report gist" width="75%"/></div>
 
 ## Contribution stats
 
