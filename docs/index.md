@@ -1,9 +1,3 @@
-!!! warning
-    *(June 19th 2020)*<br/>
-    **This tutorial is still being prepared, we hope to finish it soon.**<br/>
-    By Tue June 23rd 2020 it should be fully ready for consumption,
-    see also [https://github.com/easybuilders/easybuild/wiki/EasyBuild-tutorial](https://github.com/easybuilders/easybuild/wiki/EasyBuild-tutorial).<br/>
-
 # Welcome to the official EasyBuild tutorial!
 
 <p align="center"><img src="img/easybuild_logo_alpha.png" alt="EasyBuild logo" width="300px"/></p>
@@ -43,24 +37,25 @@ We expect you to be (a little bit) familiar with:
 * using a Linux command line interface
 * the (absolute) basics of compiling software from source
 
-Required software:
+EasyBuild requires:
 
-* OS: GNU/Linux (any distribution)
+* GNU/Linux (any distribution)
 * Python 2.7 or 3.5+
 * an environment modules tool (see the ``module`` command)
 
     * we recommend [Lmod](https://lmod.readthedocs.io), a modern environment modules tool implemented in Lua
     * for more information on the environment modules tools supported by EasyBuild, see [here](https://easybuild.readthedocs.io/en/latest/Installation.html#required-modules-tool)
 
+A [container image](../practical_information/#prepared-container-image) is available that can be run using either Docker or
+Singularity, which provides a prepared environment that can be used
+for the hands-on exercises in this tutorial.
+
 ## Practical information
 
 For the sake of this tutorial, you can:
 
-* use the `#tutorial` channel in the EasyBuild Slack for asking questions or getting help;
-* use *AWS Cloud9* for the hands-on exercises;
-* use the prepared container image through Docker or Singularity;
-
-Please see [this page](practical_information/README.md) for more details.
+* use the `#tutorial` channel in the [EasyBuild Slack](../getting_help) for asking questions or getting help;
+* use *AWS Cloud9* for the hands-on exercises (**only during the live tutorial on June 23rd 2020!**);
 
 
 ## Tutorial contents
