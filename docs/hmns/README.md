@@ -91,7 +91,7 @@ However, the are some minor disadvantages too:
 
 When using a flat module naming scheme, module names can be fairly long and perhaps confusing. For our `HDF5` installation for example,
 we have `HDF5/1.10.6-gompi-2020a` as module name. The `-gompi-2020a` part of the name refers to the toolchain that was
-used for this installation, but it may be confusing to some people (what's kind of Pokémon is a "gompi"?!).
+used for this installation, but it may be confusing to some people (what kind of Pokémon is a "gompi"?!).
 
 In the example module hierarchy shown above, the module for `HDF5` is named `HDF5/1.10.6` which is basically the bare
 essentials: software name and version. That's way better, nice and clean!
