@@ -317,7 +317,31 @@ $ module avail
 
 Nice and short module names, but only a limited set of them.
 
-The gateway module here is the `GCC/9.3.0` compiler module, so let us load that:
+We know a module file exists for `HDF5`, but we can't see it yet (and hence
+we can't load it either).
+
+```
+$ module avail HDF5
+No module(s) or extension(s) found!
+Use "module spider" to find all possible modules and extensions.
+```
+
+Let us see if `module spider` is of any help, as "`module avail`" so kindly suggests:
+
+```
+$ module spider HDF5
+...
+
+    You will need to load all module(s) on any one of the lines below
+    before the "HDF5/1.10.6" module is available to load.
+
+      GCC/9.3.0  OpenMPI/4.0.3
+```
+
+This tells us we need to load two gateway modules before we can load the module
+for HDF5.
+
+Let us start with loading the `GCC` compiler module:
 
 ```
 module load GCC/9.3.0
@@ -343,7 +367,7 @@ $ module avail
    GCC/9.3.0   (L)    binutils/2.34        gompi/2020a       zlib/1.2.11
 ```
 
-Good news! We now have additional modules available!
+Good news, we now have additional modules available!
 
 The compiler level of our hierarchy actually consists of two directories here: `Compiler/GCCcore/9.3.0`
 and `Compiler/GCC/9.3.0`. The modules in the `GCCcore` directory are ones we can use in other compiler
@@ -351,26 +375,7 @@ toolchains that use GCC 9.3.0 as a base compiler (the details of that are out of
 
 The module we are interested in is `OpenMPI/4.0.3`, which is another gateway module.
 
-We can figure this out by asking Lmod whether a module exists for HDF5 using the "`module spider`" command,
-as suggested in the output of "`module avail HDF5`":
-
-```
-$ module avail HDF5
-No module(s) or extension(s) found!
-Use "module spider" to find all possible modules and extensions.
-```
-
-```
-$ module spider HDF5
-...
-
-    You will need to load all module(s) on any one of the lines below
-    before the "HDF5/1.10.6" module is available to load.
-
-      GCC/9.3.0  OpenMPI/4.0.3
-```
-
-This output tells us that there does indeed exist a module for `HDF5`, but that
+Remember that the "`module spider`" output told us that there does indeed exist a module for `HDF5`, but that
 we need to load *both* the `GCC/9.3.0` and `OpenMPI/4.0.3` modules first.
 
 So, let us do exactly that (remember that `GCC/9.3.0` is already loaded):
@@ -406,7 +411,17 @@ h5dump: Version 1.10.6
 ```
 
 If you now check which modules are loaded via "`module list`", you will notice that all module names
-and nice and short now, which is one of the advantages of using a hierarchical module tree.
+and nice and short now, which is one of the advantages of using a hierarchical module tree:
+
+```shell
+$ module list
+
+Currently Loaded Modules:
+  1) GCCcore/9.3.0   5) numactl/2.0.13      9) hwloc/2.2.0    13) HDF5/1.10.6
+  2) zlib/1.2.11     6) XZ/5.2.5           10) UCX/1.8.0
+  3) binutils/2.34   7) libxml2/2.9.10     11) OpenMPI/4.0.3
+  4) GCC/9.3.0       8) libpciaccess/0.16  12) Szip/2.1.1
+```
 
 ## Exercise
 
