@@ -69,7 +69,7 @@ run the following `docker` command:
 
 ```
 mkdir -p isc20_easybuild_tutorial
-docker run -ti --rm --mount type=bind,source=$PWD/isc20_easybuild_tutorial,target=/home/easybuild --hostname tutorial easybuilders/tutorial:isc20
+docker run -ti --user=$(id -u):$(id -g) --rm --mount type=bind,source=$PWD/isc20_easybuild_tutorial,target=/home/easybuild --hostname tutorial easybuilders/tutorial:isc20
 ```
 
 Note that we are bind mounting the `isc20_easybuild_tutorial` directory
