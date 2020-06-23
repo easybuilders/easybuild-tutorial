@@ -615,7 +615,7 @@ and will be downloaded automatically from Docker Hub when you run the <code>dock
 <p>If you want to use the prepared container image via Docker,
 run the following <code>docker</code> command:</p>
 <div class="highlight"><pre><span></span><code>mkdir -p isc20_easybuild_tutorial
-docker run -ti --rm --mount type=bind,source=$PWD/isc20_easybuild_tutorial,target=/home/easybuild --hostname tutorial easybuilders/tutorial:isc20
+docker run -ti --user=$(id -u):$(id -g) --rm --mount type=bind,source=$PWD/isc20_easybuild_tutorial,target=/home/easybuild --hostname tutorial easybuilders/tutorial:isc20
 </code></pre></div>
 
 <p>Note that we are bind mounting the <code>isc20_easybuild_tutorial</code> directory
@@ -785,7 +785,7 @@ exercises assume you are starting from a clean environment.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: June 22, 2020
+      Last update: June 23, 2020
     
   </small>
 </div>
