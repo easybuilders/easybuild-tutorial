@@ -57,7 +57,7 @@ EasyBuild requires:
     * we recommend [Lmod](https://lmod.readthedocs.io), a modern environment modules tool implemented in Lua
     * for more information on the environment modules tools supported by EasyBuild, see [here](https://easybuild.readthedocs.io/en/latest/Installation.html#required-modules-tool)
 
-A [container image](../practical_information/#prepared-container-image) is available that can be run using either Docker or
+A [container image](practical_information/#prepared-container-image) is available that can be run using either Docker or
 Singularity, which provides a prepared environment that can be used
 for the hands-on exercises in this tutorial.
 
