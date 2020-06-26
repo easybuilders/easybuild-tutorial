@@ -5,14 +5,17 @@
 
 ---
 
-## YouTube live stream
+## Recordings
 
-**This introductory tutorial to EasyBuild will be streamed via YouTube<br/>
-on Tuesday June 23rd 2020, from 11am UTC to 4pm UTC.**
+**This introductory tutorial to EasyBuild was streamed
+on Tuesday June 23rd 2020.<br/>
+The recordings are available on YouTube.**
 
 See [https://github.com/easybuilders/easybuild/wiki/EasyBuild-tutorial](https://github.com/easybuilders/easybuild/wiki/EasyBuild-tutorial) for more information.
 
-<div align="center"><iframe width="560" height="315" src="https://www.youtube.com/embed/X69ACO1fLIg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+<div align="center">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLhnGtSmEGEQiNVb1z2D4lF0rzb-un1Ja7" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 
 ---
 
