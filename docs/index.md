@@ -13,9 +13,8 @@ The recordings are available on YouTube.**
 
 See [https://github.com/easybuilders/easybuild/wiki/EasyBuild-tutorial](https://github.com/easybuilders/easybuild/wiki/EasyBuild-tutorial) for more information.
 
-<div align="center">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLhnGtSmEGEQiNVb1z2D4lF0rzb-un1Ja7" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+<div align="center"><iframe width="560" height="315" src="https://www.youtube.com/embed/CiQ-bfFL2FA" frameborder="0" allow="accelerometer;
+autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 
 ---
 
