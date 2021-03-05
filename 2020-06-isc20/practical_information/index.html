@@ -1,0 +1,989 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.4">
+    
+    
+      
+        <title>Practical information - EasyBuild tutorial</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.77f3fd56.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+        
+<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-168742780-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#practical-information" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="EasyBuild tutorial" class="md-header__button md-logo" aria-label="EasyBuild tutorial">
+      
+  <img src="../../img/easybuild_logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EasyBuild tutorial
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Practical information
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/easybuilders/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    EasyBuild @ GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="EasyBuild tutorial" class="md-nav__button md-logo" aria-label="EasyBuild tutorial">
+      
+  <img src="../../img/easybuild_logo.png" alt="logo">
+
+    </a>
+    EasyBuild tutorial
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/easybuilders/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    EasyBuild @ GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
+        ISC-20 (June '20)
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="ISC-20 (June '20)" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          ISC-20 (June '20)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        Start page
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Practical information
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Practical information
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#slack" class="md-nav__link">
+    Slack
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-resources" class="md-nav__link">
+    AWS resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prepared-container-image" class="md-nav__link">
+    Prepared container image
+  </a>
+  
+    <nav class="md-nav" aria-label="Prepared container image">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requirements-for-using-the-container-images" class="md-nav__link">
+    Requirements for using the container images
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#container-size" class="md-nav__link">
+    Container size
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-docker" class="md-nav__link">
+    Using Docker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-singularity" class="md-nav__link">
+    Using Singularity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#welcome-message" class="md-nav__link">
+    Welcome message
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-host-compatibility" class="md-nav__link">
+    Testing host compatibility
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        Configuration
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic_usage/" class="md-nav__link">
+        Basic usage
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        Troubleshooting
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hmns/" class="md-nav__link">
+        Hierarchical module naming schemes
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adding_support_software/" class="md-nav__link">
+        Adding support for additional software
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jsc/" class="md-nav__link">
+        EasyBuild at Jülich Supercomputing Centre
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../computecanada/" class="md-nav__link">
+        EasyBuild at Compute Canada
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../community/" class="md-nav__link">
+        The EasyBuild community
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        Contributing to EasyBuild
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../comparison_other_tools/" class="md-nav__link">
+        Comparison with other tools
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting_help/" class="md-nav__link">
+        Getting help
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        LUST (spring '21)
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="LUST (spring '21)" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          LUST (spring '21)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2021-lust/" class="md-nav__link">
+        Start page
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#slack" class="md-nav__link">
+    Slack
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-resources" class="md-nav__link">
+    AWS resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prepared-container-image" class="md-nav__link">
+    Prepared container image
+  </a>
+  
+    <nav class="md-nav" aria-label="Prepared container image">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requirements-for-using-the-container-images" class="md-nav__link">
+    Requirements for using the container images
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#container-size" class="md-nav__link">
+    Container size
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-docker" class="md-nav__link">
+    Using Docker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-singularity" class="md-nav__link">
+    Using Singularity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#welcome-message" class="md-nav__link">
+    Welcome message
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-host-compatibility" class="md-nav__link">
+    Testing host compatibility
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/easybuilders/easybuild-tutorial/edit/master/docs/2020-06-isc20/practical_information/README.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="practical-information">Practical information<a class="headerlink" href="#practical-information" title="Permanent link">&para;</a></h1>
+<p>Contact points, resources, helpful hints, and things to keep in mind for the EasyBuild tutorial.</p>
+<h3 id="slack">Slack<a class="headerlink" href="#slack" title="Permanent link">&para;</a></h3>
+<p><img src="../../img/slack_logo.png" style="float:left" width="20%"/></p>
+<p>There is a dedicated <code>#tutorial</code> channel in the EasyBuild Slack where you can get in touch with 
+organisers of the tutorial, other participants, and volunteers. Please use this channel to ask
+questions throughout the tutorial, or for any other assistance related to the tutorial.</p>
+<p>To access this channel, you will first need to create an account in the EasyBuild Slack.
+This is done via <a href="https://easybuild-slack.herokuapp.com/">https://easybuild-slack.herokuapp.com/</a>.</p>
+<p>Once you have the account set up, you can join the EasyBuild Slack via <a href="https://easybuild.slack.com/">https://easybuild.slack.com/</a>. From there you can join the <code>#tutorial</code> channel.
+For more information about Slack, please see the official <a href="https://slack.com/intl/en-no/help/categories/200111606-Using-Slack">documentation</a>.</p>
+<h3 id="aws-resources">AWS resources<a class="headerlink" href="#aws-resources" title="Permanent link">&para;</a></h3>
+<p><em>(only available during the tutorial on Tuesday June 23rd 2020)</em></p>
+<p>Access to a shell environment on <a href="https://aws.amazon.com/cloud9/">AWS Cloud9</a> is provided
+for this tutorial.</p>
+<p>You should have received an email with connection information if you have registered in time for this tutorial.</p>
+<p><strong><em>If you did not register and would still like to use AWS Cloud9 for this tutorial, or you have not received
+the email with the connection information, please contact the tutorial organisers via Slack.</em></strong></p>
+<h3 id="prepared-container-image">Prepared container image<a class="headerlink" href="#prepared-container-image" title="Permanent link">&para;</a></h3>
+<p>For the purpose of this tutorial, we have prepared a <strong>Docker container</strong>
+that you can use to follow the hands-on exercises in a controlled environment.</p>
+<p>This container image includes a small software stack that was installed using
+EasyBuild, which will come in useful for the exercises.</p>
+<p>The container is available through the <a href="https://hub.docker.com/r/easybuilders/tutorial"><code>easybuilders/tutorial</code> repository on Docker Hub</a>, and can be used with both Docker and Singularity.</p>
+<p>Make sure you use the container image tagged with "<code>isc20</code>".</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>The command you should use to run the container can be copy-pasted below.</strong></p>
+</div>
+<h4 id="requirements-for-using-the-container-images">Requirements for using the container images<a class="headerlink" href="#requirements-for-using-the-container-images" title="Permanent link">&para;</a></h4>
+<p><em>(only relevant if you are</em> <strong><em>not</em></strong> <em>using AWS Cloud9)</em></p>
+<ul>
+<li>having Docker or Singularity installed</li>
+<li>a system with a processor supporting the <a href="https://en.wikipedia.org/wiki/Advanced_Vector_Extensions">AVX instruction set</a>. AVX is supported by Intel Sandy Bridge or AMD Bulldozer (both released in 2011) and onwards.</li>
+</ul>
+<p>If you are in doubt about your systems compatibility, see <a href="#testing-host-compatibility">Testing host compatibility</a> at the end of this document.</p>
+<h4 id="container-size">Container size<a class="headerlink" href="#container-size" title="Permanent link">&para;</a></h4>
+<p>The compressed container image is about 1.25GB in size,
+and will be downloaded automatically from Docker Hub when you run the <code>docker</code> or <code>singularity</code> command shown below.</p>
+<h4 id="using-docker">Using Docker<a class="headerlink" href="#using-docker" title="Permanent link">&para;</a></h4>
+<p><img src="../../img/docker_logo.png" style="float:left" width="10%"/></p>
+<p>If you want to use the prepared container image via Docker,
+run the following <code>docker</code> command:</p>
+<div class="highlight"><pre><span></span><code>mkdir -p isc20_easybuild_tutorial
+chmod 1777 isc20_easybuild_tutorial
+docker run -ti --rm --mount type=bind,source=$PWD/isc20_easybuild_tutorial,target=/home/easybuild --hostname tutorial easybuilders/tutorial:isc20
+</code></pre></div>
+<p>Note that we are bind mounting the <code>isc20_easybuild_tutorial</code> directory
+into the container as home directory (<code>/home/easybuild</code>). That way you can easily
+access the files you create when using the container outside of it as well,
+for example to edit them. In addition, it allows you to restart the container
+without losing the contents of your home directory.</p>
+<p><strong><em>Output</em></strong></p>
+<p>When running the "<code>docker run</code>" command shown above, you should see output like is shown below
+showing that the different layers are being downloaded.</p>
+<p><strong>Take into account that it will take a while for the container image to be downloaded.</strong></p>
+<div class="highlight"><pre><span></span><code>Unable to find image &#39;easybuilders/tutorial:isc20&#39; locally
+isc20: Pulling from easybuilders/tutorial
+9b4ebb48de8d: Pull complete
+f1933cd5add8: Downloading  73.48MB/125.9MB
+7bd84e6bca4a: Download complete 
+0a4ea0f4d48f: Download complete 
+503478215221: Download complete 
+c92d5dd0b39f: Download complete 
+f968b6fd8043: Download complete 
+5bf43b832c15: Download complete 
+0545f7354a51: Downloading  30.56MB/534.8MB
+d1a244ce82da: Waiting 
+c14d5fe9b1e6: Waiting 
+b93ec9ec5f20: Waiting
+239fd4ac6c1a: Waiting 
+9f7279164d6c: Waiting 
+8ee47766d1ab: Waiting
+</code></pre></div>
+<p>followed by:</p>
+<div class="highlight"><pre><span></span><code>...
+8ee47766d1ab: Pull complete 
+Digest: sha256:25edb356623dde212b256ef23ae17d2b1dc68921094a9c752eac460c78ba9b4c
+Status: Downloaded newer image for easybuilders/tutorial:isc20
+</code></pre></div>
+<p>After this, you should see the <a href="#welcome-message">welcome message</a>.</p>
+<p><strong><em>Docker and cgroups v2</em></strong></p>
+<p>If you are using a recent Linux distribution that has switched to cgroups v2
+ (e.g. <a href="https://www.redhat.com/sysadmin/fedora-31-control-group-v2">Fedora &gt;= 31</a>), docker will fail with</p>
+<div class="highlight"><pre><span></span><code>OCI runtime create failed: this version of runc doesn&#39;t work on cgroups v2
+</code></pre></div>
+<p>since it is not yet compatible with cgroups v2. Possible workarounds include:</p>
+<ul>
+<li>reverting to cgroups v1 (it can be done via the kernel command-line argument <code>systemd.unified_cgroup_hierarchy=0</code>);</li>
+<li>using <a href="https://podman.io/">Podman</a> instead, which implements the docker CLI;</li>
+<li>using Singularity instead (see below);</li>
+</ul>
+<h4 id="using-singularity">Using Singularity<a class="headerlink" href="#using-singularity" title="Permanent link">&para;</a></h4>
+<p><em>(not available in AWS environment)</em></p>
+<p><img src="../../img/singularity_logo.png" style="float:left" width="8%"/></p>
+<p>To use the prepared container image via Singularity,
+run the following <code>singularity</code> command:</p>
+<div class="highlight"><pre><span></span><code>mkdir -p isc20_easybuild_tutorial
+singularity run --cleanenv --home <span class="nv">$PWD</span>/isc20_easybuild_tutorial docker://easybuilders/tutorial:isc20
+</code></pre></div>
+<p>The additional options are required to:</p>
+<ul>
+<li><code>--cleanenv</code>: start with clean environment</li>
+<li><code>--home $PWD/isc20_easybuild_tutorial</code>: use the <code>isc20_easybuild_tutorial</code> subdirectory in the current working directory as home directory in the container</li>
+</ul>
+<p>This is mainly to avoid that anything from the host environment or your home directory "leaks" into
+the container, which could interfere with the hands-on exercises.</p>
+<p><strong><em>Limitation: <code>/easybuild</code> is read-only</em></strong></p>
+<p>When the Docker container image is being run with Singularity,
+the <code>/easybuild</code> directory is read-only in the container.</p>
+<p>This creates problems for the demo and exercise in the <a href="../hmns">Hierarchical module naming schemes</a> part of the tutorial, because EasyBuild still requires write
+access to <code>/easybuild/software</code> even when generating module files in a different
+location outside of <code>/easybuild</code>.</p>
+<p><strong><em>Output</em></strong></p>
+<p>When running the "<code>singularity run</code>" command shown above, you should see output like is shown below.</p>
+<p><strong>Take into account that it will take a while for the container image to be downloaded.</strong></p>
+<div class="highlight"><pre><span></span><code>INFO:    Converting OCI blobs to SIF format
+INFO:    Starting build...
+Getting image source signatures
+Copying blob 9b4ebb48de8d done
+Copying blob f1933cd5add8 done
+Copying blob 7bd84e6bca4a done
+Copying blob 0a4ea0f4d48f done
+Copying blob 503478215221 done
+Copying blob c92d5dd0b39f done
+Copying blob f968b6fd8043 done
+Copying blob 5bf43b832c15 done
+Copying blob 0545f7354a51 done
+Copying blob d1a244ce82da done
+Copying blob c14d5fe9b1e6 done
+Copying blob b93ec9ec5f20 done
+Copying blob 239fd4ac6c1a done
+Copying blob 9f7279164d6c done
+Copying blob 8ee47766d1ab done
+Copying config 717b13fece done
+Writing manifest to image destination
+Storing signatures
+...
+INFO:    Creating SIF file...
+</code></pre></div>
+<p>After this, you should see the <a href="#welcome-message">welcome message</a>.</p>
+<p><strong><em>Singularity cache</em></strong></p>
+<p>By default Singularity keeps its cache at <code>$HOME/.singularity/cache</code>.
+Since the uncompressed container image requires about 2.2GB of disk space,
+make sure this will work in your setup.</p>
+<p>If your home directory is limited in size you can either make <code>$HOME/.singularity</code> a symbolic link to
+<code>/tmp/$USER/singularity</code> or a similar spacious volume, or define the <code>$SINGULARITY_CACHEDIR</code> environment variable
+to make Singulartiy use a different location:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">SINGULARITY_CACHEDIR</span><span class="o">=</span>/tmp/<span class="nv">$USER</span>/singularity
+</code></pre></div>
+<p><strong><em>Warning messages</em></strong></p>
+<p>When running the Docker container with Singularity, you may see a bunch of warning messages like
+this pass by:</p>
+<div class="highlight"><pre><span></span><code>warn rootless{path/to/file} ignoring (usually) harmless EPERM on setxattr &quot;user.rootlesscontainers&quot;
+</code></pre></div>
+<p><strong>You can safely ignore these warnings, they are harmless.</strong>
+They occur because the Docker container image contains xattrs that can not be set when the container
+is extracted as an unpriviledged user by Singularity.
+The warnings are generated by the <a href="https://umo.ci/">umoci</a> library that Singularity uses to extract Docker/OCI layers,
+and is documented at <a href="https://umo.ci/quick-start/rootless/">https://umo.ci/quick-start/rootless/</a>.</p>
+<h4 id="welcome-message">Welcome message<a class="headerlink" href="#welcome-message" title="Permanent link">&para;</a></h4>
+<p>If you are correctly logged in to the container, you should see a message like this:</p>
+<div class="highlight"><pre><span></span><code>You are logged in to the prepared environment for the introductory tutorial to
+ ______                    ____          _  _      _
+|  ____|                  |  _ \        (_)| |    | |
+| |__    __ _  ___  _   _ | |_) | _   _  _ | |  __| |
+|  __|  / _` |/ __|| | | ||  _ &lt; | | | || || | / _` |
+| |____| (_| |\__ \| |_| || |_) || |_| || || || (_| |
+|______|\__,_||___/ \__, ||____/  \__,_||_||_| \__,_|
+                     __/ |
+                    |___/
+
+The tutorial materials are available at https://easybuilders.github.io/easybuild-tutorial .
+
+OS: CentOS Linux release 7.8.2003 (Core)
+modules tool: Lmod 8.2.7
+
+To access the pre-installed software run &#39;module use /easybuild/modules/all&#39;,
+and then check which modules are installed using &#39;module avail&#39;.
+
+In case of questions or problems contact the tutorial organisers via the #tutorial
+channel in the EasyBuild Slack, join via https://easybuild-slack.herokuapp.com .
+</code></pre></div>
+<h4 id="testing-host-compatibility">Testing host compatibility<a class="headerlink" href="#testing-host-compatibility" title="Permanent link">&para;</a></h4>
+<p>To leverage the pre-installed software stack that is included in the container image,
+the processor in your system must be compatible with binaries that use AVX instructions
+(Intel Sandy Bridge generation, or newer).</p>
+<p>You can test the compatibility of your host with the following commands:</p>
+<div class="highlight"><pre><span></span><code>module use /easybuild/modules/all
+module load Python
+python -V
+</code></pre></div>
+<p>If the last command prints a Python version (like <code>Python 3.8.2</code>), then your host is compatible.</p>
+<p>If you see a message like "<code>Illegal instruction (core dumped)</code>", the processor in your system is <em>not</em> compatible
+with the pre-installed software stack, and you will have to use another system to participate in the tutorial.</p>
+<p>After running this test, you should reset your environment by running "<code>module purge</code>", since most of the
+exercises assume you are starting from a clean environment.</p>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 5, 2021</span>
+    
+  </small>
+</div>
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Start page
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../introduction/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Introduction
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/easy_build" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://www.youtube.com/c/easybuilders" target="_blank" rel="noopener" title="www.youtube.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://easybuild.readthedocs.io" target="_blank" rel="noopener" title="easybuild.readthedocs.io" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M448 360V24c0-13.3-10.7-24-24-24H96C43 0 0 43 0 96v320c0 53 43 96 96 96h328c13.3 0 24-10.7 24-24v-16c0-7.5-3.5-14.3-8.9-18.7-4.2-15.4-4.2-59.3 0-74.7 5.4-4.3 8.9-11.1 8.9-18.6zM128 134c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm0 64c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm253.4 250H96c-17.7 0-32-14.3-32-32 0-17.6 14.4-32 32-32h285.4c-1.9 17.1-1.9 46.9 0 64z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["instant"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.9b151c6a.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1211 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.4">
+    
+    
+      
+        <title>Introduction - EasyBuild tutorial</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.77f3fd56.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+        
+<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-168742780-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduction" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="EasyBuild tutorial" class="md-header__button md-logo" aria-label="EasyBuild tutorial">
+      
+  <img src="../../img/easybuild_logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EasyBuild tutorial
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Introduction
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/easybuilders/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    EasyBuild @ GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="EasyBuild tutorial" class="md-nav__button md-logo" aria-label="EasyBuild tutorial">
+      
+  <img src="../../img/easybuild_logo.png" alt="logo">
+
+    </a>
+    EasyBuild tutorial
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/easybuilders/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    EasyBuild @ GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
+        ISC-20 (June '20)
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="ISC-20 (June '20)" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          ISC-20 (June '20)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        Start page
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practical_information/" class="md-nav__link">
+        Practical information
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Introduction
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Introduction
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-easybuild" class="md-nav__link">
+    What is EasyBuild?
+  </a>
+  
+    <nav class="md-nav" aria-label="What is EasyBuild?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#elevator-pitch" class="md-nav__link">
+    Elevator pitch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    Key features
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-easybuild-is-not" class="md-nav__link">
+    What EasyBuild is not
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation" class="md-nav__link">
+    Implementation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#terminology" class="md-nav__link">
+    Terminology
+  </a>
+  
+    <nav class="md-nav" aria-label="Terminology">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#framework" class="md-nav__link">
+    Framework
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#easyblocks" class="md-nav__link">
+    Easyblocks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#easyconfig-files" class="md-nav__link">
+    Easyconfig files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extensions" class="md-nav__link">
+    Extensions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    Dependencies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#toolchains" class="md-nav__link">
+    Toolchains
+  </a>
+  
+    <nav class="md-nav" aria-label="Toolchains">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-toolchain" class="md-nav__link">
+    System toolchain
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-toolchains" class="md-nav__link">
+    Common toolchains
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modules" class="md-nav__link">
+    Modules
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bringing-it-all-together" class="md-nav__link">
+    Bringing it all together
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#focus-points" class="md-nav__link">
+    Focus points
+  </a>
+  
+    <nav class="md-nav" aria-label="Focus points">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#performance" class="md-nav__link">
+    Performance
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reproducibility" class="md-nav__link">
+    Reproducibility
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#community-effort" class="md-nav__link">
+    Community effort
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        Configuration
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic_usage/" class="md-nav__link">
+        Basic usage
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        Troubleshooting
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hmns/" class="md-nav__link">
+        Hierarchical module naming schemes
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adding_support_software/" class="md-nav__link">
+        Adding support for additional software
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jsc/" class="md-nav__link">
+        EasyBuild at Jülich Supercomputing Centre
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../computecanada/" class="md-nav__link">
+        EasyBuild at Compute Canada
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../community/" class="md-nav__link">
+        The EasyBuild community
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        Contributing to EasyBuild
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../comparison_other_tools/" class="md-nav__link">
+        Comparison with other tools
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting_help/" class="md-nav__link">
+        Getting help
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        LUST (spring '21)
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="LUST (spring '21)" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          LUST (spring '21)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2021-lust/" class="md-nav__link">
+        Start page
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-easybuild" class="md-nav__link">
+    What is EasyBuild?
+  </a>
+  
+    <nav class="md-nav" aria-label="What is EasyBuild?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#elevator-pitch" class="md-nav__link">
+    Elevator pitch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    Key features
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-easybuild-is-not" class="md-nav__link">
+    What EasyBuild is not
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation" class="md-nav__link">
+    Implementation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#terminology" class="md-nav__link">
+    Terminology
+  </a>
+  
+    <nav class="md-nav" aria-label="Terminology">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#framework" class="md-nav__link">
+    Framework
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#easyblocks" class="md-nav__link">
+    Easyblocks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#easyconfig-files" class="md-nav__link">
+    Easyconfig files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extensions" class="md-nav__link">
+    Extensions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    Dependencies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#toolchains" class="md-nav__link">
+    Toolchains
+  </a>
+  
+    <nav class="md-nav" aria-label="Toolchains">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-toolchain" class="md-nav__link">
+    System toolchain
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-toolchains" class="md-nav__link">
+    Common toolchains
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modules" class="md-nav__link">
+    Modules
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bringing-it-all-together" class="md-nav__link">
+    Bringing it all together
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#focus-points" class="md-nav__link">
+    Focus points
+  </a>
+  
+    <nav class="md-nav" aria-label="Focus points">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#performance" class="md-nav__link">
+    Performance
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reproducibility" class="md-nav__link">
+    Reproducibility
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#community-effort" class="md-nav__link">
+    Community effort
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/easybuilders/easybuild-tutorial/edit/master/docs/2020-06-isc20/introduction/README.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h1>
+<h2 id="what-is-easybuild">What is EasyBuild?<a class="headerlink" href="#what-is-easybuild" title="Permanent link">&para;</a></h2>
+<p><a href="http://easybuild.io">EasyBuild</a> is a <strong>software build and installation framework</strong>
+that manages (scientific) software in an efficient way, without compromises on performance. Easybuild is especially tailored towards <a href="https://en.wikipedia.org/wiki/Supercomputer"><strong>High Performance Computing (HPC)</strong></a>
+ environments.</p>
+<h3 id="elevator-pitch"><em>Elevator pitch</em><a class="headerlink" href="#elevator-pitch" title="Permanent link">&para;</a></h3>
+<p><a href="http://geek-and-poke.com/geekandpoke/2010/5/14/how-to-become-invaluable.html"><img src="../../img/geek-and-poke-invaluable.png" style="float:right" width="50%"/></a></p>
+<p>EasyBuild intends to relieve HPC support teams from manually managing
+software installations while at the same time <strong>providing a consistent and well performing
+scientific software stack</strong> to end users of HPC systems.</p>
+<p>It serves as a <strong>uniform interface for installing scientific software</strong>
+and saves valuable time (and frustration) by the automation of tedious, boring and repetitive tasks. </p>
+<p>In addition, EasyBuild can <strong>empower scientific researchers to self-manage their software stack</strong>,
+and it can serve as a tool that can be leveraged for <strong>building optimized container images</strong>.</p>
+<p>The project has grown to become a <strong>platform for collaboration</strong> among worldwide HPC sites.</p>
+<h3 id="key-features"><em>Key features</em><a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h3>
+<p>EasyBuild is capable of <strong>fully autonomously installing (scientific) software</strong>,
+including making sure that all necessary dependencies are installed,
+and automatically generating environment module files.</p>
+<p><strong><em>No</em></strong> <strong>admin privileges are required</strong>: it is sufficient to have write permissions
+to the preferred software installation prefix.</p>
+<p>It is <a href="https://easybuild.readthedocs.io/en/latest/Configuration.html"><strong>highly configurable</strong></a> via configuration files, environment variables, and command line options.
+The functionality can be <a href="https://easybuild.readthedocs.io/en/latest/Including_additional_Python_modules.html"><strong>dynamically extended</strong></a> via plugins,
+and hooks are available for further site-specific <a href="https://easybuild.readthedocs.io/en/latest/Hooks.html"><strong>customizations</strong></a> if required.</p>
+<p>The installation procedure executed by EasyBuild is thoroughly <a href="https://easybuild.readthedocs.io/en/latest/Logfiles.html"><strong>logged</strong></a> and fully transparent via <a href="https://easybuild.readthedocs.io/en/latest/Extended_dry_run.html">dry runs</a> and <a href="https://easybuild.readthedocs.io/en/latest/Tracing_progress.html">tracing</a>.</p>
+<p>EasyBuild supports using a <strong>custom module naming scheme</strong>, allows for
+<em>hierarchical</em> module naming schemes, and <strong>integrates with various other tools</strong> ranging from  resource managers (<a href="https://slurm.schedmd.com">Slurm</a> and <a href="https://github.com/gc3pie/gc3pie">GC3Pie</a>),
+container tools (<a href="https://github.com/hpcng/singularity">Singularity</a> and <a href="https://www.docker.com">Docker</a>),
+packaging tools (<a href="https://fpm.readthedocs.io">FPM</a>), and so on.</p>
+<p>The project is <strong>actively developed</strong> by a worldwide community, with stable versions being
+released every 6-8 weeks since 2012. <strong>Comprehensive testing</strong> practices are applied throughout the
+development cycle, with extensive suites of unit and integration tests being run in a CI environment,
+consistent testing of incoming contributions, and thorough regression testing before every release.</p>
+<h3 id="what-easybuild-is-not"><em>What EasyBuild is</em> <strong><em>not</em></strong><a class="headerlink" href="#what-easybuild-is-not" title="Permanent link">&para;</a></h3>
+<p>EasyBuild is <strong><em>not</em></strong> <strong>YABT (Yet Another Build Tool)</strong>: it does not replace established build
+tools like CMake or <code>make</code>, it wraps around them.
+If the installation procedure of a software package involves running some unholy trinity of tools while whispering
+the correct magic incantations, EasyBuild automates this process for you.</p>
+<p>It is <strong><em>not</em></strong> <strong>a replacement for traditional Linux package managers</strong> like <code>yum</code>, <code>dnf</code> or <code>apt</code>.
+EasyBuild relies on certain tools and libraries provided by the operating system. This includes glibc, OpenSSL, Infiniband, GPU drivers, and so on. It is required that these tools are installed and managed by other means. This is typically done via the package management tool that comes with your Linux distribution.</p>
+<p>Finally, EasyBuild is <strong><em>not</em></strong> <strong>a magic solution to all your (software installation) problems</strong>.
+You may, and probably will still occasionally, run into compiler errors unless somebody has already taken care of the problem for you.</p>
+<h3 id="implementation"><em>Implementation</em><a class="headerlink" href="#implementation" title="Permanent link">&para;</a></h3>
+<p><img src="../../img/Python-logo.png" style="border-right: 20px solid white;border-top: 5px solid white; float:left" width="80px"/></p>
+<p>EasyBuild is <strong>implemented in <a href="https://www.python.org/">Python</a></strong>, and fully supports both Python 2.7 and 3.5+.</p>
+<p>Releases are published via <a href="https://pypi.org/project/easybuild/">PyPI</a>,
+under the <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html">GPLv2 open source license</a>.</p>
+<p>Development is done through the <a href="https://github.com/easybuilders/"><strong><code>easybuilders</code> organisation on GitHub</strong></a>,
+where each of the EasyBuild components is hosted in a separate repository.</p>
+<hr />
+<h2 id="terminology">Terminology<a class="headerlink" href="#terminology" title="Permanent link">&para;</a></h2>
+<p>Over the years, we have come up with some terminology specific to EasyBuild
+to refer to particular components, which we use alongside established terminology relevant to the context
+of building and installing software.</p>
+<p>It is important to be familiar with these terms.</p>
+<h3 id="framework"><em>Framework</em><a class="headerlink" href="#framework" title="Permanent link">&para;</a></h3>
+<p>The EasyBuild <em>framework</em> consists of a set of Python modules organised in packages (<code>easybuild.framework</code>,
+<code>easybuild.tools</code>, etc.) that collectively form <strong>the heart of EasyBuild</strong>.</p>
+<p>It implements the <strong>common functionality that you need when building software from source</strong>,
+providing functions for unpacking source files, applying patch files, collecting the output produced
+by shell commands that are being run and checking their exit code, generating environment module files, etc.</p>
+<p>The EasyBuild framework does not implement any specific installation procedure, it only provides
+the necessary functionality to facilitate this (see <a href="#easyblocks">easyblocks</a>).</p>
+<h3 id="easyblocks"><em>Easyblocks</em><a class="headerlink" href="#easyblocks" title="Permanent link">&para;</a></h3>
+<p>An <em>easyblock</em> is <strong>a Python module that implements a specific software installation procedure</strong>.
+It can be viewed as a plugin to the EasyBuild framework.</p>
+<p>Easyblocks can be either <em>generic</em> or <em>software-specific</em>.</p>
+<p>A <strong>generic easyblock</strong> implements an installation procedure that can be used for
+multiple different software packages. Commonly used examples include the <code>ConfigureMake</code> easyblock
+which implements the ubiquitous <code>configure</code>-<code>make</code>-<code>make install</code> procedure, and the
+<code>PythonPackage</code> easyblock that can be used to install a Python package.</p>
+<p>A <strong>software-specific</strong> easyblock implements an installation procedure that is specific to a particular
+software packages. Infamous examples include the easyblocks we have for <code>GCC</code>, <code>OpenFOAM</code>, <code>TensorFlow</code>, ...</p>
+<p>The installation procedure performed by an easyblock can be controlled by defining
+<strong>easyconfig parameters</strong> (see <a href="#easyconfig-files">easyconfig files</a>).</p>
+<h3 id="easyconfig-files"><em>Easyconfig files</em><a class="headerlink" href="#easyconfig-files" title="Permanent link">&para;</a></h3>
+<p><em>Easyconfig files</em> (or <em>easyconfigs</em> for short), are <strong>simple text files written in Python syntax
+that specify what EasyBuild should install</strong>.
+They define the different <strong>easyconfig parameters</strong> that collectively form a complete specification
+for a particular software installation.</p>
+<p><strong>Some easyconfig parameters are mandatory</strong>. The following parameters <em>must</em> be defined in each easyconfig file:</p>
+<ul>
+<li><code>name</code> and <code>version</code>, which specify the name and version of the software to install (surprise!);</li>
+<li><code>homepage</code> and <code>description</code>, which provide key metadata for the software;</li>
+<li><code>toolchain</code>, which specifies the compiler toolchain to use to install the software (see
+  <code>toolchains</code> tab);</li>
+</ul>
+<p>Other easyconfig parameters are optional: they <strong>can be used to provide required information,
+or to control specific aspects of the installation procedure performed by the easyblock</strong>.</p>
+<p>Some commonly used optional easyconfig parameters include:</p>
+<ul>
+<li><code>easyblock</code>, which specifies which (generic) easyblock should be used;</li>
+<li><code>sources</code> and <code>source_urls</code>, which specify the list of source files and where to download them;</li>
+<li><code>dependencies</code> and <code>builddependencies</code>, which specify (drum roll...) the list of (build) dependencies;</li>
+<li><code>configopts</code>, <code>buildopts</code>, and <code>installopts</code>, which specify options for the configuration/build/install commands, respectively;</li>
+</ul>
+<p>If these parameters are not provided, the corresponding default value will be used.</p>
+<h3 id="extensions"><em>Extensions</em><a class="headerlink" href="#extensions" title="Permanent link">&para;</a></h3>
+<p><em>Extensions</em> is the collective term we use for <strong>additional software packages that can be installed
+on top of another software package</strong>. Examples are <em>Python packages</em>, <em>R libraries</em> and <em>Perl modules</em>.</p>
+<p>As you can tell the common terminology here is a mess, so we came up with a unifying term...</p>
+<p>Extensions can be installed in different ways:</p>
+<ul>
+<li>stand-alone, as a separate installation on top of one or more other installations;</li>
+<li>as a part of a bundle of extensions that collectively form a separate installation;</li>
+<li>or as an actual <em>extension</em> to a specific installation to yield a "batteries included"
+  type of installation (for examples by adding a bunch of Python packages from PyPI into
+  a Python installation);</li>
+</ul>
+<h3 id="dependencies"><em>Dependencies</em><a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h3>
+<p>A <em>dependency</em> is a common term in the context of software. It refers to <strong>a software
+package that is either strictly required by other software, or that can be leveraged to
+enhance other software</strong> (for example to support specific features).</p>
+<p>There are three main types of dependencies for computer software:</p>
+<ul>
+<li>a <strong>build dependency</strong> is only required when building/installing a software package;
+  once the software package is installed, it is no longer needed to <em>use</em> that software;</li>
+<li>a <strong>runtime dependency</strong> (often referred to simply as <em>dependency</em>) is a software package that is
+  required to <em>use</em> (or <em>run</em>) another software package;</li>
+<li>a <strong>link-time dependency</strong> is somewhere in between a build and runtime dependency: 
+  it is only needed when <em>linking</em> a software package; it can become either a build or runtime
+  dependency, depending on exactly how the software is installed;</li>
+</ul>
+<p>The distinction between link-time and build/runtime dependencies is irrelevant for this tutorial.</p>
+<h3 id="toolchains"><em>Toolchains</em><a class="headerlink" href="#toolchains" title="Permanent link">&para;</a></h3>
+<p>A <em>compiler toolchain</em> (or just <em>toolchain</em> for short) is a <strong>set of <a href="https://en.wikipedia.org/wiki/Compiler">compilers</a></strong>,
+which are used to build software from source, together with a set of <strong>additional libraries</strong> that provide further core functionality.</p>
+<p>We refer to the different parts of a toolchain as <strong>toolchain components</strong>.</p>
+<p>The <em>compiler component</em> typically consists of <a href="https://en.wikipedia.org/wiki/C_(programming_language)">C</a>,
+<a href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a>, and <a href="https://en.wikipedia.org/wiki/Fortran">Fortran</a>
+compilers in the context of HPC, but additional compilers (for example,
+a <a href="https://developer.nvidia.com/cuda-zone">CUDA</a> compiler for
+<a href="https://en.wikipedia.org/wiki/General-purpose_computing_on_graphics_processing_units">GPGPU</a> software)
+can also be included.</p>
+<p>Additional toolchain components are usually special-purpose libraries:</p>
+<ul>
+<li>an MPI library to support distributed computations (for example, <a href="https://www.open-mpi.org/">Open MPI</a>);</li>
+<li>libraries providing efficient linear algebra routines (<a href="http://performance.netlib.org/blas/">BLAS</a>,
+  <a href="http://performance.netlib.org/lapack/">LAPACK</a>);</li>
+<li>a library supporting computing Fast Fourier Transformations (for example, <a href="http://fftw.org/">FFTW</a>);</li>
+</ul>
+<p>A toolchain that includes all of these libraries is referred to as a <strong>full toolchain</strong>, while
+a <strong>subtoolchain</strong> is a toolchain that is missing one or more of these libraries.
+A <strong>compiler-only toolchain</strong> only consists of compilers (no additional libraries).</p>
+<h4 id="system-toolchain">System toolchain<a class="headerlink" href="#system-toolchain" title="Permanent link">&para;</a></h4>
+<p>The <strong><code>system</code> toolchain</strong> is a special case which corresponds to using the system-provided
+compilers and libraries, rather than using toolchain components that were installed using EasyBuild.</p>
+<p>It used sparingly, mostly to install software where no actual compilation is done or
+to build a set of toolchain compilers and its dependencies, since the versions of the system tools
+and libraries are beyond the control of EasyBuild, which could affect the reproducibility of the installation.</p>
+<h4 id="common-toolchains">Common toolchains<a class="headerlink" href="#common-toolchains" title="Permanent link">&para;</a></h4>
+<p>The <code>foss</code> and <code>intel</code> toolchains are also known as the <em>common toolchains</em>,
+because they are widely adopted by the EasyBuild community.</p>
+<p>The <code>foss</code> toolchain consists of all open source components (hence the name:
+"FOSS" stands for Free &amp; Open Source Software): <a href="https://gcc.gnu.org/">GCC</a>, <a href="https://www.open-mpi.org/">Open MPI</a>, <a href="https://www.openblas.net/">OpenBLAS</a>,
+<a href="https://www.netlib.org/scalapack/">ScaLAPACK</a> and <a href="http://fftw.org/">FFTW</a>.</p>
+<p>The <code>intel</code> toolchain consists of the <a href="https://software.intel.com/content/www/us/en/develop/tools/compilers.html">Intel C, C++ and Fortran compilers</a> (on top of a <code>GCC</code> version
+controlled through EasyBuild) alongside the <a href="https://software.intel.com/content/www/us/en/develop/tools/mpi-library.html">Intel MPI</a> and <a href="https://software.intel.com/content/www/us/en/develop/tools/math-kernel-library.html">Intel MKL</a> libraries.</p>
+<p>Roughly every 6 months, a new version of these common toolchains is agreed upon
+in the EasyBuild community, after extensive testing.</p>
+<p>More information on these toolchains is available <a href="https://easybuild.readthedocs.io/en/latest/Common-toolchains.html">in the EasyBuild documentation</a>.</p>
+<h3 id="modules"><em>Modules</em><a class="headerlink" href="#modules" title="Permanent link">&para;</a></h3>
+<p><em>Module</em> is a massively overloaded term in (scientific) software and IT in general
+(kernel modules, Python modules, and so on).
+In the context of EasyBuild, the term 'module' usually refers to an <strong>environment module (file)</strong>.</p>
+<p>Environment modules is a well established concept on HPC systems: it is a way to
+specify changes that should be made to one or more
+<a href="https://en.wikipedia.org/wiki/Environment_variable">environment variables</a> in a
+<a href="https://en.wikipedia.org/wiki/Shell_(computing)">shell</a>-agnostic way. A module file
+is usually written in either <a href="https://en.wikipedia.org/wiki/Tcl">Tcl</a> or
+<a href="https://en.wikipedia.org/wiki/Lua_(programming_language)">Lua</a> syntax,
+and specifies which environment variables should be updated, and how (append,
+prepend, (re)define, undefine, etc.) upon loading the environment module.
+Unloading the environment module will restore the shell environment to its previous state.</p>
+<p>Environment module files are processed via a <strong>modules tool</strong>, of which there
+are several conceptually similar yet slightly different implementations.
+The Tcl-based <a href="https://sourceforge.net/projects/modules/">Environment Modules</a> implementation, and
+<a href="https://lmod.readthedocs.io">Lmod</a>, a more recent Lua-based implementation (which also supports module
+files written in Tcl syntax), are the most commonly used ones.</p>
+<p>EasyBuild heavily relies on environment modules, and hence <strong>having a modules tool installed
+is a strict requirement in order to use EasyBuild</strong>.
+Both Lmod and the Tcl-based Environment Modules tools are supported
+by EasyBuild, as well as module files in both Tcl and Lua syntax.</p>
+<p><strong>Module files are automatically generated for each software installation</strong> by EasyBuild,
+and <em>loading</em> a module results in changes being made to the environment of the current shell
+session such that the corresponding software installation can be used.</p>
+<h3 id="bringing-it-all-together"><em>Bringing it all together</em><a class="headerlink" href="#bringing-it-all-together" title="Permanent link">&para;</a></h3>
+<p>The EasyBuild <strong>framework</strong> leverages <strong>easyblocks</strong> to automatically build and install
+(scientific) software, potentially including additional <strong>extensions</strong>, using a particular compiler <strong>toolchain</strong>,
+as specified in <strong>easyconfig files</strong>.</p>
+<p>EasyBuild ensures that the specified <strong>dependencies</strong> are in place,
+and automatically generates a set of <strong>(environment) modules</strong> that facilitate access to the installed software.</p>
+<hr />
+<h2 id="focus-points">Focus points<a class="headerlink" href="#focus-points" title="Permanent link">&para;</a></h2>
+<p>EasyBuild was created specifically for <strong>installing scientific software on HPC systems</strong>,
+which is reflected in some of the design choices that were made.</p>
+<h3 id="performance"><em>Performance</em><a class="headerlink" href="#performance" title="Permanent link">&para;</a></h3>
+<p>EasyBuild strongly prefers to <strong>build software from source code</strong>, whenever possible.</p>
+<p>This is important to ensure that the binaries that are installed can maximally exploit
+the capabilities of the system architecture on which the software will be run.</p>
+<p>For that same reason, EasyBuild <strong>optimizes software for the processor architecture of the build host</strong>
+by default, via compiler options like <code>-march=native</code> (GCC), <code>-xHost</code> (Intel compilers), etc.
+This behaviour <a href="https://easybuild.readthedocs.io/en/latest/Controlling_compiler_optimization_flags.html">may be changed via the <code>--optarch</code> configuration setting</a>.</p>
+<h3 id="reproducibility"><em>Reproducibility</em><a class="headerlink" href="#reproducibility" title="Permanent link">&para;</a></h3>
+<p>In addition to performance, <strong>reproducibility of installations</strong> is a core aspect of EasyBuild.</p>
+<p>Most software installations performed with EasyBuild use a <strong>particular <a href="#toolchains">toolchain</a></strong>,
+with which we aim to take control over the build environment and avoid relying on tools and libraries
+provided by the operating system. For similar reasons, we try to <strong>provide all required dependencies through EasyBuild</strong> as well,
+with a few notable exceptions, like <code>OpenSSL</code> for security reasons, and Infiniband and GPU drivers which
+are too closely intertwined with the operating system.</p>
+<p>For both toolchains and dependencies, <strong>fixed software versions</strong> are specified in the
+<a href="#easyconfig-files">easyconfig files</a>. That way, easyconfig files can easily be shared with others:
+if they worked for you it is very likely that they will work for others too, because the vast majority of the
+software stack is controlled by EasyBuild.</p>
+<h3 id="community-effort"><em>Community effort</em><a class="headerlink" href="#community-effort" title="Permanent link">&para;</a></h3>
+<p>In a number of different ways, we try to encourage EasyBuild users to <strong>collaborate</strong> and help each other out.</p>
+<p>We actively recommend people to report problems and bugs, to submit ideas for additional features and improvements,
+and to <a href="https://easybuild.readthedocs.io/en/latest/Contributing.html"><strong>contribute back</strong></a> when possible, be it
+by opening pull requests to the <a href="#framework">EasyBuild framework</a>, <a href="#easyblocks">easyblocks</a>,
+<a href="#easyconfig-files">easyconfigs</a> repositories, or to the <a href="https://easybuild.readthedocs.io">EasyBuild documentation</a>.</p>
+<p>Through the <code>foss</code> and <code>intel</code> <a href="https://easybuild.readthedocs.io/en/latest/Common-toolchains.html"><strong>common toolchains</strong></a>,
+we try to focus the efforts of the EasyBuild community a bit to specific toolchains,
+which increases the usefulness of the easyconfig files we collect in the <a href="https://github.com/easybuilders/easybuild-easyconfigs">central repository</a>.</p>
+<p>Last but not least, EasyBuild provides various <a href="https://easybuild.readthedocs.io/en/latest/Integration_with_GitHub.html"><strong>GitHub integration features</strong></a>
+that greatly facilitate the contribution process: opening, updating, and testing pull requests,
+reviewing incoming contributions, and much more can all be done directly from the EasyBuild
+command line. This not only saves time, effort, brain cycles, and mouse clicks for contributors,
+but it also makes the review process for <em>maintainers</em> significantly easier.
+All together this leads to improved stability and consistency.</p>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 5, 2021</span>
+    
+  </small>
+</div>
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../practical_information/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Practical information
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../installation/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Installation
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/easy_build" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://www.youtube.com/c/easybuilders" target="_blank" rel="noopener" title="www.youtube.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://easybuild.readthedocs.io" target="_blank" rel="noopener" title="easybuild.readthedocs.io" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M448 360V24c0-13.3-10.7-24-24-24H96C43 0 0 43 0 96v320c0 53 43 96 96 96h328c13.3 0 24-10.7 24-24v-16c0-7.5-3.5-14.3-8.9-18.7-4.2-15.4-4.2-59.3 0-74.7 5.4-4.3 8.9-11.1 8.9-18.6zM128 134c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm0 64c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm253.4 250H96c-17.7 0-32-14.3-32-32 0-17.6 14.4-32 32-32h285.4c-1.9 17.1-1.9 46.9 0 64z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["instant"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.9b151c6a.min.js"></script>
+      
+    
+  </body>
+</html>
