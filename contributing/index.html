@@ -1,6 +1,4 @@
 
-
-
 <!doctype html>
 <html lang="en" class="no-js">
   <head>
@@ -10,8 +8,9 @@
       
       
       
+      
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.3.3">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.4">
     
     
       
@@ -19,16 +18,20 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.fe0cca5b.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.77f3fd56.min.css">
       
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.7fa14f5b.min.css">
+        
       
     
     
     
       
-        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
       
     
     
@@ -36,7 +39,7 @@
     
       
         
-<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-168742780-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}),document.addEventListener("DOMContentSwitch",function(){ga("send","pageview")})</script>
+<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-168742780-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script>
 <script async src="https://www.google-analytics.com/analytics.js"></script>
       
     
@@ -44,7 +47,13 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -62,45 +71,52 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href=".." title="EasyBuild tutorial" class="md-header-nav__button md-logo" aria-label="EasyBuild tutorial">
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="EasyBuild tutorial" class="md-header__button md-logo" aria-label="EasyBuild tutorial">
       
   <img src="../img/easybuild_logo.png" alt="logo">
 
     </a>
-    <label class="md-header-nav__button md-icon" for="__drawer">
+    <label class="md-header__button md-icon" for="__drawer">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
     </label>
-    <div class="md-header-nav__title" data-md-component="header-title">
-      
-        <div class="md-header-nav__ellipsis">
-          <span class="md-header-nav__topic md-ellipsis">
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
             EasyBuild tutorial
           </span>
-          <span class="md-header-nav__topic md-ellipsis">
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
             
               Contributing to EasyBuild
             
           </span>
         </div>
+      </div>
+    </div>
+    <div class="md-header__options">
       
     </div>
     
-      <label class="md-header-nav__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
       </label>
       
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
       </button>
     </form>
@@ -118,12 +134,12 @@
 </div>
     
     
-      <div class="md-header-nav__source">
+      <div class="md-header__source">
         
-<a href="https://github.com/easybuilders/" title="Go to repository" class="md-source">
+<a href="https://github.com/easybuilders/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     EasyBuild @ GitHub
@@ -136,8 +152,6 @@
     
     <div class="md-container" data-md-component="container">
       
-        
-      
       
         
       
@@ -145,10 +159,16 @@
         <div class="md-main__inner md-grid">
           
             
-              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+                    
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="EasyBuild tutorial" class="md-nav__button md-logo" aria-label="EasyBuild tutorial">
       
@@ -160,10 +180,10 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/easybuilders/" title="Go to repository" class="md-source">
+<a href="https://github.com/easybuilders/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     EasyBuild @ GitHub
@@ -177,144 +197,15 @@
       
       
 
-
-  <li class="md-nav__item">
-    <a href=".." title="Home" class="md-nav__link">
-      Home
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../practical_information/" title="Practical information" class="md-nav__link">
-      Practical information
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../introduction/" title="Introduction" class="md-nav__link">
-      Introduction
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../installation/" title="Installation" class="md-nav__link">
-      Installation
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../configuration/" title="Configuration" class="md-nav__link">
-      Configuration
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../basic_usage/" title="Basic usage" class="md-nav__link">
-      Basic usage
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../troubleshooting/" title="Troubleshooting" class="md-nav__link">
-      Troubleshooting
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../hmns/" title="Hierarchical module naming schemes" class="md-nav__link">
-      Hierarchical module naming schemes
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../adding_support_software/" title="Adding support for additional software" class="md-nav__link">
-      Adding support for additional software
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../jsc/" title="EasyBuild at Jülich Supercomputing Centre" class="md-nav__link">
-      EasyBuild at Jülich Supercomputing Centre
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../computecanada/" title="EasyBuild at Compute Canada" class="md-nav__link">
-      EasyBuild at Compute Canada
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../community/" title="The EasyBuild community" class="md-nav__link">
-      The EasyBuild community
-    </a>
-  </li>
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
 
     
       
@@ -322,27 +213,192 @@
       
 
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../practical_information/" class="md-nav__link">
+        Practical information
+      </a>
+    </li>
+  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
       
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
     
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
     
-      <label class="md-nav__link md-nav__link--active" for="__toc">
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        Configuration
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic_usage/" class="md-nav__link">
+        Basic usage
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        Troubleshooting
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hmns/" class="md-nav__link">
+        Hierarchical module naming schemes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adding_support_software/" class="md-nav__link">
+        Adding support for additional software
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jsc/" class="md-nav__link">
+        EasyBuild at Jülich Supercomputing Centre
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../computecanada/" class="md-nav__link">
+        EasyBuild at Compute Canada
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../community/" class="md-nav__link">
+        The EasyBuild community
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Contributing to EasyBuild
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Contributing to EasyBuild
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="Contributing to EasyBuild" class="md-nav__link md-nav__link--active">
-      Contributing to EasyBuild
-    </a>
-    
+      </a>
       
+        
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -350,12 +406,10 @@
   
   
     <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
+      <span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
-    <ul class="md-nav__list" data-md-scrollfix>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
   <a href="#contribution-procedure" class="md-nav__link">
@@ -462,32 +516,39 @@
     </ul>
   
 </nav>
-    
-  </li>
+      
+    </li>
+  
 
     
       
       
       
 
-
-  <li class="md-nav__item">
-    <a href="../comparison_other_tools/" title="Comparison with other tools" class="md-nav__link">
-      Comparison with other tools
-    </a>
-  </li>
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../comparison_other_tools/" class="md-nav__link">
+        Comparison with other tools
+      </a>
+    </li>
+  
 
     
       
       
       
 
-
-  <li class="md-nav__item">
-    <a href="../getting_help/" title="Getting help" class="md-nav__link">
-      Getting help
-    </a>
-  </li>
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting_help/" class="md-nav__link">
+        Getting help
+      </a>
+    </li>
+  
 
     
   </ul>
@@ -497,7 +558,8 @@
               </div>
             
             
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -508,12 +570,10 @@
   
   
     <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
+      <span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
-    <ul class="md-nav__list" data-md-scrollfix>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
   <a href="#contribution-procedure" class="md-nav__link">
@@ -625,16 +685,13 @@
               </div>
             
           
-          <div class="md-content">
+          <div class="md-content" data-md-component="content">
             <article class="md-content__inner md-typeset">
               
                 
                   <a href="https://github.com/easybuilders/easybuild-tutorial/edit/master/docs/contributing/README.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
-                
-                
-                  
                 
                 
                 <h1 id="contributing-to-easybuild">Contributing to EasyBuild<a class="headerlink" href="#contributing-to-easybuild" title="Permanent link">&para;</a></h1>
@@ -655,24 +712,19 @@
 <span class="nb">cd</span> easybuild-easyconfigs
 git remote add my_fork git@github.com:example/easybuild-easyconfigs.git
 </code></pre></div>
-
 <p>You should change '<code>example</code>' in the last line to your own GitHub user name!</p>
 <p>2) Create and check out a new branch:</p>
 <div class="highlight"><pre><span></span><code>git checkout -b example
 </code></pre></div>
-
 <p>3) Stage the changes you want to contribute:</p>
 <div class="highlight"><pre><span></span><code>git add easybuild/easyconfigs/e/example-1.2.3.eb
 </code></pre></div>
-
 <p>4) Commit those changes with a sensible commit message:</p>
 <div class="highlight"><pre><span></span><code>git commit -m <span class="s2">&quot;This is just an example&quot;</span>
 </code></pre></div>
-
 <p>5) Push your branch to your fork of the repository on GitHub:</p>
 <div class="highlight"><pre><span></span><code>git push my_fork example
 </code></pre></div>
-
 <p>6) Open the pull request through the GitHub web interface, making sure that:</p>
 <ul>
 <li>the target branch is correct (should be <code>develop</code>);</li>
@@ -711,18 +763,15 @@ and configuration.</p>
 In the prepared environment, you can do this via:</p>
 <div class="highlight"><pre><span></span><code>pip3 install --user GitPython keyring keyrings.cryptfile
 </code></pre></div>
-
 <p><strong>SSH public key in GitHub account</strong></p>
 <p>You need to have a GitHub account that has your SSH public key registered in it
 (via <a href="https://github.com/settings/keys">https://github.com/settings/keys</a>).</p>
 <p>If you need to generate an SSH key pair, you can run the following command:</p>
 <div class="highlight"><pre><span></span><code>ssh-keygen -t rsa -b <span class="m">4096</span>
 </code></pre></div>
-
 <p>You can copy the SSH public key from the output of this command:</p>
 <div class="highlight"><pre><span></span><code>cat .ssh/id_rsa.pub
 </code></pre></div>
-
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>If you are using the prepared tutorial environment,
@@ -748,7 +797,6 @@ run the "<code>eb --install-github-token</code>" command:</p>
 $ <span class="nb">export</span> <span class="nv">EASYBUILD_GITHUB_USER</span><span class="o">=</span>ebtutorial
 $ eb --install-github-token
 </code></pre></div>
-
 <p>To create a GitHub token:</p>
 <ul>
 <li>Visit <a href="https://github.com/settings/tokens">https://github.com/settings/tokens</a>.</li>
@@ -763,7 +811,7 @@ $ eb --install-github-token
 </ul>
 <p>The output should look something like this:</p>
 <div class="highlight"><pre><span></span><code>$ eb --install-github-token
-<span class="o">==</span> temporary log file in <span class="k">case</span> of crash /tmp/eb-9z0bdve9/easybuild-hfpti62w.log
+<span class="o">==</span> temporary log file <span class="k">in</span> <span class="k">case</span> of crash /tmp/eb-9z0bdve9/easybuild-hfpti62w.log
 Token: 
 Validating token...
 Token seems to be valid, installing it.
@@ -771,7 +819,6 @@ Please <span class="nb">set</span> a password <span class="k">for</span> your ne
 Please confirm the password:
 Token <span class="s1">&#39;fed..987&#39;</span> installed!
 </code></pre></div>
-
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>If you are using the prepared tutorial environment,
@@ -783,7 +830,7 @@ through the GitHub API!</p>
 <p><strong>Checking status of GitHub integration</strong></p>
 <p>You can check the status of the GitHub integration using "<code>eb --check-github</code>":</p>
 <div class="highlight"><pre><span></span><code>$ eb --check-github
-<span class="o">==</span> temporary log file in <span class="k">case</span> of crash /tmp/eb-4ckdlyfy/easybuild-gp69ev2w.log
+<span class="o">==</span> temporary log file <span class="k">in</span> <span class="k">case</span> of crash /tmp/eb-4ckdlyfy/easybuild-gp69ev2w.log
 
 Checking status of GitHub integration...
 
@@ -810,7 +857,6 @@ Status of GitHub integration:
 * --update-pr: OK
 * --upload-test-report: OK
 </code></pre></div>
-
 <p>If you see '<code>OK</code>' for each of the status checks, you're all set
 to try out the GitHub integration features!</p>
 <div class="admonition note">
@@ -885,17 +931,15 @@ than the default <code>easybuilders</code> GitHub organisation,
 by defining the <code>pr-target-account</code> configuration setting:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">EASYBUILD_PR_TARGET_ACCOUNT</span><span class="o">=</span>boegel
 </code></pre></div>
-
 <p>In the output of "<code>eb --show-config</code>" you should see a line like this:</p>
 <div class="highlight"><pre><span></span><code>pr-target-account (E) = boegel
 </code></pre></div>
-
 <p>We only do this to avoid that lots of pull requests for the <code>eb-tutorial</code>
 example software are opened in the <a href="https://github.com/easybuilders/easybuild-easyconfigs">central easyconfigs repository</a>.</p>
 <p>Opening a pull request is as simple as running "<code>eb --new-pr</code>" and passing
 the easyconfig file:</p>
 <div class="highlight"><pre><span></span><code>$ eb --new-pr eb-tutorial.eb 
-<span class="o">==</span> temporary log file in <span class="k">case</span> of crash /tmp/eb-ggr6scbq/easybuild-hnk271xj.log
+<span class="o">==</span> temporary log file <span class="k">in</span> <span class="k">case</span> of crash /tmp/eb-ggr6scbq/easybuild-hnk271xj.log
 <span class="o">==</span> found valid index <span class="k">for</span> /home/example/.local/easybuild/easyconfigs, so using it...
 <span class="o">==</span> fetching branch <span class="s1">&#39;develop&#39;</span> from https://github.com/boegel/easybuild-easyconfigs.git...
 <span class="o">==</span> copying files to /tmp/eb-ggr6scbq/git-working-dirxwk1fzaw/easybuild-easyconfigs...
@@ -921,7 +965,6 @@ Opened pull request: https://github.com/boegel/easybuild-easyconfigs/pull/65
 <span class="o">==</span> Temporary log file<span class="o">(</span>s<span class="o">)</span> /tmp/eb-ggr6scbq/easybuild-hnk271xj.log* have been removed.
 <span class="o">==</span> Temporary directory /tmp/eb-ggr6scbq has been removed.
 </code></pre></div>
-
 <p>Take a moment to grasp what we did here: we ran <strong>a single <code>eb</code> command</strong> which
 took care of the <strong><a href="#contribution-procedure">whole contribution procedure</a></strong> for us, including:</p>
 <ul>
@@ -959,11 +1002,10 @@ is available, since the required dependencies for <code>eb-tutorial</code> are a
 installed there:</p>
 <div class="highlight"><pre><span></span><code>module use /easybuild/modules/all
 </code></pre></div>
-
 <p>You can verify which dependencies are still missing using <code>--from-pr</code> combined with <code>--missing</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># change &#39;65&#39; to the ID of your own pull request (see output of --new-pr)</span>
 $ eb --from-pr <span class="m">65</span> --missing
-<span class="o">==</span> temporary log file in <span class="k">case</span> of crash /tmp/eb-ioi9ywm1/easybuild-e3v0xa1b.log
+<span class="o">==</span> temporary log file <span class="k">in</span> <span class="k">case</span> of crash /tmp/eb-ioi9ywm1/easybuild-e3v0xa1b.log
 Please enter password <span class="k">for</span> encrypted keyring: 
 <span class="o">==</span> found valid index <span class="k">for</span> /home/example/.local/easybuild/easyconfigs, so using it...
 
@@ -971,7 +1013,6 @@ Please enter password <span class="k">for</span> encrypted keyring:
 
 * eb-tutorial/1.0.0-GCC-9.3.0 <span class="o">(</span>eb-tutorial-1.0.0-GCC-9.3.0.eb<span class="o">)</span>
 </code></pre></div>
-
 <p>Uploading a test report boils down to combining <code>--from-pr</code> with <code>--upload-test-report</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># change &#39;65&#39; to the ID of your own pull request (see output of --new-pr)</span>
 $ eb --rebuild --from-pr <span class="m">65</span> --upload-test-report
@@ -984,12 +1025,11 @@ Please enter password <span class="k">for</span> encrypted keyring:
 ...
 Adding comment to easybuild-easyconfigs issue <span class="c1">#65: &#39;Test report by @ebtutorial</span>
 **SUCCESS**
-Build succeeded <span class="k">for</span> <span class="m">1</span> out of <span class="m">1</span> <span class="o">(</span><span class="m">1</span> easyconfigs in this PR<span class="o">)</span>
+Build succeeded <span class="k">for</span> <span class="m">1</span> out of <span class="m">1</span> <span class="o">(</span><span class="m">1</span> easyconfigs <span class="k">in</span> this PR<span class="o">)</span>
 example - Linux centos linux <span class="m">7</span>.8.2003, x86_64, Intel<span class="o">(</span>R<span class="o">)</span> Core<span class="o">(</span>TM<span class="o">)</span> i5-7360U CPU @ <span class="m">2</span>.30GHz <span class="o">(</span>haswell<span class="o">)</span>, Python <span class="m">3</span>.6.8
 See https://gist.github.com/f7c74159c809029afd99e30e4d994ef1 <span class="k">for</span> a full <span class="nb">test</span> report.<span class="err">&#39;</span>
-<span class="o">==</span> Test report uploaded to https://gist.github.com/f7c74159c809029afd99e30e4d994ef1 and mentioned in a comment in easyconfigs PR#65
+<span class="o">==</span> Test report uploaded to https://gist.github.com/f7c74159c809029afd99e30e4d994ef1 and mentioned <span class="k">in</span> a comment <span class="k">in</span> easyconfigs PR#65
 </code></pre></div>
-
 <p>Note that we may need to use <code>--rebuild</code> here since <code>eb-tutorial</code> may already be installed.</p>
 <p>This results in a comment being added to the pull request:</p>
 <div align="center"><img src="../img/test_report_comment.png" alt="Test report comment" width="75%"/></div>
@@ -1013,8 +1053,9 @@ to the easyconfigs repository has been gradually increasing over the years,
 while the number of unique contributors to the framework and easyblocks repositories has
 largely remained stable. Making contributions to the latter
 two repositories requires significantly more effort, which explains the difference
-with the easyconfigs repository.
-<div align="center"><img src="../img/unique_contributors_per_year.png" alt="Overview of unique contributors per year across EasyBuild repositories" width="75%"/></div></p>
+with the easyconfigs repository.</p>
+<div align="center"><img src="../img/unique_contributors_per_year.png" alt="Overview of unique contributors per year across EasyBuild repositories" width="75%"/></div>
+
 <h3 id="pull-requests-per-year-easyconfigs">Pull requests per year (easyconfigs)<a class="headerlink" href="#pull-requests-per-year-easyconfigs" title="Permanent link">&para;</a></h3>
 <p>Plotting the number of pull requests to the easyconfigs repository per year
 clearly shows an increase, with almost 2,100 <em>merged</em> contributions in 2019.
@@ -1036,7 +1077,7 @@ were made using <code>--new-pr</code>, and we see this increasing further in 202
 <div class="md-source-date">
   <small>
     
-      Last update: June 22, 2020
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 22, 2020</span>
     
   </small>
 </div>
@@ -1056,40 +1097,38 @@ were made using <code>--new-pr</code>, and we see this increasing further in 202
         
 <footer class="md-footer">
   
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
-        
-          <a href="../community/" title="The EasyBuild community" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../community/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              The EasyBuild community
             </div>
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                The EasyBuild community
-              </div>
+          </div>
+        </a>
+      
+      
+        <a href="../comparison_other_tools/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Comparison with other tools
             </div>
-          </a>
-        
-        
-          <a href="../comparison_other_tools/" title="Comparison with other tools" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Comparison with other tools
-              </div>
-            </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -1137,19 +1176,13 @@ were made using <code>--new-pr</code>, and we see this increasing further in 202
 </footer>
       
     </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["instant"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
     
-      <script src="../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../assets/javascripts/bundle.4a5ba8d6.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
-      
-      <script>
-        app = initialize({
-          base: "..",
-          features: ["instant"],
-          search: Object.assign({
-            worker: "../assets/javascripts/worker/search.9b3611bd.min.js"
-          }, typeof search !== "undefined" && search)
-        })
-      </script>
+    
+      <script src="../assets/javascripts/bundle.9b151c6a.min.js"></script>
       
     
   </body>

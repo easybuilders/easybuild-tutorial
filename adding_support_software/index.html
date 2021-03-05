@@ -1,6 +1,4 @@
 
-
-
 <!doctype html>
 <html lang="en" class="no-js">
   <head>
@@ -10,8 +8,9 @@
       
       
       
+      
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.3.3">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.4">
     
     
       
@@ -19,16 +18,20 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.fe0cca5b.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.77f3fd56.min.css">
       
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.7fa14f5b.min.css">
+        
       
     
     
     
       
-        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
       
     
     
@@ -36,7 +39,7 @@
     
       
         
-<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-168742780-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}),document.addEventListener("DOMContentSwitch",function(){ga("send","pageview")})</script>
+<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-168742780-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script>
 <script async src="https://www.google-analytics.com/analytics.js"></script>
       
     
@@ -44,7 +47,13 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -62,45 +71,52 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href=".." title="EasyBuild tutorial" class="md-header-nav__button md-logo" aria-label="EasyBuild tutorial">
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="EasyBuild tutorial" class="md-header__button md-logo" aria-label="EasyBuild tutorial">
       
   <img src="../img/easybuild_logo.png" alt="logo">
 
     </a>
-    <label class="md-header-nav__button md-icon" for="__drawer">
+    <label class="md-header__button md-icon" for="__drawer">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
     </label>
-    <div class="md-header-nav__title" data-md-component="header-title">
-      
-        <div class="md-header-nav__ellipsis">
-          <span class="md-header-nav__topic md-ellipsis">
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
             EasyBuild tutorial
           </span>
-          <span class="md-header-nav__topic md-ellipsis">
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
             
               Adding support for additional software
             
           </span>
         </div>
+      </div>
+    </div>
+    <div class="md-header__options">
       
     </div>
     
-      <label class="md-header-nav__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
       </label>
       
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
       </button>
     </form>
@@ -118,12 +134,12 @@
 </div>
     
     
-      <div class="md-header-nav__source">
+      <div class="md-header__source">
         
-<a href="https://github.com/easybuilders/" title="Go to repository" class="md-source">
+<a href="https://github.com/easybuilders/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     EasyBuild @ GitHub
@@ -136,8 +152,6 @@
     
     <div class="md-container" data-md-component="container">
       
-        
-      
       
         
       
@@ -145,10 +159,16 @@
         <div class="md-main__inner md-grid">
           
             
-              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+                    
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="EasyBuild tutorial" class="md-nav__button md-logo" aria-label="EasyBuild tutorial">
       
@@ -160,10 +180,10 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/easybuilders/" title="Go to repository" class="md-source">
+<a href="https://github.com/easybuilders/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     EasyBuild @ GitHub
@@ -177,96 +197,15 @@
       
       
 
-
-  <li class="md-nav__item">
-    <a href=".." title="Home" class="md-nav__link">
-      Home
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../practical_information/" title="Practical information" class="md-nav__link">
-      Practical information
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../introduction/" title="Introduction" class="md-nav__link">
-      Introduction
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../installation/" title="Installation" class="md-nav__link">
-      Installation
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../configuration/" title="Configuration" class="md-nav__link">
-      Configuration
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../basic_usage/" title="Basic usage" class="md-nav__link">
-      Basic usage
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../troubleshooting/" title="Troubleshooting" class="md-nav__link">
-      Troubleshooting
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../hmns/" title="Hierarchical module naming schemes" class="md-nav__link">
-      Hierarchical module naming schemes
-    </a>
-  </li>
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
 
     
       
@@ -274,27 +213,132 @@
       
 
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../practical_information/" class="md-nav__link">
+        Practical information
+      </a>
+    </li>
+  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
       
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
     
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
     
-      <label class="md-nav__link md-nav__link--active" for="__toc">
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        Configuration
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic_usage/" class="md-nav__link">
+        Basic usage
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        Troubleshooting
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hmns/" class="md-nav__link">
+        Hierarchical module naming schemes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Adding support for additional software
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Adding support for additional software
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="Adding support for additional software" class="md-nav__link md-nav__link--active">
-      Adding support for additional software
-    </a>
-    
+      </a>
       
+        
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -302,12 +346,10 @@
   
   
     <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
+      <span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
-    <ul class="md-nav__list" data-md-scrollfix>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
   <a href="#easyconfigs-vs-easyblocks" class="md-nav__link">
@@ -491,80 +533,99 @@
     </ul>
   
 </nav>
-    
-  </li>
+      
+    </li>
+  
 
     
       
       
       
 
-
-  <li class="md-nav__item">
-    <a href="../jsc/" title="EasyBuild at Jülich Supercomputing Centre" class="md-nav__link">
-      EasyBuild at Jülich Supercomputing Centre
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../computecanada/" title="EasyBuild at Compute Canada" class="md-nav__link">
-      EasyBuild at Compute Canada
-    </a>
-  </li>
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jsc/" class="md-nav__link">
+        EasyBuild at Jülich Supercomputing Centre
+      </a>
+    </li>
+  
 
     
       
       
       
 
-
-  <li class="md-nav__item">
-    <a href="../community/" title="The EasyBuild community" class="md-nav__link">
-      The EasyBuild community
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../contributing/" title="Contributing to EasyBuild" class="md-nav__link">
-      Contributing to EasyBuild
-    </a>
-  </li>
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../computecanada/" class="md-nav__link">
+        EasyBuild at Compute Canada
+      </a>
+    </li>
+  
 
     
       
       
       
 
-
-  <li class="md-nav__item">
-    <a href="../comparison_other_tools/" title="Comparison with other tools" class="md-nav__link">
-      Comparison with other tools
-    </a>
-  </li>
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../community/" class="md-nav__link">
+        The EasyBuild community
+      </a>
+    </li>
+  
 
     
       
       
       
 
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        Contributing to EasyBuild
+      </a>
+    </li>
+  
 
-  <li class="md-nav__item">
-    <a href="../getting_help/" title="Getting help" class="md-nav__link">
-      Getting help
-    </a>
-  </li>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../comparison_other_tools/" class="md-nav__link">
+        Comparison with other tools
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting_help/" class="md-nav__link">
+        Getting help
+      </a>
+    </li>
+  
 
     
   </ul>
@@ -574,7 +635,8 @@
               </div>
             
             
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -585,12 +647,10 @@
   
   
     <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
+      <span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
-    <ul class="md-nav__list" data-md-scrollfix>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
   <a href="#easyconfigs-vs-easyblocks" class="md-nav__link">
@@ -779,16 +839,13 @@
               </div>
             
           
-          <div class="md-content">
+          <div class="md-content" data-md-component="content">
             <article class="md-content__inner md-typeset">
               
                 
                   <a href="https://github.com/easybuilders/easybuild-tutorial/edit/master/docs/adding_support_software/README.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
-                
-                
-                  
                 
                 
                 <h1 id="adding-support-for-additional-software">Adding support for additional software<a class="headerlink" href="#adding-support-for-additional-software" title="Permanent link">&para;</a></h1>
@@ -850,14 +907,12 @@ This information may influence the value of several other easyconfig parameters 
 <div class="highlight"><pre><span></span><code><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;example&#39;</span>
 <span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;1.0&#39;</span>
 </code></pre></div>
-
 <p><strong><code>homepage</code>, <code>description</code></strong></p>
 <p>The homepage and description are included in the generated module file for the installation.
 That way the "<code>module show</code>" command provides some useful high-level information about the installation.</p>
 <div class="highlight"><pre><span></span><code><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;https://example.org&#39;</span>
 <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;This is just an example.&quot;</span>
 </code></pre></div>
-
 <p>Usually it does not matter whether you use single or double quotes to specify string values,
 but you will often see that single quotes are used for values that don't have spaces (words)
 and double quotes for values that do have spaces (sentences). There is no technical reason for
@@ -868,20 +923,17 @@ the right type of quotes however, we will get back to that later (keep it in min
 <span class="s2"> of a multi-line description.</span>
 <span class="s2"> It is spread across multiple lines.&quot;&quot;&quot;</span>
 </code></pre></div>
-
 <p><strong><code>toolchain</code></strong></p>
 <p>EasyBuild also requires that the <a href="../introduction/#toolchains">compiler toolchain</a> is specified, via the <code>toolchain</code>
 easyconfig parameter.</p>
 <p>This can either be the <a href="../introduction/#system-toolchain"><code>system</code> toolchain</a>, for which a constant named <code>SYSTEM</code> is available:</p>
 <div class="highlight"><pre><span></span><code><span class="n">toolchain</span> <span class="o">=</span> <span class="n">SYSTEM</span>
 </code></pre></div>
-
 <p>Usually we specify a 'proper' toolchain like the compiler-only toolchain GCC 9.3.0 which we used before,
 or the full toolchain <code>foss</code> 2020a. The name and version of the toolchain can be specified using a Python dictionary,
 for example:</p>
 <div class="highlight"><pre><span></span><code><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;GCC&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;9.3.0&#39;</span><span class="p">}</span>
 </code></pre></div>
-
 <h3 id="commonly-used-parameters">Commonly used parameters<a class="headerlink" href="#commonly-used-parameters" title="Permanent link">&para;</a></h3>
 <p>You will definitely need to specify additional easyconfig parameters to get something useful done.
 We will cover the most commonly used ones here, but keep in mind that these are <em>not</em> mandatory.</p>
@@ -908,7 +960,6 @@ serve to generate a module file.</p>
     <span class="s1">&#39;864395d648ad9a5b75d1a745c8ef82b78421d571584037560a22a581ed7a261c&#39;</span><span class="p">,</span>
 <span class="p">]</span>
 </code></pre></div>
-
 <p>Each of these require a <em>list</em> of values, so even if there is only a single source file or download URL
 you must use square brackets as shown in the example. The default value for each of these is an empty list (<code>[]</code>).</p>
 <p>Some things worth pointing out here:</p>
@@ -969,7 +1020,6 @@ install_cmd*            Build <span class="nb">command</span> to use <span class
 prefix_opt*             Prefix <span class="nb">command</span> line option <span class="k">for</span> configure script <span class="o">(</span><span class="s1">&#39;--prefix=&#39;</span> <span class="k">if</span> None<span class="o">)</span> <span class="o">[</span>default: None<span class="o">]</span>
 tar_config_opts*        Override tar settings as determined by configure. <span class="o">[</span>default: False<span class="o">]</span>
 </code></pre></div>
-
 <h4 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h4>
 <p>You will often need to list one or more <a href="../introduction/#dependencies">dependencies</a> that are required
 to install or run the software.</p>
@@ -993,7 +1043,6 @@ the build.</p>
     <span class="p">(</span><span class="s1">&#39;SciPy-bundle&#39;</span><span class="p">,</span> <span class="s1">&#39;2020.03&#39;</span><span class="p">,</span> <span class="s1">&#39;-Python-</span><span class="si">%(pyver)s</span><span class="s1">&#39;</span><span class="p">),</span>
 <span class="p">]</span>
 </code></pre></div>
-
 <p>Both <code>builddependencies</code> and <code>dependencies</code> require a list of tuples,
 each of which specifying one dependency.
 The name and version of a dependency is specified with a 2-tuple (a tuple with two string values).</p>
@@ -1012,14 +1061,12 @@ software version (and toolchain label) in the standard module naming scheme.</p>
 you can indicate this as follows for example:</p>
 <div class="highlight"><pre><span></span><code><span class="n">versionsuffix</span> <span class="o">=</span> <span class="s1">&#39;-example-label&#39;</span>
 </code></pre></div>
-
 <p>This mechanism is used frequently to indicate that a software installation depends
 on a particular version of Python, where the <code>%(pyver)s</code> template comes in useful again:</p>
 <div class="highlight"><pre><span></span><code><span class="n">versionsuffix</span> <span class="o">=</span> <span class="s1">&#39;-Python-</span><span class="si">%(pyver)s</span><span class="s1">&#39;</span>
 <span class="o">...</span>
 <span class="n">dependencies</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;Python&#39;</span><span class="p">,</span> <span class="s1">&#39;3.8.2&#39;</span><span class="p">)]</span>
 </code></pre></div>
-
 <p>Even though Python 2 is officially dead and
 buried some scientific software still requires it, and mixing modules where
 some use Python 2 and other use Python 3 doesn't work well.
@@ -1044,7 +1091,6 @@ find yourself having to specify options to the configure, build, test or install
 
 <span class="n">installopts</span> <span class="o">=</span> <span class="s2">&quot;PREFIX=&#39;</span><span class="si">%(installdir)s</span><span class="s2">&#39;&quot;</span>
 </code></pre></div>
-
 <p>Here we are:</p>
 <ul>
 <li>
@@ -1093,7 +1139,6 @@ with two keys: <code>files</code> and <code>dirs</code>. For example:</p>
     <span class="s1">&#39;dirs&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;examples/one&#39;</span><span class="p">,</span> <span class="s1">&#39;examples/two&#39;</span><span class="p">],</span>
 <span class="p">}</span>
 </code></pre></div>
-
 <p>In addition, you can specify one or more commands that should be working without a problem (that is, have a zero exit status) via the <code>sanity_check_commands</code> easyconfig parameter.
 These commands will be run just like a user would: after loading the module that was generated for this installation.
 Here is an example:</p>
@@ -1102,12 +1147,10 @@ Here is an example:</p>
     <span class="s2">&quot;example --help&quot;</span><span class="p">,</span>
 <span class="p">]</span>
 </code></pre></div>
-
 <h4 id="module-class">Module class<a class="headerlink" href="#module-class" title="Permanent link">&para;</a></h4>
 <p>Finally, you will usually see the <code>moduleclass</code> easyconfig parameter to be defined as well, for example:</p>
 <div class="highlight"><pre><span></span><code><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;lib&#39;</span>
 </code></pre></div>
-
 <p>This is done to categorize software, and it is used to group the generated module files into smaller sets (<a href="../basic_usage/#using-installed-software">remember what we saw when installing software earlier</a>).</p>
 <h2 id="generating-tweaked-easyconfigs">Generating tweaked easyconfigs<a class="headerlink" href="#generating-tweaked-easyconfigs" title="Permanent link">&para;</a></h2>
 <p>Sometimes you may want to install software that differs only slightly from an
@@ -1120,11 +1163,9 @@ an existing one.</p>
 <p>For example, to try installing a different software version you can use the <code>--try-software-version</code> option:</p>
 <div class="highlight"><pre><span></span><code>eb example-1.2.3.eb --try-software-version <span class="m">1</span>.2.4
 </code></pre></div>
-
 <p>Or, to try using a different compiler toolchain you can use <code>--try-toolchain</code>:</p>
 <div class="highlight"><pre><span></span><code>eb example-1.2.3-foss-2020a.eb --try-toolchain intel,2020a
 </code></pre></div>
-
 <p>It is important to keep in mind the <em>"try"</em> aspect here: while easyconfigs that
 are generated by EasyBuild via a <code>--try-*</code> option often do work fine, there is
 no strong guarantee they will. Newer software versions may come with changes to
@@ -1143,7 +1184,6 @@ get the full location to it, copy-paste that, and then use the <code>cp</code> c
 ...
 SAMtools-1.10-GCC-9.3.0.eb copied to SAMtools.eb
 </code></pre></div>
-
 <p>If you omit the target location, the easyconfig file will simply be copied
 to the current working directory, retaining the original filename.</p>
 <p>You can copy multiple easyconfig files, as long as the target location
@@ -1154,18 +1194,15 @@ example software package <code>eb-tutorial</code>.</p>
 <p>The sources for <code>eb-tutorial</code> version 1.0.0 are available at:</p>
 <div class="highlight"><pre><span></span><code>https://github.com/easybuilders/easybuild-tutorial/raw/master/docs/files/eb-tutorial-1.0.0.tar.gz
 </code></pre></div>
-
 <p>You can consult the unpacked sources at <a href="https://github.com/easybuilders/easybuild-tutorial/tree/master/docs/files/eb-tutorial-1.0.0">https://github.com/easybuilders/easybuild-tutorial/tree/master/docs/files/eb-tutorial-1.0.0</a>.</p>
 <h3 id="preparation">Preparation<a class="headerlink" href="#preparation" title="Permanent link">&para;</a></h3>
 <p>Make sure EasyBuild is properly configured before you start:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">EASYBUILD_PREFIX</span><span class="o">=</span><span class="nv">$HOME</span>/easybuild
 <span class="nb">export</span> <span class="nv">EASYBUILD_BUILDPATH</span><span class="o">=</span>/tmp/<span class="nv">$USER</span>
 </code></pre></div>
-
 <p>and that the installed software in <code>/easybuild</code> is available:</p>
 <div class="highlight"><pre><span></span><code>module use /easybuild/modules/all
 </code></pre></div>
-
 <h3 id="mandatory-easyconfig-parameters">Mandatory easyconfig parameters<a class="headerlink" href="#mandatory-easyconfig-parameters" title="Permanent link">&para;</a></h3>
 <p>Let's start by getting the mandatory easyconfig parameter defined in the easyconfig file:</p>
 <div class="highlight"><pre><span></span><code><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;eb-tutorial&#39;</span>
@@ -1176,22 +1213,19 @@ example software package <code>eb-tutorial</code>.</p>
 
 <span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;GCC&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;9.3.0&#39;</span><span class="p">}</span>
 </code></pre></div>
-
 <p>We will use <code>GCC/9.3.0</code> as toolchain, since we know it is already installed in <code>/easybuild</code> in the prepared environment.</p>
 <p>In addition, we'll also specify the <code>moduleclass</code>. This is not required, but it is usually set
 to a reasonable value:</p>
 <div class="highlight"><pre><span></span><code><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;tools&#39;</span>
 </code></pre></div>
-
 <p>The default value is '<code>base</code>', at least '<code>tools</code>' has <em>some</em> meaning.</p>
 <h3 id="easyblock_1">Easyblock<a class="headerlink" href="#easyblock_1" title="Permanent link">&para;</a></h3>
 <p>Let us see what happens if we take this easyconfig file for a spin:</p>
 <div class="highlight"><pre><span></span><code>$ eb eb-tutorial.eb 
-<span class="o">==</span> temporary log file in <span class="k">case</span> of crash /tmp/eb-8_vxjfn7/easybuild-k3aaoan2.log
+<span class="o">==</span> temporary log file <span class="k">in</span> <span class="k">case</span> of crash /tmp/eb-8_vxjfn7/easybuild-k3aaoan2.log
 ERROR: Failed to process easyconfig /home/example/eb-tutorial.eb:
 No software-specific easyblock <span class="s1">&#39;EB_eb_minus_tutorial&#39;</span> found <span class="k">for</span> eb-tutorial
 </code></pre></div>
-
 <p>That didn't get us very far...</p>
 <p>The error shows that there is no software-specific easyblock available for <code>eb-tutorial</code>.
 Does that mean we have to implement an easyblock?</p>
@@ -1204,7 +1238,6 @@ the build, which likely will yield a <code>Makefile</code> so we can run <code>m
 <p><a href="#easyblock">We briefly discussed</a> a generic easyblock that does exactly this: <code>CMakeMake</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;CMakeMake&#39;</span>
 </code></pre></div>
-
 <p>The "<code>easyblock =</code>" line is usually at the top of the easyconfig file, but strictly speaking
 the order of the parameter definitions doesn't matter (unless one is defined in terms of another one).</p>
 <h3 id="cmake-build-dependency">CMake build dependency<a class="headerlink" href="#cmake-build-dependency" title="Permanent link">&para;</a></h3>
@@ -1223,26 +1256,22 @@ the order of the parameter definitions doesn't matter (unless one is defined in 
 == FAILED: Installation ended unsuccessfully (build directory: /tmp/easybuild/ebtutorial/1.0.0/GCC-9.3.0):
 build failed (first 300 chars): cmd &quot; cmake -DCMAKE_INSTALL_PREFIX=/home/example/easybuild/software/eb-tutorial/1.0.0-GCC-9.3.0 -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=&#39;gcc&#39; -DCMAKE_C_FLAGS=&#39;-O2 -ftree-vectorize -march=native -fno-math-errno&#39; -DCMAKE_CXX_COMPILER=&#39;g++&#39; -DCMAKE_CXX_FLAGS=&#39;-O2 -ftree-vectorize -march=native  (took 0 sec)
 </code></pre></div>
-
 <p>It did help: EasyBuild made an attempt to configure the build using the <code>cmake</code> command, but that failed almost
 instantly. We need to dive into the log file to see the actual reason. By starting at the end of the log file and
 scrolling up, you should be able to locate the following error message:</p>
 <div class="highlight"><pre><span></span><code>/bin/bash: cmake: command not found
 </code></pre></div>
-
 <p>Ah, that explains it, <code>cmake</code> isn't even installed on this system. Or is it?</p>
 <div class="highlight"><pre><span></span><code>$ module avail CMake
 
 --------------------------- /easybuild/modules/all ----------------------------
    CMake/3.16.4-GCCcore-9.3.0
 </code></pre></div>
-
 <p>Since a module is available for <code>CMake</code> that is compatible with the toolchain we are using (GCC 9.3.0),
 we can use it as a dependency for the installation.
 It is only needed for building the software, not for running it, so it's only a <em>build</em> dependency:</p>
 <div class="highlight"><pre><span></span><code><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;CMake&#39;</span><span class="p">,</span> <span class="s1">&#39;3.16.4&#39;</span><span class="p">)]</span>
 </code></pre></div>
-
 <p>There is usually no need to specify toolchain for (build) dependencies, EasyBuild will automatically consider
 subtoolchains compatible with the specified toolchain to locate module for the dependencies.</p>
 <p>You can verify this via <code>eb -D</code>:</p>
@@ -1252,13 +1281,11 @@ subtoolchains compatible with the specified toolchain to locate module for the d
  * [x] /easybuild/software/EasyBuild/4.2.1/easybuild/easyconfigs/g/GCC/GCC-9.3.0.eb (module: GCC/9.3.0)
  * [ ] /home/example/eb-tutorial.eb (module: eb-tutorial/1.0.0-GCC-9.3.0)
 </code></pre></div>
-
 <h3 id="sources">Sources<a class="headerlink" href="#sources" title="Permanent link">&para;</a></h3>
 <p>If you try again after adding <code>CMake</code> as a build dependency, you will see the installation fail again in the
 configuration step. Inspecting the log file reveals:</p>
 <div class="highlight"><pre><span></span><code>CMake Error: The source directory &quot;/tmp/example/ebtutorial/1.0.0/GCC-9.3.0&quot; does not appear to contain CMakeLists.txt.
 </code></pre></div>
-
 <p>Wait, but there <em>is</em> a <code>CMakeLists.txt</code>, we can see it in the <a href="https://github.com/easybuilders/easybuild-tutorial/tree/master/docs/files/eb-tutorial-1.0.0">unpacked sources</a>!</p>
 <p>Let's inspect the build directory:</p>
 <div class="highlight"><pre><span></span><code>$ ls /tmp/$USER/ebtutorial/1.0.0/GCC-9.3.0
@@ -1266,7 +1293,6 @@ easybuild_obj
 $ ls /tmp/$USER/ebtutorial/1.0.0/GCC-9.3.0/easybuild_obj
 $
 </code></pre></div>
-
 <p>There's nothing there at all! And that's not strange because we didn't actually
 specify any sources in our easyconfig file...</p>
 <p>The <code>sources</code> easyconfig parameter is commonly defined but it is <em>not</em> mandatory,
@@ -1277,19 +1303,16 @@ can download the sources for us.</p>
 <div class="highlight"><pre><span></span><code><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://github.com/easybuilders/easybuild-tutorial/raw/master/docs/files/&#39;</span><span class="p">]</span>
 <span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;eb-tutorial-1.0.0.tar.gz&#39;</span><span class="p">]</span>
 </code></pre></div>
-
 <p>This will work, but we can do better by not hardcoding the software version (<code>1.0.0</code>) in <code>sources</code>,
 and use a template value '<code>%(version)s</code>' instead:</p>
 <div class="highlight"><pre><span></span><code><span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;eb-tutorial-</span><span class="si">%(version)s</span><span class="s1">.tar.gz&#39;</span><span class="p">]</span>
 </code></pre></div>
-
 <p>That way, we only have the software version specified once in the easyconfig file (via the <code>version</code>
 easyconfig parameter). That will come in useful later (see <a href="#exercises">Exercise 7.2</a>)...</p>
 <p>We can even use the <code>SOURCE_TAR_GZ</code> template constant in this case, since the name of source file adheres
 to the standard <code>name-version.tar.gz</code> pattern:</p>
 <div class="highlight"><pre><span></span><code><span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="n">SOURCE_TAR_GZ</span><span class="p">]</span>
 </code></pre></div>
-
 <p>See the output of "<code>eb --avail-easyconfig-templates</code>" for a list of known templates.</p>
 <h3 id="required-configure-option">Required configure option<a class="headerlink" href="#required-configure-option" title="Permanent link">&para;</a></h3>
 <p>With <code>sources</code> defined, we can try again. And yet again we see the configure step fail.
@@ -1298,14 +1321,12 @@ Is this a ruse to make you hate CMake with a passion? Maybe...</p>
 <div class="highlight"><pre><span></span><code>CMake Error at CMakeLists.txt:7 (message):
   EBTUTORIAL_MSG is not set!
 </code></pre></div>
-
 <p>Apparently the <code>eb-tutorial</code> software has a required configure option. It's almost as if that
 was done on purpose, how silly!</p>
 <p>Options to the configure command can be specified by the <code>configopts</code> easyconfig parameter.
 To define the value of a CMake option, we need to use <code>-DNAME_OF_OPTION</code>, so:</p>
 <div class="highlight"><pre><span></span><code><span class="n">configopts</span> <span class="o">=</span> <span class="s2">&quot;-DEBTUTORIAL_MSG=&#39;Hello from the EasyBuild tutorial!&#39; &quot;</span>
 </code></pre></div>
-
 <p>We need to be a little bit careful with quotes here. If we use outer double quotes,
 we have to use single quotes to specify the actual value for the <code>EBTUTORIAL_MSG</code> configure option.
 That works fine here, but that's not always the case!
@@ -1319,7 +1340,6 @@ expanded when the configure command is run (see <a href="#exercises">Exercise 7.
 == FAILED: Installation ended unsuccessfully (build directory: /tmp/easybuild/ebtutorial/1.0.0/GCC-9.3.0): build failed (first 300 chars):
 Sanity check failed: no (non-empty) directory found at &#39;lib&#39; or &#39;lib64&#39; in /home/easybuild/easybuild/software/eb-tutorial/1.0.0-GCC-9.3.0 (took 2 sec)
 </code></pre></div>
-
 <p>It got all the way to the sanity check step, yaay!</p>
 <p>The sanity check failed because no '<code>lib</code>' or <code>'lib64'</code> directory was found.
 Indeed:</p>
@@ -1328,7 +1348,6 @@ bin
 $ ls $HOME/easybuild/software/eb-tutorial/1.0.0-GCC-9.3.0/bin
 eb-tutorial
 </code></pre></div>
-
 <p>There is only a binary named <code>eb-tutorial</code> in the <code>bin</code> subdirectory. So we will need to customize
 the sanity check:</p>
 <div class="highlight"><pre><span></span><code><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
@@ -1336,11 +1355,9 @@ the sanity check:</p>
     <span class="s1">&#39;dirs&#39;</span><span class="p">:</span> <span class="p">[],</span>
 <span class="p">}</span>
 </code></pre></div>
-
 <p>Since we want to obtain a <em>working</em> installation, we might as well try to run this <code>eb-tutorial</code> command as well:</p>
 <div class="highlight"><pre><span></span><code><span class="n">sanity_check_commands</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;eb-tutorial&#39;</span><span class="p">]</span>
 </code></pre></div>
-
 <p>Let us now retry, but use <code>--module-only</code> rather than redoing the whole installation.
 <code>--module-only</code> still sanity checks the installation, so if it creates
 a module, we know it will work as expected. 
@@ -1354,7 +1371,6 @@ Also, by enabling tracing of the module via <code>--trace</code> we can get some
 ...
 <span class="o">==</span> COMPLETED: Installation ended successfully <span class="o">(</span>took <span class="m">4</span> sec<span class="o">)</span>
 </code></pre></div>
-
 <p>Yes, great success!</p>
 <p>To convince yourself that the installation works as intended, try to load the <code>eb-tutorial</code> module and
 run the <code>eb-tutorial</code> command yourself:</p>
@@ -1363,7 +1379,6 @@ $ module load eb-tutorial
 $ eb-tutorial
 Hello from the EasyBuild tutorial!
 </code></pre></div>
-
 <h3 id="complete-easyconfig">Complete easyconfig<a class="headerlink" href="#complete-easyconfig" title="Permanent link">&para;</a></h3>
 <p>Here is the complete easyconfig we puzzled together for this example:</p>
 <div class="highlight"><pre><span></span><code><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;CMakeMake&#39;</span>
@@ -1393,7 +1408,6 @@ Hello from the EasyBuild tutorial!
 
 <span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;tools&#39;</span>
 </code></pre></div>
-
 <hr />
 <h2 id="exercises">Exercises<a class="headerlink" href="#exercises" title="Permanent link">&para;</a></h2>
 <p><strong><em>Exercise 7.1</em></strong><em> - Making <code>eb-tutorial</code> a bit more personal</em></p>
@@ -1409,7 +1423,6 @@ by the shell when running the <code>cmake</code> configure command.</p>
 includes a literal '<code>$USER</code>' string):</p>
 <div class="highlight"><pre><span></span><code>Hello from the EasyBuild tutorial! I was installed by example.
 </code></pre></div>
-
 <p>To re-install the <code>eb-tutorial.eb</code> easyconfig, you will need to use <code>eb --rebuild</code> or <code>eb --force</code>.</p>
 </details>
 <p><strong><em>Exercise 7.2</em></strong><em> - Installing eb-tutorial version 1.1.0</em></p>
@@ -1418,7 +1431,6 @@ which is a trivial version bump compared to version 1.0.0.</p>
 <p>The sources are available via:</p>
 <div class="highlight"><pre><span></span><code>https://github.com/easybuilders/easybuild-tutorial/raw/master/docs/files/eb-tutorial-1.1.0.tar.gz
 </code></pre></div>
-
 <p>You can leverage the <code>eb-tutorial</code> easyconfig file we have composed in the example above,
 <strong>but you should not make any manual changes to it!</strong></p>
 <details class="success"><summary>(click to show solution)</summary><p>You can use the <code>--try-software-version</code> option for this:
@@ -1554,7 +1566,7 @@ easyconfig parameter in your easyconfig file:
 <div class="md-source-date">
   <small>
     
-      Last update: June 22, 2020
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 22, 2020</span>
     
   </small>
 </div>
@@ -1574,40 +1586,38 @@ easyconfig parameter in your easyconfig file:
         
 <footer class="md-footer">
   
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
-        
-          <a href="../hmns/" title="Hierarchical module naming schemes" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../hmns/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Hierarchical module naming schemes
             </div>
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Hierarchical module naming schemes
-              </div>
+          </div>
+        </a>
+      
+      
+        <a href="../jsc/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              EasyBuild at Jülich Supercomputing Centre
             </div>
-          </a>
-        
-        
-          <a href="../jsc/" title="EasyBuild at Jülich Supercomputing Centre" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                EasyBuild at Jülich Supercomputing Centre
-              </div>
-            </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -1655,19 +1665,13 @@ easyconfig parameter in your easyconfig file:
 </footer>
       
     </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["instant"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
     
-      <script src="../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../assets/javascripts/bundle.4a5ba8d6.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
-      
-      <script>
-        app = initialize({
-          base: "..",
-          features: ["instant"],
-          search: Object.assign({
-            worker: "../assets/javascripts/worker/search.9b3611bd.min.js"
-          }, typeof search !== "undefined" && search)
-        })
-      </script>
+    
+      <script src="../assets/javascripts/bundle.9b151c6a.min.js"></script>
       
     
   </body>
