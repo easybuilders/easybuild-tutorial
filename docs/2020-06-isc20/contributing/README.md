@@ -60,7 +60,7 @@ git push my_fork example
 In addition, for easyconfig files you should make sure that they have the
 [correct filename](../basic_usage/#easyconfig-filenames), and that they are located in the correct subdirectory.
 
-<div align="center"><img src="../img/pfft.png" alt="Pfft" width="30%"/></div>
+<div align="center"><img src="../../img/pfft.png" alt="Pfft" width="30%"/></div>
 
 That didn't exactly motivate you to contribute, did it...
 
@@ -70,7 +70,7 @@ Over the years we noticed that some people were keen on contributing to EasyBuil
 but they were not very familiar with Git or GitHub. That meant they had to overcome a
 relatively steep learning curve before they could contribute...
 
-<div align="center"><img src="../img/no_git.png" alt="Gandalf vs Git" width="50%"/></div>
+<div align="center"><img src="../../img/no_git.png" alt="Gandalf vs Git" width="50%"/></div>
 
 In addition, the contribution workflow can be a bit daunting and time consuming,
 even if you're already familiar with the procedure. You will have dozens of
@@ -439,11 +439,11 @@ Note that we may need to use `--rebuild` here since `eb-tutorial` may already be
 
 This results in a comment being added to the pull request:
 
-<div align="center"><img src="../img/test_report_comment.png" alt="Test report comment" width="75%"/></div>
+<div align="center"><img src="../../img/test_report_comment.png" alt="Test report comment" width="75%"/></div>
 
 The gist linked from this comment provides more detailed information:
 
-<div align="center"><img src="../img/test_report_gist.png" alt="Test report gist" width="75%"/></div>
+<div align="center"><img src="../../img/test_report_gist.png" alt="Test report gist" width="75%"/></div>
 
 ## Contribution stats
 
@@ -458,7 +458,7 @@ passed the threshold of 100 unique contributors in the easyblocks repository,
 and at the time of writing we were just *one* contributor short of reaching
 100 unique contributors to the EasyBuild framework repository.
 
-<div align="center"><img src="../img/contributors_overview_all_easybuild_repos.png" alt="EasyBuild contributor overview" width="75%"/></div>
+<div align="center"><img src="../../img/contributors_overview_all_easybuild_repos.png" alt="EasyBuild contributor overview" width="75%"/></div>
 
 If we look at unique contributors per year, we see that the number of contributors
 to the easyconfigs repository has been gradually increasing over the years,
@@ -466,7 +466,7 @@ while the number of unique contributors to the framework and easyblocks reposito
 largely remained stable. Making contributions to the latter
 two repositories requires significantly more effort, which explains the difference
 with the easyconfigs repository.
-<div align="center"><img src="../img/unique_contributors_per_year.png" alt="Overview of unique contributors per year across EasyBuild repositories" width="75%"/></div>
+<div align="center"><img src="../../img/unique_contributors_per_year.png" alt="Overview of unique contributors per year across EasyBuild repositories" width="75%"/></div>
 
 ### Pull requests per year (easyconfigs)
 
@@ -477,11 +477,11 @@ In total over 2,600 pull requests were merged in 2019 across all EasyBuild repos
 It is also worth noting that in 2019 about two thirds of all contributions were made by people outside
 of the HPC-UGent team.
 
-<div align="center"><img src="../img/contrib_stats_easyconfigs_pr_counts.png" alt="Overview of PRs to easybuild-easyconfigs repo, per year" width="70%"/></div>
+<div align="center"><img src="../../img/contrib_stats_easyconfigs_pr_counts.png" alt="Overview of PRs to easybuild-easyconfigs repo, per year" width="70%"/></div>
 
 Looking at the ratio of pull requests that were created using `--new-pr` versus
 the ones that were created manually shows a steady increase in adoption 
 since 2016 the GitHub integration feature. Throughout 2019, 77% of all pull requests
 were made using `--new-pr`, and we see this increasing further in 2020.
 
-<div align="center"><img src="../img/overview_easyconfig_prs_new_pr_vs_manual.png" alt="Overview of PRs to easybuild-easyconfigs, created with --new-pr vs manually" width="70%"/></div>
+<div align="center"><img src="../../img/overview_easyconfig_prs_new_pr_vs_manual.png" alt="Overview of PRs to easybuild-easyconfigs, created with --new-pr vs manually" width="70%"/></div>

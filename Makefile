@@ -6,7 +6,7 @@ build:
 deploy:
 	mkdocs gh-deploy --force
 
-test:
+check test:
 	mkdocs build --strict
 
 preview:

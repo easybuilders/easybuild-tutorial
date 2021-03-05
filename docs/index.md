@@ -5,22 +5,9 @@
 
 ---
 
-## Recordings
-
-**This introductory tutorial to EasyBuild was streamed
-on Tuesday June 23rd 2020.<br/>
-The recordings are available on YouTube.**
-
-See [https://github.com/easybuilders/easybuild/wiki/EasyBuild-tutorial](https://github.com/easybuilders/easybuild/wiki/EasyBuild-tutorial) for more information.
-
-<div align="center"><iframe width="560" height="315" src="https://www.youtube.com/embed/CiQ-bfFL2FA" frameborder="0" allow="accelerometer;
-autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-
----
-
 ## Scope
 
-This is an introductory tutorial to [EasyBuild](https://easybuilders.github.io/easybuild),
+This is an introductory tutorial to [EasyBuild](https://easybuild.io),
 a command line tool for installing (scientific) software on High Performance Computing (HPC) systems.
 
 It aims to explain the core concepts of EasyBuild,
@@ -59,36 +46,6 @@ EasyBuild requires:
     * we recommend [Lmod](https://lmod.readthedocs.io), a modern environment modules tool implemented in Lua
     * for more information on the environment modules tools supported by EasyBuild, see [here](https://easybuild.readthedocs.io/en/latest/Installation.html#required-modules-tool)
 
-A [container image](practical_information/#prepared-container-image) is available that can be run using either Docker or
-Singularity, which provides a prepared environment that can be used
-for the hands-on exercises in this tutorial.
-
-## Practical information
-
-For the sake of this tutorial, you can:
-
-* use the `#tutorial` channel in the [EasyBuild Slack](../getting_help) for asking questions or getting help;
-* use *AWS Cloud9* for the hands-on exercises (**only during the live tutorial on June 23rd 2020!**);
-
-
-## Tutorial contents
-
-1. [Introduction to EasyBuild](introduction/README.md)
-*  [Installation](installation/README.md) ``(*)``
-*  [Configuration](configuration/README.md) ``(*)``
-*  [Basic usage](basic_usage/README.md) ``(*)``
-*  [Troubleshooting](troubleshooting/README.md) ``(*)``
-*  [Hierarchical module naming schemes](hmns/README.md) ``(*)``
-*  [Adding support for additional software](adding_support_software/README.md) ``(*)``
-*  [EasyBuild at Jülich Supercomputing Centre](jsc/README.md)
-*  [EasyBuild at Compute Canada](computecanada/README.md)
-*  [The EasyBuild community](community/README.md)
-*  [Contributing to EasyBuild](contributing/README.md)
-*  [Comparison with other tools](comparison_other_tools/README.md)
-*  [Getting help](getting_help/README.md)
-
-*(sections indicated with* ``(*)`` *involve hands-on exercises)*
-
 ## Contributors
 
 * Maxime Boissonneault ([`@mboisson`](https://github.com/mboisson), [Compute Canada](https://www.computecanada.ca))
@@ -103,8 +60,8 @@ For the sake of this tutorial, you can:
 
 ## Additional resources
 
-* website: [https://easybuilders.github.io/easybuild](https://easybuilders.github.io/easybuild)
-* documentation: [https://easybuild.readthedocs.io](https://easybuild.readthedocs.io)
+* website: [https://easybuild.io](https://easybuild.io)
+* documentation: [https://docs.easybuild.io](https://docs.easybuild.io)
 * GitHub: [https://github.com/easybuilders](https://github.com/easybuilders)
 * Slack: [https://easybuild.slack.com](https://easybuild.slack.com) (self-request an invite [here](https://easybuild-slack.herokuapp.com))
 * mailing list: [https://lists.ugent.be/wws/subscribe/easybuild](https://lists.ugent.be/wws/subscribe/easybuild)

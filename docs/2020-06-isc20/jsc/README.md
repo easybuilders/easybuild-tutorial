@@ -4,7 +4,7 @@
 
 ## General info
 
-<img src="../img/jsc.jpg" style="float:right" width="40%"/>
+<img src="../../img/jsc.jpg" style="float:right" width="40%"/>
 
 The Jülich Supercomputing Centre
 (JSC, [https://www.fz-juelich.de/ias/jsc](https://www.fz-juelich.de/ias/jsc/EN)) at 

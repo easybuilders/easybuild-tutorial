@@ -2,7 +2,7 @@
 
 ## The early years
 
-<img src="../img/ugent_logo.png" style="float:left" width="15%"/>
+<img src="../../img/ugent_logo.png" style="float:left" width="15%"/>
 
 EasyBuild as a project was conceived in 2009 by the [HPC team at Ghent University (Belgium)](https://www.ugent.be/hpc/en).
 The codebase was developed in-house, and went through a couple of redesigns as
@@ -76,34 +76,34 @@ The map below shows from which
 cities the [EasyBuild documentation](https://easybuild.readthedocs.io) has
 been visited in the last year (June 2019 - June 2020), and how often. The community has truly become global.
 
-<div align="center"><img alt="Cities from which EasyBuild documentation has been visited last year (June 2019-June 2020" src="../img/easybuild-docs-map_20190619-20200619.png" width="75%"/></div>
+<div align="center"><img alt="Cities from which EasyBuild documentation has been visited last year (June 2019-June 2020" src="../../img/easybuild-docs-map_20190619-20200619.png" width="75%"/></div>
 
 HPC sites, consortia, and companies that use EasyBuild include (but are not limited to):
 
-<a href="https://vscentrum.be"><img src="../img/vsc_logo.png" alt="VSC logo" width="40%"></a>
-<a href="https://www.fz-juelich.de/ias/jsc"><img src="../img/jsc_logo.png" alt="JSC logo" width="26%"></a>
-<a href="https://hpcnow.com/"><img src="../img/hpcnow_logo.png" alt="HPCNow! logo" width="25%"></a>
-<a href="https://www.fredhutch.org/"><img src="../img/fredhutch_logo.png" alt="Fred Hutch logo" width="22%"></a>
-<a href="https://www.viennabiocenter.org/"><img src="../img/vienna_biocenter_logo.png" alt="Vienna BioCenter logo" width="23%"></a>
-<a href="http://www.ceci-hpc.be/"><img src="../img/ceci_logo.png" alt="CÉCI logo" width="18%"></a>
-<a href="https://www.computecanada.ca/home/"><img src="../img/computecanada_logo.png" alt="Compute Canada logo" width="29%"></a>
-<a href="https://www.uio.no/english/services/it/research/hpc/"><img src="../img/uio_logo.png" alt="UiO logo" width="23%"></a>
-<a href="https://intranet.birmingham.ac.uk/bear"><img src="../img/bear_logo.png" alt="BEAR logo" width="20%"></a>
-<a href="https://www.snic.se/"><img src="../img/snic_logo.png" alt="SNIC logo" width="22%"></a>
-<a href="https://nusit.nus.edu.sg/hpc/"><img src="../img/nus_logo.png" alt="National University of Singapore logo" width="25%"></a>
-<a href="https://www.it4i.cz/en"><img src="../img/it4innovations_logo.png" alt="IT4Innovations logo" width="20%"></a>
-<a href="https://hprc.tamu.edu/"><img src="../img/texas_am_logo.png" alt="Texas A&M logo" width="14%"></a>
-<a href="https://tu-dresden.de/zih/dienste/service-katalog/hpc?set_language=en"><img src="../img/tudresden_logo.png" alt="TU Dresden logo" width="28%"></a>
-<a href="https://dashboard.hpc.unimelb.edu.au/"><img src="../img/univ_melbourne_logo.png" alt="University of Melbourne logo" width="16%"></a>
-<a href="https://hpc.uni.lu/"><img src="../img/unilu_logo.png" alt="University of Luxembourg logo" width="18%"></a>
-<a href="https://www.epcc.ed.ac.uk/"><img src="../img/epcc_logo.png" alt="EPCC logo" width="21%"></a>
-<a href="http://hpcf.cyi.ac.cy/"><img src="../img/cyi_logo.png" alt="Cyprus Institute logo" width="26%"></a>
-<a href="https://scicore.unibas.ch/"><img src="../img/basel_logo.png" alt="University of Basel logo" width="26%"></a>
-<a href="https://techcommunity.microsoft.com/t5/azure-global/running-long-hpc-jobs-on-azure-with-checkpointing-using-lammps/ba-p/1335148"><img src="../img/microsoft_logo.png" alt="Microsoft logo" width="23%"></a>
+<a href="https://vscentrum.be"><img src="../../img/vsc_logo.png" alt="VSC logo" width="40%"></a>
+<a href="https://www.fz-juelich.de/ias/jsc"><img src="../../img/jsc_logo.png" alt="JSC logo" width="26%"></a>
+<a href="https://hpcnow.com/"><img src="../../img/hpcnow_logo.png" alt="HPCNow! logo" width="25%"></a>
+<a href="https://www.fredhutch.org/"><img src="../../img/fredhutch_logo.png" alt="Fred Hutch logo" width="22%"></a>
+<a href="https://www.viennabiocenter.org/"><img src="../../img/vienna_biocenter_logo.png" alt="Vienna BioCenter logo" width="23%"></a>
+<a href="http://www.ceci-hpc.be/"><img src="../../img/ceci_logo.png" alt="CÉCI logo" width="18%"></a>
+<a href="https://www.computecanada.ca/home/"><img src="../../img/computecanada_logo.png" alt="Compute Canada logo" width="29%"></a>
+<a href="https://www.uio.no/english/services/it/research/hpc/"><img src="../../img/uio_logo.png" alt="UiO logo" width="23%"></a>
+<a href="https://intranet.birmingham.ac.uk/bear"><img src="../../img/bear_logo.png" alt="BEAR logo" width="20%"></a>
+<a href="https://www.snic.se/"><img src="../../img/snic_logo.png" alt="SNIC logo" width="22%"></a>
+<a href="https://nusit.nus.edu.sg/hpc/"><img src="../../img/nus_logo.png" alt="National University of Singapore logo" width="25%"></a>
+<a href="https://www.it4i.cz/en"><img src="../../img/it4innovations_logo.png" alt="IT4Innovations logo" width="20%"></a>
+<a href="https://hprc.tamu.edu/"><img src="../../img/texas_am_logo.png" alt="Texas A&M logo" width="14%"></a>
+<a href="https://tu-dresden.de/zih/dienste/service-katalog/hpc?set_language=en"><img src="../../img/tudresden_logo.png" alt="TU Dresden logo" width="28%"></a>
+<a href="https://dashboard.hpc.unimelb.edu.au/"><img src="../../img/univ_melbourne_logo.png" alt="University of Melbourne logo" width="16%"></a>
+<a href="https://hpc.uni.lu/"><img src="../../img/unilu_logo.png" alt="University of Luxembourg logo" width="18%"></a>
+<a href="https://www.epcc.ed.ac.uk/"><img src="../../img/epcc_logo.png" alt="EPCC logo" width="21%"></a>
+<a href="http://hpcf.cyi.ac.cy/"><img src="../../img/cyi_logo.png" alt="Cyprus Institute logo" width="26%"></a>
+<a href="https://scicore.unibas.ch/"><img src="../../img/basel_logo.png" alt="University of Basel logo" width="26%"></a>
+<a href="https://techcommunity.microsoft.com/t5/azure-global/running-long-hpc-jobs-on-azure-with-checkpointing-using-lammps/ba-p/1335148"><img src="../../img/microsoft_logo.png" alt="Microsoft logo" width="23%"></a>
 
 ## Development
 
-<a href="http://github.com"><img src="../img/github_logo.png" style="float:left" width="15%"/></a>
+<a href="http://github.com"><img src="../../img/github_logo.png" style="float:left" width="15%"/></a>
 The EasyBuild community develops the project through the [*easybuilders* GitHub organisation](https://github.com/easybuilders) as set of repositories:<br/><br/><br/>
 
 * [easybuild-framework](https://github.com/easybuilders/easybuild-framework) (EasyBuild framework codebase)

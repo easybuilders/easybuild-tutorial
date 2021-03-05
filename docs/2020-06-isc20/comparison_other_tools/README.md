@@ -4,7 +4,7 @@
 
 ---
 
-<p><img src="../img/spack_logo.png" alt="Spack logo" width="25%"/></p>
+<p><img src="../../img/spack_logo.png" alt="Spack logo" width="25%"/></p>
 
 The project that most compares with EasyBuild is <a href="https://spack.io/">Spack</a>, a flexible package manager for HPC systems.
 
@@ -50,8 +50,8 @@ There are many other differences between EasyBuild and Spack as well, too many f
 
 ---
 
-<p><img src="../img/nix_logo.png" alt="Nix logo" width="15%"/>
-<img src="../img/guix_logo.png" alt="Guix logo" width="15%"/></p>
+<p><img src="../../img/nix_logo.png" alt="Nix logo" width="15%"/>
+<img src="../../img/guix_logo.png" alt="Guix logo" width="15%"/></p>
 
 [Nix](https://nixos.org/) and [GNU Guix](https://gnu.org/s/guix/) are both
 *purely functional package managers*, which strongly focus on the reproducibility
@@ -75,7 +75,7 @@ in the HPC community to date.
 
 ---
 
-<p><img src="../img/conda_logo.png" alt="conda logo" width="20%"/></p>
+<p><img src="../../img/conda_logo.png" alt="conda logo" width="20%"/></p>
 
 [Conda](https://docs.conda.io/en/latest/) is a package manager that
 runs on Windows, macOS and Linux, and is very popular in the scientific

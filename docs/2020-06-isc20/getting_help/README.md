@@ -14,11 +14,11 @@ It is not unlikely that an answer to your question is available
 there already.
 The search box on the top left may be helpful.
 
-<div align="center"><a href="https://easybuild.readthedocs.io/en/latest/search.html"><img src="../img/readthedocs_search.png" alt="GitHub search" width="30%"/></a></div>
+<div align="center"><a href="https://easybuild.readthedocs.io/en/latest/search.html"><img src="../../img/readthedocs_search.png" alt="GitHub search" width="30%"/></a></div>
 
 ---
 
-<p><img src="../img/github_logo.png" style="float:left" alt="GitHub logo" width="15%"/></p>
+<p><img src="../../img/github_logo.png" style="float:left" alt="GitHub logo" width="15%"/></p>
 
 You can open an issue in one of the EasyBuild repositories in [the `easybuilders` GitHub organisation](https://github.com/easybuilders/) to
 ask questions, report problems or share suggestions and ideas for additional
@@ -31,7 +31,7 @@ the EasyBuild maintainers can move your issue if deemed appropriate.
 You can also use the search box on the top left to see if somebody else
 has already asked a similar question.
 
-<div align="center"><a href="https://github.com/easybuilders"><img src="../img/github_search.png" alt="GitHub search" width="50%"/></a></div>
+<div align="center"><a href="https://github.com/easybuilders"><img src="../../img/github_search.png" alt="GitHub search" width="50%"/></a></div>
 
 ---
 
@@ -49,7 +49,7 @@ to the EasyBuild Slack channel.
 
 ---
 
-<img src="../img/slack_logo.png" alt="Slack logo" width="25%"/>
+<img src="../../img/slack_logo.png" alt="Slack logo" width="25%"/>
 
 The [EasyBuild Slack](https://easybuild.slack.com/) is a quick and easy way
 to get in touch with the EasyBuild community.
