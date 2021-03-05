@@ -35,16 +35,16 @@ which makes it very easy to preview the result of the changes you make locally.
 ## Automatic updates
 
 The rendered version of this tutorial at https://easybuilders.github.io/easybuild-tutorial
-is automatically updated on every push to the ``master`` branch,
+is automatically updated on every push to the ``main`` branch,
 thanks to the GitHub Actions workflow defined in
-[``.github/workflows/deploy.yml``](https://github.com/easybuilders/easybuild-tutorial/blob/master/.github/workflows/deploy.yml).
+[``.github/workflows/deploy.yml``](https://github.com/easybuilders/easybuild-tutorial/blob/main/.github/workflows/deploy.yml).
 
 The [``gh-pages``](https://github.com/easybuilders/easybuild-tutorial/tree/gh-pages) branch in this repository contains the rendered version.
 
 https://easybuilders.github.io/easybuild-tutorial will only be updated if the tests pass,
 see GitHub Actions workflow defined in
-[``.github.workflows/test.yml``](https://github.com/easybuilders/easybuild-tutorial/blob/master/.github/workflows/test.yml).
+[``.github.workflows/test.yml``](https://github.com/easybuilders/easybuild-tutorial/blob/main/.github/workflows/test.yml).
 
 **Note**: **do *not* change the files in the ``gh-pages`` branch directly!**
 
-All your changes will be lost the next time the ``master`` branch is updated...
+All your changes will be lost the next time the ``main`` branch is updated...
