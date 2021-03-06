@@ -13,23 +13,23 @@ edit_uri: easybuild-tutorial/edit/master/docs
 nav:
   - Home: index.md
   - "ISC-20 (June '20)":
-      - Start page: 2020-06-isc20/README.md
-      - Practical information: 2020-06-isc20/practical_information/README.md
-      - Introduction: 2020-06-isc20/introduction/README.md
-      - Installation: 2020-06-isc20/installation/README.md
-      - Configuration: 2020-06-isc20/configuration/README.md
-      - Basic usage: 2020-06-isc20/basic_usage/README.md
-      - Troubleshooting: 2020-06-isc20/troubleshooting/README.md
-      - Hierarchical module naming schemes: 2020-06-isc20/hmns/README.md
-      - Adding support for additional software: 2020-06-isc20/adding_support_software/README.md
-      - EasyBuild at Jülich Supercomputing Centre: 2020-06-isc20/jsc/README.md
-      - EasyBuild at Compute Canada: 2020-06-isc20/computecanada/README.md
-      - The EasyBuild community: 2020-06-isc20/community/README.md
-      - Contributing to EasyBuild: 2020-06-isc20/contributing/README.md
-      - Comparison with other tools: 2020-06-isc20/comparison_other_tools/README.md
-      - Getting help: 2020-06-isc20/getting_help/README.md
+      - Start page: 2020-06-isc20/index.md
+      - Practical information: 2020-06-isc20/practical_information.md
+      - Introduction: 2020-06-isc20/introduction.md
+      - Installation: 2020-06-isc20/installation.md
+      - Configuration: 2020-06-isc20/configuration.md
+      - Basic usage: 2020-06-isc20/basic_usage.md
+      - Troubleshooting: 2020-06-isc20/troubleshooting.md
+      - Hierarchical module naming schemes: 2020-06-isc20/hmns.md
+      - Adding support for additional software: 2020-06-isc20/adding_support_software.md
+      - EasyBuild at Jülich Supercomputing Centre: 2020-06-isc20/jsc.md
+      - EasyBuild at Compute Canada: 2020-06-isc20/computecanada.md
+      - The EasyBuild community: 2020-06-isc20/community.md
+      - Contributing to EasyBuild: 2020-06-isc20/contributing.md
+      - Comparison with other tools: 2020-06-isc20/comparison_other_tools.md
+      - Getting help: 2020-06-isc20/getting_help.md
   - "LUST (spring '21)":
-      - Start page: 2021-lust/README.md
+      - Start page: 2021-lust/index.md
 plugins:
   # show revision date at bottom of each page
   - git-revision-date-localized
@@ -38,20 +38,20 @@ plugins:
   # redirects to avoid broken URLs in original version of the tutorial (June 2020)
   - redirects:
       redirect_maps:
-          practical_information/README.md: 2020-06-isc20/practical_information/README.md
-          introduction/README.md: 2020-06-isc20/introduction/README.md
-          installation/README.md: 2020-06-isc20/installation/README.md
-          configuration/README.md: 2020-06-isc20/configuration/README.md
-          basic_usage/README.md: 2020-06-isc20/basic_usage/README.md
-          troubleshooting/README.md: 2020-06-isc20/troubleshooting/README.md
-          hmns/README.md: 2020-06-isc20/hmns/README.md
-          adding_support_software/README.md: 2020-06-isc20/adding_support_software/README.md
-          jsc/README.md: 2020-06-isc20/jsc/README.md
-          computecanada/README.md: 2020-06-isc20/computecanada/README.md
-          community/README.md: 2020-06-isc20/community/README.md
-          contributing/README.md: 2020-06-isc20/contributing/README.md
-          comparison_other_tools/README.md: 2020-06-isc20/comparison_other_tools/README.md
-          getting_help/README.md: 2020-06-isc20/getting_help/README.md
+          practical_information.md: 2020-06-isc20/practical_information.md
+          introduction.md: 2020-06-isc20/introduction.md
+          installation.md: 2020-06-isc20/installation.md
+          configuration.md: 2020-06-isc20/configuration.md
+          basic_usage.md: 2020-06-isc20/basic_usage.md
+          troubleshooting.md: 2020-06-isc20/troubleshooting.md
+          hmns.md: 2020-06-isc20/hmns.md
+          adding_support_software.md: 2020-06-isc20/adding_support_software.md
+          jsc.md: 2020-06-isc20/jsc.md
+          computecanada.md: 2020-06-isc20/computecanada.md
+          community.md: 2020-06-isc20/community.md
+          contributing.md: 2020-06-isc20/contributing.md
+          comparison_other_tools.md: 2020-06-isc20/comparison_other_tools.md
+          getting_help.md: 2020-06-isc20/getting_help.md
 
 markdown_extensions:
   # notes, warnings, hints, ...

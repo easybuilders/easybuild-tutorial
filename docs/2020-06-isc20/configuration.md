@@ -194,7 +194,7 @@ an optional labels (which corresponds to value of the `versionsuffix` easyconfig
 
 !!! note
     *Using a different module naming scheme is largely out of scope for this tutorial,
-    except when covering [hierarchical module naming schemes](../hmns/README.md).*
+    except when covering [hierarchical module naming schemes](hmns.md).*
 
 
 ## Configuration levels
@@ -263,9 +263,9 @@ across different software installations. They define *configuration settings*,
 such as the location where software should be installed, or the syntax that should
 be used when generating module files.
 
-An [easyconfig file](../introduction/README.md#easyconfig-files) on the other hand *specifies the details for one particular software installation*.
+An [easyconfig file](introduction.md#easyconfig-files) on the other hand *specifies the details for one particular software installation*.
 It does this by defining a set of *easyconfig parameters*, which tell EasyBuild the name and version
-of the software to install, which [toolchain](../introduction/README.md#toolchains) and [easyblock](../introduction/README.md#easyblocks) to use, etc.
+of the software to install, which [toolchain](introduction.md#toolchains) and [easyblock](introduction.md#easyblocks) to use, etc.
 
 For each software installation performed by EasyBuild, there is a corresponding easyconfig file.
 There typically are only a handful of configuration files used however, for example a system-level

@@ -18,21 +18,21 @@ for the hands-on exercises in this tutorial.
 
 ## Tutorial contents
 
-(*[Practical information](practical_information/README.md)*)
+(*[Practical information](practical_information.md)*)
 
-1. [Introduction to EasyBuild](introduction/README.md)
-*  [Installation](installation/README.md) ``(*)``
-*  [Configuration](configuration/README.md) ``(*)``
-*  [Basic usage](basic_usage/README.md) ``(*)``
-*  [Troubleshooting](troubleshooting/README.md) ``(*)``
-*  [Hierarchical module naming schemes](hmns/README.md) ``(*)``
-*  [Adding support for additional software](adding_support_software/README.md) ``(*)``
-*  [EasyBuild at Jülich Supercomputing Centre](jsc/README.md)
-*  [EasyBuild at Compute Canada](computecanada/README.md)
-*  [The EasyBuild community](community/README.md)
-*  [Contributing to EasyBuild](contributing/README.md)
-*  [Comparison with other tools](comparison_other_tools/README.md)
-*  [Getting help](getting_help/README.md)
+1. [Introduction to EasyBuild](introduction.md)
+*  [Installation](installation.md) ``(*)``
+*  [Configuration](configuration.md) ``(*)``
+*  [Basic usage](basic_usage.md) ``(*)``
+*  [Troubleshooting](troubleshooting.md) ``(*)``
+*  [Hierarchical module naming schemes](hmns.md) ``(*)``
+*  [Adding support for additional software](adding_support_software.md) ``(*)``
+*  [EasyBuild at Jülich Supercomputing Centre](jsc.md)
+*  [EasyBuild at Compute Canada](computecanada.md)
+*  [The EasyBuild community](community.md)
+*  [Contributing to EasyBuild](contributing.md)
+*  [Comparison with other tools](comparison_other_tools.md)
+*  [Getting help](getting_help.md)
 
 *(sections indicated with* ``(*)`` *involve hands-on exercises)*
 
