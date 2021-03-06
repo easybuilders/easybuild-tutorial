@@ -1,15 +1,8 @@
-Introductory EasyBuild tutorial for the [LUMI](https://www.lumi-supercomputer.eu) User Support team (LUST)
+# EasyBuild tutorial for LUST
 
-- Part 1/4: **Introduction to EasyBuild** *(Tue March 4th 2021, 9am-12 CET)*
-    * Concepts and terminology
-    * Installation and configuration *(hands-on)*
-    * Basic usage *(hands-on)*
-- Part 2/4: **Using EasyBuild** *(Tue March 23rd 2021, 9am-12 CET)*
-    * Writing easyconfig files *(hands-on)*
-    * Troubleshooting *(hands-on)*
-    * EasyBuild log files *(hands-on)*
-- Part 3/4: **Advanced topics** *(Wed March 24th 2021, 9am-12 CET)*
-    * Module naming schemes (incl. hierarchical)
-    * Custom toolchains
-    * Hooks
-- Part 4/4: **EasyBuild on Cray systems** *(date to be determined)*
+Overview page of the introductory tutorial on [EasyBuild](https://easybuild.io) for the *[LUMI](https://www.lumi-supercomputer.eu) User Support team (LUST)*.
+
+- [Part I: **Introduction to EasyBuild**](part1_intro.md) *(Tue March 4th 2021, 9am-12 CET)*
+- [Part II: **Using EasyBuild**](part2_using.md) *(Tue March 23rd 2021, 9am-12 CET)*
+- [Part III: **Advanced topics**](part3_advanced.md) *(Wed March 24th 2021, 9am-12 CET)*
+- [Part IV: **EasyBuild on Cray systems**](part4_cray.md) *(to be planned)*

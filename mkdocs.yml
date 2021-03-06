@@ -29,7 +29,16 @@ nav:
       - Comparison with other tools: 2020-06-isc20/comparison_other_tools.md
       - Getting help: 2020-06-isc20/getting_help.md
   - "LUST (spring '21)":
-      - Start page: 2021-lust/index.md
+      - Overview: 2021-lust/index.md
+      - Introduction to EasyBuild:
+          - What is EasyBuild?: 2021-lust/what_is_easybuild.md
+          - Concepts and Terminology: 2021-lust/concepts_terminology.md
+          - Installation: 2021-lust/installation.md
+          - Configuration: 2021-lust/configuration.md
+          - Basic usage: 2021-lust/basic_usage.md
+      - Using EasyBuild: 2021-lust/part2_using.md
+      - Advanced topics: 2021-lust/part3_advanced.md
+      - EasyBuild on Cray systems: 2021-lust/part4_cray.md
 plugins:
   # show revision date at bottom of each page
   - git-revision-date-localized
