@@ -7,3 +7,4 @@
 * Writing easyconfig files *(hands-on)*
 * Troubleshooting *(hands-on)*
 * EasyBuild log files *(hands-on)*
+* Implementing easyblocks *(hands-on)*
