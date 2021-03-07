@@ -8,3 +8,4 @@
 * Troubleshooting *(hands-on)*
 * EasyBuild log files *(hands-on)*
 * Implementing easyblocks *(hands-on)*
+* Submitting installations as Slurm jobs *(hands-on)*

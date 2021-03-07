@@ -58,6 +58,61 @@ packaging tools ([FPM](https://fpm.readthedocs.io)), and so on.
 
 ---
 
+### *Focus points*
+
+EasyBuild was created specifically for **installing scientific software on HPC systems**,
+which is reflected in some of the design choices that were made.
+
+
+#### Performance
+
+EasyBuild strongly prefers to **build software from source code**, whenever possible.
+
+This is important to ensure that the binaries that are installed can maximally exploit
+the capabilities of the system architecture on which the software will be run.
+
+For that same reason, EasyBuild **optimizes software for the processor architecture of the build host**
+by default, via compiler options like ``-march=native`` (GCC), ``-xHost`` (Intel compilers), etc.
+This behaviour [can be changed via the ``--optarch`` configuration setting](https://docs.easybuild.io/en/latest/Controlling_compiler_optimization_flags.html).
+
+
+#### Reproducibility
+
+In addition to performance, **reproducibility of installations** is a core aspect of EasyBuild.
+
+Most software installations performed with EasyBuild use a **particular compiler <a href="#toolchains">toolchain</a>**,
+with which we aim to be in control over the build environment and avoid relying on tools and libraries
+provided by the operating system. For similar reasons, we try to **provide all required dependencies through EasyBuild** as well,
+with a few notable exceptions, like ``OpenSSL`` for security reasons, and Infiniband and GPU drivers which
+are too closely intertwined with the operating system.
+
+For both toolchains and dependencies, **fixed software versions** are specified in the
+<a href="#easyconfig-files">easyconfig files</a>. That way, easyconfig files can easily be shared with others:
+if they worked for you it is very likely that they will work for others too, because the vast majority of the
+software stack is controlled by EasyBuild.
+
+
+#### Community effort
+
+In a number of different ways, we try to encourage EasyBuild users to **collaborate** and help each other out.
+
+We actively recommend people to report problems and bugs, to submit ideas for additional features and improvements,
+and to [**contribute back**](https://docs.easybuild.io/en/latest/Contributing.html) when possible, be it
+by opening pull requests to the [GitHub repositories](https://github.com/easybuilders) or the [documentation](https://docs.easybuild.io).
+
+Through the ``foss`` and ``intel`` [**common toolchains**](https://easybuild.readthedocs.io/en/latest/Common-toolchains.html),
+we try to focus the efforts of the EasyBuild community a bit to specific toolchains,
+which increases the usefulness of the easyconfig files we collect in the [central repository](https://github.com/easybuilders/easybuild-easyconfigs).
+
+Last but not least, EasyBuild provides various [**GitHub integration features**](https://easybuild.readthedocs.io/en/latest/Integration_with_GitHub.html)
+that greatly facilitate the contribution process: opening, updating, and testing pull requests,
+reviewing incoming contributions, and much more can all be done directly from the EasyBuild
+command line. This not only saves time, effort, brain cycles, and mouse clicks for contributors,
+but it also makes the review process for *maintainers* significantly easier.
+All together this leads to improved stability and consistency.
+
+---
+
 ### *What EasyBuild is* ***not***
 
 EasyBuild is ***not*** **YABT (Yet Another Build Tool)**: it does *not* replace established build
