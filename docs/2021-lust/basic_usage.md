@@ -37,7 +37,7 @@ which is also the most common way. Alternative methods like using the `--softwar
 covered in this tutorial, since they are not commonly used.
 
 Arguments passed to the `eb` command, being anything that is *not* an option (which starts with `-` or `--`) or
-is a value for a preceding configuration option, are assumed to refer to easyconfig files (with some exeptions).
+is a value for a preceding configuration option, are assumed to refer to easyconfig files (with some exceptions).
 These could be:
 
 * the *(absolute or relative) path* to an easyconfig file;

@@ -90,7 +90,7 @@ The **filename** of an easyconfig file usually ends with the ``.eb`` extension.
 In some contexts the filename is expected to be determined by the value of a handful of key
 easyconfig parameters: ``name``, ``version``, ``toolchain`` and ``versionsuffix``. The general format for
 the filename of an easyconfig file is: ``<name>-<version><toolchain>-<versionsuffix>.eb``,
-where the toolchain part is ommited when a ``system`` toolchain is used, and the `<versionsuffix>` can be empty.
+where the toolchain part is omited when a ``system`` toolchain is used, and the `<versionsuffix>` can be empty.
 
 The filename of easyconfig files is particularly relevant when EasyBuild is searching for easyconfig files to resolve dependencies,
 since it does this purely based on filenames: interpreting the contents of every (potential) easyconfig file

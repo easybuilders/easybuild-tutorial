@@ -96,7 +96,7 @@ installations.
 It is strongly recommend to use the path to a directory on a *local filesystem* for the value of the
 `buildpath` configuration setting, since using a shared filesystem like Lustre or GPFS is known to cause
 problems when building certain software packages. Using an in-memory location (like `/dev/shm/$USER`) can
-signficantly speed up the build process, but may also lead to problems (due to space limitations,
+significantly speed up the build process, but may also lead to problems (due to space limitations,
 or specific mount options like `noexec`).
 
 *Use a directory on a local filesystem for `buildpath` for this tutorial.

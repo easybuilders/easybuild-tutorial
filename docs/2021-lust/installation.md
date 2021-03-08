@@ -118,7 +118,7 @@ It is up to you which one you prefer, both result a fully functional EasyBuild i
 
 Time to get your hands dirty!
 
-* <a href=#method-1-using-pip>Mehtod 1: Using ``pip``</a>
+* <a href=#method-1-using-pip>Method 1: Using ``pip``</a>
 * <a href="#method-2-installing-easybuild-with-easybuild">Method 2: installing EasyBuild with EasyBuild</a>
 * <a href="#method-3-development-setup">Method 3: Development setup</a>
 
