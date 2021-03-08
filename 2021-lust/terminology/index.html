@@ -527,13 +527,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#configuration-files" class="md-nav__link">
-    Configuration files
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#framework" class="md-nav__link">
     Framework
   </a>
@@ -740,13 +733,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#configuration-files" class="md-nav__link">
-    Configuration files
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#framework" class="md-nav__link">
     Framework
   </a>
@@ -861,23 +847,6 @@ to refer to particular components, which we use alongside established terminolog
 of building and installing software.</p>
 <p>It is important to be familiar with these terms, so we'll briefly cover them one by one.</p>
 <hr />
-<h3 id="configuration-files"><em>Configuration files</em><a class="headerlink" href="#configuration-files" title="Permanent link">&para;</a></h3>
-<p><strong>Configuration files</strong> specify values for the different <em>configuration settings</em> that are supported
-by EasyBuild.</p>
-<p>They are written in the standard <a href="https://en.wikipedia.org/wiki/INI_file">INI format</a>,
-and include key-value pairs to specify how EasyBuild should be configured.</p>
-<p>Examples of commonly used configuration settings that can be specified through a configuration file
-include the installation prefix for software, and which environment modules tool should be used by EasyBuild.</p>
-<p>The settings specified in a configuration file <em>override</em> the default settings that are used by EasyBuild,
-but can be overruled via an <code>$EASYBUILD_*</code> environment variable, or via a command line option to
-the <code>eb</code> command.</p>
-<p>It is important to <strong>discriminate between <em>configuration files<em> and </em>easyconfig files</em></strong>:</p>
-<ul>
-<li>a <em>configuration file</em> (usually <code>*.cfg</code>) can be used to define <em>general</em> configuration settings for EasyBuild, which are <em>not</em>
-  specific to a particular software installation;</li>
-<li>an <em><a href="#easyconfig-files">easyconfig file</a></em> (<code>*.eb</code>) is used to specify the details of a particular software installation</li>
-</ul>
-<hr />
 <h3 id="framework"><em>Framework</em><a class="headerlink" href="#framework" title="Permanent link">&para;</a></h3>
 <p>The EasyBuild <em>framework</em> consists of a set of Python modules organised in packages (<code>easybuild.framework</code>,
 <code>easybuild.toolchains</code>, <code>easybuild.tools</code>, etc.) that collectively form <strong>the core of EasyBuild</strong>,
@@ -935,7 +904,7 @@ for a particular software installation.</p>
 In some contexts the filename is expected to be determined by the value of a handful of key
 easyconfig parameters: <code>name</code>, <code>version</code>, <code>toolchain</code> and <code>versionsuffix</code>. The general format for
 the filename of an easyconfig file is: <code>&lt;name&gt;-&lt;version&gt;&lt;toolchain&gt;-&lt;versionsuffix&gt;.eb</code>,
-where the toolchain part is ommited when a <code>system</code> toolchain is used, and the <code>&lt;versionsuffix&gt;</code> can be empty.</p>
+where the toolchain part is omitted when a <code>system</code> toolchain is used, and the <code>&lt;versionsuffix&gt;</code> can be empty.</p>
 <p>The filename of easyconfig files is particularly relevant when EasyBuild is searching for easyconfig files to resolve dependencies,
 since it does this purely based on filenames: interpreting the contents of every (potential) easyconfig file
 it encounters would be too expensive.</p>
