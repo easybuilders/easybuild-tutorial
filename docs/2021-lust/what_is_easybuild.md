@@ -286,4 +286,4 @@ More information, including the dates and times of the next calls, is available 
 
 ---
 
-*[[next: Concepts and Terminology]](concepts_terminology.md)*
+*[[next: Terminology]](terminology.md)*

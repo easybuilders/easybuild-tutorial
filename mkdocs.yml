@@ -32,7 +32,7 @@ nav:
       - Overview: 2021-lust/index.md
       - Introduction to EasyBuild:
           - What is EasyBuild?: 2021-lust/what_is_easybuild.md
-          - Concepts and Terminology: 2021-lust/concepts_terminology.md
+          - Terminology: 2021-lust/terminology.md
           - Installation: 2021-lust/installation.md
           - Configuration: 2021-lust/configuration.md
           - Basic usage: 2021-lust/basic_usage.md
