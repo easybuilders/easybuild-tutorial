@@ -12,29 +12,6 @@ It is important to be familiar with these terms, so we'll briefly cover them one
 
 ---
 
-### *Configuration files*
-
-**Configuration files** specify values for the different *configuration settings* that are supported
-by EasyBuild.
-
-They are written in the standard [INI format](https://en.wikipedia.org/wiki/INI_file),
-and include key-value pairs to specify how EasyBuild should be configured.
-
-Examples of commonly used configuration settings that can be specified through a configuration file
-include the installation prefix for software, and which environment modules tool should be used by EasyBuild.
-
-The settings specified in a configuration file *override* the default settings that are used by EasyBuild,
-but can be overruled via an ``$EASYBUILD_*`` environment variable, or via a command line option to
-the ``eb`` command.
-
-It is important to **discriminate between *configuration files* and *easyconfig files***:
-
-* a *configuration file* (usually ``*.cfg``) can be used to define *general* configuration settings for EasyBuild, which are *not*
-  specific to a particular software installation;
-* an *<a href="#easyconfig-files">easyconfig file</a>* (``*.eb``) is used to specify the details of a particular software installation
-
----
-
 ### *Framework*
 
 The EasyBuild *framework* consists of a set of Python modules organised in packages (``easybuild.framework``,
