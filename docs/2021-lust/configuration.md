@@ -290,9 +290,9 @@ across different software installations. They define *configuration settings*,
 such as the location where software should be installed, or the syntax that should
 be used when generating module files.
 
-An [easyconfig file](introduction.md#easyconfig-files) (`*.eb`) on the other hand *specifies the details for one particular software installation*.
+An [easyconfig file](terminology.md#easyconfig-files) (`*.eb`) on the other hand *specifies the details for one particular software installation*.
 It does this by defining a set of *easyconfig parameters*, which tell EasyBuild the name and version
-of the software to install, which [toolchain](introduction.md#toolchains) and [easyblock](introduction.md#easyblocks) to use, etc.
+of the software to install, which [toolchain](terminology.md#toolchains) and [easyblock](terminology.md#easyblocks) to use, etc.
 
 For each software installation performed by EasyBuild, there is a corresponding easyconfig file.
 There typically are only a handful of configuration files used however, for example a system-level
