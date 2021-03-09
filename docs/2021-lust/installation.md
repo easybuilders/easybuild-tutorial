@@ -305,7 +305,7 @@ python3 -m pip install --ignore-installed --prefix $EB_TMPDIR easybuild
 ```shell
 # update environment to use this temporary EasyBuild installation
 export PATH=$EB_TMPDIR/bin:$PATH
-export PYTHONPATH=$(ls -rtd -1 $EB_TMPDIR/lib*/python*/site-packages | tail -1):$PYTHONPATH
+export PYTHONPATH=$(/bin/ls -rtd -1 $EB_TMPDIR/lib*/python*/site-packages | tail -1):$PYTHONPATH
 export EB_PYTHON=python3
 ```
 
