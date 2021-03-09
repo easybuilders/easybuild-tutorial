@@ -1542,16 +1542,16 @@ you should adjust the command accordingly.</p>
 <p>See if EasyBuild provides any easyconfig files for installing GROMACS version 2020/5.</p>
 <details class="success"><summary>(click to show solution)</summary><p>To check for available easyconfig files, we can use <code>eb --search</code> or <code>eb -S</code>:
 <div class="highlight"><pre><span></span><code>$ eb -S gromacs-2020.5
-<span class="o">==</span> found valid index <span class="k">for</span> /users/kurtlust/EasyBuild/software/EasyBuild/4.3.3/easybuild/easyconfigs, so using it...
-<span class="nv">CFGS1</span><span class="o">=</span>/users/kurtlust/EasyBuild/software/EasyBuild/4.3.3/easybuild/easyconfigs/g/GROMACS
+<span class="o">==</span> found valid index <span class="k">for</span> /home/example/.local/easybuild/easyconfigs, so using it...
+<span class="nv">CFGS1</span><span class="o">=</span>/home/example/.local/easybuild/easyconfigs/g/GROMACS
  * <span class="nv">$CFGS1</span>/GROMACS-2020.5-fosscuda-2020a-Python-3.8.2.eb
  * <span class="nv">$CFGS1</span>/GROMACS-2020.5_fix_threads_gpu_Gmxapitests.patch
 </code></pre></div>
 This actually shows one easyconfig file but also a patch file. We can also search specifically
 for GROMACS 2020.5 in the <code>foss</code> and <code>fosscuda</code> toolchains using
 <div class="highlight"><pre><span></span><code>$ eb -S gromacs-2020.5-foss
-<span class="o">==</span> found valid index <span class="k">for</span> /users/kurtlust/EasyBuild/software/EasyBuild/4.3.3/easybuild/easyconfigs, so using it...
-<span class="nv">CFGS1</span><span class="o">=</span>/users/kurtlust/EasyBuild/software/EasyBuild/4.3.3/easybuild/easyconfigs/g/GROMACS
+<span class="o">==</span> found valid index <span class="k">for</span> /home/example/.local/easybuild/easyconfigs, so using it...
+<span class="nv">CFGS1</span><span class="o">=</span>/home/example/.local/easybuild/easyconfigs/g/GROMACS
  * <span class="nv">$CFGS1</span>/GROMACS-2020.5-fosscuda-2020a-Python-3.8.2.eb
 </code></pre></div>
 and now we find a single easyconfig file.  </p>
@@ -1561,8 +1561,8 @@ and now we find a single easyconfig file.  </p>
 <p>Check which dependencies are missing to install QuantumESPRESSO version 6.6 with the <code>2020b</code> version of the <code>foss</code> toolchain.</p>
 <details class="success"><summary>(click to show solution)</summary><p>First, we need to determine the name of the easyconfig file for QuantumESPRESSO version 6.6:
 <div class="highlight"><pre><span></span><code>$ eb -S <span class="s1">&#39;QuantumESPRESSO-6.6.*foss-2020b&#39;</span>
-<span class="o">==</span> found valid index <span class="k">for</span> /users/kurtlust/EasyBuild/software/EasyBuild/4.3.3/easybuild/easyconfigs, so using it...
-<span class="nv">CFGS1</span><span class="o">=</span>/users/kurtlust/EasyBuild/software/EasyBuild/4.3.3/easybuild/easyconfigs/q/QuantumESPRESSO
+<span class="o">==</span> found valid index <span class="k">for</span> /home/example/.local/easybuild/easyconfigs, so using it...
+<span class="nv">CFGS1</span><span class="o">=</span>/home/example/.local/easybuild/easyconfigs/q/QuantumESPRESSO
  * <span class="nv">$CFGS1</span>/QuantumESPRESSO-6.6-foss-2020b.eb
 </code></pre></div>
 To determine which dependencies are missing to install this QuantumESPRESSO easyconfig file, we can use <code>--missing</code>:
