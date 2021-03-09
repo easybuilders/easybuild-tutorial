@@ -1335,7 +1335,7 @@ python3 -m pip install --ignore-installed --prefix <span class="nv">$EB_TMPDIR</
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="c1"># update environment to use this temporary EasyBuild installation</span>
 <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$EB_TMPDIR</span>/bin:<span class="nv">$PATH</span>
-<span class="nb">export</span> <span class="nv">PYTHONPATH</span><span class="o">=</span><span class="k">$(</span>ls -rtd -1 <span class="nv">$EB_TMPDIR</span>/lib*/python*/site-packages <span class="p">|</span> tail -1<span class="k">)</span>:<span class="nv">$PYTHONPATH</span>
+<span class="nb">export</span> <span class="nv">PYTHONPATH</span><span class="o">=</span><span class="k">$(</span>/bin/ls -rtd -1 <span class="nv">$EB_TMPDIR</span>/lib*/python*/site-packages <span class="p">|</span> tail -1<span class="k">)</span>:<span class="nv">$PYTHONPATH</span>
 <span class="nb">export</span> <span class="nv">EB_PYTHON</span><span class="o">=</span>python3
 </code></pre></div>
 <h4 id="step-2-using-easybuild-to-install-easybuild">Step 2: Using EasyBuild to install EasyBuild<a class="headerlink" href="#step-2-using-easybuild-to-install-easybuild" title="Permanent link">&para;</a></h4>
@@ -1445,7 +1445,7 @@ with the rest of the tutorial!</strong></p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 8, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 9, 2021</span>
     
   </small>
 </div>
