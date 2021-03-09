@@ -729,6 +729,8 @@ Do yourself a favor: don't peek at the solution until you have made an attempt t
 
 Please do not spoil solutions to others before they have been discussed by the tutorial organisers.
 
+The exercises are based on the easyconfig files included with EasyBuild 4.3.3.
+
 ---
 
 ***Exercise 4.0**** - Making installed software available*
@@ -757,45 +759,52 @@ are available for loading.
 
 ***Exercise 4.1**** - Searching easyconfigs*
 
-See if EasyBuild provides any easyconfig files for installing GROMACS version 2021.
+See if EasyBuild provides any easyconfig files for installing GROMACS version 2020/5.
 
 ??? success "(click to show solution)"
     To check for available easyconfig files, we can use `eb --search` or `eb -S`:
     ```shell
-    $ eb -S gromacs-2021
-    CFGS1=/tmp/hkenneth/home/easybuild/easybuild-easyconfigs/easybuild/easyconfigs/g/GROMACS
-     * $CFGS1/GROMACS-2021-foss-2020b.eb
-     * $CFGS1/GROMACS-2021-fosscuda-2020b.eb
+    $ eb -S gromacs-2020.5
+    == found valid index for /users/kurtlust/EasyBuild/software/EasyBuild/4.3.3/easybuild/easyconfigs, so using it...
+    CFGS1=/users/kurtlust/EasyBuild/software/EasyBuild/4.3.3/easybuild/easyconfigs/g/GROMACS
+     * $CFGS1/GROMACS-2020.5-fosscuda-2020a-Python-3.8.2.eb
+     * $CFGS1/GROMACS-2020.5_fix_threads_gpu_Gmxapitests.patch
     ```
+    This actually shows one easyconfig file but also a patch file. We can also search specifically
+    for GROMACS 2020.5 in the `foss` and `fosscuda` toolchains using
+    ```shell
+    $ eb -S gromacs-2020.5-foss
+    == found valid index for /users/kurtlust/EasyBuild/software/EasyBuild/4.3.3/easybuild/easyconfigs, so using it...
+    CFGS1=/users/kurtlust/EasyBuild/software/EasyBuild/4.3.3/easybuild/easyconfigs/g/GROMACS
+     * $CFGS1/GROMACS-2020.5-fosscuda-2020a-Python-3.8.2.eb
+    ```
+    and now we find a single easyconfig file.  
 
 ---
 
 ***Exercise 4.2**** - Checking dependencies*
 
-Check which dependencies are missing to install PETSc version 3.14.4 with the `2020b` version of the `foss` toolchain.
+Check which dependencies are missing to install QuantumESPRESSO version 6.6 with the `2020b` version of the `foss` toolchain.
 
 ??? success "(click to show solution)"
-    First, we need to determine the name of the easyconfig file for PETSc version 3.14.4:
+    First, we need to determine the name of the easyconfig file for QuantumESPRESSO version 6.6:
     ```shell
-    $ eb -S 'PETSc-3.14.4.*foss-2020b'
-    CFGS1=/home/example/.local/easybuild/easyconfigs/p/PETSc
-     * $CFGS1/PETSc-3.14.4-foss-2020b.eb
+    $ eb -S 'QuantumESPRESSO-6.6.*foss-2020b'
+    == found valid index for /users/kurtlust/EasyBuild/software/EasyBuild/4.3.3/easybuild/easyconfigs, so using it...
+    CFGS1=/users/kurtlust/EasyBuild/software/EasyBuild/4.3.3/easybuild/easyconfigs/q/QuantumESPRESSO
+     * $CFGS1/QuantumESPRESSO-6.6-foss-2020b.eb
     ```
-
-    To determine which dependencies are missing to install this PETSc easyconfig file, we can use `--missing`:
+    To determine which dependencies are missing to install this QuantumESPRESSO easyconfig file, we can use `--missing`:
     ```shell
-    $ eb PETSc-3.14.4-foss-2020b.eb --missing
-
-    7 out of 67 required modules missing:
-
-    * Boost/1.74.0-GCC-10.2.0 (Boost-1.74.0-GCC-10.2.0.eb)
-    * METIS/5.1.0-GCCcore-10.2.0 (METIS-5.1.0-GCCcore-10.2.0.eb)
-    * SCOTCH/6.1.0-gompi-2020b (SCOTCH-6.1.0-gompi-2020b.eb)
-    * MUMPS/5.3.5-foss-2020b-metis (MUMPS-5.3.5-foss-2020b-metis.eb)
-    * SuiteSparse/5.8.1-foss-2020b-METIS-5.1.0 (SuiteSparse-5.8.1-foss-2020b-METIS-5.1.0.eb)
-    * Hypre/2.20.0-foss-2020b (Hypre-2.20.0-foss-2020b.eb)
-    * PETSc/3.14.4-foss-2020b (PETSc-3.14.4-foss-2020b.eb)
+    $ eb QuantumESPRESSO-6.6-foss-2020b.eb --missing
+    
+    3 out of 58 required modules missing:
+    
+    * libxc/4.3.4-GCC-10.2.0 (libxc-4.3.4-GCC-10.2.0.eb)
+    * ELPA/2020.11.001-foss-2020b (ELPA-2020.11.001-foss-2020b.eb)
+    * QuantumESPRESSO/6.6-foss-2020b (QuantumESPRESSO-6.6-foss-2020b.eb)
     ```
+    (some nonessential output removed).
 
 ---
 
@@ -821,6 +830,8 @@ Also, which binaries will EasyBuild check for to sanity check the installation?
         make -j 48  CC="gcc"  CPP="g++" CXX="g++"  RELEASE_FLAGS="-O2 -ftree-vectorize -march=native -fno-math-errno -fPIC -std=gnu++98"
     (in /local_scratch/hkenneth/Bowtie2/2.4.2/GCC-9.3.0/Bowtie2-2.4.2)
     ```
+
+    If the output you get is less detailed, you may not have set `export EASYBUILD_TRACE=1`.
 
     The output for the sanity check step shows which binaries are expected to be installed:
     ```
