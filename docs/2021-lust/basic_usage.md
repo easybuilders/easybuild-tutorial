@@ -765,8 +765,8 @@ See if EasyBuild provides any easyconfig files for installing GROMACS version 20
     To check for available easyconfig files, we can use `eb --search` or `eb -S`:
     ```shell
     $ eb -S gromacs-2020.5
-    == found valid index for /users/kurtlust/EasyBuild/software/EasyBuild/4.3.3/easybuild/easyconfigs, so using it...
-    CFGS1=/users/kurtlust/EasyBuild/software/EasyBuild/4.3.3/easybuild/easyconfigs/g/GROMACS
+    == found valid index for /home/example/.local/easybuild/easyconfigs, so using it...
+    CFGS1=/home/example/.local/easybuild/easyconfigs/g/GROMACS
      * $CFGS1/GROMACS-2020.5-fosscuda-2020a-Python-3.8.2.eb
      * $CFGS1/GROMACS-2020.5_fix_threads_gpu_Gmxapitests.patch
     ```
@@ -774,8 +774,8 @@ See if EasyBuild provides any easyconfig files for installing GROMACS version 20
     for GROMACS 2020.5 in the `foss` and `fosscuda` toolchains using
     ```shell
     $ eb -S gromacs-2020.5-foss
-    == found valid index for /users/kurtlust/EasyBuild/software/EasyBuild/4.3.3/easybuild/easyconfigs, so using it...
-    CFGS1=/users/kurtlust/EasyBuild/software/EasyBuild/4.3.3/easybuild/easyconfigs/g/GROMACS
+    == found valid index for /home/example/.local/easybuild/easyconfigs, so using it...
+    CFGS1=/home/example/.local/easybuild/easyconfigs/g/GROMACS
      * $CFGS1/GROMACS-2020.5-fosscuda-2020a-Python-3.8.2.eb
     ```
     and now we find a single easyconfig file.  
@@ -790,8 +790,8 @@ Check which dependencies are missing to install QuantumESPRESSO version 6.6 with
     First, we need to determine the name of the easyconfig file for QuantumESPRESSO version 6.6:
     ```shell
     $ eb -S 'QuantumESPRESSO-6.6.*foss-2020b'
-    == found valid index for /users/kurtlust/EasyBuild/software/EasyBuild/4.3.3/easybuild/easyconfigs, so using it...
-    CFGS1=/users/kurtlust/EasyBuild/software/EasyBuild/4.3.3/easybuild/easyconfigs/q/QuantumESPRESSO
+    == found valid index for /home/example/.local/easybuild/easyconfigs, so using it...
+    CFGS1=/home/example/.local/easybuild/easyconfigs/q/QuantumESPRESSO
      * $CFGS1/QuantumESPRESSO-6.6-foss-2020b.eb
     ```
     To determine which dependencies are missing to install this QuantumESPRESSO easyconfig file, we can use `--missing`:
