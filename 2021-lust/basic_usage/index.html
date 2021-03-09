@@ -1522,6 +1522,7 @@ won't go into those here).</p>
 <p><strong><em>Guidelines</em></strong></p>
 <p>Do yourself a favor: don't peek at the solution until you have made an attempt to solve the exercise yourself!</p>
 <p>Please do not spoil solutions to others before they have been discussed by the tutorial organisers.</p>
+<p>The exercises are based on the easyconfig files included with EasyBuild 4.3.3.</p>
 <hr />
 <p><strong><em>Exercise 4.0</em></strong><em> - Making installed software available</em></p>
 <p>Before working on the exercises for this part of the tutorial,
@@ -1538,35 +1539,42 @@ you should adjust the command accordingly.</p>
 </details>
 <hr />
 <p><strong><em>Exercise 4.1</em></strong><em> - Searching easyconfigs</em></p>
-<p>See if EasyBuild provides any easyconfig files for installing GROMACS version 2021.</p>
+<p>See if EasyBuild provides any easyconfig files for installing GROMACS version 2020/5.</p>
 <details class="success"><summary>(click to show solution)</summary><p>To check for available easyconfig files, we can use <code>eb --search</code> or <code>eb -S</code>:
-<div class="highlight"><pre><span></span><code>$ eb -S gromacs-2021
-<span class="nv">CFGS1</span><span class="o">=</span>/tmp/hkenneth/home/easybuild/easybuild-easyconfigs/easybuild/easyconfigs/g/GROMACS
- * <span class="nv">$CFGS1</span>/GROMACS-2021-foss-2020b.eb
- * <span class="nv">$CFGS1</span>/GROMACS-2021-fosscuda-2020b.eb
-</code></pre></div></p>
+<div class="highlight"><pre><span></span><code>$ eb -S gromacs-2020.5
+<span class="o">==</span> found valid index <span class="k">for</span> /users/kurtlust/EasyBuild/software/EasyBuild/4.3.3/easybuild/easyconfigs, so using it...
+<span class="nv">CFGS1</span><span class="o">=</span>/users/kurtlust/EasyBuild/software/EasyBuild/4.3.3/easybuild/easyconfigs/g/GROMACS
+ * <span class="nv">$CFGS1</span>/GROMACS-2020.5-fosscuda-2020a-Python-3.8.2.eb
+ * <span class="nv">$CFGS1</span>/GROMACS-2020.5_fix_threads_gpu_Gmxapitests.patch
+</code></pre></div>
+This actually shows one easyconfig file but also a patch file. We can also search specifically
+for GROMACS 2020.5 in the <code>foss</code> and <code>fosscuda</code> toolchains using
+<div class="highlight"><pre><span></span><code>$ eb -S gromacs-2020.5-foss
+<span class="o">==</span> found valid index <span class="k">for</span> /users/kurtlust/EasyBuild/software/EasyBuild/4.3.3/easybuild/easyconfigs, so using it...
+<span class="nv">CFGS1</span><span class="o">=</span>/users/kurtlust/EasyBuild/software/EasyBuild/4.3.3/easybuild/easyconfigs/g/GROMACS
+ * <span class="nv">$CFGS1</span>/GROMACS-2020.5-fosscuda-2020a-Python-3.8.2.eb
+</code></pre></div>
+and now we find a single easyconfig file.  </p>
 </details>
 <hr />
 <p><strong><em>Exercise 4.2</em></strong><em> - Checking dependencies</em></p>
-<p>Check which dependencies are missing to install PETSc version 3.14.4 with the <code>2020b</code> version of the <code>foss</code> toolchain.</p>
-<details class="success"><summary>(click to show solution)</summary><p>First, we need to determine the name of the easyconfig file for PETSc version 3.14.4:
-<div class="highlight"><pre><span></span><code>$ eb -S <span class="s1">&#39;PETSc-3.14.4.*foss-2020b&#39;</span>
-<span class="nv">CFGS1</span><span class="o">=</span>/home/example/.local/easybuild/easyconfigs/p/PETSc
- * <span class="nv">$CFGS1</span>/PETSc-3.14.4-foss-2020b.eb
-</code></pre></div></p>
-<p>To determine which dependencies are missing to install this PETSc easyconfig file, we can use <code>--missing</code>:
-<div class="highlight"><pre><span></span><code>$ eb PETSc-3.14.4-foss-2020b.eb --missing
+<p>Check which dependencies are missing to install QuantumESPRESSO version 6.6 with the <code>2020b</code> version of the <code>foss</code> toolchain.</p>
+<details class="success"><summary>(click to show solution)</summary><p>First, we need to determine the name of the easyconfig file for QuantumESPRESSO version 6.6:
+<div class="highlight"><pre><span></span><code>$ eb -S <span class="s1">&#39;QuantumESPRESSO-6.6.*foss-2020b&#39;</span>
+<span class="o">==</span> found valid index <span class="k">for</span> /users/kurtlust/EasyBuild/software/EasyBuild/4.3.3/easybuild/easyconfigs, so using it...
+<span class="nv">CFGS1</span><span class="o">=</span>/users/kurtlust/EasyBuild/software/EasyBuild/4.3.3/easybuild/easyconfigs/q/QuantumESPRESSO
+ * <span class="nv">$CFGS1</span>/QuantumESPRESSO-6.6-foss-2020b.eb
+</code></pre></div>
+To determine which dependencies are missing to install this QuantumESPRESSO easyconfig file, we can use <code>--missing</code>:
+<div class="highlight"><pre><span></span><code>$ eb QuantumESPRESSO-6.6-foss-2020b.eb --missing
 
-<span class="m">7</span> out of <span class="m">67</span> required modules missing:
+<span class="m">3</span> out of <span class="m">58</span> required modules missing:
 
-* Boost/1.74.0-GCC-10.2.0 <span class="o">(</span>Boost-1.74.0-GCC-10.2.0.eb<span class="o">)</span>
-* METIS/5.1.0-GCCcore-10.2.0 <span class="o">(</span>METIS-5.1.0-GCCcore-10.2.0.eb<span class="o">)</span>
-* SCOTCH/6.1.0-gompi-2020b <span class="o">(</span>SCOTCH-6.1.0-gompi-2020b.eb<span class="o">)</span>
-* MUMPS/5.3.5-foss-2020b-metis <span class="o">(</span>MUMPS-5.3.5-foss-2020b-metis.eb<span class="o">)</span>
-* SuiteSparse/5.8.1-foss-2020b-METIS-5.1.0 <span class="o">(</span>SuiteSparse-5.8.1-foss-2020b-METIS-5.1.0.eb<span class="o">)</span>
-* Hypre/2.20.0-foss-2020b <span class="o">(</span>Hypre-2.20.0-foss-2020b.eb<span class="o">)</span>
-* PETSc/3.14.4-foss-2020b <span class="o">(</span>PETSc-3.14.4-foss-2020b.eb<span class="o">)</span>
-</code></pre></div></p>
+* libxc/4.3.4-GCC-10.2.0 <span class="o">(</span>libxc-4.3.4-GCC-10.2.0.eb<span class="o">)</span>
+* ELPA/2020.11.001-foss-2020b <span class="o">(</span>ELPA-2020.11.001-foss-2020b.eb<span class="o">)</span>
+* QuantumESPRESSO/6.6-foss-2020b <span class="o">(</span>QuantumESPRESSO-6.6-foss-2020b.eb<span class="o">)</span>
+</code></pre></div>
+(some nonessential output removed).</p>
 </details>
 <hr />
 <p><strong><em>Exercise 4.3</em></strong><em> - Performing a dry run</em></p>
@@ -1584,6 +1592,7 @@ without actually installing <code>Bowtie2</code>.</p>
     make -j <span class="m">48</span>  <span class="nv">CC</span><span class="o">=</span><span class="s2">&quot;gcc&quot;</span>  <span class="nv">CPP</span><span class="o">=</span><span class="s2">&quot;g++&quot;</span> <span class="nv">CXX</span><span class="o">=</span><span class="s2">&quot;g++&quot;</span>  <span class="nv">RELEASE_FLAGS</span><span class="o">=</span><span class="s2">&quot;-O2 -ftree-vectorize -march=native -fno-math-errno -fPIC -std=gnu++98&quot;</span>
 <span class="o">(</span><span class="k">in</span> /local_scratch/hkenneth/Bowtie2/2.4.2/GCC-9.3.0/Bowtie2-2.4.2<span class="o">)</span>
 </code></pre></div>
+<p>If the output you get is less detailed, you may not have set <code>export EASYBUILD_TRACE=1</code>.</p>
 <p>The output for the sanity check step shows which binaries are expected to be installed:
 <div class="highlight"><pre><span></span><code>[sanity_check_step method]
 Sanity check paths - file [&#39;files&#39;]
@@ -1698,7 +1707,7 @@ we're happy to help!</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 8, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 9, 2021</span>
     
   </small>
 </div>
