@@ -468,10 +468,10 @@ example software package `eb-tutorial`.
 The sources for `eb-tutorial` version 1.0.0 are available at:
 
 ```
-https://github.com/easybuilders/easybuild-tutorial/raw/master/docs/files/eb-tutorial-1.0.0.tar.gz
+https://github.com/easybuilders/easybuild-tutorial/raw/main/docs/files/eb-tutorial-1.0.0.tar.gz
 ```
 
-You can consult the unpacked sources at [https://github.com/easybuilders/easybuild-tutorial/tree/master/docs/files/eb-tutorial-1.0.0](https://github.com/easybuilders/easybuild-tutorial/tree/master/docs/files/eb-tutorial-1.0.0).
+You can consult the unpacked sources at [https://github.com/easybuilders/easybuild-tutorial/tree/main/docs/files/eb-tutorial-1.0.0](https://github.com/easybuilders/easybuild-tutorial/tree/main/docs/files/eb-tutorial-1.0.0).
 
 ### Preparation
 
@@ -533,7 +533,7 @@ In this simple case it doesn't since we can leverage one of the available generi
 But, which one? Build instructions are usually shared in the `README` or documentation,
 but here were are left to figure things out by ourselves...
 
-When inspecting the [unpacked sources](https://github.com/easybuilders/easybuild-tutorial/tree/master/docs/files/eb-tutorial-1.0.0) we see a `CMakeLists.txt` file.
+When inspecting the [unpacked sources](https://github.com/easybuilders/easybuild-tutorial/tree/main/docs/files/eb-tutorial-1.0.0) we see a `CMakeLists.txt` file.
 That probably means the installation will involve running `cmake` to configure
 the build, which likely will yield a `Makefile` so we can run `make` afterwards.
 
@@ -613,7 +613,7 @@ configuration step. Inspecting the log file reveals:
 CMake Error: The source directory "/tmp/example/ebtutorial/1.0.0/GCC-9.3.0" does not appear to contain CMakeLists.txt.
 ```
 
-Wait, but there *is* a `CMakeLists.txt`, we can see it in the [unpacked sources](https://github.com/easybuilders/easybuild-tutorial/tree/master/docs/files/eb-tutorial-1.0.0)!
+Wait, but there *is* a `CMakeLists.txt`, we can see it in the [unpacked sources](https://github.com/easybuilders/easybuild-tutorial/tree/main/docs/files/eb-tutorial-1.0.0)!
 
 Let's inspect the build directory:
 
@@ -635,7 +635,7 @@ So we need to specify `sources`. We might as well also define `source_urls`, so 
 can download the sources for us.
 
 ```python
-source_urls = ['https://github.com/easybuilders/easybuild-tutorial/raw/master/docs/files/']
+source_urls = ['https://github.com/easybuilders/easybuild-tutorial/raw/main/docs/files/']
 sources = ['eb-tutorial-1.0.0.tar.gz']
 ```
 
@@ -767,7 +767,7 @@ version = '1.0.0'
 homepage = 'https://easybuilders.github.io/easybuild-tutorial'
 description = "EasyBuild tutorial example"
 
-source_urls = ['https://github.com/easybuilders/easybuild-tutorial/raw/master/docs/files/']
+source_urls = ['https://github.com/easybuilders/easybuild-tutorial/raw/main/docs/files/']
 sources = [SOURCE_TAR_GZ]
 checksums = ['87643c9a950d02471fc283b31e8a088da7d5d49bc9e1bebd5c83b52c2e23b4d8']
 
@@ -822,7 +822,7 @@ which is a trivial version bump compared to version 1.0.0.
 The sources are available via:
 
 ```
-https://github.com/easybuilders/easybuild-tutorial/raw/master/docs/files/eb-tutorial-1.1.0.tar.gz
+https://github.com/easybuilders/easybuild-tutorial/raw/main/docs/files/eb-tutorial-1.1.0.tar.gz
 ```
 
 You can leverage the `eb-tutorial` easyconfig file we have composed in the example above,
@@ -852,7 +852,7 @@ You can leverage the `eb-tutorial` easyconfig file we have composed in the examp
 ***Exercise 7.2**** - Installing py-eb-tutorial 1.0.0*
 
 Try composing an easyconfig file for the `py-eb-tutorial` example software, which is a tiny Python package.
-The source tarball can be downloaded from this link: [py-eb-tutorial-1.0.0.tar.gz](https://github.com/easybuilders/easybuild-tutorial/raw/master/docs/files/py-eb-tutorial-1.0.0.tar.gz).
+The source tarball can be downloaded from this link: [py-eb-tutorial-1.0.0.tar.gz](https://github.com/easybuilders/easybuild-tutorial/raw/main/docs/files/py-eb-tutorial-1.0.0.tar.gz).
 
 A couple of tips:
 
@@ -873,7 +873,7 @@ Please also take this into account:
 * Unfortunately this software doesn't come with documentation. That is done to make it an example that
   is representative for software that you may run into in the wild (it's *not* because
   we were lazy when preparing the exercises, really!).
-  You can inspect the sources of this software [here](https://github.com/easybuilders/easybuild-tutorial/tree/master/docs/files/py-eb-tutorial-1.0.0). Definitely take a look at the `setup.py` file, it includes some clues
+  You can inspect the sources of this software [here](https://github.com/easybuilders/easybuild-tutorial/tree/main/docs/files/py-eb-tutorial-1.0.0). Definitely take a look at the `setup.py` file, it includes some clues
   about the requirements to get this software installed.
 
 * Make sure the installation actually *works*, by checking that the `py-eb-tutorial` command runs correctly.
@@ -894,7 +894,7 @@ Please also take this into account:
     homepage = 'https://easybuilders.github.io/easybuild-tutorial'
     description = "EasyBuild tutorial Python example"
 
-    source_urls = ['https://github.com/easybuilders/easybuild-tutorial/raw/master/docs/files/']
+    source_urls = ['https://github.com/easybuilders/easybuild-tutorial/raw/main/docs/files/']
     sources = [SOURCE_TAR_GZ]
     checksums = ['fcf73a9efc65527a210b993e8889d41ebf05977eef1f6a65ebac3188152cd496']
 
