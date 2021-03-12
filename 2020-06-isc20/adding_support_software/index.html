@@ -1359,9 +1359,9 @@ is an existing directory.</p>
 <p>By means of example, we are going to puzzle together an easyconfig file to install the
 example software package <code>eb-tutorial</code>.</p>
 <p>The sources for <code>eb-tutorial</code> version 1.0.0 are available at:</p>
-<div class="highlight"><pre><span></span><code>https://github.com/easybuilders/easybuild-tutorial/raw/master/docs/files/eb-tutorial-1.0.0.tar.gz
+<div class="highlight"><pre><span></span><code>https://github.com/easybuilders/easybuild-tutorial/raw/main/docs/files/eb-tutorial-1.0.0.tar.gz
 </code></pre></div>
-<p>You can consult the unpacked sources at <a href="https://github.com/easybuilders/easybuild-tutorial/tree/master/docs/files/eb-tutorial-1.0.0">https://github.com/easybuilders/easybuild-tutorial/tree/master/docs/files/eb-tutorial-1.0.0</a>.</p>
+<p>You can consult the unpacked sources at <a href="https://github.com/easybuilders/easybuild-tutorial/tree/main/docs/files/eb-tutorial-1.0.0">https://github.com/easybuilders/easybuild-tutorial/tree/main/docs/files/eb-tutorial-1.0.0</a>.</p>
 <h3 id="preparation">Preparation<a class="headerlink" href="#preparation" title="Permanent link">&para;</a></h3>
 <p>Make sure EasyBuild is properly configured before you start:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">EASYBUILD_PREFIX</span><span class="o">=</span><span class="nv">$HOME</span>/easybuild
@@ -1399,7 +1399,7 @@ Does that mean we have to implement an easyblock?</p>
 <p>In this simple case it doesn't since we can leverage one of the available generic easyblocks.
 But, which one? Build instructions are usually shared in the <code>README</code> or documentation,
 but here were are left to figure things out by ourselves...</p>
-<p>When inspecting the <a href="https://github.com/easybuilders/easybuild-tutorial/tree/master/docs/files/eb-tutorial-1.0.0">unpacked sources</a> we see a <code>CMakeLists.txt</code> file.
+<p>When inspecting the <a href="https://github.com/easybuilders/easybuild-tutorial/tree/main/docs/files/eb-tutorial-1.0.0">unpacked sources</a> we see a <code>CMakeLists.txt</code> file.
 That probably means the installation will involve running <code>cmake</code> to configure
 the build, which likely will yield a <code>Makefile</code> so we can run <code>make</code> afterwards.</p>
 <p><a href="#easyblock">We briefly discussed</a> a generic easyblock that does exactly this: <code>CMakeMake</code>.</p>
@@ -1453,7 +1453,7 @@ subtoolchains compatible with the specified toolchain to locate module for the d
 configuration step. Inspecting the log file reveals:</p>
 <div class="highlight"><pre><span></span><code>CMake Error: The source directory &quot;/tmp/example/ebtutorial/1.0.0/GCC-9.3.0&quot; does not appear to contain CMakeLists.txt.
 </code></pre></div>
-<p>Wait, but there <em>is</em> a <code>CMakeLists.txt</code>, we can see it in the <a href="https://github.com/easybuilders/easybuild-tutorial/tree/master/docs/files/eb-tutorial-1.0.0">unpacked sources</a>!</p>
+<p>Wait, but there <em>is</em> a <code>CMakeLists.txt</code>, we can see it in the <a href="https://github.com/easybuilders/easybuild-tutorial/tree/main/docs/files/eb-tutorial-1.0.0">unpacked sources</a>!</p>
 <p>Let's inspect the build directory:</p>
 <div class="highlight"><pre><span></span><code>$ ls /tmp/$USER/ebtutorial/1.0.0/GCC-9.3.0
 easybuild_obj
@@ -1467,7 +1467,7 @@ because some easyconfig files only specify bundles of software packages and henc
 serve to generate a module file.</p>
 <p>So we need to specify <code>sources</code>. We might as well also define <code>source_urls</code>, so EasyBuild
 can download the sources for us.</p>
-<div class="highlight"><pre><span></span><code><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://github.com/easybuilders/easybuild-tutorial/raw/master/docs/files/&#39;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://github.com/easybuilders/easybuild-tutorial/raw/main/docs/files/&#39;</span><span class="p">]</span>
 <span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;eb-tutorial-1.0.0.tar.gz&#39;</span><span class="p">]</span>
 </code></pre></div>
 <p>This will work, but we can do better by not hardcoding the software version (<code>1.0.0</code>) in <code>sources</code>,
@@ -1556,7 +1556,7 @@ Hello from the EasyBuild tutorial!
 <span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;https://easybuilders.github.io/easybuild-tutorial&#39;</span>
 <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;EasyBuild tutorial example&quot;</span>
 
-<span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://github.com/easybuilders/easybuild-tutorial/raw/master/docs/files/&#39;</span><span class="p">]</span>
+<span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://github.com/easybuilders/easybuild-tutorial/raw/main/docs/files/&#39;</span><span class="p">]</span>
 <span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="n">SOURCE_TAR_GZ</span><span class="p">]</span>
 <span class="n">checksums</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;87643c9a950d02471fc283b31e8a088da7d5d49bc9e1bebd5c83b52c2e23b4d8&#39;</span><span class="p">]</span>
 
@@ -1596,7 +1596,7 @@ includes a literal '<code>$USER</code>' string):</p>
 <p>Install version 1.1.0 of the <code>eb-tutorial</code> example software,
 which is a trivial version bump compared to version 1.0.0.</p>
 <p>The sources are available via:</p>
-<div class="highlight"><pre><span></span><code>https://github.com/easybuilders/easybuild-tutorial/raw/master/docs/files/eb-tutorial-1.1.0.tar.gz
+<div class="highlight"><pre><span></span><code>https://github.com/easybuilders/easybuild-tutorial/raw/main/docs/files/eb-tutorial-1.1.0.tar.gz
 </code></pre></div>
 <p>You can leverage the <code>eb-tutorial</code> easyconfig file we have composed in the example above,
 <strong>but you should not make any manual changes to it!</strong></p>
@@ -1619,7 +1619,7 @@ Hello from the EasyBuild tutorial!
 <hr />
 <p><strong><em>Exercise 7.2</em></strong><em> - Installing py-eb-tutorial 1.0.0</em></p>
 <p>Try composing an easyconfig file for the <code>py-eb-tutorial</code> example software, which is a tiny Python package.
-The source tarball can be downloaded from this link: <a href="https://github.com/easybuilders/easybuild-tutorial/raw/master/docs/files/py-eb-tutorial-1.0.0.tar.gz">py-eb-tutorial-1.0.0.tar.gz</a>.</p>
+The source tarball can be downloaded from this link: <a href="https://github.com/easybuilders/easybuild-tutorial/raw/main/docs/files/py-eb-tutorial-1.0.0.tar.gz">py-eb-tutorial-1.0.0.tar.gz</a>.</p>
 <p>A couple of tips:</p>
 <ul>
 <li>
@@ -1643,7 +1643,7 @@ easyconfig parameter in your easyconfig file:
 <p>Unfortunately this software doesn't come with documentation. That is done to make it an example that
   is representative for software that you may run into in the wild (it's <em>not</em> because
   we were lazy when preparing the exercises, really!).
-  You can inspect the sources of this software <a href="https://github.com/easybuilders/easybuild-tutorial/tree/master/docs/files/py-eb-tutorial-1.0.0">here</a>. Definitely take a look at the <code>setup.py</code> file, it includes some clues
+  You can inspect the sources of this software <a href="https://github.com/easybuilders/easybuild-tutorial/tree/main/docs/files/py-eb-tutorial-1.0.0">here</a>. Definitely take a look at the <code>setup.py</code> file, it includes some clues
   about the requirements to get this software installed.</p>
 </li>
 <li>
@@ -1661,7 +1661,7 @@ easyconfig parameter in your easyconfig file:
 <span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;https://easybuilders.github.io/easybuild-tutorial&#39;</span>
 <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;EasyBuild tutorial Python example&quot;</span>
 
-<span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://github.com/easybuilders/easybuild-tutorial/raw/master/docs/files/&#39;</span><span class="p">]</span>
+<span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://github.com/easybuilders/easybuild-tutorial/raw/main/docs/files/&#39;</span><span class="p">]</span>
 <span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="n">SOURCE_TAR_GZ</span><span class="p">]</span>
 <span class="n">checksums</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;fcf73a9efc65527a210b993e8889d41ebf05977eef1f6a65ebac3188152cd496&#39;</span><span class="p">]</span>
 
@@ -1733,7 +1733,7 @@ easyconfig parameter in your easyconfig file:
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 6, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 12, 2021</span>
     
   </small>
 </div>
