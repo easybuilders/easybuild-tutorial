@@ -1,0 +1,5 @@
+namespace ebtutorial{
+#cmakedefine EBTUTORIAL_MSG "@EBTUTORIAL_MSG@"
+  const char* message = EBTUTORIAL_MSG;
+}
+
