@@ -37,6 +37,7 @@ nav:
           - Configuration: 2021-lust/configuration.md
           - Basic usage: 2021-lust/basic_usage.md
       - Using EasyBuild:
+          - Troubleshooting: 2021-lust/troubleshooting.md
           - Creating easyconfig files: 2021-lust/creating_easyconfig_files.md
       - Advanced topics: 2021-lust/part3_advanced.md
       - EasyBuild on Cray systems: 2021-lust/part4_cray.md
