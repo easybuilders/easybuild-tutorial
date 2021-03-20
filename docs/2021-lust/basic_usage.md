@@ -733,7 +733,7 @@ The exercises are based on the easyconfig files included with EasyBuild 4.3.3.
 
 ---
 
-***Exercise 4.0**** - Making installed software available*
+***Exercise U.0**** - Making installed software available*
 
 Before working on the exercises for this part of the tutorial,
 make sure that the software that is already installed in the prepared environment is available.
@@ -757,7 +757,7 @@ are available for loading.
 
 ---
 
-***Exercise 4.1**** - Searching easyconfigs*
+***Exercise U.1**** - Searching easyconfigs*
 
 See if EasyBuild provides any easyconfig files for installing GROMACS version 2020/5.
 
@@ -782,7 +782,7 @@ See if EasyBuild provides any easyconfig files for installing GROMACS version 20
 
 ---
 
-***Exercise 4.2**** - Checking dependencies*
+***Exercise U.2**** - Checking dependencies*
 
 Check which dependencies are missing to install QuantumESPRESSO version 6.6 with the `2020b` version of the `foss` toolchain.
 
@@ -808,7 +808,7 @@ Check which dependencies are missing to install QuantumESPRESSO version 6.6 with
 
 ---
 
-***Exercise 4.3**** - Performing a dry run*
+***Exercise U.3**** - Performing a dry run*
 
 Figure out which command EasyBuild would use to compile
 the software provided by the `Bowtie2-2.4.2-GCC-9.3.0.eb` easyconfig file,
@@ -850,7 +850,7 @@ Also, which binaries will EasyBuild check for to sanity check the installation?
 
 ---
 
-***Exercise 4.4**** - Installing software*
+***Exercise U.4**** - Installing software*
 
 Install version 3.1.0 of the `h5py` Python package and all missing dependencies,
 using the `foss/2020b` toolchain, into `/tmp/$USER/easybuild`,
@@ -910,7 +910,7 @@ Enable trace output so you can see which parts of the installation take a while.
 
 ---
 
-***Exercise 4.5**** - Using installed software*
+***Exercise U.5**** - Using installed software*
 
 Using the `h5py` installation from the previous exercise to create an empty HDF5 file,
 using the following Python statements:

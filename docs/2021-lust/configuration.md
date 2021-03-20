@@ -434,7 +434,7 @@ settings were specified via a configuration file, some of which indirectly throu
 
 ## Exercises
 
-***Exercise 3.1* - Install EasyBuild**
+***Exercise C.1* - Install EasyBuild**
 
 Configure EasyBuild to use the `easybuild` subdirectory in your home directory for everything, except for:
 
@@ -474,7 +474,9 @@ Leave other configuration settings set to their default value.
     sourcepath     (E) = /home/example/easybuild/sources:/easybuild/sources
     ```
 
-***Exercise 3.2* - Install a trivial software package with EasyBuild**
+---
+
+***Exercise C.2* - Install a trivial software package with EasyBuild**
 
 Try running the following command:
 

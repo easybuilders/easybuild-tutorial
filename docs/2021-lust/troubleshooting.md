@@ -283,7 +283,7 @@ Remember though: *no peeking* before you tried to solve each step yourself!
 
 ---
 
-### *Exercise 5.1 - Sources*
+***Exercise T.1**** - Sources*
 
 Try to install the `subread.eb` easyconfig file, see what happens.
 
@@ -344,7 +344,7 @@ the easyconfig file?
 
 ---
 
-### *Exercise 5.2 - Toolchain*
+***Exercise T.2**** - Toolchain*
 
 After fixing the problem with missing source file, try the installation again.
 
@@ -389,7 +389,7 @@ the *toolchain* here...
     ```
 ---
 
-### *Exercise 5.3 - Build step*
+***Exercise T.3**** - Build step*
 
 With the first two problems fixed, now we can actually try to build the software.
 
@@ -438,7 +438,7 @@ Can you fix the next problem you run into?
 
 ---
 
-### *Exercise 5.4 - Sanity check*
+***Exercise T.4**** - Sanity check*
 
 After fixing the compilation issue, you're really close to getting the installation working, we promise!
 

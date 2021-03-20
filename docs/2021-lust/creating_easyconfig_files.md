@@ -826,7 +826,9 @@ $ eb example.eb --inject-checksums
 
 ## Exercises
 
-***Exercise 7.1**** - Making `eb-tutorial` a bit more personal*
+---
+
+***Exercise E.1**** - Making `eb-tutorial` a bit more personal*
 
 Change the easyconfig file for `eb-tutorial` to make the message printed by the `eb-tutorial` command
 a bit more personal: include the username of the account that was used to install the software in it
@@ -849,7 +851,9 @@ a bit more personal: include the username of the account that was used to instal
 
     To re-install the `example.eb` easyconfig, you will need to use `eb --rebuild` or `eb --force`.
 
-***Exercise 7.2**** - Installing eb-tutorial version 1.1.0*
+---
+
+***Exercise E.2**** - Installing eb-tutorial version 1.1.0*
 
 Install version 1.1.0 of the `eb-tutorial` example software,
 which is a trivial version bump compared to version 1.0.1.
@@ -884,7 +888,7 @@ You can leverage the `eb-tutorial` easyconfig file we have composed in the examp
 
 ---
 
-***Exercise 7.2**** - Installing py-eb-tutorial 1.0.0*
+***Exercise E.3**** - Installing py-eb-tutorial 1.0.0*
 
 Try composing an easyconfig file for the `py-eb-tutorial` example software, which is a tiny Python package.
 The source tarball can be downloaded from this link: [py-eb-tutorial-1.0.0.tar.gz](https://github.com/easybuilders/easybuild-tutorial/raw/main/docs/files/py-eb-tutorial-1.0.0.tar.gz).

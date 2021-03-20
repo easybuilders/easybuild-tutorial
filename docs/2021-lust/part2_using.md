@@ -6,6 +6,5 @@
 
 * [Troubleshooting](troubleshooting.md) *(hands-on)*
 * [Creating easyconfig files](creating_easyconfig_files.md) *(hands-on)*
-* EasyBuild log files *(hands-on)*
-* Implementing easyblocks *(hands-on)*
 * Submitting installations as Slurm jobs *(hands-on)*
+* Implementing easyblocks *(hands-on)*
