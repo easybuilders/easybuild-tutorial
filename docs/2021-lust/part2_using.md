@@ -4,7 +4,7 @@
 
 *(Tue March 23rd 2021, 9am-12 CET)*
 
-* Writing easyconfig files *(hands-on)*
+* [Creating easyconfig files](creating_easyconfig_files.md) *(hands-on)*
 * Troubleshooting *(hands-on)*
 * EasyBuild log files *(hands-on)*
 * Implementing easyblocks *(hands-on)*
