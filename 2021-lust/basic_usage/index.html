@@ -1559,7 +1559,7 @@ won't go into those here).</p>
 <p>Please do not spoil solutions to others before they have been discussed by the tutorial organisers.</p>
 <p>The exercises are based on the easyconfig files included with EasyBuild 4.3.3.</p>
 <hr />
-<p><strong><em>Exercise 4.0</em></strong><em> - Making installed software available</em></p>
+<p><strong><em>Exercise U.0</em></strong><em> - Making installed software available</em></p>
 <p>Before working on the exercises for this part of the tutorial,
 make sure that the software that is already installed in the prepared environment is available.</p>
 <p>We will assume that you have a small software stack installed using the <code>2020b</code> version of the <code>foss</code> toolchain.</p>
@@ -1573,7 +1573,7 @@ in the prepared environment:
 you should adjust the command accordingly.</p>
 </details>
 <hr />
-<p><strong><em>Exercise 4.1</em></strong><em> - Searching easyconfigs</em></p>
+<p><strong><em>Exercise U.1</em></strong><em> - Searching easyconfigs</em></p>
 <p>See if EasyBuild provides any easyconfig files for installing GROMACS version 2020/5.</p>
 <details class="success"><summary>(click to show solution)</summary><p>To check for available easyconfig files, we can use <code>eb --search</code> or <code>eb -S</code>:
 <div class="highlight"><pre><span></span><code>$ eb -S gromacs-2020.5
@@ -1592,7 +1592,7 @@ for GROMACS 2020.5 in the <code>foss</code> and <code>fosscuda</code> toolchains
 and now we find a single easyconfig file.  </p>
 </details>
 <hr />
-<p><strong><em>Exercise 4.2</em></strong><em> - Checking dependencies</em></p>
+<p><strong><em>Exercise U.2</em></strong><em> - Checking dependencies</em></p>
 <p>Check which dependencies are missing to install QuantumESPRESSO version 6.6 with the <code>2020b</code> version of the <code>foss</code> toolchain.</p>
 <details class="success"><summary>(click to show solution)</summary><p>First, we need to determine the name of the easyconfig file for QuantumESPRESSO version 6.6:
 <div class="highlight"><pre><span></span><code>$ eb -S <span class="s1">&#39;QuantumESPRESSO-6.6.*foss-2020b&#39;</span>
@@ -1612,7 +1612,7 @@ To determine which dependencies are missing to install this QuantumESPRESSO easy
 (some nonessential output removed).</p>
 </details>
 <hr />
-<p><strong><em>Exercise 4.3</em></strong><em> - Performing a dry run</em></p>
+<p><strong><em>Exercise U.3</em></strong><em> - Performing a dry run</em></p>
 <p>Figure out which command EasyBuild would use to compile
 the software provided by the <code>Bowtie2-2.4.2-GCC-9.3.0.eb</code> easyconfig file,
 without actually installing <code>Bowtie2</code>.</p>
@@ -1643,7 +1643,7 @@ Sanity check paths - file [&#39;files&#39;]
 </code></pre></div></p>
 </details>
 <hr />
-<p><strong><em>Exercise 4.4</em></strong><em> - Installing software</em></p>
+<p><strong><em>Exercise U.4</em></strong><em> - Installing software</em></p>
 <p>Install version 3.1.0 of the <code>h5py</code> Python package and all missing dependencies,
 using the <code>foss/2020b</code> toolchain, into <code>/tmp/$USER/easybuild</code>,
 while leveraging the already installed software available from <code>/easybuild</code>.</p>
@@ -1690,7 +1690,7 @@ $ eb h5py-3.1.0-foss-2020b.eb --robot --installpath /tmp/<span class="nv">$USER<
 which runs both <code>python setup.py configure</code> and <code>python setup.py build</code>.</p>
 </details>
 <hr />
-<p><strong><em>Exercise 4.5</em></strong><em> - Using installed software</em></p>
+<p><strong><em>Exercise U.5</em></strong><em> - Using installed software</em></p>
 <p>Using the <code>h5py</code> installation from the previous exercise to create an empty HDF5 file,
 using the following Python statements:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">h5py</span>
@@ -1742,7 +1742,7 @@ we're happy to help!</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 9, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 20, 2021</span>
     
   </small>
 </div>
