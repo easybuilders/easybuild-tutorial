@@ -678,6 +678,18 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../implementing_easyblocks/" class="md-nav__link">
+        Implementing easyblocks
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -1115,7 +1127,7 @@ make: *** [core.o] Error 1
 </code></pre></div></p>
 <p>EasyBuild sets up the build environment, so there should be no need
 to hard specify compiler flags (certainly not incorrect ones).
-The comment above the <code>buildopts</code> definition makes it clear tha the <code>-fcommon</code>
+The comment above the <code>buildopts</code> definition makes it clear that the <code>-fcommon</code>
 flag <em>is</em> required though, because GCC 10 became a bit stricter by
 using <code>-fno-common</code> by default. Note that we are using <code>-fcommon</code>
 as an escape mechanism here: it would be better to fix the source code
