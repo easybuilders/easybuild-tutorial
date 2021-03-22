@@ -210,7 +210,7 @@ Let's work our way through a less smooth software installation,
 using the easyconfig file that is provided below.
 
 Don't worry if most of this is still unclear to you, we'll get
-to writing easyconfig files from scratch [later in this tutorial](../adding_support_software).
+to writing easyconfig files from scratch [later in this tutorial](../creating_easyconfig_files).
 
 ```python
 easyblock = 'MakeCp'
@@ -251,10 +251,6 @@ Do you spot any potential problems yet with this easyconfig file?
 
 Start by copying the text above in a file named `subread.eb`,
 so you can gradually fix the problem you'll encounter.
-
-```shell
-vim subread.eb
-```
 
 Also make sure that the pre-installed software stack is available,
 and that the EasyBuild module is loaded (unless you installed EasyBuild
@@ -297,7 +293,7 @@ the easyconfig file?
     ```
     $ eb subread.eb
     ...
-    == FAILED: Installation ended unsuccessfully (build directory: /tmp/example/Subread/2.0.1/GCC-8.3.0): build failed (first 300 chars):
+    == FAILED: Installation ended unsuccessfully (build directory: /tmp/example/Subread/2.0.1/GCC-8.4.0): build failed (first 300 chars):
     Couldn't find file subread-2.0.1-source.tar.gz anywhere, and downloading it didn't work either...
     Paths attempted (in order): ...
     ```
@@ -318,12 +314,8 @@ the easyconfig file?
     mv subread-2.0.1-source.tar.gz $HOME/easybuild/sources/s/Subread/
     ```
 
-    In case download is problematic, the source tarball is also available
-    in `/easybuild/tutorial/`:
-
-    ```shell
-    cp /easybuild/tutorial/subread-2.0.1-source.tar.gz $HOME/easybuild/sources/s/Subread/
-    ```
+    If downloading is problematic for some reason, the source tarball is also available
+    in `/easybuild/sources/s/Subread`.
 
     Or, we can change the easyconfig file to specify the location where
     the easyconfig file can be downloaded from:
@@ -331,8 +323,10 @@ the easyconfig file?
     source_urls = ['https://download.sourceforge.net/subread/']
     sources = ['subread-%(version)s-source.tar.gz']
     ```
-    Note that the `source_urls` value is a *list* of candidate URLs,
-    *without* the filename of the source file.
+    Note that the `source_urls` value is a *list* of candidate download URLs,
+    *without* the filename of the source file itself.
+
+    This way, EasyBuild will download the source file when running `eb subread.eb`.
 
     The source tarball is fairly large (23MB), so don't be alarmed if the download takes a little while.
 
@@ -362,7 +356,7 @@ the *toolchain* here...
     ```
     $ eb subread.eb
     ...
-    == FAILED: Installation ended unsuccessfully (build directory: /tmp/easybuild/Subread/2.0.1/GCC-8.3.0): build failed (first 300 chars):
+    == FAILED: Installation ended unsuccessfully (build directory: /tmp/easybuild/Subread/2.0.1/GCC-8.4.0): build failed (first 300 chars):
     No module found for toolchain: GCC/8.4.0 (took 1 sec)
     ```
 
@@ -380,12 +374,6 @@ the *toolchain* here...
 
     ```python
     toolchain = {'name': 'GCC', 'version': '10.2.0'}
-    ```
-
-    Or run the following `sed` command to change the toolchain version to `'10.2.0'`:
-
-    ```shell
-    sed -i 's/8.4.0/10.2.0/' subread.eb
     ```
 ---
 
@@ -426,15 +414,21 @@ Can you fix the next problem you run into?
     flag *is* required though, because GCC 10 became a bit stricter by
     using `-fno-common` by default. Note that we are using `-fcommon`
     as an escape mechanism here: it would be better to fix the source code
-    and use a patch file instead.
+    and create a patch file instead.
 
-    In this case it's advised to change the `CFLAGS` argument that is added
+    An easy way to fix this problem is to replace the `-fast` with `-Ofast`,
+    as the compiler error suggests.
+
+    In this case it is advised to change the `CFLAGS` argument that is added
     to be build command to replace the `-fast` with `$CFLAGS`,
     which is defined in the build environment by EasyBuild.
 
     ```python
     buildopts = '-f Makefile.Linux CFLAGS="$CFLAGS -fcommon"'
     ```
+
+    Note that we need to be careful with quotes here: we use inner double quotes
+    to ensure that `$CFLAGS` will be expanded to its value when the build command is run.
 
 ---
 
