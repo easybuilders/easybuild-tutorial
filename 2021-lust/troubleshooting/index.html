@@ -975,7 +975,7 @@ and inspect the <code>config.log</code> file in the build directory to determine
 <p>Let's work our way through a less smooth software installation,
 using the easyconfig file that is provided below.</p>
 <p>Don't worry if most of this is still unclear to you, we'll get
-to writing easyconfig files from scratch <a href="../adding_support_software">later in this tutorial</a>.</p>
+to writing easyconfig files from scratch <a href="../creating_easyconfig_files">later in this tutorial</a>.</p>
 <div class="highlight"><pre><span></span><code><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;MakeCp&#39;</span>
 
 <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Subread&#39;</span>
@@ -1011,8 +1011,6 @@ to writing easyconfig files from scratch <a href="../adding_support_software">la
 <p><strong><em>Preparation</em></strong></p>
 <p>Start by copying the text above in a file named <code>subread.eb</code>,
 so you can gradually fix the problem you'll encounter.</p>
-<div class="highlight"><pre><span></span><code>vim subread.eb
-</code></pre></div>
 <p>Also make sure that the pre-installed software stack is available,
 and that the EasyBuild module is loaded (unless you installed EasyBuild
 yourself):</p>
@@ -1038,7 +1036,7 @@ the easyconfig file?</p>
 is not found:
 <div class="highlight"><pre><span></span><code>$ eb subread.eb
 ...
-== FAILED: Installation ended unsuccessfully (build directory: /tmp/example/Subread/2.0.1/GCC-8.3.0): build failed (first 300 chars):
+== FAILED: Installation ended unsuccessfully (build directory: /tmp/example/Subread/2.0.1/GCC-8.4.0): build failed (first 300 chars):
 Couldn&#39;t find file subread-2.0.1-source.tar.gz anywhere, and downloading it didn&#39;t work either...
 Paths attempted (in order): ...
 </code></pre></div></p>
@@ -1054,17 +1052,16 @@ and move it to the location where EasyBuild expects to find it
 <div class="highlight"><pre><span></span><code>curl -OL https://download.sourceforge.net/subread/subread-2.0.1-source.tar.gz
 mv subread-2.0.1-source.tar.gz $HOME/easybuild/sources/s/Subread/
 </code></pre></div></p>
-<p>In case download is problematic, the source tarball is also available
-in <code>/easybuild/tutorial/</code>:</p>
-<div class="highlight"><pre><span></span><code>cp /easybuild/tutorial/subread-2.0.1-source.tar.gz <span class="nv">$HOME</span>/easybuild/sources/s/Subread/
-</code></pre></div>
+<p>If downloading is problematic for some reason, the source tarball is also available
+in <code>/easybuild/sources/s/Subread</code>.</p>
 <p>Or, we can change the easyconfig file to specify the location where
 the easyconfig file can be downloaded from:
 <div class="highlight"><pre><span></span><code><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://download.sourceforge.net/subread/&#39;</span><span class="p">]</span>
 <span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;subread-</span><span class="si">%(version)s</span><span class="s1">-source.tar.gz&#39;</span><span class="p">]</span>
 </code></pre></div>
-Note that the <code>source_urls</code> value is a <em>list</em> of candidate URLs,
-<em>without</em> the filename of the source file.</p>
+Note that the <code>source_urls</code> value is a <em>list</em> of candidate download URLs,
+<em>without</em> the filename of the source file itself.</p>
+<p>This way, EasyBuild will download the source file when running <code>eb subread.eb</code>.</p>
 <p>The source tarball is fairly large (23MB), so don't be alarmed if the download takes a little while.</p>
 <div class="highlight"><pre><span></span><code>$ ls -lh <span class="nv">$HOME</span>/easybuild/sources/s/Subread
 total 23M
@@ -1082,7 +1079,7 @@ the <em>toolchain</em> here...</p>
 should be used as toolchain:
 <div class="highlight"><pre><span></span><code>$ eb subread.eb
 ...
-== FAILED: Installation ended unsuccessfully (build directory: /tmp/easybuild/Subread/2.0.1/GCC-8.3.0): build failed (first 300 chars):
+== FAILED: Installation ended unsuccessfully (build directory: /tmp/easybuild/Subread/2.0.1/GCC-8.4.0): build failed (first 300 chars):
 No module found for toolchain: GCC/8.4.0 (took 1 sec)
 </code></pre></div></p>
 <p>We don't have this GCC version installed, but we do have GCC 10.2.0:</p>
@@ -1093,9 +1090,6 @@ No module found for toolchain: GCC/8.4.0 (took 1 sec)
 <p>So let's try using that instead.</p>
 <p>Edit the easyconfig file so it contains this:</p>
 <div class="highlight"><pre><span></span><code><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;GCC&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;10.2.0&#39;</span><span class="p">}</span>
-</code></pre></div>
-<p>Or run the following <code>sed</code> command to change the toolchain version to <code>'10.2.0'</code>:</p>
-<div class="highlight"><pre><span></span><code>sed -i <span class="s1">&#39;s/8.4.0/10.2.0/&#39;</span> subread.eb
 </code></pre></div>
 </details>
 <hr />
@@ -1125,12 +1119,16 @@ The comment above the <code>buildopts</code> definition makes it clear tha the <
 flag <em>is</em> required though, because GCC 10 became a bit stricter by
 using <code>-fno-common</code> by default. Note that we are using <code>-fcommon</code>
 as an escape mechanism here: it would be better to fix the source code
-and use a patch file instead.</p>
-<p>In this case it's advised to change the <code>CFLAGS</code> argument that is added
+and create a patch file instead.</p>
+<p>An easy way to fix this problem is to replace the <code>-fast</code> with <code>-Ofast</code>,
+as the compiler error suggests.</p>
+<p>In this case it is advised to change the <code>CFLAGS</code> argument that is added
 to be build command to replace the <code>-fast</code> with <code>$CFLAGS</code>,
 which is defined in the build environment by EasyBuild.</p>
 <div class="highlight"><pre><span></span><code><span class="n">buildopts</span> <span class="o">=</span> <span class="s1">&#39;-f Makefile.Linux CFLAGS=&quot;$CFLAGS -fcommon&quot;&#39;</span>
 </code></pre></div>
+<p>Note that we need to be careful with quotes here: we use inner double quotes
+to ensure that <code>$CFLAGS</code> will be expanded to its value when the build command is run.</p>
 </details>
 <hr />
 <p><strong><em>Exercise T.4</em></strong><em> - Sanity check</em></p>
@@ -1172,7 +1170,7 @@ featureCounts v2.0.1
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 20, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 22, 2021</span>
     
   </small>
 </div>
