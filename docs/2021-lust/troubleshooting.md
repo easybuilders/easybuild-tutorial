@@ -410,7 +410,7 @@ Can you fix the next problem you run into?
 
     EasyBuild sets up the build environment, so there should be no need
     to hard specify compiler flags (certainly not incorrect ones).
-    The comment above the `buildopts` definition makes it clear tha the `-fcommon`
+    The comment above the `buildopts` definition makes it clear that the `-fcommon`
     flag *is* required though, because GCC 10 became a bit stricter by
     using `-fno-common` by default. Note that we are using `-fcommon`
     as an escape mechanism here: it would be better to fix the source code

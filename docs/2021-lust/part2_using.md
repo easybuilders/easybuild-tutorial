@@ -6,5 +6,4 @@
 
 * [Troubleshooting](troubleshooting.md) *(hands-on)*
 * [Creating easyconfig files](creating_easyconfig_files.md) *(hands-on)*
-* Submitting installations as Slurm jobs *(hands-on)*
-* Implementing easyblocks *(hands-on)*
+* [Implementing easyblocks](implementing_easyblocks.md) *(hands-on)*

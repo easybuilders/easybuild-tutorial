@@ -39,6 +39,7 @@ nav:
       - Using EasyBuild:
           - Troubleshooting: 2021-lust/troubleshooting.md
           - Creating easyconfig files: 2021-lust/creating_easyconfig_files.md
+          - Implementing easyblocks: 2021-lust/implementing_easyblocks.md
       - Advanced topics: 2021-lust/part3_advanced.md
       - EasyBuild on Cray systems: 2021-lust/part4_cray.md
 plugins:
