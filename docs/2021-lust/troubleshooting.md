@@ -221,7 +221,7 @@ version = '2.0.1'
 homepage = 'http://subread.sourceforge.net'
 description = "High performance read alignment, quantification and mutation discovery"
 
-toolchain = {'name': 'GCC', 'version': '8.4.0'}
+toolchain = {'name': 'GCC', 'version': '8.5.0'}
 
 # download from https://download.sourceforge.net/subread/subread-2.0.1-source.tar.gz
 sources = ['subread-%(version)s-source.tar.gz']
@@ -293,7 +293,7 @@ the easyconfig file?
     ```
     $ eb subread.eb
     ...
-    == FAILED: Installation ended unsuccessfully (build directory: /tmp/example/Subread/2.0.1/GCC-8.4.0): build failed (first 300 chars):
+    == FAILED: Installation ended unsuccessfully (build directory: /tmp/example/Subread/2.0.1/GCC-8.5.0): build failed (first 300 chars):
     Couldn't find file subread-2.0.1-source.tar.gz anywhere, and downloading it didn't work either...
     Paths attempted (in order): ...
     ```
@@ -351,13 +351,13 @@ the *toolchain* here...
 
 ??? success "(click to show solution)"
 
-    The installation fails because the easyconfig specifies that GCC 8.4.0
+    The installation fails because the easyconfig specifies that GCC 8.5.0
     should be used as toolchain:
     ```
     $ eb subread.eb
     ...
-    == FAILED: Installation ended unsuccessfully (build directory: /tmp/easybuild/Subread/2.0.1/GCC-8.4.0): build failed (first 300 chars):
-    No module found for toolchain: GCC/8.4.0 (took 1 sec)
+    == FAILED: Installation ended unsuccessfully (build directory: /tmp/easybuild/Subread/2.0.1/GCC-8.5.0): build failed (first 300 chars):
+    No module found for toolchain: GCC/8.5.0 (took 1 sec)
     ```
 
     We don't have this GCC version installed, but we do have GCC 10.2.0:
