@@ -996,7 +996,7 @@ to writing easyconfig files from scratch <a href="../creating_easyconfig_files">
 <span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;http://subread.sourceforge.net&#39;</span>
 <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;High performance read alignment, quantification and mutation discovery&quot;</span>
 
-<span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;GCC&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;8.4.0&#39;</span><span class="p">}</span>
+<span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;GCC&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;8.5.0&#39;</span><span class="p">}</span>
 
 <span class="c1"># download from https://download.sourceforge.net/subread/subread-2.0.1-source.tar.gz</span>
 <span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;subread-</span><span class="si">%(version)s</span><span class="s1">-source.tar.gz&#39;</span><span class="p">]</span>
@@ -1048,7 +1048,7 @@ the easyconfig file?</p>
 is not found:
 <div class="highlight"><pre><span></span><code>$ eb subread.eb
 ...
-== FAILED: Installation ended unsuccessfully (build directory: /tmp/example/Subread/2.0.1/GCC-8.4.0): build failed (first 300 chars):
+== FAILED: Installation ended unsuccessfully (build directory: /tmp/example/Subread/2.0.1/GCC-8.5.0): build failed (first 300 chars):
 Couldn&#39;t find file subread-2.0.1-source.tar.gz anywhere, and downloading it didn&#39;t work either...
 Paths attempted (in order): ...
 </code></pre></div></p>
@@ -1087,12 +1087,12 @@ total 23M
 <p>Take into account that we just want to get this software package installed,
 we don't care too much about details like the version of the dependencies or
 the <em>toolchain</em> here...</p>
-<details class="success"><summary>(click to show solution)</summary><p>The installation fails because the easyconfig specifies that GCC 8.4.0
+<details class="success"><summary>(click to show solution)</summary><p>The installation fails because the easyconfig specifies that GCC 8.5.0
 should be used as toolchain:
 <div class="highlight"><pre><span></span><code>$ eb subread.eb
 ...
-== FAILED: Installation ended unsuccessfully (build directory: /tmp/easybuild/Subread/2.0.1/GCC-8.4.0): build failed (first 300 chars):
-No module found for toolchain: GCC/8.4.0 (took 1 sec)
+== FAILED: Installation ended unsuccessfully (build directory: /tmp/easybuild/Subread/2.0.1/GCC-8.5.0): build failed (first 300 chars):
+No module found for toolchain: GCC/8.5.0 (took 1 sec)
 </code></pre></div></p>
 <p>We don't have this GCC version installed, but we do have GCC 10.2.0:</p>
 <div class="highlight"><pre><span></span><code>$ module avail GCC/
