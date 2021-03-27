@@ -686,9 +686,106 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Using hooks to customise EasyBuild
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Using hooks to customise EasyBuild
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#implementing-and-using-hooks" class="md-nav__link">
+    Implementing and using hooks
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#available-hooks" class="md-nav__link">
+    Available hooks
+  </a>
+  
+    <nav class="md-nav" aria-label="Available hooks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#startend-hooks" class="md-nav__link">
+    Start/end hooks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parse-hook" class="md-nav__link">
+    Parse hook
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prepost-step-hooks" class="md-nav__link">
+    Pre/post-step hooks
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caveats" class="md-nav__link">
+    Caveats
+  </a>
+  
+    <nav class="md-nav" aria-label="Caveats">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#breaking-easybuild-with-hooks" class="md-nav__link">
+    Breaking EasyBuild with hooks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#template-values" class="md-nav__link">
+    Template values
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manipulating-easyconfig-parameters" class="md-nav__link">
+    Manipulating easyconfig parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -772,6 +869,89 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#implementing-and-using-hooks" class="md-nav__link">
+    Implementing and using hooks
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#available-hooks" class="md-nav__link">
+    Available hooks
+  </a>
+  
+    <nav class="md-nav" aria-label="Available hooks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#startend-hooks" class="md-nav__link">
+    Start/end hooks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parse-hook" class="md-nav__link">
+    Parse hook
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prepost-step-hooks" class="md-nav__link">
+    Pre/post-step hooks
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caveats" class="md-nav__link">
+    Caveats
+  </a>
+  
+    <nav class="md-nav" aria-label="Caveats">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#breaking-easybuild-with-hooks" class="md-nav__link">
+    Breaking EasyBuild with hooks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#template-values" class="md-nav__link">
+    Template values
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manipulating-easyconfig-parameters" class="md-nav__link">
+    Manipulating easyconfig parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -788,6 +968,131 @@
                 
                 
                 <h1 id="using-hooks-to-customise-easybuild">Using hooks to customise EasyBuild<a class="headerlink" href="#using-hooks-to-customise-easybuild" title="Permanent link">&para;</a></h1>
+<p>Sometimes you may have the need to customise the behaviour of EasyBuild,
+while you want to avoid copying easyconfig files in order to make small changes
+(like adding an additional configuration option), having to maintain a set
+of modified easyblocks, or using a patched version of the EasyBuild framework.</p>
+<p>EasyBuild provides support for implementing so-called <em>hooks</em>,
+which are small functions that are triggered automatically at specific times.</p>
+<p>Through these hook functions you can take additional actions, or even tweak
+internal data structures, to change the software installation procedure that EasyBuild
+would normally execute.</p>
+<p>This is a very powerful feature, but it is important to aware of some details in order
+to make good use of it.</p>
+<p>Support for hooks is also covered in detail in the EasyBuild documentation, see
+<a href="https://docs.easybuild.io/en/latest/Hooks.html">here</a>.</p>
+<h2 id="implementing-and-using-hooks">Implementing and using hooks<a class="headerlink" href="#implementing-and-using-hooks" title="Permanent link">&para;</a></h2>
+<p>Using hooks is done by implementing functions with specific names in a Python module,
+and configuring EasyBuild to use them by specifying the path to the file that contains them
+via the <code>hooks</code> configuration option.</p>
+<p>For example, if the file named <code>my_eb_hooks.py</code> in your home directory contains the implementation
+of your hooks, you can configure EasyBuild to use them by defining the <code>$EASYBUILD_HOOKS</code> environment
+variable:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">EASYBUILD_HOOKS</span><span class="o">=</span><span class="nv">$HOME</span>/my_eb_hooks.py
+</code></pre></div>
+<h2 id="available-hooks">Available hooks<a class="headerlink" href="#available-hooks" title="Permanent link">&para;</a></h2>
+<p>EasyBuild supports various hooks, the full list can be consulted via <code>eb --avail-hooks</code>.</p>
+<p>There are 3 different types of hooks:</p>
+<ul>
+<li>start/end hooks</li>
+<li>parse hook</li>
+<li>pre/post-step hooks</li>
+</ul>
+<p>These are discussed in more details in the sections below.</p>
+<h3 id="startend-hooks">Start/end hooks<a class="headerlink" href="#startend-hooks" title="Permanent link">&para;</a></h3>
+<p>The first type of hooks are the <code>start</code> and <code>end</code> hooks, which are respectively triggered
+at the very start of the EasyBuild session (right after setting up the EasyBuild configuration),
+and at the very end of the session (right before stopping the logger and doing final cleanup).</p>
+<p>These hooks are only called <em>once</em> for every EasyBuild session, no matter how many installations
+are performed during that session.</p>
+<p>The <code>end</code> hook is <em>not</em> triggered if an error occurred during one of the installations,
+only on successful completion of the EasyBuild session.</p>
+<p>These hooks can be implementing by defining a function named <code>start_hook</code> and <code>end_hook</code>
+in the Python module file that is provided via the <code>hooks</code> configuration option.
+No arguments are provided when calling these hooks.</p>
+<h3 id="parse-hook">Parse hook<a class="headerlink" href="#parse-hook" title="Permanent link">&para;</a></h3>
+<p>The <code>parse</code> hook is triggered right after an easyconfig file is being parsed,
+<em>before</em> EasyBuild sets up its internal data structures based on the parsed easyconfig.</p>
+<p>If you want to dynamically change one or more easyconfig parameters without changing the corresponding
+easyconfig files, using this hook may be appropriate.</p>
+<p>Note that parsing an easyconfig file can happen for a variety of reasons,
+not only when the easyconfig file will actually be installed. EasyBuild will also
+parse easyconfig files to check whether they resolve required dependencies,
+to check whether the corresponding module file is already installed, etc.</p>
+<p>This hook can be implemented via a function named <code>parse_hook</code>, and exactly one
+argument is provided when it is called: the <a href="https://docs.easybuild.io/en/latest/api/easybuild.framework.easyconfig.easyconfig.html#easybuild.framework.easyconfig.easyconfig.EasyConfig"><code>EasyConfig</code></a>
+instance that represents the parsed easyconfig file.</p>
+<h3 id="prepost-step-hooks">Pre/post-step hooks<a class="headerlink" href="#prepost-step-hooks" title="Permanent link">&para;</a></h3>
+<p>The third type of hooks are <em>pre/post-step</em> hooks, which are triggered right before or
+after a particular installation step is executed.</p>
+<p>EasyBuild performs each software installation by stepping through over a dozen different methods,
+and for each of these steps there a pre- and post-hook is triggered, which results in over 30
+additional hooks.</p>
+<p>To use any of these hooks, you need to implement a function that follow a strict naming scheme:
+<code>&lt;pre|post&gt;_&lt;step-name&gt;_hook</code>. For example, the hook that is triggered right before the <code>configure</code>
+step is run is a function named <code>pre_configure_hook</code>.</p>
+<p>Every time these hooks are called, a single argument is provided: an <a href="https://docs.easybuild.io/en/latest/api/easybuild.framework.easyblock.html#easybuild.framework.easyblock.EasyBlock"><code>EasyBlock</code></a>
+instance that represents the easyblock that is being used to perform the installation.
+The parsed easyconfig file can be accessed via the <code>cfg</code> class variable of the <code>EasyBlock</code> instance.</p>
+<p>These hooks are useful for influencing the installation procedure at a particular stage.</p>
+<h2 id="caveats">Caveats<a class="headerlink" href="#caveats" title="Permanent link">&para;</a></h2>
+<p>There are a couple of important caveats to take into account when implementing hooks.</p>
+<h3 id="breaking-easybuild-with-hooks">Breaking EasyBuild with hooks<a class="headerlink" href="#breaking-easybuild-with-hooks" title="Permanent link">&para;</a></h3>
+<p>Since hooks allow you to inject custom code into EasyBuild at runtime,
+it is also easy to break EasyBuild by using hooks...</p>
+<p>Make sure to carefully test your hook implementations, and constrain the actions
+you take a much as possible, for example by adding conditions to control for which
+software names you will actually modify the installation procedure, etc.</p>
+<p>Any errors that are triggered or raised while a hook function is running
+will interrupt the EasyBuild session.</p>
+<p>So don't forget: with great power comes great responsibility!</p>
+<h3 id="template-values">Template values<a class="headerlink" href="#template-values" title="Permanent link">&para;</a></h3>
+<p>Depending on the type of hook, you may observe "raw" values of easyconfig parameters where
+template values have not been resolved yet, or values in which template values have been resolved already.</p>
+<p>In the <code>parse</code> hook, you will always see unresolved template values.</p>
+<p>In the pre/post-step hooks you will see resolved template values,
+unless you explicitly disable templating.</p>
+<p>To obtain easyconfig parameter values with unresolved template values in step hooks,
+you can use the <code>disable_templating</code> <a href="https://docs.python.org/3/reference/compound_stmts.html#with">context manager</a>.
+For example:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">easybuild.framework.easyconfig.easyconfig</span> <span class="kn">import</span> <span class="n">disable_templating</span>
+<span class="kn">from</span> <span class="nn">easybuild.tools.build_log</span> <span class="kn">import</span> <span class="n">print_warning</span>
+
+<span class="k">def</span> <span class="nf">pre_source_hook</span><span class="p">(</span><span class="n">eb</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Print warning when software version was found in &#39;raw&#39; name of source file.&quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="n">disable_templating</span><span class="p">(</span><span class="n">eb</span><span class="o">.</span><span class="n">cfg</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">src</span> <span class="ow">in</span> <span class="n">eb</span><span class="o">.</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;sources&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">eb</span><span class="o">.</span><span class="n">version</span> <span class="ow">in</span> <span class="n">src</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Software version &#39;</span><span class="si">%s</span><span class="s2">&#39; found in name of source file (</span><span class="si">%s</span><span class="s2">), &quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">eb</span><span class="o">.</span><span class="n">version</span><span class="p">,</span> <span class="n">src</span><span class="p">)</span>
+                <span class="n">msg</span> <span class="o">+=</span> <span class="s2">&quot;please use </span><span class="si">%(version)s</span><span class="s2"> template value instead!&quot;</span>
+                <span class="n">print_warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="manipulating-easyconfig-parameters">Manipulating easyconfig parameters<a class="headerlink" href="#manipulating-easyconfig-parameters" title="Permanent link">&para;</a></h3>
+<p>If you want update a particular easyconfig parameter without overwriting the existing value,
+a bit of care has to be taken: you should use the <code>update</code> method of the <code>EasyConfig</code> instance
+for this, unless you disable template resolution. This is particularly important when
+updating easyconfig parameters that have <em>mutable</em> value (like a <code>list</code> or <code>dict</code>).</p>
+<p>Here's a correct example of a pre-install hook:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">pre_install_hook</span><span class="p">(</span><span class="n">eb</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">eb</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;pigz&#39;</span><span class="p">:</span>
+        <span class="c1"># always copy the README directory too when installing pigz</span>
+        <span class="n">eb</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s1">&#39;files_to_copy&#39;</span><span class="p">,</span> <span class="s1">&#39;README&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>This seemingly equivalent implementation will <strong><em>not</em></strong> work (the value of the <code>files_to_copy</code>
+easyconfig parameter will <em>not</em> be updated):</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">pre_install_hook</span><span class="p">(</span><span class="n">eb</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">eb</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;pigz&#39;</span><span class="p">:</span>
+        <span class="c1"># incorrect way of adding &#39;README&#39; to &#39;files_to_copy&#39; (DON&#39;T USE THIS!)</span>
+        <span class="n">eb</span><span class="o">.</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;files_to_copy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;README&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>To use this coding style successfully, you have to disable the templating mechanism
+when updating the easyconfig parameter:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">pre_install_hook</span><span class="p">(</span><span class="n">eb</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">eb</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;pigz&#39;</span><span class="p">:</span>
+        <span class="c1"># this works, but it is better to use the &#39;update&#39; method instead...</span>
+        <span class="k">with</span> <span class="n">disable_templating</span><span class="p">(</span><span class="n">eb</span><span class="o">.</span><span class="n">cfg</span><span class="p">):</span>
+            <span class="n">eb</span><span class="o">.</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;files_to_copy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;README&#39;</span><span class="p">)</span>
+</code></pre></div>
                 
                   
                     
