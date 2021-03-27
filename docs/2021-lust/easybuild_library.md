@@ -31,7 +31,7 @@ You should clean up that directory, especially if you will be creating temporary
 often.
 
 Note that cleaning up the temporary directory implies removes the temporary log files,
-so you probably only want to do this if no errors occured.
+so you probably only want to do this if no errors occurred.
 
 ### Minimal example script
 
