@@ -1,0 +1,1309 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.6">
+    
+    
+      
+        <title>Using EasyBuild as a library - EasyBuild tutorial</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2c0c5eaf.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+        
+<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-168742780-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#using-easybuild-as-a-library" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="EasyBuild tutorial" class="md-header__button md-logo" aria-label="EasyBuild tutorial" data-md-component="logo">
+      
+  <img src="../../img/easybuild_logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EasyBuild tutorial
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Using EasyBuild as a library
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/easybuilders/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    EasyBuild @ GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="EasyBuild tutorial" class="md-nav__button md-logo" aria-label="EasyBuild tutorial" data-md-component="logo">
+      
+  <img src="../../img/easybuild_logo.png" alt="logo">
+
+    </a>
+    EasyBuild tutorial
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/easybuilders/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    EasyBuild @ GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        ISC-20 (June '20)
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="ISC-20 (June '20)" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          ISC-20 (June '20)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2020-06-isc20/" class="md-nav__link">
+        Start page
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2020-06-isc20/practical_information/" class="md-nav__link">
+        Practical information
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2020-06-isc20/introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2020-06-isc20/installation/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2020-06-isc20/configuration/" class="md-nav__link">
+        Configuration
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2020-06-isc20/basic_usage/" class="md-nav__link">
+        Basic usage
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2020-06-isc20/troubleshooting/" class="md-nav__link">
+        Troubleshooting
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2020-06-isc20/hmns/" class="md-nav__link">
+        Hierarchical module naming schemes
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2020-06-isc20/adding_support_software/" class="md-nav__link">
+        Adding support for additional software
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2020-06-isc20/jsc/" class="md-nav__link">
+        EasyBuild at Jülich Supercomputing Centre
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2020-06-isc20/computecanada/" class="md-nav__link">
+        EasyBuild at Compute Canada
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2020-06-isc20/community/" class="md-nav__link">
+        The EasyBuild community
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2020-06-isc20/contributing/" class="md-nav__link">
+        Contributing to EasyBuild
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2020-06-isc20/comparison_other_tools/" class="md-nav__link">
+        Comparison with other tools
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2020-06-isc20/getting_help/" class="md-nav__link">
+        Getting help
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      <label class="md-nav__link" for="__nav_3">
+        LUST (spring '21)
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="LUST (spring '21)" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          LUST (spring '21)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        (overview)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      <label class="md-nav__link" for="__nav_3_2">
+        Introduction to EasyBuild
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Introduction to EasyBuild" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Introduction to EasyBuild
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part1_intro/" class="md-nav__link">
+        (overview)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../what_is_easybuild/" class="md-nav__link">
+        What is EasyBuild?
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../terminology/" class="md-nav__link">
+        Terminology
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        Configuration
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic_usage/" class="md-nav__link">
+        Basic usage
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
+      
+      <label class="md-nav__link" for="__nav_3_3">
+        Using EasyBuild
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Using EasyBuild" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Using EasyBuild
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part2_using/" class="md-nav__link">
+        (overview)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        Troubleshooting
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../creating_easyconfig_files/" class="md-nav__link">
+        Creating easyconfig files
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../implementing_easyblocks/" class="md-nav__link">
+        Implementing easyblocks
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_4" type="checkbox" id="__nav_3_4" checked>
+      
+      <label class="md-nav__link" for="__nav_3_4">
+        Advanced topics
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Advanced topics" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_4">
+          <span class="md-nav__icon md-icon"></span>
+          Advanced topics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part3_advanced/" class="md-nav__link">
+        (overview)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Using EasyBuild as a library
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Using EasyBuild as a library
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-the-easybuild-configuration" class="md-nav__link">
+    Setting up the EasyBuild configuration
+  </a>
+  
+    <nav class="md-nav" aria-label="Setting up the EasyBuild configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cleaning-up-the-temporary-directory" class="md-nav__link">
+    Cleaning up the temporary directory
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minimal-example-script" class="md-nav__link">
+    Minimal example script
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-use-cases" class="md-nav__link">
+    Example use cases
+  </a>
+  
+    <nav class="md-nav" aria-label="Example use cases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-operations" class="md-nav__link">
+    File operations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-shell-commands" class="md-nav__link">
+    Running shell commands
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interacting-with-the-modules-tool" class="md-nav__link">
+    Interacting with the modules tool
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parsing-easyconfig-files" class="md-nav__link">
+    Parsing easyconfig files
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hooks/" class="md-nav__link">
+        Using hooks to customise EasyBuild
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../slurm_jobs/" class="md-nav__link">
+        Submitting installations as Slurm jobs
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../module_naming_schemes/" class="md-nav__link">
+        Module naming schemes (incl. hierarchical)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../github_integration/" class="md-nav__link">
+        GitHub integration to facilitate contributing to EasyBuild
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part4_cray/" class="md-nav__link">
+        EasyBuild on Cray systems
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-the-easybuild-configuration" class="md-nav__link">
+    Setting up the EasyBuild configuration
+  </a>
+  
+    <nav class="md-nav" aria-label="Setting up the EasyBuild configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cleaning-up-the-temporary-directory" class="md-nav__link">
+    Cleaning up the temporary directory
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minimal-example-script" class="md-nav__link">
+    Minimal example script
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-use-cases" class="md-nav__link">
+    Example use cases
+  </a>
+  
+    <nav class="md-nav" aria-label="Example use cases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-operations" class="md-nav__link">
+    File operations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-shell-commands" class="md-nav__link">
+    Running shell commands
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interacting-with-the-modules-tool" class="md-nav__link">
+    Interacting with the modules tool
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parsing-easyconfig-files" class="md-nav__link">
+    Parsing easyconfig files
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/easybuilders/easybuild-tutorial/edit/master/docs/2021-lust/easybuild_library.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="using-easybuild-as-a-library">Using EasyBuild as a library<a class="headerlink" href="#using-easybuild-as-a-library" title="Permanent link">&para;</a></h1>
+<p>You can use EasyBuild as a Python library and implement a script to automate a particular task.</p>
+<p>All the functionality provided by the EasyBuild framework can be leveraged,
+so you only have to glue things together and add the missing pieces.</p>
+<h2 id="setting-up-the-easybuild-configuration">Setting up the EasyBuild configuration<a class="headerlink" href="#setting-up-the-easybuild-configuration" title="Permanent link">&para;</a></h2>
+<p>Before you call any of the functions provided by the EasyBuild framework,
+you should initialize EasyBuild by <strong>setting up the configuration</strong>.
+Some of the EasyBuild framework functions assume that EasyBuild has been initialized properly,
+and calling them without doing so will result in errors.</p>
+<p>To set up the EasyBuild configuration, you should call the <code>set_up_configuration</code> function
+that is provided by the <code>easybuild.tools.options</code> module.</p>
+<p>This function takes a couple of optional arguments that are useful in the context of
+a Python script that uses EasyBuild as a library:</p>
+<ul>
+<li>Via <code>args</code> you can provide a list of command line arguments that should be passed to the option parser.
+  By default, the standard command line arguments are picked up via <code>sys.args</code>, which may not be what you want.</li>
+<li>By passing <code>silent=True</code> you can specify that the <code>set_up_configuration</code> function should not print
+  anything when it is called. By default, it will print the location to the temporary EasyBuild log file.</li>
+</ul>
+<h3 id="cleaning-up-the-temporary-directory">Cleaning up the temporary directory<a class="headerlink" href="#cleaning-up-the-temporary-directory" title="Permanent link">&para;</a></h3>
+<p>When EasyBuild is configured, a temporary directory specific to that EasyBuild session will be created automatically.
+You should clean up that directory, especially if you will be creating temporary files, or if the script will be run
+often.</p>
+<p>Note that cleaning up the temporary directory implies removes the temporary log files,
+so you probably only want to do this if no errors occured.</p>
+<h3 id="minimal-example-script">Minimal example script<a class="headerlink" href="#minimal-example-script" title="Permanent link">&para;</a></h3>
+<p>Here is a minimal (and pretty useless) example Python script, which sets up the EasyBuild configuration
+and cleans up the temporary directory:</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">from</span> <span class="nn">easybuild.tools.filetools</span> <span class="kn">import</span> <span class="n">remove_dir</span>
+<span class="kn">from</span> <span class="nn">easybuild.tools.options</span> <span class="kn">import</span> <span class="n">set_up_configuration</span>
+
+<span class="n">opts</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">set_up_configuration</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="p">[],</span> <span class="n">silent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">remove_dir</span><span class="p">(</span><span class="n">opts</span><span class="o">.</span><span class="n">tmpdir</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="example-use-cases">Example use cases<a class="headerlink" href="#example-use-cases" title="Permanent link">&para;</a></h2>
+<p>Once the EasyBuild configuration has been set up, the functions provided by the EasyBuild framework
+can be called from a Python script (or directly from the Python interpreter).</p>
+<p>A full overview of all functions is available via the <a href="https://docs.easybuild.io/en/latest/api/easybuild.html">EasyBuild API documentation</a>.</p>
+<p>We highlight a couple commonly used functions in the sections below.</p>
+<h3 id="file-operations">File operations<a class="headerlink" href="#file-operations" title="Permanent link">&para;</a></h3>
+<p>The <a href="https://docs.easybuild.io/en/latest/api/easybuild.tools.filetools.html"><code>easybuild.tools.filetools</code></a>
+module provides a bunch of functions for performing file operations.</p>
+<p>That includes straightforward things like reading, writing, and copying files
+(see <a href="https://docs.easybuild.io/en/latest/api/easybuild.tools.filetools.html#easybuild.tools.filetools.read_file"><code>read_file</code></a>, <a href="https://docs.easybuild.io/en/latest/api/easybuild.tools.filetools.html#easybuild.tools.filetools.write_file"><code>write_file</code></a>, <a href="https://docs.easybuild.io/en/latest/api/easybuild.tools.filetools.html#easybuild.tools.filetools.copy_file"><code>copy_file</code></a>), but also more specific functionality like applying a patch file (<a href="https://docs.easybuild.io/en/latest/api/easybuild.tools.filetools.html#easybuild.tools.filetools.apply_patch"><code>apply_patch</code></a>),
+computing different types of checksums for a file (<a href="https://docs.easybuild.io/en/latest/api/easybuild.tools.filetools.html#easybuild.tools.filetools.compute_checksum"><code>compute_checksum</code></a>), and downloading files
+(<a href="https://docs.easybuild.io/en/latest/api/easybuild.tools.filetools.html#easybuild.tools.filetools.download_file"><code>download_file</code></a>).</p>
+<p>Here is a trivial example where we download a file from a specified URL to a temporary directory,
+compute the SHA256 checksum, and then copy the downloaded file to the current working directory:</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">tempfile</span>
+
+<span class="kn">from</span> <span class="nn">easybuild.tools.filetools</span> <span class="kn">import</span> <span class="n">download_file</span><span class="p">,</span> <span class="n">compute_checksum</span><span class="p">,</span> <span class="n">copy_file</span><span class="p">,</span> <span class="n">remove_dir</span>
+<span class="kn">from</span> <span class="nn">easybuild.tools.options</span> <span class="kn">import</span> <span class="n">set_up_configuration</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">opts</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">set_up_configuration</span><span class="p">()</span>
+
+<span class="n">fn</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">tmp_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">opts</span><span class="o">.</span><span class="n">tmpdir</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span>
+<span class="n">download_file</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">tmp_path</span><span class="p">)</span>
+
+<span class="n">sha256</span> <span class="o">=</span> <span class="n">compute_checksum</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">,</span> <span class="n">checksum_type</span><span class="o">=</span><span class="s1">&#39;sha256&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SHA256 checksum for </span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">sha256</span><span class="p">))</span>
+
+<span class="n">target_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+<span class="n">copy_file</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">,</span> <span class="n">target_dir</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> copied to </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">target_dir</span><span class="p">))</span>
+
+<span class="c1"># cleanup temp dir</span>
+<span class="n">remove_dir</span><span class="p">(</span><span class="n">opts</span><span class="o">.</span><span class="n">tmpdir</span><span class="p">)</span>
+</code></pre></div>
+<p>Example output:
+<div class="highlight"><pre><span></span><code>$ <span class="nb">export</span> <span class="nv">TEST_URL</span><span class="o">=</span><span class="s1">&#39;https://github.com/easybuilders/easybuild-tutorial/raw/main/docs/files/eb-tutorial-1.0.1.tar.gz&#39;</span>
+$ python3 download_and_copy.py <span class="nv">$TEST_URL</span>
+<span class="o">==</span> Temporary log file <span class="k">in</span> <span class="k">case</span> of crash /tmp/eb-or_xhaw8/easybuild-ewooa00c.log
+SHA256 checksum <span class="k">for</span> eb-tutorial-1.0.1.tar.gz: d6cec2ea298f4092cb1b880cb017220ab191561da941e9e480639cf3354b7ef9
+eb-tutorial-1.0.1.tar.gz copied to /home/example
+</code></pre></div>
+We are deliberately <em>not</em> specifying the <code>args</code> optional argument to the <code>set_up_configuration</code> call here,
+so we can pass EasyBuild configuration options as command line arguments to this script.
+Of course, only those configuration options that are taken into account by the EasyBuild
+framework functions being called have any impact. For example:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># wait for max. 1h for the download to complete</span>
+python3 download_and_copy.py <span class="nv">$TEST_URL</span> --download-timeout <span class="m">3600</span>
+</code></pre></div>
+<h3 id="running-shell-commands">Running shell commands<a class="headerlink" href="#running-shell-commands" title="Permanent link">&para;</a></h3>
+<p>To run shell commands, we can leverage the <code>run_cmd</code> functions from the <code>easybuild.tools.run</code> module.</p>
+<p>Here is a simple example for running the '<code>make</code>' command via a Python script:</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">from</span> <span class="nn">easybuild.tools.filetools</span> <span class="kn">import</span> <span class="n">remove_dir</span><span class="p">,</span> <span class="n">which</span>
+<span class="kn">from</span> <span class="nn">easybuild.tools.run</span> <span class="kn">import</span> <span class="n">run_cmd</span>
+<span class="kn">from</span> <span class="nn">easybuild.tools.options</span> <span class="kn">import</span> <span class="n">set_up_configuration</span>
+
+<span class="n">opts</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">set_up_configuration</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="p">[])</span>
+
+<span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39;make&#39;</span>
+<span class="n">cmd_path</span> <span class="o">=</span> <span class="n">which</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">cmd_path</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&gt;&gt;&gt; &#39;</span><span class="si">%s</span><span class="s2">&#39; command found at </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">cmd_path</span><span class="p">))</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;ERROR: &#39;</span><span class="si">%s</span><span class="s2">&#39; command not found!</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">cmd</span><span class="p">)</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;make&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+<span class="n">out</span><span class="p">,</span> <span class="n">ec</span> <span class="o">=</span> <span class="n">run_cmd</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&gt;&gt;&gt; Output of &#39;</span><span class="si">%s</span><span class="s2">&#39; (exit code </span><span class="si">%s</span><span class="s2">):</span><span class="se">\n\n</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">ec</span><span class="p">,</span> <span class="n">out</span><span class="p">))</span>
+
+<span class="n">remove_dir</span><span class="p">(</span><span class="n">opts</span><span class="o">.</span><span class="n">tmpdir</span><span class="p">)</span>
+</code></pre></div>
+<p>Note that in this case it is important to use <code>args=[]</code> when calling <code>set_up_configuration</code>,
+to avoid that the additional script arguments which are options for the '<code>make</code>' command
+are picked up by the EasyBuild option parser.</p>
+<p>Example usage:</p>
+<div class="highlight"><pre><span></span><code>$ python3 run_make.py --version
+<span class="o">==</span> Temporary log file <span class="k">in</span> <span class="k">case</span> of crash /tmp/eb-zfvbceg6/easybuild-7tynetaj.log
+
+&gt;&gt; Output of <span class="s1">&#39;make --version&#39;</span> <span class="o">(</span><span class="nb">exit</span> code <span class="m">0</span><span class="o">)</span>:
+
+GNU Make <span class="m">3</span>.81
+</code></pre></div>
+<h3 id="interacting-with-the-modules-tool">Interacting with the modules tool<a class="headerlink" href="#interacting-with-the-modules-tool" title="Permanent link">&para;</a></h3>
+<p>You can interact with the environment modules tool in a Python script using the
+<a href="https://docs.easybuild.io/en/latest/api/easybuild.tools.modules.html"><code>easybuild.tools.modules</code></a>
+Python module that is a part of the EasyBuild framework.
+The modules tool that will be used is determined by the active EasyBuild configuration.</p>
+<p>Here is an example script that checks which modules are available and currently loaded,
+loads the default module file for <code>bzip2</code>, and inspects the resulting changes to the environment.</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">from</span> <span class="nn">easybuild.tools.filetools</span> <span class="kn">import</span> <span class="n">remove_dir</span>
+<span class="kn">from</span> <span class="nn">easybuild.tools.modules</span> <span class="kn">import</span> <span class="n">get_software_root_env_var_name</span><span class="p">,</span> <span class="n">modules_tool</span>
+<span class="kn">from</span> <span class="nn">easybuild.tools.options</span> <span class="kn">import</span> <span class="n">set_up_configuration</span>
+
+<span class="n">opts</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">set_up_configuration</span><span class="p">()</span>
+
+<span class="c1"># obtain ModulesTool instance for preferred modules tool (determined by active EasyBuild configuration)</span>
+<span class="n">mod_tool</span> <span class="o">=</span> <span class="n">modules_tool</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Active modules tool: </span><span class="si">%s</span><span class="s2"> version </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">mod_tool</span><span class="o">.</span><span class="n">NAME</span><span class="p">,</span> <span class="n">mod_tool</span><span class="o">.</span><span class="n">version</span><span class="p">))</span>
+
+<span class="n">avail_modules</span> <span class="o">=</span> <span class="n">mod_tool</span><span class="o">.</span><span class="n">available</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Found </span><span class="si">%d</span><span class="s2"> available modules in total&quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">avail_modules</span><span class="p">))</span>
+
+<span class="n">avail_eb_modules</span> <span class="o">=</span> <span class="n">mod_tool</span><span class="o">.</span><span class="n">available</span><span class="p">(</span><span class="s1">&#39;EasyBuild&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Found </span><span class="si">%d</span><span class="s2"> available modules for EasyBuild: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">avail_eb_modules</span><span class="p">),</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">avail_eb_modules</span><span class="p">)))</span>
+
+<span class="n">loaded_modules</span> <span class="o">=</span> <span class="n">mod_tool</span><span class="o">.</span><span class="n">loaded_modules</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2"> modules are currently loaded: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">loaded_modules</span><span class="p">),</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">loaded_modules</span><span class="p">)))</span>
+
+<span class="c1"># load default module for bzip2, check changes to environment</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;bzip2&#39;</span>
+<span class="n">env_var_name</span> <span class="o">=</span> <span class="n">get_software_root_env_var_name</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">avail_modules</span><span class="p">):</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Current $</span><span class="si">%s</span><span class="s2"> value: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">env_var_name</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="n">env_var_name</span><span class="p">,</span> <span class="s1">&#39;(no set)&#39;</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Loading (default) &#39;</span><span class="si">%s</span><span class="s2">&#39; module...&quot;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
+
+    <span class="n">mod_tool</span><span class="o">.</span><span class="n">load</span><span class="p">([</span><span class="n">name</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Loaded modules: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">mod_tool</span><span class="o">.</span><span class="n">loaded_modules</span><span class="p">()))</span>
+
+    <span class="c1"># inspect $_LMFILES_ environment variable to determine path to loaded bzip2 module file</span>
+    <span class="k">for</span> <span class="n">mod_file_path</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;_LMFILES_&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">mod_file_path</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Path to loaded </span><span class="si">%s</span><span class="s2"> module: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">mod_file_path</span><span class="p">))</span>
+            <span class="k">break</span>
+
+    <span class="c1"># $EBROOTBZIP2 should be set now (if the bzip2 module was installed with EasyBuild)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Current $</span><span class="si">%s</span><span class="s2"> value: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">env_var_name</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="n">env_var_name</span><span class="p">,</span> <span class="s1">&#39;(no set)&#39;</span><span class="p">)))</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;No modules available for </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">remove_dir</span><span class="p">(</span><span class="n">opts</span><span class="o">.</span><span class="n">tmpdir</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="parsing-easyconfig-files">Parsing easyconfig files<a class="headerlink" href="#parsing-easyconfig-files" title="Permanent link">&para;</a></h3>
+<p>Here is another small example Python script, which uses the EasyBuild framework functionality
+to locate and parse an easyconfig file, and inspect the value of specific easyconfig parameters.</p>
+<p>We define a small helper function named <code>parse_easyconfig</code>, because the EasyBuild framework API
+is a bit awkward to use for this simple use case.</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">from</span> <span class="nn">easybuild.framework.easyconfig.tools</span> <span class="kn">import</span> <span class="n">det_easyconfig_paths</span><span class="p">,</span> <span class="n">parse_easyconfigs</span>
+<span class="kn">from</span> <span class="nn">easybuild.tools.options</span> <span class="kn">import</span> <span class="n">set_up_configuration</span>
+
+
+<span class="k">def</span> <span class="nf">parse_easyconfig</span><span class="p">(</span><span class="n">ec_fn</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Helper function: find and parse easyconfig with specified filename,</span>
+<span class="sd">    and return parsed easyconfig file (an EasyConfig instance).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># determine path to easyconfig file</span>
+    <span class="n">ec_path</span> <span class="o">=</span> <span class="n">det_easyconfig_paths</span><span class="p">([</span><span class="n">ec_fn</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># parse easyconfig file;</span>
+    <span class="c1"># the &#39;parse_easyconfigs&#39; function expects a list of tuples,</span>
+    <span class="c1"># where the second item indicates whether or not the easyconfig file was automatically generated or not</span>
+    <span class="n">ec_dicts</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">parse_easyconfigs</span><span class="p">([(</span><span class="n">ec_path</span><span class="p">,</span> <span class="kc">False</span><span class="p">)])</span>
+
+    <span class="c1"># only retain first parsed easyconfig, ignore any others (which are unlikely anyway)</span>
+    <span class="k">return</span> <span class="n">ec_path</span><span class="p">,</span> <span class="n">ec_dicts</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;ec&#39;</span><span class="p">]</span>
+
+
+<span class="c1"># check whether required arguments are provided</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;ERROR: Usage: </span><span class="si">%s</span><span class="s2"> &lt;name of easyconfig file&gt; &lt;easyconfig parameter name(s)&gt;&quot;</span><span class="p">)</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ec_fn</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">keys</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+
+<span class="n">set_up_configuration</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="p">[],</span> <span class="n">silent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">ec_path</span><span class="p">,</span> <span class="n">ec</span> <span class="o">=</span> <span class="n">parse_easyconfig</span><span class="p">(</span><span class="n">ec_fn</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Inspecting </span><span class="si">%s</span><span class="s2"> ...&quot;</span> <span class="o">%</span> <span class="n">ec_path</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">ec</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span>
+</code></pre></div>
+<p>Example usage:</p>
+<div class="highlight"><pre><span></span><code>$ ./inspect_easyconfig.py Subread-2.0.0-GCC-8.3.0.eb name version sources sanity_check_paths
+name: Subread
+version: <span class="m">2</span>.0.0
+sources: <span class="o">[</span><span class="s1">&#39;subread-2.0.0-source.tar.gz&#39;</span><span class="o">]</span>
+sanity_check_paths: <span class="o">{</span><span class="s1">&#39;files&#39;</span>: <span class="o">[</span><span class="s1">&#39;bin/exactSNP&#39;</span>, <span class="s1">&#39;bin/featureCounts&#39;</span>, <span class="s1">&#39;bin/subindel&#39;</span>, <span class="s1">&#39;bin/subjunc&#39;</span>, <span class="s1">&#39;bin/sublong&#39;</span>, <span class="s1">&#39;bin/subread-align&#39;</span>, <span class="s1">&#39;bin/subread-buildindex&#39;</span><span class="o">]</span>, <span class="s1">&#39;dirs&#39;</span>: <span class="o">[</span><span class="s1">&#39;bin/utilities&#39;</span><span class="o">]}</span>
+</code></pre></div>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 27, 2021</span>
+    
+  </small>
+</div>
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../part3_advanced/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              (overview)
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../hooks/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Using hooks to customise EasyBuild
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/easy_build" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://www.youtube.com/c/easybuilders" target="_blank" rel="noopener" title="www.youtube.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://easybuild.readthedocs.io" target="_blank" rel="noopener" title="easybuild.readthedocs.io" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M448 360V24c0-13.3-10.7-24-24-24H96C43 0 0 43 0 96v320c0 53 43 96 96 96h328c13.3 0 24-10.7 24-24v-16c0-7.5-3.5-14.3-8.9-18.7-4.2-15.4-4.2-59.3 0-74.7 5.4-4.3 8.9-11.1 8.9-18.6zM128 134c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm0 64c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm253.4 250H96c-17.7 0-32-14.3-32-32 0-17.6 14.4-32 32-32h285.4c-1.9 17.1-1.9 46.9 0 64z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["instant"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      
+    
+  </body>
+</html>
