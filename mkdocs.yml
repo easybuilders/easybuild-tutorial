@@ -29,18 +29,26 @@ nav:
       - Comparison with other tools: 2020-06-isc20/comparison_other_tools.md
       - Getting help: 2020-06-isc20/getting_help.md
   - "LUST (spring '21)":
-      - Overview: 2021-lust/index.md
+      - (overview): 2021-lust/index.md
       - Introduction to EasyBuild:
+          - (overview): 2021-lust/part1_intro.md
           - What is EasyBuild?: 2021-lust/what_is_easybuild.md
           - Terminology: 2021-lust/terminology.md
           - Installation: 2021-lust/installation.md
           - Configuration: 2021-lust/configuration.md
           - Basic usage: 2021-lust/basic_usage.md
       - Using EasyBuild:
+          - (overview): 2021-lust/part2_using.md
           - Troubleshooting: 2021-lust/troubleshooting.md
           - Creating easyconfig files: 2021-lust/creating_easyconfig_files.md
           - Implementing easyblocks: 2021-lust/implementing_easyblocks.md
-      - Advanced topics: 2021-lust/part3_advanced.md
+      - Advanced topics:
+          - (overview): 2021-lust/part3_advanced.md
+          - Using EasyBuild as a library: 2021-lust/easybuild_library.md
+          - Using hooks to customise EasyBuild: 2021-lust/hooks.md
+          - Submitting installations as Slurm jobs: 2021-lust/slurm_jobs.md
+          - Module naming schemes (incl. hierarchical): 2021-lust/module_naming_schemes.md
+          - GitHub integration to facilitate contributing to EasyBuild: 2021-lust/github_integration.md
       - EasyBuild on Cray systems: 2021-lust/part4_cray.md
 plugins:
   # show revision date at bottom of each page
