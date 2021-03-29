@@ -27,7 +27,7 @@ they specify they will most likely be overruled by the corresponding command lin
 
 ### Job backend
 
-The default job backend in EasyBuild v4 is [``GC3Pie``](https://gc3pie.readthedocs.io).
+The default job backend in EasyBuild v4.x is [``GC3Pie``](https://gc3pie.readthedocs.io).
 To let EasyBuild submit jobs to Slurm instead, you should set the ``job-backend`` configuration setting
 to ``Slurm``, for example by setting the corresponding environment variable:
 
@@ -52,7 +52,7 @@ For example:
 eb example.eb --job --job-cores 5 --job-max-walltime 2
 ```
 
-Note that not all ``job-*`` configuration settings applies to all job backends,
+Note that not all ``job-*`` configuration settings apply to all job backends,
 see the [EasyBuild documentation](https://docs.easybuild.io/en/latest/Submitting_jobs.html) for more details.
 
 ### Controlling Slurm submission options
@@ -63,7 +63,7 @@ using the ``sbatch`` command.
 
 EasyBuild currently doesn't provide away to customize the Slurm submission options,
 for example to submit to a particular partition, or to use a particular account,
-you should set the corresponding ``$SBATCH_*`` environment variables prior to running ``eb --job``.
+build you can set the corresponding ``$SBATCH_*`` environment variables prior to running ``eb --job``.
 
 For example, to specify a particular account that should be used for the jobs submitted by EasyBuild
 (equivalent with using the ``-A`` or ``--account`` command line option for ``sbatch``):
@@ -75,7 +75,7 @@ export SBATCH_ACCOUNT='example_project'
 Or to submit to a particular Slurm partition (equivalent with the ``-p`` or ``--partition`` option for ``sbatch``):
 
 ```shell
-export SBATCH_PARTITION='example'
+export SBATCH_PARTITION='example_partition'
 ```
 
 For more information about supported ``$SBATCH_*`` environment variables,
@@ -84,8 +84,9 @@ see the [Slurm documentation](https://slurm.schedmd.com/sbatch.html#lbAJ).
 ## Combining ``--job`` and ``--robot``
 
 If one or more dependencies are still missing for the software you want to install,
-you can combine ``--job`` and ``--robot`` to get EasyBuild to submit a separate job
-for each of the installations.
+you can combine ``--job`` and ``--robot`` to get EasyBuild to submit a *separate* job
+for each of the installations. These jobs will *not* ``--robot``, they will each only
+perform a single installation.
 
 Dependencies between jobs will be "registered" at submission time, so Slurm will put jobs
 on hold until the jobs that install the required (build) dependencies have completed successfully,
@@ -97,20 +98,19 @@ There are a couple of important things to keep an eye on when submitting install
 
 ### Differences on cluster workernodes
 
-Sometimes the configuration of the login nodes and cluster workernodes is slightly different,
+Sometimes the resources available on the login nodes and cluster workernodes are slightly different,
 and you may need to take this into account in your EasyBuild configuration.
 
-For example, plenty of disk space may be available in the `/tmp` temporary filesystem on login node,
+For example, plenty of disk space may be available in the `/tmp` temporary filesystem on a login node,
 while the workernodes require you to use a different location for temporary files and directories.
-
 As a result, you may need to slightly change your EasyBuild configuration when submitting installations
 as jobs, to avoid that they fail almost instantly due to a lack of disk space.
 
 Keep in mind that the active EasyBuild configuration is passed down into the submitted jobs,
-so any configuration that is done on the workernodes may not have any effect.
+so any configuration that is present on the workernodes may not have any effect.
 
 For example, if you commonly use `/tmp/$USER` for build directories on a login node,
-you may need to tweak that when submitting jobs:
+you may need to tweak that when submitting jobs to use a different location:
 
 ```shell
 # EasByuild is configured to use /tmp/$USER on the login node
@@ -139,7 +139,7 @@ To remedy this, there are a couple of EasyBuild configuration options you can us
 * If you prefer having the entire log file stored in the Slurm job output files,
   you can use ``--logtostdout`` when submitting the jobs. This will result in extensive logging
   to your terminal window when submitting the jobs, but it will also make EasyBuild
-  log to ``stdout`` when the installation is running in the job, and hence the output will be
+  log to ``stdout`` when the installation is running in the job, and hence the log messages will be
   captured in the job output files.
 
 The same remark applies to build directories: they should be on a local filesystem (to avoid problems
@@ -182,7 +182,7 @@ export EASYBUILD_BUILDPATH=/dev/shm/$USER
 export EASYBUILD_JOB_BACKEND=Slurm
 ```
 
-In addition, add the path to the centrally installed software is included in ``$MODULEPATH``:
+In addition, add the path to the centrally installed software to ``$MODULEPATH`` via ``module use``:
 
 ```shell
 module use /easybuild/modules/all
