@@ -105,7 +105,7 @@ pip3 install --user GitPython keyring keyrings.cryptfile
     You can work around this issue using:
 
     ```shell
-    pip3 install --user GitPython 'cryptography<3.4'
+    pip3 install --user 'cryptography<3.4'
     ```
 
 **SSH public key in GitHub account**
