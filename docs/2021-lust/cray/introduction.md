@@ -84,8 +84,13 @@ For more information, please see [The User Guide for Lmod](https://lmod.readthed
 
 ## Documentation
 
-...
+[Cray Pubs](https://pubs.cray.com) is the documentation portal of HPE/Cray.
+
+The GitHub project [PE-Cray](https://github.com/PE-Cray) provides additional documentation:
+- whitepapers are available at https://github.com/PE-Cray/whitepapers
+
+Documentation on the Cray Programming Environment (PE) can be found under https://pubs.cray.com/category/pe-tile.
 
 ---
 
-*[[next: Custom Toolchains]](custom_toolchains.md)*
+*[[next: External Modules]](external_modules.md)*

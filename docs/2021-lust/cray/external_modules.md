@@ -1,36 +1,82 @@
 # Cray External Modules
 
+
+For each external module of the Cray Programming Environment, man pages are provided on the system.
+
+> NOTE: Library-specific manpages are available only when the associated module is loaded.
+
+---
+
+## Compilers
+
+...
+
 ---
 
 ## Cray Scientific and Math Library
 
-Installing software with EasyBuild is as easy as specifying to the **`eb` command** what we
-want to install, and then sitting back to enjoy a coffee or tea (or whatever beverage you prefer).
+Modules: `cray-libsci`, `cray-fftw`
+Manpages: `intro_libsci`, `intro_fftw3`
 
-This is typically done by **specifying the name of one or more easyconfig files**, often combined
-with the `--robot` option to let EasyBuild also install missing dependencies.
-  
-It is recommended to first assess the current situation before letting EasyBuild install the software,
-and to check which **dependencies** are already installed and which are still missing. In addition,
-you may want to inspect the specifics of the **installation procedure** that will be performed by EasyBuild,
-and ensure that the active EasyBuild configuration is what it should be.
+The Cray Scientific and Math Libraries (CSML, also known as LibSci) are a collection of numerical routines
+optimized for best performance on Cray systems. These libraries satisfy dependencies for many commonly used
+applications on Cray systems for a wide variety of domains. When the module for a CSML package (such as
+cray-libsci or cray-fftw) is loaded, all relevant headers and libraries for these packages are added to the
+compile and link lines of the cc, ftn, and CC Cray PE drivers.
+
+### Scientific Libraries:
+
+* BLAS (Basic Linear Algebra Subroutines)
+* BLACS (Basic Linear Algebra Communication Subprograms)
+* CBLAS (Collection of wrappers providing a C interface to the Fortran BLAS library)
+* IRT (Iterative Refinement Toolkit)
+* LAPACK (Linear Algebra Routines)
+* LAPACKE (C interfaces to LAPACK Routines)
+* ScaLAPACK (Scalable LAPACK)
+* `libsci_acc` (library of Cray-optimized BLAS, LAPACK, and ScaLAPACK routines)
+* NetCDF (Network Common Data Format)
+* FFTW3 (the Fastest Fourier Transforms in the West, release 3)
+
+---
+
+## Cray MPICH
+
+Modules: `cray-mpich`
+Manpages: `intro_mpi`
+Websites: http://www.mpi-forum.org
+
+MPI is a widely used parallel programming model that establishes a practical, portable, efficient, and flexible
+standard for passing messages between ranks in parallel processes. Cray MPI is derived from Argonne National
+Laboratory MPICH and implements the MPI-3.1 standard as documented by the MPI Forum in MPI: A Message
+Passing Interface Standard, Version 3.1.
+Support for MPI varies depending on system hardware. To see which functions and environment variables the
+system supports, check the `intro_mpi` manpages.
+
+--- 
+
+## DSMML
+
+Modules: `cray-dsmml`
+Manpages: `intro_dsmml`
+Websites: https://pe-cray.github.io/cray-dsmml
+
+Distributed Symmetric Memory Management Library (DSMML) is a proprietary memory management library.
+DSMML is a standalone memory management library for maintaining distributed shared symmetric memory
+heaps for top-level PGAS languages and libraries like Coarray Fortran, UPC, and OpenSHMEM. DSMML allows
+user libraries to create multiple symmetric heaps and share information with other libraries. Through DSMML,
+interoperability can be extracted between PGAS programming models.
+Refer to the `intro_dsmml` manpage for more details.
 
 ---
 
 ## Third party libraries
 
-Letting EasyBuild know what should be installed can be done by specifying one or more easyconfig files,
-which is also the most common way. Alternative methods like using the `--software-name` option won't be
-covered in this tutorial, since they are not commonly used.
-
-Arguments passed to the `eb` command, being anything that is *not* an option (which starts with `-` or `--`) or
-is a value for a preceding configuration option, are assumed to refer to easyconfig files (with some exceptions).
-These could be:
-
-* the *(absolute or relative) path* to an easyconfig file;
-* the *name* of an easyconfig file;
-* the path to a *directory* containing easyconfig files;
-
-Specified paths to files must of course point to existing files; if not, EasyBuild will print an appropriate error message.
+...
 
 ---
+
+## EasyBuild Metadata
+
+...
+
+*[[next: Custom Toolchains]](custom_toolchains.md)*
