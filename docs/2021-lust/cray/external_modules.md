@@ -159,7 +159,7 @@ Metadata can be supplied to EasyBuild for external modules.
 Using the `--external-modules-metadata` configuration option, the location of one or more metadata files can be specified.
 The files are expected to be in INI format, with a section per module name and key-value assignments specific to that module.
 
-CSCS systems define the external modules metadata file with environment varialbles:
+CSCS systems define the external modules metadata file with environment variables:
 ```
 echo $EASYBUILD_EXTERNAL_MODULES_METADATA 
 /apps/common/UES/jenkins/production/easybuild/alps_external_modules_metadata-21.05.cfg
