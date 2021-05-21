@@ -153,4 +153,4 @@ eb --ignore-locks -r --try-toolchain-version=21.05  Amber-20-15-9-cpeIntel-21.04
 == Temporary directory /run/user/23395/easybuild/tmp/eb-ss0j8hgy has been removed.
 ```
 
-*[[next: EasyBuild at CSCS]](easybuild_at_CSCS.md)*
+*[[next: EasyBuild at CSCS]](easybuild_at_cscs.md)*
