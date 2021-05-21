@@ -16,7 +16,7 @@ For such dependencies, EasyBuild will:
 * load the module before initiating the software build and install procedure
 * include a `module load` statement in the generated module file (for non-build dependencies)
 
-> NOTE: Tthe default version of the external module will be loaded unless a specific version is given as dependency. 
+> NOTE: The default version of the external module will be loaded unless a specific version is given as dependency. 
 
 If the specified module is not available, EasyBuild will exit with an error message stating that the dependency 
 can not be resolved because the module could not be found, without searching for a matching easyconfig file.

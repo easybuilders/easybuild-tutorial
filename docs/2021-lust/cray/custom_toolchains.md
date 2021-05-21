@@ -19,7 +19,7 @@ two systems.
 ## Cray Toolchains
 
 EasyBuild supports Cray systems as of version 2.7.0, enabling building and installing software using 
-the Programming Environement modulefiles provided by Cray. 
+the Programming Environment modulefiles provided by Cray. 
 
 The EasyBuild Cray toolchains currently supported in the [GitHub repository](https://github.com/easybuilders/easybuild-framework) 
 are the following ones:
