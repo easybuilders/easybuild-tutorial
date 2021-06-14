@@ -86,7 +86,77 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://easybuilders.github.io/easybuild-tutorial/2021-isc21/adding_support_additional_software/</loc>
+         <lastmod>2021-06-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://easybuilders.github.io/easybuild-tutorial/2021-isc21/basic_usage/</loc>
+         <lastmod>2021-06-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://easybuilders.github.io/easybuild-tutorial/2021-isc21/community/</loc>
+         <lastmod>2021-06-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://easybuilders.github.io/easybuild-tutorial/2021-isc21/computecanada/</loc>
+         <lastmod>2021-06-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://easybuilders.github.io/easybuild-tutorial/2021-isc21/configuration/</loc>
+         <lastmod>2021-06-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://easybuilders.github.io/easybuild-tutorial/2021-isc21/contributing/</loc>
+         <lastmod>2021-06-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://easybuilders.github.io/easybuild-tutorial/2021-isc21/getting_ready/</loc>
+         <lastmod>2021-06-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://easybuilders.github.io/easybuild-tutorial/2021-isc21/installation/</loc>
+         <lastmod>2021-06-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://easybuilders.github.io/easybuild-tutorial/2021-isc21/installing_software/</loc>
+         <lastmod>2021-06-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://easybuilders.github.io/easybuild-tutorial/2021-isc21/introduction/</loc>
+         <lastmod>2021-06-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://easybuilders.github.io/easybuild-tutorial/2021-isc21/jsc/</loc>
+         <lastmod>2021-06-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://easybuilders.github.io/easybuild-tutorial/2021-isc21/module_naming_schemes/</loc>
+         <lastmod>2021-06-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://easybuilders.github.io/easybuild-tutorial/2021-isc21/practical_info/</loc>
+         <lastmod>2021-06-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://easybuilders.github.io/easybuild-tutorial/2021-isc21/terminology/</loc>
+         <lastmod>2021-06-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://easybuilders.github.io/easybuild-tutorial/2021-isc21/troubleshooting/</loc>
          <lastmod>2021-06-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
