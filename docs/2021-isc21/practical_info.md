@@ -15,7 +15,7 @@ tutorial exercises.
 
 ## Slack
 
-We recommend joining the [#tutorial](https://easybuild.slack.com/archives/C014UFG2R43)
+We strongly recommend joining the [#tutorial-isc21](https://easybuild.slack.com/archives/C024XFGPC8G)
 channel in the [EasyBuild Slack](https://easybuild.slack.com).
 
 In this channel, you can:
@@ -23,11 +23,11 @@ In this channel, you can:
 * raise questions both during the live tutorial session, and afterwards;
 * get help with following the hands-on examples or solving the exercises;
 
-The `#tutorial` channel will remain available after the live tutorial
+The `#tutorial-isc21` channel will remain available after the live tutorial
 session.
 
 You can self-request an invitation to join the EasyBuild Slack via
-[https://easybuild-slack.herokuapp.com](https://easybuild-slack.herokuapp.com).
+[https://easybuild.io/join-slack](https://easybuild.io/join-slack).
 
 ---
 
