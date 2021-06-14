@@ -11,6 +11,14 @@ Tutorial attendees will be able to log in to a prepared environment
 where they can follow along with hands-on examples, or solve the
 tutorial exercises.
 
+You can create an account for the prepared environment please fill
+out the [account form](https://mokey.isc21.learnhpc.eu/auth/signup).
+The accounts will not be approved until the day before the event, so 
+**please remember to keep a record of your username and password**.
+
+Once the account is approved, you will be able to access the system
+at https://isc21.learnhpc.eu/ (or via `ssh` to `isc21.learnhpc.eu`).
+
 *(more info on getting access coming soon)*
 
 ## Slack
