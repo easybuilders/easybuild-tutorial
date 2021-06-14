@@ -2,7 +2,7 @@
 
 *[[back to start page]](index.md)*
 
-*(Date and time to be defined)*
+*(Friday June 18th 2021, 09-12 CEST)*
 
 * [Introduction to Cray Programming Environment](cray/introduction.md) *(hands-on)*
 * [Cray External Modules](cray/external_modules.md) *(hands-on)*
