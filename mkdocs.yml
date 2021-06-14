@@ -1,7 +1,9 @@
 site_name: "EasyBuild tutorial"
-google_analytics:
-    - UA-168742780-1
-    - auto
+site_url: https://easybuilders.github.io/easybuild-tutorial
+extra:
+  analytics:
+    provider: google
+    property: UA-168742780-1
 theme:
   name: material
   logo: img/easybuild_logo.png
