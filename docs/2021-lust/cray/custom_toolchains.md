@@ -1,4 +1,4 @@
-# Custom Toolchains
+# Custom Cray toolchains
 
 EasyBuild custom toolchains have been created to address the Cray Programming Environment. 
 
@@ -23,6 +23,7 @@ the Programming Environment modulefiles provided by Cray.
 
 The EasyBuild Cray toolchains currently supported in the [GitHub repository](https://github.com/easybuilders/easybuild-framework) 
 are the following ones:
+
 * `CrayCCE`
 * `CrayGNU`
 * `CrayIntel`
@@ -42,6 +43,7 @@ the format `YY.MM` (two digits for the year, two digits for the month).
 ## CPE Toolchains
 
 The CPE toolchains have been created initially to match the modules of the Cray EX system up to CPE 21.03:
+
 * `cpe-cray`
 * `cpe-aocc`
 * `cpe-gnu`

@@ -1,4 +1,4 @@
-# Cray External Modules
+# Using external modules from the Cray PE
 
 EasyBuild supports the use of modules that were not installed via EasyBuild is available. 
 We refer to such modules as [external modules](https://docs.easybuild.io/en/latest/Using_external_modules.html).
@@ -16,14 +16,16 @@ For such dependencies, EasyBuild will:
 * load the module before initiating the software build and install procedure
 * include a `module load` statement in the generated module file (for non-build dependencies)
 
-> NOTE: The default version of the external module will be loaded unless a specific version is given as dependency. 
+!!! Note
+    The default version of the external module will be loaded unless a specific version is given as dependency.
 
 If the specified module is not available, EasyBuild will exit with an error message stating that the dependency 
 can not be resolved because the module could not be found, without searching for a matching easyconfig file.
 
 We show the main external modules used as dependencies in the Cray Programming Environment.
 
-> NOTE: Library-specific manpages are available only when the associated module is loaded.
+!!! Note
+    Library-specific manpages are available only when the associated module is loaded.
 
 ---
 
@@ -41,7 +43,8 @@ Online help: `cc -help`, `CC -help`
 Compiler wrappers call the correct compiler with appropriate options to build and link applications with relevant libraries as
 required by modules loaded. These wrappers replace direct calls to compiler drivers in Makefiles and build scripts.
 
-> Only dynamic linking is supported by compiler wrappers
+!!! Note
+    Only dynamic linking is supported by compiler wrappers.
 
 ---
 
@@ -100,8 +103,8 @@ utilities such as debuggers and performance tools to work with the Intel compile
 
 ## Cray Scientific and Math Library
 
-Modules: `cray-libsci`, `cray-fftw`
-Manpages: `intro_libsci`, `intro_fftw3`
+* Modules: `cray-libsci`, `cray-fftw`
+* Manpages: `intro_libsci`, `intro_fftw3`
 
 The Cray Scientific and Math Libraries (CSML, also known as LibSci) are a collection of numerical routines
 optimized for best performance on Cray systems. These libraries satisfy dependencies for many commonly used
@@ -126,9 +129,9 @@ compile and link lines of the cc, ftn, and CC Cray PE drivers.
 
 ## Cray MPICH
 
-Modules: `cray-mpich`
-Manpages: `intro_mpi`
-Websites: http://www.mpi-forum.org
+* Modules: `cray-mpich`
+* Manpages: `intro_mpi`
+* Website: [http://www.mpi-forum.org](http://www.mpi-forum.org)
 
 MPI is a widely used parallel programming model that establishes a practical, portable, efficient, and flexible
 standard for passing messages between ranks in parallel processes. Cray MPI is derived from Argonne National
@@ -141,9 +144,9 @@ system supports, check the `intro_mpi` manpages.
 
 ## DSMML
 
-Modules: `cray-dsmml`
-Manpages: `intro_dsmml`
-Websites: https://pe-cray.github.io/cray-dsmml
+* Modules: `cray-dsmml`
+* Manpages: `intro_dsmml`
+* Website: [https://pe-cray.github.io/cray-dsmml](https://pe-cray.github.io/cray-dsmml)
 
 Distributed Symmetric Memory Management Library (DSMML) is a proprietary memory management library.
 DSMML is a standalone memory management library for maintaining distributed shared symmetric memory
@@ -169,12 +172,12 @@ echo $EASYBUILD_EXTERNAL_MODULES_METADATA
 The files are also available on the [CSCS GitHub production repository](https://github.com/eth-cscs/production). 
 
 For instance, the external module version loaded by the dependency `cray-fftw` is specified in [alps-external_modules_metadata-21.05.cfg](https://github.com/eth-cscs/production/blob/master/easybuild/alps-external_modules_metadata-21.05.cfg)
-```
+```ini
 [cray-fftw]
 name = FFTW
 prefix = FFTW_DIR/..
 version = 3.3.8.10
 ```
-The environment variable `EBROOTFFTW` will also be defined according to the `prefix` specified in the metadata file. 
+The environment variable `$EBROOTFFTW` will also be defined according to the `prefix` specified in the metadata file.
 
 *[[next: Custom Toolchains]](custom_toolchains.md)*

@@ -39,7 +39,8 @@ which contain Tool Command Language (Tcl) code, and dynamically modifies shell e
 Sites can alternately enable Lmod to handle modules with the Cray Programming Environment on Cray EX Systems. 
 Both module systems use the same module names and syntax shown in command-line examples.
 
-> NOTE: Environment Modules and Lmod are mutually exclusive and cannot both run on the same system.
+!!! Note
+    Environment Modules and Lmod are mutually exclusive and cannot both run on the same system.
 
 The files `/etc/cray-pe.d/cray-pe-configuration.sh` and `/etc/cray-pe.d/cray-pe-configuration.csh` configuration 
 allow sites to customize the default environment and the modules contained in default collections.
