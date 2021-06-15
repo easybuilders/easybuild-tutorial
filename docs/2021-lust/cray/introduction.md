@@ -7,26 +7,32 @@ scalability, and code performance, including compilers, analyzers, optimized lib
 
 ## CPE Components
 
-* Cray Compiling Environment (CCE):
+* __Cray Compiling Environment (CCE)__:
+
   CCE consists of Cray compilers performing code analysis during compilation to generate highly optimized code. 
   Supported languages include Fortran, C and C++, and UPC (Unified Parallel C).
 
-* Cray Scientific and Mathematical Libraries: 
+* __Cray Scientific and Mathematical Libraries__: 
+
   A set of high performance libraries providing portability for scientific applications, sparse and dense linear
   algebra (BLAS, LAPACK, ScaLAPACK) and fast Fourier transforms (FFTW).
 
-* Cray Message Passing Toolkit
+* __Cray Message Passing Toolkit__:
+
   A collection of software libraries used to perform data transfers between nodes running in parallel applications. 
   It includes the Message Passing Interface (MPI) and OpenSHMEM parallel programming models. 
 
-* Cray Environment Setup and Compiling Support 
+* __Cray Environment Setup and Compiling Support__:
+  
   Libraries supporting code compilation and setting up the development environment, including compiler drivers.
 
-* Cray Performance and Analysis Tools:
+* __Cray Performance and Analysis Tools__:
+
   Tools to analyze the performance and behavior of programs that are run on Cray systems, and a Performance API (PAPI).
 
-* Cray Debugging Support Tools
-  Debugging tools, including `gdb4hpc` and `Valgrind4hpc`
+* __Cray Debugging Support Tools__:
+
+  Debugging tools, including `gdb4hpc` and `Valgrind4hpc`.
 
 ---
 
@@ -36,7 +42,8 @@ Modules enable users to modify their environment dynamically by using modulefile
 provides a user interface to the Environment Modules package. The module command system interprets modulefiles, 
 which contain Tool Command Language (Tcl) code, and dynamically modifies shell environment variables such as 
 `PATH` and `MANPATH`.
-Sites can alternately enable Lmod to handle modules with the Cray Programming Environment on Cray EX Systems. 
+
+Cray sites can alternately enable Lmod to handle modules with the Cray Programming Environment on Cray EX Systems. 
 Both module systems use the same module names and syntax shown in command-line examples.
 
 > NOTE: Environment Modules and Lmod are mutually exclusive and cannot both run on the same system.
