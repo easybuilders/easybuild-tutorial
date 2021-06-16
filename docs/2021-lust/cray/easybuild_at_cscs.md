@@ -5,11 +5,11 @@ EasyBuild has been used at CSCS since 2015 on multiple systems, using both Cray 
 CSCS staff has integrated EasyBuild within the automated pipelines used to maintain supported applications and 
 libraries for CSCS users. The pipelines are stored on GitHub and are currently launched on a Jenkins server.
 
-CSCS Production Repository on GitHub: https://github.com/eth-cscs/production
+CSCS Production Repository on GitHub: [https://github.com/eth-cscs/production](https://github.com/eth-cscs/production)
 
-Jenkins Pipelines: https://github.com/eth-cscs/production/tree/master/jenkins
+Jenkins Pipelines: [https://github.com/eth-cscs/production/tree/master/jenkins](https://github.com/eth-cscs/production/tree/master/jenkins)
 
-How to use EasyBuild at CSCS: https://user.cscs.ch/computing/compilation/easybuild
+How to use EasyBuild at CSCS: [https://user.cscs.ch/computing/compilation/easybuild](https://user.cscs.ch/computing/compilation/easybuild)
 
 --- 
 
@@ -175,6 +175,20 @@ module load EasyBuild-custom
 
 You will find the CSCS EasyBuild build recipes files under `/<your_local_path>/production/easybuild/easyconfigs`, 
 with application folders listed in alphabetical order.
+
+---
+
+## EasyBuild configuration file
+
+```
+cat ~/GitHub/lucamar/production/easybuild/easybuild.d/system_wide.cfg
+[override]
+# Comma separated list of dependencies that you want automatically hidden, (e.g. --hide-deps=zlib,ncurses) (type comma-separated list)
+hide-deps=absl,ANTLR,APR,APR-util,arpack-ng,Autoconf,Automake,Autotools,backports.weakref,Bazel,binutils,Bison,bokeh,byacc,bzip2,cairo,cloudpickle,configurable-http-proxy,Coreutils,Cube,CUDA,cuDNN,cURL,DB,Doxygen,Eigen,expat,flex,FLTK,fontconfig,freetype,funcsigs,gc,GCCcore,gettext,GL2PS,GLib,glmnet,GLPK,GMP,gnuplot,go,gperf,GPGME,GraphicsMagick,groff,GTS,guile,help2man,hwloc,inputproto,IPython,JasPer,jemalloc,kbproto,Libassuan,libcerf,libdrm,libevent,libfabric,libffi,libgd,libGLU,libgpuarray,libiberty,libjpeg-turbo,libjpeg-turbo,libpciaccess,Libpgp-error,libpng,libpthread-stubs,libQGLViewer,libreadline,libsodium,libspatialindex,LibTIFF,libtool,libunistring,libunwind,libutempter,libX11,libXau,libxcb,libXdmcp,libXext,libxml2,libXrender,libxshmfence,libyaml,LLVM,LOKI,Loki,LVM2,M4,make,makeinfo,Mako,Mesa,minieigen,mock,mxml,NASM,NASM,ncurses,nettle,networkx,nodejs,nose-parameterized,numactl,OPARI2,OpenMPI,OpenPGM,parameterized,PCRE,PDT,Perl,PIL,Pillow,pixman,pkg-config,ploticus,PMIx,popt,prereq,protobuf,protobuf-core,PyGTS,PyQt,Python-bare,Python-Xlib,PyYAML,PyZMQ,Qhull,qrupdate,Qt,renderproto,runc,scikit-image,scikit-learn,SCons,SCOTCH,Serf,SIP,SQLite,SWIG,Szip,Tcl,Tk,UCX,UDUNITS,UnZip,util-linux,Werkzeug,wheel,X11,xcb-proto,xextproto,xorg-macros,xproto,xtrans,XZ,ZeroMQ,zlib,zstd
+module-syntax=Tcl
+hide-toolchains=CrayCCE,CrayGNU,CrayIntel,CrayPGI,GCCcore,gmvapich2,gmvolf,foss,fosscuda,gompi
+allow-loaded-modules=ddt,EasyBuild-custom,EasyBuild,xalt
+```
 
 ---
 
