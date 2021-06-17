@@ -25,10 +25,12 @@ The default installation folder is instead the following:
 ```
 $HOME/easybuild/<system-name>
 ```
+
 Where `<system-name>` is the lowercase name of the system, e.g.: `eiger`.
 
-The custom EasyBuild modulefile is available both in Tcl and Lua syntax on the CSCS production repository:
-a system using Lmod for module management will load the Lua modulefile, which is ignored by systems using 
+The [custom EasyBuild modulefile](https://github.com/eth-cscs/production/tree/master/easybuild/module/EasyBuild-custom) is available both in Tcl and Lua syntax on the [CSCS production repository](https://github.com/eth-cscs/production):
+
+* a system using Lmod for module management will load the Lua modulefile, which is ignored by systems using 
 Environment modules instead.
 
 The modulefile defines the location of the EasyBuild configuration files, the recipes and the installation directories. 
@@ -180,8 +182,18 @@ with application folders listed in alphabetical order.
 
 ## EasyBuild configuration file
 
+The custom configuration of EasyBuild at CSCS is completed by the [site wide configuration file](https://github.com/eth-cscs/production/blob/master/easybuild/easybuild.d/system_wide.cfg) available in the folder `easybuild.d` under `XDG_CONFIG_DIRS`, referenced in the modulefile EasyBuild-custom.
+
+The file defines the following:
+
+* the list of hidden dependencies
+
+* the list of hidden toolchains
+
+* the list of allowed loaded modules
+ 
+The current content of the file is reported below:
 ```
-cat ~/GitHub/lucamar/production/easybuild/easybuild.d/system_wide.cfg
 [override]
 # Comma separated list of dependencies that you want automatically hidden, (e.g. --hide-deps=zlib,ncurses) (type comma-separated list)
 hide-deps=absl,ANTLR,APR,APR-util,arpack-ng,Autoconf,Automake,Autotools,backports.weakref,Bazel,binutils,Bison,bokeh,byacc,bzip2,cairo,cloudpickle,configurable-http-proxy,Coreutils,Cube,CUDA,cuDNN,cURL,DB,Doxygen,Eigen,expat,flex,FLTK,fontconfig,freetype,funcsigs,gc,GCCcore,gettext,GL2PS,GLib,glmnet,GLPK,GMP,gnuplot,go,gperf,GPGME,GraphicsMagick,groff,GTS,guile,help2man,hwloc,inputproto,IPython,JasPer,jemalloc,kbproto,Libassuan,libcerf,libdrm,libevent,libfabric,libffi,libgd,libGLU,libgpuarray,libiberty,libjpeg-turbo,libjpeg-turbo,libpciaccess,Libpgp-error,libpng,libpthread-stubs,libQGLViewer,libreadline,libsodium,libspatialindex,LibTIFF,libtool,libunistring,libunwind,libutempter,libX11,libXau,libxcb,libXdmcp,libXext,libxml2,libXrender,libxshmfence,libyaml,LLVM,LOKI,Loki,LVM2,M4,make,makeinfo,Mako,Mesa,minieigen,mock,mxml,NASM,NASM,ncurses,nettle,networkx,nodejs,nose-parameterized,numactl,OPARI2,OpenMPI,OpenPGM,parameterized,PCRE,PDT,Perl,PIL,Pillow,pixman,pkg-config,ploticus,PMIx,popt,prereq,protobuf,protobuf-core,PyGTS,PyQt,Python-bare,Python-Xlib,PyYAML,PyZMQ,Qhull,qrupdate,Qt,renderproto,runc,scikit-image,scikit-learn,SCons,SCOTCH,Serf,SIP,SQLite,SWIG,Szip,Tcl,Tk,UCX,UDUNITS,UnZip,util-linux,Werkzeug,wheel,X11,xcb-proto,xextproto,xorg-macros,xproto,xtrans,XZ,ZeroMQ,zlib,zstd
@@ -196,10 +208,12 @@ allow-loaded-modules=ddt,EasyBuild-custom,EasyBuild,xalt
 
 On Piz Daint, which is a heterogeneous system, you need to select which architecture 
 should be targeted when building software. 
+
 You can target the Intel Haswell architecture accessing the gpu software stack using the command:
 ```
 module load daint-gpu EasyBuild-custom
 ```
+
 Alternatively, you can target the Intel Broadwell architecture and the mc (multicore) software stack:
 ```
 module load daint-mc EasyBuild-custom
@@ -230,9 +244,11 @@ provided that the configuration file is in your search path: the command `eb --s
 the variable robot-paths that holds the search path. 
 
 More options are available, please have a look at the short help message typing `eb -h`. 
-For instance, you can check if any EasyBuild configuration file already exists for a given program name, using the search flag -S:
 
+For instance, you can check if any EasyBuild configuration file already exists for a given program name, using the search flag -S:
+```
 eb -S <program_name>
+```
 
 Please note that on Cray systems you can use the configuration files that rely of a Cray toolchain, 
 which you will find in the configuration filename (`eb -S <name> | grep Cray`). 
@@ -245,8 +261,10 @@ module load <modulename>/version
 ```
 
 The command module use will prepend the selected folder to your MODULEPATH environment variable, 
-therefore you will see the new modules with module avail. Please note that by default `EASYBUILD_PREFIX` 
-is set to a folder inside your `$HOME`, however the `$HOME` folder is by default not readable by other users. 
+therefore you will see the new modules with module avail. 
+
+Please note that by default `EASYBUILD_PREFIX` is set to a folder inside your `$HOME`, 
+however the `$HOME` folder is by default not readable by other users. 
 
 Therefore if you want to make your builds available to your group, then you need to allow read-only access 
 to other members of your group using the command `chmod g+rx $HOME`.

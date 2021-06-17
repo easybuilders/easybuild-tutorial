@@ -32,16 +32,19 @@ We show the main external modules used as dependencies in the Cray Programming E
 ## Compilers
 
 The CPE supports multiple compilers, Cray and third party compilers as well: Cray, AOCC, Intel, GNU. 
+
 Users can access the compilers loading the modules `PrgEnv-cray` (loaded by default at login), `PrgEnv-gnu`,
 `PrgEnv-intel` and `PrgEnv-aocc`.
+
 The corresponding compilers and their respective dependencies will be available, including wrappers and mapping 
 (for example, mapping `cc` to `gcc` in `PrgEnv-gnu`).
 
 Command to invoke compiler wrappers: `ftn` (Fortran), `cc` (C), `CC` (C++)
 Online help: `cc -help`, `CC -help`
 
-Compiler wrappers call the correct compiler with appropriate options to build and link applications with relevant libraries as
-required by modules loaded. These wrappers replace direct calls to compiler drivers in Makefiles and build scripts.
+The compiler wrappers call the correct compiler with appropriate options to build and link applications with relevant libraries as required by the modules loaded: 
+
+* compiler wrappers replace direct calls to compiler drivers in Makefiles and build scripts
 
 !!! Note
     Only dynamic linking is supported by compiler wrappers.
@@ -57,14 +60,16 @@ Overview: [Clang Users Manual](https://clang.llvm.org/docs/UsersManual.html)
 
 The Cray Compiling Environment (CCE) provides Fortran, C and C++ compilers that perform substantial analysis
 during compilation and automatically generate highly optimized code. 
+
 For more detailed information about the Cray Fortran, C, and C++ compiler command-line arguments, see the
-crayftn(1), craycc(1), and crayCC(1) manpages, respectively.
+`crayftn(1)`, `craycc(1)`, and `crayCC(1)` manpages, respectively.
 
 One of the most useful compiler features is the ability to generate annotated loopmark listings showing what
-optimization were performed and their locations. Together with compiler messages, these listings can help zero-in
-on areas in the code that are compiling without error but not fully optimized.
+optimization were performed and their locations. 
 
-For more information about compiler pragmas and directives, see the intro_directives(1) manpages.
+Together with compiler messages, these listings can help zero-in on areas in the code that are compiling without error but not fully optimized.
+
+For more information about compiler pragmas and directives, see the `intro_directives(1)` manpages.
 
 ---
 
@@ -107,10 +112,11 @@ utilities such as debuggers and performance tools to work with the Intel compile
 * Manpages: `intro_libsci`, `intro_fftw3`
 
 The Cray Scientific and Math Libraries (CSML, also known as LibSci) are a collection of numerical routines
-optimized for best performance on Cray systems. These libraries satisfy dependencies for many commonly used
-applications on Cray systems for a wide variety of domains. When the module for a CSML package (such as
-cray-libsci or cray-fftw) is loaded, all relevant headers and libraries for these packages are added to the
-compile and link lines of the cc, ftn, and CC Cray PE drivers.
+optimized for best performance on Cray systems. 
+
+These libraries satisfy dependencies for many commonly used applications on Cray systems for a wide variety of domains. 
+
+When the module for a CSML package (such as `cray-libsci` or `cray-fftw`) is loaded, all relevant headers and libraries for these packages are added to the compile and link lines of the cc, ftn, and CC Cray PE drivers.
 
 ### Scientific Libraries:
 
@@ -134,9 +140,10 @@ compile and link lines of the cc, ftn, and CC Cray PE drivers.
 * Website: [http://www.mpi-forum.org](http://www.mpi-forum.org)
 
 MPI is a widely used parallel programming model that establishes a practical, portable, efficient, and flexible
-standard for passing messages between ranks in parallel processes. Cray MPI is derived from Argonne National
-Laboratory MPICH and implements the MPI-3.1 standard as documented by the MPI Forum in MPI: A Message
-Passing Interface Standard, Version 3.1.
+standard for passing messages between ranks in parallel processes. 
+
+Cray MPI is derived from Argonne National Laboratory MPICH and implements the MPI-3.1 standard as documented by the MPI Forum in MPI: A Message Passing Interface Standard, Version 3.1.
+
 Support for MPI varies depending on system hardware. To see which functions and environment variables the
 system supports, check the `intro_mpi` manpages.
 
@@ -149,9 +156,12 @@ system supports, check the `intro_mpi` manpages.
 * Website: [https://pe-cray.github.io/cray-dsmml](https://pe-cray.github.io/cray-dsmml)
 
 Distributed Symmetric Memory Management Library (DSMML) is a proprietary memory management library.
+
 DSMML is a standalone memory management library for maintaining distributed shared symmetric memory
 heaps for top-level PGAS languages and libraries like Coarray Fortran, UPC, and OpenSHMEM. 
+
 DSMML allows user libraries to create multiple symmetric heaps and share information with other libraries. 
+
 Through DSMML, interoperability can be extracted between PGAS programming models.
 
 Please refer to the `intro_dsmml` manpage for more details.
@@ -163,6 +173,7 @@ Please refer to the `intro_dsmml` manpage for more details.
 Metadata can be supplied to EasyBuild for external modules.
 
 Using the `--external-modules-metadata` configuration option, the location of one or more metadata files can be specified.
+
 The files are expected to be in INI format, with a section per module name and key-value assignments specific to that module.
 
 CSCS systems define the external modules metadata file with environment variables:
@@ -170,6 +181,7 @@ CSCS systems define the external modules metadata file with environment variable
 echo $EASYBUILD_EXTERNAL_MODULES_METADATA 
 /apps/common/UES/jenkins/production/easybuild/cpe_external_modules_metadata-21.04.cfg
 ```
+
 The files are also available on the [CSCS GitHub production repository](https://github.com/eth-cscs/production). 
 
 For instance, the external module version loaded by the dependency `cray-fftw` is specified in [cpe_external_modules_metadata-21.04.cfg](https://github.com/eth-cscs/production/blob/master/easybuild/cpe_external_modules_metadata-21.04.cfg)
