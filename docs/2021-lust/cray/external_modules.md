@@ -150,10 +150,11 @@ system supports, check the `intro_mpi` manpages.
 
 Distributed Symmetric Memory Management Library (DSMML) is a proprietary memory management library.
 DSMML is a standalone memory management library for maintaining distributed shared symmetric memory
-heaps for top-level PGAS languages and libraries like Coarray Fortran, UPC, and OpenSHMEM. DSMML allows
-user libraries to create multiple symmetric heaps and share information with other libraries. Through DSMML,
-interoperability can be extracted between PGAS programming models.
-Refer to the `intro_dsmml` manpage for more details.
+heaps for top-level PGAS languages and libraries like Coarray Fortran, UPC, and OpenSHMEM. 
+DSMML allows user libraries to create multiple symmetric heaps and share information with other libraries. 
+Through DSMML, interoperability can be extracted between PGAS programming models.
+
+Please refer to the `intro_dsmml` manpage for more details.
 
 ---
 
@@ -167,11 +168,11 @@ The files are expected to be in INI format, with a section per module name and k
 CSCS systems define the external modules metadata file with environment variables:
 ```
 echo $EASYBUILD_EXTERNAL_MODULES_METADATA 
-/apps/common/UES/jenkins/production/easybuild/alps_external_modules_metadata-21.05.cfg
+/apps/common/UES/jenkins/production/easybuild/cpe_external_modules_metadata-21.04.cfg
 ```
 The files are also available on the [CSCS GitHub production repository](https://github.com/eth-cscs/production). 
 
-For instance, the external module version loaded by the dependency `cray-fftw` is specified in [alps-external_modules_metadata-21.05.cfg](https://github.com/eth-cscs/production/blob/master/easybuild/alps-external_modules_metadata-21.05.cfg)
+For instance, the external module version loaded by the dependency `cray-fftw` is specified in [cpe_external_modules_metadata-21.04.cfg](https://github.com/eth-cscs/production/blob/master/easybuild/cpe_external_modules_metadata-21.04.cfg)
 ```ini
 [cray-fftw]
 name = FFTW
@@ -179,5 +180,39 @@ prefix = FFTW_DIR/..
 version = 3.3.8.10
 ```
 The environment variable `$EBROOTFFTW` will also be defined according to the `prefix` specified in the metadata file.
+
+---
+
+## CPE meta-module
+
+The EX system CPE provides the meta-module `cpe`: the purpose of the meta-module is
+similar to the scope of the `cdt` and `cdt-cuda` meta-modules available on the XC systems.
+
+```
+$ module show cpe
+--------------------------------------------------------------------------------------------------------------------------------
+   /opt/cray/pe/lmod/modulefiles/core/cpe/21.04.lua:
+--------------------------------------------------------------------------------------------------------------------------------
+setenv("LMOD_MODULERCFILE","/opt/cray/pe/cpe/21.04/modulerc.lua")
+unload("PrgEnv-cray")
+load("PrgEnv-cray/8.0.0")
+unload("craype")
+load("craype/2.7.6")
+unload("cray-libsci")
+load("cray-libsci/21.04.1.1")
+unload("cce")
+load("cce/11.0.4")
+unload("cray-mpich")
+load("cray-mpich/8.1.4")
+unload("perftools-base")
+load("perftools-base/21.02.0")
+unload("cray-dsmml")
+load("cray-dsmml/0.1.4")
+```
+
+The meta-module loads the correct default versions of the modules with the selected CPE version, 
+as defined by the `LMOD_MODULERCFILE` referenced in the module itself.
+
+A site can create custom versions of the meta-module, if they want to override the module defaults.
 
 *[[next: Custom Toolchains]](custom_toolchains.md)*

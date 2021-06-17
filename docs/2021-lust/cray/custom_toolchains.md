@@ -9,12 +9,16 @@ As of CPE 21.04 though, the difference between the Cray Programming Environment 
 the EX systems is not relevant any longer, since they rely both on the PrgEnv meta-modules.
 
 Nonetheless, the versions of the CPE components that come with a CPE release might change 
-depending on the target system, therefore a different external metadata file is required.
+depending on the target system, therefore a different external metadata file is required:
+see [https://github.com/eth-cscs/production/tree/master/easybuild](https://github.com/eth-cscs/production/tree/master/easybuild) to inspect the difference between two metadata file referring to the same version. 
 
-Firthermore, different easyconfig files might be needed to build the same software on the 
-two systems.    
+E.g.: `cpe_external_modules_metadata-21.05.cfg` vs. `cray_external_modules_metadata-20.05.cfg`
 
---- 
+Furthermore, different easyconfig files might be needed to build the same software on the 
+two systems even with the same Cray PE, therefore the maintainers would need to provide 
+two versions anyway.   
+
+-- 
 
 ## Cray Toolchains
 
@@ -31,6 +35,7 @@ are the following ones:
 
 Each Cray toolchain comes with a version matching the corresponding Cray Development Toolkit (CDT) modulefile on the 
 Cray XC system. 
+
 Therefore, the toolchain will load the corresponding Cray Programming Environment, together with the compiler, 
 the Cray MPICH library and the Cray mathematical library with versions matching the definition of the CDT. 
 
@@ -57,7 +62,7 @@ The CPE toolchains are defined by the custom easyblock `cpetoolchain.py`:
 KNOWN_PRGENVS = ['PrgEnv-aocc', 'PrgEnv-cray', 'PrgEnv-gnu', 'PrgEnv-intel']
 ```
 
-The file is available in the [CSCS production repository on GitHub](https://github.com/eth-cscs/production/blob/master/easybuild/easyblocks/cpetoolchain.py). 
+The [file](https://github.com/eth-cscs/production/blob/master/easybuild/easyblocks/cpetoolchain.py) is available in the [CSCS production repository on GitHub](https://github.com/eth-cscs/production), that is also mirrored under the [EasyBuilders GitHub project](https://github.com/easybuilders) at [https://github.com/easybuilders/CSCS](https://github.com/easybuilders/CSCS). 
 
 ---
 
@@ -71,7 +76,13 @@ cpegnu.py
 cpeintel.py
 ```
 
-The first one will look for the custom `aocc.py`, while the other ones are compatible with the standard Cray toolchains.
+The first one will look for the custom compiler `aocc.py`, while the other ones are compatible 
+with the compilers defined by the Cray toolchains initially defined on the XC system.
+
+The custom toolchains above will look for the custom `cpe.py` supporting the Cray Programming Environment 
+(craype) compiler drivers. 
+
+Please note that as well as the custom easyblock `cpetoolchain.py`, the custom files are available in the [toolchains](https://github.com/eth-cscs/production/tree/master/easybuild/toolchains) and the [compiler](https://github.com/eth-cscs/production/tree/master/easybuild/toolchains/compiler) folders of the [CSCS production repository on GitHub](https://github.com/eth-cscs/production).
 
 ---
 
