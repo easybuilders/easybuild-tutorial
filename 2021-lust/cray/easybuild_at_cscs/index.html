@@ -1,0 +1,1315 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="canonical" href="https://easybuilders.github.io/easybuild-tutorial/2021-lust/cray/easybuild_at_cscs/">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.8">
+    
+    
+      
+        <title>EasyBuild at CSCS - EasyBuild tutorial</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ca7ac06f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#easybuild-at-cscs" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="EasyBuild tutorial" class="md-header__button md-logo" aria-label="EasyBuild tutorial" data-md-component="logo">
+      
+  <img src="../../../img/easybuild_logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EasyBuild tutorial
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              EasyBuild at CSCS
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/easybuilders/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    EasyBuild @ GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="EasyBuild tutorial" class="md-nav__button md-logo" aria-label="EasyBuild tutorial" data-md-component="logo">
+      
+  <img src="../../../img/easybuild_logo.png" alt="logo">
+
+    </a>
+    EasyBuild tutorial
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/easybuilders/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    EasyBuild @ GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        ISC-20 (June '20)
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="ISC-20 (June '20)" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          ISC-20 (June '20)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2020-06-isc20/" class="md-nav__link">
+        Start page
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2020-06-isc20/practical_information/" class="md-nav__link">
+        Practical information
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2020-06-isc20/introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2020-06-isc20/installation/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2020-06-isc20/configuration/" class="md-nav__link">
+        Configuration
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2020-06-isc20/basic_usage/" class="md-nav__link">
+        Basic usage
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2020-06-isc20/troubleshooting/" class="md-nav__link">
+        Troubleshooting
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2020-06-isc20/hmns/" class="md-nav__link">
+        Hierarchical module naming schemes
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2020-06-isc20/adding_support_software/" class="md-nav__link">
+        Adding support for additional software
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2020-06-isc20/jsc/" class="md-nav__link">
+        EasyBuild at Jülich Supercomputing Centre
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2020-06-isc20/computecanada/" class="md-nav__link">
+        EasyBuild at Compute Canada
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2020-06-isc20/community/" class="md-nav__link">
+        The EasyBuild community
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2020-06-isc20/contributing/" class="md-nav__link">
+        Contributing to EasyBuild
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2020-06-isc20/comparison_other_tools/" class="md-nav__link">
+        Comparison with other tools
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2020-06-isc20/getting_help/" class="md-nav__link">
+        Getting help
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      <label class="md-nav__link" for="__nav_3">
+        LUST (spring '21)
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="LUST (spring '21)" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          LUST (spring '21)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        (overview)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      <label class="md-nav__link" for="__nav_3_2">
+        Introduction to EasyBuild
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Introduction to EasyBuild" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Introduction to EasyBuild
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part1_intro/" class="md-nav__link">
+        (overview)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../what_is_easybuild/" class="md-nav__link">
+        What is EasyBuild?
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../terminology/" class="md-nav__link">
+        Terminology
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/" class="md-nav__link">
+        Configuration
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basic_usage/" class="md-nav__link">
+        Basic usage
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
+      
+      <label class="md-nav__link" for="__nav_3_3">
+        Using EasyBuild
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Using EasyBuild" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Using EasyBuild
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part2_using/" class="md-nav__link">
+        (overview)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/" class="md-nav__link">
+        Troubleshooting
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../creating_easyconfig_files/" class="md-nav__link">
+        Creating easyconfig files
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../implementing_easyblocks/" class="md-nav__link">
+        Implementing easyblocks
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_4" type="checkbox" id="__nav_3_4" >
+      
+      <label class="md-nav__link" for="__nav_3_4">
+        Advanced topics
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Advanced topics" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_4">
+          <span class="md-nav__icon md-icon"></span>
+          Advanced topics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part3_advanced/" class="md-nav__link">
+        (overview)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../easybuild_library/" class="md-nav__link">
+        Using EasyBuild as a library
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hooks/" class="md-nav__link">
+        Using hooks to customise EasyBuild
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../slurm_jobs/" class="md-nav__link">
+        Submitting installations as Slurm jobs
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../module_naming_schemes/" class="md-nav__link">
+        Module naming schemes (incl. hierarchical)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../github_integration/" class="md-nav__link">
+        GitHub integration to facilitate contributing to EasyBuild
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_5" type="checkbox" id="__nav_3_5" checked>
+      
+      <label class="md-nav__link" for="__nav_3_5">
+        EasyBuild on Cray systems
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="EasyBuild on Cray systems" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_5">
+          <span class="md-nav__icon md-icon"></span>
+          EasyBuild on Cray systems
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part4_cray/" class="md-nav__link">
+        (overview)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introduction/" class="md-nav__link">
+        Introduction to the Cray PE
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../external_modules/" class="md-nav__link">
+        Using external modules
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../custom_toolchains/" class="md-nav__link">
+        Custom Cray toolchains
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          EasyBuild at CSCS
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        EasyBuild at CSCS
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#custom-easybuild-module" class="md-nav__link">
+    Custom EasyBuild module
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use-easybuild-at-cscs" class="md-nav__link">
+    How to use EasyBuild at CSCS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cscs-easybuild-configuration" class="md-nav__link">
+    CSCS EasyBuild configuration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-options" class="md-nav__link">
+    Configuration options
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#choosing-your-custom-folders" class="md-nav__link">
+    Choosing your custom folders
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#customizing-your-build-recipes" class="md-nav__link">
+    Customizing your build recipes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#easybuild-configuration-file" class="md-nav__link">
+    EasyBuild configuration file
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#easybuild-on-piz-daint" class="md-nav__link">
+    EasyBuild on Piz Daint
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-your-program" class="md-nav__link">
+    Building your Program
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#custom-easybuild-module" class="md-nav__link">
+    Custom EasyBuild module
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use-easybuild-at-cscs" class="md-nav__link">
+    How to use EasyBuild at CSCS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cscs-easybuild-configuration" class="md-nav__link">
+    CSCS EasyBuild configuration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-options" class="md-nav__link">
+    Configuration options
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#choosing-your-custom-folders" class="md-nav__link">
+    Choosing your custom folders
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#customizing-your-build-recipes" class="md-nav__link">
+    Customizing your build recipes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#easybuild-configuration-file" class="md-nav__link">
+    EasyBuild configuration file
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#easybuild-on-piz-daint" class="md-nav__link">
+    EasyBuild on Piz Daint
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-your-program" class="md-nav__link">
+    Building your Program
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/easybuilders/easybuild-tutorial/edit/master/docs/2021-lust/cray/easybuild_at_cscs.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="easybuild-at-cscs">EasyBuild at CSCS<a class="headerlink" href="#easybuild-at-cscs" title="Permanent link">&para;</a></h1>
+<p>EasyBuild has been used at CSCS since 2015 on multiple systems, using both Cray and standard toolchains.</p>
+<p>CSCS staff has integrated EasyBuild within the automated pipelines used to maintain supported applications and 
+libraries for CSCS users. The pipelines are stored on GitHub and are currently launched on a Jenkins server.</p>
+<p>CSCS Production Repository on GitHub: <a href="https://github.com/eth-cscs/production">https://github.com/eth-cscs/production</a></p>
+<p>Jenkins Pipelines: <a href="https://github.com/eth-cscs/production/tree/master/jenkins">https://github.com/eth-cscs/production/tree/master/jenkins</a></p>
+<p>How to use EasyBuild at CSCS: <a href="https://user.cscs.ch/computing/compilation/easybuild">https://user.cscs.ch/computing/compilation/easybuild</a></p>
+<hr />
+<h2 id="custom-easybuild-module">Custom EasyBuild module<a class="headerlink" href="#custom-easybuild-module" title="Permanent link">&para;</a></h2>
+<p>The EasyBuild framework is available at CSCS through the custom module <code>EasyBuild-custom</code>. </p>
+<p>This module defines the location of the EasyBuild configuration files, recipes and installation directories.
+<div class="highlight"><pre><span></span><code>module load EasyBuild-custom
+</code></pre></div>
+The default installation folder is instead the following:
+<div class="highlight"><pre><span></span><code>$HOME/easybuild/&lt;system-name&gt;
+</code></pre></div>
+Where <code>&lt;system-name&gt;</code> is the lowercase name of the system, e.g.: <code>eiger</code>.</p>
+<p>The custom EasyBuild modulefile is available both in Tcl and Lua syntax on the CSCS production repository:
+a system using Lmod for module management will load the Lua modulefile, which is ignored by systems using 
+Environment modules instead.</p>
+<p>The modulefile defines the location of the EasyBuild configuration files, the recipes and the installation directories. </p>
+<p>Once you have loaded the EasyBuild modulefile, you can check the EasyBuild version loaded and the default configuration 
+executing the EasyBuild command <code>eb</code>  with the options <code>--version</code>  or <code>--show-config</code> as usual.</p>
+<hr />
+<h2 id="how-to-use-easybuild-at-cscs">How to use EasyBuild at CSCS<a class="headerlink" href="#how-to-use-easybuild-at-cscs" title="Permanent link">&para;</a></h2>
+<p>Example on the Cray EX supercomputing system Eiger:
+<div class="highlight"><pre><span></span><code>ml show EasyBuild-custom
+
+---------------------------------------------------------------------------------------------------------------------------------
+   /apps/eiger/UES/modulefiles/EasyBuild-custom/cscs.lua:
+---------------------------------------------------------------------------------------------------------------------------------
+help([[
+Description
+===========
+Production EasyBuild @ CSCS
+
+More information
+================
+ - Homepage: https://github.com/eth-cscs/production/wiki
+]])
+whatis(&quot;Description: Production EasyBuild @ CSCS  &quot;)
+whatis(&quot;Homepage: https://github.com/eth-cscs/production/wiki&quot;)
+conflict(&quot;EasyBuild-custom&quot;)
+setenv(&quot;EBROOTEASYBUILDMINCUSTOM&quot;,&quot;/apps/common/UES/jenkins/easybuild/software/EasyBuild-custom/cscs&quot;)
+setenv(&quot;EBVERSIONEASYBUILDMINCUSTOM&quot;,&quot;cscs&quot;)
+setenv(&quot;EBDEVELEASYBUILDMINCUSTOM&quot;,&quot;/apps/common/UES/jenkins/easybuild/software/EasyBuild-custom/cscs/easybuild/EasyBuild-custom-cscs-easybuild-devel&quot;)
+setenv(&quot;XDG_CONFIG_DIRS&quot;,&quot;/apps/common/UES/jenkins/production/easybuild&quot;)
+setenv(&quot;EASYBUILD_ROBOT_PATHS&quot;,&quot;/apps/common/UES/jenkins/production/easybuild/easyconfigs/:&quot;)
+setenv(&quot;EASYBUILD_INCLUDE_EASYBLOCKS&quot;,&quot;/apps/common/UES/jenkins/production/easybuild/easyblocks/*.py&quot;)
+setenv(&quot;EASYBUILD_INCLUDE_MODULE_NAMING_SCHEMES&quot;,&quot;/apps/common/UES/jenkins/production/easybuild/tools/module_naming_scheme/*.py&quot;)
+setenv(&quot;EASYBUILD_INCLUDE_TOOLCHAINS&quot;,&quot;/apps/common/UES/jenkins/production/easybuild/toolchains/*.py,/apps/common/UES/jenkins/production/easybuild/toolchains/compiler/*.py&quot;)
+setenv(&quot;EASYBUILD_BUILDPATH&quot;,&quot;/run/user/21827/build&quot;)
+setenv(&quot;EASYBUILD_TMPDIR&quot;,&quot;/run/user/21827/tmp&quot;)
+setenv(&quot;EASYBUILD_SOURCEPATH&quot;,&quot;/apps/common/UES/easybuild/sources&quot;)
+setenv(&quot;EASYBUILD_EXTERNAL_MODULES_METADATA&quot;,&quot;/apps/common/UES/jenkins/production/easybuild/cpe_external_modules_metadata-21.04.cfg&quot;)
+setenv(&quot;EASYBUILD_MODULE_NAMING_SCHEME&quot;,&quot;HierarchicalMNS&quot;)
+setenv(&quot;EASYBUILD_MODULE_SYNTAX&quot;,&quot;Lua&quot;)
+setenv(&quot;EASYBUILD_MODULES_TOOL&quot;,&quot;Lmod&quot;)
+setenv(&quot;EASYBUILD_OPTARCH&quot;,&quot;x86-rome&quot;)
+setenv(&quot;EASYBUILD_RECURSIVE_MODULE_UNLOAD&quot;,&quot;0&quot;)
+setenv(&quot;EASYBUILD_PREFIX&quot;,&quot;/users/lucamar/easybuild/eiger&quot;)
+</code></pre></div></p>
+<hr />
+<h2 id="cscs-easybuild-configuration">CSCS EasyBuild configuration<a class="headerlink" href="#cscs-easybuild-configuration" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>eb --version
+This is EasyBuild 4.4.0 (framework: 4.4.0, easyblocks: 4.4.0) on host uan01.
+
+eb --show-config
+#
+# Current EasyBuild configuration
+# (C: command line argument, D: default value, E: environment variable, F: configuration file)
+#
+allow-loaded-modules          (F) = ddt, EasyBuild-custom, EasyBuild, xalt
+buildpath                     (E) = /run/user/21827/build
+containerpath                 (E) = /users/lucamar/easybuild/eiger/containers
+external-modules-metadata     (E) = /apps/common/UES/jenkins/production/easybuild/cpe_external_modules_metadata-21.04.cfg
+hide-deps                     (F) = absl, ANTLR, APR, APR-util, arpack-ng, Autoconf, Automake, Autotools, backports.weakref, Bazel, binutils, Bison, bokeh, byacc, bzip2, cairo, cloudpickle, configurable-http-proxy, Coreutils, Cube, CUDA, cuDNN, cURL, DB, Doxygen, Eigen, expat, flex, FLTK, fontconfig, freetype, funcsigs, gc, GCCcore, gettext, GL2PS, GLib, glmnet, GLPK, GMP, gnuplot, go, gperf, GPGME, GraphicsMagick, groff, GTS, guile, help2man, hwloc, inputproto, IPython, JasPer, jemalloc, kbproto, Libassuan, libcerf, libdrm, libevent, libfabric, libffi, libgd, libGLU, libgpuarray, libiberty, libjpeg-turbo, libjpeg-turbo, libpciaccess, Libpgp-error, libpng, libpthread-stubs, libQGLViewer, libreadline, libsodium, libspatialindex, LibTIFF, libtool, libunistring, libunwind, libutempter, libX11, libXau, libxcb, libXdmcp, libXext, libxml2, libXrender, libxshmfence, libyaml, LLVM, LOKI, Loki, LVM2, M4, make, makeinfo, Mako, Mesa, minieigen, mock, mxml, NASM, NASM, ncurses, nettle, networkx, nodejs, nose-parameterized, numactl, OPARI2, OpenMPI, OpenPGM, parameterized, PCRE, PDT, Perl, PIL, Pillow, pixman, pkg-config, ploticus, PMIx, popt, prereq, protobuf, protobuf-core, PyGTS, PyQt, Python-bare, Python-Xlib, PyYAML, PyZMQ, Qhull, qrupdate, Qt, renderproto, runc, scikit-image, scikit-learn, SCons, SCOTCH, Serf, SIP, SQLite, SWIG, Szip, Tcl, Tk, UCX, UDUNITS, UnZip, util-linux, Werkzeug, wheel, X11, xcb-proto, xextproto, xorg-macros, xproto, xtrans, XZ, ZeroMQ, zlib, zstd
+hide-toolchains               (F) = CrayCCE, CrayGNU, CrayIntel, CrayPGI, GCCcore, gmvapich2, gmvolf, foss, fosscuda, gompi
+include-easyblocks            (E) = /apps/common/UES/jenkins/production/easybuild/easyblocks/*.py
+include-module-naming-schemes (E) = /apps/common/UES/jenkins/production/easybuild/tools/module_naming_scheme/*.py
+include-toolchains            (E) = /apps/common/UES/jenkins/production/easybuild/toolchains/*.py, /apps/common/UES/jenkins/production/easybuild/toolchains/compiler/*.py
+installpath                   (E) = /users/lucamar/easybuild/eiger
+module-naming-scheme          (E) = HierarchicalMNS
+optarch                       (E) = x86-rome
+packagepath                   (E) = /users/lucamar/easybuild/eiger/packages
+prefix                        (E) = /users/lucamar/easybuild/eiger
+repositorypath                (E) = /users/lucamar/easybuild/eiger/ebfiles_repo
+robot-paths                   (E) = /apps/common/UES/jenkins/production/easybuild/easyconfigs/, /apps/common/UES/easybuild/software/EasyBuild/4.4.0/easybuild/easyconfigs
+sourcepath                    (E) = /apps/common/UES/easybuild/sources
+tmpdir                        (E) = /run/user/21827/tmp
+</code></pre></div>
+<hr />
+<h2 id="configuration-options">Configuration options<a class="headerlink" href="#configuration-options" title="Permanent link">&para;</a></h2>
+<p>As reported in the output of the command <code>eb --show-config</code>, the configuration items labeled with <code>(E)</code> 
+are defined by an environment variable of the form <code>EASYBUILD_&lt;item&gt;</code>, where <code>item</code> is in uppercase letters. </p>
+<p>Therefore the buildpath is defined by the variable <code>EASYBUILD_BUILDPATH</code>, whereas the prefix that defines 
+the installpath of the modules created by EasyBuild is defined by <code>EASYBUILD_PREFIX</code>. </p>
+<p>You can change these configuration items editing the corresponding environment variable. </p>
+<p>Please note that in general the prefix might be different with respect to the installpath: special care is required
+in particular when users would like to build additional modules in their local folders on top of EasyBuild modules 
+already provided by the HPC centre staff.</p>
+<hr />
+<h2 id="choosing-your-custom-folders">Choosing your custom folders<a class="headerlink" href="#choosing-your-custom-folders" title="Permanent link">&para;</a></h2>
+<p>You can override the default installation folder by exporting the environment variables listed below, 
+before loading the EasyBuild modulefile:
+<div class="highlight"><pre><span></span><code>export EASYBUILD_PREFIX=/your/preferred/installation/folder
+export EB_CUSTOM_REPOSITORY=/your/local/repository/easybuild
+module load EasyBuild-custom
+</code></pre></div></p>
+<p>The first environment variable is generally set before loading the EasyBuild modulefiles. </p>
+<p>The second one is instead specific to the CSCS EasyBuild-custom modulefile and corresponds 
+to the EasyBuild variable <code>XDG_CONFIG_DIRS</code>: therefore, the custom modulefile expects to find 
+the subfolders of the easybuild directory under the CSCS GitHub production repository. </p>
+<p>The following environment variables depend on <code>EB_CUSTOM_REPOSITORY</code>:
+<div class="highlight"><pre><span></span><code>setenv XDG_CONFIG_DIRS                          $::env(EB_CUSTOM_REPOSITORY)
+setenv EASYBUILD_ROBOT_PATHS                    $::env(EB_CUSTOM_REPOSITORY)/easyconfigs/:
+setenv EASYBUILD_INCLUDE_EASYBLOCKS             $::env(EB_CUSTOM_REPOSITORY)/easyblocks/*.py
+setenv EASYBUILD_INCLUDE_MODULE_NAMING_SCHEMES  $::env(EB_CUSTOM_REPOSITORY)/tools/module_naming_scheme/*.py
+setenv EASYBUILD_INCLUDE_TOOLCHAINS             $::env(EB_CUSTOM_REPOSITORY)/toolchains/*.py,$::env(EB_CUSTOM_REPOSITORY)/toolchains/compiler/*.py
+</code></pre></div>
+Users will find the CSCS EasyBuild configuration file under the folder <code>easybuild.d</code> of the <code>EB_CUSTOM_REPOSITORY</code> 
+and the CSCS custom recipes under the <code>easyconfigs</code> folder, listed as usual in alphabetical order.</p>
+<hr />
+<h2 id="customizing-your-build-recipes">Customizing your build recipes<a class="headerlink" href="#customizing-your-build-recipes" title="Permanent link">&para;</a></h2>
+<p>If you wish to extend or customize the CSCS EasyBuild recipes, you can clone the <a href="https://github.com/eth-cscs/production.git">CSCS production project</a> from GitHub and have your private repository:
+<div class="highlight"><pre><span></span><code>git clone https://github.com/eth-cscs/production.git
+</code></pre></div></p>
+<p>The command will download the project files under a newly created folder production. 
+If you wish to use it as your custom repository, you need to export the corresponding EasyBuild environment variable:
+<div class="highlight"><pre><span></span><code>export EB_CUSTOM_REPOSITORY=/&lt;your_local_path&gt;/production/easybuild
+module load EasyBuild-custom
+</code></pre></div></p>
+<p>You will find the CSCS EasyBuild build recipes files under <code>/&lt;your_local_path&gt;/production/easybuild/easyconfigs</code>, 
+with application folders listed in alphabetical order.</p>
+<hr />
+<h2 id="easybuild-configuration-file">EasyBuild configuration file<a class="headerlink" href="#easybuild-configuration-file" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>cat ~/GitHub/lucamar/production/easybuild/easybuild.d/system_wide.cfg
+[override]
+# Comma separated list of dependencies that you want automatically hidden, (e.g. --hide-deps=zlib,ncurses) (type comma-separated list)
+hide-deps=absl,ANTLR,APR,APR-util,arpack-ng,Autoconf,Automake,Autotools,backports.weakref,Bazel,binutils,Bison,bokeh,byacc,bzip2,cairo,cloudpickle,configurable-http-proxy,Coreutils,Cube,CUDA,cuDNN,cURL,DB,Doxygen,Eigen,expat,flex,FLTK,fontconfig,freetype,funcsigs,gc,GCCcore,gettext,GL2PS,GLib,glmnet,GLPK,GMP,gnuplot,go,gperf,GPGME,GraphicsMagick,groff,GTS,guile,help2man,hwloc,inputproto,IPython,JasPer,jemalloc,kbproto,Libassuan,libcerf,libdrm,libevent,libfabric,libffi,libgd,libGLU,libgpuarray,libiberty,libjpeg-turbo,libjpeg-turbo,libpciaccess,Libpgp-error,libpng,libpthread-stubs,libQGLViewer,libreadline,libsodium,libspatialindex,LibTIFF,libtool,libunistring,libunwind,libutempter,libX11,libXau,libxcb,libXdmcp,libXext,libxml2,libXrender,libxshmfence,libyaml,LLVM,LOKI,Loki,LVM2,M4,make,makeinfo,Mako,Mesa,minieigen,mock,mxml,NASM,NASM,ncurses,nettle,networkx,nodejs,nose-parameterized,numactl,OPARI2,OpenMPI,OpenPGM,parameterized,PCRE,PDT,Perl,PIL,Pillow,pixman,pkg-config,ploticus,PMIx,popt,prereq,protobuf,protobuf-core,PyGTS,PyQt,Python-bare,Python-Xlib,PyYAML,PyZMQ,Qhull,qrupdate,Qt,renderproto,runc,scikit-image,scikit-learn,SCons,SCOTCH,Serf,SIP,SQLite,SWIG,Szip,Tcl,Tk,UCX,UDUNITS,UnZip,util-linux,Werkzeug,wheel,X11,xcb-proto,xextproto,xorg-macros,xproto,xtrans,XZ,ZeroMQ,zlib,zstd
+module-syntax=Tcl
+hide-toolchains=CrayCCE,CrayGNU,CrayIntel,CrayPGI,GCCcore,gmvapich2,gmvolf,foss,fosscuda,gompi
+allow-loaded-modules=ddt,EasyBuild-custom,EasyBuild,xalt
+</code></pre></div>
+<hr />
+<h2 id="easybuild-on-piz-daint">EasyBuild on Piz Daint<a class="headerlink" href="#easybuild-on-piz-daint" title="Permanent link">&para;</a></h2>
+<p>On Piz Daint, which is a heterogeneous system, you need to select which architecture 
+should be targeted when building software. 
+You can target the Intel Haswell architecture accessing the gpu software stack using the command:
+<div class="highlight"><pre><span></span><code>module load daint-gpu EasyBuild-custom
+</code></pre></div>
+Alternatively, you can target the Intel Broadwell architecture and the mc (multicore) software stack:
+<div class="highlight"><pre><span></span><code>module load daint-mc EasyBuild-custom
+</code></pre></div></p>
+<p>On Piz Daint, EasyBuild software and modules will be installed by default under the following folder:
+<div class="highlight"><pre><span></span><code>$HOME/easybuild/&lt;system-name&gt;/&lt;architecture&gt;
+</code></pre></div></p>
+<p>Here <code>&lt;architecture&gt;</code> will be either <code>haswell</code> or <code>broadwell</code>.</p>
+<hr />
+<h2 id="building-your-program">Building your Program<a class="headerlink" href="#building-your-program" title="Permanent link">&para;</a></h2>
+<p>After you load the EasyBuild environment as explained in the section above, 
+you will have the command eb available to build your code using EasyBuild. </p>
+<p>If you want to build the code using a given configuration <code>&lt;filename&gt;.eb</code> and resolving dependencies, 
+you will use the flag <code>-r</code> as in the example below:
+<div class="highlight"><pre><span></span><code>eb &lt;filename&gt;.eb -r
+</code></pre></div></p>
+<p>The build command just needs the configuration file name with the extension <code>.eb</code> and not the full path, 
+provided that the configuration file is in your search path: the command <code>eb --show-config</code> will print 
+the variable robot-paths that holds the search path. </p>
+<p>More options are available, please have a look at the short help message typing <code>eb -h</code>. 
+For instance, you can check if any EasyBuild configuration file already exists for a given program name, using the search flag -S:</p>
+<p>eb -S <program_name></p>
+<p>Please note that on Cray systems you can use the configuration files that rely of a Cray toolchain, 
+which you will find in the configuration filename (<code>eb -S &lt;name&gt; | grep Cray</code>). </p>
+<p>You will be able to load the modules created by EasyBuild in the folder defined by the <code>EASYBUILD_PREFIX</code> 
+variable using the following commands:
+<div class="highlight"><pre><span></span><code>module use $EASYBUILD_PREFIX/modules/all
+module load &lt;modulename&gt;/version
+</code></pre></div></p>
+<p>The command module use will prepend the selected folder to your MODULEPATH environment variable, 
+therefore you will see the new modules with module avail. Please note that by default <code>EASYBUILD_PREFIX</code> 
+is set to a folder inside your <code>$HOME</code>, however the <code>$HOME</code> folder is by default not readable by other users. </p>
+<p>Therefore if you want to make your builds available to your group, then you need to allow read-only access 
+to other members of your group using the command <code>chmod g+rx $HOME</code>.</p>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 16, 2021</span>
+      
+    
+  </small>
+</div>
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../custom_toolchains/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Custom Cray toolchains" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Custom Cray toolchains
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/easy_build" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://www.youtube.com/c/easybuilders" target="_blank" rel="noopener" title="www.youtube.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://easybuild.readthedocs.io" target="_blank" rel="noopener" title="easybuild.readthedocs.io" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M448 360V24c0-13.3-10.7-24-24-24H96C43 0 0 43 0 96v320c0 53 43 96 96 96h328c13.3 0 24-10.7 24-24v-16c0-7.5-3.5-14.3-8.9-18.7-4.2-15.4-4.2-59.3 0-74.7 5.4-4.3 8.9-11.1 8.9-18.6zM128 134c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm0 64c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm253.4 250H96c-17.7 0-32-14.3-32-32 0-17.6 14.4-32 32-32h285.4c-1.9 17.1-1.9 46.9 0 64z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["instant"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.76f349be.min.js"></script>
+      
+    
+  </body>
+</html>
