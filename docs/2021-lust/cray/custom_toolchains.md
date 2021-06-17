@@ -97,8 +97,12 @@ You can also export this option as a shell variable. Example for AMD EPYC 7742 (
 export $EASYBUILD_OPTARCH=x86-rome
 ```
 
-The definition of the correct module to load with the `--optarch` depends on the environment variable `CRAY_CPU_TARGET`:
+The definition of the correct module to load with the `--optarch` is also given by the environment variable `CRAY_CPU_TARGET`:
 this variable is defined as well by the corresponding module `craype-<target>`, already available at the login. 
+
+!!! Note
+    The custom EasyBuild modulefile used on CSCS systems will look for `CRAY_CPU_TARGET` to define `--optarch`, 
+    therefore users are strongly discouraged from purging the modules already available at login on the systems.
 
 ---
 
