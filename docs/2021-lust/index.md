@@ -18,4 +18,8 @@ Overview page of the introductory tutorial on [EasyBuild](https://easybuild.io) 
     * [Submitting installations as Slurm jobs](slurm_jobs.md) *(hands-on)*
     * [Module naming schemes (incl. hierarchical)](module_naming_schemes.md) *(hands-on)*
     * [GitHub integration to facilitate contributing to EasyBuild](github_integration.md) *(hands-on)*
-- [Part IV: **EasyBuild on Cray systems**](part4_cray.md) *(to be planned)*
+- [Part IV: **EasyBuild on Cray systems**](part4_cray.md) *(Friday June 18th 2021, 09-12 CEST)*
+    * [Introduction to Cray Programming Environment](cray/introduction.md) *(hands-on)*
+    * [Cray External Modules](cray/external_modules.md) *(hands-on)*
+    * [Cray Custom Toolchains](cray/custom_toolchains.md) *(hands-on)*
+    * [EasyBuild at CSCS](cray/easybuild_at_cscs.md) *(hands-on)*

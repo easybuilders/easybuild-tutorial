@@ -51,7 +51,12 @@ nav:
           - Submitting installations as Slurm jobs: 2021-lust/slurm_jobs.md
           - Module naming schemes (incl. hierarchical): 2021-lust/module_naming_schemes.md
           - GitHub integration to facilitate contributing to EasyBuild: 2021-lust/github_integration.md
-      - EasyBuild on Cray systems: 2021-lust/part4_cray.md
+      - EasyBuild on Cray systems:
+          - (overview): 2021-lust/part4_cray.md
+          - Introduction to the Cray PE: 2021-lust/cray/introduction.md
+          - Using external modules: 2021-lust/cray/external_modules.md
+          - Custom Cray toolchains: 2021-lust/cray/custom_toolchains.md
+          - EasyBuild at CSCS: 2021-lust/cray/easybuild_at_cscs.md
 plugins:
   # show revision date at bottom of each page
   - git-revision-date-localized
