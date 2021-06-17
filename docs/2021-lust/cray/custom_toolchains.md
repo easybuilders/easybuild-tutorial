@@ -102,7 +102,41 @@ this variable is defined as well by the corresponding module `craype-<target>`, 
 
 !!! Note
     The custom EasyBuild modulefile used on CSCS systems will look for `CRAY_CPU_TARGET` to define `--optarch`, 
-    therefore users are strongly discouraged from purging the modules already available at login on the systems.
+    therefore users are strongly discouraged from purging the modules already available at login on the system
+
+--- 
+
+## Easyconfig for custom toolchains
+
+The easyconfig files of the current default custom toolchains were using a footer to address two issues that have been fixed in the latest EasyBuild release 4.4.0.
+
+Therefore, when using the latest EasyBuild release one could write a much shorter [easyconfig file](https://github.com/eth-cscs/production/blob/master/easybuild/easyconfigs/c/cpeGNU/cpeGNU-21.04.eb) for the custom toolchains. 
+
+For instale the cpeGNU custom toolchain easyconfig file would like the following:
+```
+# Compiler toolchain for Cray EX Programming Environment GNU compiler (cpe-gnu)
+easyblock = 'cpeToolchain'
+
+name = 'cpeGNU'
+version = "21.04"
+
+homepage = 'https://pubs.cray.com'
+description = """Toolchain using Cray compiler wrapper with gcc module (CPE release: %s).\n""" % version
+
+toolchain = SYSTEM
+
+dependencies = [
+   ('cpe/%(version)s', EXTERNAL_MODULE),
+   ('PrgEnv-gnu', EXTERNAL_MODULE)
+]
+```
+
+The meta-module `cpe` will ensure that the additional modules loaded by a user will be compatible with the default Cray PE selected.
+
+The advantage of the approach is to avoid pinning directly the versions of CPE components in the custom toolchain definitions. 
+
+Of course the maintainers could also decide to pin directl the version of each CPE component in the easyconfig, 
+however this approach is less easy to fit in an automated pipeline for updating recipes when new Cray PEs are installed. 
 
 ---
 
