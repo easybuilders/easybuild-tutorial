@@ -90,12 +90,15 @@ Please note that as well as the custom easyblock `cpetoolchain.py`, the custom f
 
 The module `craype-<target>` matching the target architecture must be specified using the EasyBuild flag `--optarch`.
 
-E.g.: `--optarch= results in module `craype-x86-rome` being loaded in the build environment used by EasyBuild.
+E.g.: `--optarch=x86-rome results in module `craype-x86-rome` being loaded in the build environment used by EasyBuild.
 
 You can also export this option as a shell variable. Example for AMD EPYC 7742 ("Rome"):
 ```
 export $EASYBUILD_OPTARCH=x86-rome
 ```
+
+The definition of the correct module to load with the `--optarch` depends on the environment variable `CRAY_CPU_TARGET`:
+this variable is defined as well by the corresponding module `craype-<target>`, already available at the login. 
 
 ---
 
