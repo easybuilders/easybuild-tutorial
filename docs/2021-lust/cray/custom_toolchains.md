@@ -10,15 +10,16 @@ the EX systems is not relevant any longer, since they rely both on the PrgEnv me
 
 Nonetheless, the versions of the CPE components that come with a CPE release might change 
 depending on the target system, therefore a different external metadata file is required:
-see [https://github.com/eth-cscs/production/tree/master/easybuild](https://github.com/eth-cscs/production/tree/master/easybuild) to inspect the difference between two metadata file referring to the same version. 
 
-E.g.: `cpe_external_modules_metadata-21.05.cfg` vs. `cray_external_modules_metadata-20.05.cfg`
+* see [https://github.com/eth-cscs/production/tree/master/easybuild](https://github.com/eth-cscs/production/tree/master/easybuild) to inspect the difference between two metadata file referring to the same version 
+
+* E.g.: `cpe_external_modules_metadata-21.05.cfg` vs. `cray_external_modules_metadata-20.05.cfg`
 
 Furthermore, different easyconfig files might be needed to build the same software on the 
 two systems even with the same Cray PE, therefore the maintainers would need to provide 
 two versions anyway.   
 
--- 
+--- 
 
 ## Cray Toolchains
 
@@ -131,51 +132,59 @@ dependencies = [
 ]
 ```
 
-The meta-module `cpe` will ensure that the additional modules loaded by a user will be compatible with the default Cray PE selected.
+The meta-module `cpe` will ensure that the additional modules loaded by a user will be compatible with the default CPE selected.
 
 The advantage of the approach is to avoid pinning directly the versions of CPE components in the custom toolchain definitions. 
 
 Of course the maintainers could also decide to pin directl the version of each CPE component in the easyconfig, 
-however this approach is less easy to fit in an automated pipeline for updating recipes when new Cray PEs are installed. 
+however this approach is less easy to fit in an automated pipeline for updating recipes when new CPEs are installed. 
 
 ---
 
-## Supported Applications
+## List of supported scientific applications and tools
 
+The list of maintained software on the system with the current default CPE is referenced by the [symbolic link with the system name](https://github.com/eth-cscs/production/blob/master/jenkins-builds/1.4.0-21.04-eiger) on the [CSCS GitHub production repository](https://github.com/eth-cscs/production): 
 ```
  Buildah-1.19.0.eb                    --set-default-module
  CMake-3.20.1.eb                      --set-default-module
- ddt-21.0-linux-x86_64.eb             --set-default-module
+ ddt-21.0.2-linux-x86_64.eb           --set-default-module
  hub-2.14.2.eb                        --set-default-module
  hwloc-2.4.1.eb                       --set-default-module
  jupyter-utils-0.1.eb                 --set-default-module
- reframe-3.5.3.eb                     --set-default-module
- xalt-2.8.10.eb                       --set-default-module
- GSL-2.6-cpeAMD-21.03.eb
- GSL-2.6-cpeCray-21.03.eb
- ParaView-5.9.0-cpeCray-21.03-OSMesa-python3.eb
- Boost-1.75.0-cpeGNU-21.03.eb
- Boost-1.75.0-cpeGNU-21.03-python3.eb --set-default-module
- CP2K-8.1-cpeGNU-21.03.eb
- GREASY-19.03-cscs-cpeGNU-21.03.eb
- GROMACS-2020.5-cpeGNU-21.03.eb
- GSL-2.6-cpeGNU-21.03.eb
- jupyterlab-2.2.8-cpeGNU-21.03.eb
- LAMMPS-29Oct20-cpeGNU-21.03.eb
- matplotlib-3.3.4-cpeGNU-21.03.eb
- NCO-4.9.8-cpeGNU-21.03.eb
- QuantumESPRESSO-6.7.0-cpeGNU-21.03.eb
- Vc-1.4.1-cpeGNU-21.03.eb           
- Amber-20-15-9-cpeIntel-21.03.eb
- GSL-2.6-cpeIntel-21.03.eb
- NAMD-2.14-cpeIntel-21.03.eb
- VASP-6.2.0-cpeIntel-21.03.eb
+ NCL-6.6.2.eb                         --set-default-module
+ reframe-3.6.2.eb                     --set-default-module
+ GSL-2.6-cpeAMD-21.04.eb
+ GSL-2.6-cpeCray-21.04.eb
+ ParaView-5.9.1-cpeCray-21.04-OSMesa-python3.eb
+ Boost-1.75.0-cpeGNU-21.04.eb
+ Boost-1.75.0-cpeGNU-21.04-python3.eb --set-default-module
+ CDO-1.9.10-cpeGNU-21.04.eb
+ CP2K-8.1-cpeGNU-21.04.eb
+ GREASY-19.03-cscs-cpeGNU-21.04.eb
+ GROMACS-2020.5-cpeGNU-21.04.eb
+ GSL-2.6-cpeGNU-21.04.eb
+ jupyterlab-2.2.8-cpeGNU-21.04.eb
+ Julia-1.6.0-cpeGNU-21.04.eb
+ JuliaExtensions-1.6.0-cpeGNU-21.04.eb
+ LAMMPS-29Oct20-cpeGNU-21.04.eb
+ matplotlib-3.3.4-cpeGNU-21.04.eb
+ NAMD-2.14-cpeGNU-21.04.eb
+ NCO-4.9.8-cpeGNU-21.04.eb
+ Scalasca-2.6-cpeGNU-21.04.eb       --set-default-module
+ Vc-1.4.1-cpeGNU-21.04.eb
+ Amber-20-15-9-cpeIntel-21.04.eb
+ GSL-2.6-cpeIntel-21.04.eb
+ QuantumESPRESSO-6.7.0-cpeIntel-21.04.eb
+ VASP-6.2.0-cpeIntel-21.04.eb
 ```
+
+The builds on the system are kept up to date with the last version of the list by the [CSCS Jenkins pipeline ProductionEB](https://github.com/eth-cscs/production/blob/master/jenkins/JenkinsfileProductionEB).
 
 ---
 
-## Example build
+## Automated updates of supported software with new CPE
 
+The [CSCS Jenkins pipeline UpdateEB](https://github.com/eth-cscs/production/blob/master/jenkins/JenkinsfileUpdateEB) will install the maintained software with a new CPE using the EasyBuild option `--try-toolchain-version`:
 ```
 eb --ignore-locks -r --try-toolchain-version=21.05  Amber-20-15-9-cpeIntel-21.04.eb
 == Temporary log file in case of crash /run/user/23395/easybuild/tmp/eb-ss0j8hgy/easybuild-ywc85qhu.log
