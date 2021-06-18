@@ -857,15 +857,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#supported-applications" class="md-nav__link">
-    Supported Applications
+  <a href="#list-of-supported-scientific-applications-and-tools" class="md-nav__link">
+    List of supported scientific applications and tools
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#example-build" class="md-nav__link">
-    Example build
+  <a href="#automated-updates-of-supported-software-with-new-cpe" class="md-nav__link">
+    Automated updates of supported software with new CPE
   </a>
   
 </li>
@@ -963,15 +963,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#supported-applications" class="md-nav__link">
-    Supported Applications
+  <a href="#list-of-supported-scientific-applications-and-tools" class="md-nav__link">
+    List of supported scientific applications and tools
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#example-build" class="md-nav__link">
-    Example build
+  <a href="#automated-updates-of-supported-software-with-new-cpe" class="md-nav__link">
+    Automated updates of supported software with new CPE
   </a>
   
 </li>
@@ -1000,13 +1000,19 @@ targeted specifically the Cray Programming Environment on the Cray EX system (fo
 <p>As of CPE 21.04 though, the difference between the Cray Programming Environment on the XC and
 the EX systems is not relevant any longer, since they rely both on the PrgEnv meta-modules.</p>
 <p>Nonetheless, the versions of the CPE components that come with a CPE release might change 
-depending on the target system, therefore a different external metadata file is required:
-see <a href="https://github.com/eth-cscs/production/tree/master/easybuild">https://github.com/eth-cscs/production/tree/master/easybuild</a> to inspect the difference between two metadata file referring to the same version. </p>
+depending on the target system, therefore a different external metadata file is required:</p>
+<ul>
+<li>
+<p>see <a href="https://github.com/eth-cscs/production/tree/master/easybuild">https://github.com/eth-cscs/production/tree/master/easybuild</a> to inspect the difference between two metadata file referring to the same version </p>
+</li>
+<li>
 <p>E.g.: <code>cpe_external_modules_metadata-21.05.cfg</code> vs. <code>cray_external_modules_metadata-20.05.cfg</code></p>
+</li>
+</ul>
 <p>Furthermore, different easyconfig files might be needed to build the same software on the 
 two systems even with the same Cray PE, therefore the maintainers would need to provide 
 two versions anyway.   </p>
-<p>-- </p>
+<hr />
 <h2 id="cray-toolchains">Cray Toolchains<a class="headerlink" href="#cray-toolchains" title="Permanent link">&para;</a></h2>
 <p>EasyBuild supports Cray systems as of version 2.7.0, enabling building and installing software using 
 the Programming Environment modulefiles provided by Cray. </p>
@@ -1088,42 +1094,49 @@ dependencies = [
    (&#39;PrgEnv-gnu&#39;, EXTERNAL_MODULE)
 ]
 </code></pre></div></p>
-<p>The meta-module <code>cpe</code> will ensure that the additional modules loaded by a user will be compatible with the default Cray PE selected.</p>
+<p>The meta-module <code>cpe</code> will ensure that the additional modules loaded by a user will be compatible with the default CPE selected.</p>
 <p>The advantage of the approach is to avoid pinning directly the versions of CPE components in the custom toolchain definitions. </p>
 <p>Of course the maintainers could also decide to pin directl the version of each CPE component in the easyconfig, 
-however this approach is less easy to fit in an automated pipeline for updating recipes when new Cray PEs are installed. </p>
+however this approach is less easy to fit in an automated pipeline for updating recipes when new CPEs are installed. </p>
 <hr />
-<h2 id="supported-applications">Supported Applications<a class="headerlink" href="#supported-applications" title="Permanent link">&para;</a></h2>
+<h2 id="list-of-supported-scientific-applications-and-tools">List of supported scientific applications and tools<a class="headerlink" href="#list-of-supported-scientific-applications-and-tools" title="Permanent link">&para;</a></h2>
+<p>The list of maintained software on the system with the current default CPE is referenced by the <a href="https://github.com/eth-cscs/production/blob/master/jenkins-builds/1.4.0-21.04-eiger">symbolic link with the system name</a> on the <a href="https://github.com/eth-cscs/production">CSCS GitHub production repository</a>: 
 <div class="highlight"><pre><span></span><code> Buildah-1.19.0.eb                    --set-default-module
  CMake-3.20.1.eb                      --set-default-module
- ddt-21.0-linux-x86_64.eb             --set-default-module
+ ddt-21.0.2-linux-x86_64.eb           --set-default-module
  hub-2.14.2.eb                        --set-default-module
  hwloc-2.4.1.eb                       --set-default-module
  jupyter-utils-0.1.eb                 --set-default-module
- reframe-3.5.3.eb                     --set-default-module
- xalt-2.8.10.eb                       --set-default-module
- GSL-2.6-cpeAMD-21.03.eb
- GSL-2.6-cpeCray-21.03.eb
- ParaView-5.9.0-cpeCray-21.03-OSMesa-python3.eb
- Boost-1.75.0-cpeGNU-21.03.eb
- Boost-1.75.0-cpeGNU-21.03-python3.eb --set-default-module
- CP2K-8.1-cpeGNU-21.03.eb
- GREASY-19.03-cscs-cpeGNU-21.03.eb
- GROMACS-2020.5-cpeGNU-21.03.eb
- GSL-2.6-cpeGNU-21.03.eb
- jupyterlab-2.2.8-cpeGNU-21.03.eb
- LAMMPS-29Oct20-cpeGNU-21.03.eb
- matplotlib-3.3.4-cpeGNU-21.03.eb
- NCO-4.9.8-cpeGNU-21.03.eb
- QuantumESPRESSO-6.7.0-cpeGNU-21.03.eb
- Vc-1.4.1-cpeGNU-21.03.eb           
- Amber-20-15-9-cpeIntel-21.03.eb
- GSL-2.6-cpeIntel-21.03.eb
- NAMD-2.14-cpeIntel-21.03.eb
- VASP-6.2.0-cpeIntel-21.03.eb
-</code></pre></div>
+ NCL-6.6.2.eb                         --set-default-module
+ reframe-3.6.2.eb                     --set-default-module
+ GSL-2.6-cpeAMD-21.04.eb
+ GSL-2.6-cpeCray-21.04.eb
+ ParaView-5.9.1-cpeCray-21.04-OSMesa-python3.eb
+ Boost-1.75.0-cpeGNU-21.04.eb
+ Boost-1.75.0-cpeGNU-21.04-python3.eb --set-default-module
+ CDO-1.9.10-cpeGNU-21.04.eb
+ CP2K-8.1-cpeGNU-21.04.eb
+ GREASY-19.03-cscs-cpeGNU-21.04.eb
+ GROMACS-2020.5-cpeGNU-21.04.eb
+ GSL-2.6-cpeGNU-21.04.eb
+ jupyterlab-2.2.8-cpeGNU-21.04.eb
+ Julia-1.6.0-cpeGNU-21.04.eb
+ JuliaExtensions-1.6.0-cpeGNU-21.04.eb
+ LAMMPS-29Oct20-cpeGNU-21.04.eb
+ matplotlib-3.3.4-cpeGNU-21.04.eb
+ NAMD-2.14-cpeGNU-21.04.eb
+ NCO-4.9.8-cpeGNU-21.04.eb
+ Scalasca-2.6-cpeGNU-21.04.eb       --set-default-module
+ Vc-1.4.1-cpeGNU-21.04.eb
+ Amber-20-15-9-cpeIntel-21.04.eb
+ GSL-2.6-cpeIntel-21.04.eb
+ QuantumESPRESSO-6.7.0-cpeIntel-21.04.eb
+ VASP-6.2.0-cpeIntel-21.04.eb
+</code></pre></div></p>
+<p>The builds on the system are kept up to date with the last version of the list by the <a href="https://github.com/eth-cscs/production/blob/master/jenkins/JenkinsfileProductionEB">CSCS Jenkins pipeline ProductionEB</a>.</p>
 <hr />
-<h2 id="example-build">Example build<a class="headerlink" href="#example-build" title="Permanent link">&para;</a></h2>
+<h2 id="automated-updates-of-supported-software-with-new-cpe">Automated updates of supported software with new CPE<a class="headerlink" href="#automated-updates-of-supported-software-with-new-cpe" title="Permanent link">&para;</a></h2>
+<p>The <a href="https://github.com/eth-cscs/production/blob/master/jenkins/JenkinsfileUpdateEB">CSCS Jenkins pipeline UpdateEB</a> will install the maintained software with a new CPE using the EasyBuild option <code>--try-toolchain-version</code>:
 <div class="highlight"><pre><span></span><code>eb --ignore-locks -r --try-toolchain-version=21.05  Amber-20-15-9-cpeIntel-21.04.eb
 == Temporary log file in case of crash /run/user/23395/easybuild/tmp/eb-ss0j8hgy/easybuild-ywc85qhu.log
 == found valid index for /apps/common/UES/easybuild/software/EasyBuild/4.3.4/easybuild/easyconfigs, so using it...
@@ -1152,7 +1165,7 @@ however this approach is less easy to fit in an automated pipeline for updating 
 == Build succeeded for 1 out of 1
 == Temporary log file(s) /run/user/23395/easybuild/tmp/eb-ss0j8hgy/easybuild-ywc85qhu.log\* have been removed.
 == Temporary directory /run/user/23395/easybuild/tmp/eb-ss0j8hgy has been removed.
-</code></pre></div>
+</code></pre></div></p>
 <p><em><a href="../easybuild_at_cscs/">[next: EasyBuild at CSCS]</a></em></p>
                 
                   

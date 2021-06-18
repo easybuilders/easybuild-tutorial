@@ -1036,11 +1036,13 @@ libraries for CSCS users. The pipelines are stored on GitHub and are currently l
 </code></pre></div>
 The default installation folder is instead the following:
 <div class="highlight"><pre><span></span><code>$HOME/easybuild/&lt;system-name&gt;
-</code></pre></div>
-Where <code>&lt;system-name&gt;</code> is the lowercase name of the system, e.g.: <code>eiger</code>.</p>
-<p>The custom EasyBuild modulefile is available both in Tcl and Lua syntax on the CSCS production repository:
-a system using Lmod for module management will load the Lua modulefile, which is ignored by systems using 
-Environment modules instead.</p>
+</code></pre></div></p>
+<p>Where <code>&lt;system-name&gt;</code> is the lowercase name of the system, e.g.: <code>eiger</code>.</p>
+<p>The <a href="https://github.com/eth-cscs/production/tree/master/easybuild/module/EasyBuild-custom">custom EasyBuild modulefile</a> is available both in Tcl and Lua syntax on the <a href="https://github.com/eth-cscs/production">CSCS production repository</a>:</p>
+<ul>
+<li>a system using Lmod for module management will load the Lua modulefile, which is ignored by systems using 
+Environment modules instead.</li>
+</ul>
 <p>The modulefile defines the location of the EasyBuild configuration files, the recipes and the installation directories. </p>
 <p>Once you have loaded the EasyBuild modulefile, you can check the EasyBuild version loaded and the default configuration 
 executing the EasyBuild command <code>eb</code>  with the options <code>--version</code>  or <code>--show-config</code> as usual.</p>
@@ -1157,22 +1159,35 @@ module load EasyBuild-custom
 with application folders listed in alphabetical order.</p>
 <hr />
 <h2 id="easybuild-configuration-file">EasyBuild configuration file<a class="headerlink" href="#easybuild-configuration-file" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>cat ~/GitHub/lucamar/production/easybuild/easybuild.d/system_wide.cfg
-[override]
+<p>The custom configuration of EasyBuild at CSCS is completed by the <a href="https://github.com/eth-cscs/production/blob/master/easybuild/easybuild.d/system_wide.cfg">site wide configuration file</a> available in the folder <code>easybuild.d</code> under <code>XDG_CONFIG_DIRS</code>, referenced in the modulefile EasyBuild-custom.</p>
+<p>The file defines the following:</p>
+<ul>
+<li>
+<p>the list of hidden dependencies</p>
+</li>
+<li>
+<p>the list of hidden toolchains</p>
+</li>
+<li>
+<p>the list of allowed loaded modules</p>
+</li>
+</ul>
+<p>The current content of the file is reported below:
+<div class="highlight"><pre><span></span><code>[override]
 # Comma separated list of dependencies that you want automatically hidden, (e.g. --hide-deps=zlib,ncurses) (type comma-separated list)
 hide-deps=absl,ANTLR,APR,APR-util,arpack-ng,Autoconf,Automake,Autotools,backports.weakref,Bazel,binutils,Bison,bokeh,byacc,bzip2,cairo,cloudpickle,configurable-http-proxy,Coreutils,Cube,CUDA,cuDNN,cURL,DB,Doxygen,Eigen,expat,flex,FLTK,fontconfig,freetype,funcsigs,gc,GCCcore,gettext,GL2PS,GLib,glmnet,GLPK,GMP,gnuplot,go,gperf,GPGME,GraphicsMagick,groff,GTS,guile,help2man,hwloc,inputproto,IPython,JasPer,jemalloc,kbproto,Libassuan,libcerf,libdrm,libevent,libfabric,libffi,libgd,libGLU,libgpuarray,libiberty,libjpeg-turbo,libjpeg-turbo,libpciaccess,Libpgp-error,libpng,libpthread-stubs,libQGLViewer,libreadline,libsodium,libspatialindex,LibTIFF,libtool,libunistring,libunwind,libutempter,libX11,libXau,libxcb,libXdmcp,libXext,libxml2,libXrender,libxshmfence,libyaml,LLVM,LOKI,Loki,LVM2,M4,make,makeinfo,Mako,Mesa,minieigen,mock,mxml,NASM,NASM,ncurses,nettle,networkx,nodejs,nose-parameterized,numactl,OPARI2,OpenMPI,OpenPGM,parameterized,PCRE,PDT,Perl,PIL,Pillow,pixman,pkg-config,ploticus,PMIx,popt,prereq,protobuf,protobuf-core,PyGTS,PyQt,Python-bare,Python-Xlib,PyYAML,PyZMQ,Qhull,qrupdate,Qt,renderproto,runc,scikit-image,scikit-learn,SCons,SCOTCH,Serf,SIP,SQLite,SWIG,Szip,Tcl,Tk,UCX,UDUNITS,UnZip,util-linux,Werkzeug,wheel,X11,xcb-proto,xextproto,xorg-macros,xproto,xtrans,XZ,ZeroMQ,zlib,zstd
 module-syntax=Tcl
 hide-toolchains=CrayCCE,CrayGNU,CrayIntel,CrayPGI,GCCcore,gmvapich2,gmvolf,foss,fosscuda,gompi
 allow-loaded-modules=ddt,EasyBuild-custom,EasyBuild,xalt
-</code></pre></div>
+</code></pre></div></p>
 <hr />
 <h2 id="easybuild-on-piz-daint">EasyBuild on Piz Daint<a class="headerlink" href="#easybuild-on-piz-daint" title="Permanent link">&para;</a></h2>
 <p>On Piz Daint, which is a heterogeneous system, you need to select which architecture 
-should be targeted when building software. 
-You can target the Intel Haswell architecture accessing the gpu software stack using the command:
+should be targeted when building software. </p>
+<p>You can target the Intel Haswell architecture accessing the gpu software stack using the command:
 <div class="highlight"><pre><span></span><code>module load daint-gpu EasyBuild-custom
-</code></pre></div>
-Alternatively, you can target the Intel Broadwell architecture and the mc (multicore) software stack:
+</code></pre></div></p>
+<p>Alternatively, you can target the Intel Broadwell architecture and the mc (multicore) software stack:
 <div class="highlight"><pre><span></span><code>module load daint-mc EasyBuild-custom
 </code></pre></div></p>
 <p>On Piz Daint, EasyBuild software and modules will be installed by default under the following folder:
@@ -1190,9 +1205,10 @@ you will use the flag <code>-r</code> as in the example below:
 <p>The build command just needs the configuration file name with the extension <code>.eb</code> and not the full path, 
 provided that the configuration file is in your search path: the command <code>eb --show-config</code> will print 
 the variable robot-paths that holds the search path. </p>
-<p>More options are available, please have a look at the short help message typing <code>eb -h</code>. 
-For instance, you can check if any EasyBuild configuration file already exists for a given program name, using the search flag -S:</p>
-<p>eb -S <program_name></p>
+<p>More options are available, please have a look at the short help message typing <code>eb -h</code>. </p>
+<p>For instance, you can check if any EasyBuild configuration file already exists for a given program name, using the search flag -S:
+<div class="highlight"><pre><span></span><code>eb -S &lt;program_name&gt;
+</code></pre></div></p>
 <p>Please note that on Cray systems you can use the configuration files that rely of a Cray toolchain, 
 which you will find in the configuration filename (<code>eb -S &lt;name&gt; | grep Cray</code>). </p>
 <p>You will be able to load the modules created by EasyBuild in the folder defined by the <code>EASYBUILD_PREFIX</code> 
@@ -1201,8 +1217,9 @@ variable using the following commands:
 module load &lt;modulename&gt;/version
 </code></pre></div></p>
 <p>The command module use will prepend the selected folder to your MODULEPATH environment variable, 
-therefore you will see the new modules with module avail. Please note that by default <code>EASYBUILD_PREFIX</code> 
-is set to a folder inside your <code>$HOME</code>, however the <code>$HOME</code> folder is by default not readable by other users. </p>
+therefore you will see the new modules with module avail. </p>
+<p>Please note that by default <code>EASYBUILD_PREFIX</code> is set to a folder inside your <code>$HOME</code>, 
+however the <code>$HOME</code> folder is by default not readable by other users. </p>
 <p>Therefore if you want to make your builds available to your group, then you need to allow read-only access 
 to other members of your group using the command <code>chmod g+rx $HOME</code>.</p>
                 
@@ -1213,7 +1230,7 @@ to other members of your group using the command <code>chmod g+rx $HOME</code>.<
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 16, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 17, 2021</span>
       
     
   </small>
