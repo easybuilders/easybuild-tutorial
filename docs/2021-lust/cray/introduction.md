@@ -1,11 +1,11 @@
 # Introduction to the Cray Programming Environment
 
-The Cray Programming Environment (CPE) provides tools designed to maximize developer productivity, application 
+The Cray Programming Environment (PE) provides tools designed to maximize developer productivity, application 
 scalability, and code performance, including compilers, analyzers, optimized libraries, and debuggers. 
 
 ---
 
-## CPE Components
+## Cray PE Components
 
 * __Cray Compiling Environment (CCE)__:
 
@@ -82,13 +82,13 @@ The main purposes of using the Cray wrappers are the following:
 
 ### Lmod
 
-In addition to the default Environment Modules system, CPE offers support 
+In addition to the default Environment Modules system, Cray PE offers support 
 for [Lmod](https://lmod.readthedocs.io) as an alternative module management system.
 
 Lmod is a Lua-based module system that loads and unloads modulefiles, handles path variables, and manages
 library and header files.
 
-The CPE implementation of Lmod is hierarchical, managing module dependencies and ensuring any module a
+The Cray PE implementation of Lmod is hierarchical, managing module dependencies and ensuring any module a
 user has access to is compatible with other loaded modules. 
 
 Lmod loads related compiler, network, CPU, and MPI modules adding dynamic module paths to the Lmod hierarchy:
