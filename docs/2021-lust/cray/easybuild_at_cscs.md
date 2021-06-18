@@ -182,7 +182,7 @@ with application folders listed in alphabetical order.
 
 ## EasyBuild configuration file
 
-The custom configuration of EasyBuild at CSCS is completed by the [site wide configuration file](https://github.com/eth-cscs/production/blob/master/easybuild/easybuild.d/system_wide.cfg) available in the folder `easybuild.d` under `XDG_CONFIG_DIRS`, referenced in the modulefile EasyBuild-custom.
+The custom configuration of EasyBuild at CSCS is completed by the [site wide configuration file](https://github.com/eth-cscs/production/blob/master/easybuild/easybuild.d/system_wide.cfg) available in the folder `easybuild.d` under `XDG_CONFIG_DIRS`, referenced in the modulefile `EasyBuild-custom`.
 
 The file defines the following:
 
