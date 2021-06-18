@@ -111,7 +111,7 @@ The module `PrgEnv-intel` loads the default Intel Compiler
 and sets the corresponding programming environment: 
 the Cray PE enables the Intel® oneAPI compiler and tools. 
 
-The documentation is avaible in the [Intel® oneAPI Programming Guide](https://software.intel.com/content/www/us/en/develop/documentation/oneapi-programming-guide/top/oneapi-development-environment-setup.html)
+The documentation is available in the [Intel® oneAPI Programming Guide](https://software.intel.com/content/www/us/en/develop/documentation/oneapi-programming-guide/top/oneapi-development-environment-setup.html)
 
 Cray provides a bundled package of support libraries to install into the Cray PE to enable the Intel compiler, allowing
 utilities such as debuggers and performance tools to work with it. 
