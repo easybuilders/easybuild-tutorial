@@ -112,7 +112,7 @@ The easyconfig files of the current default custom toolchains were using a foote
 
 Therefore, when using the latest EasyBuild release one could write a much shorter [easyconfig file](https://github.com/eth-cscs/production/blob/master/easybuild/easyconfigs/c/cpeGNU/cpeGNU-21.04.eb) for the custom toolchains. 
 
-For instale the cpeGNU custom toolchain easyconfig file would like the following:
+For instance, the cpeGNU custom toolchain easyconfig file would like the following:
 ```
 # Compiler toolchain for Cray EX Programming Environment GNU compiler (cpe-gnu)
 easyblock = 'cpeToolchain'
