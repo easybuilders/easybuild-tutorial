@@ -148,6 +148,11 @@ The second one is instead specific to the CSCS EasyBuild-custom modulefile and c
 to the EasyBuild variable `XDG_CONFIG_DIRS`: therefore, the custom modulefile expects to find 
 the subfolders of the easybuild directory under the CSCS GitHub production repository. 
 
+!!! Note
+    The variable `XDG_CONFIG_DIRS` might be used by other programs as well: in this case, 
+    you might consider alternative ways to provide 
+    [EasyBuild configuration files](https://docs.easybuild.io/en/latest/Configuration.html#default-configuration-files)
+
 The following environment variables depend on `EB_CUSTOM_REPOSITORY`:
 ```
 setenv XDG_CONFIG_DIRS                          $::env(EB_CUSTOM_REPOSITORY)
@@ -163,7 +168,8 @@ and the CSCS custom recipes under the `easyconfigs` folder, listed as usual in a
 
 ## Customizing your build recipes
 
-If you wish to extend or customize the CSCS EasyBuild recipes, you can clone the [CSCS production project](https://github.com/eth-cscs/production.git) from GitHub and have your private repository:
+If you wish to extend or customize the CSCS EasyBuild recipes, you can clone the 
+[CSCS production project](https://github.com/eth-cscs/production.git) from GitHub and have your private repository:
 ```
 git clone https://github.com/eth-cscs/production.git
 ```
@@ -180,7 +186,7 @@ with application folders listed in alphabetical order.
 
 ---
 
-## EasyBuild configuration file
+## Site wide configuration file
 
 The custom configuration of EasyBuild at CSCS is completed by the [site wide configuration file](https://github.com/eth-cscs/production/blob/master/easybuild/easybuild.d/system_wide.cfg) available in the folder `easybuild.d` under `XDG_CONFIG_DIRS`, referenced in the modulefile `EasyBuild-custom`.
 
