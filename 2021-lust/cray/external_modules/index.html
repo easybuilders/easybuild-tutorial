@@ -868,18 +868,12 @@
     Cray Scientific and Math Library
   </a>
   
-    <nav class="md-nav" aria-label="Cray Scientific and Math Library">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#scientific-libraries" class="md-nav__link">
-    Scientific Libraries:
-  </a>
-  
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#scientific-libraries-provided-by-csml" class="md-nav__link">
+    Scientific Libraries provided by CSML
+  </a>
   
 </li>
       
@@ -1039,18 +1033,12 @@
     Cray Scientific and Math Library
   </a>
   
-    <nav class="md-nav" aria-label="Cray Scientific and Math Library">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#scientific-libraries" class="md-nav__link">
-    Scientific Libraries:
-  </a>
-  
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#scientific-libraries-provided-by-csml" class="md-nav__link">
+    Scientific Libraries provided by CSML
+  </a>
   
 </li>
       
@@ -1103,86 +1091,105 @@
 <p>EasyBuild supports the use of modules that were not installed via EasyBuild is available. 
 We refer to such modules as <a href="https://docs.easybuild.io/en/latest/Using_external_modules.html">external modules</a>.</p>
 <p>This feature is used extensively on Cray systems, since several software modules are already provided by the 
-CPE: <a href="https://docs.easybuild.io/en/latest/Using_external_modules.html#using-external-modules-as-dependencies">external modules can be used as dependencies</a>, by including the module name in the dependencies list, 
+Cray PE: <a href="https://docs.easybuild.io/en/latest/Using_external_modules.html#using-external-modules-as-dependencies">external modules can be used as dependencies</a>, by including the module name in the dependencies list, 
 along with the <code>EXTERNAL_MODULE</code> constant marker.</p>
-<p>For example, to specify the module <code>cray-fftw</code> as a dependency:
+<p>For example, to specify the module <code>cray-fftw</code> as a dependency, you should write the following in your easyconfig file:
 <div class="highlight"><pre><span></span><code>dependencies = [(&#39;cray-fftw&#39;, EXTERNAL_MODULE)]
 </code></pre></div></p>
-<p>For such dependencies, EasyBuild will:
-* load the module before initiating the software build and install procedure
-* include a <code>module load</code> statement in the generated module file (for non-build dependencies)</p>
+<p>For such dependencies, EasyBuild will:</p>
+<ul>
+<li>
+<p>load the module before initiating the software build and install procedure</p>
+</li>
+<li>
+<p>include a <code>module load</code> statement in the generated module file (for runtime dependencies)</p>
+</li>
+</ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The default version of the external module will be loaded unless a specific version is given as dependency.</p>
+<p>The default version of the external module will be loaded unless a specific version is given as dependency</p>
 </div>
 <p>If the specified module is not available, EasyBuild will exit with an error message stating that the dependency 
 can not be resolved because the module could not be found, without searching for a matching easyconfig file.</p>
-<p>We show the main external modules used as dependencies in the Cray Programming Environment.</p>
+<p>We show in the next sections the main external modules used as dependencies in the Cray PE.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Library-specific manpages are available only when the associated module is loaded.</p>
+<p>Component specific manpages are available only when the associated module is loaded.</p>
 </div>
 <hr />
 <h2 id="compilers">Compilers<a class="headerlink" href="#compilers" title="Permanent link">&para;</a></h2>
-<p>The CPE supports multiple compilers, Cray and third party compilers as well: Cray, AOCC, Intel, GNU. </p>
+<p>Cray PE supports multiple compilers, Cray and third party compilers as well: AOCC, Cray, Intel, GNU. </p>
 <p>Users can access the compilers loading the modules <code>PrgEnv-cray</code> (loaded by default at login), <code>PrgEnv-gnu</code>,
 <code>PrgEnv-intel</code> and <code>PrgEnv-aocc</code>.</p>
 <p>The corresponding compilers and their respective dependencies will be available, including wrappers and mapping 
 (for example, mapping <code>cc</code> to <code>gcc</code> in <code>PrgEnv-gnu</code>).</p>
-<p>Command to invoke compiler wrappers: <code>ftn</code> (Fortran), <code>cc</code> (C), <code>CC</code> (C++)
-Online help: <code>cc -help</code>, <code>CC -help</code></p>
-<p>The compiler wrappers call the correct compiler with appropriate options to build and link applications with relevant libraries as required by the modules loaded: </p>
-<ul>
-<li>compiler wrappers replace direct calls to compiler drivers in Makefiles and build scripts</li>
-</ul>
+<p>The commands to invoke compiler wrappers are <code>ftn</code> (Fortran), <code>cc</code> (C), <code>CC</code> (C++).</p>
+<p>The online help can be accessed with the <code>-help</code> option. E.g.: <code>cc -help</code>, <code>CC -help</code>.
+One of the most frequently used options of the compiler wrappers is <code>-craype-verbose</code>:
+<div class="highlight"><pre><span></span><code> ftn -help | grep verbose -A 1 
+   -craype-verbose              Print the command which is forwarded 
+                                to compiler invocation
+</code></pre></div>
+More information is available with the <code>info</code> or <code>man</code> commands. 
+E.g.: both <code>info cc</code> or <code>man cc</code> will display the man page of the C compiler wrapper.</p>
+<p>The compiler wrappers call the correct compiler in the currently loaded programming environment,
+with appropriate options to build and link applications with relevant libraries, as required by the modules loaded. </p>
+<p>Therefore compiler wrappers should replace direct calls to compiler drivers in Makefiles and build scripts.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Only dynamic linking is supported by compiler wrappers.</p>
+<p>Only dynamic linking is supported by compiler wrappers on the Cray EX system</p>
 </div>
 <hr />
 <h3 id="cray-compiling-environment-cce">Cray Compiling Environment (CCE)<a class="headerlink" href="#cray-compiling-environment-cce" title="Permanent link">&para;</a></h3>
-<p>Module: <code>PrgEnv-cray</code>
-Compiler-specific manpages: crayftn(1), craycc(1), crayCC(1)
-Documentation: Cray Fortran Reference Manual, Cray Compiling Environment Release
-Overview: <a href="https://clang.llvm.org/docs/UsersManual.html">Clang Users Manual</a></p>
+<p>The Cray Compiling Environment is set by the module <code>PrgEnv-cray</code>, which is loaded by default at login.</p>
+<p>Compiler-specific manpages can be accessed on the system with <code>man crayftn</code>, <code>man craycc</code> or <code>man crayCC</code>.</p>
+<p>More details are given in the Cray Fortran Reference Manual and the Cray Compiling Environment Release
+available on <a href="https://pubs.cray.com">Cray Pubs</a>. 
+The <a href="https://clang.llvm.org/docs/UsersManual.html">Clang Compiler User’s Manual</a> 
+is another source of information for the Cray C and C++ Clang compilers.</p>
 <p>The Cray Compiling Environment (CCE) provides Fortran, C and C++ compilers that perform substantial analysis
 during compilation and automatically generate highly optimized code. </p>
-<p>For more detailed information about the Cray Fortran, C, and C++ compiler command-line arguments, see the
-<code>crayftn(1)</code>, <code>craycc(1)</code>, and <code>crayCC(1)</code> manpages, respectively.</p>
-<p>One of the most useful compiler features is the ability to generate annotated loopmark listings showing what
-optimization were performed and their locations. </p>
-<p>Together with compiler messages, these listings can help zero-in on areas in the code that are compiling without error but not fully optimized.</p>
-<p>For more information about compiler pragmas and directives, see the <code>intro_directives(1)</code> manpages.</p>
+<p>For more information about compiler pragmas and directives, see <code>man intro_directives</code> on the system.</p>
 <hr />
 <h2 id="third-party-compilers">Third-Party Compilers<a class="headerlink" href="#third-party-compilers" title="Permanent link">&para;</a></h2>
 <h3 id="aocc">AOCC<a class="headerlink" href="#aocc" title="Permanent link">&para;</a></h3>
-<p>Module: <code>PrgEnv-aocc</code>
-Documentation: <a href="https://developer.amd.com/wp-content/resources/AOCC-2.1-User-Guide.pdf">AOCC 2.1 User Guide</a></p>
-<p>The CPE enables the AMD Optimizing C/C++ Compiler 2.1 (AOCC). </p>
+<p>The module <code>PrgEnv-aocc</code> loads the default AMD Optimizing C/C++ Compiler 
+and sets the corresponding programming environment.</p>
+<p>Compiler-specific documentation is available in the <a href="https://developer.amd.com/amd-aocc/#userguide">AOCC User Guide</a>.</p>
 <p>Cray provides a bundled package of support libraries to install into the PE environment to enable AOCC, 
 and Cray PE utilities such as debuggers and performance tools work with AOCC.</p>
 <h3 id="gnu">GNU<a class="headerlink" href="#gnu" title="Permanent link">&para;</a></h3>
-<p>Module: <code>PrgEnv-gnu</code>
-Compiler-specific manpages: gcc(1), gfortran(1), g++(1)
-Documentation: <a href="https://gcc.gnu.org/onlinedocs">GCC online documentation</a></p>
-<p>The CPE bundles and enables the open-source GNU Compiler Collection (GCC). </p>
+<p>The module <code>PrgEnv-gnu</code> loads the default GNU Compiler 
+and sets the corresponding programming environment: 
+the Cray PE bundles and enables the open-source GNU Compiler Collection (GCC). </p>
+<p>Compiler-specific manpages can be accessed on the system with <code>man gfortran</code>, <code>man gcc</code> or <code>man g++</code>.</p>
+<p>More details are provided by the <a href="https://gcc.gnu.org/onlinedocs">GCC online documentation</a>.</p>
 <h3 id="intel">Intel<a class="headerlink" href="#intel" title="Permanent link">&para;</a></h3>
-<p>Module: <code>PrgEnv-intel</code>
-Documentation: <a href="https://software.intel.com/content/www/us/en/develop/documentation/oneapi-programming-guide/top/oneapi-development-environment-setup.html">Intel® oneAPI Programming Guide</a></p>
-<p>The CPE enables the Intel® oneAPI compiler and tools. </p>
-<p>Cray provides a bundled package of support libraries to install into the CPE to enable the Intel compiler, allowing
-utilities such as debuggers and performance tools to work with the Intel compiler. </p>
+<p>The module <code>PrgEnv-intel</code> loads the default Intel Compiler
+and sets the corresponding programming environment: 
+the Cray PE enables the Intel® oneAPI compiler and tools. </p>
+<p>The documentation is available in the <a href="https://software.intel.com/content/www/us/en/develop/documentation/oneapi-programming-guide/top/oneapi-development-environment-setup.html">Intel® oneAPI Programming Guide</a></p>
+<p>Cray provides a bundled package of support libraries to install into the Cray PE to enable the Intel compiler, allowing
+utilities such as debuggers and performance tools to work with it. </p>
 <hr />
 <h2 id="cray-scientific-and-math-library">Cray Scientific and Math Library<a class="headerlink" href="#cray-scientific-and-math-library" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Modules: <code>cray-libsci</code>, <code>cray-fftw</code></li>
-<li>Manpages: <code>intro_libsci</code>, <code>intro_fftw3</code></li>
+<li>
+<p>Modules: <code>cray-libsci</code>, <code>cray-fftw</code></p>
+</li>
+<li>
+<p>Manpages: <code>intro_libsci</code>, <code>intro_fftw3</code></p>
+</li>
 </ul>
 <p>The Cray Scientific and Math Libraries (CSML, also known as LibSci) are a collection of numerical routines
 optimized for best performance on Cray systems. </p>
 <p>These libraries satisfy dependencies for many commonly used applications on Cray systems for a wide variety of domains. </p>
-<p>When the module for a CSML package (such as <code>cray-libsci</code> or <code>cray-fftw</code>) is loaded, all relevant headers and libraries for these packages are added to the compile and link lines of the cc, ftn, and CC Cray PE drivers.</p>
-<h3 id="scientific-libraries">Scientific Libraries:<a class="headerlink" href="#scientific-libraries" title="Permanent link">&para;</a></h3>
+<p>When the module for a CSML package (such as <code>cray-libsci</code> or <code>cray-fftw</code>) is loaded, 
+all relevant headers and libraries for these packages are added to the compile 
+and link lines of the <code>cc</code>, <code>ftn</code>, and <code>CC</code> compiler wrappers.</p>
+<hr />
+<h2 id="scientific-libraries-provided-by-csml">Scientific Libraries provided by CSML<a class="headerlink" href="#scientific-libraries-provided-by-csml" title="Permanent link">&para;</a></h2>
+<p>The CSML collection contains the following Scientific Libraries:</p>
 <ul>
 <li>BLAS (Basic Linear Algebra Subroutines)</li>
 <li>BLACS (Basic Linear Algebra Communication Subprograms)</li>
@@ -1202,11 +1209,12 @@ optimized for best performance on Cray systems. </p>
 <li>Manpages: <code>intro_mpi</code></li>
 <li>Website: <a href="http://www.mpi-forum.org">http://www.mpi-forum.org</a></li>
 </ul>
-<p>MPI is a widely used parallel programming model that establishes a practical, portable, efficient, and flexible
-standard for passing messages between ranks in parallel processes. </p>
-<p>Cray MPI is derived from Argonne National Laboratory MPICH and implements the MPI-3.1 standard as documented by the MPI Forum in MPI: A Message Passing Interface Standard, Version 3.1.</p>
+<p>MPI is a widely used parallel programming model that establishes a practical, portable, efficient, 
+and flexible standard for passing messages between ranks in parallel processes. </p>
+<p>Cray MPI is derived from Argonne National Laboratory MPICH and implements the MPI-3.1 standard 
+as documented by the MPI Forum in MPI: A Message Passing Interface Standard, Version 3.1.</p>
 <p>Support for MPI varies depending on system hardware. To see which functions and environment variables the
-system supports, check the <code>intro_mpi</code> manpages.</p>
+system supports, please have a look at the corresponding man pages with <code>man intro_mpi</code> on the system.</p>
 <hr />
 <h2 id="dsmml">DSMML<a class="headerlink" href="#dsmml" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1214,32 +1222,40 @@ system supports, check the <code>intro_mpi</code> manpages.</p>
 <li>Manpages: <code>intro_dsmml</code></li>
 <li>Website: <a href="https://pe-cray.github.io/cray-dsmml">https://pe-cray.github.io/cray-dsmml</a></li>
 </ul>
-<p>Distributed Symmetric Memory Management Library (DSMML) is a proprietary memory management library.</p>
+<p>Distributed Symmetric Memory Management Library (DSMML) is a HPE Cray proprietary memory management library.</p>
 <p>DSMML is a standalone memory management library for maintaining distributed shared symmetric memory
 heaps for top-level PGAS languages and libraries like Coarray Fortran, UPC, and OpenSHMEM. </p>
 <p>DSMML allows user libraries to create multiple symmetric heaps and share information with other libraries. </p>
 <p>Through DSMML, interoperability can be extracted between PGAS programming models.</p>
-<p>Please refer to the <code>intro_dsmml</code> manpage for more details.</p>
+<p>Further details are available in the man page on the system with <code>man intro_dsmml</code>.</p>
 <hr />
 <h2 id="easybuild-metadata">EasyBuild Metadata<a class="headerlink" href="#easybuild-metadata" title="Permanent link">&para;</a></h2>
-<p>Metadata can be supplied to EasyBuild for external modules.</p>
-<p>Using the <code>--external-modules-metadata</code> configuration option, the location of one or more metadata files can be specified.</p>
-<p>The files are expected to be in INI format, with a section per module name and key-value assignments specific to that module.</p>
-<p>CSCS systems define the external modules metadata file with environment variables:
+<p><a href="https://docs.easybuild.io/en/latest/Using_external_modules.html#metadata-for-external-modules">Metadata</a>
+ can be supplied to EasyBuild for external modules: using the <code>--external-modules-metadata</code> 
+configuration option, the location of one or more metadata files can be specified.</p>
+<p>The files are expected to be in INI format, with a section per module name 
+and key-value assignments specific to that module.</p>
+<p>The external modules metadata file can be also defined with the corresponding environment variable:
 <div class="highlight"><pre><span></span><code>echo $EASYBUILD_EXTERNAL_MODULES_METADATA 
 /apps/common/UES/jenkins/production/easybuild/cpe_external_modules_metadata-21.04.cfg
 </code></pre></div></p>
-<p>The files are also available on the <a href="https://github.com/eth-cscs/production">CSCS GitHub production repository</a>. </p>
-<p>For instance, the external module version loaded by the dependency <code>cray-fftw</code> is specified in <a href="https://github.com/eth-cscs/production/blob/master/easybuild/cpe_external_modules_metadata-21.04.cfg">cpe_external_modules_metadata-21.04.cfg</a>
+<p>The following keys are 
+<a href="https://docs.easybuild.io/en/latest/Using_external_modules.html#supported-metadata-values">supported by EasyBuild</a>:</p>
+<ul>
+<li>name: software name(s) provided by the module</li>
+<li>version: software version(s) provided by the module</li>
+<li>prefix: installation prefix of the software provided by the module</li>
+</ul>
+<p>For instance, the external module version loaded by the dependency <code>cray-fftw</code> can be specified as follows:
 <div class="highlight"><pre><span></span><code><span class="k">[cray-fftw]</span>
 <span class="na">name</span> <span class="o">=</span> <span class="s">FFTW</span>
 <span class="na">prefix</span> <span class="o">=</span> <span class="s">FFTW_DIR/..</span>
 <span class="na">version</span> <span class="o">=</span> <span class="s">3.3.8.10</span>
-</code></pre></div>
-The environment variable <code>$EBROOTFFTW</code> will also be defined according to the <code>prefix</code> specified in the metadata file.</p>
+</code></pre></div></p>
+<p>The environment variable <code>$EBROOTFFTW</code> will also be defined according to the <code>prefix</code> specified in the metadata file.</p>
 <hr />
 <h2 id="cpe-meta-module">CPE meta-module<a class="headerlink" href="#cpe-meta-module" title="Permanent link">&para;</a></h2>
-<p>The EX system CPE provides the meta-module <code>cpe</code>: the purpose of the meta-module is
+<p>The Cray PE on the EX system provides the meta-module <code>cpe</code>: the purpose of the meta-module is
 similar to the scope of the <code>cdt</code> and <code>cdt-cuda</code> meta-modules available on the XC systems.</p>
 <div class="highlight"><pre><span></span><code>$ module show cpe
 --------------------------------------------------------------------------------------------------------------------------------
@@ -1261,9 +1277,9 @@ load(&quot;perftools-base/21.02.0&quot;)
 unload(&quot;cray-dsmml&quot;)
 load(&quot;cray-dsmml/0.1.4&quot;)
 </code></pre></div>
-<p>The meta-module loads the correct default versions of the modules with the selected CPE version, 
-as defined by the <code>LMOD_MODULERCFILE</code> referenced in the module itself.</p>
-<p>A site can create custom versions of the meta-module, if they want to override the module defaults.</p>
+<p>The meta-module loads the correct default versions of the modules with the selected Cray PE version, 
+as defined by the corresponding <code>LMOD_MODULERCFILE</code> referenced in the module.</p>
+<p>A site can create custom versions of the meta-module, in order to to override the module defaults.</p>
 <p><em><a href="../custom_toolchains/">[next: Custom Toolchains]</a></em></p>
                 
                   
@@ -1273,7 +1289,7 @@ as defined by the <code>LMOD_MODULERCFILE</code> referenced in the module itself
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 17, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 18, 2021</span>
       
     
   </small>

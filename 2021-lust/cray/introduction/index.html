@@ -798,8 +798,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#cpe-components" class="md-nav__link">
-    CPE Components
+  <a href="#cray-pe-components" class="md-nav__link">
+    Cray PE Components
   </a>
   
 </li>
@@ -809,15 +809,15 @@
     Modules
   </a>
   
-    <nav class="md-nav" aria-label="Modules">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#programming-environment-meta-modules" class="md-nav__link">
     Programming Environment meta-modules
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Programming Environment meta-modules">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#lmod" class="md-nav__link">
@@ -920,8 +920,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#cpe-components" class="md-nav__link">
-    CPE Components
+  <a href="#cray-pe-components" class="md-nav__link">
+    Cray PE Components
   </a>
   
 </li>
@@ -931,15 +931,15 @@
     Modules
   </a>
   
-    <nav class="md-nav" aria-label="Modules">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#programming-environment-meta-modules" class="md-nav__link">
     Programming Environment meta-modules
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Programming Environment meta-modules">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#lmod" class="md-nav__link">
@@ -978,10 +978,10 @@
                 
                 
                 <h1 id="introduction-to-the-cray-programming-environment">Introduction to the Cray Programming Environment<a class="headerlink" href="#introduction-to-the-cray-programming-environment" title="Permanent link">&para;</a></h1>
-<p>The Cray Programming Environment (CPE) provides tools designed to maximize developer productivity, application 
+<p>The Cray Programming Environment (PE) provides tools designed to maximize developer productivity, application 
 scalability, and code performance, including compilers, analyzers, optimized libraries, and debuggers. </p>
 <hr />
-<h2 id="cpe-components">CPE Components<a class="headerlink" href="#cpe-components" title="Permanent link">&para;</a></h2>
+<h2 id="cray-pe-components">Cray PE Components<a class="headerlink" href="#cray-pe-components" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Cray Compiling Environment (CCE)</strong>:</li>
 </ul>
@@ -1011,67 +1011,99 @@ scalability, and code performance, including compilers, analyzers, optimized lib
 <p>Debugging tools, including <code>gdb4hpc</code> and <code>Valgrind4hpc</code>.</p>
 <hr />
 <h2 id="modules">Modules<a class="headerlink" href="#modules" title="Permanent link">&para;</a></h2>
-<p>Modules enable users to modify their environment dynamically by using modulefiles: the <code>module</code> command 
-provides a user interface to the Environment Modules package. The module command system interprets modulefiles, 
-which contain Tool Command Language (Tcl) code, and dynamically modifies shell environment variables such as 
-<code>PATH</code> and <code>MANPATH</code>.</p>
-<p>Cray sites can alternately enable Lmod to handle modules with the Cray Programming Environment on Cray EX Systems. 
-Both module systems use the same module names and syntax shown in command-line examples.</p>
+<p>Modules enable users to modify their environment dynamically by using modulefiles: 
+the <code>module</code> command provides a user interface to the <a href="https://modules.readthedocs.io">Environment Modules</a> package. </p>
+<p>The module command interprets modulefiles, which contain Tool Command Language (Tcl) code, 
+and dynamically modifies shell environment variables such as <code>PATH</code> and <code>MANPATH</code>.</p>
+<p>Cray sites can alternately enable <a href="https://lmod.readthedocs.io">Lmod</a> to handle modules with the 
+Cray Programming Environment on Cray EX Systems. </p>
+<p>Both module systems use the same module names and syntax shown in command-line examples.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Environment Modules and Lmod are mutually exclusive and cannot both run on the same system.</p>
 </div>
-<p>The configuration files <code>/etc/cray-pe.d/cray-pe-configuration.sh</code> and <code>/etc/cray-pe.d/cray-pe-configuration.csh</code> allow sites to customize the default environment and the modules contained in default collections.</p>
-<p>To support customer-specific needs, the system administrator can create modulefiles for a product set for the
-users: </p>
+<p>The configuration files <code>/etc/cray-pe.d/cray-pe-configuration.sh</code> and <code>/etc/cray-pe.d/cray-pe-configuration.csh</code> 
+allow sites to customize the default environment. </p>
+<p>To support customer-specific needs, the system administrator 
+can create modulefiles for a product set for the users: </p>
 <ul>
-<li>for more information about the Environment Modules software package, see the <code>module(1)</code> and
-<code>modulefile(4)</code> manpages</li>
+<li>for more information about the Environment Modules software package see the help screen <code>module -h</code>.</li>
 </ul>
-<h3 id="programming-environment-meta-modules">Programming Environment meta-modules<a class="headerlink" href="#programming-environment-meta-modules" title="Permanent link">&para;</a></h3>
+<hr />
+<h2 id="programming-environment-meta-modules">Programming Environment meta-modules<a class="headerlink" href="#programming-environment-meta-modules" title="Permanent link">&para;</a></h2>
 <p>Programming Environment modules are organized into meta-modules, where each supports a different compiler suite. </p>
-<p>These modules are <code>PrgEnv-cray</code>, <code>PrgEnv-gnu</code>, <code>PrgEnv-aocc</code>, and <code>PrgEnv-intel</code>. </p>
-<p>Meta-modules provide wrappers (<code>cc</code>, <code>CC</code>, <code>ftn</code>) for both CCE and third-party compiler drivers:</p>
+<p>These modules are <code>PrgEnv-aocc</code>, <code>PrgEnv-cray</code>, <code>PrgEnv-gnu</code> and <code>PrgEnv-intel</code>. </p>
+<p>Meta-modules provide wrappers (<code>cc</code>, <code>CC</code>, <code>ftn</code>) for both Cray and third-party compiler drivers.</p>
+<p>The main purposes of using the Cray wrappers are the following:</p>
 <ol>
 <li>
-<p>they call the correct compiler with appropriate options to build and link applications </p>
+<p>call the correct compiler with appropriate options to build and link applications </p>
 </li>
 <li>
-<p>they link relevant libraries as required by modules loaded, with only dynamic linking supported </p>
+<p>link relevant libraries as required by modules loaded, with only dynamic linking supported </p>
 </li>
 <li>
-<p>they replace direct calls to compiler drivers in Makefiles and build scripts</p>
+<p>replace direct calls to compiler drivers in Makefiles and build scripts</p>
 </li>
 </ol>
+<hr />
 <h3 id="lmod">Lmod<a class="headerlink" href="#lmod" title="Permanent link">&para;</a></h3>
-<p>In addition to the default Environment Modules system, CPE offers support for Lmod as an alternative module
-management system.</p>
+<p>In addition to the default Environment Modules system, Cray PE offers support 
+for <a href="https://lmod.readthedocs.io">Lmod</a> as an alternative module management system.</p>
 <p>Lmod is a Lua-based module system that loads and unloads modulefiles, handles path variables, and manages
 library and header files.</p>
-<p>The CPE implementation of Lmod is hierarchical, managing module dependencies and ensuring any module a
+<p>The Cray PE implementation of Lmod is hierarchical, managing module dependencies and ensuring any module a
 user has access to is compatible with other loaded modules. </p>
-<p>To ensure optimal assistance from Lmod, it loads related compiler, network, CPU, and MPI modules, 
-adding dynamic module paths to the Lmod hierarchy:</p>
+<p>Lmod loads related compiler, network, CPU, and MPI modules adding dynamic module paths to the Lmod hierarchy:</p>
 <ul>
+<li>"families" of modules are used to flag circular conflicts, for instance: </li>
+<li>when module details are displayed through <code>module show</code></li>
 <li>
-<p>Lmod uses "families” of modules to flag circular conflicts, which is most apparent when module details are
-displayed through module show and when users attempt to load conflicting modules</p>
+<p>when users attempt to load conflicting modules</p>
 </li>
 <li>
-<p>Lmod automatically load a default set of modules: the default set includes one each of compiler, network, CPU,
-and MPI modules. Users may choose to load a different module set</p>
+<p>a default set of modules is loaded automatically: the default set includes compiler, network, CPU and MPI modules</p>
+</li>
+<li>
+<p>Users may choose to load a different module set, 
+defining <a href="https://lmod.readthedocs.io/en/latest/010_user.html#user-collections-label">user collections</a></p>
 </li>
 </ul>
-<p>Environment Modules and Lmod modules use the same names, so all command examples work the same
-whether using Environment Modules or Lmod.</p>
-<p>For more information, please see <a href="https://lmod.readthedocs.io/en/latest/010_user.html">The User Guide for Lmod</a>.</p>
+<p>Environment Modules and Lmod modules use the same names in the Cray Programming Environment, 
+therefore all command examples work the same whether using Environment Modules or Lmod.</p>
+<p>For more information, please refer to the <a href="https://lmod.readthedocs.io/en/latest/010_user.html">User Guide for Lmod</a>.</p>
 <hr />
 <h2 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">&para;</a></h2>
-<p><a href="https://pubs.cray.com">Cray Pubs</a> is the documentation portal of HPE/Cray. 
-Documentation on the Cray Programming Environment (PE) can be found under the <a href="https://pubs.cray.com/category/pe-tile">PE-Tile</a>.</p>
+<p><a href="https://pubs.cray.com">Cray Pubs</a> is the documentation portal of HPE/Cray 
+and the main source of the information provided in this tutorial. </p>
+<p>Documentation on the Cray Programming Environment (PE) can be found under 
+the <a href="https://pubs.cray.com/category/pe-tile">PE-Tile</a>. 
+The page provides links to the following content:</p>
+<ul>
+<li>
+<p>PE Release Announcements</p>
+</li>
+<li>
+<p>PE Installation &amp; Configuration</p>
+</li>
+<li>
+<p>Cray Compiling Environment (CCE)</p>
+</li>
+<li>
+<p>PE User Procedures (including Cray Programming Environment User Guides)</p>
+</li>
+</ul>
 <p>The GitHub project <a href="https://github.com/PE-Cray">PE-Cray</a> provides additional documentation:</p>
 <ul>
-<li>whitepapers are available at <a href="https://github.com/PE-Cray/whitepapers">https://github.com/PE-Cray/whitepapers</a></li>
+<li>
+<p>Whitepapers are available at <a href="https://github.com/PE-Cray/whitepapers">https://github.com/PE-Cray/whitepapers</a></p>
+</li>
+<li>
+<p>Documentation for <a href="https://github.com/PE-Cray/cray-openshmemx">cray-openshmemx</a></p>
+</li>
+<li>
+<p>Information on <a href="https://github.com/PE-Cray/cray-dsmml">cray-dsmml</a></p>
+</li>
 </ul>
 <hr />
 <p><em><a href="../external_modules/">[next: External Modules]</a></em></p>
@@ -1083,7 +1115,7 @@ Documentation on the Cray Programming Environment (PE) can be found under the <a
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 17, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 18, 2021</span>
       
     
   </small>

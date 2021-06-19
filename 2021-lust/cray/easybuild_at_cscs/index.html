@@ -876,8 +876,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#easybuild-configuration-file" class="md-nav__link">
-    EasyBuild configuration file
+  <a href="#site-wide-configuration-file" class="md-nav__link">
+    Site wide configuration file
   </a>
   
 </li>
@@ -984,8 +984,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#easybuild-configuration-file" class="md-nav__link">
-    EasyBuild configuration file
+  <a href="#site-wide-configuration-file" class="md-nav__link">
+    Site wide configuration file
   </a>
   
 </li>
@@ -1136,6 +1136,12 @@ module load EasyBuild-custom
 <p>The second one is instead specific to the CSCS EasyBuild-custom modulefile and corresponds 
 to the EasyBuild variable <code>XDG_CONFIG_DIRS</code>: therefore, the custom modulefile expects to find 
 the subfolders of the easybuild directory under the CSCS GitHub production repository. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The variable <code>XDG_CONFIG_DIRS</code> might be used by other programs as well: in this case, 
+you might consider alternative ways to provide 
+<a href="https://docs.easybuild.io/en/latest/Configuration.html#default-configuration-files">EasyBuild configuration files</a></p>
+</div>
 <p>The following environment variables depend on <code>EB_CUSTOM_REPOSITORY</code>:
 <div class="highlight"><pre><span></span><code>setenv XDG_CONFIG_DIRS                          $::env(EB_CUSTOM_REPOSITORY)
 setenv EASYBUILD_ROBOT_PATHS                    $::env(EB_CUSTOM_REPOSITORY)/easyconfigs/:
@@ -1147,7 +1153,8 @@ Users will find the CSCS EasyBuild configuration file under the folder <code>eas
 and the CSCS custom recipes under the <code>easyconfigs</code> folder, listed as usual in alphabetical order.</p>
 <hr />
 <h2 id="customizing-your-build-recipes">Customizing your build recipes<a class="headerlink" href="#customizing-your-build-recipes" title="Permanent link">&para;</a></h2>
-<p>If you wish to extend or customize the CSCS EasyBuild recipes, you can clone the <a href="https://github.com/eth-cscs/production.git">CSCS production project</a> from GitHub and have your private repository:
+<p>If you wish to extend or customize the CSCS EasyBuild recipes, you can clone the 
+<a href="https://github.com/eth-cscs/production.git">CSCS production project</a> from GitHub and have your private repository:
 <div class="highlight"><pre><span></span><code>git clone https://github.com/eth-cscs/production.git
 </code></pre></div></p>
 <p>The command will download the project files under a newly created folder production. 
@@ -1158,7 +1165,7 @@ module load EasyBuild-custom
 <p>You will find the CSCS EasyBuild build recipes files under <code>/&lt;your_local_path&gt;/production/easybuild/easyconfigs</code>, 
 with application folders listed in alphabetical order.</p>
 <hr />
-<h2 id="easybuild-configuration-file">EasyBuild configuration file<a class="headerlink" href="#easybuild-configuration-file" title="Permanent link">&para;</a></h2>
+<h2 id="site-wide-configuration-file">Site wide configuration file<a class="headerlink" href="#site-wide-configuration-file" title="Permanent link">&para;</a></h2>
 <p>The custom configuration of EasyBuild at CSCS is completed by the <a href="https://github.com/eth-cscs/production/blob/master/easybuild/easybuild.d/system_wide.cfg">site wide configuration file</a> available in the folder <code>easybuild.d</code> under <code>XDG_CONFIG_DIRS</code>, referenced in the modulefile <code>EasyBuild-custom</code>.</p>
 <p>The file defines the following:</p>
 <ul>

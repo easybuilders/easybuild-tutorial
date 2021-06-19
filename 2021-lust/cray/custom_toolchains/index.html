@@ -856,20 +856,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#list-of-supported-scientific-applications-and-tools" class="md-nav__link">
-    List of supported scientific applications and tools
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#automated-updates-of-supported-software-with-new-cpe" class="md-nav__link">
-    Automated updates of supported software with new CPE
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -962,20 +948,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#list-of-supported-scientific-applications-and-tools" class="md-nav__link">
-    List of supported scientific applications and tools
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#automated-updates-of-supported-software-with-new-cpe" class="md-nav__link">
-    Automated updates of supported software with new CPE
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -994,12 +966,12 @@
                 
                 
                 <h1 id="custom-cray-toolchains">Custom Cray toolchains<a class="headerlink" href="#custom-cray-toolchains" title="Permanent link">&para;</a></h1>
-<p>EasyBuild custom toolchains have been created to address the Cray Programming Environment. </p>
-<p>Together with the classical Cray toolchains, we have recently created CPE toolchains that 
-targeted specifically the Cray Programming Environment on the Cray EX system (formerly Shasta).</p>
-<p>As of CPE 21.04 though, the difference between the Cray Programming Environment on the XC and
-the EX systems is not relevant any longer, since they rely both on the PrgEnv meta-modules.</p>
-<p>Nonetheless, the versions of the CPE components that come with a CPE release might change 
+<p>EasyBuild Cray and CPE toolchains have been created to address the Cray PE on different Cray systems. </p>
+<p>Cray toolchains were designed for the Cray PE on the Cray XC system, 
+while the CPE toolchains targeted specifically the Cray PE on the Cray EX system.</p>
+<p>As of Cray PE 21.04 though, the difference between the Cray PE on the XC and
+the EX systems is not relevant any longer, since they rely both on PrgEnv meta-modules.</p>
+<p>Nonetheless, the versions of the CPE components that come with a Cray PE release might change 
 depending on the target system, therefore a different external metadata file is required:</p>
 <ul>
 <li>
@@ -1011,7 +983,7 @@ depending on the target system, therefore a different external metadata file is 
 </ul>
 <p>Furthermore, different easyconfig files might be needed to build the same software on the 
 two systems even with the same Cray PE, therefore the maintainers would need to provide 
-two versions anyway.   </p>
+anyway two versions of the easyconfig file.   </p>
 <hr />
 <h2 id="cray-toolchains">Cray Toolchains<a class="headerlink" href="#cray-toolchains" title="Permanent link">&para;</a></h2>
 <p>EasyBuild supports Cray systems as of version 2.7.0, enabling building and installing software using 
@@ -1033,22 +1005,22 @@ that is released on a monthly basis: as a consequence, the version of the toolch
 the format <code>YY.MM</code> (two digits for the year, two digits for the month). </p>
 <hr />
 <h2 id="cpe-toolchains">CPE Toolchains<a class="headerlink" href="#cpe-toolchains" title="Permanent link">&para;</a></h2>
-<p>The CPE toolchains have been created initially to match the modules of the Cray EX system up to CPE 21.03:</p>
+<p>The CPE toolchains were created initially to match the modules of the Cray EX system up to Cray PE 21.03:</p>
 <ul>
 <li><code>cpe-cray</code></li>
 <li><code>cpe-aocc</code></li>
 <li><code>cpe-gnu</code></li>
 <li><code>cpe-intel</code></li>
 </ul>
-<p>As of CPE 21.04 though, the CPE of the Cray EX system features as well <code>PrgEnv</code> meta-modules.
-Therefore the difference with respect to the standard Cray toolchain has disappeared.</p>
+<p>As of CPE 21.04 though, the Cray PE of the Cray EX system features <code>PrgEnv</code> meta-modules too, 
+therefore the difference with respect to the standard Cray toolchain has disappeared.</p>
 <p>The CPE toolchains are defined by the custom easyblock <code>cpetoolchain.py</code>:
 <div class="highlight"><pre><span></span><code>KNOWN_PRGENVS = [&#39;PrgEnv-aocc&#39;, &#39;PrgEnv-cray&#39;, &#39;PrgEnv-gnu&#39;, &#39;PrgEnv-intel&#39;]
 </code></pre></div></p>
 <p>The <a href="https://github.com/eth-cscs/production/blob/master/easybuild/easyblocks/cpetoolchain.py">file</a> is available in the <a href="https://github.com/eth-cscs/production">CSCS production repository on GitHub</a>, that is also mirrored under the <a href="https://github.com/easybuilders">EasyBuilders GitHub project</a> at <a href="https://github.com/easybuilders/CSCS">https://github.com/easybuilders/CSCS</a>. </p>
 <hr />
 <h2 id="cpe-compilers">CPE Compilers<a class="headerlink" href="#cpe-compilers" title="Permanent link">&para;</a></h2>
-<p>The custom CPE toolchains rely on specific files of the local EasyBuild framework:
+<p>The CPE toolchains rely on specific files of the local EasyBuild framework:
 <div class="highlight"><pre><span></span><code>cpeamd.py
 cpecray.py
 cpegnu.py
@@ -1056,8 +1028,7 @@ cpeintel.py
 </code></pre></div></p>
 <p>The first one will look for the custom compiler <code>aocc.py</code>, while the other ones are compatible 
 with the compilers defined by the Cray toolchains initially defined on the XC system.</p>
-<p>The custom toolchains above will look for the custom <code>cpe.py</code> supporting the Cray Programming Environment 
-(craype) compiler drivers. </p>
+<p>The custom toolchains above will look for the file <code>cpe.py</code> supporting the Cray PE compiler drivers. </p>
 <p>Please note that as well as the custom easyblock <code>cpetoolchain.py</code>, the custom files are available in the <a href="https://github.com/eth-cscs/production/tree/master/easybuild/toolchains">toolchains</a> and the <a href="https://github.com/eth-cscs/production/tree/master/easybuild/toolchains/compiler">compiler</a> folders of the <a href="https://github.com/eth-cscs/production">CSCS production repository on GitHub</a>.</p>
 <hr />
 <h2 id="target-architecture">Target Architecture<a class="headerlink" href="#target-architecture" title="Permanent link">&para;</a></h2>
@@ -1077,7 +1048,7 @@ therefore users are strongly discouraged from purging the modules already availa
 <h2 id="easyconfig-for-custom-toolchains">Easyconfig for custom toolchains<a class="headerlink" href="#easyconfig-for-custom-toolchains" title="Permanent link">&para;</a></h2>
 <p>The easyconfig files of the current default custom toolchains were using a footer to address two issues that have been fixed in the latest EasyBuild release 4.4.0.</p>
 <p>Therefore, when using the latest EasyBuild release one could write a much shorter <a href="https://github.com/eth-cscs/production/blob/master/easybuild/easyconfigs/c/cpeGNU/cpeGNU-21.04.eb">easyconfig file</a> for the custom toolchains. </p>
-<p>For instale the cpeGNU custom toolchain easyconfig file would like the following:
+<p>For instance, the cpeGNU custom toolchain easyconfig file would like the following:
 <div class="highlight"><pre><span></span><code># Compiler toolchain for Cray EX Programming Environment GNU compiler (cpe-gnu)
 easyblock = &#39;cpeToolchain&#39;
 
@@ -1098,74 +1069,6 @@ dependencies = [
 <p>The advantage of the approach is to avoid pinning directly the versions of CPE components in the custom toolchain definitions. </p>
 <p>Of course the maintainers could also decide to pin directl the version of each CPE component in the easyconfig, 
 however this approach is less easy to fit in an automated pipeline for updating recipes when new CPEs are installed. </p>
-<hr />
-<h2 id="list-of-supported-scientific-applications-and-tools">List of supported scientific applications and tools<a class="headerlink" href="#list-of-supported-scientific-applications-and-tools" title="Permanent link">&para;</a></h2>
-<p>The list of maintained software on the system with the current default CPE is referenced by the <a href="https://github.com/eth-cscs/production/blob/master/jenkins-builds/1.4.0-21.04-eiger">symbolic link with the system name</a> on the <a href="https://github.com/eth-cscs/production">CSCS GitHub production repository</a>: 
-<div class="highlight"><pre><span></span><code> Buildah-1.19.0.eb                    --set-default-module
- CMake-3.20.1.eb                      --set-default-module
- ddt-21.0.2-linux-x86_64.eb           --set-default-module
- hub-2.14.2.eb                        --set-default-module
- hwloc-2.4.1.eb                       --set-default-module
- jupyter-utils-0.1.eb                 --set-default-module
- NCL-6.6.2.eb                         --set-default-module
- reframe-3.6.2.eb                     --set-default-module
- GSL-2.6-cpeAMD-21.04.eb
- GSL-2.6-cpeCray-21.04.eb
- ParaView-5.9.1-cpeCray-21.04-OSMesa-python3.eb
- Boost-1.75.0-cpeGNU-21.04.eb
- Boost-1.75.0-cpeGNU-21.04-python3.eb --set-default-module
- CDO-1.9.10-cpeGNU-21.04.eb
- CP2K-8.1-cpeGNU-21.04.eb
- GREASY-19.03-cscs-cpeGNU-21.04.eb
- GROMACS-2020.5-cpeGNU-21.04.eb
- GSL-2.6-cpeGNU-21.04.eb
- jupyterlab-2.2.8-cpeGNU-21.04.eb
- Julia-1.6.0-cpeGNU-21.04.eb
- JuliaExtensions-1.6.0-cpeGNU-21.04.eb
- LAMMPS-29Oct20-cpeGNU-21.04.eb
- matplotlib-3.3.4-cpeGNU-21.04.eb
- NAMD-2.14-cpeGNU-21.04.eb
- NCO-4.9.8-cpeGNU-21.04.eb
- Scalasca-2.6-cpeGNU-21.04.eb       --set-default-module
- Vc-1.4.1-cpeGNU-21.04.eb
- Amber-20-15-9-cpeIntel-21.04.eb
- GSL-2.6-cpeIntel-21.04.eb
- QuantumESPRESSO-6.7.0-cpeIntel-21.04.eb
- VASP-6.2.0-cpeIntel-21.04.eb
-</code></pre></div></p>
-<p>The builds on the system are kept up to date with the last version of the list by the <a href="https://github.com/eth-cscs/production/blob/master/jenkins/JenkinsfileProductionEB">CSCS Jenkins pipeline ProductionEB</a>.</p>
-<hr />
-<h2 id="automated-updates-of-supported-software-with-new-cpe">Automated updates of supported software with new CPE<a class="headerlink" href="#automated-updates-of-supported-software-with-new-cpe" title="Permanent link">&para;</a></h2>
-<p>The <a href="https://github.com/eth-cscs/production/blob/master/jenkins/JenkinsfileUpdateEB">CSCS Jenkins pipeline UpdateEB</a> will install the maintained software with a new CPE using the EasyBuild option <code>--try-toolchain-version</code>:
-<div class="highlight"><pre><span></span><code>eb --ignore-locks -r --try-toolchain-version=21.05  Amber-20-15-9-cpeIntel-21.04.eb
-== Temporary log file in case of crash /run/user/23395/easybuild/tmp/eb-ss0j8hgy/easybuild-ywc85qhu.log
-== found valid index for /apps/common/UES/easybuild/software/EasyBuild/4.3.4/easybuild/easyconfigs, so using it...
-== resolving dependencies ...
-== processing EasyBuild easyconfig /run/user/23395/easybuild/tmp/eb-ss0j8hgy/tweaked\_easyconfigs/Amber-20-15-9-cpeIntel-21.05.eb
-== building and installing Toolchain/cpeIntel/21.05/Amber/20-15-9...
-== fetching files...
-== creating build dir, resetting environment...
-== unpacking...
-== patching...
-== preparing...
-== configuring...
-== building...
-== testing...
-== installing...
-== taking care of extensions...
-== restore after iterating...
-== postprocessing...
-== sanity checking...
-== cleaning up...
-== creating module...
-== permissions...
-== packaging...
-== COMPLETED: Installation ended successfully (took 2 hours 0 min 8 sec)
-== Results of the build can be found in the log file(s) /apps/pilatus/UES/jenkins/1.4.0/software/Amber/20-15-9-cpeIntel-21.05/easybuild/easybuild-Amber-20-15-9-20210521.203937.log
-== Build succeeded for 1 out of 1
-== Temporary log file(s) /run/user/23395/easybuild/tmp/eb-ss0j8hgy/easybuild-ywc85qhu.log\* have been removed.
-== Temporary directory /run/user/23395/easybuild/tmp/eb-ss0j8hgy has been removed.
-</code></pre></div></p>
 <p><em><a href="../easybuild_at_cscs/">[next: EasyBuild at CSCS]</a></em></p>
                 
                   
@@ -1175,7 +1078,7 @@ however this approach is less easy to fit in an automated pipeline for updating 
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 17, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 18, 2021</span>
       
     
   </small>
