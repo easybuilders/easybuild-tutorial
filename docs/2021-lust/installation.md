@@ -113,7 +113,7 @@ but you <a href="#eb_python">can control this if needed via ``$EB_PYTHON``</a>.
 
 ## Installing EasyBuild
 
-We present two methods for installing EasyBuild.
+We present three methods for installing EasyBuild.
 It is up to you which one you prefer, both result a fully functional EasyBuild installation.
 
 Time to get your hands dirty!
