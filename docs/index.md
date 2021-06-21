@@ -56,6 +56,7 @@ EasyBuild requires:
 * Christian Kniep ([`@ChristianKniep`](https://github.com/ChristianKniep), [AWS](https://aws.amazon.com))
 * Terje Kvernes ([`@terjekv`](https://github.com/terjekv), [University of Oslo, Norway](https://www.uio.no/english/))
 * Alan O'Cais ([`@ocaisa`](https://github.com/ocaisa), [Jülich Supercomputing Centre, Germany](https://www.fz-juelich.de/ias/jsc/EN/Home/home_node.html))
+* Bart Oldeman ([`@bartoldeman`](https://github.com/bartoldeman), [Compute Canada](https://www.computecanada.ca))
 * Åke Sandgren ([`@akesandgren`](https://github.com/akesandgren), [Umeå University, Sweden](http://www.umu.se/english/))
 
 ## Additional resources
@@ -63,5 +64,5 @@ EasyBuild requires:
 * website: [https://easybuild.io](https://easybuild.io)
 * documentation: [https://docs.easybuild.io](https://docs.easybuild.io)
 * GitHub: [https://github.com/easybuilders](https://github.com/easybuilders)
-* Slack: [https://easybuild.slack.com](https://easybuild.slack.com) (self-request an invite [here](https://easybuild-slack.herokuapp.com))
+* Slack: [https://easybuild.slack.com](https://easybuild.slack.com) (self-request an invite via [https://easybuild.io/join-slack](https://easybuild.io/join-slack))
 * mailing list: [https://lists.ugent.be/wws/subscribe/easybuild](https://lists.ugent.be/wws/subscribe/easybuild)
