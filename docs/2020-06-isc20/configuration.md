@@ -400,7 +400,7 @@ settings were specified via a configuration file, some of which indirectly throu
 
 ## Exercises
 
-***Exercise 3.1* - Install EasyBuild**
+***Exercise 3.1* - Configure EasyBuild**
 
 Configure EasyBuild to use the `easybuild` subdirectory in your home directory for everything, except for:
 
