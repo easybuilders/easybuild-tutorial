@@ -514,14 +514,14 @@ before EasyBuild proceeds with installing `BCFtools`. Great!
 ### Trace output
 
 As you may have noticed if you tried the previous example hands-on,
-the installation of Bowtie2 takes a while.
-The installation was spending quite a bit of time during the build step, but what was actually going on there?
+some installations take a while.
+An installation can be spending quite a bit of time during the build step, but what is actually going on there?
 
 To provide some more feedback as the installation progresses, you can enable the "`trace`" configuration setting.
 Let's do this by defining the `$EASYBUILD_TRACE` environment variable, just to avoid having to type `--trace`
 over and over again.
 
-We will redo the installation of `Bowtie2-2.4.1-GCC-9.3.0.eb` by passing the `--rebuild`
+We will redo the installation of `BCFtools-1.11-GCC-10.2.0.eb` by passing the `--rebuild`
 option to the `eb` command (try yourself what happens if you don't use the `--rebuild` option!):
 
 ```shell
@@ -537,8 +537,8 @@ $ eb BCFtools-1.11-GCC-10.2.0.eb --rebuild
 == building...
   >> running command:
 	[started at: 2021-03-08 19:54:54]
-	[working dir: /local_scratch/hkenneth/BCFtools/1.11/GCC-10.2.0/bcftools-1.11]
-	[output logged in /local_scratch/hkenneth/eb-9u_ac0nv/easybuild-run_cmd-bhkgjxi7.log]
+	[working dir: /tmp/example/BCFtools/1.11/GCC-10.2.0/bcftools-1.11]
+	[output logged in /tmp/example/eb-9u_ac0nv/easybuild-run_cmd-bhkgjxi7.log]
 	make -j 8
   >> command completed: exit 0, ran in 00h00m03s
 ```
