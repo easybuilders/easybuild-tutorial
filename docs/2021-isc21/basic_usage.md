@@ -403,6 +403,140 @@ If you were concerned about EasyBuild being too much of a black box, that is hop
     installation procedure. Although this obviously limits the value of the generated output,
     it doesn't make it completely useless.
 
+## Exercises
+
+***Guidelines***
+
+Do yourself a favor: don't peek at the solution until you have made an attempt to solve the exercise yourself!
+
+Please do not spoil solutions to others before they have been discussed by the tutorial organisers.
+
+The exercises are based on the easyconfig files included with EasyBuild 4.4.0.
+
+---
+
+***Exercise U.0**** - Making installed software available*
+
+Before working on the exercises for this part of the tutorial,
+make sure that the software that is already installed in the prepared environment is available.
+
+We will assume that you have a small software stack installed using the `2020b` version of the `foss` toolchain.
+
+**Tip:** execute a "`module use`" command, and verify with "`module avail`" that a bunch of software modules
+are available for loading.
+
+??? success "(click to show solution)"
+
+    Use the following command to make the modules for the software available that is pre-installed
+    in the prepared environment:
+    ```shell
+    module use /easybuild/modules/all
+    ```
+
+    If software is installed in a different location than `/easybuild/` in your environment,
+    you should adjust the command accordingly.
+
+    To verify that the pre-installed software is available, check whether the `foss/2020b` module is available:
+    ```shell
+    $ module avail foss/
+
+    --------------------- /easybuild/modules/all ---------------------
+      foss/2020b
+    ```
+
+---
+
+***Exercise U.1**** - Searching easyconfigs*
+
+See if EasyBuild provides any easyconfig files for installing GROMACS version 2020/5.
+
+??? success "(click to show solution)"
+    To check for available easyconfig files, we can use `eb --search` or `eb -S`:
+    ```shell
+    $ eb -S gromacs-2020.5
+    == found valid index for /home/kehoste/easybuild/software/EasyBuild/4.4.0/easybuild/easyconfigs, so using it...
+    CFGS1=/home/kehoste/easybuild/software/EasyBuild/4.4.0/easybuild/easyconfigs/g/GROMACS
+     * $CFGS1/GROMACS-2020.5-fosscuda-2020a-Python-3.8.2.eb
+     * $CFGS1/GROMACS-2020.5_fix_threads_gpu_Gmxapitests.patch
+    ```
+    This actually shows one easyconfig file but also a patch file. We can also search specifically
+    for GROMACS 2020.5 in the `foss` and `fosscuda` toolchains using
+    ```shell
+    $ eb -S gromacs-2020.5-foss
+    == found valid index for /home/kehoste/easybuild/software/EasyBuild/4.4.0/easybuild/easyconfigs, so using it...
+    CFGS1=/home/kehoste/easybuild/software/EasyBuild/4.4.0/easybuild/easyconfigs/g/GROMACS
+     * $CFGS1/GROMACS-2020.5-fosscuda-2020a-Python-3.8.2.eb
+    ```
+    and now we find a single easyconfig file.  
+
+---
+
+***Exercise U.2**** - Checking dependencies*
+
+Check which dependencies are missing to install QuantumESPRESSO version 6.6 with the `2020b` version of the `foss` toolchain.
+
+??? success "(click to show solution)"
+    First, we need to determine the name of the easyconfig file for QuantumESPRESSO version 6.6:
+    ```shell
+    $ eb -S 'QuantumESPRESSO-6.6.*foss-2020b'
+    == found valid index for /home/kehoste/easybuild/software/EasyBuild/4.4.0/easybuild/easyconfigs, so using it...
+    CFGS1=/home/kehoste/easybuild/software/EasyBuild/4.4.0/easybuild/easyconfigs/q/QuantumESPRESSO
+     * $CFGS1/QuantumESPRESSO-6.6-foss-2020b.eb
+    ```
+    To determine which dependencies are missing to install this QuantumESPRESSO easyconfig file, we can use `--missing`:
+    ```shell
+    $ eb QuantumESPRESSO-6.6-foss-2020b.eb --missing
+    
+    3 out of 60 required modules missing:
+    
+    * libxc/4.3.4-GCC-10.2.0 (libxc-4.3.4-GCC-10.2.0.eb)
+    * ELPA/2020.11.001-foss-2020b (ELPA-2020.11.001-foss-2020b.eb)
+    * QuantumESPRESSO/6.6-foss-2020b (QuantumESPRESSO-6.6-foss-2020b.eb)
+    ```
+    (some nonessential output removed).
+
+---
+
+***Exercise U.3**** - Performing a dry run*
+
+Figure out which command EasyBuild would use to compile
+the software provided by the `Bowtie2-2.4.2-GCC-9.3.0.eb` easyconfig file,
+without actually installing `Bowtie2`.
+
+Also, which binaries will EasyBuild check for to sanity check the installation?
+
+??? success "(click to show solution)"
+    To inspect the installation procedure, we can use `eb -x Bowtie2-2.4.2-GCC-9.3.0.eb`.
+
+    The output for the build step shows the actual compilation command that would be performed (`make ...`):
+
+    ```shell
+    [build_step method]
+    >> running command:
+        [started at: 2021-03-08 20:15:08]
+        [working dir: /tmp/eb-0006djcd/__ROOT__/tmp/kehoste/Bowtie2/2.4.2/GCC-9.3.0/Bowtie2-2.4.2]
+        [output logged in /tmp/eb-0006djcd/easybuild-run_cmd-haojzisn.log]
+        make -j 8  CC="gcc"  CPP="g++" CXX="g++"  RELEASE_FLAGS="-O2 -ftree-vectorize -march=native -fno-math-errno -fPIC -std=gnu++98"
+    (in /tmp/kehoste/Bowtie2/2.4.2/GCC-9.3.0/Bowtie2-2.4.2)
+    ```
+
+    If the output you get is less detailed, you may not have set `export EASYBUILD_TRACE=1`.
+
+    The output for the sanity check step shows which binaries are expected to be installed:
+    ```
+    [sanity_check_step method]
+    Sanity check paths - file ['files']
+      * bin/bowtie2
+      * bin/bowtie2-align-l
+      * bin/bowtie2-align-s
+      * bin/bowtie2-build
+      * bin/bowtie2-build-l
+      * bin/bowtie2-build-s
+      * bin/bowtie2-inspect
+      * bin/bowtie2-inspect-l
+      * bin/bowtie2-inspect-s
+    ```
+
 ---
 
 [*next: Installing software*](installing_software.md) - [*(back to overview page)*](index.md)
