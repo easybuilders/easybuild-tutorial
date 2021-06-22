@@ -457,7 +457,7 @@ Leave other configuration settings set to their default value.
     The location where EasyBuild should download source files to
     must be listed first in the `sourcepath` configuration setting.
 
-    The output of `--show-config` should look like this:
+    The output of `--show-config` should look like this (assuming that `$USER` is set to `example`):
 
     ```shell
     buildpath      (E) = /tmp/example
@@ -466,7 +466,7 @@ Leave other configuration settings set to their default value.
     packagepath    (E) = /home/example/easybuild/packages
     prefix         (E) = /home/example/easybuild
     repositorypath (E) = /home/example/easybuild/ebfiles_repo
-    robot-paths    (D) = /home/example/easybuild/easyconfigs
+    robot-paths    (D) = /home/example/easybuild/software/EasyBuild/4.4.0/easybuild/easyconfigs
     sourcepath     (E) = /home/example/easybuild/sources:/easybuild/sources
     ```
 
@@ -497,7 +497,7 @@ Where do you expect to find the installation?
 
     ```shell
     $ ls $HOME/easybuild/software
-    bzip2
+    bzip2  EasyBuild
     $ ls $HOME/easybuild/software/bzip2
     1.0.6
     $ ls $HOME/easybuild/software/bzip2/1.0.6
@@ -506,7 +506,7 @@ Where do you expect to find the installation?
 
     ```shell
     $ ls $HOME/easybuild/modules/all
-    bzip2
+    bzip2  EasyBuild
     $ ls $HOME/easybuild/modules/all/bzip2
     1.0.6.lua
     ```
