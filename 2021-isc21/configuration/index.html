@@ -1399,14 +1399,14 @@ settings were specified via a configuration file, some of which indirectly throu
 </code></pre></div>
 <p>The location where EasyBuild should download source files to
 must be listed first in the <code>sourcepath</code> configuration setting.</p>
-<p>The output of <code>--show-config</code> should look like this:</p>
+<p>The output of <code>--show-config</code> should look like this (assuming that <code>$USER</code> is set to <code>example</code>):</p>
 <div class="highlight"><pre><span></span><code>buildpath      <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /tmp/example
 containerpath  <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild/containers
 installpath    <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild
 packagepath    <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild/packages
 prefix         <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild
 repositorypath <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild/ebfiles_repo
-robot-paths    <span class="o">(</span>D<span class="o">)</span> <span class="o">=</span> /home/example/easybuild/easyconfigs
+robot-paths    <span class="o">(</span>D<span class="o">)</span> <span class="o">=</span> /home/example/easybuild/software/EasyBuild/4.4.0/easybuild/easyconfigs
 sourcepath     <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild/sources:/easybuild/sources
 </code></pre></div>
 </details>
@@ -1424,14 +1424,14 @@ ebfiles_repo  modules  software  sources
 <p>The actual installation is in <code>$HOME/easybuild/software</code>,
 while the module file was generated in <code>$HOME/easybuild/modules/all</code>:</p>
 <div class="highlight"><pre><span></span><code>$ ls <span class="nv">$HOME</span>/easybuild/software
-bzip2
+bzip2  EasyBuild
 $ ls <span class="nv">$HOME</span>/easybuild/software/bzip2
 <span class="m">1</span>.0.6
 $ ls <span class="nv">$HOME</span>/easybuild/software/bzip2/1.0.6
 bin  easybuild  include  lib  man
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>$ ls <span class="nv">$HOME</span>/easybuild/modules/all
-bzip2
+bzip2  EasyBuild
 $ ls <span class="nv">$HOME</span>/easybuild/modules/all/bzip2
 <span class="m">1</span>.0.6.lua
 </code></pre></div>
@@ -1452,7 +1452,7 @@ bzip2-1.0.6.tar.gz
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 21, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 22, 2021</span>
       
     
   </small>
