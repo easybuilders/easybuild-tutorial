@@ -1684,12 +1684,12 @@ before EasyBuild proceeds with installing <code>BCFtools</code>. Great!</p>
 <hr />
 <h3 id="trace-output">Trace output<a class="headerlink" href="#trace-output" title="Permanent link">&para;</a></h3>
 <p>As you may have noticed if you tried the previous example hands-on,
-the installation of Bowtie2 takes a while.
-The installation was spending quite a bit of time during the build step, but what was actually going on there?</p>
+some installations take a while.
+An installation can be spending quite a bit of time during the build step, but what is actually going on there?</p>
 <p>To provide some more feedback as the installation progresses, you can enable the "<code>trace</code>" configuration setting.
 Let's do this by defining the <code>$EASYBUILD_TRACE</code> environment variable, just to avoid having to type <code>--trace</code>
 over and over again.</p>
-<p>We will redo the installation of <code>Bowtie2-2.4.1-GCC-9.3.0.eb</code> by passing the <code>--rebuild</code>
+<p>We will redo the installation of <code>BCFtools-1.11-GCC-10.2.0.eb</code> by passing the <code>--rebuild</code>
 option to the <code>eb</code> command (try yourself what happens if you don't use the <code>--rebuild</code> option!):</p>
 <div class="highlight"><pre><span></span><code>$ <span class="nb">export</span> <span class="nv">EASYBUILD_TRACE</span><span class="o">=</span><span class="m">1</span>
 $ eb BCFtools-1.11-GCC-10.2.0.eb --rebuild
@@ -1703,8 +1703,8 @@ $ eb BCFtools-1.11-GCC-10.2.0.eb --rebuild
 <span class="o">==</span> building...
   &gt;&gt; running command:
     <span class="o">[</span>started at: <span class="m">2021</span>-03-08 <span class="m">19</span>:54:54<span class="o">]</span>
-    <span class="o">[</span>working dir: /local_scratch/hkenneth/BCFtools/1.11/GCC-10.2.0/bcftools-1.11<span class="o">]</span>
-    <span class="o">[</span>output logged <span class="k">in</span> /local_scratch/hkenneth/eb-9u_ac0nv/easybuild-run_cmd-bhkgjxi7.log<span class="o">]</span>
+    <span class="o">[</span>working dir: /tmp/example/BCFtools/1.11/GCC-10.2.0/bcftools-1.11<span class="o">]</span>
+    <span class="o">[</span>output logged <span class="k">in</span> /tmp/example/eb-9u_ac0nv/easybuild-run_cmd-bhkgjxi7.log<span class="o">]</span>
     make -j <span class="m">8</span>
   &gt;&gt; <span class="nb">command</span> completed: <span class="nb">exit</span> <span class="m">0</span>, ran <span class="k">in</span> 00h00m03s
 </code></pre></div>
@@ -2023,7 +2023,7 @@ we're happy to help!</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 20, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 22, 2021</span>
       
     
   </small>
