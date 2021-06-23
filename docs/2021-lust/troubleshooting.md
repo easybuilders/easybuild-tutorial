@@ -123,7 +123,7 @@ For example:
 
 ### Last log
 
-The `eb` command support a handy little option that prints the location
+The `eb` command supports a handy little option that prints the location
 to the most recently updated build log. You can leverage this to quickly
 open the build log of the last failed EasyBuild session in an editor:
 
