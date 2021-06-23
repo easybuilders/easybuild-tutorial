@@ -46,10 +46,9 @@ additional 58 Petaflops will be installed. This module will make JUWELS the most
 powerful supercomputer in Europe.
 
 [JURECA](https://www.fz-juelich.de/ias/jsc/EN/Expertise/Supercomputers/JURECA/Configuration/Configuration_node.html)
-is the precursor system to JUWELS with 1.8 (CPU) + 0.44 (GPU) + 5 (KNL) Petaflop per
-second peak performance. It is due to be decommissioned at the end of November 2020. The
-technical details about the successor system, the JURECA DC (data centric) module,
-will be announced soon.
+is the precursor system to JUWELS and currently has 2 modules: the JURECA DC Module with 3.54 (CPU, AMD EPYC) +
+14.98 (GPU, NVIDIA A100) Petaflop per second peak performance, and the JURECA Booster Module with 5 (KNL) Petaflop per
+second peak performance. 
 
 [JUSUF](https://www.fz-juelich.de/ias/jsc/EN/Expertise/Supercomputers/JUSUF/Configuration/Configuration_node.html)
 combines an HPC cluster and a cloud platform in a single system with homogeneous
@@ -93,7 +92,7 @@ EasyBuild includes both the flat and hierarchical module naming schemes
 and these can be leveraged as examples for custom schemes.
 JSC employs such a
 [custom scheme (based closely on the standard hierarchical
-scheme)](https://github.com/easybuilders/JSC/blob/master/Custom_MNS/2019a/flexible_custom_hierarchical_mns.py)
+scheme)](https://github.com/easybuilders/JSC/blob/2020/Custom_MNS/flexible_custom_hierarchical_mns.py)
 to control the exact structure of the
 hierarchy and the naming of some specific modules (such as
 the compilers and MPI runtimes).
@@ -135,6 +134,9 @@ track upstream developments more closely.
 We are currently integrating a new hook that provides a lot of useful functionality:
 
 * Facilitates ***userspace installations*** alongside system provided installations
+  * EasyBuild is configured to allow both shared installations for a group and private
+    installations (group installations are automatically picked up by Lmod for other
+    members of the group)
   * Restricts users from installing non-supported compilers (in particular we don't want
     people to install their own `GCCcore` since this would likely lead to an avalanche
     of required dependencies) and MPI runtimes (since MPI installations
@@ -169,8 +171,10 @@ version of any particular software package.
 The project cycles at JSC lasts 12 months with two
 cycles per year. When new users get access to the machine,
 we want them to only be exposed to the latest software with the
-latest compilers. For this reason, we have chosen six months
-as our upgrade period and we chose to retire outdated software
+latest compilers. Originally, we had chosen six months
+as our upgrade period but found this to be cumbersome as the
+number of supported systems and toolchains grew, our upgrade period
+is now every 12 months. We chose to retire outdated software
 versions with the same frequency. We call these software
 upgrades "stages". For each 'stage', we select the toolchains that
 we will support and rebuild the latest versions of our supported
@@ -181,11 +185,11 @@ to our other toolchains.
 We expect members of the support team to contribute to
 software installations since it is common that application
 software requires specific knowledge to be installed and tested
-appropriately. We provide a special development stage with the
-latest toolchains for the support team where they can prepare
-their easyconfig files for inclusion in the upgrade. Once a
+appropriately. A common workflow is to create a personal installation
+of a package that can be tweaked, then a group installation for others
+to try out. Once a
 software package has been successfully built and tested, it is
-added to a *Golden* repository to be used for the stage upgrade.
+added to a *Golden* repository to be used in production.
 
 The default stage visible to users is controlled by a symbolic
 link. Stage upgrades are prepared in a separate environment
