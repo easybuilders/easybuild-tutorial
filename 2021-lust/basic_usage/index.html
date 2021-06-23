@@ -1325,7 +1325,7 @@ ERROR: Can<span class="err">&#39;</span>t find path /tmp/does_not_exist.eb
 </code></pre></div>
 <p>When only the <em>name</em> of an easyconfig file is specified, EasyBuild will automatically try and locate it.
 First, it will consider the <em>current directory</em>. If no file with the specified name is found there,
-EasyBuild will search for the easyconfig file in the <a href="../configuration#robot-search-path">robot search path</a>.</p>
+EasyBuild will search for the easyconfig file in the <a href="../configuration/#robot-search-path">robot search path</a>.</p>
 <p>If the path to an existing <em>directory</em> is provided, EasyBuild will walk through the entire directory
 (including all subdirectories), retain all files of which the name ends with <code>.eb</code>, and (try to) use these
 as easyconfig files.</p>
@@ -1510,7 +1510,7 @@ as indicated by lack of an <code>x</code> in <code>[ ]</code>.</p>
 <p>If you are only interested in which dependencies are still <em>missing</em>,
 you can consult the output of <strong><code>eb --missing</code></strong>, or the equivalent <strong><code>eb -M</code></strong>.</p>
 <p>For example, let's see which dependencies are missing in order to get version 3.1.0 of the h5py
-Python package installed using the <code>2020b</code> version of the <code>foss</code> toolchain installed:</p>
+Python package installed using the <code>2020b</code> version of the <code>foss</code> toolchain:</p>
 <div class="highlight"><pre><span></span><code>$ eb h5py-3.1.0-foss-2020b.eb -M
 
 <span class="m">2</span> out of <span class="m">61</span> required modules missing:
@@ -2023,7 +2023,7 @@ we're happy to help!</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 22, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 23, 2021</span>
       
     
   </small>
