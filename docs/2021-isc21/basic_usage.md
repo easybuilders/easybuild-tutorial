@@ -56,7 +56,7 @@ If the path to an existing *directory* is provided, EasyBuild will walk through 
 as easyconfig files.
 
 
-#### Example command
+### Example command
 
 Suppose we have the current situation in our home directory:
 
@@ -409,7 +409,7 @@ If you were concerned about EasyBuild being too much of a black box, that is hop
 
 Do yourself a favor: don't peek at the solution until you have made an attempt to solve the exercise yourself!
 
-Please do not spoil solutions to others before they have been discussed by the tutorial organisers.
+Please do not share solutions with others before they have been discussed by the tutorial organisers.
 
 The exercises are based on the easyconfig files included with EasyBuild 4.4.0.
 
