@@ -320,7 +320,7 @@ won't go into those here).
 
 Do yourself a favor: don't peek at the solution until you have made an attempt to solve the exercise yourself!
 
-Please do not spoil solutions to others before they have been discussed by the tutorial organisers.
+Please do not spoil solutions for others before they have been discussed by the tutorial organisers.
 
 The exercises are based on the easyconfig files included with EasyBuild 4.4.0.
 
@@ -342,7 +342,7 @@ Enable trace output so you can see which parts of the installation take a while.
     * $CFGS1/h5py-3.1.0-foss-2020b.eb
     ```
 
-    Make sure the pre-install software in `/easybuild/` is available:
+    Make sure the pre-installed software in `/easybuild/` is available:
     ```shell
     module use /easybuild/modules/all
     ```
