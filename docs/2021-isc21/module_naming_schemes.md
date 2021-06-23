@@ -398,23 +398,6 @@ when using `--module-only` to ensure the installation is actually functional.
 After all, there is no point in generating a module for an obviously broken
 installation...
 
-!!! Note
-    If you are using the [prepared environment](../practical_info/#prepared-environment),
-    you may notice a hanging command during the sanity check that is run when generating
-    the module for `UCX`.
-
-    This occurs because terminal session that is started when visiting
-    [https://isc21.learnhpc.eu](https://isc21.learnhpc.eu) is run *in* a Slurm job.
-
-    You can bypass this issue by cancelling the running `eb` command (using *Ctrl-C*),
-    and skipping the sanity check when generating the module for UCX by using `--force`:
-
-        eb UCX-1.9.0-GCCcore-10.2.0.eb --module-only --force
-
-    You can then continue by re-running the command to generate the modules required for HDF5:
-
-        eb HDF5-1.10.7-gompi-2020b.eb --robot --module-only
-
 ### Loading the HDF5 module
 
 After generating the hierarchical module tree for HDF5, how do we access the HDF5 installation through it?
