@@ -53,7 +53,7 @@ ERROR: Can't find path /tmp/does_not_exist.eb
 
 When only the *name* of an easyconfig file is specified, EasyBuild will automatically try and locate it.
 First, it will consider the *current directory*. If no file with the specified name is found there,
-EasyBuild will search for the easyconfig file in the [robot search path](../configuration#robot-search-path).
+EasyBuild will search for the easyconfig file in the [robot search path](../configuration/#robot-search-path).
 
 If the path to an existing *directory* is provided, EasyBuild will walk through the entire directory
 (including all subdirectories), retain all files of which the name ends with `.eb`, and (try to) use these
@@ -300,7 +300,7 @@ If you are only interested in which dependencies are still *missing*,
 you can consult the output of **`eb --missing`**, or the equivalent **`eb -M`**.
 
 For example, let's see which dependencies are missing in order to get version 3.1.0 of the h5py
-Python package installed using the `2020b` version of the `foss` toolchain installed:
+Python package installed using the `2020b` version of the `foss` toolchain:
 
 ```shell
 $ eb h5py-3.1.0-foss-2020b.eb -M
