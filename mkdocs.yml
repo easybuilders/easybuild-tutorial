@@ -17,6 +17,19 @@ nav:
   - "ISC'21 (25 June 2021)":
       - (overview): 2021-isc21/index.md
       - Practical info: 2021-isc21/practical_info.md
+      - Introduction: 2021-isc21/introduction.md
+      - Terminology: 2021-isc21/terminology.md
+      - Installation: 2021-isc21/installation.md
+      - Configuration: 2021-isc21/configuration.md
+      - Basic usage: 2021-isc21/basic_usage.md
+      - Installing software: 2021-isc21/installing_software.md
+      - Troubleshooting: 2021-isc21/troubleshooting.md
+      - Module naming schemes: 2021-isc21/module_naming_schemes.md
+      - Support for additional software: 2021-isc21/adding_support_additional_software.md
+      - EasyBuild at JSC: 2021-isc21/jsc.md
+      - EasyBuild at Compute Canada: 2021-isc21/computecanada.md
+      - The EasyBuild community: 2021-isc21/community.md
+      - Contributing to EasyBuild: 2021-isc21/contributing.md
   - Archive:
       - "ISC'20 (June '20)":
           - Start page: 2020-06-isc20/index.md
