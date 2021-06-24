@@ -17,10 +17,9 @@ The accounts will _not_ be approved until the day before the event, so
 **please remember to keep a record of your username and password**.
 
 Once the account is approved, you will be able to access the system
-at [https://isc21.learnhpc.eu/](https://isc21.learnhpc.eu/) (or
-via `ssh` to `isc21.learnhpc.eu`).
+at [https://isc21.learnhpc.eu/](https://isc21.learnhpc.eu/), or via `ssh`:
 
-*(more info on getting access coming soon)*
+    ssh isc21.learnhpc.eu
 
 ## Slack
 
