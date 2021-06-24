@@ -28,7 +28,7 @@ the complexity of the software you want to get installed, how much flexibility y
 how "intelligent" the installation procedure should be with respect to the compiler toolchain and dependencies
 that are used for the installation, etc.
 
-In a nutshell, custom software-specific easyblocks are "do once and forget": they are central solution to peculiarities in the installation procedure of a paritcular software package.
+In a nutshell, custom software-specific easyblocks are "do once and forget": they are central solution to peculiarities in the installation procedure of a particular software package.
 
 Reasons to consider implementing a software-specific easyblock rather than using a generic easyblock include:
 
@@ -203,7 +203,7 @@ Here are a couple of commonly used generic easyblocks:
 * `PythonBundle`: a customized version of the `Bundle` generic easyblock to install a bundle of Python packages
   in a single installation directory;
 
-A full overview of the available generic easyblock is available in the [EasyBuild documentation](https://docs.easybuild.io/en/latest/version-specific/generic_easyblocks.html). You can also consult the output of
+A full overview of the available generic easyblocks is available in the [EasyBuild documentation](https://docs.easybuild.io/en/latest/version-specific/generic_easyblocks.html). You can also consult the output of
 `eb --list-easyblocks`, which gives an overview of *all* known easyblocks, and how they relate to each other.
 
 **Custom easyconfig parameters**
@@ -488,7 +488,7 @@ module use /easybuild/modules/all
 
 ### Mandatory parameters
 
-Let's start by getting the mandatory easyconfig parameter defined in the easyconfig file:
+Let's start by getting the mandatory easyconfig parameters defined in the easyconfig file:
 
 ```python
 name = 'eb-tutorial'
