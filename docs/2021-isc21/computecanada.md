@@ -23,7 +23,7 @@ Compute Canada and its partners manage 4 main clusters, and 1 main OpenStack clo
 
 [Béluga](https://docs.computecanada.ca/wiki/B%C3%A9luga/en) is our third general purpose cluster, also using InfiniBand, with V100 GPUs and Skylake CPUs.
 
-[Niagara](https://docs.computecanada.ca/wiki/Niagara) is our large parallel cluster, with a Dragonfly InfiniBand network technology, and all identical nodes with nearly 80,000 cores.
+[Niagara](https://docs.computecanada.ca/wiki/Niagara) is our large parallel cluster, with a Dragonfly InfiniBand network technology, with more than 80,000 cores, all 40 cores per node.
 
 Finally, [Arbutus](https://docs.computecanada.ca/wiki/Cloud_resources) is our primary OpenStack cloud infrastructure with about 15,000 cores.
 
@@ -37,37 +37,37 @@ For this to happen, especially given the variety of hardware we support, a coupl
 This work was also presented at the *EasyBuild User Meeting* in January 2020. The [recording](https://www.youtube.com/watch?v=_0j5Shuf2uE) and [slides](https://users.ugent.be/~kehoste/eum20/eum20_03_maxime_computecanada.pdf) are available.
 
 ### Software distribution
-One foundational part of the infrastructure comes even before installing any software: the distribution mechanism. For this, we use [CVMFS](https://cvmfs.readthedocs.io/en/stable/). This allows any cluster, virtual machine, or event desktop or laptop computer, to access our software stack in a matter of a few minutes. We make this available to our users, as documented [here](https://docs.computecanada.ca/wiki/Accessing_CVMFS). Some users use it for continuous integration, we also use it in virtual clusters in the cloud.
+One foundational part of the infrastructure comes even before installing any software: the distribution mechanism. For this, we use [CVMFS](https://cvmfs.readthedocs.io/en/stable/). This allows any cluster, virtual machine, or even desktop or laptop computer, to access our software stack in a matter of a few minutes. We make this available to our users, as documented [here](https://docs.computecanada.ca/wiki/Accessing_CVMFS). Some users use it for continuous integration, and we also use it in virtual clusters in the cloud.
 
 ### Compatibility layer
-Because we support multiple clusters, we have to assume that they may not run exactly the same operating system, or don't have exactly the same system packages installed. To avoid issues, we therefore minimize the OS dependencies to an absolute minimum. Our stack contains all system libraries down to `glibc` and the Linux loader. Our only dependencies are the kernel and the hardware drivers. For this layer, we have used the [Nix](https://github.com/NixOS/nix) package manager, but we are now moving toward using [Gentoo Prefix](https://wiki.gentoo.org/wiki/Project:Prefix) instead.
+Because we support multiple clusters, we have to assume that they may not run exactly the same operating system, or don't have exactly the same system packages installed. To avoid issues, we therefore minimize the OS dependencies to an absolute minimum. Our stack contains all system libraries down to the GNU C Library (`glibc`) and the Linux loader. Our only dependencies are the kernel and the hardware drivers. For this layer, we started out with the [Nix](https://github.com/NixOS/nix) package manager, but have since moved to using [Gentoo Prefix](https://wiki.gentoo.org/wiki/Project:Prefix) instead.
 
 ### Scientific layer and EasyBuild
-For every scientific software, our staff go through a process that involves installing it through EasyBuild, and then deploying it to CVMFS. As of June 2020, we have over 800 different software packages installed. When combined with version of the software, version of the compiler/MPI/CUDA, and CPU architectures, we have respectively over 1,600, 3,200 and 6,000 combinations of builds.
+For every scientific software, our staff go through a process that involves installing it through EasyBuild, and then deploying it to CVMFS. As of June 2021, we have almost 1000 different software packages installed. When combined with version of the software, version of the compiler/MPI/CUDA, and CPU architectures, we have respectively over 2,000, 4,200 and 8,000 combinations of builds.
 
 
 ## Usage of EasyBuild within Compute Canada
 To illustrate EasyBuild's flexibility, in this section, we highlight some of the peculiarities of EasyBuild's usage within Compute Canada.
 
 ### Filtering out dependencies
-Compute Canada is using EasyBuild to install *all* packages that you would not normally find installed in an OS (i.e. through `yum` or `apt-get`). However, because we provide the compatibility layer, many of the libraries that can be installed through EasyBuild are filtered out. This includes for example `binutils`, ` Automake`, `flex`, etc. This is configured through our [EasyBuild configuration file](https://github.com/ComputeCanada/easybuild-computecanada-config/blob/605bbc14d9312049afa1937090d2ed0d64f8169c/config.cfg#L13).
+Compute Canada is using EasyBuild to install *all* packages that you would not normally find installed in an OS (i.e. through `yum` or `apt-get`). However, because we provide the compatibility layer, many of the libraries that can be installed through EasyBuild are filtered out. This includes for example `binutils`, ` Automake`, `flex`, etc. This is configured through our [EasyBuild configuration file](https://github.com/ComputeCanada/easybuild-computecanada-config/blob/main/config.cfg#L13).
 
 ### Custom toolchains
 Before deploying our new infrastructures, virtually all sites had a long history of using the Intel or GNU Compilers, OpenMPI, and Intel MKL, with very little usage of OpenBLAS or Intel MPI. Therefore, our primary toolchains are based on those tools - i.e. variations on the `iomkl` or `gomkl` toolchains, which are not the ones mostly used by upstream EasyBuild (which are the *common* `foss` and `intel` toolchains). We therefore make a heavy use of the `--try-toolchain` option of EasyBuild, to use upstream recipes but with our preferred toolchains.
 
 ### Custom module naming scheme
-We use a lower-case hierarchical module naming scheme which also includes the CPU architecture that a software is built for as part of the hierarchy. Our module naming scheme also completely drops `versionsuffix`. If we need to have different flavors of a given recipe, we instead use `modaltsoftname` to add the flavor to the name of the software package. This is enabled through [this Python module](https://github.com/ComputeCanada/easybuild-computecanada-config/blob/master/SoftCCHierarchicalMNS.py), which implements our custom module naming scheme.
+We use a lower-case hierarchical module naming scheme which also includes the CPU architecture that a software is built for as part of the hierarchy. Our module naming scheme also completely drops `versionsuffix`. If we need to have different flavors of a given recipe, we instead use `modaltsoftname` to add the flavor to the name of the software package. This is enabled through [this Python module](https://github.com/ComputeCanada/easybuild-computecanada-config/blob/main/SoftCCHierarchicalMNS.py), which implements our custom module naming scheme.
 
 ## Using `RPATH` and disabling `LD_LIBRARY_PATH`
-Our compatibility layer has a modified linker which ensures that `RPATH` is added to every shared library and executable that is compiled. This applies to both EasyBuild's builds and users' builds. We therefore filter out the `LD_LIBRARY_PATH` from the modules. This is specified in our [EasyBuild configuration file](https://github.com/ComputeCanada/easybuild-computecanada-config/blob/605bbc14d9312049afa1937090d2ed0d64f8169c/config.cfg#L15).
+Our compatibility layer includes a wrapper script for the linker (`ld`) which ensures that `RPATH` is added to every shared library and executable that is compiled. This applies to both EasyBuild's builds and users' builds. We therefore filter out the `LD_LIBRARY_PATH` from the modules. This is specified in our [EasyBuild configuration file](https://github.com/ComputeCanada/easybuild-computecanada-config/blob/main/config.cfg#L15).
 
 ### Usage of hooks
 We make a rather intensive usage of hooks. For example, we use them to
 
-* [inject specific configure options to our OpenMPI builds](https://github.com/ComputeCanada/easybuild-computecanada-config/blob/605bbc14d9312049afa1937090d2ed0d64f8169c/cc_hooks.py#L256)
-* add [compiler](https://github.com/ComputeCanada/easybuild-computecanada-config/blob/605bbc14d9312049afa1937090d2ed0d64f8169c/cc_hooks.py#L460) and [MPI](https://github.com/ComputeCanada/easybuild-computecanada-config/blob/605bbc14d9312049afa1937090d2ed0d64f8169c/cc_hooks.py#L477) footers to the modules
-* [split the installation of the Intel compiler into redistributable and non-redistributable parts](https://github.com/ComputeCanada/easybuild-computecanada-config/blob/605bbc14d9312049afa1937090d2ed0d64f8169c/cc_hooks.py#L485)
-* [strip down the installation of Python to a small set of Python packages](https://github.com/ComputeCanada/easybuild-computecanada-config/blob/605bbc14d9312049afa1937090d2ed0d64f8169c/cc_hooks.py#L578)
+* [inject specific configure options to our OpenMPI builds](https://github.com/ComputeCanada/easybuild-computecanada-config/blob/1a0328f5743b729acca3fcd92451fd23729bb7a6/cc_hooks_gentoo.py#L554)
+* add [compiler](https://github.com/ComputeCanada/easybuild-computecanada-config/blob/1a0328f5743b729acca3fcd92451fd23729bb7a6/cc_hooks_gentoo.py#L146) and [MPI](https://github.com/ComputeCanada/easybuild-computecanada-config/blob/1a0328f5743b729acca3fcd92451fd23729bb7a6/cc_hooks_gentoo.py#L155) footers to the modules
+* [split the installation of the Intel compiler into redistributable and non-redistributable parts](https://github.com/ComputeCanada/easybuild-computecanada-config/blob/1a0328f5743b729acca3fcd92451fd23729bb7a6/cc_hooks_gentoo.py#L411)
+* [strip down the installation of Python to a small set of Python packages](https://github.com/ComputeCanada/easybuild-computecanada-config/blob/1a0328f5743b729acca3fcd92451fd23729bb7a6/cc_hooks_gentoo.py#L742)
 
 ## Python specific customizations
 Compute Canada makes heavy usage of the `multi_deps` feature for Python package installations. This allows us to install single modules that support multiple versions of Python. We also tend to install Python wrappers alongside the primary module when there is a primary module. For example, we install `PyQt` alongside `Qt`, in the same module.
