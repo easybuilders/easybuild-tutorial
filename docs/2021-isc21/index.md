@@ -12,6 +12,10 @@ here](https://www.isc-hpc.com/registration-2021.html)).
 
 All tutorial content, including recorded sessions, will be made available afterwards.
 
+#### Slides
+
+The most recent version of the presentation slides are available [here](../files/EasyBuild-tutorial-ISC21-20210624.pdf).
+
 #### Agenda
 
 (*all times are UTC)*
