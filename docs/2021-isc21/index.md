@@ -25,8 +25,8 @@ All tutorial content, including recorded sessions, will be made available afterw
 * *[14:45-15:10]* **Adding support for additional software**
 * *[15:10-15:20]* **EasyBuild at Jülich Supercomputing Centre**
 * *[15:20-15:30]* **EasyBuild at Compute Canada**
-* *[15:30-15:45]* **The EasyBuild community**
-* *[15:45-16:00]* **Contributing to EasyBuild**
+* *[15:30-15:45]* **The EasyBuild community** + **Contributing to EasyBuild**
+* *[15:45-16:00]* **Q&A + closing remarks**
 
 [//]: # (COMMENTED OUT AGENDA WITH LINKS TO INDIVIDUAL PAGES)
 
