@@ -14,7 +14,7 @@ All tutorial content, including recorded sessions, will be made available afterw
 
 #### Slides
 
-The most recent version of the presentation slides are available [here](../files/EasyBuild-tutorial-ISC21-20210624.pdf).
+The most recent version of the presentation slides are available [here](../files/EasyBuild-tutorial-ISC21-20210625.pdf).
 
 #### Agenda
 
