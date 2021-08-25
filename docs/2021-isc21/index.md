@@ -16,6 +16,10 @@ All tutorial content, including recorded sessions, will be made available afterw
 
 The most recent version of the presentation slides are available [here](../files/EasyBuild-tutorial-ISC21-20210625.pdf).
 
+#### Recording
+
+<p align="center"><iframe width="560" height="315" src="https://www.youtube.com/embed/lJJiBVnYlsI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+
 #### Agenda
 
 (*all times are UTC)*
