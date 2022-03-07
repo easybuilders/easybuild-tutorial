@@ -10,7 +10,17 @@ See that site for [credits to the contributors of those tutorials](https://easyb
 
 ## Contents
 
+- [Part I: **Introduction to EasyBuild**](1_00_part1_intro.md)
+    -   [What is EasyBuild?](1_01_what_is_easybuild.md)
+    -   [Terminology](terminology.md)
+    -   [Installation](installation.md) *(hands-on)*
+    -   [Configuration](configuration.md) *(hands-on)*
+    -   [Basic usage](basic_usage.md) *(hands-on)*
+
+
+
 TODO
+
 
 
 
