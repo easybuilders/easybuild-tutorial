@@ -1,4 +1,4 @@
-<p align="center"><img src="./docs/img/easybuild_logo_alpha.png" width="300px"/></p>
+å<p align="center"><img src="./docs/img/easybuild_logo_alpha.png" width="300px"/></p>
 
 Welcome to the repository that hosts the sources of the official **[EasyBuild](https://easybuild.io)
 tutorial**, see https://easybuilders.github.io/easybuild-tutorial.
