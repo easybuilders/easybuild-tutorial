@@ -15,7 +15,7 @@ and provides a **command-line interface** to facilitate the installation and man
 <img src="../../img/geek-and-poke-invaluable.png" style="float:right" width="45%"/>
 </a>
 
-### *Elevator pitch*
+## Elevator pitch
 
 EasyBuild intends to relieve HPC support teams from manually managing
 software installations while at the same time **providing a consistent and well performing
@@ -46,7 +46,7 @@ is still under development on LUMI it is not yet covered in this LUMI-specific v
 
 ---
 
-### *Key features*
+## Key features
 
 EasyBuild is capable of **fully autonomously installing (scientific) software**,
 including making sure that all necessary dependencies are installed,
@@ -73,13 +73,13 @@ packaging tools ([FPM](https://fpm.readthedocs.io)), and so on.
 
 ---
 
-### *Focus points*
+## Focus points
 
 EasyBuild was created specifically for **installing scientific software on HPC systems**,
 which is reflected in some of the design choices that were made.
 
 
-#### Performance
+### Performance
 
 EasyBuild strongly prefers to **build software from source code**, whenever possible.
 
@@ -99,7 +99,7 @@ idea to hard-code options such as ``-march=native`` or ``--xHost`` in a way that
 cannot easily overwrite those.
 
 
-#### Reproducibility
+### Reproducibility
 
 In addition to performance, **reproducibility of installations** is a core aspect of EasyBuild.
 
@@ -120,7 +120,7 @@ As we shall see when discussing the HPE Cray Programming Environment, the reprod
 in that environment due to the way the programming environment selects shared libraries at runtime.
 
 
-#### Community effort
+### Community effort
 
 In a number of different ways, we try to encourage EasyBuild users to **collaborate** and help each other out.
 
@@ -148,7 +148,7 @@ All together this leads to improved stability and consistency.
 
 ---
 
-### *What EasyBuild is* ***not***
+## What EasyBuild is ***not***
 
 EasyBuild is ***not*** **YABT (Yet Another Build Tool)**: it does *not* replace established build
 tools like CMake or ``make``, it wraps around them.
@@ -167,7 +167,7 @@ or even with the AMD compilers.
 
 ---
 
-### *Requirements*
+## Requirements
 
 Since EasyBuild is primarily intended for installing (scientific) software on HPC systems, the main target is
 systems running some flavor of **GNU/Linux**. EasyBuild also works on *macOS*,
@@ -187,7 +187,7 @@ On LUMI Lmod is used as the module tool.
 
 ---
 
-### *Development*
+## Development
 
 <a href="http://github.com/easybuilders"><img src="../../img/github_logo.png" style="float:left" width="15%"/></a>
 EasyBuild is **actively developed** by a worldwide community under the
@@ -213,7 +213,7 @@ consistent testing of incoming contributions (pull requests), and thorough regre
 
 ---
 
-### *A worldwide community*
+## A worldwide community
 
 EasyBuild has grown into a **community project** since it was first released publicy in 2012,
 and is used and developed by dozens (hundreds?) of HPC centres and consortia worldwide.
@@ -250,9 +250,9 @@ HPC sites, consortia, and companies that use EasyBuild include (but are not limi
 
 ---
 
-### *Getting help*
+## Getting help
 
-#### *Documentation*
+### *Documentation*
 
 If you have any questions about EasyBuild, make sure to check the EasyBuild documentation first,
 which is available at [**https://docs.easybuild.io**](https://docs.easybuild.io).
@@ -260,7 +260,7 @@ which is available at [**https://docs.easybuild.io**](https://docs.easybuild.io)
 It is not unlikely that an answer to your question is available there already.
 The [search box](https://docs.easybuild.io/en/latest/search.html) on the top left may be helpful.
 
-#### GitHub
+### GitHub
 
 <a href="http://github.com/easybuilders"><img src="../../img/github_logo.png" style="float:left" width="15%"/></a>
 
@@ -275,7 +275,7 @@ the EasyBuild maintainers can move your issue if deemed appropriate.
 Also here you can use the search box on the top left, to see if somebody else
 has already asked a similar question or reported a similar problem.
 
-#### Mailing list
+### Mailing list
 
 Feel free to ask any questions or provide feedback via the EasyBuild mailing list
 <a href="mailto:easybuild@lists.ugent.be">`easybuild@lists.ugent.be`</a>.
@@ -287,7 +287,7 @@ In 2016-2017 over 1,000 messages were posted to the EasyBuild mailing list.
 More recently this has decreased to about 700 messages per year, mostly due
 to the EasyBuild Slack channel.
 
-#### Slack
+### Slack
 
 <img src="../../img/slack_logo.png" alt="Slack logo" style="float:left" width="22%"/>
 
@@ -304,7 +304,7 @@ IRC channel (available on the [Freenode IRC network](https://freenode.net/)).
 A bot relays messages between this IRC channel and the `#general` channel in the EasyBuild Slack.
 
 
-#### Conference calls
+### Conference calls
 
 Every other week on Wednesday an EasyBuild conference call is set up to discuss recent
 developments, provide an outlook to the next EasyBuild release, and
@@ -318,4 +318,4 @@ More information, including the dates and times of the next calls, is available
 
 ---
 
-*[[next: Terminology]](terminology.md)*
+*[[next: The HPE Cray Programming Environment and Lmod]](1_02_CPE_and_Lmod.md)*
