@@ -10,9 +10,10 @@ See that site for [credits to the contributors of those tutorials](https://easyb
 
 ## Contents
 
-- [Part I: **Introduction to EasyBuild**](1_00_part1_intro.md)
+- [Part I: **Introduction to EasyBuild on Cray systems**](1_00_part1_intro.md)
     -   [What is EasyBuild?](1_01_what_is_easybuild.md)
-    -   [Terminology](terminology.md)
+    -   [The HPE Cray Programming Environment and Lmod](1_02_CPE_and_Lmod.md)
+    -   [Terminology](1_03_terminology.md)
     -   [Installation](installation.md) *(hands-on)*
     -   [Configuration](configuration.md) *(hands-on)*
     -   [Basic usage](basic_usage.md) *(hands-on)*
