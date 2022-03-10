@@ -1,6 +1,6 @@
 # Terminology
 
-*[[back: The HPE Cray Programming Environment and Lmod]](1_02_CPE_and_Lmod.md)*
+*[[back: The HPE Cray Programming Environment]](1_03_CPE.md)*
 
 ---
 

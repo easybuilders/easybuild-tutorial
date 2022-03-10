@@ -318,4 +318,4 @@ More information, including the dates and times of the next calls, is available
 
 ---
 
-*[[next: The HPE Cray Programming Environment and Lmod]](1_02_CPE_and_Lmod.md)*
+*[[next: The Lmod module system]](1_02_Lmod.md)*
