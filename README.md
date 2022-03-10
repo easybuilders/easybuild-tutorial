@@ -22,11 +22,11 @@ which makes it very easy to preview the result of the changes you make locally.
 
       make preview
 
-  or
+    or
 
       mkdocs serve
 
-  Visit http://127.0.0.1:8000 to see the local live preview of the changes you make.
+    Visit http://127.0.0.1:8000 to see the local live preview of the changes you make.
 
 * If you prefer building a static preview you can use ``make`` or ``mkdocs build``,
   which should result in a ``site/`` subdirectory that contains the rendered documentation.
