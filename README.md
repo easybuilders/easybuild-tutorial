@@ -20,11 +20,15 @@ which makes it very easy to preview the result of the changes you make locally.
 
 * Start the MkDocs built-in dev-server to preview the tutorial as you work on it:
 
-      make preview
+    ```bash
+    make preview
+    ```
 
     or
 
-      mkdocs serve
+    ```bash
+    mkdocs serve
+    ```
 
     Visit http://127.0.0.1:8000 to see the local live preview of the changes you make.
 
