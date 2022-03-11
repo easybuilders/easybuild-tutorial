@@ -4,15 +4,6 @@
 
 ---
 
-On LUMI, the main programming environment is the HPE Cray Programming Environment (further abbreviated
-as Cray PE). The environment provides several tools, including compilers, communication libraries, 
-optmized math libraries and various other libraries, analyzers and debuggers.
-
-The Cray PE is made available through *environment modules* tha allow to select particular versions of 
-tools and to configure the environment in a flexible way.
-
----
-
 ## Modules
 
 *Module* is a massively overloaded term in (scientific) software and IT in general
@@ -40,12 +31,16 @@ module files but also offers a high degree of compatibility with Tcl-based modul
 developed for Environment Modules fia a translation layer and some API translation.
 
 The Cray PE offers a choice between the old-style Environment Modules 3.2 and Lmod, but no
-packages or official support for Environment Modules 4 or 5. On LUMI, Lmod was selected as
-the module tool. At the user level, Lmod and the various versions of Emvironment Modules
-have very simmilar commands for managing the environment, but with different options.
-The commands for searching for modules are very different though so if you are not familiar
-with Lmod and its commands for users, it is worthwile to read the 
-[LUMI documentation page on Lmod](https://docs.lumi-supercomputer.eu/computing/Lmod_modules/).
+packages or official support for Environment Modules 4 or 5. At the user level, 
+Environment Modules 3.2 and Lmod have many commands in common, but with different options. 
+Lmod also has some powerful features that are lacking in Environment Modules 3.2.
+
+!!! Note "The Cray PE on LUMI"
+    On LUMI, Lmod was selected as the module tool. One area where there are significant
+    differences between Environment Modules 3.2 (and also the newer versions) and Lmod is
+    in the commands for discovering modules on the system. If you are not familiar with Lmod 
+    and its commands for users, it is worthwile to read the 
+    [LUMI documentation page on Lmod](https://docs.lumi-supercomputer.eu/computing/Lmod_modules/).
 
 ---
 
@@ -199,7 +194,296 @@ particular version of the hardware for a particular section of LUMI.
 
 ## Finding modules
 
+In a hierarchical setup, not all modules are available at login. This implies that a user cannot use
+``module avail`` to discover which software is available on the system. To this end Lmod has powerful
+search commands. It is important to understand how these commands work to ensure that the proper information
+is included in the module files to improve discoverability of software.
+
+!!! Note "Documentation in the LUMI documentation"
+    Extensive information on search commands with examples of how to use them on LUMI can be found
+    in the [LUMI documentation]([https://)](https://docs.lumi-supercomputer.eu/), in
+    [the computing section, "Module environment page", "Finding modules" section](https://docs.lumi-supercomputer.eu/computing/Lmod_modules/#finding-modules).
+
 TODO: module spider, module help, module whatis, module keyword and where do they get their information.
+
+### module spider command
+
+The available modules at any point in time are often only a subset of all installed modules on a
+system. However, Lmod provides the ``module spider`` command to search for a module with a given name 
+among all installed modules and to tell you how this module can be loaded (i.e., which other modules
+need to be loaded to make the module available).
+
+The ``module spider`` command has three levels, producing different outputs:
+
+ 1. ``module spider`` without further arguments will produce a list of all
+    installed software and show some basic information about those packages.
+    Some packages may have an ``(E)`` behind their name and will appear in blue
+    (in the default colour scheme) which means that they are part of a different
+    package. These are called *extensions*  of packages or modules.
+    This is explained a little further in this page.
+
+    Note that ``module spider`` will also search in packages that are hidden from
+    being displayed. These packages can be loaded and used. However administrators
+    may have decided to hide them
+    either because they are not useful to regular users or because they think that
+    they will rarely or never be directly loaded by a user and want to avoid
+    overloading the module display.
+
+ 2. ``module spider <name of package>`` will search for the specific package. This
+    can be the name of a module, but it will also search some other information
+    that can be included in the modules. The search is also case-insensitive.
+    E.g., on LUMI
+    ```bash
+    module spider GNUplot
+    ```
+    will show something along the lines of
+    ```
+    ------------------------------------------------------------------
+      gnuplot:
+    ------------------------------------------------------------------
+        Description:
+          Gnuplot is a portable command-line driven graphing utility
+
+         Versions:
+            gnuplot/5.4.2-cpeCray-21.08
+            gnuplot/5.4.2-cpeGNU-21.08
+    ```
+    so even though the capitalisation of the name was wrong, it can tell us that
+    there are two versions of gnuplot. The ``cpeGNU-21.08`` and ``cpeCray-21.08``
+    tell that the difference is the compiler that was used to install gnuplot,
+    being the GNU compiler (PrgEnv-gnu) and the Cray compiler (PrgEnv-cray)
+    respectively.
+
+    In some cases, if there is no ambiguity, `module spider` will actually
+    already produce help about the package, which is the next level.
+
+  3. `module spider <module name>/<version>` will show more help information
+     about the package, including information on which other modules need to be
+     loaded to be able to load the package. E.g., 
+     ```bash
+     module spider git/2.35.1
+     ```
+     will return something along the lines of
+     ```
+     -------------------------------------------------------------------
+       git: git/2.35.1
+     -------------------------------------------------------------------
+        Description:
+          Git is a free and open source distributed version control
+          system
+
+        You will need to load all module(s) on any one of the lines below
+        before the "git/2.35.1" module is available to load.
+
+          CrayEnv
+          LUMI/21.12  partition/C
+          LUMI/21.12  partition/D
+          LUMI/21.12  partition/G
+          LUMI/21.12  partition/L
+
+        Help:
+     ```
+     (abbreviated output). Note that it also tells you which other modules need
+     to be loaded. You need to choose the line which is appropriate for you and
+     load all modules on that line, not the whole list of in this case 9
+     modules.
+
+!!! failure "Known issue"
+    The Cray PE uses Lmod in an unconventional manner with the hierarchy not
+    build fully in the way Lmod expects. As a consequence Lmod is not always
+    able to generate the correct list of modules that need to be loaded to make
+    a package available, and the list of ways to make a module available may 
+    also be incomplete.
+
+    The problem is somewhat aggrevated on LUMI because the Cray PE hierarchy sits
+    next to the hierarchy of the software stack as the Cray PE is installed 
+    separately and hence cannot be integrated in the way the Lmod developer had
+    in mind.
+
+
+#### Module extensions
+
+Certain packages, e.g., Python, Perl or R, get a lot of their functionality through 
+other packages that are installed together with them and extend the functionity, 
+e.g., NumPy and SciPy for Python. Installing all those packages as separate modules
+to make it easy to see if they are installed or not on a system would lead to an
+overload of modules on the system. 
+
+Similary, admins of a software stack may chose to bundle several libraries or tools
+that are often used together in a single module (and single installation directory),
+e.g., to reduce module clutter but also to reduce the length of the search paths for
+binaries, libraries or manual pages to speed up loading of applications.
+
+Lmod offers a way to make those individual packages installed in a module discoverable
+by declaring them as *extensions* of the module. The ``module spider`` command will
+search for those too.
+
+ 1. ``module spider`` without further arguments: The output may contain lines similar
+    to
+    ```
+    -----------------------------------------------------------------------
+    The following is a list of the modules and extensions currently available:
+    -----------------------------------------------------------------------
+      Autoconf: Autoconf/2.71 (E)
+
+      CMake: CMake/3.21.2 (E), CMake/3.22.2 (E)
+    ```
+    which tells that ``Autoconf`` and ``CMake`` are not available as modules themselves
+    but as extensions of another module, and it also tells the versions that are available,
+    though that list may not be complete (and is not always complete for modules either
+    as it is limited to one line of output).
+
+2.  ``module spider <name of package>`` will search for extensions also. E.g.,
+    ```
+    module spider CMake
+    ```
+    on LUMI will return something along the lines of
+    ```
+    -----------------------------------------------------------------------
+      CMake:
+    -----------------------------------------------------------------------
+         Versions:
+            CMake/3.21.2 (E)
+            CMake/3.22.2 (E)
+    ```
+    (output abbreviated). 
+    This tells that there is no ``CMake`` module on the system but that two versions
+    of ``CMake`` are provided in another module.
+
+  3. `module spider <extension name>/<version>` will show more information on the
+     extension, including which module provides the extension and which other modules
+     have to be loaded to make that module available. E.g., on LUMI,
+     ```
+     module spider CMake/3.22.2
+     ```
+     will output something along the lines of
+     ```
+     -----------------------------------------------------------------------
+      CMake: CMake/3.22.2 (E)
+    -----------------------------------------------------------------------
+        This extension is provided by the following modules. To access the 
+        extension you must load one of the following modules. Note that any 
+        module names in parentheses show the module location in the software 
+        hierarchy.
+
+           buildtools/21.12 (LUMI/21.12 partition/L)
+           buildtools/21.12 (LUMI/21.12 partition/G)
+           buildtools/21.12 (LUMI/21.12 partition/D)
+           buildtools/21.12 (LUMI/21.12 partition/C)
+           buildtools/21.12 (CrayEnv)
+    ```
+    (output abbreviated and slightly reformatted for readability). This tells that
+    ``CMake/3.22.2`` is provided by the ``bvuildtools/21.12`` module and that there
+    are 5 different ways to make that package available.
+
+??? Bug "Restrictions with older Lmod versions"
+    At the time of development of this tutorial, Cray is still using the pretty old
+    8.3.1 version of Lmod. Even though extensions were supported since Lmod version 8.2.5,
+    Lmod 8.3.1 has several problems:
+
+    -   It is not possible to hide extensions in the output of ``module avail``, a feature
+        that only became available in version 8.5. This may be annoying to many users as
+        the extension list of packages such as Python, R and Perl can be very long (the
+        default EasyBuild installation of R contains on the order of 600 packages).
+
+        For that reason on LUMI extensions are only used for some modules.
+
+    -   ``module avail`` also shows extensions for modules that are not available which
+        makes no sense. This bug was only corrected in Lmod 8.6.13 and 8.6.14.
+ 
+
+### module keyword
+
+Another search command that is sometimes useful is `module keyword`. It really
+just searches for the given word in the short descriptions that are included in
+most module files and in the name of the module. The output is not always
+complete since not all modules may have a complete enough short description.
+
+Consider we are looking for a library or package that supports MP3 audio
+encoding.
+```bash
+module keyword mp3
+```
+will return something along the lines of
+```
+----------------------------------------------------------------
+
+The following modules match your search criteria: "mp3"
+----------------------------------------------------------------
+
+  LAME: LAME/3.100-cpeCray-21.08, LAME/3.100-cpeGNU-21.08
+    LAME is a high quality MPEG Audio Layer III (mp3) encoder
+```
+though the output will depend on the version of Lmod. This may not be the most
+useful example on a supercomputer, but the library is in fact needed to be able
+to install some other packages even though the sound function is not immediately
+useful.
+
+??? bug "Know issue: Irrelevant output"
+    At the moment of the development of this tutorial, this command actually
+    returns a lot more output, referring to completely irrelevant extensions.
+    This is a bug in the HPE-Cray-provided version of Lmod (8.3.1 at the time
+    of development of this tutorial) that was only solved in more recent versions.
+
+
+### module avail
+
+The `module avail` command is used to show only available modules, i.e., modules
+that can be loaded directly without first loading other modules. It can be used
+in two ways:
+
+ 1. Without a further argument it will show an often lengthy list of all
+    available modules. Some modules will be marked with `(D)` which means that
+    they are the default module that would be loaded should you load the module
+    using only its name.
+
+ 2. With the name of a module (or a part of the name) it will show all modules
+    that match that (part of) a name. E.g.,
+    ```bash
+    module avail gnuplot
+    ```
+    will show something along the lines of
+    ```
+    ------ EasyBuild managed software for software stack LUMI/21.08 on LUMI-L ------
+       gnuplot/5.4.2-cpeCray-21.08    gnuplot/5.4.2-cpeGNU-21.08 (D)
+
+      Where:
+       D:  Default Module
+        (output abbreviated).
+    ```
+    but
+    ```bash
+    module avail gnu
+    ```
+    will show you an often lengthy list that contains all packages with gnu
+    (case insensitive) in their name or version.
+
+
+### Getting help
+
+One way to get help on a particular module has already been discussed on this
+page: ``module spider <name>/<version>`` will produce help about the package as
+soon as it can unambiguously determine the package. It is the only command that
+can produce help for all installed packages. The next two commands can only
+produce help about available packages.
+
+A second command is ``module whatis`` with the name or name and version of a
+module. It will show the brief description of the module that is included in
+most modules on the system. If the full version of the module is not given, it
+will display the information for the default version of that module.
+
+The third command is ``module help``. Without any further argument it will display
+some brief help about the module command. However, when used as 
+``module help <name>`` or ``module help <name>/<version>`` it will produce help for either the
+default version of the package (if the version is not specified) or the
+indicated version.
+
+
+### Implementation details
+
+**TODO** Tell about the extensions, whatis and help functions in module file and maybe a 
+little bit about how module spider works.
+
 
 ---
 
