@@ -118,6 +118,14 @@ nav:
           - Contributing to EasyBuild: 2020-06-isc20/contributing.md
           - Comparison with other tools: 2020-06-isc20/comparison_other_tools.md
           - Getting help: 2020-06-isc20/getting_help.md
+      - "CSC (spring '22)":
+          - (overview): 2022-CSC_and_LO/index.md
+          - Introduction to EasyBuild:
+              - (overview): 2022-CSC_and_LO/1_00_part1_intro.md
+              - What is EasyBuild?: 2022-CSC_and_LO/1_01_what_is_easybuild.md
+              - The Lmod module system: 2022-CSC_and_LO/1_02_Lmod.md)
+              - The HPE Cray Programming Environment: 2022-CSC_and_LO/1_03_CPE.md
+              - Te0rminology: 2022-CSC_and_LO/1_04_terminology.md
 plugins:
   # show revision date at bottom of each page
   - git-revision-date-localized

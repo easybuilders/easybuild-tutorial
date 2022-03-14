@@ -9,7 +9,11 @@ See that site for [credits to the contributors of those tutorials](https://easyb
 
 This is an introductory tutorial to [EasyBuild](https://easybuild.io),
 a command line tool for installing (scientific) software on High Performance Computing (HPC) systems.
+<<<<<<< HEAD
 This tutorial is specifically for EasyBuild as implemented on [LUMI](https://lumi-supercomputer.eu)
+=======
+These tutorials are specifically for EasyBuild as implemented on [LUMI](https://lumi-supercomputer.eu)
+>>>>>>> 51e451f1 (Continued merging of the new CSC tutorial in the structure of the repository.)
 and has been developed for CSC and the Local Organisations within the LUMI consortium. Yet
 much of the material is useful to a broader community of EasyBuild users on Cray systems
 or even EasyBuild users in general.
