@@ -41,6 +41,7 @@ Lmod also has some powerful features that are lacking in Environment Modules 3.2
     in the commands for discovering modules on the system. If you are not familiar with Lmod 
     and its commands for users, it is worthwile to read the 
     [LUMI documentation page on Lmod](https://docs.lumi-supercomputer.eu/computing/Lmod_modules/).
+    Some of those commands are also discussed on this page.
 
 ---
 
@@ -204,7 +205,6 @@ is included in the module files to improve discoverability of software.
     in the [LUMI documentation]([https://)](https://docs.lumi-supercomputer.eu/), in
     [the computing section, "Module environment page", "Finding modules" section](https://docs.lumi-supercomputer.eu/computing/Lmod_modules/#finding-modules).
 
-TODO: module spider, module help, module whatis, module keyword and where do they get their information.
 
 ### module spider command
 
@@ -481,13 +481,81 @@ indicated version.
 
 ### Implementation details
 
-**TODO** Tell about the extensions, whatis and help functions in module file and maybe a 
-little bit about how module spider works.
+Lmod works by executing the module file. However, the actions of all Lmod-defined 
+functions will depend upon the mode in which Lmod is executing the module function,
+and the module file can also detect in which mode it is executing.
+Modes include "load", "unload"but also "spider".  E.g., when te mode is "load", the
+``setenv`` function will set an environment variable to the indicated value while in 
+"unload" mode that environment variable will be unset, and in "spider" mode the 
+environment variable is left untouched. The working of ``prepend_path``, a function 
+that modifies PATH-style variables, depends a bit on how Lmod is configured (as it is
+possible to work with reference counts), but in its most basic mode, ``prepend_path``
+will add a given directory to a given PATH-style environment variable (or move it to
+the front of the PATH-style variable if the directory is already in there), while in
+"unload" mode that specific directory will be removed from the PATH (but no error will
+be generated should the directory that is used as the argument not be part of the path
+in that PATH-style variable). When the mode is "spider", the function has special behaviour
+if it is used to change the ``MODULEPATH``. It will then note the change and add that
+directory to the list of directories that has to be searched for module files.
+This makes ``module spider`` a very expensive command as it may have to traverse a lot
+of directories and has to execute all module files in there. Therefor Lmod will build
+a so-called spider cache which can be pre-built in the system for  certain directories
+and otherwise will be build in the user's home directory (in the ``.lmod.d/.cache``
+subdirectory). Our experience is that this cache tends to be rather fragile,
+in particular on Cray systems (and that has been confirmed in discussions with 
+people with access to some other Cray systems) so from time to time Lmod fails to
+note changes to the modules, at least when using commands such as ``module spider``.
+The actual loading and unloading of the module is not based on cached information.
+
+Lmod has several functions that can be used in module files to provide the information 
+that Lmod needs for the search-related and help commands.
+
+The ``help`` function defines the long help text used by ``module help`` and by
+``module spider`` as soon as there is no ambiguity anymore about which module is
+being searched for.
+
+The ``whatis`` function is used to provide short information about a module. That 
+information is then used by ``module whatis`` and ``module keyword`` , but also
+for brief information shown by ``module spider`` when multiple modules or versions
+of modules are found by the command. A module file can contain multiple ``whatis``
+commands and the Lmod manuel suggests to use those lines as a kind of database
+record. See, e.g., 
+[the Lmod manual page with module file examples](https://lmod.readthedocs.io/en/latest/100_modulefile_examples.html?highlight=whatis).
+One such example is
+```Lua
+whatis("Name:        valgrind")
+whatis("Version:     3.7.0")
+whatis("Category:    tools")
+whatis("URL:         http://www.valgrind.org")
+whatis("Description: memory usage tester")
+```
+It is not all that important to include all those lines in a module file, but some of
+those lines get a special treatment from Lmod. The line starting with ``Description``
+is used by ``module spider`` to provide some brief information about the module if it
+is not totally resolved. This comes with a limitation though: It is not show for each
+version of the module, so ideally all "GROMACS" modules should contain the same
+description line and use other lines to provide further information about what
+distinguished a particular version. 
+Likewise the ``Category:`` line is used by the ``spider_decoration`` hook that can be
+used to add decoration to the spider level 1 output.
+All in all the ``whatis`` function if often overlooked in Lmod-based module functionx
+but it is a very useful function to include in the proper way in module files.
+
+A third function that provides information to the search commands is ``extensions``. 
+It can be used to list up the extensions supported by the module. The argument list
+may seem strange as it takes only a single argument, a string of comma-separated ``extension/version``
+elements, but that is because the number of arguments to a function is limited in
+Lua and that limit can actually be met easily by modules for Python, Perl or R packages.
 
 
 ---
 
 ## Further reading
+
+-   [Lmod documentation](https://lmod.readthedocs.io/en/latest/index.html)
+-   [Lmod on LUMI in the LUMI documentation](https://docs.lumi-supercomputer.eu/computing/Lmod_modules/)
+-   [Documentation of Environment Modules 5](https://modules.readthedocs.io/en/latest/),
+    an alternative to Lmod (though not currently supported by HPE Cray)
 
 
 ---
