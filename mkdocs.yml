@@ -33,6 +33,14 @@ nav:
       - Contributing to EasyBuild: 2022-isc22/contributing.md
       - Comparison with other tools: 2022-isc22/comparison_other_tools.md
   - Archive:
+      - "CSC (spring '22)":
+          - (overview): 2022-CSC_and_LO/index.md
+          - Introduction to EasyBuild:
+              - (overview): 2022-CSC_and_LO/1_00_part1_intro.md
+              - What is EasyBuild?: 2022-CSC_and_LO/1_01_what_is_easybuild.md
+              - The Lmod module system: 2022-CSC_and_LO/1_02_Lmod.md)
+              - The HPE Cray Programming Environment: 2022-CSC_and_LO/1_03_CPE.md
+              - Te0rminology: 2022-CSC_and_LO/1_04_terminology.md
       - "ISC'21 (25 June 2021)":
           - (overview): 2021-isc21/index.md
           - Practical info: 2021-isc21/practical_info.md
