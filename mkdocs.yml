@@ -40,7 +40,7 @@ nav:
               - What is EasyBuild?: 2022-CSC_and_LO/1_01_what_is_easybuild.md
               - The Lmod module system: 2022-CSC_and_LO/1_02_Lmod.md)
               - The HPE Cray Programming Environment: 2022-CSC_and_LO/1_03_CPE.md
-              - Te0rminology: 2022-CSC_and_LO/1_04_terminology.md
+              - Terminology: 2022-CSC_and_LO/1_04_terminology.md
       - "ISC'21 (25 June 2021)":
           - (overview): 2021-isc21/index.md
           - Practical info: 2021-isc21/practical_info.md
