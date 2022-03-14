@@ -125,7 +125,7 @@ nav:
               - What is EasyBuild?: 2022-CSC_and_LO/1_01_what_is_easybuild.md
               - The Lmod module system: 2022-CSC_and_LO/1_02_Lmod.md)
               - The HPE Cray Programming Environment: 2022-CSC_and_LO/1_03_CPE.md
-              - Te0rminology: 2022-CSC_and_LO/1_04_terminology.md
+              - Terminology: 2022-CSC_and_LO/1_04_terminology.md
 plugins:
   # show revision date at bottom of each page
   - git-revision-date-localized
