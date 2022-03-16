@@ -550,6 +550,197 @@ Lua and that limit can actually be met easily by modules for Python, Perl or R p
 
 ---
 
+## Some warnings about writing modulefiles
+
+***This section is very technical and only useful if you want to manually implement
+modules that depend on each other one way or another.***
+
+Lmod cannot guarantee that the order of unloading the modules will be the inverse of
+the order in which they were loaded. Moreover, unloading a module is not done by reverting
+stored actions done when loading the module, but by executing the modulefile again 
+in a mode that reverts certain actions. This can lead to subtle problems when modulefiles
+communicate with each other through environment variables or by detecting which other 
+modules are loaded. These problems are usually solved by using a proper hierarchy 
+and basing actions of modulefiles on their position in the hierarchy.
+
+One case where passing information between modules through environment variables will
+go wrong is when that environment variable is subsequently used to compute a directory
+name that should be added to a PATH-like variable. Assume we have two versions of
+a ``MyPython`` module, e.g., ``MyPython/2.7.18`` and ``MyPython/3.6.10``. That module then
+sets an environment variable ``PYTHON_API_VERSION`` to either ``2.7``  or ``3.6``.
+Next we have a module ``MyPythonPackage`` that makes a number of Python packages available
+for both Python modules. However, as some Python packages have to be installed separately
+for each Python version, it does so by adding a directory to the environment variable
+``PYTHON_PATH`` that contains the version which it gets by using the Lua function
+``os.getenv`` to request the value of ``PYTHON_API_VERSION``. 
+
+One problem becomes clear in the following scenario:
+``` bash
+module load MyPython/2.7.18
+module load MyPythonPackage/1.0
+module load MyPython/3.6.10
+```
+The ``module load MyPythonPackage`` will find the environment variable ``PYTHON_PACKAGE_API`` 
+with the value ``2.7``  as set by ``module load MyPython/2.7.18`` and hence add the directory
+for the packages for version 2.7 to ``PYTHON_PATH``. The ``module load MyPython/3.6.10`` 
+command will trigger two operations because of the *"one name rule"*: First it will 
+automatically unload ``MyPython/2.7.18`` (which will unset ``PYTHON_API_VERSIUON``) and
+next it will load ``MyPython/3.6.10`` which will set ``PYTHON_API_VERSION`` to ``3.6``. 
+However, ``MyPythonPackage`` is not reloaded so the ``PYTHON_PATH`` variable will now point
+to the wrong directory. One would be tempted to think that the easy fix for the user would
+be to reload ``MyPythonPackage/1.0``:
+``` bash
+module load MyPythonPackage/1.0
+```
+Because of the *"one name rule"* this will again trigger an unload followed by a load
+of the module. The problem is in the unload. One would expect that first unloading
+``MyPythonPackage`` would remove the 2.7 directory from the ``PYTHON_PATH`` but it 
+will not. Lmod does not remeber that last time it loaded ``MyPythonPackage`` it added
+the 2.7 directory to ``PythonPath``. Instead it will execute the commands in the 
+modulefile and reverse certain commands. Since ``PYTHON_API_VERSION`` has now the value
+``3.6``, it will try to remove the directory for version ``3.6`` which is not in the
+``PYTHON_PATH``. The subsequent load will then add the 3.6 directory to ``PYTHON_PATH``
+so the environment variable now contains both directories. 
+
+In this simple case, a ``module purge`` after the first two ``module load`` commands would
+still work as Lmod is able to figure out the right order to unload modules, but in more
+complicated examples this may also go wrong. However, a ``module purge`` command after
+the load of ``MyPython/3.6.10`` would also fail to clean up the environment as it would
+still fail to remove the 2.7 directory from ``PYTHONPATH``. 
+
+??? Note "Running the example"
+    To test this example for yourself, create a directory and add that directory to 
+    the ``MODULEPATH`` using ``module use``. In that directory, create the following
+    subdirectories and files:
+    1.  ``MyPython/2.7.18.lua`` with content:
+        ``` lua
+        LmodMessage( 'In ' ..  myModuleFullName() .. ' in mode '  .. mode() )
+        setenv( 'PYTHON_API_VERSION', '2.7' )
+        ```
+    2.  ``MyPython/3.6.10.lua`` with content:
+        ``` lua
+        LmodMessage( 'In ' ..  myModuleFullName() .. ' in mode '  .. mode() )
+        setenv( 'PYTHON_API_VERSION', '3.6' )
+        ```
+    3.  ``MyPythonPackage/1.0.lua`` with content:
+        ``` lua
+        LmodMessage( 'In ' ..  myModuleFullName() .. ' in mode '  .. mode() )
+        LmodMessage( 'PYTHON_API_VERSION = ' .. ( os.getenv( 'PYTHON_API_VERSION' ) or '') )
+        prepend_path( 'PYTHON_PATH', 'someroot/python' .. 
+          ( os.getenv( 'PYTHON_API_VERSION' ) or 'TTT' ) .. '/packages' )
+        LmodMessage( 'PYTHON_PATH = ' .. ( os.getenv( 'PYTHON_PATH' ) or '') )
+        ```
+??? Note "Solution with a hierarchy"
+    The better way in Lmod to implement the above scenario would be in a module hierarchy.
+
+    Just to show the power of Lmod introspection functions combined with a proper hierarchy
+    we present a solution using only one version of the code for ``MyPython`` and one version
+    of the code for ``MyPythonPackages``.
+
+    It is best to start from a clean directory. In that directory, create:
+
+    1.  The files ``level1/MyPython/2.7.18.lua`` and ``level1/MyPython/3.6.10.lua``,
+        both with the same contents:
+        ``` lua
+        LmodMessage( '\nIn ' ..  myModuleFullName() .. ' in mode '  .. mode() )
+        
+        local api_version = myModuleVersion():match( '(%d+%.%d+)%..*' )
+        
+        -- Set the variable PYTHON_API_VERSION but not for internal use in the modules.
+        setenv( 'PYTHON_API_VERSION', api_version )
+        
+        local module_root = myFileName():match( '(.*)/level1/' .. myModuleFullName() )
+        prepend_path( 'MODULEPATH', pathJoin( module_root, 'level2/PythonAPI', api_version ) )
+        LmodMessage( 'MODULEPATH is now\n  ' ..
+            os.getenv( 'MODULEPATH' ):gsub(  ':', '\n  ' ) )
+        ```
+
+    2.  The files ``level2/PythonAPI/2.7/MyPythonPackage/1.0.lua`` and
+        ``level2/PythonAPI/3.6/MyPythonPackage/1.0.lua``, both with the contents:
+        ``` lua
+        LmodMessage( '\nIn ' ..  myFileName() .. ' in mode '  .. mode() )
+        
+        local python_api_version = myFileName():match( '.*/level2/PythonAPI/([^/]+)/.*' )
+        LmodMessage( 'Detected Python API version from hierarchy: ' .. python_api_version )
+        LmodMessage( 'Detected Python API version from environment: ' ..
+            ( os.getenv( 'PYTHON_API_VERSION' ) or '' ) )
+
+        prepend_path( 'PYTHON_PATH', 'someroot/python' .. python_api_version .. '/packages' )
+
+        LmodMessage( 'PYTHON_PATH = ' .. (os.getenv( 'PYTHON_PATH' ) or '') )
+        ```
+    
+    Now add the ``level1`` subdirectory to ``MODULEPATH``, e.g., if you're in the directory
+    containing the ``level1`` and ``level2`` subdirectories:
+    ``` bash
+    module use $PWD/level1
+    ```
+    and then try the following commands:
+    ``` bash
+    module avail
+    module load MyPython/2.7.18
+    module avail
+    module load MyPythonPackage/1.0
+    module load MyPython/3.6.10
+    ```
+    and pay attention to the output.
+
+    Initially ``module avail`` will show none of the ``MyPythonPackage`` modules. These are
+    installed modules but not available modules. ``module load MyPython/2.7.18`` will set the
+    environment variable ``PYTHON_API_VERSION`` to ``2.7`` and also add a directory to the front
+    of the ``MODULEPATH`` with the directory name ending on ``level2/PythonAPI/2.7``. Now
+    ``module avail`` will show the ``MyPythonPackage/1.0`` module.
+
+    The ``MyPythonPackage`` shows two ways to get the version of the Python API to use for
+    determining the right directory to add to ``PYTHON_PATH``. The fragile way is to enquire
+    the value of the environment variable ``PYTHON_API_VERSION`` set by loading ``MyPython/2.7.18``.
+    The more robust way is to use the Lmod introspection function ``myFileName()`` which returns
+    the full path and file name of the module file that is executing, and extracting the version
+    from the path with a pattern matching function. In this particular situation both computed
+    values are the same so both would have worked to correctly add
+    ``somedir/python2.7/packages`` to the front of ``PYTHON_PATH``. 
+
+    The next command, ``module load MyPython/3.6.10`` triggers a chain of events.
+
+    First, Lmod notices that there is already a module loaded with the same name, so it will
+    unload ``MyPython/2.7.18``. This will unset the environment variable ``PYTHON_API_VERSION``
+    (the inverse operation of ``setenv``) and will remove the ``.../level2/PythonAPI/2.7``
+    subdirectory from the ``MODULEPATH`` (the inverse action of ``prepend_path``). 
+    
+    Now due to 
+    the change of the ``MODULEPATH`` the ``MyPythonPackage/1.0`` module which was loaded from
+    ``.../level2/PythonAPI/2.7`` is no longer available so Lmod will continue with unloading
+    that module. The interesting bit now is that ``PYTHON_API_VERSION`` is unset. So had we 
+    computed the name of the directory to add to ``PYTHON_PATH`` using the value of that 
+    environment variable, the module would have failed to compute the correct directory name
+    to remove so ``prepend_path`` would have left the ``PYTHON_PATH`` environment variable
+    untouched. However, by computing that value from the directory of the modulefile, we get
+    the right value and can correctly remove ``somedir/python2.7/packages`` from ``PYTHON_PATH``.
+    Lmod will also remember that the module was only unloaded due to a change in the
+    ``MODULEPATH`` and not because a user explicitly unloaded the module. I.e., it considers
+    the module as deactivated but not as unloaded.
+
+    Lmod proceeds with loading the ``MyPython/3.6.10`` module. This will now set
+    ``PTHON_API_VERSION`` to ``3.6`` and add a directory with name ending on
+    ``level2/PythonAPI/3.6`` to ``MODULEPATH``.
+
+    Things are not done yet though. As the ``MODULEPATH`` has changed, Lmod looks at its list
+    of deactivated modules and notices that a different version of ``MyPythonPackage/1.0`` is
+    now available. Hence it will now automatically load that module from the 
+    ``.../level2/PythonAPI/3.6`` subdirectory so that that module now correctly detects
+    that ``somedir/python3.6/package`` should be added to ``PYTHON_PATH``.
+
+    Hence at the end of the cycle we have again a correctly configured environment with no
+    trace of the ``2.7`` version that was loaded initially and with no action required from
+    the user to ensure that ``MyPythonPackage`` is unloaded and reloaded to ensure the 
+    correct configuration.
+
+    This idea is used on LUMI to implement the various versions of the software stack with
+    for each software stack also optimised binaries for each of the node types.
+
+
+---
+
 ## Further reading
 
 -   [Lmod documentation](https://lmod.readthedocs.io/en/latest/index.html)
