@@ -12,7 +12,7 @@ It is important to be familiar with these terms, so we'll briefly cover them one
 
 ---
 
-## *Toolchains*
+## Toolchains
 
 A *compiler toolchain* (or just *toolchain* for short) is a **set of [compilers](https://en.wikipedia.org/wiki/Compiler)**,
 which are used to build software from source, together with a set of **additional libraries** that provide further core functionality.
@@ -82,6 +82,8 @@ because they are widely adopted by the EasyBuild community.
 The `foss` toolchain consists of all open source components (hence the name:
 "FOSS" stands for Free & Open Source Software): [GCC](https://gcc.gnu.org/), [Open MPI](https://www.open-mpi.org/), [OpenBLAS](https://www.openblas.net/),
 [ScaLAPACK](https://www.netlib.org/scalapack/) and [FFTW](http://fftw.org/).
+In recent versions (since 2021a), [FlexiBLAS](https://www.mpi-magdeburg.mpg.de/projects/flexiblas)
+is used as the BLAS library, with OpenBLAS and LAPACK as the backend.
 
 The `intel` toolchain consists of the [Intel C, C++ and Fortran compilers](https://software.intel.com/content/www/us/en/develop/tools/compilers.html) (on top of a `GCC` version
 controlled through EasyBuild) alongside the [Intel MPI](https://software.intel.com/content/www/us/en/develop/tools/mpi-library.html) and [Intel MKL](https://software.intel.com/content/www/us/en/develop/tools/math-kernel-library.html) libraries.
@@ -89,11 +91,27 @@ controlled through EasyBuild) alongside the [Intel MPI](https://software.intel.c
 Roughly every 6 months, a new version of these common toolchains is agreed upon
 in the EasyBuild community, after extensive testing.
 
+The common toolchains are also organised in a toolchain hierarchy:
+
+```mermaid
+graph TD;
+A[SYSTEM] --> B[GCCcore];
+B --> C[GCC];
+B --> D[iccifort];
+C --> E[gompi: Adds OpenMPI];
+D --> F[iimpi: Adds Intel MPI];
+D --> G[imkl: Adds Intel MKL];
+E --> H[foss: Adds OpenBLAS, LAPACK, ScaLAPACK, FFTW];
+F --> I[intel];
+G --> I;
+```
+
 More information on these toolchains is available [in the EasyBuild documentation](https://docs.easybuild.io/en/latest/Common-toolchains.html).
+
 
 ---
 
-## *Modules*
+## Modules
 
 *Module* is a massively overloaded term in (scientific) software and IT in general
 (kernel modules, Python modules, and so on).
@@ -121,7 +139,7 @@ session such that the corresponding software installation can be used.
 
 ---
 
-## *EasyBuild framework*
+## EasyBuild framework
 
 The EasyBuild *framework* consists of a set of Python modules organised in packages (``easybuild.framework``,
 ``easybuild.toolchains``, ``easybuild.tools``, etc.) that collectively form **the core of EasyBuild**,
@@ -137,7 +155,7 @@ the necessary functionality to facilitate this.
 
 ---
 
-## *Easyblocks*
+## Easyblocks
 
 An *easyblock* is **a Python module that implements a specific software installation procedure**,
 and can be viewed as a plugin to the EasyBuild framework. Easyblocks can be either *generic* or *software-specific*.
@@ -158,7 +176,7 @@ in the [``easybuild-easyblocks`` repository on GitHub](https://github.com/easybu
 
 ---
 
-## *Easyconfig parameters*
+## Easyconfig parameters
 
 An **easyconfig parameter** specifies a particular aspect of a software installation that should be performed by
 EasyBuild.
@@ -188,7 +206,7 @@ only supported by certain easyblocks, and only make sense for particular (types 
 
 ---
 
-## *Easyconfig files*
+## Easyconfig files
 
 *Easyconfig files* (or *easyconfigs* for short), are **simple text files written in Python syntax
 that specify what EasyBuild should install**.
@@ -211,7 +229,7 @@ the EasyBuild community maintains a large (and growing) collection of easyconfig
 
 ---
 
-## *Easystack files*
+## Easystack files
 
 [**Easystack files**](https://docs.easybuild.io/en/latest/Easystack-files.html)
 are a new concept in EasyBuild, providing a way to define a *software stack*
@@ -227,7 +245,7 @@ which means it is subject to change in future EasyBuild releases, and may be pro
 
 ---
 
-## *Extensions*
+## Extensions
 
 *Extensions* is the collective term we use for **additional software packages that can be installed
 on top of another software package**. Common examples are *Python packages*, *R libraries*, and *Perl modules*.
@@ -244,7 +262,7 @@ Extensions can be installed in different ways:
 
 ---
 
-## *Dependencies*
+## Dependencies
 
 A *dependency* is a common term in the context of software. It refers to **a software
 package that is either strictly required by other software, or that can be leveraged to
@@ -266,7 +284,7 @@ but we will discriminate build-only dependencies.
 
 ---
 
-## *Toolchains*
+## Toolchains
 
 A *compiler toolchain* (or just *toolchain* for short) is a **set of [compilers](https://en.wikipedia.org/wiki/Compiler)**,
 which are used to build software from source, together with a set of **additional libraries** that provide further core functionality.
@@ -319,7 +337,7 @@ More information on these toolchains is available [in the EasyBuild documentatio
 
 ---
 
-## *Modules*
+## Modules
 
 *Module* is a massively overloaded term in (scientific) software and IT in general
 (kernel modules, Python modules, and so on).
@@ -347,7 +365,7 @@ session such that the corresponding software installation can be used.
 
 ---
 
-## *Bringing it all together*
+## Bringing it all together
 
 The EasyBuild **framework** leverages **easyblocks** to automatically build and install
 (scientific) software, potentially including additional **extensions**, using a particular compiler **toolchain**,
