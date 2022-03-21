@@ -63,8 +63,8 @@ freely available, so unless you have access to a system with this environment yo
     -   [The Lmod module system](1_02_Lmod.md)
     -   [The HPE Cray Programming Environment](1_03_CPE.md)
     -   [Terminology](1_04_terminology.md)
-    -   [Installation](installation.md) *(hands-on)*
-    -   [Configuration](configuration.md) *(hands-on)*
+    -   [Installation](1_05_installation.md)
+    -   [Configuration](configuration.md)
     -   [Basic usage](basic_usage.md) *(hands-on)*
 
 
