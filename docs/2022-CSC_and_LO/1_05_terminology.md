@@ -1,6 +1,6 @@
 # Terminology
 
-*[[back: The HPE Cray Programming Environment]](1_03_CPE.md)*
+*[[back: LUMI software stacks]](1_04_LUMI_software_stack.md)*
 
 ---
 
@@ -291,4 +291,4 @@ An **easystack file** can be used to specify a collection of software to install
 
 ---
 
-*[[next: Installation]](1_05_installation.md)*
+*[[next: Installation]](1_06_installation.md)*

@@ -1,6 +1,6 @@
 # Installing EasyBuild
 
-*[[back: Terminology]](1_04_terminology.md)*
+*[[back: Terminology]](1_05_terminology.md)*
 
 ---
 
@@ -537,7 +537,9 @@ Check that the installation works by running the verification commands outlined
 
 ---
 
-**Make sure you have a working EasyBuild installation before proceeding
-with the rest of the tutorial!**
+**You'll need a working custom EasyBuild installation for some of the 
+optional generic EasyBuild exercises, but in general you can use the 
+installation provided by LUMI.**
 
-*[[next: Configuring EasyBuild]](1_06_configuration.md)*
+
+*[[next: Configuring EasyBuild]](1_07_configuration.md)*
