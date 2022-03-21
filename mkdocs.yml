@@ -40,8 +40,11 @@ nav:
               - What is EasyBuild?: 2022-CSC_and_LO/1_01_what_is_easybuild.md
               - The Lmod module system: 2022-CSC_and_LO/1_02_Lmod.md
               - The HPE Cray Programming Environment: 2022-CSC_and_LO/1_03_CPE.md
-              - Terminology: 2022-CSC_and_LO/1_04_terminology.md
-              - Installation: 2022-CSC_and_LO/1_05_installation.md
+              - LUMI software stacks: 2022-CSC_and_LO/1_04_LUMI_software_stack.md
+              - Terminology: 2022-CSC_and_LO/1_05_terminology.md
+              - Installation: 2022-CSC_and_LO/1_06_installation.md
+              - Configuration: 2022-CSC_and_LO/1_07_configuration.md
+              - Basic usage: 2022-CSC_and_LO/1_08_basic_usage.md
       - "ISC'21 (25 June 2021)":
           - (overview): 2021-isc21/index.md
           - Practical info: 2021-isc21/practical_info.md
