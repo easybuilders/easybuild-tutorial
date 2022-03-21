@@ -28,22 +28,37 @@ can also be included.
 
 Additional toolchain components are usually special-purpose libraries:
 
--   an MPI library to support distributed computations (for example, [Open MPI](https://www.open-mpi.org/));
+-   an MPI library to support distributed computations (for example, [Open MPI](https://www.open-mpi.org/)
+    or vendor-specific MPI implementations like Intel MPI in a toolchain based on the Intel compilers);
    
 -   libraries providing efficient linear algebra routines ([BLAS](http://performance.netlib.org/blas/),
-    [LAPACK](http://performance.netlib.org/lapack/));
+    [LAPACK](http://performance.netlib.org/lapack/), [ScaLAPACK](http://www.netlib.org/scalapack/));
 
     These libraries are included because they tend to provide a common API, so mixing them in a single 
     executable would cause name conflicts when linking.
 
 -   a library supporting computing Fast Fourier Transformations (for example, [FFTW](http://fftw.org/));
 
+These libraries are included because they are some of the most popular libraries in scientific software,
+but also because they provide an API that is available through different implementations. Mixing 
+implementations in a single build is a recipe for problems as the various implementations might
+define the same symbols.
+
 A toolchain that includes all of these libraries is referred to as a **full toolchain**, while
 a **subtoolchain** is a toolchain that is missing one or more of these libraries.
 A **compiler-only toolchain** only consists of compilers (no additional libraries).
 
+The toolchain concept also maps nicely on the Programming Environment concept in the Cray
+Programming Environment. Each ``PrgEnv-*`` module in fact provides a full toolchain in a
+typical Cray PE installation, except for the FFTW library. Note that systems could configure 
+the contents of a ``PrgEnv-*`` module differently as the MPI library and scientific library are 
+optional. In the Cray PE, the MPI library is provided by the ``cray-mpic`` module, 
+the BLAS, LAPACK and ScaLAPACK libraries by the ``cray-libsci`` module (for CPU-only nodes)
+and the FFTW library through the ``cray-fftw`` module.
+
 Many EasBuild toolchains are organised in a hierarchy. Each toolchain can use components compiled
-with itself or with one of the subtoolchains.
+with itself or with one of the subtoolchains. The Cray toolchains however are not currently 
+organised in a hierarchy.
 
 
 ### System toolchain
