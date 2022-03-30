@@ -67,6 +67,10 @@ freely available, so unless you have access to a system with this environment yo
     -   [Installation](1_06_installation.md)
     -   [Configuration](1_07_configuration.md)
     -   [Basic usage](1_08_basic_usage.md) *(hands-on)*
+- [Part II: **Using EasyBuild**](2_00_part2_using.md) *(Tue March 23rd 2021, 9am-12 CET)*
+    -   [Troubleshooting](2_01_troubleshooting.md) *(hands-on)*
+    -   [Creating easyconfig files](2_02_creating_easyconfig_files.md) *(hands-on)*
+    -   [Implementing easyblocks](2_03_implementing_easyblocks.md) *(hands-on)*
 
 
 
