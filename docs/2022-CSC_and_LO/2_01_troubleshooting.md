@@ -4,8 +4,8 @@
 
 ---
 
-When installing scientific software you are bound to run into problems
-that make the installation fail sooner or later, even when using EasyBuild.
+Whatever tool you use, when installing scientific software you'll
+be running into problems rather sooner than later.
 
 In this part we take a look at how you can **troubleshoot a failing installation**,
 and focus on a couple of EasyBuild aspects that can be helpful in that context,
@@ -50,8 +50,8 @@ $ eb example.eb
 == building...
 == FAILED: Installation ended unsuccessfully (build directory: /tmp/example/example/1.0/GCC-10.2.0):
 build failed (first 300 chars): cmd "make" exited with exit code 2 and output:
-/usr/bin/g++ -O2 -ftree-vectorize -march=native -fno-math-errno -std=c++14 -c -o core.o core.cpp
-g++: error: unrecognized command line option '-std=c++14' (took 1 sec)
+/usr/bin/g++ -O2 -ftree-vectorize -march=znver2 -fno-math-errno -c -o core.o core.cpp
+cc1plus: error: bad value (‘znver2’) for ‘-march=’ switch (took 1 sec)
 == Results of the build can be found in the log file(s) /tmp/eb-dbobppfh/easybuild-example-1.0-20200613.145414.aUEJA.log
 ERROR: Build of /home/easybuild/subread.eb failed (err: ...)
 ```
@@ -60,22 +60,24 @@ Let's break this down a bit: during the `build` step of the installation
 procedure EasyBuild was running `make` as a shell command, which
 failed (exit code 2, so not zero).
 The `make` command tripped over the compilation of `core.cpp` that failed because
-`-std=c++14` is not a known option to the `g++` command.
+`-march=znver2` is not a known option to the `g++` command.
 
 OK fine, but now what? Can you spot something suspicious here?
 Wait a minute... Why is `make` using `/usr/bin/g++` for the compilation?!
 That's not where our toolchain compiler is installed,
-that's somewhere under `/easybuild/software`.
+that's somewhere under `/opt/cray/pe/gcc`.
 
 Let's see what `/usr/bin/g++` is:
 
-```shell
+```
 $ /usr/bin/g++ --version
-g++ (GCC) 4.8.5 20150623 (Red Hat 4.8.5-39)
+g++ (SUSE Linux) 7.5.0
 ```
 
-Oh my that's pretty ancient (GCC 4.8.5 was released in June 2015).
-That could definitely explain why it doesn't know about the C++14 standard yet...
+Oh my that's an ancient compiler (7.5 was released on November 14, 2019,
+a few months after the release of the Zen2 architecture, but
+the base version, 7.1, is really from May 2, 2017, long before the Zen2 architecture was around)
+That could definitely explain why it doesn't know about the Zen2 architecture yet...
 
 Your next step in this case should probably be figuring
 out why `/usr/bin/g++` is being used rather than just `g++`, which would
@@ -98,7 +100,7 @@ In some cases there won't be any useful information in there however,
 since the actual error message(s) could only appear way later, perhaps even after
 the command was already running for several minutes.
 
-In that case, you will have the dive into the log file that is created by EasyBuild for
+In that case, you will have to dive into the log file that is created by EasyBuild for
 every installation, which is located in the unique temporary directory for the EasyBuild session.
 
 See for example this output line from our earlier example error message:
@@ -122,14 +124,14 @@ directory for successful installation, into the `easybuild` subdirectory.
 For example:
 
 ```
-/easybuild/software/HDF5/1.10.7-gompi-2020b/easybuild/easybuild-HDF5-1.10.7-20210308.214453.log
+/appl/lumi/SW/LUMI-21.12/L/EB/ncurses/6.2-cpeGNU-21.12/easybuild/easybuild-ncurses-6.2-20220302.110244.log
 ```
 
 ### Last log
 
 The `eb` command supports a handy little option that prints the location
 to the most recently updated build log. You can leverage this to quickly
-open the build log of the last failed EasyBuild session in an editor:
+open the build log of the last ***failed*** EasyBuild session in an editor:
 
 ```
 vim $(eb --last-log)
@@ -206,7 +208,10 @@ For software using a classic `configure` script, you may have to locate
 and inspect the `config.log` file in the build directory to determine the underlying cause of an error. For software using CMake as a configuration tool you often have to check in
 `CMakeOutput.log` or `CMakeError.log` for clues, which are sneakily hidden by CMake in a `CMakeFiles` subdirectory of the build directory.
 
-As a side note here: as EasyBuild does not clean out old and failed builds you will need to eventually manually remove these build directories from the `buildpath` directory.
+As a side note here: as EasyBuild does not clean out old and failed builds you will need to eventually manually remove these build directories from the `buildpath` directory. On the login nodes of LUMI this is currently not much of an issue as `$XDG_RUNTIME_DIR` is (ab)used for build and
+temporary files and that directory is cleaned automatically. However, when building on compute nodes, where `$XDG_RUNTIME_DIR` is
+not available, it is essential to manually clean that directory as the space is not automatically cleaned when your session
+ends. The `EasyBuild-user` module does define the bash function `clear-eb` that can be used to clear that space.
 
 ## Exercise
 
@@ -214,7 +219,7 @@ Let's work our way through a less smooth software installation,
 using the easyconfig file that is provided below.
 
 Don't worry if most of this is still unclear to you, we'll get
-to writing easyconfig files from scratch [later in this tutorial](../creating_easyconfig_files).
+to writing easyconfig files from scratch [later in this tutorial](2_02_creating_easyconfig_files).
 
 ```python
 easyblock = 'MakeCp'
@@ -225,7 +230,7 @@ version = '2.0.1'
 homepage = 'http://subread.sourceforge.net'
 description = "High performance read alignment, quantification and mutation discovery"
 
-toolchain = {'name': 'GCC', 'version': '8.5.0'}
+toolchain = {'name': 'PrgEnv-gnu', 'version': '21.10'}
 
 # download from https://download.sourceforge.net/subread/subread-2.0.1-source.tar.gz
 sources = ['subread-%(version)s-source.tar.gz']
@@ -253,25 +258,23 @@ Do you spot any potential problems yet with this easyconfig file?
 
 ***Preparation***
 
-Start by copying the text above in a file named `subread.eb`,
+Start by copying the text above in a file named `subread.eb`
+(which does not follow the EasyBuild conventions but that is not a problem for this exercise),
 so you can gradually fix the problem you'll encounter.
 
 Also make sure that the pre-installed software stack is available,
-and that the EasyBuild module is loaded (unless you installed EasyBuild
+and that the EasyBuild-user module is loaded (unless you installed EasyBuild
 yourself):
 
 ```
-module use /easybuild/modules/all
-module load EasyBuild
+module load LUMI/21.12
+module load EasyBuild-user
 ```
 
-For this exercise, make sure EasyBuild is configured to
-use `$HOME/easybuild` as `prefix`, and to use `/tmp/$USER` as `buildpath`:
-
-```shell
-export EASYBUILD_PREFIX=$HOME/easybuild
-export EASYBUILD_BUILDPATH=/tmp/$USER
-```
+This will configure EasyBuild correctly for this exercise, though if you already have 
+an existing EasyBuild user installation you may want to work in a different one
+by pointing `$EBU_USER_PREFIX` to the desired work directory before loading 
+`LUMI/21.12`.
 
 Check your configuration via `eb --show-config`.
 
@@ -297,7 +300,7 @@ the easyconfig file?
     ```
     $ eb subread.eb
     ...
-    == FAILED: Installation ended unsuccessfully (build directory: /tmp/example/Subread/2.0.1/GCC-8.5.0): build failed (first 300 chars):
+    == FAILED: Installation ended unsuccessfully (build directory: /run/user/XXXXXXXX/easybuild/build/Subread/2.0.1/cpeGNU-21.12): build failed (first 300 chars):
     Couldn't find file subread-2.0.1-source.tar.gz anywhere, and downloading it didn't work either...
     Paths attempted (in order): ...
     ```
@@ -315,11 +318,9 @@ the easyconfig file?
     (in the `sourcepath` directory):
     ```
     curl -OL https://download.sourceforge.net/subread/subread-2.0.1-source.tar.gz
-    mv subread-2.0.1-source.tar.gz $HOME/easybuild/sources/s/Subread/
+    mkdir -p $EBU_USER_PREFIX/sources/s/Subread
+    mv subread-2.0.1-source.tar.gz $EBU_USER_PREFIX/sources/s/Subread/
     ```
-
-    If downloading is problematic for some reason, the source tarball is also available
-    in `/easybuild/sources/s/Subread`.
 
     Or, we can change the easyconfig file to specify the location where
     the easyconfig file can be downloaded from:
@@ -335,9 +336,9 @@ the easyconfig file?
     The source tarball is fairly large (23MB), so don't be alarmed if the download takes a little while.
 
     ```shell
-    $ ls -lh $HOME/easybuild/sources/s/Subread
+    $ ls -lh $EBU_USER_PREFIX/sources/s/Subread
     total 23M
-    -rw-rw-r-- 1 easybuild easybuild 23M Jun 13 17:42 subread-2.0.1-source.tar.gz
+    -rw-rw-r-- 1 XXXXXXXX XXXXXXXX 23M Mar 30 16:08 subread-2.0.1-source.tar.gz
     ```
 
 ---
@@ -350,26 +351,52 @@ What's wrong now? How can you fix it quickly?
 
 Take into account that we just want to get this software package installed,
 we don't care too much about details like the version of the dependencies or
-the *toolchain* here...
+the toolchain here...
 
 
 ??? success "(click to show solution)"
 
     The installation fails because the easyconfig specifies that GCC 8.5.0
     should be used as toolchain:
+
     ```
     $ eb subread.eb
     ...
-    == FAILED: Installation ended unsuccessfully (build directory: /tmp/easybuild/Subread/2.0.1/GCC-8.5.0): build failed (first 300 chars):
-    No module found for toolchain: GCC/8.5.0 (took 1 sec)
+    ERROR: Failed to process easyconfig /pfs/lustrep3/users/kurtlust/easybuild-tutorial/Troubleshooting/subread.eb: Toolchain PrgEnv-gnu not found, 
+    available toolchains: ...
+    ...
     ```
 
-    We don't have this GCC version installed, but we do have GCC 10.2.0:
+    `PrgEnv-gnu` is an HPE Cray PE module that may look like a toolchain - it certainly has 
+    the same function: provide compiler, MPI and basic math libraries - but it is not 
+    recognised as a toolchain by EasyBuild. EasyBuild prefers to manage its own modules so that it knows
+    well what is in it which is not the case with the `PrgEnv-*` modules from the Cray PE
+    as the content may differe between systems and as the versions of the compilers etc. that
+    are loaded differ on other modules that are loaded. Hence we created Cray-specific toolchains.
+    You'll actually find two series of Cray toolchains in the list of available toolchains. The
+    `CrayGNU`, `CrayIntel`, `CrayPGI` and `CrayCCE` are included with the EasyBuild distribution
+    and where developed by CSCS for their systems using Environment Modules. These were not compatible
+    with the initial releases of the Cray PE with Lmod modules so new ones were developed on which we
+    also built for the LUMI toolchains. Those are called `cpeCray`, `cpeGNU`, `cpeAOCC` and `cpeAMD`
+    and are maintained by LUST and available via the LUMI repositories.
+
+    Changing the toolchain name to `cpeGNU` is not enough to solve all problems though:
+
+    ```
+    $ eb subread.eb
+    ...
+    ERROR: Build of /pfs/lustrep3/users/kurtlust/easybuild-tutorial/Troubleshooting/subread.eb failed (err: 'build failed (first 300 chars): 
+    No module found for toolchain: cpeGNU/21.10')
+    ...
+    ```
+
+    We don't have this `cpeGNU` version installed, but we do have GCC 21.12:
 
     ```shell
-    $ module avail GCC/
-    ----------------- /easybuild/modules/all ------------------
-       GCC/10.2.0
+    $ module avail cpeGNU/
+    ----- Infrastructure modules for the software stack LUMI/21.12 on LUMI-L -----
+       cpeGNU/21.12
+    ...
     ```
 
     So let's try using that instead.
@@ -377,7 +404,7 @@ the *toolchain* here...
     Edit the easyconfig file so it contains this:
 
     ```python
-    toolchain = {'name': 'GCC', 'version': '10.2.0'}
+    toolchain = {'name': 'cpeGNU', 'version': '21.12'}
     ```
 ---
 
@@ -392,13 +419,13 @@ Can you fix the next problem you run into?
     The compilation fails, but the error message we see is incomplete due to
     EasyBuild truncating the command output (only the 300 first characters of the output are shown):
     ```
-    == FAILED: Installation ended unsuccessfully (build directory: /tmp/easybuild/Subread/2.0.1/GCC-10.2.0): build failed (first 300 chars):
-    cmd " make -j 1 -f Makefile.Linux CFLAGS="-fast -fcommon"" exited with exit code 2 and output:
-    gcc  -mtune=core2  -O3 -DMAKE_FOR_EXON  -D MAKE_STANDALONE -D SUBREAD_VERSION=\""2.0.1"\"  -D_FILE_OFFSET_BITS=64    -fmessage-length=0  -ggdb  -fast -fcommon  -c -o core.o core.c
-    gcc: error: unrecognized command line opti (took 1 sec)
+    == FAILED: Installation ended unsuccessfully (build directory: /run/user/10012026/easybuild/build/Subread/2.0.1/cpeGNU-21.12): build failed
+    (first 300 chars): cmd " make  -j 256 -f Makefile.Linux CFLAGS="-fast -fcommon"" exited with exit code 2 and output:
+    gcc  -mtune=core2  -O3 -DMAKE_FOR_EXON  -D MAKE_STANDALONE -D SUBREAD_VERSION=\""2.0.1"\"  -D_FILE_OFFSET_BITS=64    -fmessage-length=0
+    -ggdb  -fast -fcommon -I/opt/cray/pe/libsci/21.08.1.2/GNU/9.1/x86 (took 4 secs)
     ```
 
-    If you open the log file and scroll to the end,
+    If you open the log file (e.g., with `view $(eb --last-log)`) and scroll to the end,
     the error is pretty obvious:
     ```
     gcc: error: unrecognized command line option -fast; did you mean -Ofast?
@@ -416,7 +443,8 @@ Can you fix the next problem you run into?
     to hard specify compiler flags (certainly not incorrect ones).
     The comment above the `buildopts` definition makes it clear that the `-fcommon`
     flag *is* required though, because GCC 10 became a bit stricter by
-    using `-fno-common` by default. Note that we are using `-fcommon`
+    using `-fno-common` by default (and we're using GCC 11 in `cpeGNU/21.12`). 
+    Note that we are using `-fcommon`
     as an escape mechanism here: it would be better to fix the source code
     and create a patch file instead.
 
@@ -433,6 +461,32 @@ Can you fix the next problem you run into?
 
     Note that we need to be careful with quotes here: we use inner double quotes
     to ensure that `$CFLAGS` will be expanded to its value when the build command is run.
+    As you can see after the change by doing a dry-run:
+
+    ```
+    $ eb subread.eb -x
+    ...
+
+    Defining build environment...
+
+      export BLAS_INC_DIR='/opt/cray/pe/libsci/21.08.1.2/GNU/9.1/x86_64/include'
+    ...
+      export CC='cc'
+      export CFLAGS='-O2 -ftree-vectorize -fno-math-errno'
+    ...
+    [build_step method]
+      running command "make  -j 256 -f Makefile.Linux CFLAGS="$CFLAGS -fcommon""
+      (in /run/user/10012026/easybuild/build/Subread/2.0.1/cpeGNU-21.12/Subread-2.0.1/src)
+    ...
+    ```  
+
+    EasyBuild will launch the command 
+    ```
+    make  -j 256 -f Makefile.Linux CFLAGS="$CFLAGS -fcommon"
+    ```
+    in a shell where `CFLAGS` is defined and set to an appropriate value (determined by
+    defaults in EasyBuild, settings in the EasyBuild configuration and settings in the
+    easyconfig file that we shall discuss later).
 
 ---
 
@@ -449,9 +503,10 @@ Don't give up now, try one last time and fix the last problem that occurs...
     ```
     $ eb subread.eb
     ...
-    == FAILED: Installation ended unsuccessfully (build directory: /tmp/easybuild/Subread/2.0.1/GCC-10.2.0): build failed (first 300 chars):
-    Sanity check failed: sanity check command featureCounts --version exited with code 255
+    == FAILED: Installation ended unsuccessfully (build directory: /run/user/10012026/easybuild/build/Subread/2.0.1/cpeGNU-21.12): 
+    build failed (first 300 chars): Sanity check failed: sanity check command featureCounts --version exited with code 255 
     (output: featureCounts: unrecognized option '--version'
+    ...
     ...
     ```
 
@@ -473,12 +528,14 @@ Don't give up now, try one last time and fix the last problem that occurs...
 
 ---
 
-In the end, you should be able to install Subread 2.0.1 with the GCC 10.2.0 toolchain by fixing the problems with the `subread.eb` easyconfig file.
+In the end, you should be able to install Subread 2.0.1 with the cpeGNU 21.12 toolchain by fixing the problems with the `subread.eb` easyconfig file.
 
 Check your work by manually loading the module and checking the version
 via the `featureCounts` command, which should look like this:
 
 ```shell
+$ module load Subread/2.0.1-cpeGNU-21.12
+...
 $ featureCounts -v
 featureCounts v2.0.1
 ```
