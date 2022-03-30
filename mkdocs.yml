@@ -130,6 +130,20 @@ nav:
               - Installation: 2022-CSC_and_LO/1_06_installation.md
               - Configuration: 2022-CSC_and_LO/1_07_configuration.md
               - Basic usage: 2022-CSC_and_LO/1_08_basic_usage.md
+          - Using EasyBuild:
+              - (overview): 2022-CSC_and_LO/2_00_part2_using.md
+              - Troubleshooting: 2022-CSC_and_LO/2_01_troubleshooting.md
+              - Creating easyconfig files: 2022-CSC_and_LO/2_02_creating_easyconfig_files.md
+              - Implementing easyblocks: 2022-CSC_and_LO/2_03_implementing_easyblocks.md
+          - Advanced topics:
+              - (overview): 2022-CSC_and_LO/3_00_part3_advanced.md
+              - Using EasyBuild as a library: 2022-CSC_and_LO/3_01_easybuild_library.md
+              - Using hooks to customise EasyBuild: 2022-CSC_and_LO/3_02_hooks.md
+              - Submitting installations as Slurm jobs: 2022-CSC_and_LO/3_03_slurm_jobs.md
+              - Module naming schemes (incl. hierarchical): 2022-CSC_and_LO/3_04_module_naming_schemes.md
+              - GitHub integration to facilitate contributing to EasyBuild: 2022-CSC_and_LO/3_05_github_integration.md
+
+
 plugins:
   # show revision date at bottom of each page
   - git-revision-date-localized
