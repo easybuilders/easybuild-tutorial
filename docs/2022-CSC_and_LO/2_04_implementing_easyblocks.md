@@ -1,6 +1,6 @@
 # Implementing easyblocks
 
-*[[back: Creating easyconfig files]](2_02_creating_easyconfig_files.md)*
+*[[back: Using external modules from the Cray PE]](2_03_external_modules.md)*
 
 ---
 

@@ -1024,4 +1024,4 @@ You can leverage the `eb-tutorial` easyconfig file we have composed in the examp
 
 ---
 
-*[[next: Implementing easyblocks]](2_03_implementing_easyblocks.md)*
+*[[next: Using external modules from the Cray PE]](2_03_external_modules.md)*
