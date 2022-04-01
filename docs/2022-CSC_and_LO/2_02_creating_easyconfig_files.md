@@ -4,8 +4,9 @@
 
 ---
 
-We already know how to install easyconfig files that are included with EasyBuild,
-but what about installing software for which no easyconfig is available yet?
+We already know how to install easyconfig files that are provided by LUMI,
+but what about installing software for which no easyconfig is available yet,
+or for which we need to adapt an existing easyconfig?
 
 To do this we will need to **create additional easyconfig files**,
 since every software installation performed by EasyBuild is done based on an easyconfig file.
@@ -14,10 +15,10 @@ In this part of the tutorial we will look at the guts of easyconfig files and ev
 
 ## Easyconfigs vs easyblocks
 
-Before we dive into writing [easyconfig files](../introduction/#easyconfig-files),
-let us take a brief look at how they relate to [easyblocks](../introduction/#easyblocks).
+Before we dive into writing [easyconfig files](../1_05_terminology/#easyconfig-files),
+let us take a brief look at how they relate to [easyblocks](../1_05_terminology/#easyblocks).
 
-As we discussed [earlier](../introduction/#terminology), an easyconfig file (`*.eb`) is required
+As we discussed [earlier](../1_05_terminology/#terminology), an easyconfig file (`*.eb`) is required
 for each installation
 performed by EasyBuild which specifies the details of the installation (which software
 version, toolchain, etc.), while the installation procedure is implemented
@@ -30,34 +31,47 @@ together with a custom *software-specific* easyblock?
 This is not an easy question to answer in a general sense, since it depends on several factors:
 the complexity of the software you want to get installed, how much flexibility you want,
 how "intelligent" the installation procedure should be with respect to the compiler toolchain and dependencies
-that are used for the installation, etc.
+that are used for the installation, whether you want an easyconfig that is more user-focused (with easy-to-understand
+parameters) or one that is more focused towards people who understand installation commands, etc.
 
-In a nutshell, custom software-specific easyblocks are "do once and forget": they are central solution to peculiarities in the installation procedure of a particular software package.
+In a nutshell, custom software-specific easyblocks are "do once and forget": they are central solution to peculiarities in the installation procedure of a particular software package. However, they also hide a lot from direct view, so if things go
+wrong, it is often harder to debug the exact problem. And since a single easyblock has to cover
+multiple software versions, multiple toolchains and multiple possible configurations of the package,
+they are often harder to develop and certainly harder to test. As a result many of the easyblocks 
+included with EasyBuild work poorly on HPE Cray systems, e.g., because they want to add compiler flags
+specific for a certain compiler and don't recognise the Cray compilers.
 
 Reasons to consider implementing a software-specific easyblock rather than using a generic easyblock include:
 
-* 'critical' values for easyconfig parameters required to make installation succeed;
-* toolchain-specific aspects of the build and installation procedure (e.g., configure options);
-* interactive commands that need to be run;
-* custom (configure) options for dependencies;
-* having to create or adjust specific (configuration) files;
-* 'hackish' usage of a generic easyblock;
-* complex or very non-standard installation procedure;
+-   'critical' values for easyconfig parameters required to make installation succeed;
+-   toolchain-specific aspects of the build and installation procedure (e.g., configure options);
+-   interactive commands that need to be run;
+    *For example: The easyblock to [install maple](https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/m/maple.py) 
+    responds to a number of interactive questions.* 
+-   custom (configure) options for dependencies;
+    *For example, the [easyblock for VMD](https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/v/vmd.py)
+    will add configure options depending on the dependency list of the package.*
+-   having to create or adjust specific (configuration) files;
+-   'hackish' usage of a generic easyblock;
+-   complex or very non-standard installation procedure;
+    *For example, the [easyblock to install the gcc compilers from source](https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/g/gcc.py),
+    bootstrapping with the system compiler and then re-installing with itself.* 
 
-Implementing easyblocks is out of scope for this basic tutorial, for more information please consult
-the [EasyBuild documentation](https://docs.easybuild.io/en/latest/Implementing-easyblocks.html).
+For implementing easyblocks we refer to the 
+["Implementing easyblocks" section of this tutorial](2_03_implementing_easyblocks.md)
+and the [EasyBuild documentation](https://docs.easybuild.io/en/latest/Implementing-easyblocks.html).
 
 ## Writing easyconfig files
 
 Writing an easyconfig file boils down to defining a set of easyconfig parameters in a text file,
 which we give a '`.eb`' extension by convention. The name of an easyconfig file doesn't matter
 when using it directly to install software, but it does matter when EasyBuild needs to find it
-to resolve a dependency for example (as we [discussed earlier](../basic_usage/#easyconfig-filenames)).
+to resolve a dependency for example (as we [discussed earlier](../1_08_basic_usage/#easyconfig-filenames)).
 
 The syntax for easyconfig files is *Python syntax*: you are basically defining a bunch of Python variables
 that correspond to easyconfig parameters.
 
-The order in which the easyconfig parameters are defined doesn't matter, but we generally try to strick to a particular
+The order in which the easyconfig parameters are defined doesn't matter, but we generally try to stick to a particular
 order which roughly corresponds to the order in which the easyconfig parameters are used during the installation.
 That is mostly helpful for humans staring at easyconfig files or comparing them.
 
@@ -65,13 +79,13 @@ That is mostly helpful for humans staring at easyconfig files or comparing them.
 
 A limited number of easyconfig parameters are *mandatory*, they must be defined in every easyconfig file:
 
-* `name`: the name of the software to install;
-* `version`: the version of the software to install;
-* `homepage`: a URL to the website of the software;
-* `description`: a short description of the software;
-* `toolchain`: the compiler toolchain to use for the installation;
+-   `name`: the name of the software to install;
+-   `version`: the version of the software to install;
+-   `homepage`: a URL to the website of the software;
+-   `description`: a description of the software;
+-   `toolchain`: the compiler toolchain to use for the installation;
 
-**`name`, `version`**
+#### `name`, `version`
 
 It should be no surprise that specifying the name and version of the software you want to install is mandatory.
 This information may influence the value of several other easyconfig parameters (like the name of the source file), and is also used to the determine the name of the module file to install.
@@ -81,7 +95,7 @@ name = 'example'
 version = '1.0'
 ```
 
-**`homepage`, `description`**
+#### `homepage`, `description`
 
 The homepage and description are included in the generated module file for the installation.
 That way the "`module show`" command provides some useful high-level information about the installation.
@@ -91,10 +105,8 @@ homepage = 'https://example.org'
 description = "This is just an example."
 ```
 
-Usually it does not matter whether you use single or double quotes to specify string values,
-but you will often see that single quotes are used for values that don't have spaces (words)
-and double quotes for values that do have spaces (sentences). There is no technical reason for
-this, it just feels more natural to some people. There are cases where it is important to use
+Usually it does not matter whether you use single or double quotes to specify string values.
+There are cases where it is important to use
 the right type of quotes however, we will get back to that later (keep it in mind for the exercises!).
 
 For multi-line descriptions, you will need to use "triple quoting" (which is standard Python syntax):
@@ -105,23 +117,43 @@ description = """This is an example
  It is spread across multiple lines."""
 ```
 
-**`toolchain`**
+If no homepage is known for the package, the convention in the EasyBuild community is to use 
+`(none)` as the value.
 
-EasyBuild also requires that the [compiler toolchain](../introduction/#toolchains) is specified, via the `toolchain`
+The `description` field is used in two different places in the LUA module file generated by
+EasyBuild:
+-   In the help block, for the first section of the help information
+-   If there is no `whatis` parameter in the easyconfig file, it is also used to generate
+    a whatis-command with the description in the module file.
+
+*Note:* We ask people who contribute easyconfigs to LUMI to instead use a decent description
+that is useful in the help information, and to specify a short description via the `whatis`
+parameter:
+
+```python
+whatis = ['Description: Blosc is an extremely fast, multi-threaded, meta-compressor library']
+```
+
+Note that in this case the word "Description:" has to be explicitly specified.
+
+
+#### `toolchain`
+
+EasyBuild also requires that the [compiler toolchain](../1_05_terminology/#toolchains) is specified, via the `toolchain`
 easyconfig parameter.
 
-This can either be the [`system` toolchain](../introduction/#system-toolchain), for which a constant named `SYSTEM` is available:
+This can either be the [`system` toolchain](../1_05_terminology/#system-toolchain), for which a constant named `SYSTEM` is available:
 
 ```python
 toolchain = SYSTEM
 ```
 
-Usually we specify a 'proper' toolchain like the compiler-only toolchain GCC 10.2.0 which we used before,
-or the full toolchain `foss` 2020b. The name and version of the toolchain can be specified using a small Python dictionary,
+Usually we specify a 'proper' toolchain like the `cpeGNU/21.12` toolchain we have used bvefore. 
+The name and version of the toolchain can be specified using a small Python dictionary,
 for example:
 
 ```python
-toolchain = {'name': 'GCC', 'version': '10.2.0'}
+toolchain = {'name': 'cpeGNU', 'version': '21.12'}
 ```
 
 ### Commonly used parameters
@@ -177,8 +209,11 @@ Some things worth pointing out here:
   file. This way the software version is only specified in one place and the easyconfig file is easier to
   update to other software versions. A list of template values can be consulted via the EasyBuild command
   line via the `--avail-easyconfig-templates` option, or in the [EasyBuild documentation](https://docs.easybuild.io/en/latest/version-specific/easyconfig_templates.html).
-* Source files can also be specified in ways other than just using a filename, see the [EasyBuild documentation](https://docs.easybuild.io/en/latest/Writing_easyconfig_files.html#common-easyconfig-param-sources-alt) for more information.
-* Specified checksums are usually SHA256 checksum values, but [other types are also supported](https://docs.easybuild.io/en/latest/Writing_easyconfig_files.html?highlight=checksums#checksums).
+* Source files can also be specified in ways other than just using a filename, see the 
+  [EasyBuild documentation](https://docs.easybuild.io/en/latest/Writing_easyconfig_files.html#common-easyconfig-param-sources-alt) for more information.
+  It is also possible to download a given commit from a GitHub repository.
+* Specified checksums are usually SHA256 checksum values, but 
+  [other types are also supported](https://docs.easybuild.io/en/latest/Writing_easyconfig_files.html?highlight=checksums#checksums).
 
 
 #### Easyblock
@@ -189,7 +224,9 @@ This is not mandatory however, because by default EasyBuild will determine the e
 name of the software. If '`example`' is specified as software name, EasyBuild will try to locate a
 software-specific easyblock named `EB_example` (in a Python module named `example.py`). Software-specific
 easyblocks follow the convention that the class name starts with `'EB_`', followed by the software name
-(where some characters are replaced, like '`-`' with '`_minus_`').
+(where some characters are replaced, like '`-`' with '`_minus_`'). It is possible to use different
+naming conventions for software-specific easyblocks, but then EasyBuild will not automatically detect
+that there is one for the package and it will also need to be specified via the `easyblock` parameter.
 
 **Generic easyblocks**
 
@@ -234,7 +271,7 @@ tar_config_opts*        Override tar settings as determined by configure. [defau
 
 #### Dependencies
 
-You will often need to list one or more [dependencies](../introduction/#dependencies) that are required
+You will often need to list one or more [dependencies](../1_05_terminology/#dependencies) that are required
 to install or run the software.
 We distinguish between two main different types of dependencies: runtime dependencies and build dependencies.
 
@@ -248,12 +285,17 @@ software once it is installed. The modules for these dependencies will be loaded
 set up by EasyBuild during the installation, but they will *not* be loaded by the generated module file.
 You can specify build dependencies via the `builddependencies` easyconfig parameter.
 One typical example of a build dependency is `CMake`, which is only needed for configuring
-the build.
+the build. On LUMI we define a `buildtools` module for each version of the `LUMI` software stack
+which contains most popular build tools. This ensures that we use a consistent set of build tools
+and that they do not change over the life time of a stack, also in case of OS upgrades, to 
+increase the reproducibility of the build process
 
 Here is a simple example of specifying dependencies:
 
 ```python
-builddependencies = [('CMake', '3.18.4')]
+builddependencies = [
+  ('buildtools', '%(toolchain_version)s', '', True)
+]
 
 dependencies = [
     ('Python', '3.8.2'),
@@ -268,20 +310,38 @@ The name and version of a dependency is specified with a 2-tuple (a tuple with t
 
 In some cases additional information may have to be provided, as is shown in the example above for the `SciPy-bundle`
 dependency where a 3rd value is specified corresponding to the `versionsuffix` value of this dependency.
-If this is not specified, it is assumed to be the empty string (`''`).
+If this is not specified, it is assumed to be the empty string (`''`). 
 
 Note how we use the '`%(pyver)s'` template value in the `SciPy-bundle` dependency
-specification, to avoid hardcoding the Python version in different places.
+specification, to avoid hardcoding the Python version in different places. (Though this
+specific parameter is less useful on LUMI as we currently try to build on top of `cray-python`.)
 
-See also the [EasyBuild documentation](https://docs.easybuild.io/en/latest/Writing_easyconfig_files.html#dependencies) for additional options on specifying dependencies.
+The `buildtools` build dependency shows that there is a fourth parameter specifying the toolchain 
+used for that dependency and is needed if that toolchain is different from the one used in the example.
+As it is not possible to load several Cray toolchains together (they are not in a hierachical relation)
+the only useful value on LUMI is `True` which tells that `buildtools` is build with the `SYSTEM` 
+toolchain. Here also we use a template, `%(toolchain_version)s` which - as its name suggests - expands
+to the version of the toolchain, as we version our `buildtools` modules after the version of the Cray
+toolchains for which they are intended. 
+
+See also the [EasyBuild documentation](https://docs.easybuild.io/en/latest/Writing_easyconfig_files.html#dependencies) 
+for additional options on specifying dependencies. That page specifies two more dependency types:
+
+* `hiddendependencies` are currently not used on LUMI, and if we would use them in the future, it will likely
+  be through a way that does not require this parameter.
+* `osdependencies` can be used to let EasyBuild check if certain needed OS packages are installed.
+  See, e.g., the [easyconfigs for the `buildtools` package](https://github.com/Lumi-supercomputer/LUMI-SoftwareStack/tree/main/easybuild/easyconfigs/b/buildtools)
+  on LUMI.
 
 
 #### Version suffix
 
-In some cases you may want to build a particular software package in different configurations, or include a label in the module name to highlight a particular aspect
+In some cases you may want to build a particular software package in different configurations, 
+or include a label in the module name to highlight a particular aspect
 of the installation.
 
-The `versionsuffix` easyconfig parameter can be used for this purpose. The name of this parameter implies that this label will be added after the
+The `versionsuffix` easyconfig parameter can be used for this purpose. 
+The name of this parameter implies that this label will be added after the
 software version (and toolchain label) in the standard module naming scheme.
 
 If you are configuring the software to build with a particular non-default value,
@@ -303,7 +363,8 @@ dependencies = [('Python', '2.7.18')]
 Even though Python 2 is officially dead and
 buried some scientific software still requires it, and mixing modules where
 some use Python 2 and other use Python 3 doesn't work well.
-The `versionsuffix` label is helpful to inform the user that a particular Python version is required by the installation.
+The `versionsuffix` label is helpful to inform the user that a particular Python version is 
+required by the installation.
 
 #### Customizing configure, build, test, and install commands
 
@@ -330,6 +391,7 @@ prebuildopts = 'export HDF5_PREFIX="$EBROOTHDF5" && '
 
 installopts = "PREFIX='%(installdir)s'"
 ```
+(again an imaginary example as on LUMI we advise to use the Cray-provided HDF5 modules.)
 
 Here we are:
 
@@ -406,7 +468,13 @@ Finally, you will usually see the `moduleclass` easyconfig parameter to be defin
 moduleclass = 'lib'
 ```
 
-This is done to categorize software, and it is used to group the generated module files into smaller sets ([remember what we saw when installing software earlier](../basic_usage/#using-installed-software)).
+This is done to categorize software, and it is used to group the generated module files into smaller sets 
+([remember what we saw when installing software earlier](../1_08_basic_usage/#using-installed-software)).
+
+This is currently not used on LUMI since we feel that (a) it is not easy to explain to users how they can
+then only make certain classes that are useful to them visible and more importantly (b) since it is not
+always intuitive to decide which moduleclass should be used for a package, or from a user 's perspective,
+in which category to look for a package.
 
 ## Generating tweaked easyconfigs
 
@@ -428,7 +496,7 @@ eb example-1.2.3.eb --try-software-version 1.2.4
 Or, to try using a different compiler toolchain you can use `--try-toolchain`:
 
 ```shell
-eb example-1.2.3-foss-2020b.eb --try-toolchain intel,2020b
+eb example-1.2.3-foss-2020b.eb --try-toolchain cpeCray,21.12
 ```
 
 It is important to keep in mind the *"try"* aspect here: while easyconfigs that
@@ -477,20 +545,18 @@ You can consult the unpacked sources at [https://github.com/easybuilders/easybui
 
 ### Preparation
 
-Make sure EasyBuild is properly configured before you start:
+Make sure that a proper version of the `LUMI` software stack is loaded
+(we recommend `LUMI/21.12` for the session for which this tutorial was designed)
+and also `EasyBuild-user` is loaded to configure EasyBuild to install in
+`$HOME/EasyBuild` or `$EBU_USER_PREFIX`.
 
-```shell
-export EASYBUILD_PREFIX=$HOME/easybuild
-export EASYBUILD_BUILDPATH=/tmp/$USER
+``` shell
+module load LUMI/21.12
+module load EasyBuild-user`
 ```
 
-and that the installed software in `/easybuild` is available:
 
-```shell
-module use /easybuild/modules/all
-```
-
-### Mandatory parameters
+### Easyblock
 
 Let's start by getting the mandatory easyconfig parameters defined in the easyconfig file:
 
@@ -499,48 +565,26 @@ name = 'eb-tutorial'
 version = '1.0.1'
 
 homepage = 'https://easybuilders.github.io/easybuild-tutorial'
-description = "EasyBuild tutorial example"
+
+whatis = [ 'Description: EasyBuild tutorial example']
+
+description = """
+This is a short C++ example program that can be buid using CMake.
+"""
 ```
 
-If we try using this (very) minimal easyconfig file, EasyBuild will inform us that we failed to specify one of the mandatory easyconfig parameters: `toolchain`:
-
-```
-$ eb example.eb
-== Temporary log file in case of crash /tmp/eb-90j723rl/easybuild-q21plqvx.log
-== found valid index for /easybuild/software/EasyBuild/4.3.3/easybuild/easyconfigs, so using it...
-ERROR: Failed to process easyconfig /home/example/example.eb: mandatory parameters not provided in pyheader: toolchain
-```
-
-We will use `GCC/10.2.0` as toolchain, since we know it is already installed in `/easybuild` in the prepared environment, so we also define the `toolchain` easyconfig parameter:
-
-```python
-toolchain = {'name': 'GCC', 'version': '10.2.0'}
-```
-
-In addition, we'll also specify the `moduleclass`.
-This is not required, but it is usually set to a sensible value:
-
-```python
-moduleclass = 'tools'
-```
-
-The default value is '`base`', at least '`tools`' has *some* meaning.
-
-### Easyblock
-
-Let us see what happens if we take our current easyconfig file for a spin:
+Let's see what EasyBuild does with this very minimal easyconfig file:
 
 ```shell
-$ eb example.eb
-== temporary log file in case of crash /tmp/eb-8_vxjfn7/easybuild-k3aaoan2.log
-ERROR: Failed to process easyconfig /home/example/example.eb:
+$ eb eb-tutorial.eb
+== Temporary log file in case of crash /run/user/XXXXXXXXX/easybuild/tmp/eb-k_82wotb/easybuild-wg0k_reb.log
+ERROR: Failed to process easyconfig /pfs/lustrep4/users/XXXXXXXX/easybuild-tutorial-exercises/2022-CSC_and_LO-examples/2_02_example_eb-tutorial/eb-tutorial_v1.eb: 
 No software-specific easyblock 'EB_eb_minus_tutorial' found for eb-tutorial
 ```
 
-That didn't get us very far...
-
-The error shows that there is no software-specific easyblock available for installing the software with the name '`eb-tutorial`'.
-Does that mean we have to implement an easyblock?
+It is not mandatory to specify an easyblock in the easyconfig. However, in the absense of that
+specification, EasyBuild goes looking for an application-specific easyblock with the standard name,
+in this case `EB_eb_minus_tutorial`, which it does not have. Does that mean we have to implement an easyblock?
 
 In this simple case it doesn't, since we can leverage one of the available *generic easyblocks*.
 But, which one?
@@ -559,81 +603,90 @@ easyblock = 'CMakeMake'
 The "`easyblock =`" line is usually at the top of the easyconfig file, but strictly speaking
 the order of the parameter definitions doesn't matter (unless one is defined in terms of another one).
 
-### CMake build dependency
 
-Does using the `CMakeMake` generic easyblock help at all?
+### Mandatory parameters
+
+When trying this improved easyconfig file, EasyBuild will inform us that we failed to specify 
+one of the mandatory easyconfig parameters: `toolchain`:
 
 ```
 $ eb example.eb
-== temporary log file in case of crash /tmp/eb-yutbor1p/easybuild-4jc9v1u9.log
-== found valid index for /easybuild/software/EasyBuild/4.3.3/easybuild/easyconfigs, so using it...
-== processing EasyBuild easyconfig /home/example/example.eb
-== building and installing eb-tutorial/1.0.1-GCC-10.2.0...
-== fetching files...
-== creating build dir, resetting environment...
-== unpacking...
-== patching...
-== preparing...
-== configuring...
-== FAILED: Installation ended unsuccessfully (build directory: /tmp/easybuild/ebtutorial/1.0.1/GCC-10.2.0):
-build failed (first 300 chars): cmd " cmake -DCMAKE_INSTALL_PREFIX=/home/example/easybuild/software/eb-tutorial/1.0.1-GCC-10.2.0 -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER='gcc' -DCMAKE_C_FLAGS='-O2 -ftree-vectorize -march=native -fno-math-errno' -DCMAKE_CXX_COMPILER='g++' -DCMAKE_CXX_FLAGS='-O2 -ftree-vectorize -march=native  (took 0 sec)
+== Temporary log file in case of crash /run/user/XXXXXXXXX/easybuild/tmp/eb-22om7hut/easybuild-ipozjipf.log
+ERROR: Failed to process easyconfig /pfs/lustrep4/users/XXXXXXXX/easybuild-tutorial-exercises/2022-CSC_and_LO-examples/2_02_example_eb-tutorial/eb-tutorial_v2.eb: 
+mandatory parameters not provided in pyheader: toolchain
 ```
 
-It did help: EasyBuild made an attempt to configure the build using the `cmake` command, but that failed almost
-instantly. We need to dive into the log file to see the actual reason. By starting at the end of the log file and
-scrolling up, you should be able to locate the following error message:
-
-```
-/bin/bash: cmake: command not found
-```
-
-Ah, that explains it, `cmake` isn't even installed on this system. Or is it?
-
-```shell
-$ module avail CMake
-
---------------------------- /easybuild/modules/all ----------------------------
-   CMake/3.18.4-GCCcore-10.2.0
-```
-
-Since a module is available for `CMake` that is compatible with the toolchain we are using (GCC 10.2.0),
-we can use it as a dependency for the installation.
-It is only needed for building the software, not for running it, so it's only a *build* dependency:
+We will use `cpeCray/21.12` as toolchain, so we also define the `toolchain` easyconfig parameter:
 
 ```python
-builddependencies = [('CMake', '3.18.4')]
+toolchain = {'name': 'cpeCray', 'version': '21.12'}
 ```
 
-There is usually no need to specify toolchain for (build) dependencies, EasyBuild will automatically consider
-[subtoolchains](../terminology/#toolchains) compatible with the specified toolchain to locate module for the dependencies.
+In addition, we'll also specify the `moduleclass`.
+This is not required, but it is usually set to a sensible value:
 
-You can verify this via `eb -D` (equivalent with `eb --dry-run`):
+```python
+moduleclass = 'tools'
+```
+
+The default value is '`base`', at least '`tools`' has *some* meaning.
+
+### CMake build dependency
+
+The `CMakeMake` easyblock needs the `cmake` command. On LUMI we are lucky as 
+`cmake` is already installed in the OS. It may be a somewhat older version, but for this
+program is is probably enough. Yet in general it is better to use sufficiently recent
+build tools, and `cmake` is one of those tools that is typically entered as a build
+dependency. After all, the less you rely on the OS, the more likely it becomes that
+your easyconfig is useful for other sites also.
+
+In the [section on Lmod](../1_02_Lmod#module-extensions) we've already seen that on LUMI
+the `cmake` command is available through the `buildtools` modules, and as discussed in
+other examples on this page, LUMI has one for every `LUMI` software stack with its version
+number the same as the stack and corresponding toolchains. It is a good practice to
+add this module as a build dependency:
+
+```python
+builddependencies = [
+  ('buildtools', '%(toolchain_version)s', '', True)
+]
+```
+
+In a more traditional EasyBuild setup with the common toolchains, there is usually no need to specify
+the toolchain for (build) dependencies. EasyBuild will automatically consider
+[subtoolchains](../1_05_terminology/#toolchains) compatible with the specified toolchain to locate 
+modules for the dependencies. However, the Cray PE toolchains on LUMI are currently not part of
+such a hierarchy and the `SYSTEM` toolchain we used for `buildtools` is not automatically considered
+which is why we need the 4-element version of the dependency specification.
+
+You can verify that EasyBuild now locates the dependency via `eb -D` (equivalent with `eb --dry-run`):
 
 ```
-$ eb example.eb -D
+$ eb eb-tutorial.eb -D
  ...
- * [x] /easybuild/software/EasyBuild/4.3.3/easybuild/easyconfigs/g/GCC/GCC-10.2.0.eb (module: GCC/10.2.0)
- * [x] /easybuild/software/EasyBuild/4.3.3/easybuild/easyconfigs/c/CMake/CMake-3.18.4-GCCcore-10.2.0.eb (module: CMake/3.18.4-GCCcore-10.2.0)
- * [ ] /home/example/example.eb (module: eb-tutorial/1.0.1-GCC-10.2.0)
+ * [x] /appl/lumi/mgmt/ebrepo_files/LUMI-21.12/LUMI-common/buildtools/buildtools-21.12.eb (module: buildtools/21.12)
+ * [x] /appl/lumi/mgmt/ebrepo_files/LUMI-21.12/LUMI-L/cpeCray/cpeCray-21.12.eb (module: cpeCray/21.12)
+ * [ ] /pfs/lustrep4/users/kulust/easybuild-tutorial-exercises/2022-CSC_and_LO-examples/2_02_example_eb-tutorial/eb-tutorial_v4.eb (module: eb-tutorial/1.0.-cpeCray-21.12)
 ```
 
 ### Sources
 
-If you try again after adding `CMake` as a build dependency, you will see the installation fail again in the
+If you try again after adding `buildtools` as a build dependency, you will see the installation fail again in the
 configuration step. Inspecting the log file reveals this:
 
 ```
-CMake Error: The source directory "/tmp/example/ebtutorial/1.0.1/GCC-10.2.0" does not appear to contain CMakeLists.txt.
+CMake Error: The source directory "/run/user/XXXXXXXXX/easybuild/build/ebtutorial/1.0.1/cpeCray-21.12" does not appear to contain CMakeLists.txt.
 ```
 
-Wait, but there *is* a `CMakeLists.txt`, we can see it in the [unpacked sources](https://github.com/easybuilders/easybuild-tutorial/tree/main/docs/files/eb-tutorial-1.0.1)!
+Wait, but there *is* a `CMakeLists.txt`, we can see it in the 
+[unpacked sources](https://github.com/easybuilders/easybuild-tutorial/tree/main/docs/files/eb-tutorial-1.0.1)!
 
 Let's inspect the build directory:
 
 ```
-$ ls /tmp/$USER/ebtutorial/1.0.1/GCC-10.2.0
+$ ls /run/user/XXXXXXXXX/easybuild/build/ebtutorial/1.0.1/cpeCray-21.12
 easybuild_obj
-$ ls /tmp/$USER/ebtutorial/1.0.1/GCC-10.2.0/easybuild_obj
+$ ls /run/user/XXXXXXXXX/easybuild/build/ebtutorial/1.0.1/cpeCray-21.12/easybuild_obj
 $
 ```
 
@@ -672,7 +725,8 @@ If now we try installing the easyconfig file again, EasyBuild complains
 that it can't find the specified source file anywhere:
 
 ```
-Couldn't find file eb-tutorial-1.0.1.tar.gz anywhere, and downloading it didn't work either...
+Couldn't find file eb-tutorial-1.0.1.tar.gz anywhere, and downloading it didn't work either... 
+Paths attempted (in order):...
 ```
 
 To let EasyBuild automatically download the source file if it is not available yet,
@@ -716,11 +770,13 @@ expanded when the configure command is run (see [Exercise 7.1](#exercises)).
 Hopefully that brings us closer to getting the installation to work...
 
 ```
-$ eb example.eb
+$ eb eb-tutorial.eb
 ....
 == sanity checking...
-== FAILED: Installation ended unsuccessfully (build directory: /tmp/easybuild/ebtutorial/1.0.1/GCC-10.2.0): build failed (first 300 chars):
-Sanity check failed: no (non-empty) directory found at 'lib' or 'lib64' in /home/easybuild/easybuild/software/eb-tutorial/1.0.1-GCC-10.2.0 (took 2 sec)
+== ... (took 2 secs)
+== FAILED: Installation ended unsuccessfully (build directory: /run/user/XXXXXXXXX/easybuild/build/ebtutorial/1.0.1/cpeCray-21.12):
+build failed (first 300 chars): Sanity check failed: no (non-empty) directory found at 'lib' or 'lib64' in
+/users/XXXXXXXX/EasyBuild/SW/LUMI-21.12/L/eb-tutorial/1.0.1-cpeCray-21.12 (took 7 secs)
 ```
 
 It got all the way to the sanity check step, that's great!
@@ -729,9 +785,9 @@ The sanity check failed because no '`lib`' or `'lib64'` directory was found.
 Indeed:
 
 ```
-$ ls $HOME/easybuild/software/eb-tutorial/1.0.1-GCC-10.2.0
+$ ls /users/XXXXXXXX/EasyBuild/SW/LUMI-21.12/L/eb-tutorial/1.0.1-cpeCray-21.12
 bin
-$ ls $HOME/easybuild/software/eb-tutorial/1.0.1-GCC-10.2.0/bin
+$ ls /users/XXXXXXXX/EasyBuild/SW/LUMI-21.12/L/eb-tutorial/1.0.1-cpeCray-21.12
 eb-tutorial
 ```
 
@@ -757,10 +813,11 @@ a module, we know it will work as expected.
 By enabling trace mode via `--trace` we can get some more information too:
 
 ```shell
-$ eb example.eb --module-only --trace
+$ eb eb-tutorial.eb --module-only --trace
 ...
 == sanity checking...
   >> file 'bin/eb-tutorial' found: OK
+  >> loading modules: eb-tutorial/1.0.1-cpeCray-21.12...
   >> running command 'eb-tutorial' ...
   >> result for command 'eb-tutorial': OK
 ...
@@ -773,7 +830,6 @@ To convince yourself that the installation works as intended, try to load the `e
 run the `eb-tutorial` command yourself:
 
 ```
-$ module use $HOME/easybuild/modules/all
 $ module load eb-tutorial
 $ eb-tutorial
 Hello from the EasyBuild tutorial!
@@ -820,11 +876,72 @@ You can let EasyBuild determine *and* inject these SHA256 checksums
 automatically via `eb --inject-checksums`:
 
 ```
-$ eb example.eb --inject-checksums
+$ eb eb-tutorial.eb --inject-checksums
 ...
 == injecting sha256 checksums for sources & patches in example.eb...
 == * eb-tutorial-1.0.1.tar.gz: d6cec2ea298f4092cb1b880cb017220ab191561da941e9e480639cf3354b7ef9
 ```
+
+Finally, we should consider changing the name of the easyconfig that we just developed
+to align with the EasyBuild conventions as otherwise it would not be found when used as
+a dependency of another package. In this case, the name should be
+`eb-tutorial-1.0.0-cpeCray-21.12.eb`. In fact, EasyBuild stored a processed version
+of our easyconfig with that name in the repository:
+
+```
+$ ls $EASYBUILD_REPOSITORYPATH
+eb-tutorial
+$ ls $EASYBUILD_REPOSITORYPATH/eb-tutorial
+eb-tutorial-1.0.1-cpeCray-21.12.eb
+$ cat $EASYBUILD_REPOSITORYPATH/eb-tutorial/eb-tutorial-1.0.1-cpeCray-21.12.eb
+...
+```
+
+Note that EasyBuild has added an additional parameter to the easyconfig file, `buildstats`,
+with a lot of information about how easybuild was called and properties of the node on which
+it was run. This file is still a valid easyconfig file though from which we can build the
+program again.
+
+Let's also inspect the installation directory when the whole build process has finished successfully.
+This is very easy after loading the module, as EasyBuild-generated modules define a number of environment
+variables for each module:
+
+```
+$ module load eb-tutorial
+$ env | grep TUTORIAL
+EBVERSIONEBMINTUTORIAL=1.0.1
+EBDEVELEBMINTUTORIAL=/users/XXXXXXXX/EasyBuild/SW/LUMI-21.12/L/eb-tutorial/1.0.1-cpeCray-21.12/easybuild/eb-tutorial-1.0.1-cpeCray-21.12-easybuild-devel
+EBROOTEBMINTUTORIAL=/users/XXXXXXXX/EasyBuild/SW/LUMI-21.12/L/eb-tutorial/1.0.1-cpeCray-21.12
+```
+The most interesting one of those variables is the `EBROOT` variable which points to the installation directory.
+As variable names cannot contain minus signs, the minus in the module name is replaced with `MIN` in the name
+of the variable (which is not the most consistent thing however as in the name of an easyblock it is replaced
+with `minus`).
+
+Let's have a look in that directory:
+
+```
+$ ls $EBROOTEBMINTUTORIAL
+bin  easybuild
+$ ls EBROOTEBMINTUTORIAL/easybuild
+easybuild-eb-tutorial-1.0.1-20220401.184518.log
+easybuild-eb-tutorial-1.0.1-20220401.184518_test_report.md
+eb-tutorial-1.0.1-cpeCray-21.12-easybuild-devel
+eb-tutorial-1.0.1-cpeCray-21.12.eb
+reprod
+$ ls EBROOTEBMINTUTORIAL/easybuild/reprod
+easyblocks
+eb-tutorial-1.0.1-cpeCray-21.12.eb
+eb-tutorial-1.0.1-cpeCray-21.12.env
+hooks
+ls $EBROOTEBMINTUTORIAL/easybuild/reprod/easyblocks
+cmakemake.py  configuremake.py
+```
+
+As you can see, EasyBuild has also created the `easybuild` subdirectory (and it actually told us about that
+at the end of the installation) which contains a lot of information about the build, also to make it easier
+to reproduce a build process afterwards.
+
 
 ---
 
@@ -854,6 +971,9 @@ a bit more personal: include the username of the account that was used to instal
     ```
 
     To re-install the `example.eb` easyconfig, you will need to use `eb --rebuild` or `eb --force`.
+    EasyBuild will also complain about modules that are loaded already if you tested the program above.
+    A good way to get rid of all those modules on LUMI is to simply use `module purge`. You don't need
+    to reload the software stack, but you will need to load `EasyBuild-user` again.
 
 ---
 
@@ -874,125 +994,34 @@ You can leverage the `eb-tutorial` easyconfig file we have composed in the examp
 ??? success "(click to show solution)"
     You can use the `--try-software-version` option for this:
     ```shell
-    $ eb example.eb --try-software-version 1.1.0
+    $ eb eb-tutorial.eb --try-software-version 1.1.0
     ...
-    == building and installing eb-tutorial/1.1.0-GCC-10.2.0...
+    == building and installing eb-tutorial/1.1.0-cpeCray-21.12...
     ...
     == COMPLETED: Installation ended successfully (took 4 sec)
     ```
     To test:
     ```
-    $ module use $HOME/easybuild/modules/all
-    $ module load eb-tutorial/1.1.0-GCC-10.2.0
+    $ module load eb-tutorial/1.1.0-cpeCray-21.12
     $ eb-tutorial
     I have a message for you:
-    Hello from the EasyBuild tutorial!
+    Hello from the EasyBuild tutorial! I was installed by XXXXXXXX.
     ```
     (`eb-tutorial` version 1.0.1 doesn't print "`I have a message for you:`")
 
----
-
-***Exercise E.3**** - Installing py-eb-tutorial 1.0.0*
-
-Try composing an easyconfig file for the `py-eb-tutorial` example software, which is a tiny Python package.
-The source tarball can be downloaded from this link: [py-eb-tutorial-1.0.0.tar.gz](https://github.com/easybuilders/easybuild-tutorial/raw/main/docs/files/py-eb-tutorial-1.0.0.tar.gz).
-
-A couple of tips:
-
-* There is a [generic easyblock](#easyblock) available for installing Python packages, which will come in useful here.
-
-* By default EasyBuild performs an `import` check when install Python packages, using a Python module name that is derived from the software name by default, which will be incorrect in this case. You can specify the correct name to use in the import check by specifying it via the `options`
-easyconfig parameter in your easyconfig file:
-  ```python
-  options = {'modulename': 'example'}
-  ```
-  (you will need to change '`example`' here, of course)
-
-* Leverage the software that is already pre-installed in `/easybuild` in the prepared environment.
-  Remember that some already installed modules may be a *bundle* of a couple of other software packages.
-
-Please also take this into account:
-
-* Unfortunately this software doesn't come with documentation. That is done to make it an example that
-  is representative for software that you may run into in the wild (it's *not* because
-  we were lazy when preparing the exercises, really!).
-  You can inspect the sources of this software [here](https://github.com/easybuilders/easybuild-tutorial/tree/main/docs/files/py-eb-tutorial-1.0.0). Definitely take a look at the `setup.py` file, it includes some clues
-  about the requirements to get this software installed.
-
-* Make sure the installation actually *works*, by checking that the `py-eb-tutorial` command runs correctly.
-  Maybe you will need to make sure other required software is available as well, for it to work correctly...
-
-
-??? success "(click to show solution)"
-
-    Here is a complete working easyconfig file for `py-eb-tutorial`:
-    ```python
-
-    easyblock = 'PythonPackage'
-
-    name = 'py-eb-tutorial'
-    version = '1.0.0'
-    versionsuffix = '-Python-%(pyver)s'
-
-    homepage = 'https://easybuilders.github.io/easybuild-tutorial'
-    description = "EasyBuild tutorial Python example"
-
-    source_urls = ['https://github.com/easybuilders/easybuild-tutorial/raw/main/docs/files/']
-    sources = [SOURCE_TAR_GZ]
-    checksums = ['fcf73a9efc65527a210b993e8889d41ebf05977eef1f6a65ebac3188152cd496']
-
-    toolchain = {'name': 'foss', 'version': '2020b'}
-
-    dependencies = [
-        ('Python', '3.8.6'),
-        ('SciPy-bundle', '2020.11'),
-        ('eb-tutorial', '1.0.1'),
-    ]
-
-    use_pip = True
-
-    options = {'modulename': 'eb_tutorial'}
-
-    sanity_check_paths = {
-        'files': ['bin/py-eb-tutorial'],
-        'dirs': ['lib/python%(pyshortver)s/site-packages'],
-    }
-
-    sanity_check_commands = ["py-eb-tutorial"]
-
-    moduleclass = 'tools'
+    EasyBuild has also created a new easyconfig for this configuration and stored
+    in the repository and the `easybuild` subdirectory from the installation 
+    directory. As on LUMI the repository is in the search path we can actually copy
+    the file back to the current directory:
+    ```
+    eb --copy-ec eb-tutorial-1.1.0-cpeCray-21.12.    ```
+    Some of the formatting is lost though and the checksum is still missing, so you may want
+    to do some cleaning up.
+    ```
+    eb eb-tutorial-1.1.0-cpeCray-21.12.eb --inject-checksum
     ```
 
-    Some remarks:
 
-    * We used the `PythonPackage` generic easyblock. There is also a `PythonBundle` easyblock for installing
-      bundles of Python packages, which is used for `SciPy-bundle` for example. But we don't need that here,
-      since we are only dealing with a single Python package.
-
-    * The `versionsuffix` is not strictly needed, but it's common to tag Python packages with the Python version
-      for which they were installed.
-    * The SHA256 checksum for the source tarball was added automatically via `eb py-eb-tutorial.eb --inject-checksums`.
-
-    * `py-eb-tutorial` only wants to be installed with `pip install`, so we had to set `use_pip = True`.
-      You can consult the custom easyconfig parameters supported by the `PythonPackage` easyblock via
-      "`eb -a -e PythonPackage`", see the `EASYBLOCK-SPECIFIC` part of the output.
-      Even when the default installation mechanism used by `PythonPackage`
-      (which consists of running `python setup.py install`) works fine,
-      it is recommended to instruct EasyBuild to use `pip install` instead.
-
-    * By default EasyBuild will try to import `py_eb_tutorial`, while the actual name of the Python package
-      provided by `py-eb-tutorial` is just `eb_tutorial`. We fixed this by specifying the correct Python module name to
-      use via `options`.
-
-    * Strictly speaking we don't need to specify a custom `sanity_check_paths`, since the default used
-      by Python package is already pretty decent (it will check for a non-empty `lib/python3.8/site-packages`
-      directory in the installation). We also want to make sure the `py-eb-tutorial` command is available in
-      the `bin` subdirectory however. Hardcoding to `python3.8` can be avoided using the `%(pyshortver)s`
-      template value.
-
-    * A good way to check whether the `py-eb-tutorial` command works correctly is by running it as a sanity check
-      command. If the `eb-tutorial` command is not available the `py-eb-tutorial` command will fail,
-      since it basically just runs the `eb-tutorial` command. So we need to include `eb-tutorial` as a (runtime)
-      dependency in the `py-eb-tutorial` easyconfig file.
+---
 
 *[[next: Implementing easyblocks]](2_03_implementing_easyblocks.md)*
