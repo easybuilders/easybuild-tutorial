@@ -134,7 +134,8 @@ nav:
               - (overview): 2022-CSC_and_LO/2_00_part2_using.md
               - Troubleshooting: 2022-CSC_and_LO/2_01_troubleshooting.md
               - Creating easyconfig files: 2022-CSC_and_LO/2_02_creating_easyconfig_files.md
-              - Implementing easyblocks: 2022-CSC_and_LO/2_03_implementing_easyblocks.md
+              - Using external modules from the Cray PE: 2022-CSC_and_LO/2_03_external_modules.md
+              - Implementing easyblocks: 2022-CSC_and_LO/2_04_implementing_easyblocks.md
           - Advanced topics:
               - (overview): 2022-CSC_and_LO/3_00_part3_advanced.md
               - Using EasyBuild as a library: 2022-CSC_and_LO/3_01_easybuild_library.md
