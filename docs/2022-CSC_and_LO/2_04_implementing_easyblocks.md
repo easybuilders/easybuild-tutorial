@@ -27,7 +27,10 @@ by most GNU software packages.
 *Software-specific* easyblocks implement the build and installation procedure for a particular software package.
 Typically this involves highly customised steps, for example specifying dedicated configuration options, creating
 or adjusting specific files, executing non-standard shell commands, etc. Usually a custom implementation of the
-sanity check is also included.
+sanity check is also included. Much of the work done in software-specific easyblocks can often also be done 
+in generic easyblocks using parameters such as ``confdigopts`` etc., but a software-specific easyblock can
+hide some of that complexity from the user. Other software-specific easyblocks implement very specific
+installation procedures that do not fit in one of the generic ones.
 
 Using a generic easyblock requires specifying the ``easyblock`` parameter in the easyconfig file.
 If it is not specified, EasyBuild will try and find the software-specific easyblock derived from the software name.
@@ -38,7 +41,8 @@ for an easyblock (see below).
 
 ## Naming
 
-Easyblocks need to follow a strict naming scheme, to ensure that EasyBuild can pick them up as needed. This involves two aspects:
+Easyblocks need to follow a strict naming scheme, to ensure that EasyBuild can pick them up automatically as needed. 
+This involves two aspects:
 
 * the name of the Python class;
 * the name and location of the Python module file.
@@ -52,7 +56,7 @@ Because of limitations in Python on characters allowed in names of Python classe
 only alphanumeric characters and underscores (``_``) are allowed. Any other characters are replaced following an encoding scheme:
 
 * spaces are replaced by underscores (``_``);
-* dashes ``-`` are replaced by ``_minus_``;
+* dashes ``-`` are replaced by ``_minus_`` (note the inconsistency with the naming of ``EBROOT`` and ``EBVERSION`` variables);
 * underscores are replaced by ``_underscore_``;
 
 The ``encode_class_name`` function provided in ``easybuild.tools.filetools`` returns the expected class name
@@ -116,6 +120,11 @@ but this namespace is collapsed transparently by EasyBuild (you don't need to im
 To let EasyBuild pick up one or more new or customized easyblocks, you can use the [``--include-easyblocks``](https://docs.easybuild.io/en/latest/Including_additional_Python_modules.html#including-additional-easyblocks-include-easyblocks)
 configuration option. As long as both the filename of the Python module and the name of the Python class
 are correct, EasyBuild will use these easyblocks when needed.
+
+On LUMI, the EasyBuild configuration modules take care of setting this parameter (using the corresponding environment
+variable), pointing to custom easyblocks in the LUMI software stack itself and a repo (with a fixed name) that users
+can create themselves. At this moment it does not yet include possible other easyblock repositories in other repositories.
+
 
 ## Structure of an easyblock
 
@@ -232,7 +241,7 @@ self.cfg['some_list'].append('example')
 
 ### Custom parameters
 
-Additional custom easyconfig parameters can be defined in an easyblock to allowing steering its behaviour.
+Additional custom easyconfig parameters can be defined in an easyblock to steer its behaviour.
 This is done via the ``extra_options`` *static* method. Custom parameters can be specified to be mandatory.
 
 The example below shows how this can be implemented:
@@ -256,7 +265,9 @@ class EB_Example(ConfigureMake):
 ```
 
 The first element in the list of a defined custom parameter corresponds to the default value for that parameter
-(both ``None`` in the example above). The second element provides some informative help text, and the last element
+(both ``None`` in the example above). The second element provides some informative help text
+(which can then be displayed with ``eb -a -e <name_of_easyblock>``, eg, ``eb -a -e EB_GCC``), 
+and the last element
 indicates whether the parameter is mandatory (``MANDATORY``) or just an optional custom parameter (``CUSTOM``).
 
 ## Easyblock constructor
@@ -519,6 +530,29 @@ class EB_Example(EasyBlock):
         super(EB_Example, self).sanity_check_step(custom_commands=[self.command])
 ```
 
+
+## Easyblocks in the Cray ecosystem
+
+The generic easyblocks are usually rather independent of compilers etc. and tend to work well with all toolchains.
+However, software-specific easyblocks may contain code that is specific for certain toolchains and are often only
+tested with the common toolchains (foss and intel and their subtoolchains). Many of those easyblocks will fail
+on Cray systems (or any system that uses other toolchains) as they don't recognise the compiler and rather than
+implementing some generic behaviour that may or may not work, produce an error message instead that the compiler
+toolchain is not supported.
+
+Several packages on LUMI therefore use generic easyblocks rather than the software-specific easyblocks that may 
+exist for those applications. Adapting those software-specific easyblocks for LUMI poses an interesting maintenance
+problem. Either one could decide to not contribute back to the community, but this implies then that all modifications
+made to the corresponding easyblocks in the EasyBuild distribution should be monitored and implemented in the custom
+easyblocks for Cray also. On the other hand, contributing back to the community also poses two problems. First it
+would also require to implement the Cray toolchains as used on LUMI in the core of EasyBuild (which already contains
+a different set of toolchains targeted more at how the Cray PE works with the regular environment modules), and that
+only makes sense if these toolchains are first extended to not only cover the programming environments supported on 
+LUMI but also the Intel and NVIDIA programming environments. Second, the EasyBuild community has no easy way of testing
+any modification made to such an easyblock on a Cray PE system. Hence every update made in the community may break
+the Cray PE support again.
+
+
 ## Exercise
 
 ### Exercise I.1
@@ -570,9 +604,9 @@ Your easyblock should:
 
             cmd = ' '.join([
                 self.cfg['preconfigopts'],
-                "cmake",
-                "-DCMAKE_INSTALL_PREFIX='%s'" % self.installdir,
-                "-DEBTUTORIAL_MSG='%s'" % self.cfg['message'],
+                'cmake',
+                '-DCMAKE_INSTALL_PREFIX=\'%s\'' % self.installdir,
+                '-DEBTUTORIAL_MSG="%s"' % self.cfg['message'],
                 self.cfg['configopts'],
             ])
             run_cmd(cmd)
@@ -582,7 +616,7 @@ Your easyblock should:
 
             cmd = ' '.join([
                 self.cfg['prebuildopts'],
-                "make",
+                'make',
                 self.cfg['buildopts'],
             ])
             run_cmd(cmd)
@@ -592,7 +626,7 @@ Your easyblock should:
 
             cmd = ' '.join([
                 self.cfg['preinstallopts'],
-                "make install",
+                'make install',
                 self.cfg['installopts'],
             ])
             run_cmd(cmd)
@@ -606,6 +640,58 @@ Your easyblock should:
             return super(EB_eb_minus_tutorial, self).sanity_check_step(custom_paths=custom_paths,
                                                                        custom_commands=custom_commands)
     ```
+
+    We also need to adapt our easyconfig file for ``eb-tutorial``:
+
+    -   The ``easyblock`` line is no longer needed as we will rely on the automatic selection of the
+        software-specific easyblock.
+    -   We don't need to define the message through ``configopts`` but via the easyblock-specific 
+        configuration parameter ``message``. In fact, we were so careful when implementing the ``configure_step``
+        that even variable expansion will still work so we can still include ``$USER`` in the message.
+    -   The sanity check is also no longer needed as it is done by the software-specific easyblock.
+
+    So the easyconfig file simplifies to:
+
+    ```python
+    name = 'eb-tutorial'
+    version = "1.1.0"
+
+    homepage = 'https://easybuilders.github.io/easybuild-tutorial'
+
+    whatis = [ 'Description: EasyBuild tutorial example']
+
+    description = """
+    This is a short C++ example program that can be buid using CMake.
+    """
+
+    toolchain = {'name': 'cpeCray', 'version': '21.12'}
+
+    builddependencies = [
+      ('buildtools', '%(toolchain_version)s', '', True)
+    ]
+
+    source_urls = ['https://github.com/easybuilders/easybuild-tutorial/raw/main/docs/files/']
+    sources = [SOURCE_TAR_GZ]
+    checksums = ['def18b69b11a3ec34ef2a81752603b2118cf1a57e350aee41de9ea13c2e6a7ef']
+
+    message = 'Hello from the EasyBuild tutorial! I was installed by $USER.'
+
+    moduleclass = 'tools'
+
+    ```
+
+    Running this example on LUMI is a little tricky as using ``--include-easyblocks`` to point EasyBuild to
+    our new easyblock interfers with settings already made by the EasyBuild configuration modules (``EasyBuild-user``)
+    and causes error messages about the toolchains. So either the easyblock needs to be copied to the user location
+    that can be found by looking at the output of ``eb --show-config`` or we simply need to extend the list of
+    easyblocks that EasyBuild searches with the easyblocks in the current directory:
+
+    ``` shell
+    EASYBUILD_INCLUDE_EASYBLOCKS="$EASYBUILD_INCLUDE_EASYBLOCKS,./*.py"
+    ```
+
+
+
 
 ### Exercise I.2
 
@@ -648,7 +734,7 @@ Your easyblock should only:
 
         def configure_step(self):
             """Custom configure step for eb-tutorial: define EBTUTORIAL_MSG configuration option."""
-            self.cfg.update('configopts', "-DEBTUTORIAL_MSG='%s'" % self.cfg['message'])
+            self.cfg.update('configopts', '-DEBTUTORIAL_MSG="%s"'% self.cfg['message'])
 
             super(EB_eb_minus_tutorial, self).configure_step()
 
@@ -662,4 +748,7 @@ Your easyblock should only:
                                                                        custom_commands=custom_commands)
     ```
 
-*[[next: PArt 3: OVerview]](3_00_part3_advanced.md)*
+    This is a much simpler easyblock as we already use all the logic that has been written for us to build
+    with CMake.
+
+*[[next: Part 3: Overview]](3_00_part3_advanced.md)*
