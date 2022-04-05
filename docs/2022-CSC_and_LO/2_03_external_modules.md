@@ -8,10 +8,10 @@
 
 EasyBuild supports the use of modules that were not installed via EasyBuild. 
 We refer to such modules as [external modules](https://docs.easybuild.io/en/latest/Using_external_modules.html).
-These modules do not define the `EBROOT*` and `EBVERSION*` environment variables that EasyBuild would define
+External modules do not define the `EBROOT*` and `EBVERSION*` environment variables that EasyBuild would define
 and uses internally in several easyblocks and some easyconfig files.
 
-This feature is used extensively on Cray systems to interface with the Cray PE (which comes with its own
+External modules are used extensively on Cray systems to interface with the Cray PE (which comes with its own
 modules and cannot be installed via EasyBuild):
 [external modules can be used as dependencies](https://docs.easybuild.io/en/latest/Using_external_modules.html#using-external-modules-as-dependencies), 
 by including the module name in the dependencies list, 
@@ -47,7 +47,7 @@ from which it could generate the module.
 ## EasyBuild Metadata for external modules
 
 [Metadata](https://docs.easybuild.io/en/latest/Using_external_modules.html#metadata-for-external-modules)
- can be supplied to EasyBuild for external modules: using the `--external-modules-metadata` 
+can be supplied to EasyBuild for external modules: using the `--external-modules-metadata` 
 configuration option, the location of one or more metadata files can be specified.
 
 The files are expected to be in INI format, with a section per module name 
@@ -75,6 +75,10 @@ version = 3.3.8.10
 ```
 
 The environment variable `$EBROOTFFTW` will also be defined according to the `prefix` specified in the metadata file.
+
+On LUMI, users in generally don't need to be too concerned about the metadata file as the EasyBuild-user (and other hidden
+EasyBuild configuration modules) take care of pointing to the right metadata file, which is specific for each version of the
+Cray PE and hence each version of the LUMI software stack.
 
 ---
 
