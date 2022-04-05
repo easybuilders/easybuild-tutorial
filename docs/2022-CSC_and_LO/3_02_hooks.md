@@ -19,9 +19,32 @@ would normally execute.
 This is a very powerful feature, but it is important to aware of some details in order
 to make good use of it.
 
-Support for hooks is also covered in detail in the EasyBuild documentation, see
-[here](https://docs.easybuild.io/en/latest/Hooks.html).
+Support for hooks is also
+[covered in detail in the EasyBuild documentation](https://docs.easybuild.io/en/latest/Hooks.html).
 
+## Why hooks?
+
+Hooks can be implemented for various reasons. Some examples used by some sites in the EasyBuild
+community:
+
+-   Enforce some site policies on easyconfig files. A practical example for LUMI could be imposing
+    the use of the `whatis` parameter and ensuring that it contains a `Description` line to have a
+    more consistent format for module files.
+-   Ensuring that some information is always in the module file. E.g., on LUMI the `site_contacts` 
+    parameter is added automatically when installing in the central stack if it is not already in 
+    the easyconfig file to refer to the LUST     support pages.
+-   Modify the behaviour of standard easyconfig files that come with EasyBuild to adapt them to the system
+    while allowing users to simply use the standard easyconfig files. E.g., we could consider this option
+    to offer the common EasyBuild FOSS toolchain and its subtoolchains to users on LUMI-C, while using hooks to
+    adapt, e.g., the easyconfig files for Open MPI to work on LUMI.
+
+Some site have really large hook files to implement policies and modify standard EasyBuild build recipes, e.g.,
+-   [The hooks file from Jülich Supercomputing Centre](https://github.com/easybuilders/JSC/blob/2022/Custom_Hooks/eb_hooks.py)
+-   ComputeCanada [cc_hooks_common.py](https://github.com/ComputeCanada/easybuild-computecanada-config/blob/main/cc_hooks_common.py)
+    and [cc_hooks_gento.py](https://github.com/ComputeCanada/easybuild-computecanada-config/blob/main/cc_hooks_gentoo.py)
+-   [The hooks file from the EESSI software stack](https://github.com/EESSI/software-layer/blob/main/eb_hooks.py). 
+   [EESSI](https://www.eessi-hpc.org/) is an effort to build a software stack distributed via 
+   [CernVM-FS](https://cernvm.cern.ch/fs/) using EasyBuild to build all software.
 
 ## Implementing and using hooks
 
