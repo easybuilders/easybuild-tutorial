@@ -254,10 +254,12 @@ def parse_easyconfig(ec_fn):
 
     # parse easyconfig file;
     # the 'parse_easyconfigs' function expects a list of tuples,
-    # where the second item indicates whether or not the easyconfig file was automatically generated or not
+    # where the second item indicates whether or not the easyconfig file was 
+    # automatically generated or not
     ec_dicts, _ = parse_easyconfigs([(ec_path, False)])
 
-    # only retain first parsed easyconfig, ignore any others (which are unlikely anyway)
+    # only retain first parsed easyconfig, ignore any others (which are unlikely 
+    # anyway)
     return ec_path, ec_dicts[0]['ec']
 
 
@@ -278,15 +280,21 @@ for key in keys:
     print("%s: %s" % (key, ec[key]))
 ```
 
-Example usage:
+Example usage (ensure that ``EasyBuild-user`` is loaded as EasyBuild should be
+configured properly!):
 
-```shell
-$ ./inspect_easyconfig.py Subread-2.0.0-GCC-8.3.0.eb name version sources sanity_check_paths
-name: Subread
-version: 2.0.0
-sources: ['subread-2.0.0-source.tar.gz']
-sanity_check_paths: {'files': ['bin/exactSNP', 'bin/featureCounts', 'bin/subindel', 'bin/subjunc', 'bin/sublong', 'bin/subread-align', 'bin/subread-buildindex'], 'dirs': ['bin/utilities']}
 ```
+$ ./inspect_easyconfig.py GMP-6.2.1-cpeCray-21.12.eb name version sources sanity_check_paths
+Inspecting /appl/lumi/mgmt/ebrepo_files/LUMI-21.12/LUMI-L/GMP/GMP-6.2.1-cpeCray-21.12.eb ...
+name: GMP
+version: 6.2.1
+sources: ['gmp-6.2.1.tar.bz2']
+sanity_check_paths: {'files': ['include/gmp.h', 'include/gmpxx.h', 'lib/libgmp.a', 'lib/libgmp.la', 'lib/libgmp.so', 'lib/libgmpxx.a', 'lib/libgmpxx.la', 'lib/libgmpxx.so', 'lib/pkgconfig/gmp.pc', 'lib/pkgconfig/gmpxx.pc'], 'dirs': ['share/info']}
+```
+
+This feature can be used, e.g., to extract information from easyconfig files to generate documentation
+for the library of easyconfig files.
+
 
 ---
 
