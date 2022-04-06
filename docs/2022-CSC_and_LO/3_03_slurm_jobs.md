@@ -37,8 +37,8 @@ will be *passed down* into the submitted job automatically, via command line opt
 command that is run in the job script.
 
 This includes not only command line options used next to ``--job``, but also configuration settings
-that are specified via an [EasyBuild configuration file](configuration.md#configuration-files) or through
-[``$EASYBUILD_*`` environment variables](configuration.md#easybuild_-environment-variables).
+that are specified via an [EasyBuild configuration file](1_07_configuration#configuration-files) or through
+[``$EASYBUILD_*`` environment variables](1_07_configuration#easybuild_-environment-variables).
 
 This implies that any EasyBuild configuration files or ``$EASYBUILD_*`` environment variables
 that are in place in the job environment are most likely *irrelevant*, since configuration settings
@@ -330,4 +330,4 @@ $ module avail AUGUSTUS
 
 ---
 
-*[[next: Module naming schemes]](3_04_module_naming_scheme.md)*
+*[[next: Module naming schemes]](3_04_module_naming_scheme)*
