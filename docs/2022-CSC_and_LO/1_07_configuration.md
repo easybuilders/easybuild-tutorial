@@ -280,7 +280,7 @@ The default `EasyBuildMNS` module naming scheme roughly corresponds to the filen
 and consists of the software name followed by a combination of the software version, toolchain and
 an optional label (which corresponds to the value of the `versionsuffix` easyconfig parameter):
 `<name>/<version><-toolchain><versionsuffix>`. Just like with [names of easyconfig
-files](terminology.md#easyconfig-files), the `<-toolchain>` part is omitted when the `system` toolchain is used,
+files](1_05_terminology#easyconfig-files), the `<-toolchain>` part is omitted when the `system` toolchain is used,
 and the `<versionsuffix>` value is empty by default.
 
 !!! Note "Module naming scheme on LUMI"
@@ -366,9 +366,9 @@ across different software installations. They define *configuration settings*,
 such as the location where software should be installed, or the syntax that should
 be used when generating module files.
 
-An [easyconfig file](terminology.md#easyconfig-files) (`*.eb`) on the other hand *specifies the details for one particular software installation*.
+An [easyconfig file](1_05_terminology#easyconfig-files) (`*.eb`) on the other hand *specifies the details for one particular software installation*.
 It does this by defining a set of *easyconfig parameters*, which tell EasyBuild the name and version
-of the software to install, which [toolchain](terminology.md#toolchains) and [easyblock](terminology.md#easyblocks) to use, etc.
+of the software to install, which [toolchain](1_05_terminology#toolchains) and [easyblock](1_05_terminology#easyblocks) to use, etc.
 
 For each software installation performed by EasyBuild, there is a corresponding easyconfig file.
 There typically are only a handful of configuration files used however, for example a system-level

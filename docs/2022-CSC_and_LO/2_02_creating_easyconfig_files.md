@@ -1,6 +1,6 @@
 # Creating easyconfig files
 
-*[[back: Troubleshooting]](2_02_troubleshooting.md)*
+*[[back: Troubleshooting]](2_02_troubleshooting)*
 
 ---
 
@@ -58,7 +58,7 @@ Reasons to consider implementing a software-specific easyblock rather than using
     bootstrapping with the system compiler and then re-installing with itself.* 
 
 For implementing easyblocks we refer to the 
-["Implementing easyblocks" section of this tutorial](2_03_implementing_easyblocks.md)
+["Implementing easyblocks" section of this tutorial](2_03_implementing_easyblocks)
 and the [EasyBuild documentation](https://docs.easybuild.io/en/latest/Implementing-easyblocks.html).
 
 ## Writing easyconfig files
@@ -1024,4 +1024,4 @@ You can leverage the `eb-tutorial` easyconfig file we have composed in the examp
 
 ---
 
-*[[next: Using external modules from the Cray PE]](2_03_external_modules.md)*
+*[[next: Using external modules from the Cray PE]](2_03_external_modules)*

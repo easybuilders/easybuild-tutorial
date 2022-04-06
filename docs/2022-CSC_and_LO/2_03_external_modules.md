@@ -1,6 +1,6 @@
 # Using external modules from the Cray PE
 
-*[[back: Creating easyconfig files]](2_02_creating_easyconfig_files.md)*
+*[[back: Creating easyconfig files]](2_02_creating_easyconfig_files)*
 
 ---
 
