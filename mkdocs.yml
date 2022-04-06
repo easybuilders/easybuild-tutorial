@@ -143,6 +143,7 @@ nav:
               - Submitting installations as Slurm jobs: 2022-CSC_and_LO/3_03_slurm_jobs.md
               - Module naming schemes (incl. hierarchical): 2022-CSC_and_LO/3_04_module_naming_schemes.md
               - GitHub integration to facilitate contributing to EasyBuild: 2022-CSC_and_LO/3_05_github_integration.md
+          - Additional reading: 2022-CSC_and_LO/4_00_additional_reading.md
 
 
 plugins:

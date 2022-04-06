@@ -50,6 +50,5 @@
     ([video](https://www.youtube.com/watch?v=hZezVG6lJNk&list=PLhnGtSmEGEQgCneeSQvYoIZrbv7wIKlo2)/[slides](https://easybuild.io/eum22/001_eum22_EasyBuild_on_LUMI.pdf))
     during the [7th EasyBuild User Meeting in 2022](https://easybuild.io/eum22/) 
 
----
 
 *[[next: Overview]](index.md)*
