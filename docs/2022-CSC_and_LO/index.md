@@ -78,4 +78,3 @@ freely available, so unless you have access to a system with this environment yo
     -    [Submitting installations as Slurm jobs](3_Advanced/3_03_slurm_jobs.md)
     -    [Module naming schemes (incl. hierarchical)](3_Advanced/3_04_module_naming_schemes.md)
     -    [GitHub integration to facilitate contributing to EasyBuild](3_Advanced/3_05_github_integration.md)
-- [**Additional reading**](4_00_additional_reading.md)
