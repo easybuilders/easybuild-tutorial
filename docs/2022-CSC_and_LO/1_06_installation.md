@@ -424,7 +424,7 @@ We do so only for the framework and easyblocks files as the easconfig files are 
 install EasyBuild. Instead we create our own EasyConfig file for EasyBuild which contains
 some additional packages that enable extra features in EasyBuild and also provide more information
 to Lmod. Next the configuration module for EasyBuild (see the next section, 
-["Configuring EasyBuild"](1_06_configuring.md), for more information) and use the temporary 
+["Configuring EasyBuild"](1_07_configuration), for more information) and use the temporary 
 installation of EasyBuild with our own EasyConfig file to do a proper installation of EasyBuild
 with module in the final location.
 
@@ -468,7 +468,7 @@ eb --show-config
 ```
 
 This should tell you that EasyBuild (ab)uses `$HOME/.local/easybuild` as a default location.
-More on configuring EasyBuild in the [next part of the tutorial](configuration.md).
+More on configuring EasyBuild in the [next part of the tutorial](configuration).
 
 #### System information
 
