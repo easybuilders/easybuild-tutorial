@@ -6,11 +6,29 @@
 
 EasyBuild can submit jobs to different backends including Slurm to install software,
 to *distribute* the often time-consuming installation of a set of software applications and
-the dependencies they require to a cluster.
+the dependencies they require to a cluster. Each individual package is installed in a separate
+job and job dependencies are used to manage the dependencies between package so that no build
+is started before the dependencies are in place.
 
 This is done via the ``--job`` command line option.
 
 It is important to be aware of some details before you start using this, which we'll cover here.
+
+!!! Warning "This section is not supported on LUMI, use at your own risk"
+
+    EasyBuild on LUMI is currently not fully configured to support job submission via Slurm. Several
+    changes would be needed to the configuration of EasyBuild, including the location of the
+    temporary files and build directory. Those have to be made by hand. 
+
+    Due to the setup of the central software stack, this feature is currently useless to install
+    the central stack. For user installations, there are also limitations as the enviornment
+    on the compute nodes is different from the login nodes so, e.g., different locations for
+    temporary files are being used. These would only be refreshed if the EasyBuild configuration
+    modules are reloaded on the compute nodes which cannot be done currently in the way Slurm
+    job submission is set up in EasyBuild.
+
+    Use material in this section with care; it has not been completely tested.
+    
 
 ## Configuration
 
@@ -25,6 +43,8 @@ that are specified via an [EasyBuild configuration file](configuration.md#config
 This implies that any EasyBuild configuration files or ``$EASYBUILD_*`` environment variables
 that are in place in the job environment are most likely *irrelevant*, since configuration settings
 they specify they will most likely be overruled by the corresponding command line options.
+It does also imply however that the EasyBuild configuration that is in place when ``eb --job`` is used
+does also work on the compute nodes to which the job is submitted.
 
 
 ## Using ``eb --job``
@@ -38,6 +58,9 @@ to ``Slurm``, for example by setting the corresponding environment variable:
 ```shell
 export EASYBUILD_JOB_BACKEND='Slurm'
 ```
+
+On LUMI this is taken care of in the EasyBuild configuration modules such as ``EasyBuild-user``.
+
 
 ### Job resources
 
@@ -73,13 +96,13 @@ For example, to specify a particular account that should be used for the jobs su
 (equivalent with using the ``-A`` or ``--account`` command line option for ``sbatch``):
 
 ```shell
-export SBATCH_ACCOUNT='example_project'
+export SBATCH_ACCOUNT='project_XXXXXXXXX'
 ```
 
 Or to submit to a particular Slurm partition (equivalent with the ``-p`` or ``--partition`` option for ``sbatch``):
 
 ```shell
-export SBATCH_PARTITION='example_partition'
+export SBATCH_PARTITION='small'
 ```
 
 For more information about supported ``$SBATCH_*`` environment variables,
@@ -113,24 +136,29 @@ as jobs, to avoid that they fail almost instantly due to a lack of disk space.
 Keep in mind that the active EasyBuild configuration is passed down into the submitted jobs,
 so any configuration that is present on the workernodes may not have any effect.
 
-For example, if you commonly use `/tmp/$USER` for build directories on a login node,
-you may need to tweak that when submitting jobs to use a different location:
+For example, on LUMI it is possible to use ``$XDG_RUNTIME_DIR`` on the login nodes which has
+the advantage that any leftovers of failed builds will be cleaned up when the user ends their last
+login session on that node, but it is not possible to do so on the compute nodes.
 
 ```shell
 # EasByuild is configured to use /tmp/$USER on the login node
-login01 $ eb --show-config | grep buildpath
-buildpath      (E) = /tmp/example
+uan01 $ eb --show-config | grep buildpath
+buildpath      (E) = /run/user/XXXXXXXX/easybuild/build
 
-# use /localdisk/$USER for build directories when submitting installations as jobs
-login01 $ eb --job --buildpath /localdisk/$USER example.eb --robot
+# use /dev/shm/$USER for build directories when submitting installations as jobs
+login01 $ eb --job --buildpath /dev/shm/$USER/easybuild example.eb --robot
 ```
+
 
 ### Temporary log files and build directories
 
-The temporary log file that EasyBuild creates is most likely going to end up on the local disk
-of the workernode on which the job was started (by default in `$TMPDIR` or `/tmp`).
-If an installation fails, the job will finish and temporary files will likely be cleaned up instantly,
-which may leave you wondering about the actual cause of the failing installation...
+The problems for the temporary log files are twofold. First, they may end up in a place
+that is not available on the compute nodes. E.g., for the same reasons as for the build
+path, the LUMI EasyBuild configuration will place the temporary files in a subdirectory of
+``$XDG_RUNTIME_DIR`` on the loginnodes but a subdirectory of ``/dev/shm/$USER`` on the
+compute nodes. The second problem however is that if an installation fails, those log files are
+not even accessible anymore which may leave you wondering about the actual cause of the failing 
+installation...
 
 To remedy this, there are a couple of EasyBuild configuration options you can use:
 
@@ -139,6 +167,7 @@ To remedy this, there are a couple of EasyBuild configuration options you can us
   ```shell
   $ eb --job example.eb --tmp-logdir $HOME/eb_tmplogs
   ```
+  This will move at least the log file to a suitable place.
 
 * If you prefer having the entire log file stored in the Slurm job output files,
   you can use ``--logtostdout`` when submitting the jobs. This will result in extensive logging
@@ -146,11 +175,13 @@ To remedy this, there are a couple of EasyBuild configuration options you can us
   log to ``stdout`` when the installation is running in the job, and hence the log messages will be
   captured in the job output files.
 
-The same remark applies to build directories: they should be on a local filesystem (to avoid problems
-that often occur when building software on a parallel filesystem like GPFS or Lustre),
-which will probably be cleaned up automatically when a job fails. Here it is less easy to provide
-general advice on how to deal with this, but one thing you can consider is retrying the installation
-in an interactive job, so you can inspect the build directory after the installation fails.
+The build directory of course also suffers from the problem of being no longer accessible if the
+installation fails, but there it is not so easy to find a solution. Building on a shared file system
+is not only much slower, but in particular on parallel file systems like GPFS/SpectrumScale, Lustre
+or BeeGFS buiding sometimes fails in strange ways. One thing you can consider if you cannot do the
+build on a login node (e.g., because the code is not suitable for cross-compiling or the configure
+system does tests that would fail on the login node), is to rety the installation in an
+interactive job,  so you can inspect the build directory after the installation fails.
 
 ### Lock files
 
@@ -171,37 +202,37 @@ subdirectory of ``installpath``) manually, or re-submit the job with ``eb --job 
 
 As an example, we will let EasyBuild submit jobs to install ``AUGUSTUS`` with the ``foss/2020b`` toolchain.
 
+!!! Warning "This example does not work on LUMI"
+
+    Note that this is an example using the FOSS common toolchain. For this reason it does not work on
+    LUMI.
+
 ### Configuration
 
 Before using ``--job``, let's make sure that EasyBuild is properly configured:
 
 ```shell
-# use $HOME/easybuild for software, modules, sources, etc.
-export EASYBUILD_PREFIX=$HOME/easybuild
+# Load the EasyBuild-user module (central installations will not work at all
+# using job submission)
+module load LUMI/21.12
+module load partition/C
+module load EasyBuild-user
 
 # use ramdisk for build directories
-export EASYBUILD_BUILDPATH=/dev/shm/$USER
+export EASYBUILD_BUILDPATH=/dev/shm/$USER/build
+export EASYBUILD_TMPDIR=/dev/shm/$USER/tmp
 
 # use Slurm as job backend
 export EASYBUILD_JOB_BACKEND=Slurm
 ```
 
-In addition, add the path to the centrally installed software to ``$MODULEPATH`` via ``module use``:
+
+We will also need to inform Slurm that jobs should be submitted into a particular account, and
+in a particular partition:
 
 ```shell
-module use /easybuild/modules/all
-```
-
-Load the EasyBuild module:
-
-```shell
-module load EasyBuild
-```
-
-Let's assume that we also need to inform Slurm that jobs should be submitted into a particular account:
-
-```shell
-export SBATCH_ACCOUNT=example_project
+export SBATCH_ACCOUNT=project_XXXXXXXXX
+export SBATCH_PARTITION='small'
 ```
 
 This will be picked up by the ``sbatch`` commands that EasyBuild will run to submit the software installation jobs.
@@ -234,14 +265,14 @@ $ eb AUGUSTUS-3.4.0-foss-2020b.eb --missing
 Several dependencies are not installed yet, so we will need to use ``--robot`` to ensure that
 EasyBuild also submits jobs to install these first.
 
-To speed up the installations a bit, we will request 10 cores for each submitted job (via ``--job-cores``).
+To speed up the installations a bit, we will request 8 cores for each submitted job (via ``--job-cores``).
 That should be sufficient to let each installation finish in (well) under 1 hour,
 so we only request 1 hour of walltime per job (via ``--job-max-walltime``).
 
 In order to have some meaningful job output files, we also enable trace mode (via ``--trace``).
 
 ```
-$ eb AUGUSTUS-3.4.0-foss-2020b.eb --job --job-cores 10 --job-max-walltime 1 --robot --trace
+$ eb AUGUSTUS-3.4.0-foss-2020b.eb --job --job-cores 8 --job-max-walltime 1 --robot --trace
 ...
 == resolving dependencies ...
 ...
@@ -278,7 +309,7 @@ these jobs will be able to start.
 After about 20 minutes, AUGUSTUS and all missing dependencies should be installed:
 
 ```
-$ ls -lrt $HOME/easybuild/modules/all/*/*.lua | tail -11
+$ ls -lrt $HOME/EasyBuild/modules/.../*.lua | tail -11
 -rw-rw----. 1 example  example  1634 Mar 29 10:13 /users/example/easybuild/modules/all/HTSlib/1.11-GCC-10.2.0.lua
 -rw-rw----. 1 example  example  1792 Mar 29 10:13 /users/example/easybuild/modules/all/SAMtools/1.11-GCC-10.2.0.lua
 -rw-rw----. 1 example  example  1147 Mar 29 10:13 /users/example/easybuild/modules/all/BamTools/2.5.1-GCC-10.2.0.lua
@@ -291,11 +322,9 @@ $ ls -lrt $HOME/easybuild/modules/all/*/*.lua | tail -11
 -rw-rw----. 1 example  example  1365 Mar 29 10:28 /users/example/easybuild/modules/all/SuiteSparse/5.8.1-foss-2020b-METIS-5.1.0.lua
 -rw-rw----. 1 example  example  2233 Mar 29 10:30 /users/example/easybuild/modules/all/AUGUSTUS/3.4.0-foss-2020b.lua
 
-$ module use $HOME/easybuild/modules/all
-
 $ module avail AUGUSTUS
 
--------- /users/hkenneth/easybuild/modules/all --------
+-- EasyBuild managed user software for software stack ... --
    AUGUSTUS/3.4.0-foss-2020b
 ```
 
