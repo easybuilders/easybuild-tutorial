@@ -67,42 +67,15 @@ freely available, so unless you have access to a system with this environment yo
     -   [Installation](1_06_installation.md)
     -   [Configuration](1_07_configuration.md)
     -   [Basic usage](1_08_basic_usage.md) *(hands-on)*
-- [Part II: **Using EasyBuild**](2_00_part2_using.md) *(Tue March 23rd 2021, 9am-12 CET)*
+- [Part II: **Using EasyBuild**](2_00_part2_using.md)
     -   [Troubleshooting](2_01_troubleshooting.md) *(hands-on)*
     -   [Creating easyconfig files](2_02_creating_easyconfig_files.md) *(hands-on)*
     -   [Using external modules from the Cray PE](2_03_external_modules.md)
     -   [Implementing easyblocks](2_04_implementing_easyblocks.md) *(hands-on)*
-
-
-
-TODO
-
-
-
-
-
-
-
-## OLD TEXT
-
-- [Part I: **Introduction to EasyBuild**](part1_intro.md) *(Tue March 9th 2021, 9am-12 CET)*
-    * [What is EasyBuild?](what_is_easybuild.md)
-    * [Terminology](terminology.md)
-    * [Installation](installation.md) *(hands-on)*
-    * [Configuration](configuration.md) *(hands-on)*
-    * [Basic usage](basic_usage.md) *(hands-on)*
-- [Part II: **Using EasyBuild**](part2_using.md) *(Tue March 23rd 2021, 9am-12 CET)*
-    * [Troubleshooting](troubleshooting.md) *(hands-on)*
-    * [Creating easyconfig files](creating_easyconfig_files.md) *(hands-on)*
-    * [Implementing easyblocks](implementing_easyblocks.md) *(hands-on)*
-- [Part III: **Advanced topics**](part3_advanced.md) *(Tue March 30th 2021, 9am-12 CEST)*
-    * [Using EasyBuild as a library](easybuild_library.md) *(hands-on)*
-    * [Using hooks to customise EasyBuild](hooks.md) *(hands-on)*
-    * [Submitting installations as Slurm jobs](slurm_jobs.md) *(hands-on)*
-    * [Module naming schemes (incl. hierarchical)](module_naming_schemes.md) *(hands-on)*
-    * [GitHub integration to facilitate contributing to EasyBuild](github_integration.md) *(hands-on)*
-- [Part IV: **EasyBuild on Cray systems**](part4_cray.md) *(Friday June 18th 2021, 09-12 CEST)*
-    * [Introduction to Cray Programming Environment](cray/introduction.md) *(hands-on)*
-    * [Cray External Modules](cray/external_modules.md) *(hands-on)*
-    * [Cray Custom Toolchains](cray/custom_toolchains.md) *(hands-on)*
-    * [EasyBuild at CSCS](cray/easybuild_at_cscs.md) *(hands-on)*
+- [Part III: **Advanced topics**](3_00_part3_advanced.md)
+    -    [Using EasyBuild as a library](3_01_easybuild_library.md)
+    -    [Using hooks to customise EasyBuild](3_02_hooks.md)
+    -    [Submitting installations as Slurm jobs](3_03_slurm_jobs.md)
+    -    [Module naming schemes (incl. hierarchical)](3_04_module_naming_schemes.md)
+    -    [GitHub integration to facilitate contributing to EasyBuild](3_05_github_integration.md)
+- [**Additional reading**](4_00_additional_reading.md)
