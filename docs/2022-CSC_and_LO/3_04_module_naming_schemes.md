@@ -4,21 +4,24 @@
 
 ---
 
-Up until now we have used EasyBuild's default module naming scheme (`EasyBuildMNS`),
-which produces module files with names that closely resemble to the names of the
+Up until now we have used the naming scheme in use on LUMI which is for many practical purposes
+is indistinguishable from the default EasyBuild naming scheme (`EasyBuildMNS`).
+It produces module files with names that closely resemble to the names of the
 corresponding easyconfig files.
-For example, when installing `h5py-3.1.0-foss-2020b.eb` the generated module was named `h5py/3.1.0-foss-2020b`.
+For example, when installing `zlib-1.2.11-cpeGNU-21.12.eb` the generated module was named 
+`zlib/1.2.11-cpeGNU-21.12`.
 
 EasyBuild supports several different module naming schemes:
 
 ```shell
 $ eb --avail-module-naming-schemes
 List of supported module naming schemes:
-	CategorizedHMNS
-	CategorizedModuleNamingScheme
-	EasyBuildMNS
-	HierarchicalMNS
-	MigrateFromEBToHMNS
+        EasyBuildMNS
+        LUMI_FlatMNS
+        MigrateFromEBToHMNS
+        HierarchicalMNS
+        CategorizedHMNS
+        CategorizedModuleNamingScheme
 ```
 
 In this part of the tutorial we will take a closer look at `HierarchicalMNS`,
@@ -28,52 +31,54 @@ We will also take a quick look at implementing our own custom module naming sche
 
 ## Flat vs hierarchical
 
-The default module naming scheme `EasyBuildMNS` is an example of regular *"flat"* module naming scheme, which is characterized by:
+!!! Note 
 
-* all module files are directly available for loading;
-* each module name uniquely identifies a particular installation;
+    This text is very much based on the generic EasyBuild tutorials as we cannot demonstrate
+    all aspects on LUMI as it is configured today.
+
+    On LUMI, the complete module scheme is partly hierarchical, but EasyBuild uses a flat naming
+    scheme. The two levels in the hierarchy that are present to deal with different versions of
+    the software stack and the various types of compute nodes, are not managed by EasyBuild.
+
+The default module naming scheme `EasyBuildMNS` 
+and the custom `LUMI_FlatMNS` naming scheme are both examples of regular *"flat"* 
+module naming schemes, which are characterized by:
+
+-    all module files are directly available for loading;
+-    each module name uniquely identifies a particular installation;
 
 In contrast, a *hierarchical* module naming scheme
-consists of a *hierarchy* of module files.
+consists of a *hierarchy* of module files. 
+A fairly typical 3-level schme (``Core``, ``Compiler`` and ``MPI``) has been
+discussed in the [section on Lmod](../1_02_Lmod#lmod-hierarchy).
+This typical Lmod hierarcny would map very well on the EasyBuild common toolchains.
 
-The typical module hierarchy has 3 levels:
-
-* a **core** level, where module files for software that was installed using the
-  [`system` toolchain](../introduction/#system-toolchain) are kept;
-* a **compiler** level, where module files for software that was installed using a
-*compiler-only toolchain* are stored;
-* and an **MPI** level, which houses module files for software that was installed using a toolchain that includes (at least) a compiler and MPI component;
-
-Here is a simple example of such a 3-level module hierarchy:
+In fact, for the example
 
 <div align="center"><img src="../../img/hmns.png" width="60%"/></div>
 
-In this example the core level only includes a single module `GCC/9.3.0`,
-while  the compiler level includes two modules: `OpenMPI/4.0.3` and `MPICH/3.3.2`.
-In the MPI level, three modules are available: one for `FFTW`, one for `ScaLAPACK`, and one for `HDF5`.
+software at the ``Core`` level would be installed with the ``GCCcore`` and ``SYSTEM``
+toolchains. Software at the ``Compiler`` level would be installed with the ``GCC``
+toolchain, while software at the ``MPI`` level after loading the ``OpenMPI`` module
+would be installed using the regular ``foss`` toolchain or the ``gompi`` toolchain
+(see the diagram in the 
+["Common toolchains" section of the page on terminology](../1_05_terminology/#common-toolchains)).
 
-Initially only the modules on the top level of a module hierarchy are available for loading.
-If you run "`module avail`" with the example module hierarchy, you will only see the `GCC/9.3.0` module.
+On LUMI, where software is installed through the Cray Programming Environment with no real choice of
+MPI implementation, a two-level arrangement would still make a lot of sense, with at the ``Core`` level
+all software compiled with the SYSTEM toolchain while there could be a ``PrgEnv`` level for software
+compiled with a particula programming enviornment aka cepGNU/cpeCray/cpeAOCC toolchain. Such a scheme
+is used on the Cray systems at CSCS.
 
-Some modules in the top level of the hierarchy act as a "gateway" to modules in the
-next level below.
-To make additional modules available for loading one of these gateway modules has to be loaded. In our exampe, loading the `GCC/9.3.0` module results in two additional modules coming into view from the compiler level, as indicated by the arrows: the modules for `OpenMPI` and `MPICH`. These correspond to installations of `OpenMPI`
-and `MPICH` that were built using `GCC/9.3.0` as a (compiler-only) toolchain.
-
-Similarly, the `OpenMPI/4.0.3` module serves as a gateway to the three modules in the MPI level. Only by loading the `OpenMPI` module will these additional three modules become
-available for loading. They correspond to software installations built using the `gompi/2020a` toolchain that
-consists of the `GCC/9.3.0` compiler module and the `OpenMPI/4.0.3` MPI module. Software installed using
-`foss/2020a` (which is a full toolchain that also includes OpenBLAS, FFTW and ScaLAPACK) would also be stored
-in this level of the module hierarchy.
-
-The characteristics of a module hierarchy are:
+To recap, the characteristics of a module hierarchy are:
 
 * not all module files are directly available for loading;
 * some modules serve as a gateway to more modules;
 * to access some software installations you will first need to load one or more gateway modules in order
   to use them;
 
-You can probably think of other ways to organize module files in a hierarchical module tree, but here we will stick to the standard core / compiler / MPI hierarchy.
+You can probably think of other ways to organize module files in a hierarchical module tree, but here 
+we will stick to the standard core / compiler / MPI hierarchy.
 
 ### Pros & cons
 
@@ -81,22 +86,24 @@ So why go through all this trouble of organizing modules hierarchically?
 
 There are a couple of advantages to this approach:
 
-* shorter module names;
+* shorter module names (or at least for the version part of the name);
 * less overwhelming list of available modules;
 * only compatible modules can be loaded together;
 
 However, the are some minor disadvantages too:
 
-* not all existing modules are directly visible;
+* not all existing modules are directly visible, so users have to learn how to find
+  modules using ``module spider`` etc.;
 * gateway modules may have little meaning to end users;
 
 #### Length of module names
 
-When using a flat module naming scheme, module names can be fairly long and perhaps confusing. For our `HDF5` installation for example,
-we have `HDF5/1.10.6-gompi-2020a` as module name. The `-gompi-2020a` part of the name refers to the toolchain that was
+When using a flat module naming scheme, module names can be fairly long and perhaps confusing. For a `HDF5` installation 
+with the EasyBuild common toolchains for example,
+one might have `HDF5/1.10.6-gompi-2020a` as module name. The `-gompi-2020a` part of the name refers to the toolchain that was
 used for this installation, but it may be confusing to some people (what kind of Pokémon is a "gompi"?!).
 
-In the example module hierarchy shown above, the module for `HDF5` is named `HDF5/1.10.6` which is basically the bare
+In the example module hierarchy shown above, the module for `HDF5` could simply be named `HDF5/1.10.6` which is basically the bare
 essentials: software name and version. That's way better, nice and clean!
 
 #### Amount of available modules
@@ -130,8 +137,10 @@ and so these modules can not be loaded together easily.
 One downside of a module hierarchy is that not all existing modules are directly available for loading
 or are even *visible* to the user, since the output of "`module avail`" only shows a subset of all modules.
 
-[Lmod](https://lmod.readthedocs.io) has a solution for this though: it provides a separate "`module spider`"
-command to search for module files throughout the entire module hierarchy. So as long as the end users are
+As we have discussed in [the Lmod section](../LMOD). 
+[Lmod](https://lmod.readthedocs.io) provides a powerful solution to search for modules through the
+``module spider`` and to some extent also the ``module keyword`` commands. 
+So as long as the end users are
 aware of this additional command, it should not be difficult to discover which software installations exist
 and how they can be accessed. The "`module spider`" command will inform the user which of the gateway modules
 need to be loaded in order to load a specific module file.
@@ -140,7 +149,7 @@ need to be loaded in order to load a specific module file.
 
 An additional potential problem of a module hierarchy is that the semantics of the gateway modules may not be clear
 to end users. They may wonder why they need to pick a specific compiler and MPI library, or which of the
-available options is the best one. Maybe there are not even be aware what exactly a "compiler" is, or how it is
+available options is the best one. Maybe they are not even aware what exactly a "compiler" is, or how it is
 relevant to the software they need in their bioinformatics pipeline...
 
 This can be partially resolved by loading a default compiler and MPI module so a particular set of modules
@@ -148,10 +157,15 @@ is available right after login, which could be the ones used in the most recent 
 recommended versions. More experienced users could then leverage the "`module spider`" command to navigate
 the module hierarchy.
 
+On LUMI this would mean loading a default software stack, but due to the the default modules are currently
+loaded on LUMI this was not possible to accomplish without losing other functionality of the module tree.
+
 ## Using a custom module naming scheme
 
 Next to the module naming schemes that are included with EasyBuild,
-you can also define your own module naming scheme (MNS), and configure EasyBuild to use it.
+you can also define your own module naming scheme (MNS), and configure EasyBuild to use it
+(which is eactly what has been done on LUMI to remove a feature of the default ``EasyBuildMNS`` scheme
+that we do not use).
 
 ### Implementation
 
@@ -254,7 +268,9 @@ class ExampleMNS(ModuleNamingScheme):
         return short_modname.startswith(name.lower().replace('-', '_') + '/')
 ```
 
-We can see what the module names with this module naming scheme would like like via ``eb -D``:
+We can see what the module names with this module naming scheme would like like via ``eb -D``.
+E.g., for the common toolchains (the example will not work on LUMI as the default easyconfig
+files are not in the robot- and the search path):
 
 ```
 $ eb SciPy-bundle-2020.11-foss-2020b-Python-2.7.18.eb -D
@@ -270,9 +286,10 @@ $ eb SciPy-bundle-2020.11-foss-2020b-Python-2.7.18.eb -D
 
 ## Example module hierarchy: HDF5
 
-!!! Warning
-    **This exercise will only work if you have write access to the software installation prefix**,
-    because EasyBuild will try to copy the installation log file to each installlation directory.
+!!! Warning "Example not suitable for LUMI"
+    **This exercise is meant for a system where the common toolchains can be used and requires an
+    indpendent EasyBuild installation in your personal file space**,
+    because EasyBuild will try to copy the installation log file to each installation directory.
 
 Now that we know more about hierarchical module naming schemes,
 let us see how EasyBuild can help us with generating a hierarchical module tree.
@@ -308,7 +325,7 @@ a module. We have just made all modules unavailable, so we would have to first
 install EasyBuild again in our hierarchical module tree before we can continue.
 
 **We strongly recommend using an EasyBuild installation that was [installed via "`pip install`"
-or "`pip3 install`"](../installation/#method-1-using-pip-recommended) in this part of the tutorial.**
+or "`pip3 install`"](../1_06_installation#method-1-using-pip) in this part of the tutorial.**
 
 An easy way to do this is in the prepared environment is to run:
 
@@ -376,7 +393,9 @@ The steps we will have to go through are:
 
 * Tell EasyBuild we want to "install" the `HDF5-1.10.7-gompi-2020b.eb` easyconfig file;
 * Enable dependency resolution via `--robot`;
-* Instruct EasyBuild to only generate the module files, not to install the software (since it is
+* Assuming the software would have been installed already with the default naming scheme
+  in a different module directory, instruct EasyBuild to only generate the module files, 
+  not to install the software (since it is
   there already in `/easybuild/software`), via the `--module-only` option.
 
 These steps translate to this single `eb` command:
@@ -544,73 +563,6 @@ Currently Loaded Modules:
   4) GCC/10.2.0       8) libpciaccess/0.16  12) libfabric/1.11.0  16) HDF5/1.10.7
 ```
 
-## Exercise
-
-Now it is your turn!
-
-Try to get a feeling for how a hierarchical module tree works by:
-
-* installing the missing modules for the `SciPy-bundle-2020.11-foss-2020b.eb` in the module hierarchy we
-  generated for HDF5;
-* figure out where the `SciPy-bundle` module is located in the hierarchy, and then also load it;
-
-You can verify your work by running this command (since `pandas` is one of the Python packages included
-in the `SciPy-bundle` installation):
-
-```shell
-python -c 'import pandas; print(pandas.__version__)'
-```
-
-Start from a clean slate, by first running:
-
-```shell
-module purge
-module unuse $MODULEPATH
-```
-
-??? success "(click to show solution)"
-
-    * Step 0: check which modules are still missing, using `--missing` or `-M`:
-      ```shell
-      eb SciPy-bundle-2020.11-foss-2020b.eb -M
-      ```
-      The output should tell you that 15 out of 50 required modules are still missing.
-
-    * Install the missing modules in the module hierarchy we have generated in `$HOME/hmns/modules`:
-      ```shell
-      eb SciPy-bundle-2020.11-foss-2020b.eb --robot --module-only
-      ```
-      Don't forget to use both `--robot` (to enable dependency resolution) and `--module-only`
-      (to only run the sanity check and generate module files, not install the software again).
-
-    * Start at the top of the module hierarchy (the `Core` level),
-      and run module spider to check which gateway modules to load to make `SciPy-bundle` available:
-      ```shell
-      module use $HOME/hmns/modules/all/Core
-      module spider SciPy-bundle/2020.11
-      ```
-    * Load the gateway modules:
-      ```shell
-      module load GCC/10.2.0 OpenMPI/4.0.5
-      ```
-    * Check that the `SciPy-bundle` module is available, and load it:
-      ```shell
-      $ module avail SciPy-bundle
-      ----- /home/example/hmns/modules/all/MPI/GCC/10.2.0/OpenMPI/4.0.5 ------
-         SciPy-bundle/2020.11
-      ```
-      ```
-      module load SciPy-bundle/2020.11
-      ```
-    * Run the test command:
-      ```
-      $ python -c 'import pandas; print(pandas.__version__)'
-      1.1.4
-      ```
-
-!!! Warning
-    **This exercise will only work if you have write access to the software installation prefix**,
-    because EasyBuild will try to copy the installation log file to each installlation directory.
 
 ---
 
