@@ -4,6 +4,20 @@
 
 ---
 
+!!! Warning "Preliminary not for LUMI and many other Cray systems"
+
+    Not everything in this section is as useful for EasyBuild installations that build
+    on the Cray Programming Environment. E.g., the default easyconfig repository does
+    not contain easyconfigs for the Cray PE.
+
+    Moreover, due to the restricted operating system on the compute nodes of big
+    Cray systems such as the EX series (COS instead of the full SUSE linux), 
+    the GitHub integration does not work on the compute nodes of a typical setup as
+    one of the required Python packages fails to work as it needs the DBus daemon.
+
+    Since GitHub integration is not yet really used on LUMI, this section is not fully
+    tested but left in the tutorial for completeness.
+
 To contribute changes to the EasyBuild code (framework or easyblocks) or easyconfigs,
 you will need to be a bit familiar with Git and GitHub. Or maybe not?
 
@@ -94,11 +108,6 @@ and configuration.
 **Additional dependencies**
 
 Both the `GitPython` and `keyring` Python packages as well as the `keyrings.cryptfile` add-on package must be installed.
-In the prepared environment, you can do this via:
-
-```shell
-pip3 install --user GitPython keyring keyrings.cryptfile
-```
 
 !!! Note
     You may experiences problems installing the ``cryptography`` Python packages,
@@ -293,6 +302,15 @@ useful for others to know, in particular EasyBuild maintainers, since the commen
 will include information about your system (OS, processor, etc.) and your EasyBuild configuration.
 
 ## Demo
+
+!!! Warning "Not currently suited for LUMI"
+
+    This is text from a previous (non-Cray) version of the tutorial. The demo does require
+    a number of files not installed on LUMI after going through this tutorial, 
+    and someone who can master the repository used to clean up again.
+    However, having a look at the output (which was generated in the spring of 2021 on
+    the CSC system puhti) still offers some information, so the demo was left in this
+    version of the tutorial.
 
 That is a lot to digest, so let us make this a bit more concrete with an example:
 we will open a pull request for the [`eb-tutorial` example software](../adding_support_software/#example) to *a fork* of the [`easybuild-easyconfigs` repository](https://github.com/easybuilders/easybuild-easyconfigs) using the `eb` command,
