@@ -1,6 +1,7 @@
 # What is EasyBuild?
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 *[[back: Course overview]](../index.md)*
 
 <p align="center"><img src="../../../img/easybuild_logo_alpha.png" alt="EasyBuild logo" width="300px"/></p>
@@ -8,8 +9,11 @@
 **[EasyBuild](https://easybuild.io)** is a **software build and installation framework**
 =======
 *[[back: Overview]](index.md)*
+=======
+*[[back: Course overview]](../index.md)*
+>>>>>>> ae27a051 (Correction of links.)
 
-<p align="center"><img src="../../img/easybuild_logo_alpha.png" alt="EasyBuild logo" width="300px"/></p>
+<p align="center"><img src="../../../img/easybuild_logo_alpha.png" alt="EasyBuild logo" width="300px"/></p>
 
 **[EasyBuild](http://easybuild.io)** is a **software build and installation framework**
 >>>>>>> 549d7d34 (Restructuring for nicer navigation bar on the left.)
@@ -24,8 +28,12 @@ and provides a **command-line interface** to facilitate the installation and man
 <img src="../../../img/geek-and-poke-invaluable.png" style="float:right" width="45%"/>
 =======
 <a href="http://geek-and-poke.com/geekandpoke/2010/5/14/how-to-become-invaluable.html">
+<<<<<<< HEAD
 <img src="../../img/geek-and-poke-invaluable.png" style="float:right" width="45%"/>
 >>>>>>> 549d7d34 (Restructuring for nicer navigation bar on the left.)
+=======
+<img src="../../../img/geek-and-poke-invaluable.png" style="float:right" width="45%"/>
+>>>>>>> ae27a051 (Correction of links.)
 </a>
 
 ## Elevator pitch
@@ -216,10 +224,14 @@ systems running some flavor of **GNU/Linux**. EasyBuild also works on *macOS*,
 but significant effort would be required to use it extensively there.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <img src="../../../img/Python-logo.png" style="border-right: 20px solid white;border-top: 5px solid white; float:left" width="90px"/>
 =======
 <img src="../../img/Python-logo.png" style="border-right: 20px solid white;border-top: 5px solid white; float:left" width="90px"/>
 >>>>>>> 549d7d34 (Restructuring for nicer navigation bar on the left.)
+=======
+<img src="../../../img/Python-logo.png" style="border-right: 20px solid white;border-top: 5px solid white; float:left" width="90px"/>
+>>>>>>> ae27a051 (Correction of links.)
 
 EasyBuild is implemented in [**Python**](https://www.python.org), and is compatible with Python 2.7 and 3.5+.
 Since [Python 2 is no longer maintained](https://blog.python.org/2020/04/python-2718-last-release-of-python-2.html),
@@ -236,10 +248,14 @@ On LUMI Lmod is used as the module tool.
 ## Development
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <a href="http://github.com/easybuilders"><img src="../../../img/github_logo.png" style="float:left" width="15%"/></a>
 =======
 <a href="http://github.com/easybuilders"><img src="../../img/github_logo.png" style="float:left" width="15%"/></a>
 >>>>>>> 549d7d34 (Restructuring for nicer navigation bar on the left.)
+=======
+<a href="http://github.com/easybuilders"><img src="../../../img/github_logo.png" style="float:left" width="15%"/></a>
+>>>>>>> ae27a051 (Correction of links.)
 EasyBuild is **actively developed** by a worldwide community under the
 [**GPLv2 open source license**](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
 via the [**``easybuilders``** organisation on GitHub](https://github.com/easybuilders), in the following repositories:
@@ -278,6 +294,7 @@ sites leverage it, and integrate it with other tools like [Jenkins](https://www.
 HPC sites, consortia, and companies that use EasyBuild include (but are not limited to):
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 a href="https://www.vscentrum.be"><img src="../../../img/vsc_logo.png" alt="VSC logo" width="40%"></a>
 <a href="https://www.fz-juelich.de/ias/jsc"><img src="../../../img/jsc_logo.png" alt="JSC logo" width="28%"></a>
 <a href="https://hpcnow.com/"><img src="../../../img/hpcnow_logo.png" alt="HPCNow! logo" width="25%"></a>
@@ -289,12 +306,25 @@ a href="https://www.vscentrum.be"><img src="../../../img/vsc_logo.png" alt="VSC 
 <a href="https://www.uio.no/english/services/it/research/hpc/"><img src="../../../img/uio_logo.png" alt="UiO logo" width="25%"></a>
 <a href="https://intranet.birmingham.ac.uk/bear"><img src="../../../img/bear_logo.png" alt="BEAR logo" width="20%"></a>
 <a href="https://www.snic.se/"><img src="../../../img/snic_logo.png" alt="SNIC logo" width="30%"></a>
+=======
+<a href="https://vscentrum.be"><img src="../../../img/vsc_logo.png" alt="VSC logo" width="40%"></a>
+<a href="https://www.fz-juelich.de/ias/jsc"><img src="../../../img/jsc_logo.png" alt="JSC logo" width="28%"></a>
+<a href="https://hpcnow.com/"><img src="../../../img/hpcnow_logo.png" alt="HPCNow! logo" width="25%"></a>
+<a href="https://www.fredhutch.org/"><img src="../../../img/fredhutch_logo.png" alt="Fred Hutch logo" width="22%"></a>
+<a href="https://www.viennabiocenter.org/"><img src="../../../img/vienna_biocenter_logo.png" alt="Vienna BioCenter logo" width="23%"></a>
+<a href="http://www.ceci-hpc.be/"><img src="../../../img/ceci_logo.png" alt="CÉCI logo" width="18%"></a>
+<a href="https://www.computecanada.ca/home/"><img src="../../../img/computecanada_logo.png" alt="Compute Canada logo" width="32%"></a>
+<a href="https://www.uio.no/english/services/it/research/hpc/"><img src="../../../img/uio_logo.png" alt="UiO logo" width="25%"></a>
+<a href="https://intranet.birmingham.ac.uk/bear"><img src="../../../img/bear_logo.png" alt="BEAR logo" width="20%"></a>
+<a href="https://www.snic.se/"><img src="../../../img/snic_logo.png" alt="SNIC logo" width="25%"></a>
+>>>>>>> ae27a051 (Correction of links.)
 <a href="https://nusit.nus.edu.sg/hpc/"><img src="../../../img/nus_logo.png" alt="National University of Singapore logo" width="25%"></a>
 <a href="https://www.it4i.cz/en"><img src="../../../img/it4innovations_logo.png" alt="IT4Innovations logo" width="20%"></a>
 <a href="https://hprc.tamu.edu/"><img src="../../../img/texas_am_logo.png" alt="Texas A&M logo" width="14%"></a>
 <a href="https://tu-dresden.de/zih/dienste/service-katalog/hpc?set_language=en"><img src="../../../img/tudresden_logo.png" alt="TU Dresden logo" width="28%"></a>
 <a href="https://dashboard.hpc.unimelb.edu.au/"><img src="../../../img/univ_melbourne_logo.png" alt="University of Melbourne logo" width="16%"></a>
 <a href="https://hpc.uni.lu/"><img src="../../../img/unilu_logo.png" alt="University of Luxembourg logo" width="18%"></a>
+<<<<<<< HEAD
 <a href="https://www.epcc.ed.ac.uk/"><img src="../../../img/epcc_logo.png" alt="EPCC logo" width="26%"></a>
 <a href="https://hpcf.cyi.ac.cy/"><img src="../../../img/cyi_logo.png" alt="Cyprus Institute logo" width="30%"></a>
 <a href="https://scicore.unibas.ch/"><img src="../../../img/basel_logo.png" alt="University of Basel logo" width="30%"></a>
@@ -321,6 +351,12 @@ a href="https://www.vscentrum.be"><img src="../../../img/vsc_logo.png" alt="VSC 
 <a href="https://scicore.unibas.ch/"><img src="../../img/basel_logo.png" alt="University of Basel logo" width="26%"></a>
 <a href="https://techcommunity.microsoft.com/t5/azure-global/running-long-hpc-jobs-on-azure-with-checkpointing-using-lammps/ba-p/1335148"><img src="../../img/microsoft_logo.png" alt="Microsoft logo" width="23%"></a>
 >>>>>>> 549d7d34 (Restructuring for nicer navigation bar on the left.)
+=======
+<a href="https://www.epcc.ed.ac.uk/"><img src="../../../img/epcc_logo.png" alt="EPCC logo" width="21%"></a>
+<a href="http://hpcf.cyi.ac.cy/"><img src="../../../img/cyi_logo.png" alt="Cyprus Institute logo" width="26%"></a>
+<a href="https://scicore.unibas.ch/"><img src="../../../img/basel_logo.png" alt="University of Basel logo" width="26%"></a>
+<a href="https://techcommunity.microsoft.com/t5/azure-global/running-long-hpc-jobs-on-azure-with-checkpointing-using-lammps/ba-p/1335148"><img src="../../../img/microsoft_logo.png" alt="Microsoft logo" width="23%"></a>
+>>>>>>> ae27a051 (Correction of links.)
 
 ---
 

@@ -333,7 +333,11 @@ $ module avail AUGUSTUS
 ---
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 *[[next: Module naming schemes]](3_04_module_naming_schemes.md)*
 =======
 *[[next: Module naming schemes]](3_04_module_naming_scheme)*
 >>>>>>> 549d7d34 (Restructuring for nicer navigation bar on the left.)
+=======
+*[[next: Module naming schemes]](3_04_module_naming_schemes.md)*
+>>>>>>> ae27a051 (Correction of links.)
