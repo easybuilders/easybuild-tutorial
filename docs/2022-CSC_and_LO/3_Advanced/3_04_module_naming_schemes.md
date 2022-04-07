@@ -67,7 +67,7 @@ would be installed using the regular ``foss`` toolchain or the ``gompi`` toolcha
 On LUMI, where software is installed through the Cray Programming Environment with no real choice of
 MPI implementation, a two-level arrangement would still make a lot of sense, with at the ``Core`` level
 all software compiled with the SYSTEM toolchain while there could be a ``PrgEnv`` level for software
-compiled with a particula programming environment aka cepGNU/cpeCray/cpeAOCC toolchain. Such a scheme
+compiled with a particular programming environment aka cpeGNU/cpeCray/cpeAOCC toolchain. Such a scheme
 is used on the Cray systems at CSCS.
 
 To recap, the characteristics of a module hierarchy are:
