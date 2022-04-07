@@ -121,30 +121,29 @@ nav:
       - "CSC (spring '22)":
           - (overview): 2022-CSC_and_LO/index.md
           - Introduction to EasyBuild:
-              - (overview): 2022-CSC_and_LO/1_00_part1_intro.md
-              - What is EasyBuild?: 2022-CSC_and_LO/1_01_what_is_easybuild.md
-              - The Lmod module system: 2022-CSC_and_LO/1_02_Lmod.md
-              - The HPE Cray Programming Environment: 2022-CSC_and_LO/1_03_CPE.md
-              - LUMI software stacks: 2022-CSC_and_LO/1_04_LUMI_software_stack.md
-              - Terminology: 2022-CSC_and_LO/1_05_terminology.md
-              - Installation: 2022-CSC_and_LO/1_06_installation.md
-              - Configuration: 2022-CSC_and_LO/1_07_configuration.md
-              - Basic usage: 2022-CSC_and_LO/1_08_basic_usage.md
+              - (overview): 2022-CSC_and_LO/1_Intro/index.md
+              - What is EasyBuild?: 2022-CSC_and_LO/1_Intro/1_01_what_is_easybuild.md
+              - The Lmod module system: 2022-CSC_and_LO/1_Intro/1_02_Lmod.md
+              - The HPE Cray Programming Environment: 2022-CSC_and_LO/1_Intro/1_03_CPE.md
+              - LUMI software stacks: 2022-CSC_and_LO/1_Intro/1_04_LUMI_software_stack.md
+              - Terminology: 2022-CSC_and_LO/1_Intro/1_05_terminology.md
+              - Installation: 2022-CSC_and_LO/1_Intro/1_06_installation.md
+              - Configuration: 2022-CSC_and_LO/1_Intro/1_07_configuration.md
+              - Basic usage: 2022-CSC_and_LO/1_Intro/1_08_basic_usage.md
           - Using EasyBuild:
-              - (overview): 2022-CSC_and_LO/2_00_part2_using.md
-              - Troubleshooting: 2022-CSC_and_LO/2_01_troubleshooting.md
-              - Creating easyconfig files: 2022-CSC_and_LO/2_02_creating_easyconfig_files.md
-              - Using external modules from the Cray PE: 2022-CSC_and_LO/2_03_external_modules.md
-              - Implementing easyblocks: 2022-CSC_and_LO/2_04_implementing_easyblocks.md
+              - (overview): 2022-CSC_and_LO/2_Using/index.md
+              - Troubleshooting: 2022-CSC_and_LO/2_Using/2_01_troubleshooting.md
+              - Creating easyconfig files: 2022-CSC_and_LO/2_Using/2_02_creating_easyconfig_files.md
+              - Using external modules from the Cray PE: 2022-CSC_and_LO/2_Using/2_03_external_modules.md
+              - Implementing easyblocks: 2022-CSC_and_LO/2_Using/2_04_implementing_easyblocks.md
           - Advanced topics:
-              - (overview): 2022-CSC_and_LO/3_00_part3_advanced.md
-              - Using EasyBuild as a library: 2022-CSC_and_LO/3_01_easybuild_library.md
-              - Using hooks to customise EasyBuild: 2022-CSC_and_LO/3_02_hooks.md
-              - Submitting installations as Slurm jobs: 2022-CSC_and_LO/3_03_slurm_jobs.md
-              - Module naming schemes (incl. hierarchical): 2022-CSC_and_LO/3_04_module_naming_schemes.md
-              - GitHub integration to facilitate contributing to EasyBuild: 2022-CSC_and_LO/3_05_github_integration.md
+              - (overview): 2022-CSC_and_LO/3_Advanced/index.md
+              - Using EasyBuild as a library: 2022-CSC_and_LO/3_Advanced/3_01_easybuild_library.md
+              - Using hooks to customise EasyBuild: 2022-CSC_and_LO/3_Advanced/3_02_hooks.md
+              - Submitting installations as Slurm jobs: 2022-CSC_and_LO/3_Advanced/3_03_slurm_jobs.md
+              - Module naming schemes (incl. hierarchical): 2022-CSC_and_LO/3_Advanced/3_04_module_naming_schemes.md
+              - GitHub integration to facilitate contributing to EasyBuild: 2022-CSC_and_LO/3_Advanced/3_05_github_integration.md
           - Additional reading: 2022-CSC_and_LO/4_00_additional_reading.md
-
 
 plugins:
   # show revision date at bottom of each page
