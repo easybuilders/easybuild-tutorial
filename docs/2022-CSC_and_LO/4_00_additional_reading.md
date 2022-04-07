@@ -1,6 +1,6 @@
 # Additional reading
 
-*[[back: GitHub integration]](3_05_github_integration.md)*
+*[[back: GitHub integration]](3_Advanced/3_05_github_integration.md)*
 
 ---
 

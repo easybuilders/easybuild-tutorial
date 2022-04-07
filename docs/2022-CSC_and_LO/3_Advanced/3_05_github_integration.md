@@ -457,4 +457,4 @@ The gist linked from this comment provides more detailed information:
 
 ---
 
-*[[next: Additional reading]](4_00_additional_reading.md)*
+*[[next: Additional reading]](../4_00_additional_reading.md)*

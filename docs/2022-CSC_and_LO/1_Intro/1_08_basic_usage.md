@@ -1213,4 +1213,4 @@ and it's a lot to take in at once, take your time...
 
 ---
 
-*[[next: Troubleshooting]](2_Advanced/2_01_troubleshooting.md)*
+*[[next: Troubleshooting]](../2_Using/2_01_troubleshooting.md)*
