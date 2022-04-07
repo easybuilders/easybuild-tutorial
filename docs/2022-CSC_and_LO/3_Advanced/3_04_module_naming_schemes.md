@@ -55,7 +55,7 @@ This typical Lmod hierarcny would map very well on the EasyBuild common toolchai
 
 In fact, for the example
 
-<div align="center"><img src="../img/hmns.png" width="60%"/></div>
+<div align="center"><img src="../../../img/hmns.png" width="60%"/></div>
 
 software at the ``Core`` level would be installed with the ``GCCcore`` and ``SYSTEM``
 toolchains. Software at the ``Compiler`` level would be installed with the ``GCC``

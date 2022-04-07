@@ -1,6 +1,6 @@
 # Troubleshooting
 
-*[[back: BAsic usage]](../1_Intro/1_08_basic_usage)*
+*[[back: Basic usage]](../1_Intro/1_08_basic_usage.md)*
 
 ---
 

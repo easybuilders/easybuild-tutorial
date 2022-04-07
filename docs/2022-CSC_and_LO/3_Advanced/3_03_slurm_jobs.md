@@ -330,4 +330,4 @@ $ module avail AUGUSTUS
 
 ---
 
-*[[next: Module naming schemes]](3_04_module_naming_scheme)*
+*[[next: Module naming schemes]](3_04_module_naming_schemes.md)*

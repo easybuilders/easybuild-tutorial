@@ -72,7 +72,7 @@ git push my_fork example
 * the changes are indeed the ones you want to propose;
 * clicking the (correct) green button;
 
-<div align="center"><img src="../../img/pfft.png" alt="Pfft" width="30%"/></div>
+<div align="center"><img src="../../../img/pfft.png" alt="Pfft" width="30%"/></div>
 
 That didn't exactly motivate you to contribute, did it...
 
@@ -82,7 +82,7 @@ Over the years we noticed that some people were keen on contributing to EasyBuil
 but they were not very familiar with Git or GitHub. That meant they had to overcome a
 relatively steep learning curve before they could contribute...
 
-<div align="center"><img src="../../img/no_git.png" alt="Gandalf vs Git" width="50%"/></div>
+<div align="center"><img src="../../../img/no_git.png" alt="Gandalf vs Git" width="50%"/></div>
 
 In addition, the contribution workflow can be a bit daunting and time consuming,
 even if you're already familiar with the procedure. You will have dozens of
@@ -449,11 +449,11 @@ Note that we may need to use `--rebuild` here since `eb-tutorial` may already be
 
 This results in a comment being added to the pull request:
 
-<div align="center"><img src="../../img/test_report_comment.png" alt="Test report comment" width="75%"/></div>
+<div align="center"><img src="../../../img/test_report_comment.png" alt="Test report comment" width="75%"/></div>
 
 The gist linked from this comment provides more detailed information:
 
-<div align="center"><img src="../../img/test_report_gist.png" alt="Test report gist" width="75%"/></div>
+<div align="center"><img src="../../../img/test_report_gist.png" alt="Test report gist" width="75%"/></div>
 
 ---
 

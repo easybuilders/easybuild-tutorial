@@ -1,6 +1,6 @@
 # Creating easyconfig files
 
-*[[back: Troubleshooting]](2_02_troubleshooting)*
+*[[back: Troubleshooting]](2_01_troubleshooting.md)*
 
 ---
 
@@ -1024,4 +1024,4 @@ You can leverage the `eb-tutorial` easyconfig file we have composed in the examp
 
 ---
 
-*[[next: Using external modules from the Cray PE]](2_03_external_modules)*
+*[[next: Using external modules from the Cray PE]](2_03_external_modules.md)*
