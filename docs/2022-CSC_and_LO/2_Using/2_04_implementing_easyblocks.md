@@ -751,4 +751,4 @@ Your easyblock should only:
     This is a much simpler easyblock as we already use all the logic that has been written for us to build
     with CMake.
 
-*[[next: Part 3: Overview]](3_00_part3_advanced.md)*
+*[[next: EasyBuild as a library]](../3_Advanced/3_01_easybuild_library.md)*

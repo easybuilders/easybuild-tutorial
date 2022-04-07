@@ -50,19 +50,19 @@ module naming schemes, which are characterized by:
 In contrast, a *hierarchical* module naming scheme
 consists of a *hierarchy* of module files. 
 A fairly typical 3-level schme (``Core``, ``Compiler`` and ``MPI``) has been
-discussed in the [section on Lmod](../1_02_Lmod#lmod-hierarchy).
+discussed in the [section on Lmod](../1_Intro/1_02_Lmod#lmod-hierarchy).
 This typical Lmod hierarcny would map very well on the EasyBuild common toolchains.
 
 In fact, for the example
 
-<div align="center"><img src="../../img/hmns.png" width="60%"/></div>
+<div align="center"><img src="../img/hmns.png" width="60%"/></div>
 
 software at the ``Core`` level would be installed with the ``GCCcore`` and ``SYSTEM``
 toolchains. Software at the ``Compiler`` level would be installed with the ``GCC``
 toolchain, while software at the ``MPI`` level after loading the ``OpenMPI`` module
 would be installed using the regular ``foss`` toolchain or the ``gompi`` toolchain
 (see the diagram in the 
-["Common toolchains" section of the page on terminology](../1_05_terminology/#common-toolchains)).
+["Common toolchains" section of the page on terminology](../1_Intro/1_05_terminology/#common-toolchains)).
 
 On LUMI, where software is installed through the Cray Programming Environment with no real choice of
 MPI implementation, a two-level arrangement would still make a lot of sense, with at the ``Core`` level
@@ -325,7 +325,7 @@ a module. We have just made all modules unavailable, so we would have to first
 install EasyBuild again in our hierarchical module tree before we can continue.
 
 **We strongly recommend using an EasyBuild installation that was [installed via "`pip install`"
-or "`pip3 install`"](../1_06_installation#method-1-using-pip) in this part of the tutorial.**
+or "`pip3 install`"](../1_Intro/1_06_installation#method-1-using-pip) in this part of the tutorial.**
 
 An easy way to do this is in the prepared environment is to run:
 

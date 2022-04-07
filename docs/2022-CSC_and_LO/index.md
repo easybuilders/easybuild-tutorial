@@ -58,24 +58,24 @@ freely available, so unless you have access to a system with this environment yo
 
 ## Contents
 
-- [Part I: **Introduction to EasyBuild on Cray systems**](1_00_part1_intro.md)
-    -   [What is EasyBuild?](1_01_what_is_easybuild.md)
-    -   [The Lmod module system](1_02_Lmod.md)
-    -   [The HPE Cray Programming Environment](1_03_CPE.md)
-    -   [LUMI software stacks](1_04_LUMI_software_stack.md)
-    -   [Terminology](1_05_terminology.md)
-    -   [Installation](1_06_installation.md)
-    -   [Configuration](1_07_configuration.md)
-    -   [Basic usage](1_08_basic_usage.md) *(hands-on)*
-- [Part II: **Using EasyBuild**](2_00_part2_using.md)
-    -   [Troubleshooting](2_01_troubleshooting.md) *(hands-on)*
-    -   [Creating easyconfig files](2_02_creating_easyconfig_files.md) *(hands-on)*
-    -   [Using external modules from the Cray PE](2_03_external_modules.md)
-    -   [Implementing easyblocks](2_04_implementing_easyblocks.md) *(hands-on)*
-- [Part III: **Advanced topics**](3_00_part3_advanced.md)
-    -    [Using EasyBuild as a library](3_01_easybuild_library.md)
-    -    [Using hooks to customise EasyBuild](3_02_hooks.md)
-    -    [Submitting installations as Slurm jobs](3_03_slurm_jobs.md)
-    -    [Module naming schemes (incl. hierarchical)](3_04_module_naming_schemes.md)
-    -    [GitHub integration to facilitate contributing to EasyBuild](3_05_github_integration.md)
+- [Part I: **Introduction to EasyBuild on Cray systems**](1_Intro/index.md)
+    -   [What is EasyBuild?](1_Intro/1_01_what_is_easybuild.md)
+    -   [The Lmod module system](1_Intro/1_02_Lmod.md)
+    -   [The HPE Cray Programming Environment](1_Intro/1_03_CPE.md)
+    -   [LUMI software stacks](1_Intro/1_04_LUMI_software_stack.md)
+    -   [Terminology](1_Intro/1_05_terminology.md)
+    -   [Installation](1_Intro/1_06_installation.md)
+    -   [Configuration](1_Intro/1_07_configuration.md)
+    -   [Basic usage](1_Intro/1_08_basic_usage.md) *(hands-on)*
+- [Part II: **Using EasyBuild**](2_Using/index.md)
+    -   [Troubleshooting](2_Using/2_01_troubleshooting.md) *(hands-on)*
+    -   [Creating easyconfig files](2_Using/2_02_creating_easyconfig_files.md) *(hands-on)*
+    -   [Using external modules from the Cray PE](2_Using/2_03_external_modules.md)
+    -   [Implementing easyblocks](2_Using/2_04_implementing_easyblocks.md) *(hands-on)*
+- [Part III: **Advanced topics**](3_Advanced/index.md)
+    -    [Using EasyBuild as a library](3_Advanced/3_01_easybuild_library.md)
+    -    [Using hooks to customise EasyBuild](3_Advanced/3_02_hooks.md)
+    -    [Submitting installations as Slurm jobs](3_Advanced/3_03_slurm_jobs.md)
+    -    [Module naming schemes (incl. hierarchical)](3_Advanced/3_04_module_naming_schemes.md)
+    -    [GitHub integration to facilitate contributing to EasyBuild](3_Advanced/3_05_github_integration.md)
 - [**Additional reading**](4_00_additional_reading.md)

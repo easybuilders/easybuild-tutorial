@@ -1,6 +1,6 @@
 # Using EasyBuild as a library
 
-*[[back: Configuring EasyBuild]](1_07_configuration.md)*
+*[[back: Implementing EasyBlocks]](../2_Using/2_04_implementing_easyblocks.md)*
 
 ---
 

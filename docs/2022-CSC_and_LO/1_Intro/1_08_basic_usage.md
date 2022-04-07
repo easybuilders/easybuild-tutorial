@@ -1213,4 +1213,4 @@ and it's a lot to take in at once, take your time...
 
 ---
 
-*[[next: Part 2: Using EasyBuild]](2_00_part2_using.md)*
+*[[next: Troubleshooting]](2_Advanced/2_01_troubleshooting.md)*

@@ -15,10 +15,10 @@ In this part of the tutorial we will look at the guts of easyconfig files and ev
 
 ## Easyconfigs vs easyblocks
 
-Before we dive into writing [easyconfig files](../1_05_terminology/#easyconfig-files),
-let us take a brief look at how they relate to [easyblocks](../1_05_terminology/#easyblocks).
+Before we dive into writing [easyconfig files](../../1_Intro/1_05_terminology/#easyconfig-files),
+let us take a brief look at how they relate to [easyblocks](../../1_Intro/1_05_terminology/#easyblocks).
 
-As we discussed [earlier](../1_05_terminology/#terminology), an easyconfig file (`*.eb`) is required
+As we discussed [earlier](../../1_Intro/1_05_terminology/#terminology), an easyconfig file (`*.eb`) is required
 for each installation
 performed by EasyBuild which specifies the details of the installation (which software
 version, toolchain, etc.), while the installation procedure is implemented
@@ -139,10 +139,10 @@ Note that in this case the word "Description:" has to be explicitly specified.
 
 #### `toolchain`
 
-EasyBuild also requires that the [compiler toolchain](../1_05_terminology/#toolchains) is specified, via the `toolchain`
+EasyBuild also requires that the [compiler toolchain](../../1_Intro/1_05_terminology/#toolchains) is specified, via the `toolchain`
 easyconfig parameter.
 
-This can either be the [`system` toolchain](../1_05_terminology/#system-toolchain), for which a constant named `SYSTEM` is available:
+This can either be the [`system` toolchain](../../1_Intro/1_05_terminology/#system-toolchain), for which a constant named `SYSTEM` is available:
 
 ```python
 toolchain = SYSTEM
@@ -271,7 +271,7 @@ tar_config_opts*        Override tar settings as determined by configure. [defau
 
 #### Dependencies
 
-You will often need to list one or more [dependencies](../1_05_terminology/#dependencies) that are required
+You will often need to list one or more [dependencies](../../1_Intro/1_05_terminology/#dependencies) that are required
 to install or run the software.
 We distinguish between two main different types of dependencies: runtime dependencies and build dependencies.
 
@@ -640,7 +640,7 @@ build tools, and `cmake` is one of those tools that is typically entered as a bu
 dependency. After all, the less you rely on the OS, the more likely it becomes that
 your easyconfig is useful for other sites also.
 
-In the [section on Lmod](../1_02_Lmod#module-extensions) we've already seen that on LUMI
+In the [section on Lmod](../../1_Intro/1_02_Lmod#module-extensions) we've already seen that on LUMI
 the `cmake` command is available through the `buildtools` modules, and as discussed in
 other examples on this page, LUMI has one for every `LUMI` software stack with its version
 number the same as the stack and corresponding toolchains. It is a good practice to
@@ -654,7 +654,7 @@ builddependencies = [
 
 In a more traditional EasyBuild setup with the common toolchains, there is usually no need to specify
 the toolchain for (build) dependencies. EasyBuild will automatically consider
-[subtoolchains](../1_05_terminology/#toolchains) compatible with the specified toolchain to locate 
+[subtoolchains](../../1_Intro/1_05_terminology/#toolchains) compatible with the specified toolchain to locate 
 modules for the dependencies. However, the Cray PE toolchains on LUMI are currently not part of
 such a hierarchy and the `SYSTEM` toolchain we used for `buildtools` is not automatically considered
 which is why we need the 4-element version of the dependency specification.
