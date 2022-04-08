@@ -5,7 +5,7 @@
 ---
 
 The user-facing documentation on how to use the LUMI software stacks is
-avialable in [the LUMI documentation](https://docs.lumi-supercomputer.eu/computing/softwarestacks/).
+available in [the LUMI documentation](https://docs.lumi-supercomputer.eu/computing/softwarestacks/).
 On this page we focus more on the technical implementation behind it.
 
 ---

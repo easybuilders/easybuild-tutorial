@@ -21,7 +21,7 @@ It is important to be aware of some details before you start using this, which w
     temporary files and build directory. Those have to be made by hand. 
 
     Due to the setup of the central software stack, this feature is currently useless to install
-    the central stack. For user installations, there are also limitations as the enviornment
+    the central stack. For user installations, there are also limitations as the environment
     on the compute nodes is different from the login nodes so, e.g., different locations for
     temporary files are being used. These would only be refreshed if the EasyBuild configuration
     modules are reloaded on the compute nodes which cannot be done currently in the way Slurm
@@ -178,7 +178,7 @@ To remedy this, there are a couple of EasyBuild configuration options you can us
 The build directory of course also suffers from the problem of being no longer accessible if the
 installation fails, but there it is not so easy to find a solution. Building on a shared file system
 is not only much slower, but in particular on parallel file systems like GPFS/SpectrumScale, Lustre
-or BeeGFS buiding sometimes fails in strange ways. One thing you can consider if you cannot do the
+or BeeGFS building sometimes fails in strange ways. One thing you can consider if you cannot do the
 build on a login node (e.g., because the code is not suitable for cross-compiling or the configure
 system does tests that would fail on the login node), is to rety the installation in an
 interactive job,  so you can inspect the build directory after the installation fails.

@@ -524,7 +524,7 @@ Dry run: printing build status of easyconfigs and dependencies
 == Temporary directory /run/user/10012026/easybuild/tmp/eb-wm_bk3j6 has been removed.
 ``` 
 
-and now instal the library:
+and now install the library:
 
 ```shell
 $ eb libdap-3.20.9-cpeGNU-21.12.eb
@@ -782,7 +782,7 @@ sourcepath            (E) = /users/XXXXXXXX/LUMI-user/sources:/appl/lumi/sources
 ...
 ```
 
-This is sligthly different from the default EasyBuild setup, where the modules, software,
+This is slightly different from the default EasyBuild setup, where the modules, software,
 repository and sources would be installed in respectively the subdirectories `modules`,
 `software`, `ebfiles_repo` and `sources` of the directory pointed to by the `installpath` 
 line. 
@@ -932,7 +932,7 @@ Currently Loaded Modules:
    S:  Module is Sticky, requires --force to unload or purge
 ```
 
-Runnin `module --force purge` instead will remove all modules, including the `init-lumi` 
+Running `module --force purge` instead will remove all modules, including the `init-lumi` 
 module which does part of the initialisation. You will not be able to use the software
 stacks completely as before without first loading `init-lumi` in its most recent (or default)
 version again!

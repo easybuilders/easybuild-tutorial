@@ -107,7 +107,7 @@ module location for a particular software name or easyblock class name. For exam
 ```
 
 The location of the Python module is determined by whether the easyblock is generic or software-specific.
-Generic easyblocks are located in the ``easybuid.easyblocks.generic`` namespace, while software-specific easyblocks
+Generic easyblocks are located in the ``easybuild.easyblocks.generic`` namespace, while software-specific easyblocks
 live in the ``easybuild.easyblocks`` namespace directly.
 
 To keep things organised, the actual Python module files
@@ -661,7 +661,7 @@ Your easyblock should:
     whatis = [ 'Description: EasyBuild tutorial example']
 
     description = """
-    This is a short C++ example program that can be buid using CMake.
+    This is a short C++ example program that can be build using CMake.
     """
 
     toolchain = {'name': 'cpeCray', 'version': '21.12'}

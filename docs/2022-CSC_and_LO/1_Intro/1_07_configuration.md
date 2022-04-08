@@ -14,7 +14,7 @@ and to configure EasyBuild according to your preferences and the system on which
 
 !!! Note "EasyBuild configuration on LUMI"
 
-    On LUMI serveral configurations of EasyBuild are already available.
+    On LUMI several configurations of EasyBuild are already available.
 
     The ``EasyBuild-user`` module is the most important one. It will configure EasyBuild
     to install software in either a default location in the user's home directory 
@@ -104,7 +104,7 @@ and the default `software` and `modules/all` names for the subdirectories are us
 
     This makes it slightly easier to organise the module tree with user-friendly labeling, but above
     all also makes the synchronisation process of the 4 instances of the software directory more robust
-    as it is now easy to synchonise all modules in the last step, which is a much quicker process than
+    as it is now easy to synchronise all modules in the last step, which is a much quicker process than
     syncrhonising the software installations.
 
     We also use short paths for software installations (to avoid overrunning the maximum length of a

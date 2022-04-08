@@ -318,7 +318,7 @@ specific parameter is less useful on LUMI as we currently try to build on top of
 
 The `buildtools` build dependency shows that there is a fourth parameter specifying the toolchain 
 used for that dependency and is needed if that toolchain is different from the one used in the example.
-As it is not possible to load several Cray toolchains together (they are not in a hierachical relation)
+As it is not possible to load several Cray toolchains together (they are not in a hierarchical relation)
 the only useful value on LUMI is `True` which tells that `buildtools` is build with the `SYSTEM` 
 toolchain. Here also we use a template, `%(toolchain_version)s` which - as its name suggests - expands
 to the version of the toolchain, as we version our `buildtools` modules after the version of the Cray
@@ -569,7 +569,7 @@ homepage = 'https://easybuilders.github.io/easybuild-tutorial'
 whatis = [ 'Description: EasyBuild tutorial example']
 
 description = """
-This is a short C++ example program that can be buid using CMake.
+This is a short C++ example program that can be build using CMake.
 """
 ```
 
@@ -582,7 +582,7 @@ ERROR: Failed to process easyconfig /pfs/lustrep4/users/XXXXXXXX/easybuild-tutor
 No software-specific easyblock 'EB_eb_minus_tutorial' found for eb-tutorial
 ```
 
-It is not mandatory to specify an easyblock in the easyconfig. However, in the absense of that
+It is not mandatory to specify an easyblock in the easyconfig. However, in the absence of that
 specification, EasyBuild goes looking for an application-specific easyblock with the standard name,
 in this case `EB_eb_minus_tutorial`, which it does not have. Does that mean we have to implement an easyblock?
 

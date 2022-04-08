@@ -11,7 +11,7 @@
     EasyBuild.
 -   [EasyBuild YouTube channel](https://www.youtube.com/c/EasyBuilders)
 -   This tutorial is an evolution of the 
-    [EasyBuild tutorial prepared for the LUMI User Suppport Team, spring '21](https://easybuilders.github.io/easybuild-tutorial/2021-lust/)
+    [EasyBuild tutorial prepared for the LUMI User Support Team, spring '21](https://easybuilders.github.io/easybuild-tutorial/2021-lust/)
     given by Kenneth Hoste (UGent, EasyBuild lead developer) and Luca Marsella (CSCS)
     -   [Recordings are available on YouTube](https://www.youtube.com/watch?v=JTRw8hqi6x0&list=PLhnGtSmEGEQh573bk3BeOj_KCRBBiA5OT)
 -   The EasyBuild setup on LUMI is partly insprired on the setup used at CSCS on their Cray systems

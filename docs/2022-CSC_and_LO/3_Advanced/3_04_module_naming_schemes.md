@@ -49,7 +49,7 @@ module naming schemes, which are characterized by:
 
 In contrast, a *hierarchical* module naming scheme
 consists of a *hierarchy* of module files. 
-A fairly typical 3-level schme (``Core``, ``Compiler`` and ``MPI``) has been
+A fairly typical 3-level scheme (``Core``, ``Compiler`` and ``MPI``) has been
 discussed in the [section on Lmod](../1_Intro/1_02_Lmod#lmod-hierarchy).
 This typical Lmod hierarcny would map very well on the EasyBuild common toolchains.
 
@@ -67,7 +67,7 @@ would be installed using the regular ``foss`` toolchain or the ``gompi`` toolcha
 On LUMI, where software is installed through the Cray Programming Environment with no real choice of
 MPI implementation, a two-level arrangement would still make a lot of sense, with at the ``Core`` level
 all software compiled with the SYSTEM toolchain while there could be a ``PrgEnv`` level for software
-compiled with a particula programming enviornment aka cepGNU/cpeCray/cpeAOCC toolchain. Such a scheme
+compiled with a particula programming environment aka cepGNU/cpeCray/cpeAOCC toolchain. Such a scheme
 is used on the Cray systems at CSCS.
 
 To recap, the characteristics of a module hierarchy are:
@@ -164,7 +164,7 @@ loaded on LUMI this was not possible to accomplish without losing other function
 
 Next to the module naming schemes that are included with EasyBuild,
 you can also define your own module naming scheme (MNS), and configure EasyBuild to use it
-(which is eactly what has been done on LUMI to remove a feature of the default ``EasyBuildMNS`` scheme
+(which is exactly what has been done on LUMI to remove a feature of the default ``EasyBuildMNS`` scheme
 that we do not use).
 
 ### Implementation
@@ -288,7 +288,7 @@ $ eb SciPy-bundle-2020.11-foss-2020b-Python-2.7.18.eb -D
 
 !!! Warning "Example not suitable for LUMI"
     **This exercise is meant for a system where the common toolchains can be used and requires an
-    indpendent EasyBuild installation in your personal file space**,
+    independent EasyBuild installation in your personal file space**,
     because EasyBuild will try to copy the installation log file to each installation directory.
 
 Now that we know more about hierarchical module naming schemes,

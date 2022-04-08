@@ -23,7 +23,7 @@ Unloading the environment module will restore the shell environment to its previ
 Environment module files are processed via a **modules tool**, of which there
 are several conceptually similar yet slightly different implementations.
 The oldest module tool still in use today is Environment Modules 3.2, implemented in C and 
-supporting module files written in Tcl. After a gap in developement, Xavier Delaruelle of CEA
+supporting module files written in Tcl. After a gap in development, Xavier Delaruelle of CEA
 developed [Environment Modules 4 and 5](https://sourceforge.net/projects/modules/) which is
 fully implemented on Tcl. An alternative module tool is [Lmod](https://lmod.readthedocs.io), 
 developed by Robert McLay at TACC and implemented in LUA. This tool supports natively LUA
@@ -39,7 +39,7 @@ Lmod also has some powerful features that are lacking in Environment Modules 3.2
     On LUMI, Lmod was selected as the module tool. One area where there are significant
     differences between Environment Modules 3.2 (and also the newer versions) and Lmod is
     in the commands for discovering modules on the system. If you are not familiar with Lmod 
-    and its commands for users, it is worthwile to read the 
+    and its commands for users, it is worthwhile to read the 
     [LUMI documentation page on Lmod](https://docs.lumi-supercomputer.eu/computing/Lmod_modules/).
     Some of those commands are also discussed on this page.
 
@@ -244,7 +244,7 @@ family('MPI')
 prepend_path('MODULEPATH', 'moduleroot/MPI/Compiler_A/version_A/MPI_C/version_C')
 ```
 
-Finally two vesions of the ``version_E.lua`` file are needed, one to prepare the environment for using the 
+Finally two versions of the ``version_E.lua`` file are needed, one to prepare the environment for using the 
 package with Compiler_A anmd MPI_C and one for using the package with Compiler_B and MPI_C. However, these
 are just regular modules and no additions are needed to work for the hierarchy.
 
@@ -375,7 +375,7 @@ e.g., NumPy and SciPy for Python. Installing all those packages as separate modu
 to make it easy to see if they are installed or not on a system would lead to an
 overload of modules on the system. 
 
-Similary, admins of a software stack may chose to bundle several libraries or tools
+Similarly, admins of a software stack may chose to bundle several libraries or tools
 that are often used together in a single module (and single installation directory),
 e.g., to reduce module clutter but also to reduce the length of the search paths for
 binaries, libraries or manual pages to speed up loading of applications.
@@ -550,7 +550,7 @@ indicated version.
 Lmod works by executing the module file. However, the actions of all Lmod-defined 
 functions will depend upon the mode in which Lmod is executing the module function,
 and the module file can also detect in which mode it is executing.
-Modes include "load", "unload"but also "spider".  E.g., when te mode is "load", the
+Modes include "load", "unload" but also "spider".  E.g., when the mode is "load", the
 ``setenv`` function will set an environment variable to the indicated value while in 
 "unload" mode that environment variable will be unset, and in "spider" mode the 
 environment variable is left untouched. The working of ``prepend_path``, a function 
@@ -564,7 +564,7 @@ in that PATH-style variable). When the mode is "spider", the function has specia
 if it is used to change the ``MODULEPATH``. It will then note the change and add that
 directory to the list of directories that has to be searched for module files.
 This makes ``module spider`` a very expensive command as it may have to traverse a lot
-of directories and has to execute all module files in there. Therefor Lmod will build
+of directories and has to execute all module files in there. Therefore Lmod will build
 a so-called spider cache which can be pre-built in the system for  certain directories
 and otherwise will be build in the user's home directory (in the ``.lmod.d/.cache``
 subdirectory). Our experience is that this cache tends to be rather fragile,
@@ -661,7 +661,7 @@ module load MyPythonPackage/1.0
 Because of the *"one name rule"* this will again trigger an unload followed by a load
 of the module. The problem is in the unload. One would expect that first unloading
 ``MyPythonPackage`` would remove the 2.7 directory from the ``PYTHON_PATH`` but it 
-will not. Lmod does not remeber that last time it loaded ``MyPythonPackage`` it added
+will not. Lmod does not remember that last time it loaded ``MyPythonPackage`` it added
 the 2.7 directory to ``PythonPath``. Instead it will execute the commands in the 
 modulefile and reverse certain commands. Since ``PYTHON_API_VERSION`` has now the value
 ``3.6``, it will try to remove the directory for version ``3.6`` which is not in the
