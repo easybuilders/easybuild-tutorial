@@ -1,17 +1,10 @@
 # What is EasyBuild?
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 *[[back: Course overview]](../index.md)*
 
 <p align="center"><img src="../../../img/easybuild_logo_alpha.png" alt="EasyBuild logo" width="300px"/></p>
 
 **[EasyBuild](https://easybuild.io)** is a **software build and installation framework**
-=======
-*[[back: Overview]](index.md)*
-=======
-*[[back: Course overview]](../index.md)*
->>>>>>> ae27a051 (Correction of links.)
 
 <p align="center"><img src="../../../img/easybuild_logo_alpha.png" alt="EasyBuild logo" width="300px"/></p>
 
@@ -23,17 +16,8 @@ and provides a **command-line interface** to facilitate the installation and man
 
 ---
 
-<<<<<<< HEAD
 <a href="https://geek-and-poke.com/geekandpoke/2010/5/14/how-to-become-invaluable.html">
 <img src="../../../img/geek-and-poke-invaluable.png" style="float:right" width="45%"/>
-=======
-<a href="http://geek-and-poke.com/geekandpoke/2010/5/14/how-to-become-invaluable.html">
-<<<<<<< HEAD
-<img src="../../img/geek-and-poke-invaluable.png" style="float:right" width="45%"/>
->>>>>>> 549d7d34 (Restructuring for nicer navigation bar on the left.)
-=======
-<img src="../../../img/geek-and-poke-invaluable.png" style="float:right" width="45%"/>
->>>>>>> ae27a051 (Correction of links.)
 </a>
 
 ## Elevator pitch
@@ -89,11 +73,7 @@ as it is performed.
 
 EasyBuild supports using a **custom module naming scheme**, allows for
 *hierarchical* module naming schemes, and **integrates with various other tools** ranging from  resource managers ([Slurm](https://slurm.schedmd.com) and [GC3Pie](https://github.com/gc3pie/gc3pie)),
-<<<<<<< HEAD
 container tools ([Singularity](https://github.com/apptainer/singularity) and [Docker](https://www.docker.com)),
-=======
-container tools ([Singularity](https://github.com/hpcng/singularity) and [Docker](https://www.docker.com)),
->>>>>>> 549d7d34 (Restructuring for nicer navigation bar on the left.)
 packaging tools ([FPM](https://fpm.readthedocs.io)), and so on.
 
 ---
@@ -120,11 +100,7 @@ By default EasyBuild tries to run tests if the build process of a package provid
 functionality, or can run simple tests of its own, and of course these tests will fail if 
 the host CPU does not support the full instruction set of the target CPU. Secondly, more
 and more software has broken build processes where developers thought that it was a good 
-<<<<<<< HEAD
 idea to hard-code options such as ``-march=native`` or ``-xHost`` in a way that EasyBuild
-=======
-idea to hard-code options such as ``-march=native`` or ``--xHost`` in a way that EasyBuild
->>>>>>> 549d7d34 (Restructuring for nicer navigation bar on the left.)
 cannot easily overwrite those.
 
 
@@ -132,24 +108,14 @@ cannot easily overwrite those.
 
 In addition to performance, **reproducibility of installations** is a core aspect of EasyBuild.
 
-<<<<<<< HEAD
 Most software installations performed with EasyBuild use a **particular compiler <a href="../1_05_terminology#toolchains">toolchain</a>**,
-=======
-TODO correct link in the next lines.
-
-Most software installations performed with EasyBuild use a **particular compiler <a href="#toolchains">toolchain</a>**,
->>>>>>> 549d7d34 (Restructuring for nicer navigation bar on the left.)
 with which we aim to be in control over the build environment and avoid relying on tools and libraries
 provided by the operating system. For similar reasons, we try to **provide all required dependencies through EasyBuild** as well,
 with a few notable exceptions, like ``OpenSSL`` for security reasons, and Infiniband and GPU drivers which
 are too closely intertwined with the operating system.
 
 For both toolchains and dependencies, **fixed software versions** are specified in the
-<<<<<<< HEAD
 <a href="../1_05_terminology#easyconfig-files">easyconfig files</a>. That way, easyconfig files can easily be shared with others:
-=======
-<a href="#easyconfig-files">easyconfig files</a>. That way, easyconfig files can easily be shared with others:
->>>>>>> 549d7d34 (Restructuring for nicer navigation bar on the left.)
 if they worked for you it is very likely that they will work for others too, because the vast majority of the
 software stack is controlled by EasyBuild.
 
@@ -166,30 +132,17 @@ and to [**contribute back**](https://docs.easybuild.io/en/latest/Contributing.ht
 by opening pull requests to the [GitHub repositories](https://github.com/easybuilders) or the [documentation](https://docs.easybuild.io).
 
 The EasyBuild community also provides packages for two standard toolchains, called the 
-<<<<<<< HEAD
 [**common toolchains**](https://docs.easybuild.io/en/latest/Common-toolchains.html). 
 The so-called ``foss`` is based on free and open software (GNU compilers, FlexiBlas with OpenBLAS backend, LaPACK, FFTW and Open MPI)
 while the ``intel`` toolchain uses the full stack of Intel compilers, libraries and MPI. Currently these toolchains
 cannot be supported on LUMI though as getting Open MPI to run on LUMI is challenging and as the Intel libraries and
 some MPI versions also produce slow or incorrect results on AMD CPUs (and it is not entirely clear if Intel MPI is compatible
 with SlingShot 11, though in principle it should). 
-=======
-[**common toolchains**](https://easybuild.readthedocs.io/en/latest/Common-toolchains.html). 
-The so-called ``foss`` is based on free and open software (GNU compilers, FlexiBlas with OpenBLAS backend, LaPACK, FFTW and Open MPI)
-while the ``intel`` toolchain uses the full stack of Intel compilers, libraries and MPI. Currently these toolchains
-cannot be supported on LUMI though as getting Open MPI to run on LUMI is challenging and as the Intel libraries and
-some MPI versions also produce slow or incorrect results on AMD CPUs (and it is not clear if Intel MPI is compatible
-with SlingShot 11). 
->>>>>>> 549d7d34 (Restructuring for nicer navigation bar on the left.)
 Focusing the efforts on those two popular common toolchains makes it possible to support a lot of build recipes that are
 collected in the [central repository](https://github.com/easybuilders/easybuild-easyconfigs).
 They can still serve as a basis to develop build recipes for the HPE Cray Programming Environment.
 
-<<<<<<< HEAD
 Last but not least, EasyBuild provides various [**GitHub integration features**](https://docs.easybuild.io/en/latest/Integration_with_GitHub.html)
-=======
-Last but not least, EasyBuild provides various [**GitHub integration features**](https://easybuild.readthedocs.io/en/latest/Integration_with_GitHub.html)
->>>>>>> 549d7d34 (Restructuring for nicer navigation bar on the left.)
 that greatly facilitate the contribution process: opening, updating, and testing pull requests,
 reviewing incoming contributions, and much more can all be done directly from the EasyBuild
 command line. This not only saves time, effort, brain cycles, and mouse clicks for contributors,
@@ -223,15 +176,7 @@ Since EasyBuild is primarily intended for installing (scientific) software on HP
 systems running some flavor of **GNU/Linux**. EasyBuild also works on *macOS*,
 but significant effort would be required to use it extensively there.
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 <img src="../../../img/Python-logo.png" style="border-right: 20px solid white;border-top: 5px solid white; float:left" width="90px"/>
-=======
-<img src="../../img/Python-logo.png" style="border-right: 20px solid white;border-top: 5px solid white; float:left" width="90px"/>
->>>>>>> 549d7d34 (Restructuring for nicer navigation bar on the left.)
-=======
-<img src="../../../img/Python-logo.png" style="border-right: 20px solid white;border-top: 5px solid white; float:left" width="90px"/>
->>>>>>> ae27a051 (Correction of links.)
 
 EasyBuild is implemented in [**Python**](https://www.python.org), and is compatible with Python 2.7 and 3.5+.
 Since [Python 2 is no longer maintained](https://blog.python.org/2020/04/python-2718-last-release-of-python-2.html),
@@ -247,15 +192,7 @@ On LUMI Lmod is used as the module tool.
 
 ## Development
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 <a href="http://github.com/easybuilders"><img src="../../../img/github_logo.png" style="float:left" width="15%"/></a>
-=======
-<a href="http://github.com/easybuilders"><img src="../../img/github_logo.png" style="float:left" width="15%"/></a>
->>>>>>> 549d7d34 (Restructuring for nicer navigation bar on the left.)
-=======
-<a href="http://github.com/easybuilders"><img src="../../../img/github_logo.png" style="float:left" width="15%"/></a>
->>>>>>> ae27a051 (Correction of links.)
 EasyBuild is **actively developed** by a worldwide community under the
 [**GPLv2 open source license**](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
 via the [**``easybuilders``** organisation on GitHub](https://github.com/easybuilders), in the following repositories:
@@ -293,8 +230,6 @@ sites leverage it, and integrate it with other tools like [Jenkins](https://www.
 
 HPC sites, consortia, and companies that use EasyBuild include (but are not limited to):
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 a href="https://www.vscentrum.be"><img src="../../../img/vsc_logo.png" alt="VSC logo" width="40%"></a>
 <a href="https://www.fz-juelich.de/ias/jsc"><img src="../../../img/jsc_logo.png" alt="JSC logo" width="28%"></a>
 <a href="https://hpcnow.com/"><img src="../../../img/hpcnow_logo.png" alt="HPCNow! logo" width="25%"></a>
@@ -306,57 +241,16 @@ a href="https://www.vscentrum.be"><img src="../../../img/vsc_logo.png" alt="VSC 
 <a href="https://www.uio.no/english/services/it/research/hpc/"><img src="../../../img/uio_logo.png" alt="UiO logo" width="25%"></a>
 <a href="https://intranet.birmingham.ac.uk/bear"><img src="../../../img/bear_logo.png" alt="BEAR logo" width="20%"></a>
 <a href="https://www.snic.se/"><img src="../../../img/snic_logo.png" alt="SNIC logo" width="30%"></a>
-=======
-<a href="https://vscentrum.be"><img src="../../../img/vsc_logo.png" alt="VSC logo" width="40%"></a>
-<a href="https://www.fz-juelich.de/ias/jsc"><img src="../../../img/jsc_logo.png" alt="JSC logo" width="28%"></a>
-<a href="https://hpcnow.com/"><img src="../../../img/hpcnow_logo.png" alt="HPCNow! logo" width="25%"></a>
-<a href="https://www.fredhutch.org/"><img src="../../../img/fredhutch_logo.png" alt="Fred Hutch logo" width="22%"></a>
-<a href="https://www.viennabiocenter.org/"><img src="../../../img/vienna_biocenter_logo.png" alt="Vienna BioCenter logo" width="23%"></a>
-<a href="http://www.ceci-hpc.be/"><img src="../../../img/ceci_logo.png" alt="CÉCI logo" width="18%"></a>
-<a href="https://www.computecanada.ca/home/"><img src="../../../img/computecanada_logo.png" alt="Compute Canada logo" width="32%"></a>
-<a href="https://www.uio.no/english/services/it/research/hpc/"><img src="../../../img/uio_logo.png" alt="UiO logo" width="25%"></a>
-<a href="https://intranet.birmingham.ac.uk/bear"><img src="../../../img/bear_logo.png" alt="BEAR logo" width="20%"></a>
-<a href="https://www.snic.se/"><img src="../../../img/snic_logo.png" alt="SNIC logo" width="25%"></a>
->>>>>>> ae27a051 (Correction of links.)
 <a href="https://nusit.nus.edu.sg/hpc/"><img src="../../../img/nus_logo.png" alt="National University of Singapore logo" width="25%"></a>
 <a href="https://www.it4i.cz/en"><img src="../../../img/it4innovations_logo.png" alt="IT4Innovations logo" width="20%"></a>
 <a href="https://hprc.tamu.edu/"><img src="../../../img/texas_am_logo.png" alt="Texas A&M logo" width="14%"></a>
 <a href="https://tu-dresden.de/zih/dienste/service-katalog/hpc?set_language=en"><img src="../../../img/tudresden_logo.png" alt="TU Dresden logo" width="28%"></a>
 <a href="https://dashboard.hpc.unimelb.edu.au/"><img src="../../../img/univ_melbourne_logo.png" alt="University of Melbourne logo" width="16%"></a>
 <a href="https://hpc.uni.lu/"><img src="../../../img/unilu_logo.png" alt="University of Luxembourg logo" width="18%"></a>
-<<<<<<< HEAD
 <a href="https://www.epcc.ed.ac.uk/"><img src="../../../img/epcc_logo.png" alt="EPCC logo" width="26%"></a>
 <a href="https://hpcf.cyi.ac.cy/"><img src="../../../img/cyi_logo.png" alt="Cyprus Institute logo" width="30%"></a>
 <a href="https://scicore.unibas.ch/"><img src="../../../img/basel_logo.png" alt="University of Basel logo" width="30%"></a>
 <a href="https://techcommunity.microsoft.com/t5/azure-global/running-long-hpc-jobs-on-azure-with-checkpointing-using-lammps/ba-p/1335148"><img src="../../../img/microsoft_logo.png" alt="Microsoft logo" width="26%"></a>
-=======
-<a href="https://vscentrum.be"><img src="../../img/vsc_logo.png" alt="VSC logo" width="40%"></a>
-<a href="https://www.fz-juelich.de/ias/jsc"><img src="../../img/jsc_logo.png" alt="JSC logo" width="28%"></a>
-<a href="https://hpcnow.com/"><img src="../../img/hpcnow_logo.png" alt="HPCNow! logo" width="25%"></a>
-<a href="https://www.fredhutch.org/"><img src="../../img/fredhutch_logo.png" alt="Fred Hutch logo" width="22%"></a>
-<a href="https://www.viennabiocenter.org/"><img src="../../img/vienna_biocenter_logo.png" alt="Vienna BioCenter logo" width="23%"></a>
-<a href="http://www.ceci-hpc.be/"><img src="../../img/ceci_logo.png" alt="CÉCI logo" width="18%"></a>
-<a href="https://www.computecanada.ca/home/"><img src="../../img/computecanada_logo.png" alt="Compute Canada logo" width="32%"></a>
-<a href="https://www.uio.no/english/services/it/research/hpc/"><img src="../../img/uio_logo.png" alt="UiO logo" width="25%"></a>
-<a href="https://intranet.birmingham.ac.uk/bear"><img src="../../img/bear_logo.png" alt="BEAR logo" width="20%"></a>
-<a href="https://www.snic.se/"><img src="../../img/snic_logo.png" alt="SNIC logo" width="25%"></a>
-<a href="https://nusit.nus.edu.sg/hpc/"><img src="../../img/nus_logo.png" alt="National University of Singapore logo" width="25%"></a>
-<a href="https://www.it4i.cz/en"><img src="../../img/it4innovations_logo.png" alt="IT4Innovations logo" width="20%"></a>
-<a href="https://hprc.tamu.edu/"><img src="../../img/texas_am_logo.png" alt="Texas A&M logo" width="14%"></a>
-<a href="https://tu-dresden.de/zih/dienste/service-katalog/hpc?set_language=en"><img src="../../img/tudresden_logo.png" alt="TU Dresden logo" width="28%"></a>
-<a href="https://dashboard.hpc.unimelb.edu.au/"><img src="../../img/univ_melbourne_logo.png" alt="University of Melbourne logo" width="16%"></a>
-<a href="https://hpc.uni.lu/"><img src="../../img/unilu_logo.png" alt="University of Luxembourg logo" width="18%"></a>
-<a href="https://www.epcc.ed.ac.uk/"><img src="../../img/epcc_logo.png" alt="EPCC logo" width="21%"></a>
-<a href="http://hpcf.cyi.ac.cy/"><img src="../../img/cyi_logo.png" alt="Cyprus Institute logo" width="26%"></a>
-<a href="https://scicore.unibas.ch/"><img src="../../img/basel_logo.png" alt="University of Basel logo" width="26%"></a>
-<a href="https://techcommunity.microsoft.com/t5/azure-global/running-long-hpc-jobs-on-azure-with-checkpointing-using-lammps/ba-p/1335148"><img src="../../img/microsoft_logo.png" alt="Microsoft logo" width="23%"></a>
->>>>>>> 549d7d34 (Restructuring for nicer navigation bar on the left.)
-=======
-<a href="https://www.epcc.ed.ac.uk/"><img src="../../../img/epcc_logo.png" alt="EPCC logo" width="21%"></a>
-<a href="http://hpcf.cyi.ac.cy/"><img src="../../../img/cyi_logo.png" alt="Cyprus Institute logo" width="26%"></a>
-<a href="https://scicore.unibas.ch/"><img src="../../../img/basel_logo.png" alt="University of Basel logo" width="26%"></a>
-<a href="https://techcommunity.microsoft.com/t5/azure-global/running-long-hpc-jobs-on-azure-with-checkpointing-using-lammps/ba-p/1335148"><img src="../../../img/microsoft_logo.png" alt="Microsoft logo" width="23%"></a>
->>>>>>> ae27a051 (Correction of links.)
 
 ---
 
