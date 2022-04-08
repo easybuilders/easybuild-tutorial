@@ -708,7 +708,7 @@ still fail to remove the 2.7 directory from ``PYTHONPATH``.
     1.  The files ``level1/MyPython/2.7.18.lua`` and ``level1/MyPython/3.6.10.lua``,
         both with the same contents:
         ``` lua
-        LmodMessage( '\nIn ' ..  myModuleFullName() .. ' in mode '  .. mode() )
+        LmodMessage( 'In ' ..  myModuleFullName() .. ' in mode '  .. mode() )
         
         local api_version = myModuleVersion():match( '(%d+%.%d+)%..*' )
         
@@ -724,7 +724,7 @@ still fail to remove the 2.7 directory from ``PYTHONPATH``.
     2.  The files ``level2/PythonAPI/2.7/MyPythonPackage/1.0.lua`` and
         ``level2/PythonAPI/3.6/MyPythonPackage/1.0.lua``, both with the contents:
         ``` lua
-        LmodMessage( '\nIn ' ..  myFileName() .. ' in mode '  .. mode() )
+        LmodMessage( 'In ' ..  myFileName() .. ' in mode '  .. mode() )
         
         local python_api_version = myFileName():match( '.*/level2/PythonAPI/([^/]+)/.*' )
         LmodMessage( 'Detected Python API version from hierarchy: ' .. python_api_version )
