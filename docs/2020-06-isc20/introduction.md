@@ -9,7 +9,7 @@ that manages (scientific) software in an efficient way, without compromises on p
 
 ### *Elevator pitch*
 
-<a href="http://geek-and-poke.com/geekandpoke/2010/5/14/how-to-become-invaluable.html"><img src="../../img/geek-and-poke-invaluable.png" style="float:right" width="50%"/></a>
+<a href="https://geek-and-poke.com/geekandpoke/2010/5/14/how-to-become-invaluable.html"><img src="../../img/geek-and-poke-invaluable.png" style="float:right" width="50%"/></a>
 
 EasyBuild intends to relieve HPC support teams from manually managing
 software installations while at the same time **providing a consistent and well performing
@@ -41,7 +41,7 @@ The installation procedure executed by EasyBuild is thoroughly [**logged**](http
 
 EasyBuild supports using a **custom module naming scheme**, allows for
 *hierarchical* module naming schemes, and **integrates with various other tools** ranging from  resource managers ([Slurm](https://slurm.schedmd.com) and [GC3Pie](https://github.com/gc3pie/gc3pie)),
-container tools ([Singularity](https://github.com/hpcng/singularity) and [Docker](https://www.docker.com)),
+container tools ([Singularity](https://github.com/apptainer/singularity) and [Docker](https://www.docker.com)),
 packaging tools ([FPM](https://fpm.readthedocs.io)), and so on.
 
 The project is **actively developed** by a worldwide community, with stable versions being
@@ -223,8 +223,8 @@ The `foss` toolchain consists of all open source components (hence the name:
 "FOSS" stands for Free & Open Source Software): [GCC](https://gcc.gnu.org/), [Open MPI](https://www.open-mpi.org/), [OpenBLAS](https://www.openblas.net/),
 [ScaLAPACK](https://www.netlib.org/scalapack/) and [FFTW](http://fftw.org/).
 
-The `intel` toolchain consists of the [Intel C, C++ and Fortran compilers](https://software.intel.com/content/www/us/en/develop/tools/compilers.html) (on top of a `GCC` version
-controlled through EasyBuild) alongside the [Intel MPI](https://software.intel.com/content/www/us/en/develop/tools/mpi-library.html) and [Intel MKL](https://software.intel.com/content/www/us/en/develop/tools/math-kernel-library.html) libraries.
+The `intel` toolchain consists of the [Intel C, C++ and Fortran compilers](https://www.intel.com/content/www/us/en/developer/tools/oneapi/dpc-compiler.html) (on top of a `GCC` version
+controlled through EasyBuild) alongside the [Intel MPI](https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html) and [Intel MKL](https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html) libraries.
 
 Roughly every 6 months, a new version of these common toolchains is agreed upon
 in the EasyBuild community, after extensive testing.

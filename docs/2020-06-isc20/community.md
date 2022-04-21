@@ -60,7 +60,7 @@ took its place on the presentation floor. At SC'12, EasyBuild's stage was the
 Following the public release and the projects introduction into the HPC community,
 other sites started to use EasyBuild and actively contribute to the project. As odd as it might sound, this
 was quite unexpected. The EasyBuild team was hoping for feedback. Receiving contributions was a big surprising bonus. 
-Early adopters were the [University of Luxembourg](https://hpc.uni.lu), the [Cyprus Institute](http://hpcf.cyi.ac.cy/),
+Early adopters were the [University of Luxembourg](https://hpc.uni.lu), the [Cyprus Institute](https://hpcf.cyi.ac.cy/),
 the [University of Basel](https://scicore.unibas.ch/), and the [Jülich
 Supercomputing Centre](https://www.fz-juelich.de/ias/jsc).
 
@@ -123,7 +123,7 @@ EasyBuild is [maintained](https://docs.easybuild.io/en/latest/Maintainers.html) 
 * [SURF](https://www.surf.nl/en/research-it) (Netherlands)
 * [National University of Singapore](https://nusit.nus.edu.sg/hpc)
 * [Chalmers University of Technology](https://www.chalmers.se/en) (Sweden)
-* [Umeå University](http://www.umu.se/english/) (Sweden)
+* [Umeå University](https://www.umu.se/en/) (Sweden)
 * [sciCORE at the University of Basel](https://scicore.unibas.ch/) (Switzerland)
 * [Swiss Data Science Center](https://datascience.ch/)
 * [Big Data Institute Oxford](https://www.bdi.ox.ac.uk/) (UK)

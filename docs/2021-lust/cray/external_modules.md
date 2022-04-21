@@ -156,7 +156,7 @@ The CSML collection contains the following Scientific Libraries:
 
 * Modules: `cray-mpich`
 * Manpages: `intro_mpi`
-* Website: [https://www.mpi-forum.org](http://www.mpi-forum.org)
+* Website: [https://www.mpi-forum.org](https://www.mpi-forum.org)
 
 MPI is a widely used parallel programming model that establishes a practical, portable, efficient, 
 and flexible standard for passing messages between ranks in parallel processes. 

@@ -200,8 +200,8 @@ The `foss` toolchain consists of all open source components (hence the name:
 "FOSS" stands for Free & Open Source Software): [GCC](https://gcc.gnu.org/), [Open MPI](https://www.open-mpi.org/), [OpenBLAS](https://www.openblas.net/),
 [ScaLAPACK](https://www.netlib.org/scalapack/) and [FFTW](http://fftw.org/).
 
-The `intel` toolchain consists of the [Intel C, C++ and Fortran compilers](https://software.intel.com/content/www/us/en/develop/tools/compilers.html) (on top of a `GCC` version
-controlled through EasyBuild) alongside the [Intel MPI](https://software.intel.com/content/www/us/en/develop/tools/mpi-library.html) and [Intel MKL](https://software.intel.com/content/www/us/en/develop/tools/math-kernel-library.html) libraries.
+The `intel` toolchain consists of the [Intel C, C++ and Fortran compilers](https://www.intel.com/content/www/us/en/developer/tools/oneapi/dpc-compiler.html) (on top of a `GCC` version
+controlled through EasyBuild) alongside the [Intel MPI](https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html) and [Intel MKL](https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html) libraries.
 
 Roughly every 6 months, a new version of these common toolchains is agreed upon
 in the EasyBuild community, after extensive testing.
