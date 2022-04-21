@@ -5,11 +5,6 @@
 <p align="center"><img src="../../../img/easybuild_logo_alpha.png" alt="EasyBuild logo" width="300px"/></p>
 
 **[EasyBuild](https://easybuild.io)** is a **software build and installation framework**
-
-<p align="center"><img src="../../../img/easybuild_logo_alpha.png" alt="EasyBuild logo" width="300px"/></p>
-
-**[EasyBuild](http://easybuild.io)** is a **software build and installation framework**
->>>>>>> 549d7d34 (Restructuring for nicer navigation bar on the left.)
 that manages (scientific) software in an efficient way, without compromising on performance.
 Easybuild is especially tailored towards [**High Performance Computing (HPC)**](https://en.wikipedia.org/wiki/Supercomputer) systems,
 and provides a **command-line interface** to facilitate the installation and management of a scientific software stack.
