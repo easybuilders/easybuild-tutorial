@@ -21,9 +21,8 @@
         during the [6th EasyBuild User Meeting in 2021](https://easybuild.io/eum21/)
     -   CSCS site presentation ([video](https://www.youtube.com/watch?v=rhoHmUhzSGw&list=PLhnGtSmEGEQidEM8MZKkOaVutgt9WmqI0)/[slides](https://users.ugent.be/~kehoste/eum20/eum20_11_luca_cscs.pdf))
         during the [5h EasyBuild User Meeting in 2020](https://github.com/easybuilders/easybuild/wiki/5th-EasyBuild-User-Meeting)
-    -   CSCS site presentation ([video](https://youtu.be/qLuHeaFmydM?list=PLhnGtSmEGEQhEjG5hD70tRwL3n58aWNHc&t=1451))
+    -   CSCS site presentation ([video](https://www.youtube.com/watch?list=PLhnGtSmEGEQhEjG5hD70tRwL3n58aWNHc&t=1451&v=qLuHeaFmydM&feature=youtu.be))
         during the [4h EasyBuild User Meeting in 2020](https://github.com/easybuilders/easybuild/wiki/4th-EasyBuild-User-Meeting)
-
 
 ## HPE Cray Programming Environment
 

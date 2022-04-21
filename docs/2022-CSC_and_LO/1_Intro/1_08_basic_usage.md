@@ -189,7 +189,7 @@ operations involving lots of (small) files can be slow.
 
 For the easyconfig files included with an EasyBuild release, a search index is readily provided.
 For other directories, you can create a search index using `eb --create-index <path>`.
-[See the EasyBuild documentation for more information](https://easybuild.readthedocs.io/en/latest/Easyconfigs_index.html).
+[See the EasyBuild documentation for more information](https://docs.easybuild.io/en/latest/Easyconfigs_index.html).
 
 ---
 
@@ -307,7 +307,7 @@ are already installed, and which ones are still missing.
 This can be helpful to ensure that your EasyBuild configuration is set up correctly,
 and to prevent from accidentally installing an entirely new software stack from scratch
 in an unintended location (like `$HOME/.local/easybuild`, the
-[default installation path](../configuration/#install-path)).
+[default installation path](../1_07_configuration/#install-path)).
 
 ---
 

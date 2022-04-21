@@ -44,7 +44,7 @@ git checkout -b example
 ```
 
 3) Stage the changes you want to contribute, after you make sure that your easyconfig file has the
-[correct filename](../basic_usage/#easyconfig-filenames), and that it's located in the appropriate directory.
+[correct filename](../../1_Intro/1_08_basic_usage/#easyconfig-filenames), and that it's located in the appropriate directory.
 
 ```shell
 mkdir -p easybuild/easyconfigs/e/example/
@@ -95,13 +95,13 @@ a project that aims to *automate* tedious software installation procedures.
 
 At the end of 2015 efforts were made to tackle this issue by implementing
 GitHub integration features in EasyBuild, which automate the contribution
-workflow by running `git` commands and interacting with the [GitHub API](https://developer.github.com/v3/).
+workflow by running `git` commands and interacting with the [GitHub API](https://docs.github.com/en/rest).
 
-We will briefly go over some of these features here, but they are also covered in detail [in the EasyBuild documentation](https://easybuild.readthedocs.io/en/latest/Integration_with_GitHub.html).
+We will briefly go over some of these features here, but they are also covered in detail [in the EasyBuild documentation](https://docs.easybuild.io/en/latest/Integration_with_GitHub.html).
 
 ### Requirements & configuration
 
-First of all, the GitHub integration features impose a couple of additional [requirements](https://easybuild.readthedocs.io/en/latest/Integration_with_GitHub.html)
+First of all, the GitHub integration features impose a couple of additional [requirements](https://docs.easybuild.io/en/latest/Integration_with_GitHub.html)
 and configuration.
 
 
@@ -223,7 +223,8 @@ to try out the GitHub integration features!
     If your SSH private key is protected with a password, you may need
     to enter your password a couple of times when running "`eb --check-github`".
 
-    You can avoid this by [using an SSH agent](https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent).
+    You can avoid this by 
+    [using an SSH agent](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).
 
 !!! Note
     If you see the ``push access`` check fail with ``Failed to fetch branch 'main'``,
@@ -313,7 +314,7 @@ will include information about your system (OS, processor, etc.) and your EasyBu
     version of the tutorial.
 
 That is a lot to digest, so let us make this a bit more concrete with an example:
-we will open a pull request for the [`eb-tutorial` example software](../adding_support_software/#example) to *a fork* of the [`easybuild-easyconfigs` repository](https://github.com/easybuilders/easybuild-easyconfigs) using the `eb` command,
+we will open a pull request for the [`eb-tutorial` example software](../../2_Using/2_02_creating_easyconfig_files/#example) to *a fork* of the [`easybuild-easyconfigs` repository](https://github.com/easybuilders/easybuild-easyconfigs) using the `eb` command,
 and submit a test report in it.
 
 !!! Note

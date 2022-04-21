@@ -28,7 +28,8 @@ Things that could go wrong during an installation include:
 * required dependencies that are not specified in the easyconfig file;
 * failing shell commands;
 * running out of available memory or disk space;
-* a segmentation fault caused by a flipped bit triggered by a cosmic ray ([really, it happens!](https://blogs.oracle.com/linux/attack-of-the-cosmic-rays-v2));
+* a segmentation fault caused by a flipped bit triggered by a cosmic ray 
+  ([really, it happens!](https://blogs.oracle.com/linux/post/attack-of-the-cosmic-rays));
 
 Unfortunately this is not an exhaustive list, there are plenty of other
 potential problems that could result in a failing installation...
@@ -219,7 +220,7 @@ Let's work our way through a less smooth software installation,
 using the easyconfig file that is provided below.
 
 Don't worry if most of this is still unclear to you, we'll get
-to writing easyconfig files from scratch [later in this tutorial](2_02_creating_easyconfig_files).
+to writing easyconfig files from scratch [later in this tutorial](../2_02_creating_easyconfig_files).
 
 ```python
 easyblock = 'MakeCp'

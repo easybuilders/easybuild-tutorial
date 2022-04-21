@@ -186,7 +186,7 @@ archive, the location of which is specified by the `repositorypath` configuratio
 
 By default the specified path is assumed to be a regular directory, but using a Git repository
 as easyconfigs archive is also supported (for more details, see 
-[the EasyBuild documentation](https://easybuild.readthedocs.io/en/latest/Configuration.html#easyconfigs-repository-repository-repositorypath)).
+[the EasyBuild documentation](https://docs.easybuild.io/en/latest/Configuration.html#easyconfigs-repository-repository-repositorypath)).
 
 
 ---
@@ -204,7 +204,7 @@ are using a different modules tool; see the output of `eb --avail-modules-tools`
 modules tools.
 Note that for anything other than Lmod, you *must* make
 sure that the actual modules tool binary command is available through `$PATH` (more information
-on this [in the EasyBuild documentation](https://easybuild.readthedocs.io/en/latest/Configuration.html#modules-tool-modules-tool)).
+on this [in the EasyBuild documentation](https://docs.easybuild.io/en/latest/Configuration.html#modules-tool-modules-tool)).
 
 If you prefer that EasyBuild generates module files in [Tcl](https://tcl.tk/) syntax, you can instruct
 it to do so via the `module-syntax` configuration setting. Note that this is *required* if you are using
@@ -246,7 +246,7 @@ software.***
     There are ways around this however, which are outside of the scope of this tutorial.
 
     For more information, 
-    [see the EasyBuild documentation](https://easybuild.readthedocs.io/en/latest/Using_the_EasyBuild_command_line.html#controlling-robot-search-path).
+    [see the EasyBuild documentation](https://docs.easybuild.io/en/latest/Using_the_EasyBuild_command_line.html#controlling-robot-search-path).
 
     *On LUMI the included easyconfig files cannot be used without changes as they are for the
     common toolchains which are currently not supported in the LUMI software stacks.*  
@@ -280,7 +280,7 @@ The default `EasyBuildMNS` module naming scheme roughly corresponds to the filen
 and consists of the software name followed by a combination of the software version, toolchain and
 an optional label (which corresponds to the value of the `versionsuffix` easyconfig parameter):
 `<name>/<version><-toolchain><versionsuffix>`. Just like with [names of easyconfig
-files](1_05_terminology#easyconfig-files), the `<-toolchain>` part is omitted when the `system` toolchain is used,
+files](../1_05_terminology#easyconfig-files), the `<-toolchain>` part is omitted when the `system` toolchain is used,
 and the `<versionsuffix>` value is empty by default.
 
 !!! Note "Module naming scheme on LUMI"
@@ -366,9 +366,9 @@ across different software installations. They define *configuration settings*,
 such as the location where software should be installed, or the syntax that should
 be used when generating module files.
 
-An [easyconfig file](1_05_terminology#easyconfig-files) (`*.eb`) on the other hand *specifies the details for one particular software installation*.
+An [easyconfig file](../1_05_terminology#easyconfig-files) (`*.eb`) on the other hand *specifies the details for one particular software installation*.
 It does this by defining a set of *easyconfig parameters*, which tell EasyBuild the name and version
-of the software to install, which [toolchain](1_05_terminology#toolchains) and [easyblock](1_05_terminology#easyblocks) to use, etc.
+of the software to install, which [toolchain](../1_05_terminology#toolchains) and [easyblock](../1_05_terminology#easyblocks) to use, etc.
 
 For each software installation performed by EasyBuild, there is a corresponding easyconfig file.
 There typically are only a handful of configuration files used however, for example a system-level

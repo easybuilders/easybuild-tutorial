@@ -58,7 +58,7 @@ Reasons to consider implementing a software-specific easyblock rather than using
     bootstrapping with the system compiler and then re-installing with itself.* 
 
 For implementing easyblocks we refer to the 
-["Implementing easyblocks" section of this tutorial](2_03_implementing_easyblocks)
+["Implementing easyblocks" section of this tutorial](../2_04_implementing_easyblocks)
 and the [EasyBuild documentation](https://docs.easybuild.io/en/latest/Implementing-easyblocks.html).
 
 ## Writing easyconfig files
@@ -66,7 +66,7 @@ and the [EasyBuild documentation](https://docs.easybuild.io/en/latest/Implementi
 Writing an easyconfig file boils down to defining a set of easyconfig parameters in a text file,
 which we give a '`.eb`' extension by convention. The name of an easyconfig file doesn't matter
 when using it directly to install software, but it does matter when EasyBuild needs to find it
-to resolve a dependency for example (as we [discussed earlier](../1_08_basic_usage/#easyconfig-filenames)).
+to resolve a dependency for example (as we [discussed earlier](../../1_Intro/1_08_basic_usage/#easyconfig-filenames)).
 
 The syntax for easyconfig files is *Python syntax*: you are basically defining a bunch of Python variables
 that correspond to easyconfig parameters.
@@ -469,7 +469,7 @@ moduleclass = 'lib'
 ```
 
 This is done to categorize software, and it is used to group the generated module files into smaller sets 
-([remember what we saw when installing software earlier](../1_08_basic_usage/#using-installed-software)).
+([remember what we saw when installing software earlier](../../1_Intro/1_08_basic_usage/#using-installed-software)).
 
 This is currently not used on LUMI since we feel that (a) it is not easy to explain to users how they can
 then only make certain classes that are useful to them visible and more importantly (b) since it is not
@@ -590,9 +590,9 @@ In this simple case it doesn't, since we can leverage one of the available *gene
 But, which one?
 
 Build instructions are usually included in a `README` file, or in the documentation.
-In this case, there's indeed a minimal [`README`
-file](https://github.com/easybuilders/easybuild-tutorial/tree/main/docs/files/eb-tutorial-1.0.1/README) available,
-which tells us that we should use the `cmake` command to configure the installation, followed by `make` and `make install`.
+In this case, there's indeed a minimal 
+[`README` file](https://github.com/easybuilders/easybuild-tutorial/blob/main/docs/files/eb-tutorial-1.0.1/README) 
+available, which tells us that we should use the `cmake` command to configure the installation, followed by `make` and `make install`.
 
 [We briefly discussed](#easyblock) a generic easyblock that does exactly this: `CMakeMake`.
 

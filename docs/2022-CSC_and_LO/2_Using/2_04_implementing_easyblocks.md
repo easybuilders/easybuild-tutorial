@@ -114,7 +114,7 @@ To keep things organised, the actual Python module files
 for software-specific easyblocks are kept in 'letter' subdirectories,
 rather than in one large '``easyblocks``' directory
 (see
-[https://github.com/easybuilders/easybuild-easyblocks/blob/main/easybuild/easyblocks/](https://github.com/easybuilders/easybuild-easyblocks/blob/main/easybuild/easyblocks/)),
+[https://github.com/easybuilders/easybuild-easyblocks/tree/main/easybuild/easyblocks](https://github.com/easybuilders/easybuild-easyblocks/tree/main/easybuild/easyblocks)),
 but this namespace is collapsed transparently by EasyBuild (you don't need to import from letter subpackages).
 
 To let EasyBuild pick up one or more new or customized easyblocks, you can use the [``--include-easyblocks``](https://docs.easybuild.io/en/latest/Including_additional_Python_modules.html#including-additional-easyblocks-include-easyblocks)
@@ -448,7 +448,7 @@ class EB_Example(EasyBlock):
 ## Compatibility with ``--extended-dry-run`` and ``--module-only``
 
 Some special care must be taken to ensure that an easyblock is fully compatible with ``--extended-dry-run`` / ``-x``
-(see [Inspecting install procedures](../basic_usage/#inspecting-install-procedures)) and ``--module-only``.
+(see [Inspecting install procedures](../../1_Intro/1_08_basic_usage/#inspecting-install-procedures)) and ``--module-only``.
 
 For compatibility with ``--extended-dry-run``, you need to take into account that specified operations
 like manipulating files or running shell commands will not actually be executed. You can check
