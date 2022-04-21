@@ -291,7 +291,7 @@ will include information about your system (OS, processor, etc.) and your EasyBu
 ## Demo
 
 That is a lot to digest, so let us make this a bit more concrete with an example:
-we will open a pull request for the [`eb-tutorial` example software](../adding_support_software/#example) to *a fork* of the [`easybuild-easyconfigs` repository](https://github.com/easybuilders/easybuild-easyconfigs) using the `eb` command,
+we will open a pull request for the [`eb-tutorial` example software](../creating_easyconfig_files/#example) to *a fork* of the [`easybuild-easyconfigs` repository](https://github.com/easybuilders/easybuild-easyconfigs) using the `eb` command,
 and submit a test report in it.
 
 !!! Note
