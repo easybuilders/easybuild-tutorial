@@ -965,7 +965,6 @@ won't go into those here).
 
 ## Exercises
 
-TODO: Rework for LUMI and provide the necessary EasyConfig files.
 
 ***Guidelines***
 

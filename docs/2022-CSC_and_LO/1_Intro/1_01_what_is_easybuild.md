@@ -103,16 +103,14 @@ cannot easily overwrite those.
 
 In addition to performance, **reproducibility of installations** is a core aspect of EasyBuild.
 
-TODO correct link in the next lines.
-
-Most software installations performed with EasyBuild use a **particular compiler <a href="#toolchains">toolchain</a>**,
+Most software installations performed with EasyBuild use a **particular compiler <a href="../1_05_terminology#toolchains">toolchain</a>**,
 with which we aim to be in control over the build environment and avoid relying on tools and libraries
 provided by the operating system. For similar reasons, we try to **provide all required dependencies through EasyBuild** as well,
 with a few notable exceptions, like ``OpenSSL`` for security reasons, and Infiniband and GPU drivers which
 are too closely intertwined with the operating system.
 
 For both toolchains and dependencies, **fixed software versions** are specified in the
-<a href="#easyconfig-files">easyconfig files</a>. That way, easyconfig files can easily be shared with others:
+<a href="../1_05_terminology#easyconfig-files">easyconfig files</a>. That way, easyconfig files can easily be shared with others:
 if they worked for you it is very likely that they will work for others too, because the vast majority of the
 software stack is controlled by EasyBuild.
 

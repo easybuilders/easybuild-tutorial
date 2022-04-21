@@ -417,6 +417,8 @@ export EB_PYTHON=python3
 To keep the different versions of the LUMI software stack as independent from one another as possible,
 EasyBuild is bootstrapped for each software stack by the ``prepare_LUMI_stack.sh`` script. We use the 
 system Python 3 for running EasyBuild. That Python version currently doesn't have ``pip`` installed. 
+Our procedure is based on the ["Installing EasyBuild with EasyBuild" procedure](#method-2-installing-easybuild-with-easybuild)
+but works around the lack of `pip`. 
 EasyBuild is first installed in a temporary work directory from files downloaded from PyPi. These
 are each untarred and then installed into their location by running 
 ``python3 setup.py install --prefix=...`` in their unpacked directory.
@@ -424,14 +426,9 @@ We do so only for the framework and easyblocks files as the easconfig files are 
 install EasyBuild. Instead we create our own EasyConfig file for EasyBuild which contains
 some additional packages that enable extra features in EasyBuild and also provide more information
 to Lmod. Next the configuration module for EasyBuild (see the next section, 
-["Configuring EasyBuild"](1_07_configuration), for more information) and use the temporary 
+["Configuring EasyBuild"](../1_07_configuration), for more information) and use the temporary 
 installation of EasyBuild with our own EasyConfig file to do a proper installation of EasyBuild
 with module in the final location.
-
-
-TODO: follow development setup but with downloading rather than cloning, then use that one with the
-EasyBuild configuration module to install EasyBuild with itself.
-
 
 
 ## Verifying the installation
@@ -447,7 +444,8 @@ To check which EasyBuild version you have installed, run:
 eb --version
 ```
 
-The output should match with the <a href="https://pypi.org/project/easybuild/">latest EasyBuild version</a>.
+The latest version (and an overview of previous versions) can always be 
+[found on PyPi](https://pypi.org/project/easybuild/).
 
 
 #### Consulting the help output
