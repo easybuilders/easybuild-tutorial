@@ -2,7 +2,7 @@
 
 ## What is EasyBuild?
 
-[EasyBuild](http://easybuild.io) is a **software build and installation framework**
+[EasyBuild](https://easybuild.io) is a **software build and installation framework**
 that manages (scientific) software in an efficient way, without compromises on performance. Easybuild is especially tailored towards [**High Performance Computing (HPC)**](https://en.wikipedia.org/wiki/Supercomputer)
  environments.
 

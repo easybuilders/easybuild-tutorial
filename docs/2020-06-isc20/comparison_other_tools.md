@@ -53,7 +53,7 @@ There are many other differences between EasyBuild and Spack as well, too many f
 <p><img src="../../img/nix_logo.png" alt="Nix logo" width="15%"/>
 <img src="../../img/guix_logo.png" alt="Guix logo" width="15%"/></p>
 
-[Nix](https://nixos.org/) and [GNU Guix](https://gnu.org/s/guix/) are both
+[Nix](https://nixos.org/) and [GNU Guix](https://guix.gnu.org/) are both
 *purely functional package managers*, which strongly focus on the reproducibility
 of software installations.
 

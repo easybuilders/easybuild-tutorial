@@ -169,7 +169,7 @@ and the CSCS custom recipes under the `easyconfigs` folder, listed as usual in a
 ## Customizing your build recipes
 
 If you wish to extend or customize the CSCS EasyBuild recipes, you can clone the 
-[CSCS production project](https://github.com/eth-cscs/production.git) from GitHub and have your private repository:
+[CSCS production project](https://github.com/eth-cscs/production) from GitHub and have your private repository:
 ```
 git clone https://github.com/eth-cscs/production.git
 ```

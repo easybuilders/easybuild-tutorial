@@ -24,7 +24,7 @@ Things that could go wrong during an installation include:
 * required dependencies that are not specified in the easyconfig file;
 * failing shell commands;
 * running out of available memory or disk space;
-* a segmentation fault caused by a flipped bit triggered by a cosmic ray ([really, it happens!](https://blogs.oracle.com/linux/attack-of-the-cosmic-rays-v2));
+* a segmentation fault caused by a flipped bit triggered by a cosmic ray ([really, it happens!](https://blogs.oracle.com/linux/post/attack-of-the-cosmic-rays));
 
 Unfortunately this is not an exhaustive list, there are plenty of other
 potential problems that could result in a failing installation...

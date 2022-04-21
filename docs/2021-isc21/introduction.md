@@ -22,7 +22,7 @@ which is used and developed by hundreds of HPC centres and consortia worldwide.
 
 ---
 
-<a href="http://geek-and-poke.com/geekandpoke/2010/5/14/how-to-become-invaluable.html">
+<a href="https://geek-and-poke.com/geekandpoke/2010/5/14/how-to-become-invaluable.html">
 <img src="../../img/geek-and-poke-invaluable.png" style="float:right" width="45%"/>
 </a>
 
@@ -65,7 +65,7 @@ as it is performed.
 
 EasyBuild supports using a **custom module naming scheme**, allows for
 *hierarchical* module naming schemes, and **integrates with various other tools** ranging from  resource managers ([Slurm](https://slurm.schedmd.com) and [GC3Pie](https://github.com/gc3pie/gc3pie)),
-container tools ([Singularity](https://github.com/hpcng/singularity) and [Docker](https://www.docker.com)),
+container tools ([Singularity](https://github.com/apptainer/singularity) and [Docker](https://www.docker.com)),
 packaging tools ([FPM](https://fpm.readthedocs.io)), and so on.
 
 ---
