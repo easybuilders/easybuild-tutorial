@@ -6,7 +6,7 @@ as your modules tool; if you are not using Lmod, please see <a href="#modules-to
 Nevertheless, we strongly recommend you to inspect the default configuration and tailor it to your preferences.
 
 !!! note
-    Configuring EasyBuild is also covered in detail in the EasyBuild documentation, see [here](https://easybuild.readthedocs.io/en/latest/Configuration.html).
+    Configuring EasyBuild is also covered in detail in the EasyBuild documentation, see [here](https://docs.easybuild.io/en/latest/Configuration.html).
 
 
 ## Available configuration settings
@@ -121,7 +121,7 @@ archive, the location of which is specified by the `repositorypath` configuratio
 By default the specified path is assumed to be a regular directory, but using a Git repository
 as easyconfigs archive is also supported.
 
-More information is available [in the EasyBuild documentation](https://easybuild.readthedocs.io/en/latest/Configuration.html#easyconfigs-repository-repository-repositorypath).
+More information is available [in the EasyBuild documentation](https://docs.easybuild.io/en/latest/Configuration.html#easyconfigs-repository-repository-repositorypath).
 
 *For the sake of this tutorial we recommend sticking to a regular directory,
 and sticking to the default location as a subdirectory of the `prefix` configuration setting.*
@@ -139,7 +139,7 @@ are using a different modules tool, see the output of `eb --avail-modules-tools`
 modules tools.
 Note that for anything other than Lmod, you *must* make
 sure that the actual modules tool binary command is available through `$PATH` (more information
-on this [in the EasyBuild documentation](https://easybuild.readthedocs.io/en/latest/Configuration.html#modules-tool-modules-tool)).
+on this [in the EasyBuild documentation](https://docs.easybuild.io/en/latest/Configuration.html#modules-tool-modules-tool)).
 
 If you prefer that EasyBuild generates module files in [Tcl](https://tcl.tk/) syntax, you can instruct
 it to do so via the `module-syntax` configuration setting. Note that this is *required* if you are using
@@ -173,7 +173,7 @@ In addition, you can use the `--robot` command line option without specifying an
 
     There are ways around this however, which are outside of the scope of this tutorial.
 
-    For more information, [see the EasyBuild documentation](https://easybuild.readthedocs.io/en/latest/Using_the_EasyBuild_command_line.html#controlling-robot-search-path).
+    For more information, [see the EasyBuild documentation](https://docs.easybuild.io/en/latest/Using_the_EasyBuild_command_line.html#controlling-robot-search-path).
 
 
 ### Module naming scheme

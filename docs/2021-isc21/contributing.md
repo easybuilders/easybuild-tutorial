@@ -79,11 +79,11 @@ At the end of 2015 efforts were made to tackle this issue by implementing
 GitHub integration features in EasyBuild, which automate the contribution
 workflow by running `git` commands and interacting with the [GitHub API](https://docs.github.com/en/rest).
 
-We will briefly go over some of these features here, but they are also covered in detail [in the EasyBuild documentation](https://easybuild.readthedocs.io/en/latest/Integration_with_GitHub.html).
+We will briefly go over some of these features here, but they are also covered in detail [in the EasyBuild documentation](https://docs.easybuild.io/en/latest/Integration_with_GitHub.html).
 
 ### Requirements & configuration
 
-First of all, the GitHub integration features impose a couple of additional [requirements](https://easybuild.readthedocs.io/en/latest/Integration_with_GitHub.html)
+First of all, the GitHub integration features impose a couple of additional [requirements](https://docs.easybuild.io/en/latest/Integration_with_GitHub.html)
 and configuration.
 
 

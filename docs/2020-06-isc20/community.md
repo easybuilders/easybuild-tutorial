@@ -73,7 +73,7 @@ or after [FOSDEM](https://fosdem.org). The EasyBuild User Meeting is an open and
 that provides a great opportunity to meet fellow EasyBuild enthusiasts, discuss related topics, learn about new aspects of the tool, and how other HPC sites leverage it and integrate it with other tools like [Jenkins](https://www.youtube.com/watch?v=bzW45cfRUMU), [Ansible](https://www.youtube.com/watch?v=Qr2udsAjkG0), [CernVM-FS](https://www.youtube.com/watch?v=_0j5Shuf2uE), [ReFrame](https://www.youtube.com/watch?v=KN9QwQIrso4) etc.
 
 The map below shows from which
-cities the [EasyBuild documentation](https://easybuild.readthedocs.io) has
+cities the [EasyBuild documentation](https://docs.easybuild.io) has
 been visited in the last year (June 2019 - June 2020), and how often. The community has truly become global.
 
 <div align="center"><img alt="Cities from which EasyBuild documentation has been visited last year (June 2019-June 2020" src="../../img/easybuild-docs-map_20190619-20200619.png" width="75%"/></div>
@@ -85,7 +85,7 @@ HPC sites, consortia, and companies that use EasyBuild include (but are not limi
 <a href="https://hpcnow.com/"><img src="../../img/hpcnow_logo.png" alt="HPCNow! logo" width="25%"></a>
 <a href="https://www.fredhutch.org/"><img src="../../img/fredhutch_logo.png" alt="Fred Hutch logo" width="22%"></a>
 <a href="https://www.viennabiocenter.org/"><img src="../../img/vienna_biocenter_logo.png" alt="Vienna BioCenter logo" width="23%"></a>
-<a href="httpw://www.ceci-hpc.be/"><img src="../../img/ceci_logo.png" alt="CÉCI logo" width="18%"></a>
+<a href="https://www.ceci-hpc.be/"><img src="../../img/ceci_logo.png" alt="CÉCI logo" width="18%"></a>
 <a href="https://www.computecanada.ca/home/"><img src="../../img/computecanada_logo.png" alt="Compute Canada logo" width="29%"></a>
 <a href="https://www.uio.no/english/services/it/research/hpc/"><img src="../../img/uio_logo.png" alt="UiO logo" width="23%"></a>
 <a href="https://intranet.birmingham.ac.uk/bear"><img src="../../img/bear_logo.png" alt="BEAR logo" width="20%"></a>
@@ -97,7 +97,7 @@ HPC sites, consortia, and companies that use EasyBuild include (but are not limi
 <a href="https://dashboard.hpc.unimelb.edu.au/"><img src="../../img/univ_melbourne_logo.png" alt="University of Melbourne logo" width="16%"></a>
 <a href="https://hpc.uni.lu/"><img src="../../img/unilu_logo.png" alt="University of Luxembourg logo" width="18%"></a>
 <a href="https://www.epcc.ed.ac.uk/"><img src="../../img/epcc_logo.png" alt="EPCC logo" width="21%"></a>
-<a href="httpw://hpcf.cyi.ac.cy/"><img src="../../img/cyi_logo.png" alt="Cyprus Institute logo" width="26%"></a>
+<a href="https://hpcf.cyi.ac.cy/"><img src="../../img/cyi_logo.png" alt="Cyprus Institute logo" width="26%"></a>
 <a href="https://scicore.unibas.ch/"><img src="../../img/basel_logo.png" alt="University of Basel logo" width="26%"></a>
 <a href="https://techcommunity.microsoft.com/t5/azure-global/running-long-hpc-jobs-on-azure-with-checkpointing-using-lammps/ba-p/1335148"><img src="../../img/microsoft_logo.png" alt="Microsoft logo" width="23%"></a>
 
@@ -114,7 +114,7 @@ The EasyBuild community develops the project through the [*easybuilders* GitHub 
 
 ## Maintainers
 
-EasyBuild is [maintained](https://easybuild.readthedocs.io/en/latest/Maintainers.html) by an experienced team of HPC experts, including people from:
+EasyBuild is [maintained](https://docs.easybuild.io/en/latest/Maintainers.html) by an experienced team of HPC experts, including people from:
 
 * [Ghent University](https://www.ugent.be/hpc/en) (Belgium)
 * [Vrije Universiteit Brussel](https://hpc.vub.be/) (Belgium)

@@ -185,7 +185,7 @@ operations involving lots of (small) files can be slow.
 
 For the easyconfig files included with an EasyBuild release, a search index is readily provided.
 For other directories, you can create a search index using `eb --create-index <path>`.
-[See the EasyBuild documentation for more information](https://easybuild.readthedocs.io/en/latest/Easyconfigs_index.html).
+[See the EasyBuild documentation for more information](https://docs.easybuild.io/en/latest/Easyconfigs_index.html).
 
 ---
 
