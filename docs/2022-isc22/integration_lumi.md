@@ -74,7 +74,7 @@ It is also possible to run heterogeneous jobs across multiple partitions.
     cause problems with AMD CPUs.
 
 -   LUMI has only a small central support team of 9 FTE. It is obvious that we cannot give the same
-    level of support for software installations as some big site such as JSC can do. Moreover,
+    level of support for software installations as some of the big sites such as JSC can do. Moreover,
     due to the nature of the LUMI environment with its Cray PE and novel AMD GPUs, installing software
     is more challenging than on your typical Intel + NVIDIA GPU cluster with NVIDIA/Mellanox
     interconnect. Given that the technology is very new one can also expect a rapid evolution of
@@ -90,7 +90,8 @@ It is also possible to run heterogeneous jobs across multiple partitions.
     stack it is nearly impossible to replace an installation that fails for some users outside
     maintenance intervals.
 
--   The central software team may be small, but the consortium agreement states that the 
+-   The central support team may be small (the above 9 FTE), but the 
+    LUMI consortium agreement states that the 
     consortium countries also have to assist in providing support. Given that neither the 
     LUMI User Support Team members nor the local support teams are employees of CSC this 
     also means that much of the application support has to be delivered with very little
@@ -99,7 +100,7 @@ It is also possible to run heterogeneous jobs across multiple partitions.
     only regular user rights on the system.
 
 -   Due to the exploitation model and the small size of the central support team, license management
-    is a pain. Users come through LUMI via 11 different channels (some with subchannels). Moreover it
+    is a pain. Users come to LUMI through 11 different channels (some with subchannels). Moreover it
     is the responsibility of the PI to invite users to a project and to ensure that they are eligible
     for LUMI use (taking into account, e.g., the European and USA export restrictions). At the central
     level we have no means currently to check who can use which software license. Hence we need a
@@ -108,7 +109,7 @@ It is also possible to run heterogeneous jobs across multiple partitions.
 -   I personally believe that users really want a customised software stack. They may say they want 
     a central stack but only as long as it contains the software they need and not much more as they 
     also do not want to search through long lists of modules. Nobody is waiting for 20 different
-    configurations of a packages, but the reality is that different users will want different versions
+    configurations of a package, but the reality is that different users will want different versions
     with sometimes conflicting configurations, or compiled with different compilers. 
 
     We also note that some communities forego centrally installed software which may have better
@@ -119,7 +120,7 @@ It is also possible to run heterogeneous jobs across multiple partitions.
     software, it will become increasingly difficult to find versions of dependencies that work for 
     a range of programs, leading to cases where we may simply need to install a software package
     with different sets of dependencies simply because users want to use it together with other 
-    packages that have restrictions of the versions of those dependencies. Experienced Python users
+    packages that have restrictions on the versions of those dependencies. Experienced Python users
     without doubt know what a mess this can create and how even a single user sometimes needs
     different virtual environments with different installations to do their work.
 
@@ -135,7 +136,7 @@ of the maintainers are from LUMI consortium countries.
 
 We use Lmod as the module tool. We basically had the choice between Lmod and the old C implementation
 of TCL Environment Modules as HPE Cray does not support the more modern Environment Modules 4 or 5 
-developed in France. Moreover, support for Lmod is excellent in EasyBuild and Spack, and Lua is also
+developed in France. Support for Lmod is excellent in EasyBuild and Spack, and Lua is also
 a more modern language to work with than TCL.
 
 ### Software stacks
@@ -149,7 +150,7 @@ Lmod modules.
     The HPE Cray PE works with a universal compiler wrapper that sets some optimisation options for
     the supported compilers and sets the flags to compile and link with the MPI, optimised scientific
     libraries and some other libraries provided with the PE. It does so based on which modules are
-    loaded. The CPU and GPU targets and the MPI fabric library are selected trhough so-called
+    loaded. The CPU and GPU targets and the MPI fabric library are selected through so-called
     target modules, typically loaded during shell initialisation, while compiler, MPI and
     scientific libraries are typically loaded through the so-called * PrgEnv*  modules (one for each
     supported compiler). The CrayEnv software stack module will take care of ensuring that a proper
@@ -163,15 +164,17 @@ Lmod modules.
 -   The *LUMI* stack is a software stack which is mostly managed with EasyBuild. The stack is versioned
     based on the version of the HPE Cray PE which makes it easy to retire a whole stack when the compilers
     are retired from the system. If we need the same software in two different stacks, it is simply compiled
-    twice, even if it is only installed with the system compilers, to having to track dependencies. The
+    twice, even if it is only installed with the system compilers, to make retiring software easier without
+    having to track dependencies (we now simmply have to remove a few directories to remove a whole
+    software stack which will not have an impact on the other stacks). The
     exception are a few packages installed from binaries that are installed in a separate area across
     software stacks (e.g., ARM Forge and Vampir). The LUMI stack provides optimised binaries for each node
     type of LUMI, but some software that is not performance-critical is compiled only once. To this end we 
     have a partition corresponding to each node type, but also a common partition which is included with 
-    the software of all other partitions. Softwware in that common partition can only have dependencies 
+    the software of all other partitions. Software in that common partition can only have dependencies 
     in the common partition though.
 
-    For now we keep the central LUMI software stack very small, but we provide an easy and fully transparant
+    For now we keep the central LUMI software stack very small, but we provide an easy and fully transparent
     mechanism for the user to install software in their project directory that integrates fully with the LUMI
     stack. The user only needs to set an environment variable pointing to the project space.
 
@@ -181,17 +184,18 @@ to get the foss toolchain working on at least the CPU nodes of LUMI with minimal
 
 ### EasyBuild for software management
 
-The second component to our solution is EasyBuild. EasyBuild allows to give a very precise description of
+The second component to our solution is EasyBuild. EasyBuild can give a very precise description of
 all the steps needed to build a package while the user needs to give very few arguments to the `eb` command
 to actually do the installation. It is also robust enough that with a proper module to configure EasyBuild,
-an installation done by one user on LUMI will reproduce well in the environment of another user. 
+an installation done by one user on LUMI will reproduce easily in the environment of another user. 
 The fact that each easyconfig file contains a very precise list of dependencies, including versions and
 not only the names of the dependencies, is both a curse and a blessing. It is a curse when we need to upgrade
 to a new compiler and also want to upgrade versions of certain dependencies, as a lot of easyconfig files need
 to be checked and edited. In those cases the automatic concretiser of Spack may help to get running quicker.
-But that very precise description is also a blessing when communicating with users as you can purely 
+But that very precise description is also a blessing when communicating with users as you can  
 communicate with them through EasyBuild recipes (and possibly an easystack file, which defines a list of 
-easyconfig files to install). So a user doesn't need to copy long command lines and as a support person
+easyconfig files to install) rather than having part of the specification in command line options of the
+tool. So a user doesn't need to copy long command lines and as a support person
 you know exactly what EasyBuild will do, so this leaves less room for errors and difficult to solve support
 tickets.
 
