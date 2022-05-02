@@ -165,7 +165,7 @@ Lmod modules.
     based on the version of the HPE Cray PE which makes it easy to retire a whole stack when the compilers
     are retired from the system. If we need the same software in two different stacks, it is simply compiled
     twice, even if it is only installed with the system compilers, to make retiring software easier without
-    having to track dependencies (we now simmply have to remove a few directories to remove a whole
+    having to track dependencies (we now simply have to remove a few directories to remove a whole
     software stack which will not have an impact on the other stacks). The
     exception are a few packages installed from binaries that are installed in a separate area across
     software stacks (e.g., ARM Forge and Vampir). The LUMI stack provides optimised binaries for each node
@@ -192,12 +192,218 @@ The fact that each easyconfig file contains a very precise list of dependencies,
 not only the names of the dependencies, is both a curse and a blessing. It is a curse when we need to upgrade
 to a new compiler and also want to upgrade versions of certain dependencies, as a lot of easyconfig files need
 to be checked and edited. In those cases the automatic concretiser of Spack may help to get running quicker.
-But that very precise description is also a blessing when communicating with users as you can  
+But that very precise description is also a blessing when communicating with users as you can 
 communicate with them through EasyBuild recipes (and possibly an easystack file, which defines a list of 
-easyconfig files to install) rather than having part of the specification in command line options of the
+easyconfig files to install) rather than having a part of the specification in command line options of the
 tool. So a user doesn't need to copy long command lines and as a support person
 you know exactly what EasyBuild will do, so this leaves less room for errors and difficult to solve support
 tickets.
 
+### Offering EasyBuild in the LUMI stacks
+
+The LUMI software stack is implemented as an Lmod hierarchy with two levels. On top of it EasyBuild is used
+with a flat naming scheme (though we did consider a hierarchical one as well).
+
+The modules that load a specific version of the software stack are hand-written in LUA. The first level
+(a module called `LUMI`) is the version of the software stack, 
+the second level (a module called `oartition`) then choses the particular set of hardware to
+optimise for. The `LUMI` module will autoload the most suited `partition` module for the hardware,
+but users can overwrite this choice, e.g., for cross-compiling which is a common practice on
+HPE Cray systems but not without difficulties and hence not always possible.
+
+The `LUMI` and `partition` module combo also check a default location for the user software stack, and
+an environment variable that is used to point to a different location for the user software stack. 
+If a user software stack is found, its modules are automatically added to the stack. There are also
+some `partition` modules that do not correspond to particular hardware but are only used during software
+installation, to install software in "special" locations. E.g., the module `partition/common` is used to
+install some software for all partitions without binaries optimised specifically for each partition. 
+On LUMI, a selection of build and version control tools is currently installed that way.
+
+The `LUMI` and `partition` modules are both implemented in a generic way. Instances in the module tree are
+symbolic links to the generic implementations, and so-called Lmod introspection functions are used by
+the modules to determine their function from the location in the module tree. This makes it easy to correct
+bugs and extend the module files without having to go over different implementations in different locations.
+
+To enable all this functionality, including the common partition, a double module structure was needed
+to ensure the proper working of the Lmod hierarchy. The infrastructure tree is implemented following
+all proper rules for an Lmod hierarchy. It houses the `LUMI` and `partition` modules among others, but
+also the toolchain modules so that they can be configured specifically for each version of the `LUMI` 
+software stack and `partition`. The software module tree contains all software installed through 
+EasyBuild, with room to expand to manually installed software or software installed with Spack
+should this turn out to be necessary and safe to combine with EasyBuild-managed software.
+
+EasyBuild is configured through some configuration modules that set a range fo `EASYBUILD_*` variables
+to configure EasyBuild. There is again only a single EasyBuild configuration module implemented in LUA,
+but it appears with three different names in multiple locations in the infrastructure module tree, 
+and again Lmod introspection functions are used by the module to determine its specific function. 
+There are three configurations for EasyBuild: One for installation in the infrastructure module tree,
+one for installation in the main software tree and one for installation in the user software tree.
+By using just a single implementation for all three functions, we ensure that the different configurations
+remains consistent. This is important, e.g., to guarantee that the user configuration builds correctly
+upon the centrally installed stack, so any change to the structure of the latter should also propagate
+to the configuration of the former.
 
 
+## EasyBuild on LUMI
+
+### Custom toolchains
+
+The LUMI EasyBuild solution is not based on the common toolchains as the HPE Cray Programming Environment
+is the primary development environment on LUMI for which we also obtain support from HPE and as the common
+toolchains both post problems on LUMI. So far we have not yet succeeded to ensure proper operation of 
+Open MPI on LUMI which is a showstopper for working with the FOSS toolchain hierarchy. There is also no support
+yet for AMD GPUs in the common toolchains. Moreover, the FOSS toolchain is becoming a very powerful vehicle
+by the inclusion of FlexiBLAS and now also efforts to build an Open MPI configuration that supports both
+CPU nodes and NVIDIA GPU nodes but the downside of this is that it has also become a very complicated 
+setup to adapt if you need something else, as we do on LUMI. The Intel toolchain also has its problems. 
+Intel does not support oneAPI on AMD processors. Though Intel MPI can in principle run on SlingShot,
+also the SlingShot-11 update that is being installed on LUMI right now during this tutorial, as it is
+also based on libfabric and will be used on Aurora, a USA exascale system build by Intel with HPE Cray
+as a subcontractor for the hardware, users of AMD systems have reported problems with recent versions.
+MKL does not only have performance problems, but several sources also report correctness problem,
+especially in computational chemistry DFT codes.
+
+Instead we employ toolchains specific for the three (soon four) versions of the HPE Cray Programming
+Environment: HPE Cray's own Cray Compiler Environment compilers with a C/C++ compiler based on Clang/LLVM
+with some vendor-specific plugins and a Fortran compiler that compiles HPE Cray's frontend with a backend
+based on LLVM, the GNU Compiler Collection with its C/C++ and Fortran compiler, the AMD Optimizing
+C/C++ and Fortran Compilers (AOCC) and soon also a version employing the AMD ROCm compilers for the 
+AMD GPU compute nodes. The toolchains used on LUMI are a further evolution of the toolchains used
+at CSCS with many bug corrections in the AOCC-based toolchain and better support for toolchain options
+specified through `toolchainopts`. They should however be largely compatible with the EasyConfigs
+in the [CSCS repositoy](https://github.com/eth-cscs/production).
+
+The toolchains are loaded through modules generated with EasyBuild and custom EasyBlocks that replace
+the top `PrgEnv` modules from the HPE Cray Programming Environment, but otherwise use the modules provided
+by HPE Cray to load the actual compilers, compiler wrappers, MPI libraries and scientific libraries, and
+other modules that determine how the main modules work.
+
+### External modules
+
+EasyBuild supports the use of modules that were not installed via EasyBuild. 
+We refer to such modules as [external modules](https://docs.easybuild.io/en/latest/Using_external_modules.html).
+External modules do not define the `EBROOT*` and `EBVERSION*` environment variables that EasyBuild sets
+in modules it generates (and uses internally in some easyblocks and easyconfigs), and they also have
+no corresponding easyconfig file that can tell EasyBuild about further dependencies.
+
+External modules are used extensively on Cray systems to interface with the Cray PE (which comes with its own
+modules and cannot be installed via EasyBuild):
+[external modules can be used as dependencies](https://docs.easybuild.io/en/latest/Using_external_modules.html#using-external-modules-as-dependencies), 
+by including the module name in the dependencies list, 
+along with the `EXTERNAL_MODULE` constant marker.
+
+As an example, the Cray PE contains its own FFTW module, called `cray-fftw`.
+To use this module as a dependency, you should write the following in your easyconfig file:
+``` python
+dependencies = [('cray-fftw', EXTERNAL_MODULE)]
+```
+
+For such dependencies, EasyBuild will:
+
+* load the module before initiating the software build and install procedure
+
+* include a `module load` statement in the generated module file (for runtime dependencies)
+
+* but it will not go looking for a matching easyconfig file.
+
+!!! Note
+    The default version of the external module will be loaded unless a specific version is given as dependency,
+    and here that version needs to be given as part of the name of the module and not as the second element in the
+    tuple.
+
+    ```python
+    dependencies = [('cray-fftw/3.3.8.12', EXTERNAL_MODULE)]
+    ```
+
+If the specified module is not available, EasyBuild will exit with an error message stating that the dependency 
+can not be resolved because the module could not be found, without searching for a matching easyconfig file
+from which it could generate the module.
+
+The [metadata](https://docs.easybuild.io/en/latest/Using_external_modules.html#metadata-for-external-modules)
+for external modules can be supplied through one or more metadata files, pointed to by the `--external-modules-metadata` 
+configuration option (or corresponding environment variable).
+These files are expected to be in INI format, with a section per module name 
+and key-value assignments specific to that module.
+
+The following keys are 
+[supported by EasyBuild](https://docs.easybuild.io/en/latest/Using_external_modules.html#supported-metadata-values):
+
+* name: software name(s) provided by the module
+* version: software version(s) provided by the module
+* prefix: installation prefix of the software provided by the module
+
+For instance, the external module version loaded by the dependency `cray-fftw` can be specified as follows:
+```ini
+[cray-fftw]
+name = FFTW
+prefix = FFTW_DIR/..
+version = 3.3.8.10
+```
+
+This will then ensure that EasyBuild knows the equivalent EasyBuild name(s), version(s) and root of the 
+software installation for use in easyblocks. It will also create the corresponding `$EBROOT*` and
+`$EBVERSION*` environment variables in the build environment after loading the external module
+so that the module resembles more a regular EasyBuild-generated module and so that these environment
+variables can be used, e.g., in options to `configure` or `cmake`. 
+
+EasyBuild also includes a default metadata file that will be used, but that one can be very much out-of-date.
+And if no information for a 
+particular module is present in the metadata files, EasyBuild will even try
+to extract the information out of certain environment variables that are used by several Cray PE modules.
+
+On LUMI, users in generally don't need to be too concerned about the metadata file as the `EasyBuild-user` and other 
+EasyBuild configuration modules take care of pointing to the right metadata file, which is specific for each version of the
+Cray PE and hence each version of the LUMI software stack.
+
+
+### Software-specific easyblocks
+
+EasyBuild comes with a lot of software-specific easyblocks. These have only been tested with the common toolchains
+in the automated EasyBuild test procedures. As a result, many of those easyblocks will fail with the Cray toolchains
+(and with many other custom toolchains). A common problem is that they don't recongnise the compilers as they test 
+for the presence of certain modules and hence simply stop with an error message that the compiler is not 
+recognised, but there may also be more subtle problems, like explicitly checking for the name of a dependency rather
+than for the presence of the corresponding `EBROOT` and `EBVERSION` environment variables through the EasyBuild API.
+Hence it may fail to recognise external modules that have a different name than the name that EasyBuild uses for
+the package.
+
+For this reason we (and CSCS) tend to use the generic easyblocks more often, specifying configuration and build options
+by hand in the corresponding easyconfig parameters rather than relying on the logic in an easyblock to set the
+parameter for us based on the dependencies that are present. In some cases, the easyblocks are adapted, but this poses
+a maintenance problem. Contributing the modified easyblock back to the EasyBuild community is no guarantee that it remains
+compatible as the Cray-specific code cannot currently be tested in the automated test procedures due to lack of access to
+the Cray PE and lack of suitable easyconfig files to do the tests. However, keeping the code in our own repositories is no
+full solution either as the easyblock may need maintenance when a new version of EasyBuild with an updated easyblock
+appears.
+
+
+### Other LUMI-specific EasyBuild settings
+
+On LUMI, we do use a slightly customised version of the flat naming scheme but that is mostly because we are not interested
+in the categorisation of modules in module classes as this categorisation is too arbitrary. There are simply too many 
+modules that could be put in multiple classes, something which is currently not supported. We decided to remove that level
+alltogether from the module directory tree.
+
+
+## Further reading and information
+
+-   [LUMI web site](https://lumi-supercomputer.eu/)
+-   [LUMI user documentation web site](https://docs.lumi-supercomputer.eu/)
+-   So far most LUMI trainings were done by HPE Cray and their training materials cannot be distributed
+    freely, but there is [some additional training material from the LUMI User Support Team](https://lumi-supercomputer.github.io/LUMI-training-materials/).
+-   This EasyBuild training web site also contains:
+    -   A [training given to the LUMI User Support Team in the spring and summer of '21](https://easybuilders.github.io/easybuild-tutorial/2021-lust/)
+    -   A [training for CSC and Local Organisations from May 2022](https://easybuilders.github.io/easybuild-tutorial/2022-CSC_and_LO/)
+-   LUMI GitHub repositories:
+    -   [LUMI-SoftwareStack](https://github.com/Lumi-supercomputer/LUMI-SoftwareStack)
+        is the repository that contains all our Lmod modules, custom easyblocks and the easyconfigs of software that has 
+        already made it into the central stack. Its structure is inspired on that of the 
+        [CSCS repository](https://github.com/eth-cscs/production).
+        The repository also contains ample technical information on our implementation which can
+        also be browsed through the [lumi-supercomputer GitHub pages](https://lumi-supercomputer.github.io/LUMI-SoftwareStack/).
+    -   [LUMI-EasyBuild-contrib](https://github.com/Lumi-supercomputer/LUMI-EasyBuild-contrib) is our main repository
+        of easyconfig files for installation in the user space. Many of these may require more testing or support for
+        more configurations. Most subdirectories with easyconfig files also contain a `README.md` file that explains
+        the choices we made when implementing the easyconfig file.
+-   Other sites with Cray hardware that also use EasyBuild
+    -   [CSCS GitHub repository](https://github.com/eth-cscs/production)
