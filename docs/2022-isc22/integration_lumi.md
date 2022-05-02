@@ -48,10 +48,10 @@ It is also possible to run heterogeneous jobs across multiple partitions.
     with roughly 50 nodes.
 -   LUMI also has an extensive storage system
     -   There is a 7 PB flash-based storage system with 2 TB/s of bandwidth and high IOPS
-        capability using the Lustre parallel file system adn Cray ClusterStor E1000 technology.
+        capability using the Lustre parallel file system and Cray ClusterStor E1000 technology.
     -   The main disk based storage contains of 4 20 PB storage systems based on regular hard
         disks and also using the Lustre parallel file system.
-    -   A 30 PB Ceph-based encrypted object sotrage system for storing, sharing and staging data
+    -   A 30 PB Ceph-based encrypted object storage system for storing, sharing and staging data
         will become available at a later date.
 
 
@@ -232,7 +232,7 @@ software stack and `partition`. The software module tree contains all software i
 EasyBuild, with room to expand to manually installed software or software installed with Spack
 should this turn out to be necessary and safe to combine with EasyBuild-managed software.
 
-EasyBuild is configured through some configuration modules that set a range fo `EASYBUILD_*` variables
+EasyBuild is configured through some configuration modules that set a range of `EASYBUILD_*` variables
 to configure EasyBuild. There is again only a single EasyBuild configuration module implemented in LUA,
 but it appears with three different names in multiple locations in the infrastructure module tree, 
 and again Lmod introspection functions are used by the module to determine its specific function. 
@@ -382,7 +382,7 @@ appears.
 On LUMI, we do use a slightly customised version of the flat naming scheme but that is mostly because we are not interested
 in the categorisation of modules in module classes as this categorisation is too arbitrary. There are simply too many 
 modules that could be put in multiple classes, something which is currently not supported. We decided to remove that level
-alltogether from the module directory tree.
+altogether from the module directory tree.
 
 
 ## Further reading and information
