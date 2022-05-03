@@ -182,6 +182,7 @@ In the future we envision that more software stacks may become available on LUMI
 organisation wants to build their own stack. We also hope in a future collaboration with HPE to find a solution
 to get the foss toolchain working on at least the CPU nodes of LUMI with minimal changes.
 
+
 ### EasyBuild for software management
 
 The second component to our solution is EasyBuild. EasyBuild can give a very precise description of
@@ -197,7 +198,9 @@ communicate with them through EasyBuild recipes (and possibly an easystack file,
 easyconfig files to install) rather than having a part of the specification in command line options of the
 tool. So a user doesn't need to copy long command lines and as a support person
 you know exactly what EasyBuild will do, so this leaves less room for errors and difficult to solve support
-tickets.
+tickets. (Though note that with Spack environments you can also give a full specification in an Environment
+manifest.)
+
 
 ### Offering EasyBuild in the LUMI stacks
 
@@ -271,12 +274,14 @@ C/C++ and Fortran Compilers (AOCC) and soon also a version employing the AMD ROC
 AMD GPU compute nodes. The toolchains used on LUMI are a further evolution of the toolchains used
 at CSCS with many bug corrections in the AOCC-based toolchain and better support for toolchain options
 specified through `toolchainopts`. They should however be largely compatible with the EasyConfigs
-in the [CSCS repositoy](https://github.com/eth-cscs/production).
+in the [CSCS repository](https://github.com/eth-cscs/production).
 
 The toolchains are loaded through modules generated with EasyBuild and custom EasyBlocks that replace
 the top `PrgEnv` modules from the HPE Cray Programming Environment, but otherwise use the modules provided
 by HPE Cray to load the actual compilers, compiler wrappers, MPI libraries and scientific libraries, and
-other modules that determine how the main modules work.
+other modules that determine how the main modules work. So contrary to many other EasyBuild toolchains,
+the compilers, MPI and scientific libraries are not installed through EasyBuild.
+
 
 ### External modules
 
