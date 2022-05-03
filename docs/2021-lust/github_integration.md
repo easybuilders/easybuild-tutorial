@@ -77,7 +77,7 @@ a project that aims to *automate* tedious software installation procedures.
 
 At the end of 2015 efforts were made to tackle this issue by implementing
 GitHub integration features in EasyBuild, which automate the contribution
-workflow by running `git` commands and interacting with the [GitHub API](https://blogs.oracle.com/linux/post/attack-of-the-cosmic-rays).
+workflow by running `git` commands and interacting with the [GitHub API](https://docs.github.com/en/rest).
 
 We will briefly go over some of these features here, but they are also covered in detail [in the EasyBuild documentation](https://docs.easybuild.io/en/latest/Integration_with_GitHub.html).
 
