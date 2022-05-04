@@ -1033,7 +1033,7 @@ Please also take this into account:
     * Strictly speaking we don't need to specify a custom `sanity_check_paths`, since the default used
       by the `PythonPackage` easyblock is already pretty decent (it will check for a non-empty `lib/python3.8/site-packages`
       directory in the installation). We also want to make sure the `py-eb-tutorial` command is available in
-      the `bin` subdirectory however. Hardcoding to `python3.8` can be avoided using the `%(pyshortver)s`
+      the `bin` subdirectory however. Hardcoding to `python3.9` can be avoided using the `%(pyshortver)s`
       template value.
 
     * A good way to check whether the `py-eb-tutorial` command works correctly is by running it as a sanity check
@@ -1043,4 +1043,4 @@ Please also take this into account:
 
 ---
 
-[*next: EasyBuild at Jülich Supercomputing Centre*](jsc.md) - [*(back to overview page)*](index.md)
+[*next: Module naming schemes*](module_naming_schemes.md) - [*(back to overview page)*](index.md)
