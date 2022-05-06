@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://easybuilders.github.io/easybuild-tutorial/2020-06-isc20/adding_support_software/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.13">
     
     
       
@@ -19,10 +19,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.8c5ef100.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e411adfe.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.9647289d.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cc9b2e1e.min.css">
         
       
     
@@ -1676,7 +1676,7 @@ that are used for the installation, etc.</p>
 <li>complex or very non-standard installation procedure;</li>
 </ul>
 <p>Implementing easyblocks is out of scope for this basic tutorial, for more information please consult
-the <a href="https://easybuild.readthedocs.io/en/latest/Implementing-easyblocks.html">EasyBuild documentation</a>.</p>
+the <a href="https://docs.easybuild.io/en/latest/Implementing-easyblocks.html">EasyBuild documentation</a>.</p>
 <h2 id="writing-easyconfig-files">Writing easyconfig files<a class="headerlink" href="#writing-easyconfig-files" title="Permanent link">&para;</a></h2>
 <p>Writing an easyconfig file boils down to defining a set of easyconfig parameters in a text file,
 which we give a '<code>.eb</code>' extension by convention. The name of an easyconfig file doesn't matter
@@ -1733,7 +1733,7 @@ for example:</p>
 <p>You will definitely need to specify additional easyconfig parameters to get something useful done.
 We will cover the most commonly used ones here, but keep in mind that these are <em>not</em> mandatory.</p>
 <p>A full overview of all known easyconfig parameters can be obtained via "<code>eb --avail-easyconfig-params</code>"
-or just "<code>eb -a</code>" for short, or can be consulted in the <a href="https://easybuild.readthedocs.io/en/latest/version-specific/easyconfig_parameters.html">EasyBuild documentation</a>.</p>
+or just "<code>eb -a</code>" for short, or can be consulted in the <a href="https://docs.easybuild.io/en/latest/version-specific/easyconfig_parameters.html">EasyBuild documentation</a>.</p>
 <h4 id="sources-patches-and-checksums">Sources, patches, and checksums<a class="headerlink" href="#sources-patches-and-checksums" title="Permanent link">&para;</a></h4>
 <p>In most easyconfig files you will see that a list of source files is specified via the <code>sources</code>
 easyconfig parameter, usually combined
@@ -1770,9 +1770,9 @@ you must use square brackets as shown in the example. The default value for each
   EasyBuild will use the value of the <code>version</code> easyconfig parameter to determine the actual name of the source
   file. This way the software version is only specified in one place and the easyconfig file is easier to
   update to other software versions. A list of template values can be consulted via the EasyBuild command
-  line via the <code>--avail-easyconfig-templates</code> option, or in the <a href="https://easybuild.readthedocs.io/en/latest/version-specific/easyconfig_templates.html">EasyBuild documentation</a>.</li>
-<li>Source files can also be specified in ways other than just using a filename, see the <a href="https://easybuild.readthedocs.io/en/latest/Writing_easyconfig_files.html#common-easyconfig-param-sources-alt">EasyBuild documentation</a> for more information.</li>
-<li>Specified checksums are usually SHA256 checksum values, but <a href="https://easybuild.readthedocs.io/en/latest/Writing_easyconfig_files.html?highlight=checksums#checksums">other types are also supported</a>.</li>
+  line via the <code>--avail-easyconfig-templates</code> option, or in the <a href="https://docs.easybuild.io/en/latest/version-specific/easyconfig_templates.html">EasyBuild documentation</a>.</li>
+<li>Source files can also be specified in ways other than just using a filename, see the <a href="https://docs.easybuild.io/en/latest/Writing_easyconfig_files.html#common-easyconfig-param-sources-alt">EasyBuild documentation</a> for more information.</li>
+<li>Specified checksums are usually SHA256 checksum values, but <a href="https://docs.easybuild.io/en/latest/Writing_easyconfig_files.html?highlight=checksums#checksums">other types are also supported</a>.</li>
 </ul>
 <h4 id="easyblock">Easyblock<a class="headerlink" href="#easyblock" title="Permanent link">&para;</a></h4>
 <p>The easyblock that should be used for the installation can be specified via the <code>easyblock</code> easyconfig parameter.</p>
@@ -1795,7 +1795,7 @@ easyblock.</p>
 <li><code>PythonBundle</code>: a customized version of the <code>Bundle</code> generic easyblock to install a bundle of Python packages
   in a single installation directory;</li>
 </ul>
-<p>A full overview of the available generic easyblock is available in the <a href="https://easybuild.readthedocs.io/en/latest/version-specific/generic_easyblocks.html">EasyBuild documentation</a>. You can also consult the output of
+<p>A full overview of the available generic easyblock is available in the <a href="https://docs.easybuild.io/en/latest/version-specific/generic_easyblocks.html">EasyBuild documentation</a>. You can also consult the output of
 <code>eb --list-easyblocks</code>, which gives an overview of <em>all</em> known easyblocks, and how they relate to each other.</p>
 <p><strong>Custom easyconfig parameters</strong></p>
 <p>Most generic easyblocks provide additional easyconfig parameters to steer their behaviour.
@@ -1846,7 +1846,7 @@ dependency where a 3rd value is specified corresponding to the <code>versionsuff
 If this is not specified, it is assumed to be the empty string (<code>''</code>).</p>
 <p>Note how we use the '<code>%(pyver)s'</code> template value in the <code>SciPy-bundle</code> dependency
 specification, to avoid hardcoding the Python version in different places.</p>
-<p>See also the <a href="https://easybuild.readthedocs.io/en/latest/Writing_easyconfig_files.html#dependencies">EasyBuild documentation</a> for additional options on specifying dependencies.</p>
+<p>See also the <a href="https://docs.easybuild.io/en/latest/Writing_easyconfig_files.html#dependencies">EasyBuild documentation</a> for additional options on specifying dependencies.</p>
 <h4 id="version-suffix">Version suffix<a class="headerlink" href="#version-suffix" title="Permanent link">&para;</a></h4>
 <p>In some cases you may want to build a particular software package in different configurations, or include a label in the module name to highlight a particular aspect
 of the installation.</p>
@@ -2365,7 +2365,7 @@ easyconfig parameter in your easyconfig file:
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 12, 2021</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 21, 2022</span>
       
     
   </small>
@@ -2469,7 +2469,7 @@ easyconfig parameter in your easyconfig file:
     <script id="__config" type="application/json">{"base": "../..", "features": ["instant"], "search": "../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.748e2769.min.js"></script>
+      <script src="../../assets/javascripts/bundle.ed9748b7.min.js"></script>
       
     
   </body>

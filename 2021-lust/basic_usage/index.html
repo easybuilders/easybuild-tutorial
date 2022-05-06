@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://easybuilders.github.io/easybuild-tutorial/2021-lust/basic_usage/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.13">
     
     
       
@@ -19,10 +19,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.8c5ef100.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e411adfe.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.9647289d.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cc9b2e1e.min.css">
         
       
     
@@ -1688,7 +1688,7 @@ corresponding to <code>&lt;name&gt;-&lt;version&gt;-&lt;toolchain&gt;&lt;version
 <li><code>&lt;version&gt;</code> represents the software version;</li>
 <li><code>&lt;toolchain&gt;</code> represents the toolchain used in the easyconfig file, which consists of the toolchain name
   and version separated with a dash (<code>-</code>), and which is omitted (including the preceding <code>-</code>) when the
-  <a href="../introduction#system-toolchain"><code>system</code> toolchain</a> is used;</li>
+  <a href="../terminology/#system-toolchain"><code>system</code> toolchain</a> is used;</li>
 <li><code>&lt;versionsuffix&gt;</code> represents the value of the <code>versionsuffix</code> easyconfig parameter,
   which is sometimes used to distinguish multiple variants of particular software installations
   (and is empty by default);</li>
@@ -1737,7 +1737,7 @@ up the search procedure, especially when the easyconfig files are located on a s
 operations involving lots of (small) files can be slow.</p>
 <p>For the easyconfig files included with an EasyBuild release, a search index is readily provided.
 For other directories, you can create a search index using <code>eb --create-index &lt;path&gt;</code>.
-<a href="https://easybuild.readthedocs.io/en/latest/Easyconfigs_index.html">See the EasyBuild documentation for more information</a>.</p>
+<a href="https://docs.easybuild.io/en/latest/Easyconfigs_index.html">See the EasyBuild documentation for more information</a>.</p>
 <hr />
 <h2 id="inspecting-easyconfigs">Inspecting easyconfigs<a class="headerlink" href="#inspecting-easyconfigs" title="Permanent link">&para;</a></h2>
 <p>Once you have determined the name of the easyconfig file that corresponds to the software you want to install,
@@ -1902,7 +1902,7 @@ performed by EasyBuild. The output above shows:</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>It is important to highlight here that the reported installation procedure <em>may</em> not be 100% correct,
-since the <a href="../introduction/#easyblocks">easyblock</a> can change its mind based on the output of shell commands
+since the <a href="../terminology/#easyblocks">easyblock</a> can change its mind based on the output of shell commands
 that were executed, or based on the contents of a file that was generated during the installation.
 Since all "actions" that would be performed during the installation are actually skipped when using <code>eb -x</code>,
 the reported installation procedure could be partially incorrect.</p>
@@ -2345,7 +2345,7 @@ we're happy to help!</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 23, 2021</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 21, 2022</span>
       
     
   </small>
@@ -2449,7 +2449,7 @@ we're happy to help!</p>
     <script id="__config" type="application/json">{"base": "../..", "features": ["instant"], "search": "../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.748e2769.min.js"></script>
+      <script src="../../assets/javascripts/bundle.ed9748b7.min.js"></script>
       
     
   </body>

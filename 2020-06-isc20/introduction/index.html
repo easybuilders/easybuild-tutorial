@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://easybuilders.github.io/easybuild-tutorial/2020-06-isc20/introduction/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.13">
     
     
       
@@ -19,10 +19,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.8c5ef100.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e411adfe.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.9647289d.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cc9b2e1e.min.css">
         
       
     
@@ -1615,11 +1615,11 @@
 
 <h1 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h1>
 <h2 id="what-is-easybuild">What is EasyBuild?<a class="headerlink" href="#what-is-easybuild" title="Permanent link">&para;</a></h2>
-<p><a href="http://easybuild.io">EasyBuild</a> is a <strong>software build and installation framework</strong>
+<p><a href="https://easybuild.io">EasyBuild</a> is a <strong>software build and installation framework</strong>
 that manages (scientific) software in an efficient way, without compromises on performance. Easybuild is especially tailored towards <a href="https://en.wikipedia.org/wiki/Supercomputer"><strong>High Performance Computing (HPC)</strong></a>
  environments.</p>
 <h3 id="elevator-pitch"><em>Elevator pitch</em><a class="headerlink" href="#elevator-pitch" title="Permanent link">&para;</a></h3>
-<p><a href="http://geek-and-poke.com/geekandpoke/2010/5/14/how-to-become-invaluable.html"><img src="../../img/geek-and-poke-invaluable.png" style="float:right" width="50%"/></a></p>
+<p><a href="https://geek-and-poke.com/geekandpoke/2010/5/14/how-to-become-invaluable.html"><img src="../../img/geek-and-poke-invaluable.png" style="float:right" width="50%"/></a></p>
 <p>EasyBuild intends to relieve HPC support teams from manually managing
 software installations while at the same time <strong>providing a consistent and well performing
 scientific software stack</strong> to end users of HPC systems.</p>
@@ -1634,13 +1634,13 @@ including making sure that all necessary dependencies are installed,
 and automatically generating environment module files.</p>
 <p><strong><em>No</em></strong> <strong>admin privileges are required</strong>: it is sufficient to have write permissions
 to the preferred software installation prefix.</p>
-<p>It is <a href="https://easybuild.readthedocs.io/en/latest/Configuration.html"><strong>highly configurable</strong></a> via configuration files, environment variables, and command line options.
-The functionality can be <a href="https://easybuild.readthedocs.io/en/latest/Including_additional_Python_modules.html"><strong>dynamically extended</strong></a> via plugins,
-and hooks are available for further site-specific <a href="https://easybuild.readthedocs.io/en/latest/Hooks.html"><strong>customizations</strong></a> if required.</p>
-<p>The installation procedure executed by EasyBuild is thoroughly <a href="https://easybuild.readthedocs.io/en/latest/Logfiles.html"><strong>logged</strong></a> and fully transparent via <a href="https://easybuild.readthedocs.io/en/latest/Extended_dry_run.html">dry runs</a> and <a href="https://easybuild.readthedocs.io/en/latest/Tracing_progress.html">tracing</a>.</p>
+<p>It is <a href="https://docs.easybuild.io/en/latest/Configuration.html"><strong>highly configurable</strong></a> via configuration files, environment variables, and command line options.
+The functionality can be <a href="https://docs.easybuild.io/en/latest/Including_additional_Python_modules.html"><strong>dynamically extended</strong></a> via plugins,
+and hooks are available for further site-specific <a href="https://docs.easybuild.io/en/latest/Hooks.html"><strong>customizations</strong></a> if required.</p>
+<p>The installation procedure executed by EasyBuild is thoroughly <a href="https://docs.easybuild.io/en/latest/Logfiles.html"><strong>logged</strong></a> and fully transparent via <a href="https://docs.easybuild.io/en/latest/Extended_dry_run.html">dry runs</a> and <a href="https://docs.easybuild.io/en/latest/Tracing_progress.html">tracing</a>.</p>
 <p>EasyBuild supports using a <strong>custom module naming scheme</strong>, allows for
 <em>hierarchical</em> module naming schemes, and <strong>integrates with various other tools</strong> ranging from  resource managers (<a href="https://slurm.schedmd.com">Slurm</a> and <a href="https://github.com/gc3pie/gc3pie">GC3Pie</a>),
-container tools (<a href="https://github.com/hpcng/singularity">Singularity</a> and <a href="https://www.docker.com">Docker</a>),
+container tools (<a href="https://github.com/apptainer/singularity">Singularity</a> and <a href="https://www.docker.com">Docker</a>),
 packaging tools (<a href="https://fpm.readthedocs.io">FPM</a>), and so on.</p>
 <p>The project is <strong>actively developed</strong> by a worldwide community, with stable versions being
 released every 6-8 weeks since 2012. <strong>Comprehensive testing</strong> practices are applied throughout the
@@ -1769,11 +1769,11 @@ because they are widely adopted by the EasyBuild community.</p>
 <p>The <code>foss</code> toolchain consists of all open source components (hence the name:
 "FOSS" stands for Free &amp; Open Source Software): <a href="https://gcc.gnu.org/">GCC</a>, <a href="https://www.open-mpi.org/">Open MPI</a>, <a href="https://www.openblas.net/">OpenBLAS</a>,
 <a href="https://www.netlib.org/scalapack/">ScaLAPACK</a> and <a href="http://fftw.org/">FFTW</a>.</p>
-<p>The <code>intel</code> toolchain consists of the <a href="https://software.intel.com/content/www/us/en/develop/tools/compilers.html">Intel C, C++ and Fortran compilers</a> (on top of a <code>GCC</code> version
-controlled through EasyBuild) alongside the <a href="https://software.intel.com/content/www/us/en/develop/tools/mpi-library.html">Intel MPI</a> and <a href="https://software.intel.com/content/www/us/en/develop/tools/math-kernel-library.html">Intel MKL</a> libraries.</p>
+<p>The <code>intel</code> toolchain consists of the <a href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/dpc-compiler.html">Intel C, C++ and Fortran compilers</a> (on top of a <code>GCC</code> version
+controlled through EasyBuild) alongside the <a href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html">Intel MPI</a> and <a href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html">Intel MKL</a> libraries.</p>
 <p>Roughly every 6 months, a new version of these common toolchains is agreed upon
 in the EasyBuild community, after extensive testing.</p>
-<p>More information on these toolchains is available <a href="https://easybuild.readthedocs.io/en/latest/Common-toolchains.html">in the EasyBuild documentation</a>.</p>
+<p>More information on these toolchains is available <a href="https://docs.easybuild.io/en/latest/Common-toolchains.html">in the EasyBuild documentation</a>.</p>
 <h3 id="modules"><em>Modules</em><a class="headerlink" href="#modules" title="Permanent link">&para;</a></h3>
 <p><em>Module</em> is a massively overloaded term in (scientific) software and IT in general
 (kernel modules, Python modules, and so on).
@@ -1815,7 +1815,7 @@ which is reflected in some of the design choices that were made.</p>
 the capabilities of the system architecture on which the software will be run.</p>
 <p>For that same reason, EasyBuild <strong>optimizes software for the processor architecture of the build host</strong>
 by default, via compiler options like <code>-march=native</code> (GCC), <code>-xHost</code> (Intel compilers), etc.
-This behaviour <a href="https://easybuild.readthedocs.io/en/latest/Controlling_compiler_optimization_flags.html">may be changed via the <code>--optarch</code> configuration setting</a>.</p>
+This behaviour <a href="https://docs.easybuild.io/en/latest/Controlling_compiler_optimization_flags.html">may be changed via the <code>--optarch</code> configuration setting</a>.</p>
 <h3 id="reproducibility"><em>Reproducibility</em><a class="headerlink" href="#reproducibility" title="Permanent link">&para;</a></h3>
 <p>In addition to performance, <strong>reproducibility of installations</strong> is a core aspect of EasyBuild.</p>
 <p>Most software installations performed with EasyBuild use a <strong>particular <a href="#toolchains">toolchain</a></strong>,
@@ -1830,13 +1830,13 @@ software stack is controlled by EasyBuild.</p>
 <h3 id="community-effort"><em>Community effort</em><a class="headerlink" href="#community-effort" title="Permanent link">&para;</a></h3>
 <p>In a number of different ways, we try to encourage EasyBuild users to <strong>collaborate</strong> and help each other out.</p>
 <p>We actively recommend people to report problems and bugs, to submit ideas for additional features and improvements,
-and to <a href="https://easybuild.readthedocs.io/en/latest/Contributing.html"><strong>contribute back</strong></a> when possible, be it
+and to <a href="https://docs.easybuild.io/en/latest/Contributing.html"><strong>contribute back</strong></a> when possible, be it
 by opening pull requests to the <a href="#framework">EasyBuild framework</a>, <a href="#easyblocks">easyblocks</a>,
-<a href="#easyconfig-files">easyconfigs</a> repositories, or to the <a href="https://easybuild.readthedocs.io">EasyBuild documentation</a>.</p>
-<p>Through the <code>foss</code> and <code>intel</code> <a href="https://easybuild.readthedocs.io/en/latest/Common-toolchains.html"><strong>common toolchains</strong></a>,
+<a href="#easyconfig-files">easyconfigs</a> repositories, or to the <a href="https://docs.easybuild.io">EasyBuild documentation</a>.</p>
+<p>Through the <code>foss</code> and <code>intel</code> <a href="https://docs.easybuild.io/en/latest/Common-toolchains.html"><strong>common toolchains</strong></a>,
 we try to focus the efforts of the EasyBuild community a bit to specific toolchains,
 which increases the usefulness of the easyconfig files we collect in the <a href="https://github.com/easybuilders/easybuild-easyconfigs">central repository</a>.</p>
-<p>Last but not least, EasyBuild provides various <a href="https://easybuild.readthedocs.io/en/latest/Integration_with_GitHub.html"><strong>GitHub integration features</strong></a>
+<p>Last but not least, EasyBuild provides various <a href="https://docs.easybuild.io/en/latest/Integration_with_GitHub.html"><strong>GitHub integration features</strong></a>
 that greatly facilitate the contribution process: opening, updating, and testing pull requests,
 reviewing incoming contributions, and much more can all be done directly from the EasyBuild
 command line. This not only saves time, effort, brain cycles, and mouse clicks for contributors,
@@ -1848,7 +1848,7 @@ All together this leads to improved stability and consistency.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 6, 2021</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 21, 2022</span>
       
     
   </small>
@@ -1952,7 +1952,7 @@ All together this leads to improved stability and consistency.</p>
     <script id="__config" type="application/json">{"base": "../..", "features": ["instant"], "search": "../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.748e2769.min.js"></script>
+      <script src="../../assets/javascripts/bundle.ed9748b7.min.js"></script>
       
     
   </body>
