@@ -20,12 +20,12 @@ been visited in the last year (June 1st 2020 - June 1st 2021), and how often.
 
 HPC sites, consortia, and companies that use EasyBuild include (but are not limited to):
 
-<a href="https://vscentrum.be"><img src="../../img/vsc_logo.png" alt="VSC logo" width="40%"></a>
+<a href="https://www.vscentrum.be"><img src="../../img/vsc_logo.png" alt="VSC logo" width="40%"></a>
 <a href="https://www.fz-juelich.de/ias/jsc"><img src="../../img/jsc_logo.png" alt="JSC logo" width="28%"></a>
 <a href="https://hpcnow.com/"><img src="../../img/hpcnow_logo.png" alt="HPCNow! logo" width="25%"></a>
 <a href="https://www.fredhutch.org/"><img src="../../img/fredhutch_logo.png" alt="Fred Hutch logo" width="22%"></a>
 <a href="https://www.viennabiocenter.org/"><img src="../../img/vienna_biocenter_logo.png" alt="Vienna BioCenter logo" width="23%"></a>
-<a href="http://www.ceci-hpc.be/"><img src="../../img/ceci_logo.png" alt="CÉCI logo" width="18%"></a>
+<a href="https://www.ceci-hpc.be/"><img src="../../img/ceci_logo.png" alt="CÉCI logo" width="18%"></a>
 <a href="https://www.computecanada.ca/home/"><img src="../../img/computecanada_logo.png" alt="Compute Canada logo" width="32%"></a>
 <a href="https://www.uio.no/english/services/it/research/hpc/"><img src="../../img/uio_logo.png" alt="UiO logo" width="25%"></a>
 <a href="https://intranet.birmingham.ac.uk/bear"><img src="../../img/bear_logo.png" alt="BEAR logo" width="20%"></a>
@@ -37,7 +37,7 @@ HPC sites, consortia, and companies that use EasyBuild include (but are not limi
 <a href="https://dashboard.hpc.unimelb.edu.au/"><img src="../../img/univ_melbourne_logo.png" alt="University of Melbourne logo" width="16%"></a>
 <a href="https://hpc.uni.lu/"><img src="../../img/unilu_logo.png" alt="University of Luxembourg logo" width="18%"></a>
 <a href="https://www.epcc.ed.ac.uk/"><img src="../../img/epcc_logo.png" alt="EPCC logo" width="21%"></a>
-<a href="http://hpcf.cyi.ac.cy/"><img src="../../img/cyi_logo.png" alt="Cyprus Institute logo" width="26%"></a>
+<a href="https://hpcf.cyi.ac.cy/"><img src="../../img/cyi_logo.png" alt="Cyprus Institute logo" width="26%"></a>
 <a href="https://scicore.unibas.ch/"><img src="../../img/basel_logo.png" alt="University of Basel logo" width="26%"></a>
 <a href="https://techcommunity.microsoft.com/t5/azure-global/running-long-hpc-jobs-on-azure-with-checkpointing-using-lammps/ba-p/1335148"><img src="../../img/microsoft_logo.png" alt="Microsoft logo" width="23%"></a>
 

@@ -63,11 +63,11 @@ Any sufficiently recent Lmod version (8.x or even 7.x) should be fine.
 
 If you see output that starts with a line like "`VERSION=3.2.10`" or "`Modules Release 4.5.0`",
 you have the original Tcl-based environment modules tool installed
-and <a href="https://easybuild.readthedocs.io/en/latest/Configuration.html#modules-tool-modules-tool">*EasyBuild will need to be configured to use it after installation*</a>.
+and <a href="https://docs.easybuild.io/en/latest/Configuration.html#modules-tool-modules-tool">*EasyBuild will need to be configured to use it after installation*</a>.
 
 If the `module` function is not defined either you do not have a modules tool installed
 or your environment is not properly set up to use it. In this case,
-please refer to the EasyBuild documentation <a href="https://easybuild.readthedocs.io/en/latest/Installation.html#required-modules-tool">here</a> for more information.
+please refer to the EasyBuild documentation <a href="https://docs.easybuild.io/en/latest/Installation.html#required-modules-tool">here</a> for more information.
 
 
 ## EasyBuild as a Python package
@@ -102,7 +102,7 @@ we strongly recommend using Python 3 if you have the choice.
 
 By default EasyBuild will use the `python` command to run, but you can control
 this if needed.
-For more information, see <a href="https://easybuild.readthedocs.io/en/latest/Python-2-3-compatibility.html">
+For more information, see <a href="https://docs.easybuild.io/en/latest/Python-2-3-compatibility.html">
 the EasyBuild documentation</a>.
 
 
@@ -245,7 +245,7 @@ This is EasyBuild 4.2.1 (framework: 4.2.1, easyblocks: 4.2.1) on host example
     If you already have EasyBuild installed, you can <a href="#verifying-the-installation">skip ahead to the next section</a>.
 
 If `pip` is not available or if the installation with `pip` is not working out for some reason,
-you can resort to using the [*bootstrapping* procedure for installing EasyBuild](https://easybuild.readthedocs.io/en/latest/Installation.html#bootstrapping-easybuild).
+you can resort to using the [*bootstrapping* procedure for installing EasyBuild](https://docs.easybuild.io/en/latest/Installation.html#bootstrapping-easybuild).
 
 In essence, the bootstrap script installs EasyBuild into a temporary location and then uses this
 temporary EasyBuild installation to install EasyBuild into the specified directory and provide a module for it.

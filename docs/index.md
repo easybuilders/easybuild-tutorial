@@ -44,7 +44,7 @@ EasyBuild requires:
 * an environment modules tool (see the ``module`` command)
 
     * we recommend [Lmod](https://lmod.readthedocs.io), a modern environment modules tool implemented in Lua
-    * for more information on the environment modules tools supported by EasyBuild, see [here](https://easybuild.readthedocs.io/en/latest/Installation.html#required-modules-tool)
+    * for more information on the environment modules tools supported by EasyBuild, see [here](https://docs.easybuild.io/en/latest/Installation.html#required-modules-tool)
 
 ## Contributors
 
@@ -57,7 +57,7 @@ EasyBuild requires:
 * Terje Kvernes ([`@terjekv`](https://github.com/terjekv), [University of Oslo, Norway](https://www.uio.no/english/))
 * Alan O'Cais ([`@ocaisa`](https://github.com/ocaisa), [Jülich Supercomputing Centre, Germany](https://www.fz-juelich.de/ias/jsc/EN/Home/home_node.html))
 * Bart Oldeman ([`@bartoldeman`](https://github.com/bartoldeman), [Compute Canada](https://www.computecanada.ca))
-* Åke Sandgren ([`@akesandgren`](https://github.com/akesandgren), [Umeå University, Sweden](http://www.umu.se/english/))
+* Åke Sandgren ([`@akesandgren`](https://github.com/akesandgren), [Umeå University, Sweden](https://www.umu.se/en/))
 
 ## Additional resources
 

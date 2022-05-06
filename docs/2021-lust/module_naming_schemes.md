@@ -35,7 +35,7 @@ consists of a *hierarchy* of module files.
 The typical module hierarchy has 3 levels:
 
 * a **core** level, where module files for software that was installed using the
-  [`system` toolchain](../introduction/#system-toolchain) are kept;
+  [`system` toolchain](../terminology/#system-toolchain) are kept;
 * a **compiler** level, where module files for software that was installed using a
 *compiler-only toolchain* are stored;
 * and an **MPI** level, which houses module files for software that was installed using a toolchain that includes (at least) a compiler and MPI component;

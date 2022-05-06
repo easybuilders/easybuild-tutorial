@@ -106,7 +106,7 @@ To keep things organised, the actual Python module files
 for software-specific easyblocks are kept in 'letter' subdirectories,
 rather than in one large '``easyblocks``' directory
 (see
-[https://github.com/easybuilders/easybuild-easyblocks/blob/main/easybuild/easyblocks/](https://github.com/easybuilders/easybuild-easyblocks/blob/main/easybuild/easyblocks/)),
+[https://github.com/easybuilders/easybuild-easyblocks/tree/main/easybuild/easyblocks](https://github.com/easybuilders/easybuild-easyblocks/tree/main/easybuild/easyblocks)),
 but this namespace is collapsed transparently by EasyBuild (you don't need to import from letter subpackages).
 
 To let EasyBuild pick up one or more new or customized easyblocks, you can use the [``--include-easyblocks``](https://docs.easybuild.io/en/latest/Including_additional_Python_modules.html#including-additional-easyblocks-include-easyblocks)

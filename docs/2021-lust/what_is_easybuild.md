@@ -4,14 +4,14 @@
 
 <p align="center"><img src="../../img/easybuild_logo_alpha.png" alt="EasyBuild logo" width="300px"/></p>
 
-**[EasyBuild](http://easybuild.io)** is a **software build and installation framework**
+**[EasyBuild](https://easybuild.io)** is a **software build and installation framework**
 that manages (scientific) software in an efficient way, without compromising on performance.
 Easybuild is especially tailored towards [**High Performance Computing (HPC)**](https://en.wikipedia.org/wiki/Supercomputer) systems,
 and provides a **command-line interface** to facilitate the installation and management of a scientific software stack.
 
 ---
 
-<a href="http://geek-and-poke.com/geekandpoke/2010/5/14/how-to-become-invaluable.html">
+<a href="https://geek-and-poke.com/geekandpoke/2010/5/14/how-to-become-invaluable.html">
 <img src="../../img/geek-and-poke-invaluable.png" style="float:right" width="45%"/>
 </a>
 
@@ -53,7 +53,7 @@ as it is performed.
 
 EasyBuild supports using a **custom module naming scheme**, allows for
 *hierarchical* module naming schemes, and **integrates with various other tools** ranging from  resource managers ([Slurm](https://slurm.schedmd.com) and [GC3Pie](https://github.com/gc3pie/gc3pie)),
-container tools ([Singularity](https://github.com/hpcng/singularity) and [Docker](https://www.docker.com)),
+container tools ([Singularity](https://github.com/apptainer/singularity) and [Docker](https://www.docker.com)),
 packaging tools ([FPM](https://fpm.readthedocs.io)), and so on.
 
 ---
@@ -100,11 +100,11 @@ We actively recommend people to report problems and bugs, to submit ideas for ad
 and to [**contribute back**](https://docs.easybuild.io/en/latest/Contributing.html) when possible, be it
 by opening pull requests to the [GitHub repositories](https://github.com/easybuilders) or the [documentation](https://docs.easybuild.io).
 
-Through the ``foss`` and ``intel`` [**common toolchains**](https://easybuild.readthedocs.io/en/latest/Common-toolchains.html),
+Through the ``foss`` and ``intel`` [**common toolchains**](https://docs.easybuild.io/en/latest/Common-toolchains.html),
 we try to focus the efforts of the EasyBuild community a bit to specific toolchains,
 which increases the usefulness of the easyconfig files we collect in the [central repository](https://github.com/easybuilders/easybuild-easyconfigs).
 
-Last but not least, EasyBuild provides various [**GitHub integration features**](https://easybuild.readthedocs.io/en/latest/Integration_with_GitHub.html)
+Last but not least, EasyBuild provides various [**GitHub integration features**](https://docs.easybuild.io/en/latest/Integration_with_GitHub.html)
 that greatly facilitate the contribution process: opening, updating, and testing pull requests,
 reviewing incoming contributions, and much more can all be done directly from the EasyBuild
 command line. This not only saves time, effort, brain cycles, and mouse clicks for contributors,
@@ -192,12 +192,12 @@ been visited in the last year (March 1st 2020 - March 1st 2021), and how often.
 
 HPC sites, consortia, and companies that use EasyBuild include (but are not limited to):
 
-<a href="https://vscentrum.be"><img src="../../img/vsc_logo.png" alt="VSC logo" width="40%"></a>
+<a href="https://www.vscentrum.be"><img src="../../img/vsc_logo.png" alt="VSC logo" width="40%"></a>
 <a href="https://www.fz-juelich.de/ias/jsc"><img src="../../img/jsc_logo.png" alt="JSC logo" width="28%"></a>
 <a href="https://hpcnow.com/"><img src="../../img/hpcnow_logo.png" alt="HPCNow! logo" width="25%"></a>
 <a href="https://www.fredhutch.org/"><img src="../../img/fredhutch_logo.png" alt="Fred Hutch logo" width="22%"></a>
 <a href="https://www.viennabiocenter.org/"><img src="../../img/vienna_biocenter_logo.png" alt="Vienna BioCenter logo" width="23%"></a>
-<a href="http://www.ceci-hpc.be/"><img src="../../img/ceci_logo.png" alt="CÉCI logo" width="18%"></a>
+<a href="https://www.ceci-hpc.be/"><img src="../../img/ceci_logo.png" alt="CÉCI logo" width="18%"></a>
 <a href="https://www.computecanada.ca/home/"><img src="../../img/computecanada_logo.png" alt="Compute Canada logo" width="32%"></a>
 <a href="https://www.uio.no/english/services/it/research/hpc/"><img src="../../img/uio_logo.png" alt="UiO logo" width="25%"></a>
 <a href="https://intranet.birmingham.ac.uk/bear"><img src="../../img/bear_logo.png" alt="BEAR logo" width="20%"></a>
@@ -209,7 +209,7 @@ HPC sites, consortia, and companies that use EasyBuild include (but are not limi
 <a href="https://dashboard.hpc.unimelb.edu.au/"><img src="../../img/univ_melbourne_logo.png" alt="University of Melbourne logo" width="16%"></a>
 <a href="https://hpc.uni.lu/"><img src="../../img/unilu_logo.png" alt="University of Luxembourg logo" width="18%"></a>
 <a href="https://www.epcc.ed.ac.uk/"><img src="../../img/epcc_logo.png" alt="EPCC logo" width="21%"></a>
-<a href="http://hpcf.cyi.ac.cy/"><img src="../../img/cyi_logo.png" alt="Cyprus Institute logo" width="26%"></a>
+<a href="https://hpcf.cyi.ac.cy/"><img src="../../img/cyi_logo.png" alt="Cyprus Institute logo" width="26%"></a>
 <a href="https://scicore.unibas.ch/"><img src="../../img/basel_logo.png" alt="University of Basel logo" width="26%"></a>
 <a href="https://techcommunity.microsoft.com/t5/azure-global/running-long-hpc-jobs-on-azure-with-checkpointing-using-lammps/ba-p/1335148"><img src="../../img/microsoft_logo.png" alt="Microsoft logo" width="23%"></a>
 
