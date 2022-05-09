@@ -28,6 +28,7 @@ Things that could go wrong during an installation include:
 * required dependencies that are not specified in the easyconfig file;
 * failing shell commands;
 * running out of available memory or disk space;
+* compiler errors and compiler crashes ;
 * a segmentation fault caused by a flipped bit triggered by a cosmic ray 
   ([really, it happens!](https://blogs.oracle.com/linux/post/attack-of-the-cosmic-rays));
 
@@ -239,7 +240,7 @@ checksums = ['d808eb5b1823c572cb45a97c95a3c5acb3d8e29aa47ec74e3ca1eb345787c17b']
 
 start_dir = 'src'
 
-# -fcommon is required to compile Subread 2.0.1 with GCC 10,
+# -fcommon is required to compile Subread 2.0.1 with GCC 10/11,
 # which uses -fno-common by default (see https://www.gnu.org/software/gcc/gcc-10/porting_to.html)
 buildopts = '-f Makefile.Linux CFLAGS="-fast -fcommon"'
 
@@ -287,9 +288,59 @@ Remember though: *no peeking* before you tried to solve each step yourself!
 
 ---
 
-***Exercise T.1**** - Sources*
+***Exercise T.1**** - Toolchain*
 
 Try to install the `subread.eb` easyconfig file, see what happens.
+
+Take into account that we just want to get this software package installed,
+we don't care too much about details like the version of the dependencies or
+the toolchain here...
+
+
+??? success "(click to show solution)"
+
+    The installation fails because the easyconfig specifies that `PrgEnv-gnu/21.10`
+    should be used as toolchain:
+
+    ```
+    $ eb subread.eb
+    ...
+    ERROR: Failed to process easyconfig /pfs/lustrep3/users/kurtlust/easybuild-tutorial/Troubleshooting/subread.eb: Toolchain PrgEnv-gnu not found, 
+    available toolchains: ...
+    ...
+    ```
+
+    `PrgEnv-gnu` is an HPE Cray PE module that may look like a toolchain - it certainly has 
+    the same function: provide compiler, MPI and basic math libraries - but it is not 
+    recognised as a toolchain by EasyBuild. EasyBuild prefers to manage its own modules so that it knows
+    well what is in it which is not the case with the `PrgEnv-*` modules from the Cray PE
+    as the content may differ between systems and as the versions of the compilers etc. that
+    are loaded differ on other modules that are loaded. Hence we created Cray-specific toolchains.
+    You'll actually find two series of Cray toolchains in the list of available toolchains. 
+    
+    A more readable list of toolchains supported by EasyBuild can be generated using
+
+    ```shell
+    eb --list-toolchains
+    ```
+    
+    The `CrayGNU`, `CrayIntel`, `CrayPGI` and `CrayCCE` are included with the EasyBuild distribution
+    and where developed by CSCS for their systems using Environment Modules. These were not compatible
+    with the initial releases of the Cray PE with Lmod modules so new ones were developed on which we
+    also built for the LUMI toolchains. Those are called `cpeCray`, `cpeGNU`, `cpeAOCC` and `cpeAMD`
+    and are maintained by LUST and available via the LUMI repositories.
+
+Note: Depending on how you use EasyBuild you may now first run into the problem of Exercise T.2 or 
+first run into the problem covered by Exercise T.3.
+
+
+---
+
+***Exercise T.2**** - Sources*
+
+After fixing the problem with the name of the toolchain, try running `eb` again.
+
+What's wrong now? How can you fix it quickly?
 
 Can you fix the problem you run into, perhaps without even changing
 the easyconfig file?
@@ -323,6 +374,9 @@ the easyconfig file?
     mv subread-2.0.1-source.tar.gz $EBU_USER_PREFIX/sources/s/Subread/
     ```
 
+    (assuming you have set `EBU_USER_PREFIX`, otherwise replace `$EBU_USER_PREFIX` with
+    `$HOME/EasyBuild`).
+
     Or, we can change the easyconfig file to specify the location where
     the easyconfig file can be downloaded from:
     ```python
@@ -344,7 +398,7 @@ the easyconfig file?
 
 ---
 
-***Exercise T.2**** - Toolchain*
+***Exercise T.3**** - Toolchain revisited*
 
 After fixing the problem with missing source file, try the installation again.
 
@@ -357,33 +411,10 @@ the toolchain here...
 
 ??? success "(click to show solution)"
 
-    The installation fails because the easyconfig specifies that GCC 8.5.0
+    The installation fails because the easyconfig specifies that `PrgEnv-gnu/21.12`
     should be used as toolchain:
 
-    ```
-    $ eb subread.eb
-    ...
-    ERROR: Failed to process easyconfig /pfs/lustrep3/users/kurtlust/easybuild-tutorial/Troubleshooting/subread.eb: Toolchain PrgEnv-gnu not found, 
-    available toolchains: ...
-    ...
-    ```
-
-    `PrgEnv-gnu` is an HPE Cray PE module that may look like a toolchain - it certainly has 
-    the same function: provide compiler, MPI and basic math libraries - but it is not 
-    recognised as a toolchain by EasyBuild. EasyBuild prefers to manage its own modules so that it knows
-    well what is in it which is not the case with the `PrgEnv-*` modules from the Cray PE
-    as the content may differe between systems and as the versions of the compilers etc. that
-    are loaded differ on other modules that are loaded. Hence we created Cray-specific toolchains.
-    You'll actually find two series of Cray toolchains in the list of available toolchains. The
-    `CrayGNU`, `CrayIntel`, `CrayPGI` and `CrayCCE` are included with the EasyBuild distribution
-    and where developed by CSCS for their systems using Environment Modules. These were not compatible
-    with the initial releases of the Cray PE with Lmod modules so new ones were developed on which we
-    also built for the LUMI toolchains. Those are called `cpeCray`, `cpeGNU`, `cpeAOCC` and `cpeAMD`
-    and are maintained by LUST and available via the LUMI repositories.
-
-    Changing the toolchain name to `cpeGNU` is not enough to solve all problems though:
-
-    ```
+    ```shell
     $ eb subread.eb
     ...
     ERROR: Build of /pfs/lustrep3/users/kurtlust/easybuild-tutorial/Troubleshooting/subread.eb failed (err: 'build failed (first 300 chars): 
@@ -391,7 +422,7 @@ the toolchain here...
     ...
     ```
 
-    We don't have this `cpeGNU` version installed, but we do have GCC 21.12:
+    We don't have this `cpeGNU` version installed, but we do have `cpeGNU/21.12`:
 
     ```shell
     $ module avail cpeGNU/
@@ -407,11 +438,12 @@ the toolchain here...
     ```python
     toolchain = {'name': 'cpeGNU', 'version': '21.12'}
     ```
+
 ---
 
-***Exercise T.3**** - Build step*
+***Exercise T.4**** - Build step*
 
-With the first two problems fixed, now we can actually try to build the software.
+With the first three problems fixed, now we can actually try to build the software.
 
 Can you fix the next problem you run into?
 
@@ -489,9 +521,10 @@ Can you fix the next problem you run into?
     defaults in EasyBuild, settings in the EasyBuild configuration and settings in the
     easyconfig file that we shall discuss later).
 
+
 ---
 
-***Exercise T.4**** - Sanity check*
+***Exercise T.5**** - Sanity check*
 
 After fixing the compilation issue, you're really close to getting the installation working, we promise!
 
@@ -529,7 +562,12 @@ Don't give up now, try one last time and fix the last problem that occurs...
 
 ---
 
-In the end, you should be able to install Subread 2.0.1 with the cpeGNU 21.12 toolchain by fixing the problems with the `subread.eb` easyconfig file.
+---
+
+***Exercise T.6**** - Post-install check of the log file*
+
+In the end, you should be able to install Subread 2.0.1 with the cpeGNU 21.12 toolchain by 
+fixing the problems with the `subread.eb` easyconfig file.
 
 Check your work by manually loading the module and checking the version
 via the `featureCounts` command, which should look like this:
@@ -540,6 +578,182 @@ $ module load Subread/2.0.1-cpeGNU-21.12
 $ featureCounts -v
 featureCounts v2.0.1
 ```
+
+So all is well know, or is it?
+
+Unfortunately we don't have a complete log file of the last build (at least if you only re-installed
+the module) as most of the steps were skipped in the last build.
+
+Let's do the build again and check the full log file, just to be sure. But we'll first need to
+clean up a bit as EasyBuild doesn't like to build in a shell in which the modules which are
+used for the build are already loaded:
+
+```shell
+module unload Subread cpeGNU
+```
+
+Now look at the output of an extended dry run and then rebuild to have a full log file so
+that we can expect if EasyBuild really did what we expected:
+
+```shell
+eb subread.eb -x
+eb subread.eb -f
+```
+
+(the last line to force a rebuild).
+
+Now go to the `$EBU_USER_PREFIX/SW/LUMI-21.12/L/Subread/2.0.1-cpeGNU-21.12/easybuild`
+(or `$HOME/EasyBuild/SW/LUMI-21.12/L/Subread/2.0.1-cpeGNU-21.12/easybuild`, depending on your configuration,) directory and open
+the log file in your favourite editor. Search for the build step by searching for the string
+`INFO Starting build` and look carefully at how the program was actually build...
+
+You'll very likely have to look at the solution to understand how to correct the
+problems as that requires more advanced knowlege than we have at this point in
+the tutorial, but try to figure out what could be wrong first though...
+
+??? hint "(Click for a hint)"
+    Check the compiler that has been used and the compiler flags. Are these really
+    what you would like to see and what you would expect from running `eb subread.eb -x`
+    as we did before?
+
+
+??? success "(click to show solution)"
+    According to the output of `eb subread.eb -x`, the build should be done using 
+    `cc` as the compiler as that is the value assigned to the `CC` environment which
+    by convention points to the C compiler. Moreover, EasyBuild sets `CFLAGS` to 
+    `-O2 -ftree-vectorize -fno-math-errno`, and then the `make` command line adds
+    `-fcommon` to those flags.
+
+    However, this is not what we see in the build log. It turns out that Subread
+    is one of those horror packages that follows no established convention for 
+    build procedures.
+    
+    One of the first lines we 
+    run into (yours may differ since this is a parallel build) is
+    
+    ```
+    gcc  -mtune=core2  -O3 -DMAKE_FOR_EXON  -D MAKE_STANDALONE -D SUBREAD_VERSION=\""2.0.1"\"  -D_FILE_OFFSET_BITS=64    -fmessage-length=0  -ggdb  -O2 -ftree-vectorize -fno-math-errno -fcommon -I/opt/cray/pe/libsci/21.08.1.2/GNU/9.1/x86_64/include  -c -o core.o core.c
+    ```
+
+    The flags that we added via `CFLAGS` are in there but only after some other flags.
+    The build process didn't pick up our C compiler either! And o horror, it even defines
+    the processor architecture! So it will not run on older architectures than the Intel Sandy 
+    Bridge family, but it will not exploit newer architectures either (well, it it could, the code
+    may not benefit at all from newer vectorisation instructions, but at least the compiler might
+    do a better job optimising). 
+    Scrolling down a bit we see some lines that generate executables from a single
+    C file and a list of already generated object files, and there we don't even see our
+    compiler flags at all!
+
+    The problem is truly in the makefiles of Subread. We could now untar the source file
+    that was saved by EasyBuild in a temporary work directory and inspect the sources, or we could
+    retry the build and stop after the build step. Let's take the latter option. The command to 
+    do this is
+
+    ```
+    eb subread.eb -f --stop build
+    ```
+
+    We'll need to search for the build directory now as it is not printed when EasyBuild stops in
+    a regular way.
+
+    ```
+    pushd $EASYBUILD_BUILDPATH/Subread/2.0.1/cpeGNU-21.12
+    cd subread-2.0.1-source
+    cd src
+    ```
+
+    The EasyConfig uses the makefile `Makefile.Linux` so let's check that one. Some of the crucial
+    lines are:
+
+    ```
+    CC_EXEC = gcc
+    OPT_LEVEL = 3
+
+    CCFLAGS = -mtune=core2 ${MACOS} -O${OPT_LEVEL} -DMAKE_FOR_EXON  -D MAKE_STANDALONE -D SUBREAD_VERSION=\"${SUBREAD_VERSION}\"  -D_FILE_OFFSET_BITS=64 ${WARNING_LEVEL}
+    CC = ${CC_EXEC}  ${CCFLAGS}  -fmessage-length=0  -ggdb
+    ```
+
+    We see several problems at once
+
+    -   `CC` is defined in the Makefile in a way that we do not want to redefine it on the `make`` command
+        line as it also already includes all compiler options. It turns out we need to redefine `CC_EXEC`
+        instead to use a different compiler.
+    -   `CCFLAGS` includes several options that should enter through `CFLAGS` and should not be imposed in
+        a proper build process. The most dangerous one is the `-mtune=core2`, but in general we prefer to 
+        leave the choice of the optimisation level to EasyBuild also unless there are good reasons to use
+        a very specific optimisation level.
+    -   One may wonder why at least some of the compiles did pick up `CFLAGS` then. This is because these
+        files were compiled using an implicit rule that used the `CC` command as defined in `Makefile.Linux`
+        so with a lot of compiler flags already added to it and then adds `CFLAGS` as defined on the `make`
+        command line generated by EasyBuild. Those compile commands that were generated from an explicit rule 
+        don't pick up `CFLAGS` though.
+
+    There are two ways to fix this in EasyBuild (besides teaching the developer of this software package how
+    to write a proper Makefile following the usual conventions).
+
+    1.  The approach which is usually followed is to make a patch file for `Makefile.Linux` that changes the line
+        
+        ```
+        CCFLAGS = -mtune=core2 ${MACOS} -O${OPT_LEVEL} -DMAKE_FOR_EXON  -D MAKE_STANDALONE -D SUBREAD_VERSION=\"${SUBREAD_VERSION}\"  -D_FILE_OFFSET_BITS=64 ${WARNING_LEVEL}
+        ``` 
+
+        to, e.g.,
+
+        ```
+        CCFLAGS = ${CFLAGS} -DMAKE_FOR_EXON  -D MAKE_STANDALONE -D SUBREAD_VERSION=\"${SUBREAD_VERSION}\"  -D_FILE_OFFSET_BITS=64 ${WARNING_LEVEL}
+        ``` 
+
+        combined with changing the `buildopts` line to also overwrite `CC_EXEC`:
+
+        ```
+        buildopts = '-f Makefile.Linux CC_EXEC="$CC" CFLAGS="-fast -fcommon"'
+        ```
+
+        (or you could also change the `CC_EXEC` line in `Makefile.Linux` with the same patch to use the `cc` command,
+        but that would also make the patch file Cray-only.) 
+
+    2.  The other option is to simply edit `Makefile.Linux` using `sed` to replace 
+        `-mtune=core2 ${MACOS} -O${OPT_LEVEL}` with
+        `${CFLAGS}`. This can be done by executing a `sed` command before calling `make`. 
+        As we shall see later in this tutorial, this can be done with `prebuildopts`: 
+
+        ```python
+        prebuildopts = "sed -e 's/-mtune=core2 ${MACOS} -O${OPT_LEVEL}/${CFLAGS}/' -i Makefile.Linux && "
+        ```
+
+        and as in the previous case we also still need to overwrite `CC_EXEC` with the 
+        correct compiler on the `make` command line:
+
+        ```
+        buildopts = '-f Makefile.Linux CC_EXEC="$CC" CFLAGS="-fast -fcommon"'
+        ```
+
+        Now check the output of `eb subread.eb -x` to see what will happen during the build phase.
+    
+    Let's implement the second approach, then do a full rebuild:
+
+    ```shell
+    eb subread.eb -f
+    ```
+
+    and then open the log file (again in the `easybuild` subdirectory of the software installation
+    directory) and check what happened now during the build step.
+
+    As we scroll through the output of the build step, we still see a few lines mentioning
+    `gcc`... It turns out there is a second Makefile hidden in the subdirectory `longread-one` so we 
+    need to edit that one too... So following the second approach we can do this with
+
+    ```python
+    prebuildopts = "sed -e 's/-mtune=core2 ${MACOS} -O${OPT_LEVEL}/${CFLAGS}/' -i Makefile.Linux && "
+    prebuildopts += "sed -e 's/-mtune=core2 ${MACOS} -O${OPT_LEVEL}/${CFLAGS}/' -i longread-one/Makefile && "
+    ```
+
+    Now we can build once more and check the log file and finally we can be satisfied...
+
+    This exercise also show how tedious developing an easyconfig can be. And it also shows mistakes that
+    are sometimes overlooked in easyconfigs that come with EasyBuild.
+
 
 ---
 
