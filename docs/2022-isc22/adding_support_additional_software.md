@@ -473,7 +473,7 @@ the installation procedure, additional dependencies that are required, etc.
 Using a different compiler toolchain may be as simple as just switching one for
 another, but it may require additional changes to be made to configure options, for example.
 
-The easyconfig files modified in this way will be stored in the `easybuld` subdirectory
+The easyconfig files modified in this way will be stored in the `easybuild` subdirectory
 of the software installation directory and in the easyconfig archive that EasyBuild creates.
 
 ## Copying easyconfigs
