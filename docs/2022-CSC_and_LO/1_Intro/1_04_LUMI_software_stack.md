@@ -98,7 +98,7 @@ set of target modules after loading the ``CrayEnv`` module.
 
 ## The ``partition`` module
 
-The ``LUMI`` module currently supports four partition modules, but that number may
+The ``LUMI`` module currently supports five partition modules, but that number may
 be reduced in the future:
 
 | Partition         | CPU target            | Accelerator                 |

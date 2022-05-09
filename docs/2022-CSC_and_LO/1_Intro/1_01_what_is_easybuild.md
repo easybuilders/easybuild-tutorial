@@ -95,7 +95,7 @@ By default EasyBuild tries to run tests if the build process of a package provid
 functionality, or can run simple tests of its own, and of course these tests will fail if 
 the host CPU does not support the full instruction set of the target CPU. Secondly, more
 and more software has broken build processes where developers thought that it was a good 
-idea to hard-code options such as ``-march=native`` or ``--xHost`` in a way that EasyBuild
+idea to hard-code options such as ``-march=native`` or ``-xHost`` in a way that EasyBuild
 cannot easily overwrite those.
 
 

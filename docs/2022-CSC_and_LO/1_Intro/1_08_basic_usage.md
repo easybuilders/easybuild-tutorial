@@ -143,18 +143,18 @@ while `eb -S` produces a more concise output.
 For example, let's check which easyconfig files are available for OpenFOAM 8 with a `foss` toolchain:
 
 ```shell
-$ eb --search openfoam-8-foss
- * /home/example/.local/easybuild/easyconfigs/o/OpenFOAM/OpenFOAM-8-foss-2020a.eb
- * /home/example/.local/easybuild/easyconfigs/o/OpenFOAM/OpenFOAM-8-foss-2020b.eb
+$ eb --search openfoam-9
+ * /appl/lumi/LUMI-EasyBuild-contrib/easybuild/easyconfigs/o/OpenFOAM/OpenFOAM-9-cpeGNU-21.08.eb
+ * /appl/lumi/LUMI-EasyBuild-contrib/easybuild/easyconfigs/o/OpenFOAM/OpenFOAM-9-cpeGNU-21.12.eb
 ```
 
 The output is a bit more condensed when using `eb -S`:
 
 ```shell
-$ eb -S openfoam-8-foss
-CFGS1=/home/example/.local/easybuild/easyconfigs/o/OpenFOAM
- * $CFGS1/OpenFOAM-8-foss-2020a.eb
- * $CFGS1/OpenFOAM-8-foss-2020b.eb
+$ eb -S openfoam-9
+CFGS1=/appl/lumi/LUMI-EasyBuild-contrib/easybuild/easyconfigs/o/OpenFOAM
+ * $CFGS1/OpenFOAM-9-cpeGNU-21.08.eb
+ * $CFGS1/OpenFOAM-9-cpeGNU-21.12.eb
 ```
 
 Note that the search is performed *case-insensitive*.
@@ -164,13 +164,17 @@ or other special characters like `^` or `$` to mark the start/end of the filenam
 but you need to be careful that `bash` does not expand these before the `eb` command is started,
 so it is recommended to wrap the search pattern in single quotes (`'...'`) when using wildcards.
 
-For example, to check which easyconfigs are available to install TensorFlow 2.4.1 with the `2020b` version of a toolchain:
+For example, to check which easyconfigs are available to install GROMACS 2021 and subversions with 
+the `cpeGNU` toolchains:
 
 ```shell
-$ eb -S '^tensorflow-2.4.1.*2020b'
-CFGS1=/home/example/.local/easybuild/easyconfigs/t/TensorFlow
- * $CFGS1/TensorFlow-2.4.1-foss-2020b.eb
- * $CFGS1/TensorFlow-2.4.1-fosscuda-2020b.eb
+$ eb -S '^gromacs-2021.*cpeGNU.*'
+CFGS1=/appl/lumi/LUMI-EasyBuild-contrib/easybuild/easyconfigs/g/GROMACS
+ * $CFGS1/GROMACS-2021-cpeGNU-21.08-PLUMED-2.7.2-CPU.eb
+ * $CFGS1/GROMACS-2021.3-cpeGNU-21.08-CPU.eb
+ * $CFGS1/GROMACS-2021.4-cpeGNU-21.12-PLUMED-2.7.4-CPU.eb
+ * $CFGS1/GROMACS-2021.4-cpeGNU-21.12-PLUMED-2.8.0-CPU.eb
+ * $CFGS1/GROMACS-2021.5-cpeGNU-21.12-CPU.eb
 ```
 
 ---
