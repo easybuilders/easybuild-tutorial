@@ -93,7 +93,9 @@ There are a couple of advantages to this approach:
 However, the are some minor disadvantages too:
 
 * not all existing modules are directly visible, so users have to learn how to find
-  modules using ``module spider`` etc.;
+  modules using ``module spider`` etc. (but that is not an issue on LUMI as users
+  also need to use this command anyway to discover software that may not be in all
+  software stacks);
 * gateway modules may have little meaning to end users;
 
 #### Length of module names

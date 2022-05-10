@@ -231,13 +231,17 @@ If want to *add* to the existing value however, you *must* use the ``self.cfg.up
 self.cfg.update('some_list', 'example')
 ```
 
-This will ***not*** work (because ``self.cfg['some_list']`` does not return a reference to the original value,
-but to a *temporary copy* thereof):
+One could be tempted to use
 
 ```python
 # anti-pattern, this does NOT work as expected!
 self.cfg['some_list'].append('example')
 ```
+
+instead, but this will ***not*** work because ``self.cfg['some_list']`` does not return a reference to the original value,
+but to a *temporary copy* thereof.
+
+
 
 ### Custom parameters
 

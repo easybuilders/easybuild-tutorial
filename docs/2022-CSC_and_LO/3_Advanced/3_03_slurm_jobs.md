@@ -44,7 +44,8 @@ This implies that any EasyBuild configuration files or ``$EASYBUILD_*`` environm
 that are in place in the job environment are most likely *irrelevant*, since configuration settings
 they specify they will most likely be overruled by the corresponding command line options.
 It does also imply however that the EasyBuild configuration that is in place when ``eb --job`` is used
-does also work on the compute nodes to which the job is submitted.
+should also work on the compute nodes to which the job is submitted as EasyBuild will generate the command
+line options used in the job script based on that configuration.
 
 
 ## Using ``eb --job``
@@ -90,7 +91,7 @@ using the ``sbatch`` command.
 
 EasyBuild currently doesn't provide away to customize the Slurm submission options,
 for example to submit to a particular partition, or to use a particular account,
-build you can set the corresponding ``$SBATCH_*`` environment variables prior to running ``eb --job``.
+build you can set the corresponding ``SBATCH_*`` environment variables prior to running ``eb --job``.
 
 For example, to specify a particular account that should be used for the jobs submitted by EasyBuild
 (equivalent with using the ``-A`` or ``--account`` command line option for ``sbatch``):
@@ -105,14 +106,14 @@ Or to submit to a particular Slurm partition (equivalent with the ``-p`` or ``--
 export SBATCH_PARTITION='small'
 ```
 
-For more information about supported ``$SBATCH_*`` environment variables,
+For more information about supported ``SBATCH_*`` environment variables,
 see the [Slurm documentation](https://slurm.schedmd.com/sbatch.html#lbAJ).
 
 ## Combining ``--job`` and ``--robot``
 
 If one or more dependencies are still missing for the software you want to install,
 you can combine ``--job`` and ``--robot`` to get EasyBuild to submit a *separate* job
-for each of the installations. These jobs will *not* ``--robot``, they will each only
+for each of the installations. These jobs will *not* use ``--robot``, they will each only
 perform a single installation.
 
 Dependencies between jobs will be "registered" at submission time, so Slurm will put jobs
@@ -218,9 +219,10 @@ module load LUMI/21.12
 module load partition/C
 module load EasyBuild-user
 
-# use ramdisk for build directories
-export EASYBUILD_BUILDPATH=/dev/shm/$USER/build
-export EASYBUILD_TMPDIR=/dev/shm/$USER/tmp
+# use /tmp for build directories and temporary directories as we have those
+# on login and compute nodes.
+export EASYBUILD_BUILDPATH=/tmp/$USER/build
+export EASYBUILD_TMPDIR=/tmp/$USER/tmp
 
 # use Slurm as job backend
 export EASYBUILD_JOB_BACKEND=Slurm

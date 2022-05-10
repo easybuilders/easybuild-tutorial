@@ -4,7 +4,7 @@
 
 ---
 
-!!! Warning "Preliminary not for LUMI and many other Cray systems"
+!!! Warning "Preliminary note for LUMI and many other Cray systems"
 
     Not everything in this section is as useful for EasyBuild installations that build
     on the Cray Programming Environment. E.g., the default easyconfig repository does

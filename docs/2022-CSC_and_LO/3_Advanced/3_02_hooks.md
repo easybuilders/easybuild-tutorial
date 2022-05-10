@@ -29,7 +29,8 @@ community:
 
 -   Enforce some site policies on easyconfig files. A practical example for LUMI could be imposing
     the use of the `whatis` parameter and ensuring that it contains a `Description` line to have a
-    more consistent format for module files.
+    more consistent format for module files (or, alternatively, imposing this if the mandatory
+    `description` parameter is to long to be good for a `whatis` line).
 -   Ensuring that some information is always in the module file. E.g., on LUMI the `site_contacts` 
     parameter is added automatically when installing in the central stack if it is not already in 
     the easyconfig file to refer to the LUST     support pages.
@@ -39,6 +40,7 @@ community:
     adapt, e.g., the easyconfig files for Open MPI to work on LUMI.
 
 Some site have really large hook files to implement policies and modify standard EasyBuild build recipes, e.g.,
+
 -   [The hooks file from Jülich Supercomputing Centre](https://github.com/easybuilders/JSC/blob/2022/Custom_Hooks/eb_hooks.py)
 -   ComputeCanada [cc_hooks_common.py](https://github.com/ComputeCanada/easybuild-computecanada-config/blob/main/cc_hooks_common.py)
     and [cc_hooks_gento.py](https://github.com/ComputeCanada/easybuild-computecanada-config/blob/main/cc_hooks_gentoo.py)
