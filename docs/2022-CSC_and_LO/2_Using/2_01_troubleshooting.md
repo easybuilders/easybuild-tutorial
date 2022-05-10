@@ -608,7 +608,7 @@ the log file in your favourite editor. Search for the build step by searching fo
 `INFO Starting build` and look carefully at how the program was actually build...
 
 You'll very likely have to look at the solution to understand how to correct the
-problems as that requires more advanced knowlege than we have at this point in
+problems as that requires more advanced knowledge than we have at this point in
 the tutorial, but try to figure out what could be wrong first though...
 
 ??? hint "(Click for a hint)"

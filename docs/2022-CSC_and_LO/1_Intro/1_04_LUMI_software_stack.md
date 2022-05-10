@@ -32,7 +32,7 @@ LUMI has different node types providing compute resources:
         and are equipped with SlingShot 10 interconnect cards (2 each???)
     -   8 nodes have zen2 CPUs and 8 NVIDIA A40 GPUs each, and have 2 SlingShot 10
         interconnect cards each.
--   The early access platform (EAP) has 14 nodes equiped with a single 64-core
+-   The early access platform (EAP) has 14 nodes equipped with a single 64-core
     zen2 CPU and 4 AMD MI100 GPUS. Each node has a single SlingShot 10 interconnect
     and also local SSDs.
 
