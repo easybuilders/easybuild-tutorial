@@ -40,6 +40,7 @@ community:
     adapt, e.g., the easyconfig files for Open MPI to work on LUMI.
 
 Some site have really large hook files to implement policies and modify standard EasyBuild build recipes, e.g.,
+
 -   [The hooks file from Jülich Supercomputing Centre](https://github.com/easybuilders/JSC/blob/2022/Custom_Hooks/eb_hooks.py)
 -   ComputeCanada [cc_hooks_common.py](https://github.com/ComputeCanada/easybuild-computecanada-config/blob/main/cc_hooks_common.py)
     and [cc_hooks_gento.py](https://github.com/ComputeCanada/easybuild-computecanada-config/blob/main/cc_hooks_gentoo.py)
