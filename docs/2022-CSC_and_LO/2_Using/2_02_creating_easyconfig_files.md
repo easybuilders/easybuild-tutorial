@@ -598,7 +598,7 @@ and also `EasyBuild-user` is loaded to configure EasyBuild to install in
 
 ``` shell
 module load LUMI/21.12
-module load EasyBuild-user`
+module load EasyBuild-user
 ```
 
 
