@@ -894,13 +894,13 @@ version = '1.0.1'
 homepage = 'https://easybuilders.github.io/easybuild-tutorial'
 description = "EasyBuild tutorial example"
 
-toolchain = {'name': 'GCC', 'version': '10.2.0'}
+toolchain = {'name': 'cpeCray', 'version': '21.12'}
 
 source_urls = ['https://github.com/easybuilders/easybuild-tutorial/raw/main/docs/files/']
 sources = [SOURCE_TAR_GZ]
 checksums = ['d6cec2ea298f4092cb1b880cb017220ab191561da941e9e480639cf3354b7ef9']
 
-builddependencies = [('CMake', '3.18.4')]
+builddependencies = [('buildtools', '%(toolchain_version)s', '', True)]
 
 configopts = "-DEBTUTORIAL_MSG='Hello from the EasyBuild tutorial!' "
 
