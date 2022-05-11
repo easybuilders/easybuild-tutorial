@@ -1,7 +1,5 @@
 # Adding support for additional software
 
-# Adding support for additional software
-
 We already know how to install easyconfig files that are included with EasyBuild,
 but what about installing software for which no easyconfig is available yet?
 
@@ -920,7 +918,7 @@ You can leverage the `eb-tutorial` easyconfig file we have composed in the examp
     (`eb-tutorial` version 1.0.1 doesn't print "`I have a message for you:`")
 
     If you check the eassyconfig file that was generated (which is saved as 
-    `$EASYBUILD_PREFIX/ebfiles_repo/eb-tutorial/eb-tutorial-1.1.0-GCC-11.2.0.eb`),y
+    `$EASYBUILD_PREFIX/ebfiles_repo/eb-tutorial/eb-tutorial-1.1.0-GCC-11.2.0.eb`),
     you will see that that file now contains a lot of data from the build. This can
     be safely deleted, but EasyBuild will also simply ignore it if you try to build
     from that file. You will also notice that the checksum went missing. EasyBuild was
@@ -940,14 +938,18 @@ You can leverage the `eb-tutorial` easyconfig file we have composed in the examp
 ***Exercise E.3**** - Installing py-eb-tutorial 1.0.0*
 
 Try composing an easyconfig file for the `py-eb-tutorial` example software, which is a tiny Python package.
-The source tarball can be downloaded from this link: [py-eb-tutorial-1.0.0.tar.gz](https://github.com/easybuilders/easybuild-tutorial/raw/main/docs/files/py-eb-tutorial-1.0.0.tar.gz).
+The source tarball can be downloaded from this link: 
+[py-eb-tutorial-1.0.0.tar.gz](https://github.com/easybuilders/easybuild-tutorial/raw/main/docs/files/py-eb-tutorial-1.0.0.tar.gz).
 
 A couple of tips:
 
 * There is a [generic easyblock](#easyblock) available for installing Python packages, which will come in useful here.
 
-* By default EasyBuild performs an `import` check when install Python packages, using a Python module name that is derived from the software name by default, which will be incorrect in this case. You can specify the correct name to use in the import check by specifying it via the `options`
-easyconfig parameter in your easyconfig file:
+* By default EasyBuild performs an `import` check when installing Python packages, 
+  using a Python module name that is derived from the software name by default, which 
+  will be incorrect in this case. You can specify the correct name to use in the import 
+  check by specifying it via the `options`
+  easyconfig parameter in your easyconfig file:
   ```python
   options = {'modulename': 'example'}
   ```
@@ -961,7 +963,9 @@ Please also take this into account:
 * Unfortunately this software doesn't come with documentation. That is done to make it an example that
   is representative for software that you may run into in the wild (it's *not* because
   we were lazy when preparing the exercises, really!).
-  You can inspect the sources of this software [here](https://github.com/easybuilders/easybuild-tutorial/tree/main/docs/files/py-eb-tutorial-1.0.0). Definitely take a look at the `setup.py` file, it includes some clues
+  You can inspect the sources of this software 
+  [here](https://github.com/easybuilders/easybuild-tutorial/tree/main/docs/files/py-eb-tutorial-1.0.0). 
+  Definitely take a look at the `setup.py` file, it includes some clues
   about the requirements to get this software installed.
 
 * Make sure the installation actually *works*, by checking that the `py-eb-tutorial` command runs correctly.
@@ -1031,7 +1035,7 @@ Please also take this into account:
       use via `options`.
 
     * Strictly speaking we don't need to specify a custom `sanity_check_paths`, since the default used
-      by the `PythonPackage` easyblock is already pretty decent (it will check for a non-empty `lib/python3.8/site-packages`
+      by the `PythonPackage` easyblock is already pretty decent (it will check for a non-empty `lib/python3.9/site-packages`
       directory in the installation). We also want to make sure the `py-eb-tutorial` command is available in
       the `bin` subdirectory however. Hardcoding to `python3.9` can be avoided using the `%(pyshortver)s`
       template value.
