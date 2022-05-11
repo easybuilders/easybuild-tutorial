@@ -1060,7 +1060,8 @@ You can leverage the `eb-tutorial` easyconfig file we have composed in the examp
     directory. As on LUMI the repository is in the search path we can actually copy
     the file back to the current directory:
     ```
-    eb --copy-ec eb-tutorial-1.1.0-cpeCray-21.12.    ```
+    eb --copy-ec eb-tutorial-1.1.0-cpeCray-21.12.    
+    ```
     Some of the formatting is lost though and the checksum is still missing, so you may want
     to do some cleaning up.
     ```
