@@ -2,9 +2,9 @@
 
 ## General information
 
-[LUMI](https://www.lumi-supercomputer.eu/), (installed at CSC), is one of the three planned 
+[LUMI](https://www.lumi-supercomputer.eu/), installed in a CSC data centre (Finland)), is one of the three planned 
 [EuroHPC pre-exascale systems](https://eurohpc-ju.europa.eu/discover-eurohpc-ju#ecl-inpage-211) 
-meant to be installed in 2022-2022, 
+meant to be installed in 2022-2023, 
 together with Leonardo (installed at Cineca) and MareNostrum5 (installed at BSC).
 LUMI, which stands for Large Unified Modern Infrastructure, is hosted by the 
 [LUMI consortium](https://www.lumi-supercomputer.eu/lumi-consortium/),
@@ -33,7 +33,7 @@ It is also possible to run heterogeneous jobs across multiple partitions.
     a different GPU package. Each node has 512GB HBM2e RAM spread evenly across the GPU dies and 
     512 GB of regular DDR4 DRAM connected to the CPU. The nodes are diskless nodes.
     The (very) theoretical peak performance of a GPU node is
-    around 400 Tflops for FP64 vector operations or 800 TFlops for FP64 matrix operations.
+    around 200 Tflops for FP64 vector operations or 400 TFlops for FP64 matrix operations.
 -   The main CPU partition, called LUMI-C, consists of 1536 nodes with 2 64-core AMD
     EPYC 7763 CPUs. Most nodes have 256 GB of RAM memory, but there are 128 nodes with
     512 GB of RAM and 32 nodes with 1 TB of RAM. In the final system, each node will be equipped
@@ -62,7 +62,7 @@ It is also possible to run heterogeneous jobs across multiple partitions.
     LLVM-based backend) and GNU and AMD compilers repackaged by Cray. The HPE Cray PE uses
     an MPICH-based MPI implementation (with libfabric backend on SlingShot 11) and also comes 
     with its own optimised mathematics libraries containing all the usual suspects you expect 
-    from an EasyBuild toolchain. The environment is however managed outside EasyBuild, but
+    from an EasyBuild toolchain. The HPE Cray PE environment is managed outside EasyBuild, but
     EasyBuild has a mechanism to integrate with it.
 
     Due to the specific hardware and software setup of LUMI using the EasyBuild common toolchains 
@@ -152,7 +152,7 @@ Lmod modules.
     libraries and some other libraries provided with the PE. It does so based on which modules are
     loaded. The CPU and GPU targets and the MPI fabric library are selected through so-called
     target modules, typically loaded during shell initialisation, while compiler, MPI and
-    scientific libraries are typically loaded through the so-called * PrgEnv*  modules (one for each
+    scientific libraries are typically loaded through the so-called `PrgEnv-*`  modules (one for each
     supported compiler). The CrayEnv software stack module will take care of ensuring that a proper
     set of target modules is loaded depending on the node type on which the module is loaded, and 
     hence also reloading the proper target modules after a `module purge`. 
@@ -179,8 +179,9 @@ Lmod modules.
     stack. The user only needs to set an environment variable pointing to the project space.
 
 In the future we envision that more software stacks may become available on LUMI as at least one local support
-organisation wants to build their own stack. We also hope in a future collaboration with HPE to find a solution
-to get the foss toolchain working on at least the CPU nodes of LUMI with minimal changes.
+organisation wants to build their own stack. We also hope to find a solution
+to get the foss toolchain working on at least the CPU nodes of LUMI with minimal changes
+in a future collaboration with HPE .
 
 
 ### EasyBuild for software management
@@ -276,10 +277,10 @@ at CSCS with many bug corrections in the AOCC-based toolchain and better support
 specified through `toolchainopts`. They should however be largely compatible with the EasyConfigs
 in the [CSCS repository](https://github.com/eth-cscs/production).
 
-The toolchains are loaded through modules generated with EasyBuild and custom EasyBlocks that replace
-the top `PrgEnv` modules from the HPE Cray Programming Environment, but otherwise use the modules provided
+The toolchains are loaded through modules, generated with EasyBuild and a custom EasyBlock, that replace
+the top `PrgEnv` modules from the HPE Cray Programming Environment. These modules then use the modules provided
 by HPE Cray to load the actual compilers, compiler wrappers, MPI libraries and scientific libraries, and
-other modules that determine how the main modules work. So contrary to many other EasyBuild toolchains,
+the target modules that determine how the main modules work. So contrary to many other EasyBuild toolchains,
 the compilers, MPI and scientific libraries are not installed through EasyBuild.
 
 
@@ -287,9 +288,9 @@ the compilers, MPI and scientific libraries are not installed through EasyBuild.
 
 EasyBuild supports the use of modules that were not installed via EasyBuild. 
 We refer to such modules as [external modules](https://docs.easybuild.io/en/latest/Using_external_modules.html).
-External modules do not define the `EBROOT*` and `EBVERSION*` environment variables that EasyBuild sets
-in modules it generates (and uses internally in some easyblocks and easyconfigs), and they also have
-no corresponding easyconfig file that can tell EasyBuild about further dependencies.
+External modules do not define the `EBROOT*` and `EBVERSION*` environment variables that are present
+in EasyBuild-generated modules and that EasyBuild uses internally in some easyblocks and easyconfigs, 
+and they also have no corresponding easyconfig file that can tell EasyBuild about further dependencies.
 
 External modules are used extensively on Cray systems to interface with the Cray PE (which comes with its own
 modules and cannot be installed via EasyBuild):
@@ -302,6 +303,7 @@ To use this module as a dependency, you should write the following in your easyc
 ``` python
 dependencies = [('cray-fftw', EXTERNAL_MODULE)]
 ```
+(for the default version).
 
 For such dependencies, EasyBuild will:
 
