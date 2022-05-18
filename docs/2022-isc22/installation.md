@@ -461,4 +461,4 @@ with the rest of the tutorial!**
 
 ---
 
-[*next: Configuration*](configuration.md) - [*(back to overview page)*](index.md)
+[*next: Configuring EasyBuild*](configuration.md) - [*(back to overview page)*](index.md)
