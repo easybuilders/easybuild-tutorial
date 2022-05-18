@@ -16,7 +16,7 @@ which makes it very easy to preview the result of the changes you make locally.
 
 * First, install ``mkdocs``, including the `material` theme and additional plugins:
 
-      pip install mkdocs mkdocs-material mkdocs-git-revision-date-localized-plugin
+      pip install mkdocs mkdocs-material mkdocs-git-revision-date-localized-plugin mkdocs-redirects
 
 * Start the MkDocs built-in dev-server to preview the tutorial as you work on it:
 
