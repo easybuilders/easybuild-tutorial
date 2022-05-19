@@ -45,7 +45,7 @@ Here is an example of an EasyBuild error message (slightly reformatted for clari
 $ eb example.eb
 ...
 == building...
-== FAILED: Installation ended unsuccessfully (build directory: /tmp/example/example/1.0/GCC-10.2.0):
+== FAILED: Installation ended unsuccessfully (build directory: /tmp/example/example/1.0/GCC-11.2.0):
 build failed (first 300 chars): cmd "make" exited with exit code 2 and output:
 /usr/bin/g++ -O2 -ftree-vectorize -march=native -fno-math-errno -std=c++14 -c -o core.o core.cpp
 g++: error: unrecognized command line option '-std=c++14' (took 1 sec)
@@ -196,7 +196,7 @@ This allows you to dive in and check for clues in the files that are stored ther
 The location of the build directory is mentioned in the EasyBuild error message:
 
 ```
-== FAILED: Installation ended unsuccessfully (build directory: /tmp/example/example/1.0/GCC-10.2.0): ...
+== FAILED: Installation ended unsuccessfully (build directory: /tmp/example/example/1.0/GCC-11.2.0): ...
 ```
 
 For software using a classic `configure` script, you may have to locate
@@ -217,20 +217,20 @@ to writing easyconfig files from scratch [later in this tutorial](adding_support
 easyblock = 'MakeCp'
 
 name = 'Subread'
-version = '2.0.1'
+version = '2.0.3'
 
 homepage = 'http://subread.sourceforge.net'
 description = "High performance read alignment, quantification and mutation discovery"
 
 toolchain = {'name': 'GCC', 'version': '8.5.0'}
 
-# download from https://download.sourceforge.net/subread/subread-2.0.1-source.tar.gz
+# download from https://download.sourceforge.net/subread/subread-2.0.3-source.tar.gz
 sources = ['subread-%(version)s-source.tar.gz']
-checksums = ['d808eb5b1823c572cb45a97c95a3c5acb3d8e29aa47ec74e3ca1eb345787c17b']
+checksums = ['56cef3a2f914d432713069d5c282f48831c3a1ecc89432ad5580caa322a5f56b']
 
 start_dir = 'src'
 
-# -fcommon is required to compile Subread 2.0.1 with GCC 10,
+# -fcommon is required to compile Subread 2.0.3 with GCC 10,
 # which uses -fno-common by default (see https://www.gnu.org/software/gcc/gcc-10/porting_to.html)
 buildopts = '-f Makefile.Linux CFLAGS="-fast -fcommon"'
 
@@ -289,13 +289,13 @@ the easyconfig file?
 
 ??? success "(click to show solution)"
 
-    The installation fails because the source file `subread-2.0.1-source.tar.gz`
+    The installation fails because the source file `subread-2.0.3-source.tar.gz`
     is not found:
     ```
     $ eb subread.eb
     ...
-    == FAILED: Installation ended unsuccessfully (build directory: /tmp/example/Subread/2.0.1/GCC-8.5.0): build failed (first 300 chars):
-    Couldn't find file subread-2.0.1-source.tar.gz anywhere, and downloading it didn't work either...
+    == FAILED: Installation ended unsuccessfully (build directory: /tmp/example/Subread/2.0.3/GCC-8.5.0): build failed (first 300 chars):
+    Couldn't find file subread-2.0.3-source.tar.gz anywhere, and downloading it didn't work either...
     Paths attempted (in order): ...
     ```
 
@@ -303,7 +303,7 @@ the easyconfig file?
     where the sources can be downloaded from. Not automatically at least,
     but there is a helpful comment included:
     ```python
-    # download from https://download.sourceforge.net/subread/subread-2.0.1-source.tar.gz
+    # download from https://download.sourceforge.net/subread/subread-2.0.3-source.tar.gz
     sources = ['subread-%(version)s-source.tar.gz']
     ```
 
@@ -311,8 +311,8 @@ the easyconfig file?
     and move it to the location where EasyBuild expects to find it
     (in the `sourcepath` directory):
     ```
-    curl -OL https://download.sourceforge.net/subread/subread-2.0.1-source.tar.gz
-    mv subread-2.0.1-source.tar.gz $HOME/easybuild/sources/s/Subread/
+    curl -OL https://download.sourceforge.net/subread/subread-2.0.3-source.tar.gz
+    mv subread-2.0.3-source.tar.gz $HOME/easybuild/sources/s/Subread/
     ```
 
     If downloading is problematic for some reason, the source tarball is also available
@@ -334,7 +334,7 @@ the easyconfig file?
     ```shell
     $ ls -lh $HOME/easybuild/sources/s/Subread
     total 23M
-    -rw-rw-r-- 1 easybuild easybuild 23M Jun 13 17:42 subread-2.0.1-source.tar.gz
+    -rw-rw-r-- 1 easybuild easybuild 23M Mai 19 15:21 subread-2.0.3-source.tar.gz
     ```
 
 ---
@@ -357,16 +357,16 @@ the *toolchain* here...
     ```
     $ eb subread.eb
     ...
-    == FAILED: Installation ended unsuccessfully (build directory: /tmp/easybuild/Subread/2.0.1/GCC-8.5.0): build failed (first 300 chars):
+    == FAILED: Installation ended unsuccessfully (build directory: /tmp/easybuild/Subread/2.0.3/GCC-8.5.0): build failed (first 300 chars):
     No module found for toolchain: GCC/8.5.0 (took 1 sec)
     ```
 
-    We don't have this GCC version installed, but we do have GCC 10.2.0:
+    We don't have this GCC version installed, but we do have GCC 11.2.0:
 
     ```shell
     $ module avail GCC/
     ----------------- /easybuild/modules/all ------------------
-       GCC/10.2.0
+       GCC/11.2.0
     ```
 
     So let's try using that instead.
@@ -374,7 +374,7 @@ the *toolchain* here...
     Edit the easyconfig file so it contains this:
 
     ```python
-    toolchain = {'name': 'GCC', 'version': '10.2.0'}
+    toolchain = {'name': 'GCC', 'version': '11.2.0'}
     ```
 ---
 
@@ -389,9 +389,9 @@ Can you fix the next problem you run into?
     The compilation fails, but the error message we see is incomplete due to
     EasyBuild truncating the command output (only the 300 first characters of the output are shown):
     ```
-    == FAILED: Installation ended unsuccessfully (build directory: /tmp/easybuild/Subread/2.0.1/GCC-10.2.0): build failed (first 300 chars):
+    == FAILED: Installation ended unsuccessfully (build directory: /tmp/easybuild/Subread/2.0.3/GCC-11.2.0): build failed (first 300 chars):
     cmd " make -j 1 -f Makefile.Linux CFLAGS="-fast -fcommon"" exited with exit code 2 and output:
-    gcc  -mtune=core2  -O3 -DMAKE_FOR_EXON  -D MAKE_STANDALONE -D SUBREAD_VERSION=\""2.0.1"\"  -D_FILE_OFFSET_BITS=64    -fmessage-length=0  -ggdb  -fast -fcommon  -c -o core.o core.c
+    gcc  -mtune=core2  -O3 -DMAKE_FOR_EXON  -D MAKE_STANDALONE -D SUBREAD_VERSION=\""2.0.3"\"  -D_FILE_OFFSET_BITS=64    -fmessage-length=0  -ggdb  -fast -fcommon  -c -o core.o core.c
     gcc: error: unrecognized command line opti (took 1 sec)
     ```
 
@@ -404,7 +404,7 @@ Can you fix the next problem you run into?
 
     The easyconfig file hard specifies the `-fast` compiler flag via the `CFLAGS` argument to the build command:
     ```python
-    # -fcommon is required to compile Subread 2.0.1 with GCC 10,
+    # -fcommon is required to compile Subread 2.0.3 with GCC 10,
     # which uses -fno-common by default (see https://www.gnu.org/software/gcc/gcc-10/porting_to.html)
     buildopts = '-f Makefile.Linux CFLAGS="-fast -fcommon"'
     ```
@@ -446,7 +446,7 @@ Don't give up now, try one last time and fix the last problem that occurs...
     ```
     $ eb subread.eb
     ...
-    == FAILED: Installation ended unsuccessfully (build directory: /tmp/easybuild/Subread/2.0.1/GCC-10.2.0): build failed (first 300 chars):
+    == FAILED: Installation ended unsuccessfully (build directory: /tmp/easybuild/Subread/2.0.3/GCC-11.2.0): build failed (first 300 chars):
     Sanity check failed: sanity check command featureCounts --version exited with code 255
     (output: featureCounts: unrecognized option '--version'
     ...
@@ -470,14 +470,14 @@ Don't give up now, try one last time and fix the last problem that occurs...
 
 ---
 
-In the end, you should be able to install Subread 2.0.1 with the GCC 10.2.0 toolchain by fixing the problems with the `subread.eb` easyconfig file.
+In the end, you should be able to install Subread 2.0.3 with the GCC 11.2.0 toolchain by fixing the problems with the `subread.eb` easyconfig file.
 
 Check your work by manually loading the module and checking the version
 via the `featureCounts` command, which should look like this:
 
 ```shell
 $ featureCounts -v
-featureCounts v2.0.1
+featureCounts v2.0.3
 ```
 
 ---

@@ -254,7 +254,7 @@ $ module avail
 
 ---------------------- /home/example/easybuild/modules/all -----------------------
    BCFtools/1.14-GCC-11.2.0    GSL/2.7-GCC-11.2.0       SAMtools/1.14-GCC-11.2.0
-   EasyBuild/4.4.5             HTSlib/1.14-GCC-11.2.0   bzip2/1.0.8
+   EasyBuild/4.5.4             HTSlib/1.14-GCC-11.2.0   bzip2/1.0.8
 
 ---------------------------- /easybuild/modules/all -----------------------------
     ...
@@ -281,7 +281,7 @@ $ module load BCFtools/1.14-GCC-11.2.0
 
 $ module list
 Currently Loaded Modules:
-  1) EasyBuild/4.4.5                7) XZ/5.2.5-GCCcore-11.2.0
+  1) EasyBuild/4.5.4                7) XZ/5.2.5-GCCcore-11.2.0
   2) GCCcore/11.2.0                 8) OpenSSL/1.1
   3) zlib/1.2.11-GCCcore-11.2.0     9) cURL/7.78.0-GCCcore-11.2.0
   4) binutils/2.37-GCCcore-11.2.0  10) HTSlib/1.14-GCC-11.2.0
@@ -335,7 +335,7 @@ Do yourself a favor: don't peek at the solution until you have made an attempt t
 
 Please do not spoil solutions for others before they have been discussed by the tutorial organisers.
 
-The exercises are based on the easyconfig files included with EasyBuild 4.4.5.
+The exercises are based on the easyconfig files included with EasyBuild 4.5.4.
 
 ---
 
@@ -351,7 +351,7 @@ Enable trace output so you can see which parts of the installation take a while.
     First, determine the easyconfig file we can use for this:
     ```shell
     $ eb -S 'h5py-3.6.0.*foss-2021b'
-    CFGS1=/home/easybuilder/easybuild/software/EasyBuild/4.4.5/easybuild/easyconfigs/h/h5py
+    CFGS1=/home/easybuilder/easybuild/software/EasyBuild/4.5.4/easybuild/easyconfigs/h/h5py
     * $CFGS1/h5py-3.6.0-foss-2021b.eb
     ```
 
