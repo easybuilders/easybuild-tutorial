@@ -77,7 +77,7 @@ It is also possible to run heterogeneous jobs across multiple partitions.
     level of support for software installations as some of the big sites such as JSC can do. Moreover,
     due to the nature of the LUMI environment with its Cray PE and novel AMD GPUs, installing software
     is more challenging than on your typical Intel + NVIDIA GPU cluster with NVIDIA/Mellanox
-    interconnect. Given that the technology is very new one can also expect a rapid evolution of
+    interconnect. Given that the technology is very new, one can also expect a rapid evolution of
     the programming environment with a risk of breaking compatibility with earlier versions,
     and a need for frequent software updates in the initial yeas of operation to work around bugs
     or make new and important features available. So the maintenance cost of a the user application
