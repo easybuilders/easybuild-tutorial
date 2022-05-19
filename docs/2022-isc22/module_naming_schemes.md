@@ -42,24 +42,24 @@ The typical module hierarchy has 3 levels:
 
 Here is a simple example of such a 3-level module hierarchy:
 
-<div align="center"><img src="../../img/hmns.png" width="60%"/></div>
+<div align="center"><img src="../../img/hmns-2021b.png" width="60%"/></div>
 
-In this example the core level only includes a single module `GCC/9.3.0`,
-while  the compiler level includes two modules: `OpenMPI/4.0.3` and `MPICH/3.3.2`.
+In this example the core level only includes a single module `GCC/11.2.0`,
+while  the compiler level includes two modules: `OpenMPI/4.1.1` and `MPICH/3.4.2`.
 In the MPI level, three modules are available: one for `FFTW`, one for `ScaLAPACK`, and one for `HDF5`.
 
 Initially only the modules on the top level of a module hierarchy are available for loading.
-If you run "`module avail`" with the example module hierarchy, you will only see the `GCC/9.3.0` module.
+If you run "`module avail`" with the example module hierarchy, you will only see the `GCC/11.2.0` module.
 
 Some modules in the top level of the hierarchy act as a "gateway" to modules in the
 next level below.
-To make additional modules available for loading one of these gateway modules has to be loaded. In our example, loading the `GCC/9.3.0` module results in two additional modules coming into view from the compiler level, as indicated by the arrows: the modules for `OpenMPI` and `MPICH`. These correspond to installations of `OpenMPI`
-and `MPICH` that were built using `GCC/9.3.0` as a (compiler-only) toolchain.
+To make additional modules available for loading one of these gateway modules has to be loaded. In our example, loading the `GCC/11.2.0` module results in two additional modules coming into view from the compiler level, as indicated by the arrows: the modules for `OpenMPI` and `MPICH`. These correspond to installations of `OpenMPI`
+and `MPICH` that were built using `GCC/11.2.0` as a (compiler-only) toolchain.
 
-Similarly, the `OpenMPI/4.0.3` module serves as a gateway to the three modules in the MPI level. Only by loading the `OpenMPI` module will these additional three modules become
-available for loading. They correspond to software installations built using the `gompi/2020a` toolchain that
-consists of the `GCC/9.3.0` compiler module and the `OpenMPI/4.0.3` MPI module. Software installed using
-`foss/2020a` (which is a full toolchain that also includes OpenBLAS, FFTW and ScaLAPACK) would also be stored
+Similarly, the `OpenMPI/4.1.1` module serves as a gateway to the three modules in the MPI level. Only by loading the `OpenMPI` module will these additional three modules become
+available for loading. They correspond to software installations built using the `gompi/2021b` toolchain that
+consists of the `GCC/11.2.0` compiler module and the `OpenMPI/4.1.1` MPI module. Software installed using
+`foss/2021b` (which is a full toolchain that also includes OpenBLAS, FFTW and ScaLAPACK) would also be stored
 in this level of the module hierarchy.
 
 The characteristics of a module hierarchy are:
@@ -89,10 +89,10 @@ However, the are some minor disadvantages too:
 #### Length of module names
 
 When using a flat module naming scheme, module names can be fairly long and perhaps confusing. For our `HDF5` installation for example,
-we have `HDF5/1.10.6-gompi-2020a` as module name. The `-gompi-2020a` part of the name refers to the toolchain that was
+we have `HDF5/1.12.1-gompi-2021b` as module name. The `-gompi-2021b` part of the name refers to the toolchain that was
 used for this installation, but it may be confusing to some people (what kind of Pokémon is a "gompi"?!).
 
-In the example module hierarchy shown above, the module for `HDF5` is named `HDF5/1.10.6` which is basically the bare
+In the example module hierarchy shown above, the module for `HDF5` is named `HDF5/1.12.1` which is basically the bare
 essentials: software name and version. That's way better, nice and clean!
 
 #### Amount of available modules
@@ -282,7 +282,7 @@ with preparing our environment.
 
 **We must absolutely avoid mixing modules from a flat and hierarchical module naming scheme!**
 
-Some module files will have the same name in both module trees (like `GCC/10.2.0` for example),
+Some module files will have the same name in both module trees (like `GCC/11.2.0` for example),
 but their contents will be different.
 Mixing modules from a flat and hierarchical module tree *will* trigger problems...
 
