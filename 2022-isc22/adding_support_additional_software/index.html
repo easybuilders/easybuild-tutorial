@@ -1458,23 +1458,33 @@ solution to peculiarities in the installation procedure of a particular software
   compilers are used (look for the <code>build_step</code> in the easyblock).</li>
 </ul>
 </li>
-<li>toolchain-specific aspects of the build and installation procedure (e.g., configure options);</li>
+<li>toolchain-specific aspects of the build and installation procedure (e.g., configure options);<ul>
 <li>For example, the <a href="https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/c/cp2k.py">easyblock for CP2K</a> 
-    will add several compiler options when compiling with gcc and gfortran, including the infamous
-    <code>-fallow-argument-mismatch</code> which is required from gfortran 10 on for many older codes.</li>
-<li>custom (configure) options for dependencies;  </li>
+  will add several compiler options when compiling with gcc and gfortran, including the infamous
+  <code>-fallow-argument-mismatch</code> which is required from gfortran 10 on for many older codes.</li>
+</ul>
+</li>
+<li>custom (configure) options for dependencies;  <ul>
 <li>For example, the <a href="https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/v/vmd.py">easyblock for VMD</a>
-    will add configure options depending on the dependency list of the package.</li>
-<li>interactive commands that need to be run;  </li>
+  will add configure options depending on the dependency list of the package.</li>
+</ul>
+</li>
+<li>interactive commands that need to be run;  <ul>
 <li>For example: The <a href="https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/m/maple.py">easyblock for maple</a> 
-    responds to a number of interactive questions.</li>
-<li>having to create or adjust specific (configuration) files;  </li>
+  responds to a number of interactive questions.</li>
+</ul>
+</li>
+<li>having to create or adjust specific (configuration) files;  <ul>
 <li>For example, the <a href="https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/s/siesta.py">easyblock for Siesta</a>
-    edits one of the configuration files through regular expressions.</li>
+  edits one of the configuration files through regular expressions.</li>
+</ul>
+</li>
 <li>'hackish' usage of a generic easyblock;</li>
-<li>complex or very non-standard installation procedure;  </li>
+<li>complex or very non-standard installation procedure;  <ul>
 <li>For example, the <a href="https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/g/gcc.py">easyblock to install the gcc compilers from source</a>,
-    bootstrapping with the system compiler and then re-installing with itself.</li>
+  bootstrapping with the system compiler and then re-installing with itself.</li>
+</ul>
+</li>
 </ul>
 <p>Implementing easyblocks is out of scope for this basic tutorial, for more information please consult
 the <a href="https://docs.easybuild.io/en/latest/Implementing-easyblocks.html">EasyBuild documentation</a>,
@@ -1894,7 +1904,7 @@ It is only needed for building the software, not for running it, so it's only a 
 <div class="highlight"><pre><span></span><code>$ eb example.eb -D
  ...
  * [x] /easybuild/software/EasyBuild/4.3.3/easybuild/easyconfigs/g/GCC/GCC-11.2.0.eb (module: GCC/11.2.0)
- * [x] /easybuild/software/EasyBuild/4.3.3/easybuild/easyconfigs/c/CMake/CMake-3.22.1-GCCcore-10.2.0.eb (module: CMake/3.22.1-GCCcore-11.2.0)
+ * [x] /easybuild/software/EasyBuild/4.3.3/easybuild/easyconfigs/c/CMake/CMake-3.22.1-GCCcore-11.2.0.eb (module: CMake/3.22.1-GCCcore-11.2.0)
  * [ ] /home/example/example.eb (module: eb-tutorial/1.0.1-GCC-11.2.0)
 </code></pre></div>
 <h3 id="sources">Sources<a class="headerlink" href="#sources" title="Permanent link">&para;</a></h3>
@@ -1954,7 +1964,7 @@ To define the value of a CMake option, we need to use <code>-DNAME_OF_OPTION</co
 we have to use single quotes to specify the actual value for the <code>EBTUTORIAL_MSG</code> configure option.
 That works fine here, but that's not always the case!
 In some cases we will have to use inner doubles quotes, for example to get environment variables
-expanded when the configure command is run (see <a href="#exercises">Exercise 7.1</a>).</p>
+expanded when the configure command is run (see <a href="#exercises">Exercise E.1</a>).</p>
 <h3 id="sanity-check_1">Sanity check<a class="headerlink" href="#sanity-check_1" title="Permanent link">&para;</a></h3>
 <p>Hopefully that brings us closer to getting the installation to work...</p>
 <div class="highlight"><pre><span></span><code>$ eb example.eb
