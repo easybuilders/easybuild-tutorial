@@ -55,7 +55,7 @@ This typical Lmod hierarcny would map very well on the EasyBuild common toolchai
 
 In fact, for the example
 
-<div align="center"><img src="../../../img/hmns.png" width="60%"/></div>
+<div align="center"><img src="../../../img/hmns-2021b.png" width="60%"/></div>
 
 software at the ``Core`` level would be installed with the ``GCCcore`` and ``SYSTEM``
 toolchains. Software at the ``Compiler`` level would be installed with the ``GCC``
@@ -102,10 +102,10 @@ However, the are some minor disadvantages too:
 
 When using a flat module naming scheme, module names can be fairly long and perhaps confusing. For a `HDF5` installation 
 with the EasyBuild common toolchains for example,
-one might have `HDF5/1.10.6-gompi-2020a` as module name. The `-gompi-2020a` part of the name refers to the toolchain that was
+one might have `HDF5/1.12.1-gompi-2021b` as module name. The `-gompi-2021b` part of the name refers to the toolchain that was
 used for this installation, but it may be confusing to some people (what kind of Pokémon is a "gompi"?!).
 
-In the example module hierarchy shown above, the module for `HDF5` could simply be named `HDF5/1.10.6` which is basically the bare
+In the example module hierarchy shown above, the module for `HDF5` could simply be named `HDF5/1.12.1` which is basically the bare
 essentials: software name and version. That's way better, nice and clean!
 
 #### Amount of available modules
@@ -329,9 +329,10 @@ install EasyBuild again in our hierarchical module tree before we can continue.
 **We strongly recommend using an EasyBuild installation that was [installed via "`pip install`"
 or "`pip3 install`"](../../1_Intro/1_06_installation#method-1-using-pip) in this part of the tutorial.**
 
-An easy way to do this is in the prepared environment is to run:
+An easy way to do this is in the prepared environment used for regular EasyBuild tutorials is to run:
 
 ```shell
+unset PIP_PREFIX
 pip3 install --user easybuild
 export PATH=$HOME/.local/bin:$PATH
 export EB_PYTHON=python3
@@ -393,7 +394,7 @@ but EasyBuild can do all the hard work for us.
 
 The steps we will have to go through are:
 
-* Tell EasyBuild we want to "install" the `HDF5-1.10.7-gompi-2020b.eb` easyconfig file;
+* Tell EasyBuild we want to "install" the `HDF5-1.12.1-gompi-2021b.eb` easyconfig file;
 * Enable dependency resolution via `--robot`;
 * Assuming the software would have been installed already with the default naming scheme
   in a different module directory, instruct EasyBuild to only generate the module files, 
@@ -403,9 +404,9 @@ The steps we will have to go through are:
 These steps translate to this single `eb` command:
 
 ```
-$ eb HDF5-1.10.7-gompi-2020b.eb --robot --module-only
+$ eb HDF5-1.12.1-gompi-2021b.eb --robot --module-only
 ...
-== building and installing MPI/GCC/10.2.0/OpenMPI/4.0.5/HDF5/1.10.7...
+== building and installing MPI/GCC/11.2.0/OpenMPI/4.1.1/HDF5/1.12.1...
 ...
 == sanity checking...
 == cleaning up [skipped]
@@ -450,10 +451,10 @@ Let us see what that gives us in terms of available modules:
 ```
 $ module avail
 
---------------------- /home/easybuild/hmns/modules/all/Core ---------------------
-   Bison/3.5.3        GCCcore/10.2.0    flex/2.6.4      help2man/1.47.4
-   Bison/3.7.1 (D)    M4/1.4.18         gettext/0.21    ncurses/6.2
-   GCC/10.2.0         binutils/2.35     gompi/2020b     zlib/1.2.11
+------------------------ /home/easybuild/hmns/modules/all/Core -------------------------
+   binutils/2.37    GCC/11.2.0        gompi/2021b    OpenSSL/1.1
+   Bison/3.8.2      GCCcore/11.2.0    M4/1.4.19      pkg-config/0.29.2
+   flex/2.6.4       gettext/0.21      ncurses/6.2    zlib/1.2.11
 ```
 
 
@@ -475,9 +476,9 @@ $ module spider HDF5
 ...
 
     You will need to load all module(s) on any one of the lines below
-    before the "HDF5/1.10.7" module is available to load.
+    before the "HDF5/1.12.1" module is available to load.
 
-      GCC/10.2.0  OpenMPI/4.0.5
+      GCC/11.2.0  OpenMPI/4.1.1
 ```
 
 This tells us we need to load two gateway modules before we can load the module
@@ -486,7 +487,7 @@ for HDF5.
 Let us start with loading the `GCC` compiler module:
 
 ```
-module load GCC/10.2.0
+module load GCC/11.2.0
 ```
 
 And then check again which modules are available:
@@ -494,62 +495,65 @@ And then check again which modules are available:
 ```
 $ module avail
 
--------------- /home/easybuild/hmns/modules/all/Compiler/GCC/10.2.0 --------------
-   OpenMPI/4.0.5
+--------------------------- /home/easybuild/hmns/modules/all/Compiler/GCC/11.2.0 ---------------------------
+   OpenMPI/4.1.1
 
------------- /home/easybuild/hmns/modules/all/Compiler/GCCcore/10.2.0 ------------
-   Autoconf/2.69             UCX/1.9.0                 libpciaccess/0.16
-   ...
-   Szip/2.1.1                libfabric/1.11.0          zlib/1.2.11        (L,D)
-   Autoconf/2.69         XZ/5.2.5                libtool/2.4.6
+------------------------- /home/easybuild/hmns/modules/all/Compiler/GCCcore/11.2.0 -------------------------
+   Autoconf/2.71               flex/2.6.4        (D)    libreadline/8.1        pkg-config/0.29.2  (D)
+   Automake/1.16.4             groff/1.22.4             libtool/2.4.6          PMIx/4.1.0
+   Autotools/20210726          help2man/1.48.3          libxml2/2.9.10         Szip/2.1.1
+   binutils/2.37      (L,D)    hwloc/2.5.0              M4/1.4.19       (D)    UCX/1.11.2
+   Bison/3.7.6                 libevent/2.1.12          ncurses/6.2     (D)    xorg-macros/1.19.3
+   DB/18.1.40                  libfabric/1.13.2         numactl/2.0.14         XZ/5.2.5
+   expat/2.4.1                 libpciaccess/0.16        Perl/5.34.0            zlib/1.2.11        (L,D)
 
---------------------- /home/easybuild/hmns/modules/all/Core ---------------------
-   Bison/3.5.3        GCCcore/10.2.0 (L)  flex/2.6.4      help2man/1.47.4
-   Bison/3.7.1 (D)    M4/1.4.18           gettext/0.21    ncurses/6.2
-   GCC/10.2.0  (L)    binutils/2.35       gompi/2020b     zlib/1.2.11
+---------------------------------- /home/easybuild/hmns/modules/all/Core -----------------------------------
+   binutils/2.37        GCC/11.2.0     (L)    gompi/2021b    OpenSSL/1.1
+   Bison/3.8.2   (D)    GCCcore/11.2.0 (L)    M4/1.4.19      pkg-config/0.29.2
+   flex/2.6.4           gettext/0.21          ncurses/6.2    zlib/1.2.11
 ```
 
 Good news, we now have additional modules available!
 
-The compiler level of our hierarchy actually consists of two directories here: `Compiler/GCCcore/10.2.0`
-and `Compiler/GCC/10.2.0`. The modules in the `GCCcore` directory are ones we can use in other compiler
+The compiler level of our hierarchy actually consists of two directories here: `Compiler/GCCcore/11.2.0`
+and `Compiler/GCC/11.2.0`. The modules in the `GCCcore` directory are ones we can use in other compiler
 toolchains that use GCC 10.2.0 as a base compiler (the details of that are out of scope here).
 
-The module we are interested in is `OpenMPI/4.0.5`, which is another gateway module.
+The module we are interested in is `OpenMPI/4.1.1`, which is another gateway module.
 
 Remember that the "`module spider`" output told us that there does indeed exist a module for `HDF5`, but that
-we need to load *both* the `GCC/10.2.0` and `OpenMPI/4.0.5` modules first.
+we need to load *both* the `GCC/11.2.0` and `OpenMPI/4.1.1` modules first.
 
-So, let us do exactly that (remember that `GCC/10.2.0` is already loaded):
+So, let us do exactly that (remember that `GCC/11.2.0` is already loaded):
 
 ```
-module load OpenMPI/4.0.5
+module load OpenMPI/4.1.1
 ```
 
-If you now check the output of "`module avail`" again, you should see the `HDF5/1.10.7` module:
+If you now check the output of "`module avail`" again, you should see the `HDF5/1.12.1` module:
 
 ```
 $ module avail
 
--------- /home/easybuild/hmns/modules/all/MPI/GCC/10.2.0/OpenMPI/4.0.5 -------
-   HDF5/1.10.7
+-------- /home/easybuild/hmns/modules/all/MPI/GCC/11.2.0/OpenMPI/4.1.1 -------
+   HDF5/1.12.1
 
------------- /home/easybuild/hmns/modules/all/Compiler/GCC/10.2.0 ------------
-   OpenMPI/4.0.5 (L)
+------------ /home/easybuild/hmns/modules/all/Compiler/GCC/11.2.0 ------------
+   OpenMPI/4.1.1 (L)
 
 ...
 ```
 
-To use HDF5, we need to load this `HDF5/1.10.7` module. We can verify that the installation works
+To use HDF5, we need to load this `HDF5/1.12.1` module. We can verify that the installation works
 using one of the commands provided by HDF5, `h5dump` for example:
 
 ```
-module load HDF5/1.10.7
+module load HDF5/1.12.1
 ```
 
 ```
 $ h5dump --version
-h5dump: Version 1.10.7
+h5dump: Version 1.12.1
 ```
 
 If you now check which modules are loaded via "`module list`", you will notice that all module names
@@ -559,10 +563,10 @@ and nice and short now, which is one of the advantages of using a hierarchical m
 $ module list
 
 Currently Loaded Modules:
-  1) GCCcore/10.2.0   5) numactl/2.0.13      9) hwloc/2.2.0       13) PMIx/3.1.5
-  2) zlib/1.2.11      6) XZ/5.2.5           10) libevent/2.1.12   14) OpenMPI/4.0.5
-  3) binutils/2.35    7) libxml2/2.9.10     11) UCX/1.9.0         15) Szip/2.1.1
-  4) GCC/10.2.0       8) libpciaccess/0.16  12) libfabric/1.11.0  16) HDF5/1.10.7
+  1) GCCcore/11.2.0   5) numactl/2.0.14      9) hwloc/2.5.0      13) libfabric/1.13.2  17) HDF5/1.12.1
+  2) zlib/1.2.11      6) XZ/5.2.5           10) OpenSSL/1.1      14) PMIx/4.1.0
+  3) binutils/2.37    7) libxml2/2.9.10     11) libevent/2.1.12  15) OpenMPI/4.1.1
+  4) GCC/11.2.0       8) libpciaccess/0.16  12) UCX/1.11.2       16) Szip/2.1.1
 ```
 
 
