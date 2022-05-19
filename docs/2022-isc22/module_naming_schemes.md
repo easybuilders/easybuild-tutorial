@@ -210,7 +210,7 @@ Here is an example of a custom module naming scheme, where:
 
 Note that we also need to customise the ``is_short_modname_for`` method,
 to make sure it returns ``True`` when the EasyBuild framework checks whether
-``scipy_bundle/2020.11_foss_2020b`` is a module name for ``SciPy-bundle``.
+``scipy_bundle/2021.10_foss_2021b`` is a module name for ``SciPy-bundle``.
 
 ```python
 import os
@@ -253,15 +253,15 @@ class ExampleMNS(ModuleNamingScheme):
 We can see what the module names with this module naming scheme would like like via ``eb -D``:
 
 ```
-$ eb SciPy-bundle-2020.11-foss-2020b-Python-2.7.18.eb -D
+$ eb SciPy-bundle-2021.10-foss-2021b-Python-2.7.18.eb -D
  ...
- * [ ] $CFGS/g/GCC/GCC-10.2.0.eb (module: gcc/10.2.0)
+ * [ ] $CFGS/g/GCC/GCC-11.2.0.eb (module: gcc/11.2.0)
  ...
- * [ ] $CFGS/p/Python/Python-2.7.18-GCCcore-10.2.0.eb (module: python/2.7.18_gcccore_10.2.0)
+ * [ ] $CFGS/p/Python/Python-2.7.18-GCCcore-11.2.0.eb (module: python/2.7.18_gcccore_11.2.0)
  ...
- * [ ] $CFGS/o/OpenMPI/OpenMPI-4.0.5-GCC-10.2.0.eb (module: openmpi/4.0.5_gcc_10.2.0)
+ * [ ] $CFGS/o/OpenMPI/OpenMPI-4.1.1-GCC-11.2.0.eb (module: openmpi/4.1.1_gcc_11.2.0)
  ...
- * [ ] $CFGS/s/SciPy-bundle/SciPy-bundle-2020.03-foss-2020a-Python-2.7.18.eb (module: scipy_bundle/2020.03_python_2.7.18_foss_2020a)
+ * [ ] $CFGS/s/SciPy-bundle/SciPy-bundle-2021.10-foss-2021b-Python-2.7.18.eb (module: scipy_bundle/2021.10_python_2.7.18_foss_2021b)
 ```
 
 ## Example module hierarchy: HDF5
