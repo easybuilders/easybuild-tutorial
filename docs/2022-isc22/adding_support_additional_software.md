@@ -49,8 +49,8 @@ Reasons to consider implementing a software-specific easyblock rather than using
   * For example: The [easyblock for maple](https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/m/maple.py) 
     responds to a number of interactive questions.
 * having to create or adjust specific (configuration) files;  
-  *For example, the [easyblock for Siesta](https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/s/siesta.py)
-  edits one of the configuration files through regular expressions.*
+  * For example, the [easyblock for Siesta](https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/s/siesta.py)
+    edits one of the configuration files through regular expressions.
 * 'hackish' usage of a generic easyblock;
 * complex or very non-standard installation procedure;  
   *For example, the [easyblock to install the gcc compilers from source](https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/g/gcc.py),
