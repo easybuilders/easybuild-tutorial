@@ -208,7 +208,7 @@ manifest.)
 The LUMI software stack is implemented as an Lmod hierarchy with two levels. On top of it EasyBuild is used
 with a flat naming scheme (though we did consider a hierarchical one as well).
 
-The modules that load a specific version of the software stack are hand-written in LUA. The first level
+The modules that load a specific version of the software stack are hand-written in Lua. The first level
 (a module called `LUMI`) is the version of the software stack, 
 the second level (a module called `partition`) then choses the particular set of hardware to
 optimise for. The `LUMI` module will autoload the most suited `partition` module for the hardware,
