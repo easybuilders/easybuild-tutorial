@@ -43,8 +43,8 @@ Reasons to consider implementing a software-specific easyblock rather than using
     will add several compiler options when compiling with gcc and gfortran, including the infamous
     `-fallow-argument-mismatch` which is required from gfortran 10 on for many older codes.
 * custom (configure) options for dependencies;  
-  *For example, the [easyblock for VMD](https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/v/vmd.py)
-  will add configure options depending on the dependency list of the package.*
+  * For example, the [easyblock for VMD](https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/v/vmd.py)
+    will add configure options depending on the dependency list of the package.
 * interactive commands that need to be run;  
   *For example: The [easyblock for maple](https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/m/maple.py) 
   responds to a number of interactive questions.* 
