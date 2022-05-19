@@ -459,7 +459,7 @@ There is also an option to change other eashyconfig parameters,
 `--try-amend=VAR=Value[,VALUE]`. 
 
 ```shell
-eb example-123-foss-2021b-DP.eb --try-amend versionsuffix='-test'
+eb example-123-foss-2021b-DP.eb --try-amend=versionsuffix='-test'
 ```
 
 This option can be used multiple times also. 
