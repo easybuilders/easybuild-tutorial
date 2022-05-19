@@ -237,7 +237,7 @@ EasyBuild, with room to expand to manually installed software or software instal
 should this turn out to be necessary and safe to combine with EasyBuild-managed software.
 
 EasyBuild is configured through some configuration modules that set a range of `EASYBUILD_*` variables
-to configure EasyBuild. There is again only a single EasyBuild configuration module implemented in LUA,
+to configure EasyBuild. There is again only a single EasyBuild configuration module implemented in Lua,
 but it appears with three different names in multiple locations in the infrastructure module tree, 
 and again Lmod introspection functions are used by the module to determine its specific function. 
 There are three configurations for EasyBuild: One for installation in the infrastructure module tree,
