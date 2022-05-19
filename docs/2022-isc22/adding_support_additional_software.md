@@ -930,7 +930,7 @@ You can leverage the `eb-tutorial` easyconfig file we have composed in the examp
     ```
     eb eb-tutorial-1.1.0-GCC-11.2.0.eb --inject-checksums
     ```
-    to get a full-featured easyconfig again.
+    to get a fully-featured easyconfig again.
 
 
 ---
