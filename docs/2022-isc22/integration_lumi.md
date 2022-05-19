@@ -11,7 +11,7 @@ LUMI, which stands for Large Unified Modern Infrastructure, is hosted by the
 a consortium of 10 countries: Finland, Belgium, Czech Republic, Denmark, Estonia, Iceland, 
 Norway, Poland, Sweden, and Switzerland. It was supposed to be installed by the end of 2021,
 but the global shortage of components and some technical problems have delayed the installation.
-The final hardware should be installed at about the time of this ISC'22 tutorial.
+The final hardware should be installed before mid 2022.
 
 <a href="https://www.lumi-supercomputer.eu/may-we-introduce-lumi/">
 <img src="../../img/lumi-snowflake.png" style="float:right" width="100%"/>
