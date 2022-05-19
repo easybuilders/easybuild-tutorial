@@ -39,9 +39,9 @@ Reasons to consider implementing a software-specific easyblock rather than using
       defines a number of variables used in the Makefile on the make command line to ensure that the right
       compilers are used (look for the `build_step` in the easyblock).
 * toolchain-specific aspects of the build and installation procedure (e.g., configure options);
-  *For example, the [easyblock for CP2K](https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/c/cp2k.py) 
-  will add several compiler options when compiling with gcc and gfortran, including the infamous
-  `-fallow-argument-mismatch` which is required from gfortran 10 on for many older codes.*
+  * For example, the [easyblock for CP2K](https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/c/cp2k.py) 
+    will add several compiler options when compiling with gcc and gfortran, including the infamous
+    `-fallow-argument-mismatch` which is required from gfortran 10 on for many older codes.
 * custom (configure) options for dependencies;  
   *For example, the [easyblock for VMD](https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/v/vmd.py)
   will add configure options depending on the dependency list of the package.*
