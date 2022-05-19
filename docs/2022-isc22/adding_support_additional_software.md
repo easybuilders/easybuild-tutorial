@@ -35,9 +35,9 @@ solution to peculiarities in the installation procedure of a particular software
 Reasons to consider implementing a software-specific easyblock rather than using a generic easyblock include:
 
 * 'critical' values for easyconfig parameters required to make installation succeed;  
-    *For example, the [easyblock for bowtie2](https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/b/bowtie2.py)
-    defines a number of variables used in the Makefile on the make command line to ensure that the right
-    compilers are used (look for the `build_step` in the easyblock).*
+    * For example, the [easyblock for bowtie2](https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/b/bowtie2.py)
+      defines a number of variables used in the Makefile on the make command line to ensure that the right
+      compilers are used (look for the `build_step` in the easyblock).
 * toolchain-specific aspects of the build and installation procedure (e.g., configure options);
   *For example, the [easyblock for CP2K](https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/c/cp2k.py) 
   will add several compiler options when compiling with gcc and gfortran, including the infamous
