@@ -260,8 +260,7 @@ yet for AMD GPUs in the common toolchains. Moreover, the FOSS toolchain is becom
 by the inclusion of FlexiBLAS and now also efforts to build an Open MPI configuration that supports both
 CPU nodes and NVIDIA GPU nodes but the downside of this is that it has also become a very complicated 
 setup to adapt if you need something else, as we do on LUMI. The Intel toolchain also has its problems. 
-Intel does not support oneAPI on AMD processors. Though Intel MPI can in principle run on SlingShot,
-also the SlingShot-11 update that is being installed on LUMI right now during this tutorial, as it is
+Intel does not support oneAPI on AMD processors. Though Intel MPI can in principle run on SlingShot as it is
 also based on libfabric and will be used on Aurora, a USA exascale system build by Intel with HPE Cray
 as a subcontractor for the hardware, users of AMD systems have reported problems with recent versions.
 MKL does not only have performance problems, but several sources also report correctness problem,
