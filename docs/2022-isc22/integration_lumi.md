@@ -66,7 +66,7 @@ It is also possible to run heterogeneous jobs across multiple partitions.
     EasyBuild has a mechanism to integrate with it.
 
     Due to the specific hardware and software setup of LUMI using the EasyBuild common toolchains 
-    is all but straightforward. Getting Open MPI, a key component of the foss toolchain, to work 
+    is anything but straightforward. Getting Open MPI, a key component of the foss toolchain, to work 
     is a bit of a challenge at the moment. The Intel compilers are not a very good match with 
     AMD CPUs. One needs to be very careful when choosing the target architecture for code
     optimisation (`-xHost` will not generate AVX/AVX2 code), most recent versions of MKL have
