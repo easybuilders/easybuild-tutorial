@@ -1223,6 +1223,163 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#flat-vs-hierarchical" class="md-nav__link">
+    Flat vs hierarchical
+  </a>
+  
+    <nav class="md-nav" aria-label="Flat vs hierarchical">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pros-cons" class="md-nav__link">
+    Pros &amp; cons
+  </a>
+  
+    <nav class="md-nav" aria-label="Pros &amp; cons">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#length-of-module-names" class="md-nav__link">
+    Length of module names
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amount-of-available-modules" class="md-nav__link">
+    Amount of available modules
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loading-compatible-modules" class="md-nav__link">
+    Loading compatible modules
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#visibility-of-existing-modules" class="md-nav__link">
+    Visibility of existing modules
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semantics-of-gateway-modules" class="md-nav__link">
+    Semantics of gateway modules
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-a-custom-module-naming-scheme" class="md-nav__link">
+    Using a custom module naming scheme
+  </a>
+  
+    <nav class="md-nav" aria-label="Using a custom module naming scheme">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#implementation" class="md-nav__link">
+    Implementation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-easybuild" class="md-nav__link">
+    Configuring EasyBuild
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring EasyBuild">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-custom-module-naming-scheme" class="md-nav__link">
+    Example custom module naming scheme
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-module-hierarchy-hdf5" class="md-nav__link">
+    Example module hierarchy: HDF5
+  </a>
+  
+    <nav class="md-nav" aria-label="Example module hierarchy: HDF5">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preparing-the-environment" class="md-nav__link">
+    Preparing the environment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-easybuild_1" class="md-nav__link">
+    Configuring EasyBuild
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generating-modules-for-hdf5" class="md-nav__link">
+    Generating modules for HDF5
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loading-the-hdf5-module" class="md-nav__link">
+    Loading the HDF5 module
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    Exercise
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1240,13 +1397,481 @@
 
 
 <h1 id="module-naming-schemes">Module naming schemes<a class="headerlink" href="#module-naming-schemes" title="Permanent link">&para;</a></h1>
+<p>Up until now we have used EasyBuild's default module naming scheme (<code>EasyBuildMNS</code>),
+which produces module files with names that closely resemble to the names of the
+corresponding easyconfig files.
+For example, when installing <code>h5py-3.6.0-foss-2021b.eb</code> the generated module was named <code>h5py/3.6.0-foss-2021b</code>.</p>
+<p>EasyBuild supports several different module naming schemes:</p>
+<div class="highlight"><pre><span></span><code>$ eb --avail-module-naming-schemes
+List of supported module naming schemes:
+        EasyBuildMNS
+        MigrateFromEBToHMNS
+        HierarchicalMNS
+        CategorizedHMNS
+        CategorizedModuleNamingScheme
+</code></pre></div>
+<p>In this part of the tutorial we will take a closer look at <code>HierarchicalMNS</code>,
+which is the standard <strong>hierarchical</strong> module naming scheme included with EasyBuild.</p>
+<p>We will also take a quick look at implementing our own custom module naming scheme.</p>
+<h2 id="flat-vs-hierarchical">Flat vs hierarchical<a class="headerlink" href="#flat-vs-hierarchical" title="Permanent link">&para;</a></h2>
+<p>The default module naming scheme <code>EasyBuildMNS</code> is an example of regular <em>"flat"</em> module naming scheme, which is characterized by:</p>
+<ul>
+<li>all module files are directly available for loading;</li>
+<li>each module name uniquely identifies a particular installation;</li>
+</ul>
+<p>In contrast, a <em>hierarchical</em> module naming scheme
+consists of a <em>hierarchy</em> of module files.</p>
+<p>The typical module hierarchy has 3 levels:</p>
+<ul>
+<li>a <strong>core</strong> level, where module files for software that was installed using the
+  <a href="../introduction/#system-toolchain"><code>system</code> toolchain</a> are kept;</li>
+<li>a <strong>compiler</strong> level, where module files for software that was installed using a
+<em>compiler-only toolchain</em> are stored;</li>
+<li>and an <strong>MPI</strong> level, which houses module files for software that was installed using a toolchain that includes (at least) a compiler and MPI component;</li>
+</ul>
+<p>Here is a simple example of such a 3-level module hierarchy:</p>
+<div align="center"><img src="../../img/hmns.png" width="60%"/></div>
+
+<p>In this example the core level only includes a single module <code>GCC/9.3.0</code>,
+while  the compiler level includes two modules: <code>OpenMPI/4.0.3</code> and <code>MPICH/3.3.2</code>.
+In the MPI level, three modules are available: one for <code>FFTW</code>, one for <code>ScaLAPACK</code>, and one for <code>HDF5</code>.</p>
+<p>Initially only the modules on the top level of a module hierarchy are available for loading.
+If you run "<code>module avail</code>" with the example module hierarchy, you will only see the <code>GCC/9.3.0</code> module.</p>
+<p>Some modules in the top level of the hierarchy act as a "gateway" to modules in the
+next level below.
+To make additional modules available for loading one of these gateway modules has to be loaded. In our example, loading the <code>GCC/9.3.0</code> module results in two additional modules coming into view from the compiler level, as indicated by the arrows: the modules for <code>OpenMPI</code> and <code>MPICH</code>. These correspond to installations of <code>OpenMPI</code>
+and <code>MPICH</code> that were built using <code>GCC/9.3.0</code> as a (compiler-only) toolchain.</p>
+<p>Similarly, the <code>OpenMPI/4.0.3</code> module serves as a gateway to the three modules in the MPI level. Only by loading the <code>OpenMPI</code> module will these additional three modules become
+available for loading. They correspond to software installations built using the <code>gompi/2020a</code> toolchain that
+consists of the <code>GCC/9.3.0</code> compiler module and the <code>OpenMPI/4.0.3</code> MPI module. Software installed using
+<code>foss/2020a</code> (which is a full toolchain that also includes OpenBLAS, FFTW and ScaLAPACK) would also be stored
+in this level of the module hierarchy.</p>
+<p>The characteristics of a module hierarchy are:</p>
+<ul>
+<li>not all module files are directly available for loading;</li>
+<li>some modules serve as a gateway to more modules;</li>
+<li>to access some software installations you will first need to load one or more gateway modules in order
+  to use them;</li>
+</ul>
+<p>You can probably think of other ways to organize module files in a hierarchical module tree, but here we will stick to the standard <code>Core</code>-<code>Compiler</code>-<code>MPI</code> hierarchy.</p>
+<h3 id="pros-cons">Pros &amp; cons<a class="headerlink" href="#pros-cons" title="Permanent link">&para;</a></h3>
+<p>So why go through all this trouble of organizing modules hierarchically?</p>
+<p>There are a couple of advantages to this approach:</p>
+<ul>
+<li>shorter module names;</li>
+<li>less overwhelming list of available modules;</li>
+<li>only compatible modules can be loaded together;</li>
+</ul>
+<p>However, the are some minor disadvantages too:</p>
+<ul>
+<li>not all existing modules are directly visible;</li>
+<li>gateway modules may have little meaning to end users;</li>
+</ul>
+<h4 id="length-of-module-names">Length of module names<a class="headerlink" href="#length-of-module-names" title="Permanent link">&para;</a></h4>
+<p>When using a flat module naming scheme, module names can be fairly long and perhaps confusing. For our <code>HDF5</code> installation for example,
+we have <code>HDF5/1.10.6-gompi-2020a</code> as module name. The <code>-gompi-2020a</code> part of the name refers to the toolchain that was
+used for this installation, but it may be confusing to some people (what kind of Pokémon is a "gompi"?!).</p>
+<p>In the example module hierarchy shown above, the module for <code>HDF5</code> is named <code>HDF5/1.10.6</code> which is basically the bare
+essentials: software name and version. That's way better, nice and clean!</p>
+<h4 id="amount-of-available-modules">Amount of available modules<a class="headerlink" href="#amount-of-available-modules" title="Permanent link">&para;</a></h4>
+<p>The output of "<code>module avail</code>" can be quite overwhelming if lots of module files
+are installed and a flat module naming scheme is used, since <em>all</em> modules are
+<em>always</em> available.
+EasyBuild makes it very easy to install lots of software,
+so the number of installed modules can easily grow into the hundreds or even thousands...</p>
+<p>This often explosive growth of modules is less of an issue when using a hierarchical module naming scheme, since
+initially only a small set of modules are available, and relatively limited
+groups of additional modules become available as gateway modules are loaded.</p>
+<h4 id="loading-compatible-modules">Loading compatible modules<a class="headerlink" href="#loading-compatible-modules" title="Permanent link">&para;</a></h4>
+<p>Since all modules are available at once when using a flat module naming scheme, you can easily load
+modules together that are not compatible with each other.</p>
+<p>Imagine loading two modules that were built with a different compiler toolchain (different compiler,
+different MPI library). That's likely to end in tears, unless you have the necessary technical expertise
+to fully understand what is going on, <em>and</em> you are being very careful...</p>
+<p>In a module hierarchy this can be prevented, since modules for software that were installed with a
+different compiler and/or a different MPI library are located in a different part of the module hierarchy,
+and so these modules can not be loaded together easily.</p>
+<h4 id="visibility-of-existing-modules">Visibility of existing modules<a class="headerlink" href="#visibility-of-existing-modules" title="Permanent link">&para;</a></h4>
+<p>One downside of a module hierarchy is that not all existing modules are directly available for loading
+or are even <em>visible</em> to the user, since the output of "<code>module avail</code>" only shows a subset of all modules.</p>
+<p><a href="https://lmod.readthedocs.io">Lmod</a> has a solution for this though: it provides a separate "<code>module spider</code>"
+command to search for module files throughout the entire module hierarchy. So as long as the end users are
+aware of this additional command, it should not be difficult to discover which software installations exist
+and how they can be accessed. The "<code>module spider</code>" command will inform the user which of the gateway modules
+need to be loaded in order to load a specific module file.</p>
+<h4 id="semantics-of-gateway-modules">Semantics of gateway modules<a class="headerlink" href="#semantics-of-gateway-modules" title="Permanent link">&para;</a></h4>
+<p>An additional potential problem of a module hierarchy is that the semantics of the gateway modules may not be clear
+to end users. They may wonder why they need to pick a specific compiler and MPI library, or which of the
+available options is the best one. Maybe there are not even be aware what exactly a "compiler" is, or how it is
+relevant to the software they need in their bioinformatics pipeline...</p>
+<p>This can be partially resolved by loading a default compiler and MPI module so a particular set of modules
+is available right after login, which could be the ones used in the most recent toolchain, or the
+recommended versions. More experienced users could then leverage the "<code>module spider</code>" command to navigate
+the module hierarchy.</p>
+<h2 id="using-a-custom-module-naming-scheme">Using a custom module naming scheme<a class="headerlink" href="#using-a-custom-module-naming-scheme" title="Permanent link">&para;</a></h2>
+<p>Next to the module naming schemes that are included with EasyBuild,
+you can also define your own module naming scheme (MNS), and configure EasyBuild to use it.</p>
+<h3 id="implementation">Implementation<a class="headerlink" href="#implementation" title="Permanent link">&para;</a></h3>
+<p>To use a custom module naming scheme, you need to implement a Python module file,
+where you define a Python class that derives from the general <a href="https://docs.easybuild.io/en/latest/api/easybuild.tools.module_naming_scheme.mns.html#easybuild.tools.module_naming_scheme.mns.ModuleNamingScheme"><code>ModuleNamingScheme</code></a> class.</p>
+<p>For a flat module naming scheme, it is sufficient to implement the <code>det_full_module_name</code> method,
+which should return a string value (the full module name).
+You may also need to customize the <code>is_short_modname_for</code> method, which verifies whether
+a given (short) module name is for the software with a particular given name (or not).</p>
+<p>The argument provided to <code>det_full_module_name</code> can be a small Python dictionary which only specifies
+the value of a handful of easyconfig parameters (<code>name</code>, <code>version</code>, <code>toolchain</code>, and <code>versionsuffix</code>),
+or an <code>EasyConfig</code> instance which represents a parsed easyconfig file and contains values for <em>all</em>
+known easyconfig parameters.</p>
+<p>For simple module naming schemes, just have <code>name</code>, <code>version</code>, <code>toolchain</code>, and <code>versionsuffix</code>
+available is sufficient. If it is not, you can list which additional easyconfig parameters are required for
+your module naming scheme via a class constant <code>REQUIRED_KEYS</code>.</p>
+<p>A fairly straightforward example of a <em>flat</em> module name scheme is the default EasyBuild module naming scheme
+<a href="https://github.com/easybuilders/easybuild-framework/blob/main/easybuild/tools/module_naming_scheme/easybuild_mns.py"><code>EasyBuildMNS</code></a>.</p>
+<p>For a <em>hierarchical</em> module naming scheme, various additional methods have to be implemented.</p>
+<p>Some of these, like <code>det_module_subdir</code> and <code>det_short_module_name</code>, determine which part of
+the (full) module name determines the location of the module in the module hierarchy, and which part
+is the user-facing (or "short") module name. Others, like <code>det_modpath_extensions</code>,
+determine which modules are <em>gateway</em> modules that open up an additional level of the hierarchy
+(by <em>extending</em> the <code>$MODULEPATH</code>).</p>
+<p>A typical example of a hierarchical module naming scheme is <a href="https://github.com/easybuilders/easybuild-framework/blob/main/easybuild/tools/module_naming_scheme/hierarchical_mns.py"><code>HierarchicalMNS</code></a> that comes with EasyBuild (which is quite complex because it includes quite a bit of special handling for particular compiler
+toolchains), which implements the traditional <code>Core</code>-<code>Compiler</code>-<code>MPI</code> module hierarchy we discussed
+above.</p>
+<h3 id="configuring-easybuild">Configuring EasyBuild<a class="headerlink" href="#configuring-easybuild" title="Permanent link">&para;</a></h3>
+<p>To let EasyBuild use a custom module naming scheme, you need to:</p>
+<ul>
+<li>
+<p>specify the path to the Python module file implementing it via the <code>include-module-naming-schemes</code>
+  EasyBuild configuration option;</p>
+</li>
+<li>
+<p>indicate that you also want to <em>use</em> this custom module naming scheme via the <code>module-naming-scheme</code>
+  EasyBuild configuration option.</p>
+</li>
+</ul>
+<p>For example:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">EASYBUILD_INCLUDE_MODULE_NAMING_SCHEMES</span><span class="o">=</span><span class="nv">$HOME</span>/easybuild/example_mns.py
+<span class="nb">export</span> <span class="nv">EASYBUILD_MODULE_NAMING_SCHEME</span><span class="o">=</span>ExampleMNS
+</code></pre></div>
+<h4 id="example-custom-module-naming-scheme">Example custom module naming scheme<a class="headerlink" href="#example-custom-module-naming-scheme" title="Permanent link">&para;</a></h4>
+<p>Here is an example of a custom module naming scheme, where:</p>
+<ul>
+<li>the <code>versionsuffix</code> goes directly after the <code>version</code>;</li>
+<li>all dashes are replaced by underscores;</li>
+<li>all module names are lowercase;</li>
+</ul>
+<p>Note that we also need to customise the <code>is_short_modname_for</code> method,
+to make sure it returns <code>True</code> when the EasyBuild framework checks whether
+<code>scipy_bundle/2021.10_foss_2021b</code> is a module name for <code>SciPy-bundle</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">easybuild.tools.module_naming_scheme.mns</span> <span class="kn">import</span> <span class="n">ModuleNamingScheme</span>
+
+
+<span class="k">class</span> <span class="nc">ExampleMNS</span><span class="p">(</span><span class="n">ModuleNamingScheme</span><span class="p">):</span>
+
+    <span class="n">REQUIRED_KEYS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">,</span> <span class="s1">&#39;versionsuffix&#39;</span><span class="p">,</span> <span class="s1">&#39;toolchain&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">det_full_module_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ec</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Determine full module name:</span>
+<span class="sd">        - all lowercase</span>
+<span class="sd">        - replace all dashes with underscores</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">parts</span> <span class="o">=</span> <span class="p">[</span><span class="n">ec</span><span class="p">[</span><span class="s1">&#39;version&#39;</span><span class="p">]]</span>
+
+        <span class="c1"># versionsuffix directly after version (but only if it&#39;s not empty)</span>
+        <span class="k">if</span> <span class="n">ec</span><span class="p">[</span><span class="s1">&#39;versionsuffix&#39;</span><span class="p">]:</span>
+            <span class="n">parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ec</span><span class="p">[</span><span class="s1">&#39;versionsuffix&#39;</span><span class="p">])</span>
+
+        <span class="c1"># only add toolchain name/version for non-system toolchain</span>
+        <span class="n">tc</span> <span class="o">=</span> <span class="n">ec</span><span class="p">[</span><span class="s1">&#39;toolchain&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">tc</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="s1">&#39;system&#39;</span><span class="p">:</span>
+            <span class="n">parts</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">tc</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="n">tc</span><span class="p">[</span><span class="s1">&#39;version&#39;</span><span class="p">]])</span>
+
+        <span class="n">modname</span> <span class="o">=</span> <span class="n">ec</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span>
+
+        <span class="n">modname</span> <span class="o">=</span> <span class="n">modname</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;__&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">modname</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">is_short_modname_for</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">short_modname</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Determine whether short module name is a module for the software with specified name.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">short_modname</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>We can see what the module names with this module naming scheme would like like via <code>eb -D</code>:</p>
+<div class="highlight"><pre><span></span><code>$ eb SciPy-bundle-2021.10-foss-2021b-Python-2.7.18.eb -D
+ ...
+ * [ ] $CFGS/g/GCC/GCC-11.2.0.eb (module: gcc/11.2.0)
+ ...
+ * [ ] $CFGS/p/Python/Python-2.7.18-GCCcore-11.2.0.eb (module: python/2.7.18_gcccore_11.2.0)
+ ...
+ * [ ] $CFGS/o/OpenMPI/OpenMPI-4.1.1-GCC-11.2.0.eb (module: openmpi/4.1.1_gcc_11.2.0)
+ ...
+ * [ ] $CFGS/s/SciPy-bundle/SciPy-bundle-2021.10-foss-2021b-Python-2.7.18.eb (module: scipy_bundle/2021.10_python_2.7.18_foss_2021b)
+</code></pre></div>
+<h2 id="example-module-hierarchy-hdf5">Example module hierarchy: HDF5<a class="headerlink" href="#example-module-hierarchy-hdf5" title="Permanent link">&para;</a></h2>
+<p>Now that we know more about hierarchical module naming schemes,
+let us see how EasyBuild can help us with generating a hierarchical module tree.</p>
+<p>In this example we will use EasyBuild to generate modules organised in a hierarchy
+for some of the software that is already installed in the prepared environment.</p>
+<p>The good news is that the existing installations can be reused. There is absolutely no need
+to reinstall the software, we are just creating a different "view" on these software installations.</p>
+<h3 id="preparing-the-environment">Preparing the environment<a class="headerlink" href="#preparing-the-environment" title="Permanent link">&para;</a></h3>
+<p>Before running EasyBuild to generate a hierarchical module tree, we have to be a bit careful
+with preparing our environment.</p>
+<p><strong>We must absolutely avoid mixing modules from a flat and hierarchical module naming scheme!</strong></p>
+<p>Some module files will have the same name in both module trees (like <code>GCC/10.2.0</code> for example),
+but their contents will be different.
+Mixing modules from a flat and hierarchical module tree <em>will</em> trigger problems...</p>
+<p>So we have to make sure that the module files we already have in <code>/easybuild</code> are <em>not</em> visible.
+The easiest way to do this is to unload all modules (using "<code>module purge</code>")
+and resetting the module search path to be empty, which we can do with "<code>module unuse $MODULEPATH</code>".</p>
+<div class="highlight"><pre><span></span><code>module purge
+module unuse <span class="nv">$MODULEPATH</span>
+</code></pre></div>
+<p>In this part of the tutorial, we are assuming you are <em>not</em> using an EasyBuild installation provided through
+a module. We have just made all modules unavailable, so we would have to first
+install EasyBuild again in our hierarchical module tree before we can continue.</p>
+<p><strong>We strongly recommend using an EasyBuild installation that was <a href="../installation/#method-1-using-pip-recommended">installed via "<code>pip install</code>"
+or "<code>pip3 install</code>"</a> in this part of the tutorial.</strong></p>
+<p>An easy way to do this is in the prepared environment is to run:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">unset</span> PIP_PREFIX
+pip3 install --user easybuild
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$HOME</span>/.local/bin:<span class="nv">$PATH</span>
+<span class="nb">export</span> <span class="nv">EB_PYTHON</span><span class="o">=</span>python3
+</code></pre></div>
+<h3 id="configuring-easybuild_1">Configuring EasyBuild<a class="headerlink" href="#configuring-easybuild_1" title="Permanent link">&para;</a></h3>
+<p>First of all, we need to make sure that EasyBuild is properly configured.
+We can do this by defining this set of environment variables:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">EASYBUILD_PREFIX</span><span class="o">=</span><span class="nv">$HOME</span>/easybuild
+<span class="nb">export</span> <span class="nv">EASYBUILD_BUILDPATH</span><span class="o">=</span>/tmp/<span class="nv">$USER</span>
+<span class="nb">export</span> <span class="nv">EASYBUILD_INSTALLPATH_SOFTWARE</span><span class="o">=</span>/easybuild/software
+<span class="nb">export</span> <span class="nv">EASYBUILD_MODULE_NAMING_SCHEME</span><span class="o">=</span>HierarchicalMNS
+<span class="nb">export</span> <span class="nv">EASYBUILD_INSTALLPATH_MODULES</span><span class="o">=</span><span class="nv">$HOME</span>/hmns/modules
+</code></pre></div>
+<p>To make sure we didn't make any silly mistakes, we double check using <code>eb --show-config</code>:</p>
+<div class="highlight"><pre><span></span><code>$ eb --show-config
+<span class="c1">#</span>
+<span class="c1"># Current EasyBuild configuration</span>
+<span class="c1"># (C: command line argument, D: default value, E: environment variable, F: configuration file)</span>
+<span class="c1">#</span>
+buildpath            <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /tmp/example
+containerpath        <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild/containers
+installpath          <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild
+installpath-modules  <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/hmns/modules
+installpath-software <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /easybuild/software
+module-naming-scheme <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> HierarchicalMNS
+packagepath          <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild/packages
+prefix               <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild
+repositorypath       <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild/ebfiles_repo
+robot-paths          <span class="o">(</span>D<span class="o">)</span> <span class="o">=</span> /home/example/.local/easybuild/easyconfigs
+sourcepath           <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild/sources
+</code></pre></div>
+<p>There are a couple of things worth pointing out here:</p>
+<ul>
+<li>We have defined the <code>module-naming-scheme</code> configuration setting to <code>HierarchicalMNS</code>,
+  which makes EasyBuild use the included standard hierarchical module naming scheme (the classic
+  core / compiler / MPI one we discussed above).</li>
+<li>We have specified <em>different</em> locations for the software (via <code>installpath-software</code>)
+  and the module files (via <code>installpath-modules</code>). This is important because we want to
+  reuse the software that is already installed in <code>/easybuild/software</code> while we want to
+  generate an entirely new module tree for it (in <code>$HOME/hmns/modules</code>).</li>
+</ul>
+<p>The other configuration settings are the same as before, and mostly irrelevant for this example.</p>
+<h3 id="generating-modules-for-hdf5">Generating modules for HDF5<a class="headerlink" href="#generating-modules-for-hdf5" title="Permanent link">&para;</a></h3>
+<p>Let's now generate a hierarchical module tree for <code>HDF5</code> and all of its dependencies,
+including the toolchain. That sounds complicated, and it sort of is since there are
+a lot of details you have to get right for the module hierarchy to works as intended,
+but EasyBuild can do all the hard work for us.</p>
+<p>The steps we will have to go through are:</p>
+<ul>
+<li>Tell EasyBuild we want to "install" the <code>HDF5-1.12.1-gompi-2021b.eb</code> easyconfig file;</li>
+<li>Enable dependency resolution via <code>--robot</code>;</li>
+<li>Instruct EasyBuild to only generate the module files, not to install the software (since it is
+  there already in <code>/easybuild/software</code>), via the <code>--module-only</code> option.</li>
+</ul>
+<p>These steps translate to this single <code>eb</code> command:</p>
+<div class="highlight"><pre><span></span><code>$ eb HDF5-1.12.1-gompi-2021b.eb --robot --module-only
+...
+<span class="o">==</span> building and installing MPI/GCC/11.2.0/OpenMPI/4.1.1/HDF5/1.12.1...
+...
+<span class="o">==</span> sanity checking...
+<span class="o">==</span> cleaning up <span class="o">[</span>skipped<span class="o">]</span>
+<span class="o">==</span> creating module...
+...
+<span class="o">==</span> COMPLETED: Installation ended successfully <span class="o">(</span>took <span class="m">17</span> sec<span class="o">)</span>
+...
+<span class="o">==</span> Build succeeded <span class="k">for</span> <span class="m">42</span> out of <span class="m">42</span>
+</code></pre></div>
+<p>This should take a couple of minutes in total, for generating 42 modules.
+Remember that this also includes generating module files for the toolchain and
+all of its components.</p>
+<p>In addition, there is a bit more going on one that just generating module files,
+since the sanity check step is still being run for each of the installations
+when using <code>--module-only</code> to ensure the installation is actually functional.
+After all, there is no point in generating a module for an obviously broken
+installation...</p>
+<h3 id="loading-the-hdf5-module">Loading the HDF5 module<a class="headerlink" href="#loading-the-hdf5-module" title="Permanent link">&para;</a></h3>
+<p>After generating the hierarchical module tree for HDF5, how do we access the HDF5 installation through it?</p>
+<p>Here's what the module tree looks like on disk:</p>
+<div class="highlight"><pre><span></span><code>$ ls <span class="nv">$HOME</span>/hmns/modules/all
+Compiler  Core  MPI
+</code></pre></div>
+<p>Those are basically the 3 levels in the module hierarchy we showed in our example earlier.</p>
+<p>The starting point is the top level of the module hierarchy named <code>Core</code>:</p>
+<div class="highlight"><pre><span></span><code>module use <span class="nv">$HOME</span>/hmns/modules/all/Core
+</code></pre></div>
+<p>Let's see what that gives us in terms of available modules:</p>
+<div class="highlight"><pre><span></span><code>$ module avail
+
+------------------------ /home/easybuild/hmns/modules/all/Core -------------------------
+   binutils/2.37    GCC/11.2.0        gompi/2021b    OpenSSL/1.1
+   Bison/3.8.2      GCCcore/11.2.0    M4/1.4.19      pkg-config/0.29.2
+   flex/2.6.4       gettext/0.21      ncurses/6.2    zlib/1.2.11
+</code></pre></div>
+<p>Nice and short module names, but only a limited set of them.</p>
+<p>We know a module file exists for <code>HDF5</code>, but we can't see it yet (and hence
+we can't load it either).</p>
+<div class="highlight"><pre><span></span><code>$ module avail HDF5
+No module(s) or extension(s) found!
+Use &quot;module spider&quot; to find all possible modules and extensions.
+</code></pre></div>
+<p>Let's see if <code>module spider</code> is of any help, as "<code>module avail</code>" so kindly suggests:</p>
+<div class="highlight"><pre><span></span><code>$ module spider HDF5
+...
+
+    You will need to load all module(s) on any one of the lines below
+    before the &quot;HDF5/1.12.1&quot; module is available to load.
+
+      GCC/11.2.0  OpenMPI/4.1.1
+</code></pre></div>
+<p>This tells us we need to load two gateway modules before we can load the module
+for HDF5.</p>
+<p>Let's start with loading the <code>GCC</code> compiler module:</p>
+<div class="highlight"><pre><span></span><code>module load GCC/11.2.0
+</code></pre></div>
+<p>And then check again which modules are available:</p>
+<div class="highlight"><pre><span></span><code>$ module avail
+
+--------------------------- /home/easybuild/hmns/modules/all/Compiler/GCC/11.2.0 ---------------------------
+   OpenMPI/4.1.1
+
+------------------------- /home/easybuild/hmns/modules/all/Compiler/GCCcore/11.2.0 -------------------------
+   Autoconf/2.71               flex/2.6.4        (D)    libreadline/8.1        pkg-config/0.29.2  (D)
+   Automake/1.16.4             groff/1.22.4             libtool/2.4.6          PMIx/4.1.0
+   Autotools/20210726          help2man/1.48.3          libxml2/2.9.10         Szip/2.1.1
+   binutils/2.37      (L,D)    hwloc/2.5.0              M4/1.4.19       (D)    UCX/1.11.2
+   Bison/3.7.6                 libevent/2.1.12          ncurses/6.2     (D)    xorg-macros/1.19.3
+   DB/18.1.40                  libfabric/1.13.2         numactl/2.0.14         XZ/5.2.5
+   expat/2.4.1                 libpciaccess/0.16        Perl/5.34.0            zlib/1.2.11        (L,D)
+
+---------------------------------- /home/easybuild/hmns/modules/all/Core -----------------------------------
+   binutils/2.37        GCC/11.2.0     (L)    gompi/2021b    OpenSSL/1.1
+   Bison/3.8.2   (D)    GCCcore/11.2.0 (L)    M4/1.4.19      pkg-config/0.29.2
+   flex/2.6.4           gettext/0.21          ncurses/6.2    zlib/1.2.11
+</code></pre></div>
+<p>Good news, we now have additional modules available!</p>
+<p>The compiler level of our hierarchy actually consists of two directories here: <code>Compiler/GCCcore/11.2.0</code>
+and <code>Compiler/GCC/11.2.0</code>. The modules in the <code>GCCcore</code> directory are ones we can use in other compiler
+toolchains that use GCC 11.2.0 as a base compiler (the details of that are out of scope here).</p>
+<p>The module we are interested in is <code>OpenMPI/4.1.1</code>, which is another gateway module.</p>
+<p>Remember that the "<code>module spider</code>" output told us that there does indeed exist a module for <code>HDF5</code>, but that
+we need to load <em>both</em> the <code>GCC/11.2.0</code> and <code>OpenMPI/4.1.1</code> modules first.</p>
+<p>So, let us do exactly that (remember that <code>GCC/11.2.0</code> is already loaded):</p>
+<div class="highlight"><pre><span></span><code>module load OpenMPI/4.1.1
+</code></pre></div>
+<p>If you now check the output of "<code>module avail</code>" again, you should see the <code>HDF5/1.12.1</code> module:</p>
+<div class="highlight"><pre><span></span><code>$ module avail
+
+-------- /home/easybuild/hmns/modules/all/MPI/GCC/11.2.0/OpenMPI/4.1.1 -------
+   HDF5/1.12.1
+
+------------ /home/easybuild/hmns/modules/all/Compiler/GCC/11.2.0 ------------
+   OpenMPI/4.1.1 (L)
+
+...
+</code></pre></div>
+<p>To use HDF5, we need to load this <code>HDF5/1.12.1</code> module. We can verify that the installation works
+using one of the commands provided by HDF5, <code>h5dump</code> for example:</p>
+<div class="highlight"><pre><span></span><code>module load HDF5/1.12.1
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>$ h5dump --version
+h5dump: Version 1.12.1
+</code></pre></div>
+<p>If you now check which modules are loaded via "<code>module list</code>", you will notice that all module names
+and nice and short now, which is one of the advantages of using a hierarchical module tree:</p>
+<div class="highlight"><pre><span></span><code>$ module list
+
+Currently Loaded Modules:
+  <span class="m">1</span><span class="o">)</span> GCCcore/11.2.0   <span class="m">5</span><span class="o">)</span> numactl/2.0.14      <span class="m">9</span><span class="o">)</span> hwloc/2.5.0      <span class="m">13</span><span class="o">)</span> libfabric/1.13.2  <span class="m">17</span><span class="o">)</span> HDF5/1.12.1
+  <span class="m">2</span><span class="o">)</span> zlib/1.2.11      <span class="m">6</span><span class="o">)</span> XZ/5.2.5           <span class="m">10</span><span class="o">)</span> OpenSSL/1.1      <span class="m">14</span><span class="o">)</span> PMIx/4.1.0
+  <span class="m">3</span><span class="o">)</span> binutils/2.37    <span class="m">7</span><span class="o">)</span> libxml2/2.9.10     <span class="m">11</span><span class="o">)</span> libevent/2.1.12  <span class="m">15</span><span class="o">)</span> OpenMPI/4.1.1
+  <span class="m">4</span><span class="o">)</span> GCC/11.2.0       <span class="m">8</span><span class="o">)</span> libpciaccess/0.16  <span class="m">12</span><span class="o">)</span> UCX/1.11.2       <span class="m">16</span><span class="o">)</span> Szip/2.1.1
+</code></pre></div>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Now it is your turn!</p>
+<p>Try to get a feeling for how a hierarchical module tree works by:</p>
+<ul>
+<li>installing the missing modules for the <code>SciPy-bundle-2021.10-foss-2021b.eb</code> in the module hierarchy we
+  generated for HDF5;</li>
+<li>figure out where the <code>SciPy-bundle</code> module is located in the hierarchy, and then also load it;</li>
+</ul>
+<p>You can verify your work by running this command (since <code>pandas</code> is one of the Python packages included
+in the <code>SciPy-bundle</code> installation):</p>
+<div class="highlight"><pre><span></span><code>python -c <span class="s1">&#39;import pandas; print(pandas.__version__)&#39;</span>
+</code></pre></div>
+<p>Start from a clean slate, by first running:</p>
+<div class="highlight"><pre><span></span><code>module purge
+module unuse <span class="nv">$MODULEPATH</span>
+</code></pre></div>
+<details class="success">
+<summary>(click to show solution)</summary>
+<ul>
+<li>
+<p>Step 0: check which modules are still missing, using <code>--missing</code> or <code>-M</code>:
+  <div class="highlight"><pre><span></span><code>eb SciPy-bundle-2021.10-foss-2021b.eb -M
+</code></pre></div>
+  The output should tell you that 24 out of 64 required modules are still missing.</p>
+</li>
+<li>
+<p>Install the missing modules in the module hierarchy we have generated in <code>$HOME/hmns/modules</code>:
+  <div class="highlight"><pre><span></span><code>eb SciPy-bundle-2021.10-foss-2021b.eb --robot --module-only
+</code></pre></div>
+  Don't forget to use both <code>--robot</code> (to enable dependency resolution) and <code>--module-only</code>
+  (to only run the sanity check and generate module files, not install the software again).</p>
+</li>
+<li>
+<p>Start at the top of the module hierarchy (the <code>Core</code> level),
+  and run module spider to check which gateway modules to load to make <code>SciPy-bundle</code> available:
+  <div class="highlight"><pre><span></span><code>module use <span class="nv">$HOME</span>/hmns/modules/all/Core
+module spider SciPy-bundle/2021.10
+</code></pre></div></p>
+</li>
+<li>Load the gateway modules:
+  <div class="highlight"><pre><span></span><code>module load GCC/11.2.0 OpenMPI/4.1.1
+</code></pre></div></li>
+<li>Check that the <code>SciPy-bundle</code> module is available, and load it:
+  <div class="highlight"><pre><span></span><code>$ module avail SciPy-bundle
+----- /home/example/hmns/modules/all/MPI/GCC/11.2.0/OpenMPI/4.1.1 ------
+   SciPy-bundle/2021.10
+</code></pre></div>
+  <div class="highlight"><pre><span></span><code>module load SciPy-bundle/2021.10
+</code></pre></div></li>
+<li>Run the test command:
+  <div class="highlight"><pre><span></span><code>$ python -c &#39;import pandas; print(pandas.__version__)&#39;
+1.3.4
+</code></pre></div></li>
+</ul>
+</details>
+<hr />
+<p><a href="../jsc/"><em>next: EasyBuild at Jülich Supercomputing Centre</em></a> - <a href="../"><em>(back to overview page)</em></a></p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 25, 2022</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 19, 2022</span>
       
     
   </small>
