@@ -1486,7 +1486,7 @@ and can be viewed as a plugin to the EasyBuild framework. Easyblocks can be eith
 multiple different software packages. Commonly used examples include the <code>ConfigureMake</code> easyblock
 which implements the ubiquitous <code>configure</code>-<code>make</code>-<code>make install</code> procedure, and the
 <code>PythonPackage</code> easyblock that can be used to install a Python package.</p>
-<p>A <strong>software-specific easyblock</strong> implements an installation procedure that is specific to a particular software packages.
+<p>A <strong>software-specific easyblock</strong> implements an installation procedure that is specific to a particular software package.
 Infamous examples include the easyblocks we have for <code>GCC</code>, <code>OpenFOAM</code>, <code>TensorFlow</code>, <code>WRF</code>, ...</p>
 <p>The installation procedure performed by an easyblock can be controlled by defining
 <strong>easyconfig parameters</strong> in an <a href="#easyconfig-files">easyconfig file</a>.</p>
@@ -1501,7 +1501,7 @@ EasyBuild.</p>
 <li><code>name</code> and <code>version</code>, which specify the name and version of the software to install;</li>
 <li><code>homepage</code> and <code>description</code>, which provide key metadata for the software;</li>
 <li><code>toolchain</code>, which specifies the compiler toolchain to use to install the software (see
-  <code>toolchains</code> tab);</li>
+  <code>toolchains</code> section);</li>
 </ul>
 <p>Other easyconfig parameters are <strong>optional</strong>: they can be used to provide required information,
 or to control specific aspects of the installation procedure performed by the easyblock.</p>
@@ -1525,7 +1525,7 @@ for a particular software installation.</p>
 <p>The <strong>filename</strong> of an easyconfig file usually ends with the <code>.eb</code> extension.
 In some contexts the filename is expected to be determined by the value of a handful of key
 easyconfig parameters: <code>name</code>, <code>version</code>, <code>toolchain</code> and <code>versionsuffix</code>. The general format for
-the filename of an easyconfig file is: <code>&lt;name&gt;-&lt;version&gt;&lt;toolchain&gt;-&lt;versionsuffix&gt;.eb</code>,
+the filename of an easyconfig file is: <code>&lt;name&gt;-&lt;version&gt;&lt;toolchain&gt;&lt;versionsuffix&gt;.eb</code>,
 where the toolchain part is omitted when a <code>system</code> toolchain is used, and the <code>&lt;versionsuffix&gt;</code> can be empty.</p>
 <p>The filename of easyconfig files is particularly relevant when EasyBuild is searching for easyconfig files to resolve dependencies,
 since it does this purely based on filenames: interpreting the contents of every (potential) easyconfig file
@@ -1599,7 +1599,7 @@ A <strong>compiler-only toolchain</strong> only consists of compilers (no additi
 <h4 id="system-toolchain">System toolchain<a class="headerlink" href="#system-toolchain" title="Permanent link">&para;</a></h4>
 <p>The <strong><code>system</code> toolchain</strong> is a special case which corresponds to using the compilers and libraries
 <em>provided by the operating system</em>, rather than using toolchain components that were installed using EasyBuild.</p>
-<p>It used sparingly, mostly to install software where no actual compilation is done or
+<p>It is used sparingly, mostly to install software where no actual compilation is done or
 to build a set of toolchain compilers and its dependencies, since the versions of the system compilers
 and libraries are beyond the control of EasyBuild, which could affect the reproducibility of the installation.</p>
 <h4 id="common-toolchains">Common toolchains<a class="headerlink" href="#common-toolchains" title="Permanent link">&para;</a></h4>
@@ -1651,7 +1651,7 @@ and automatically generates a set of <strong>(environment) modules</strong> that
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 21, 2022</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 18, 2022</span>
       
     
   </small>

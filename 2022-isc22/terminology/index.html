@@ -1223,6 +1223,104 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#framework" class="md-nav__link">
+    Framework
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#easyblocks" class="md-nav__link">
+    Easyblocks
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#easyconfig-parameters" class="md-nav__link">
+    Easyconfig parameters
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#easyconfig-files" class="md-nav__link">
+    Easyconfig files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#easystack-files" class="md-nav__link">
+    Easystack files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extensions" class="md-nav__link">
+    Extensions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    Dependencies
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#toolchains" class="md-nav__link">
+    Toolchains
+  </a>
+  
+    <nav class="md-nav" aria-label="Toolchains">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-toolchain" class="md-nav__link">
+    System toolchain
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-toolchains" class="md-nav__link">
+    Common toolchains
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modules" class="md-nav__link">
+    Modules
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bringing-it-all-together" class="md-nav__link">
+    Bringing it all together
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1240,13 +1338,196 @@
 
 
 <h1 id="easybuild-terminology">EasyBuild terminology<a class="headerlink" href="#easybuild-terminology" title="Permanent link">&para;</a></h1>
+<p>Over the years, we have come up with some terminology specific to EasyBuild
+to refer to particular components, which we use alongside established terminology relevant to the context
+of building and installing software on HPC systems.</p>
+<p>It is important to be familiar with these terms, so we will briefly cover them one by one.</p>
+<hr />
+<h3 id="framework">Framework<a class="headerlink" href="#framework" title="Permanent link">&para;</a></h3>
+<p>The EasyBuild <em>framework</em> consists of a set of Python modules organised in packages (<code>easybuild.framework</code>,
+<code>easybuild.toolchains</code>, <code>easybuild.tools</code>, etc.) that collectively form <strong>the core of EasyBuild</strong>,
+and is developed in the <a href="https://github.com/easybuilders/easybuild-framework"><code>easybuild-framework</code> repository on GitHub</a>.</p>
+<p>It implements the <strong>common functionality that you need when building software from source</strong>,
+and provides functions for unpacking source files, applying patch files, collecting the output produced
+by shell commands that are being run and checking their exit code, generating environment module files, etc.</p>
+<p>The EasyBuild framework does <em>not</em> implement any specific installation procedure, it only provides
+the necessary functionality to facilitate this.</p>
+<hr />
+<h3 id="easyblocks">Easyblocks<a class="headerlink" href="#easyblocks" title="Permanent link">&para;</a></h3>
+<p>An <em>easyblock</em> is <strong>a Python module that implements a specific software installation procedure</strong>,
+and can be viewed as a plugin to the EasyBuild framework. Easyblocks can be either <em>generic</em> or <em>software-specific</em>.</p>
+<p>A <strong>generic easyblock</strong> implements an installation procedure that can be used for
+multiple different software packages. Commonly used examples include the <code>ConfigureMake</code> easyblock
+which implements the ubiquitous <code>configure</code>-<code>make</code>-<code>make install</code> procedure, and the
+<code>PythonPackage</code> easyblock that can be used to install a Python package.</p>
+<p>A <strong>software-specific easyblock</strong> implements an installation procedure that is specific to a particular software package.
+Infamous examples include the easyblocks we have for <code>GCC</code>, <code>OpenFOAM</code>, <code>TensorFlow</code>, <code>WRF</code>, ...</p>
+<p>The installation procedure performed by an easyblock can be controlled by defining
+<strong>easyconfig parameters</strong> in an <a href="#easyconfig-files">easyconfig file</a>.</p>
+<p>A collection of (generic and software-specific) easyblocks is developed by the EasyBuild community
+in the <a href="https://github.com/easybuilders/easybuild-easyblocks"><code>easybuild-easyblocks</code> repository on GitHub</a>.</p>
+<hr />
+<h3 id="easyconfig-parameters">Easyconfig parameters<a class="headerlink" href="#easyconfig-parameters" title="Permanent link">&para;</a></h3>
+<p>An <strong>easyconfig parameter</strong> specifies a particular aspect of a software installation that should be performed by
+EasyBuild.</p>
+<p>Some easyconfig parameters are <strong>mandatory</strong>. The following parameters <em>must</em> be defined in <em>every</em> easyconfig file:</p>
+<ul>
+<li><code>name</code> and <code>version</code>, which specify the name and version of the software to install;</li>
+<li><code>homepage</code> and <code>description</code>, which provide key metadata for the software;</li>
+<li><code>toolchain</code>, which specifies the compiler toolchain to use to install the software (see
+  <code>toolchains</code> section);</li>
+</ul>
+<p>Other easyconfig parameters are <strong>optional</strong>: they can be used to provide required information,
+or to control specific aspects of the installation procedure performed by the easyblock.</p>
+<p>Some commonly used optional easyconfig parameters include:</p>
+<ul>
+<li><code>easyblock</code>, which specifies the (generic) easyblock that EasyBuild should use for the installation;</li>
+<li><code>sources</code> and <code>source_urls</code>, which specify the list of source files and where to download them;</li>
+<li><code>dependencies</code> and <code>builddependencies</code>, which specify the list of (build) dependencies;</li>
+<li><code>configopts</code>, <code>buildopts</code>, and <code>installopts</code>, which specify options for the configuration/build/install commands, respectively;</li>
+</ul>
+<p>If no value is specified for an optional easyconfig parameter, the corresponding default value will be used.</p>
+<p>There are two groups of easyconfig parameters. <em>General</em> easyconfig parameters can be defined for any software
+package, and (usually) control a specific aspect of the installation. <em>Custom</em> easyconfig parameters are
+only supported by certain easyblocks, and only make sense for particular (types of) software.</p>
+<hr />
+<h3 id="easyconfig-files">Easyconfig files<a class="headerlink" href="#easyconfig-files" title="Permanent link">&para;</a></h3>
+<p><em>Easyconfig files</em> (or <em>easyconfigs</em> for short), are <strong>simple text files written in Python syntax
+that specify what EasyBuild should install</strong>.
+Each easyconfig file defines the set of <strong>easyconfig parameters</strong> that collectively form a complete specification
+for a particular software installation.</p>
+<p>The <strong>filename</strong> of an easyconfig file usually ends with the <code>.eb</code> extension.
+In some contexts the filename is expected to be determined by the value of a handful of key
+easyconfig parameters: <code>name</code>, <code>version</code>, <code>toolchain</code> and <code>versionsuffix</code>. The general format for
+the filename of an easyconfig file is: <code>&lt;name&gt;-&lt;version&gt;&lt;toolchain&gt;&lt;versionsuffix&gt;.eb</code>,
+where the toolchain part is omitted when the <code>system</code> toolchain is used, and the <code>&lt;versionsuffix&gt;</code> can be empty.</p>
+<p>The filename of easyconfig files is particularly relevant when EasyBuild is searching for easyconfig files to resolve dependencies,
+since it does this purely based on filenames: interpreting the contents of every (potential) easyconfig file
+it encounters would be too expensive.</p>
+<p>In the <a href="https://github.com/easybuilders/easybuild-easyconfigs"><code>easybuild-easyconfigs</code> repository on GitHub</a>,
+the EasyBuild community maintains a large (and growing) collection of easyconfig files, for a wide range of
+(scientific) software.</p>
+<hr />
+<h3 id="easystack-files">Easystack files<a class="headerlink" href="#easystack-files" title="Permanent link">&para;</a></h3>
+<p><a href="https://docs.easybuild.io/en/latest/Easystack-files.html"><strong>Easystack files</strong></a>
+are a relatively new concept in EasyBuild, providing a way to define a <em>software stack</em>
+that should be installed by EasyBuild.</p>
+<p>They are written in <a href="https://yaml.org/">YAML syntax</a>, and include a list of <em>software specifications</em>
+which correspond to a list of easyconfig files, with support for providing specific EasyBuild
+configuration options for particular software packages, and including or excluding specific software
+packages based on labels.</p>
+<p>The support for using easystack files is currently marked as <em>experimental</em>,
+which means it is subject to change in future EasyBuild releases, and may be prone to errors.</p>
+<hr />
+<h3 id="extensions">Extensions<a class="headerlink" href="#extensions" title="Permanent link">&para;</a></h3>
+<p><em>Extensions</em> is the collective term we use for <strong>additional software packages that can be installed
+on top of another software package</strong>. Common examples are <em>Python packages</em>, <em>R libraries</em>, and <em>Perl modules</em>.</p>
+<p>As you can tell the common terminology here is a bit messy, so we came up with <em>extensions</em> as a unifying term.</p>
+<p>Extensions can be installed in different ways:</p>
+<ul>
+<li><em>stand-alone</em>, as a separate installation on top of one or more other installations;</li>
+<li>as a part of a <em>bundle</em> of extensions that collectively form a separate installation;</li>
+<li>or as an actual <em>extension</em> to a specific installation to yield a "batteries included"
+  type of installation (for examples by adding a bunch of Python packages from PyPI into
+  an installation of Python);</li>
+</ul>
+<hr />
+<h3 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h3>
+<p>A <em>dependency</em> is a common term in the context of software. It refers to <strong>a software
+package that is either strictly required by other software, or that can be leveraged to
+enhance other software</strong> (for example to support specific features).</p>
+<p>There are three main types of software dependencies:</p>
+<ul>
+<li>a <strong>build dependency</strong> is only required when building/installing a software package;
+  once the software package is installed, it is no longer needed to <em>use</em> that software
+  (examples: <code>CMake</code>, <code>pkg-config</code>);</li>
+<li>a <strong>run-time dependency</strong> (often referred to simply as <em>dependency</em>) is a software package that is
+  required to <em>use</em> (or <em>run</em>) another software package (example: <code>Python</code>);</li>
+<li>a <strong>link-time dependency</strong> is somewhere in between a build and runtime dependency:
+  it is only needed when <em>linking</em> a software package; it can become either a build or runtime
+  dependency, depending on exactly how the software is installed (example: <code>OpenBLAS</code>);</li>
+</ul>
+<p>The distinction between link-time and run-time dependencies is mostly irrelevant for this tutorial,
+but we will discriminate build-only dependencies.</p>
+<hr />
+<h3 id="toolchains">Toolchains<a class="headerlink" href="#toolchains" title="Permanent link">&para;</a></h3>
+<p>A <em>compiler toolchain</em> (or just <em>toolchain</em> for short) is a <strong>set of <a href="https://en.wikipedia.org/wiki/Compiler">compilers</a></strong>,
+which are used to build software from source, together with a set of <strong>additional libraries</strong> that provide further core functionality.</p>
+<p>We refer to the different parts of a toolchain as <strong>toolchain components</strong>.</p>
+<p>The <em>compiler component</em> typically consists of <a href="https://en.wikipedia.org/wiki/C_(programming_language)">C</a>,
+<a href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a>, and <a href="https://en.wikipedia.org/wiki/Fortran">Fortran</a>
+compilers in the context of HPC, but additional compilers (for example,
+a <a href="https://developer.nvidia.com/cuda-zone">CUDA</a> compiler for
+<a href="https://en.wikipedia.org/wiki/General-purpose_computing_on_graphics_processing_units">GPGPU</a> software)
+can also be included.</p>
+<p>Additional toolchain components are usually special-purpose libraries:</p>
+<ul>
+<li>an MPI library to support distributed computations (for example, <a href="https://www.open-mpi.org/">Open MPI</a>);</li>
+<li>libraries providing efficient linear algebra routines (<a href="http://performance.netlib.org/blas/">BLAS</a>,
+  <a href="http://performance.netlib.org/lapack/">LAPACK</a>);</li>
+<li>a library supporting computing Fast Fourier Transformations (for example, <a href="http://fftw.org/">FFTW</a>);</li>
+</ul>
+<p>A toolchain that includes all of these libraries is referred to as a <strong>full toolchain</strong>, while
+a <strong>subtoolchain</strong> is a toolchain that is missing one or more of these libraries.
+A <strong>compiler-only toolchain</strong> only consists of compilers (no additional libraries).</p>
+<h4 id="system-toolchain">System toolchain<a class="headerlink" href="#system-toolchain" title="Permanent link">&para;</a></h4>
+<p>The <strong><code>system</code> toolchain</strong> is a special case which corresponds to using the compilers and libraries
+<em>provided by the operating system</em>, rather than using toolchain components that were installed using EasyBuild.</p>
+<p>It is used sparingly, mostly to install software where no actual compilation is done or
+to build a set of toolchain compilers and its dependencies, since the versions of the system compilers
+and libraries are beyond the control of EasyBuild, which could affect the reproducibility of the installation.</p>
+<h4 id="common-toolchains">Common toolchains<a class="headerlink" href="#common-toolchains" title="Permanent link">&para;</a></h4>
+<p>The <code>foss</code> and <code>intel</code> toolchains are also known as the <em>common toolchains</em>,
+because they are widely adopted by the EasyBuild community.</p>
+<p>The <code>foss</code> toolchain consists of all open source components (hence the name:
+"FOSS" stands for Free &amp; Open Source Software): <a href="https://gcc.gnu.org/">GCC</a>, <a href="https://www.open-mpi.org/">Open MPI</a>, <a href="https://gitlab.mpi-magdeburg.mpg.de/software/flexiblas-release">FlexiBLAS</a> with
+<a href="https://www.openblas.net/">OpenBLAS</a> as default backend,
+<a href="https://www.netlib.org/scalapack/">ScaLAPACK</a> and <a href="http://fftw.org/">FFTW</a>.</p>
+<p>The <code>intel</code> toolchain consists of the <a href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/dpc-compiler.html">Intel C, C++ and Fortran compilers</a> (on top of a <code>GCC</code> version
+controlled through EasyBuild) alongside the <a href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html">Intel MPI</a> and <a href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html">Intel MKL</a> libraries.</p>
+<p>Roughly every 6 months, a new version of these common toolchains is agreed upon
+in the EasyBuild community, after extensive testing.</p>
+<p>More information on these toolchains is available <a href="https://docs.easybuild.io/en/latest/Common-toolchains.html">in the EasyBuild documentation</a>.</p>
+<hr />
+<h3 id="modules">Modules<a class="headerlink" href="#modules" title="Permanent link">&para;</a></h3>
+<p><em>Module</em> is a massively overloaded term in (scientific) software and IT in general
+(kernel modules, Python modules, and so on).
+In the context of EasyBuild, the term 'module' usually refers to an <strong>environment module (file)</strong>.</p>
+<p><a href="https://en.wikipedia.org/wiki/Environment_Modules_(software)">Environment modules</a> is a well established concept
+on HPC systems: it is a way to specify changes that should be made to one or more
+<a href="https://en.wikipedia.org/wiki/Environment_variable">environment variables</a> in a
+<a href="https://en.wikipedia.org/wiki/Shell_(computing)">shell</a>-agnostic way. A module file
+is usually written in either <a href="https://en.wikipedia.org/wiki/Tcl">Tcl</a> or
+<a href="https://en.wikipedia.org/wiki/Lua_(programming_language)">Lua</a> syntax,
+and specifies which environment variables should be updated, and how (append,
+prepend, (re)define, undefine, etc.) upon loading the environment module.
+Unloading an environment module will restore the shell environment to its previous state,
+by reverting the changes that were made to the environment when it was loaded.</p>
+<p>Environment module files are processed via a <strong>modules tool</strong>, of which there
+are several conceptually similar yet slightly different implementations.
+The Tcl-based <a href="https://sourceforge.net/projects/modules/">Environment Modules</a> implementation, and
+<a href="https://lmod.readthedocs.io">Lmod</a>, a more recent Lua-based implementation (which also supports module
+files written in Tcl syntax), are the most commonly used ones.</p>
+<p><strong>Environment module files are automatically generated for each software installation</strong> by EasyBuild,
+and <em>loading</em> a module results in changes being made to the environment of the current shell
+session such that the corresponding software installation can be used.</p>
+<hr />
+<h3 id="bringing-it-all-together">Bringing it all together<a class="headerlink" href="#bringing-it-all-together" title="Permanent link">&para;</a></h3>
+<p>The EasyBuild <strong>framework</strong> leverages <strong>easyblocks</strong> to automatically build and install
+(scientific) software, potentially including additional <strong>extensions</strong>, using a particular compiler <strong>toolchain</strong>,
+as specified in <strong>easyconfig files</strong> which each define a set of <strong>easyconfig parameters</strong>.</p>
+<p>EasyBuild ensures that the specified <strong>(build) dependencies</strong> are in place,
+and automatically generates a set of <strong>(environment) modules</strong> that facilitate access to the installed software.</p>
+<p>An <strong>easystack file</strong> can be used to specify a collection of software to install with EasyBuild.</p>
+<hr />
+<p><a href="../installation/"><em>next: Installing EasyBuild</em></a> - <a href="../"><em>(back to overview page)</em></a></p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 25, 2022</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 18, 2022</span>
       
     
   </small>
