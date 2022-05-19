@@ -46,8 +46,8 @@ Reasons to consider implementing a software-specific easyblock rather than using
   * For example, the [easyblock for VMD](https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/v/vmd.py)
     will add configure options depending on the dependency list of the package.
 * interactive commands that need to be run;  
-  *For example: The [easyblock for maple](https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/m/maple.py) 
-  responds to a number of interactive questions.* 
+  * For example: The [easyblock for maple](https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/m/maple.py) 
+    responds to a number of interactive questions.
 * having to create or adjust specific (configuration) files;  
   *For example, the [easyblock for Siesta](https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/s/siesta.py)
   edits one of the configuration files through regular expressions.*
