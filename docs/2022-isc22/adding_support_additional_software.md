@@ -917,7 +917,7 @@ You can leverage the `eb-tutorial` easyconfig file we have composed in the examp
     ```
     (`eb-tutorial` version 1.0.1 doesn't print "`I have a message for you:`")
 
-    If you check the eassyconfig file that was generated (which is saved as 
+    If you check the easyconfig file that was generated (which is saved as 
     `$EASYBUILD_PREFIX/ebfiles_repo/eb-tutorial/eb-tutorial-1.1.0-GCC-11.2.0.eb`),
     you will see that that file now contains a lot of data from the build. This can
     be safely deleted, but EasyBuild will also simply ignore it if you try to build
