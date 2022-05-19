@@ -1430,21 +1430,21 @@ consists of a <em>hierarchy</em> of module files.</p>
 <li>and an <strong>MPI</strong> level, which houses module files for software that was installed using a toolchain that includes (at least) a compiler and MPI component;</li>
 </ul>
 <p>Here is a simple example of such a 3-level module hierarchy:</p>
-<div align="center"><img src="../../img/hmns.png" width="60%"/></div>
+<div align="center"><img src="../../img/hmns-2021b.png" width="60%"/></div>
 
-<p>In this example the core level only includes a single module <code>GCC/9.3.0</code>,
-while  the compiler level includes two modules: <code>OpenMPI/4.0.3</code> and <code>MPICH/3.3.2</code>.
+<p>In this example the core level only includes a single module <code>GCC/11.2.0</code>,
+while  the compiler level includes two modules: <code>OpenMPI/4.1.1</code> and <code>MPICH/3.4.2</code>.
 In the MPI level, three modules are available: one for <code>FFTW</code>, one for <code>ScaLAPACK</code>, and one for <code>HDF5</code>.</p>
 <p>Initially only the modules on the top level of a module hierarchy are available for loading.
-If you run "<code>module avail</code>" with the example module hierarchy, you will only see the <code>GCC/9.3.0</code> module.</p>
+If you run "<code>module avail</code>" with the example module hierarchy, you will only see the <code>GCC/11.2.0</code> module.</p>
 <p>Some modules in the top level of the hierarchy act as a "gateway" to modules in the
 next level below.
-To make additional modules available for loading one of these gateway modules has to be loaded. In our example, loading the <code>GCC/9.3.0</code> module results in two additional modules coming into view from the compiler level, as indicated by the arrows: the modules for <code>OpenMPI</code> and <code>MPICH</code>. These correspond to installations of <code>OpenMPI</code>
-and <code>MPICH</code> that were built using <code>GCC/9.3.0</code> as a (compiler-only) toolchain.</p>
-<p>Similarly, the <code>OpenMPI/4.0.3</code> module serves as a gateway to the three modules in the MPI level. Only by loading the <code>OpenMPI</code> module will these additional three modules become
-available for loading. They correspond to software installations built using the <code>gompi/2020a</code> toolchain that
-consists of the <code>GCC/9.3.0</code> compiler module and the <code>OpenMPI/4.0.3</code> MPI module. Software installed using
-<code>foss/2020a</code> (which is a full toolchain that also includes OpenBLAS, FFTW and ScaLAPACK) would also be stored
+To make additional modules available for loading one of these gateway modules has to be loaded. In our example, loading the <code>GCC/11.2.0</code> module results in two additional modules coming into view from the compiler level, as indicated by the arrows: the modules for <code>OpenMPI</code> and <code>MPICH</code>. These correspond to installations of <code>OpenMPI</code>
+and <code>MPICH</code> that were built using <code>GCC/11.2.0</code> as a (compiler-only) toolchain.</p>
+<p>Similarly, the <code>OpenMPI/4.1.1</code> module serves as a gateway to the three modules in the MPI level. Only by loading the <code>OpenMPI</code> module will these additional three modules become
+available for loading. They correspond to software installations built using the <code>gompi/2021b</code> toolchain that
+consists of the <code>GCC/11.2.0</code> compiler module and the <code>OpenMPI/4.1.1</code> MPI module. Software installed using
+<code>foss/2021b</code> (which is a full toolchain that also includes OpenBLAS, FFTW and ScaLAPACK) would also be stored
 in this level of the module hierarchy.</p>
 <p>The characteristics of a module hierarchy are:</p>
 <ul>
@@ -1469,9 +1469,9 @@ in this level of the module hierarchy.</p>
 </ul>
 <h4 id="length-of-module-names">Length of module names<a class="headerlink" href="#length-of-module-names" title="Permanent link">&para;</a></h4>
 <p>When using a flat module naming scheme, module names can be fairly long and perhaps confusing. For our <code>HDF5</code> installation for example,
-we have <code>HDF5/1.10.6-gompi-2020a</code> as module name. The <code>-gompi-2020a</code> part of the name refers to the toolchain that was
+we have <code>HDF5/1.12.1-gompi-2021b</code> as module name. The <code>-gompi-2021b</code> part of the name refers to the toolchain that was
 used for this installation, but it may be confusing to some people (what kind of Pokémon is a "gompi"?!).</p>
-<p>In the example module hierarchy shown above, the module for <code>HDF5</code> is named <code>HDF5/1.10.6</code> which is basically the bare
+<p>In the example module hierarchy shown above, the module for <code>HDF5</code> is named <code>HDF5/1.12.1</code> which is basically the bare
 essentials: software name and version. That's way better, nice and clean!</p>
 <h4 id="amount-of-available-modules">Amount of available modules<a class="headerlink" href="#amount-of-available-modules" title="Permanent link">&para;</a></h4>
 <p>The output of "<code>module avail</code>" can be quite overwhelming if lots of module files
@@ -1620,7 +1620,7 @@ to reinstall the software, we are just creating a different "view" on these soft
 <p>Before running EasyBuild to generate a hierarchical module tree, we have to be a bit careful
 with preparing our environment.</p>
 <p><strong>We must absolutely avoid mixing modules from a flat and hierarchical module naming scheme!</strong></p>
-<p>Some module files will have the same name in both module trees (like <code>GCC/10.2.0</code> for example),
+<p>Some module files will have the same name in both module trees (like <code>GCC/11.2.0</code> for example),
 but their contents will be different.
 Mixing modules from a flat and hierarchical module tree <em>will</em> trigger problems...</p>
 <p>So we have to make sure that the module files we already have in <code>/easybuild</code> are <em>not</em> visible.
