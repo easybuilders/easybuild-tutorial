@@ -79,7 +79,7 @@ It is also possible to run heterogeneous jobs across multiple partitions.
     is more challenging than on your typical Intel + NVIDIA GPU cluster with NVIDIA/Mellanox
     interconnect. Given that the technology is very new, one can also expect a rapid evolution of
     the programming environment with a risk of breaking compatibility with earlier versions,
-    and a need for frequent software updates in the initial yeas of operation to work around bugs
+    and a need for frequent software updates in the initial years of operation to work around bugs
     or make new and important features available. So the maintenance cost of a the user application
     stack is certainly higher than on clusters based on more conventional technology. Early experience
     has also shown that we need to be prepared for potentially breaking changes on very short notice.
