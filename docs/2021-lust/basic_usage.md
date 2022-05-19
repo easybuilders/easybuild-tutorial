@@ -118,7 +118,7 @@ corresponding to `<name>-<version>-<toolchain><versionsuffix>.eb`, where:
 * `<version>` represents the software version;
 * `<toolchain>` represents the toolchain used in the easyconfig file, which consists of the toolchain name
   and version separated with a dash (`-`), and which is omitted (including the preceding `-`) when the
-  [`system` toolchain](../introduction#system-toolchain) is used;
+  [`system` toolchain](../terminology/#system-toolchain) is used;
 * `<versionsuffix>` represents the value of the `versionsuffix` easyconfig parameter,
   which is sometimes used to distinguish multiple variants of particular software installations
   (and is empty by default);
@@ -189,7 +189,7 @@ operations involving lots of (small) files can be slow.
 
 For the easyconfig files included with an EasyBuild release, a search index is readily provided.
 For other directories, you can create a search index using `eb --create-index <path>`.
-[See the EasyBuild documentation for more information](https://easybuild.readthedocs.io/en/latest/Easyconfigs_index.html).
+[See the EasyBuild documentation for more information](https://docs.easybuild.io/en/latest/Easyconfigs_index.html).
 
 ---
 
@@ -393,7 +393,7 @@ If you were concerned about EasyBuild being too much of a black box, that is hop
 
 !!! note
     It is important to highlight here that the reported installation procedure *may* not be 100% correct,
-    since the [easyblock](../introduction/#easyblocks) can change its mind based on the output of shell commands
+    since the [easyblock](../terminology/#easyblocks) can change its mind based on the output of shell commands
     that were executed, or based on the contents of a file that was generated during the installation.
     Since all "actions" that would be performed during the installation are actually skipped when using `eb -x`,
     the reported installation procedure could be partially incorrect.

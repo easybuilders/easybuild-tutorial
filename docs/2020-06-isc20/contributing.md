@@ -83,13 +83,13 @@ a project that aims to *automate* tedious software installation procedures.
 
 At the end of 2015 efforts were made to tackle this issue by implementing
 GitHub integration features in EasyBuild, which automate the contribution
-workflow by running `git` commands and interacting with the [GitHub API](https://developer.github.com/v3/).
+workflow by running `git` commands and interacting with the [GitHub API](https://docs.github.com/en/rest).
 
-We will briefly go over some of these features here, but they are also covered in detail [in the EasyBuild documentation](https://easybuild.readthedocs.io/en/latest/Integration_with_GitHub.html).
+We will briefly go over some of these features here, but they are also covered in detail [in the EasyBuild documentation](https://docs.easybuild.io/en/latest/Integration_with_GitHub.html).
 
 ### Requirements & configuration
 
-First of all, the GitHub integration features impose a couple of additional [requirements](https://easybuild.readthedocs.io/en/latest/Integration_with_GitHub.html)
+First of all, the GitHub integration features impose a couple of additional [requirements](https://docs.easybuild.io/en/latest/Integration_with_GitHub.html)
 and configuration.
 
 
@@ -226,7 +226,7 @@ to try out the GitHub integration features!
     If your SSH private key is protected with a password, you may need
     to enter your password a couple of times when running "`eb --check-github`".
 
-    You can avoid this by [using an SSH agent](https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent).
+    You can avoid this by [using an SSH agent](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).
 
 ### Creating pull requests
 

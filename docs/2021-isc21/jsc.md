@@ -127,7 +127,7 @@ module --show-hidden avail
 
 ### Usage of hooks
 
-The relatively new [***hooks*** feature](https://easybuild.readthedocs.io/en/latest/Hooks.html)
+The relatively new [***hooks*** feature](https://docs.easybuild.io/en/latest/Hooks.html)
 of EasyBuild provides JSC with an opportunity to
 track upstream developments more closely.
 

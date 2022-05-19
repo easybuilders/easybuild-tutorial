@@ -34,7 +34,7 @@ multiple different software packages. Commonly used examples include the ``Confi
 which implements the ubiquitous ``configure``-``make``-``make install`` procedure, and the
 ``PythonPackage`` easyblock that can be used to install a Python package.
 
-A **software-specific easyblock** implements an installation procedure that is specific to a particular software packages.
+A **software-specific easyblock** implements an installation procedure that is specific to a particular software package.
 Infamous examples include the easyblocks we have for ``GCC``, ``OpenFOAM``, ``TensorFlow``, ``WRF``, ...
 
 The installation procedure performed by an easyblock can be controlled by defining
@@ -55,7 +55,7 @@ Some easyconfig parameters are **mandatory**. The following parameters *must* be
 * ``name`` and ``version``, which specify the name and version of the software to install;
 * ``homepage`` and ``description``, which provide key metadata for the software;
 * ``toolchain``, which specifies the compiler toolchain to use to install the software (see
-  ``toolchains`` tab);
+  ``toolchains`` section);
 
 Other easyconfig parameters are **optional**: they can be used to provide required information,
 or to control specific aspects of the installation procedure performed by the easyblock.
@@ -85,7 +85,7 @@ for a particular software installation.
 The **filename** of an easyconfig file usually ends with the ``.eb`` extension.
 In some contexts the filename is expected to be determined by the value of a handful of key
 easyconfig parameters: ``name``, ``version``, ``toolchain`` and ``versionsuffix``. The general format for
-the filename of an easyconfig file is: ``<name>-<version><toolchain>-<versionsuffix>.eb``,
+the filename of an easyconfig file is: ``<name>-<version><toolchain><versionsuffix>.eb``,
 where the toolchain part is omitted when a ``system`` toolchain is used, and the `<versionsuffix>` can be empty.
 
 The filename of easyconfig files is particularly relevant when EasyBuild is searching for easyconfig files to resolve dependencies,
@@ -183,7 +183,7 @@ A **compiler-only toolchain** only consists of compilers (no additional librarie
 The **`system` toolchain** is a special case which corresponds to using the compilers and libraries
 *provided by the operating system*, rather than using toolchain components that were installed using EasyBuild.
 
-It used sparingly, mostly to install software where no actual compilation is done or
+It is used sparingly, mostly to install software where no actual compilation is done or
 to build a set of toolchain compilers and its dependencies, since the versions of the system compilers
 and libraries are beyond the control of EasyBuild, which could affect the reproducibility of the installation.
 
@@ -196,8 +196,8 @@ The `foss` toolchain consists of all open source components (hence the name:
 "FOSS" stands for Free & Open Source Software): [GCC](https://gcc.gnu.org/), [Open MPI](https://www.open-mpi.org/), [OpenBLAS](https://www.openblas.net/),
 [ScaLAPACK](https://www.netlib.org/scalapack/) and [FFTW](http://fftw.org/).
 
-The `intel` toolchain consists of the [Intel C, C++ and Fortran compilers](https://software.intel.com/content/www/us/en/develop/tools/compilers.html) (on top of a `GCC` version
-controlled through EasyBuild) alongside the [Intel MPI](https://software.intel.com/content/www/us/en/develop/tools/mpi-library.html) and [Intel MKL](https://software.intel.com/content/www/us/en/develop/tools/math-kernel-library.html) libraries.
+The `intel` toolchain consists of the [Intel C, C++ and Fortran compilers](https://www.intel.com/content/www/us/en/developer/tools/oneapi/dpc-compiler.html) (on top of a `GCC` version
+controlled through EasyBuild) alongside the [Intel MPI](https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html) and [Intel MKL](https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html) libraries.
 
 Roughly every 6 months, a new version of these common toolchains is agreed upon
 in the EasyBuild community, after extensive testing.

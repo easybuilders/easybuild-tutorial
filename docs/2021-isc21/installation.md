@@ -65,11 +65,11 @@ Any sufficiently recent Lmod version (8.x or even 7.x) should be fine.
 
 If you see output that starts with a line like "`VERSION=3.2.10`" or "`Modules Release 4.5.0`",
 you have the original Tcl-based environment modules tool installed
-and <a href="https://easybuild.readthedocs.io/en/latest/Configuration.html#modules-tool-modules-tool">*EasyBuild will need to be configured to use it after installation*</a>.
+and <a href="https://docs.easybuild.io/en/latest/Configuration.html#modules-tool-modules-tool">*EasyBuild will need to be configured to use it after installation*</a>.
 
 If the `module` function is not defined either you do not have a modules tool installed
 or your environment is not properly set up to use it. In this case,
-please refer to the EasyBuild documentation <a href="https://easybuild.readthedocs.io/en/latest/Installation.html#required-modules-tool">here</a> for more information.
+please refer to the EasyBuild documentation <a href="https://docs.easybuild.io/en/latest/Installation.html#required-modules-tool">here</a> for more information.
 
 ---
 

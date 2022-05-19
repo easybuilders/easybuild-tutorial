@@ -8,13 +8,13 @@ one of these channels.
 
 ## Documentation
 
-Make sure to check the EasyBuild documentation first, which is available at [**https://easybuild.readthedocs.io**](https://easybuild.readthedocs.io).
+Make sure to check the EasyBuild documentation first, which is available at [**https://docs.easybuild.io**](https://docs.easybuild.io).
 
 It is not unlikely that an answer to your question is available
 there already.
 The search box on the top left may be helpful.
 
-<div align="center"><a href="https://easybuild.readthedocs.io/en/latest/search.html"><img src="../../img/readthedocs_search.png" alt="GitHub search" width="30%"/></a></div>
+<div align="center"><a href="https://docs.easybuild.io/en/latest/search.html"><img src="../../img/readthedocs_search.png" alt="GitHub search" width="30%"/></a></div>
 
 ---
 
