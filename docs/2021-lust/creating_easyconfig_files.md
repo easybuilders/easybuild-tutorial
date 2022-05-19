@@ -10,10 +10,10 @@ In this part of the tutorial we will look at the guts of easyconfig files and ev
 
 ## Easyconfigs vs easyblocks
 
-Before we dive into writing [easyconfig files](../introduction/#easyconfig-files),
-let us take a brief look at how they relate to [easyblocks](../introduction/#easyblocks).
+Before we dive into writing [easyconfig files](../terminology/#easyconfig-files),
+let us take a brief look at how they relate to [easyblocks](../terminology/#easyblocks).
 
-As we discussed [earlier](../introduction/#terminology), an easyconfig file (`*.eb`) is required
+As we discussed [earlier](../terminology/#terminology), an easyconfig file (`*.eb`) is required
 for each installation
 performed by EasyBuild which specifies the details of the installation (which software
 version, toolchain, etc.), while the installation procedure is implemented
@@ -103,10 +103,10 @@ description = """This is an example
 
 **`toolchain`**
 
-EasyBuild also requires that the [compiler toolchain](../introduction/#toolchains) is specified, via the `toolchain`
+EasyBuild also requires that the [compiler toolchain](../terminology/#toolchains) is specified, via the `toolchain`
 easyconfig parameter.
 
-This can either be the [`system` toolchain](../introduction/#system-toolchain), for which a constant named `SYSTEM` is available:
+This can either be the [`system` toolchain](../terminology/#system-toolchain), for which a constant named `SYSTEM` is available:
 
 ```python
 toolchain = SYSTEM
@@ -230,7 +230,7 @@ tar_config_opts*        Override tar settings as determined by configure. [defau
 
 #### Dependencies
 
-You will often need to list one or more [dependencies](../introduction/#dependencies) that are required
+You will often need to list one or more [dependencies](../terminology/#dependencies) that are required
 to install or run the software.
 We distinguish between two main different types of dependencies: runtime dependencies and build dependencies.
 
@@ -543,7 +543,7 @@ But, which one?
 
 Build instructions are usually included in a `README` file, or in the documentation.
 In this case, there's indeed a minimal [`README`
-file](https://github.com/easybuilders/easybuild-tutorial/tree/main/docs/files/eb-tutorial-1.0.1/README) available,
+file](https://github.com/easybuilders/easybuild-tutorial/blob/main/docs/files/eb-tutorial-1.0.1/README) available,
 which tells us that we should use the `cmake` command to configure the installation, followed by `make` and `make install`.
 
 [We briefly discussed](#easyblock) a generic easyblock that does exactly this: `CMakeMake`.

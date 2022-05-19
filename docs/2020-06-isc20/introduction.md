@@ -2,14 +2,14 @@
 
 ## What is EasyBuild?
 
-[EasyBuild](http://easybuild.io) is a **software build and installation framework**
+[EasyBuild](https://easybuild.io) is a **software build and installation framework**
 that manages (scientific) software in an efficient way, without compromises on performance. Easybuild is especially tailored towards [**High Performance Computing (HPC)**](https://en.wikipedia.org/wiki/Supercomputer)
  environments.
 
 
 ### *Elevator pitch*
 
-<a href="http://geek-and-poke.com/geekandpoke/2010/5/14/how-to-become-invaluable.html"><img src="../../img/geek-and-poke-invaluable.png" style="float:right" width="50%"/></a>
+<a href="https://geek-and-poke.com/geekandpoke/2010/5/14/how-to-become-invaluable.html"><img src="../../img/geek-and-poke-invaluable.png" style="float:right" width="50%"/></a>
 
 EasyBuild intends to relieve HPC support teams from manually managing
 software installations while at the same time **providing a consistent and well performing
@@ -33,15 +33,15 @@ and automatically generating environment module files.
 ***No*** **admin privileges are required**: it is sufficient to have write permissions
 to the preferred software installation prefix.
 
-It is [**highly configurable**](https://easybuild.readthedocs.io/en/latest/Configuration.html) via configuration files, environment variables, and command line options.
-The functionality can be [**dynamically extended**](https://easybuild.readthedocs.io/en/latest/Including_additional_Python_modules.html) via plugins,
-and hooks are available for further site-specific [**customizations**](https://easybuild.readthedocs.io/en/latest/Hooks.html) if required.
+It is [**highly configurable**](https://docs.easybuild.io/en/latest/Configuration.html) via configuration files, environment variables, and command line options.
+The functionality can be [**dynamically extended**](https://docs.easybuild.io/en/latest/Including_additional_Python_modules.html) via plugins,
+and hooks are available for further site-specific [**customizations**](https://docs.easybuild.io/en/latest/Hooks.html) if required.
 
-The installation procedure executed by EasyBuild is thoroughly [**logged**](https://easybuild.readthedocs.io/en/latest/Logfiles.html) and fully transparent via [dry runs](https://easybuild.readthedocs.io/en/latest/Extended_dry_run.html) and [tracing](https://easybuild.readthedocs.io/en/latest/Tracing_progress.html).
+The installation procedure executed by EasyBuild is thoroughly [**logged**](https://docs.easybuild.io/en/latest/Logfiles.html) and fully transparent via [dry runs](https://docs.easybuild.io/en/latest/Extended_dry_run.html) and [tracing](https://docs.easybuild.io/en/latest/Tracing_progress.html).
 
 EasyBuild supports using a **custom module naming scheme**, allows for
 *hierarchical* module naming schemes, and **integrates with various other tools** ranging from  resource managers ([Slurm](https://slurm.schedmd.com) and [GC3Pie](https://github.com/gc3pie/gc3pie)),
-container tools ([Singularity](https://github.com/hpcng/singularity) and [Docker](https://www.docker.com)),
+container tools ([Singularity](https://github.com/apptainer/singularity) and [Docker](https://www.docker.com)),
 packaging tools ([FPM](https://fpm.readthedocs.io)), and so on.
 
 The project is **actively developed** by a worldwide community, with stable versions being
@@ -223,13 +223,13 @@ The `foss` toolchain consists of all open source components (hence the name:
 "FOSS" stands for Free & Open Source Software): [GCC](https://gcc.gnu.org/), [Open MPI](https://www.open-mpi.org/), [OpenBLAS](https://www.openblas.net/),
 [ScaLAPACK](https://www.netlib.org/scalapack/) and [FFTW](http://fftw.org/).
 
-The `intel` toolchain consists of the [Intel C, C++ and Fortran compilers](https://software.intel.com/content/www/us/en/develop/tools/compilers.html) (on top of a `GCC` version
-controlled through EasyBuild) alongside the [Intel MPI](https://software.intel.com/content/www/us/en/develop/tools/mpi-library.html) and [Intel MKL](https://software.intel.com/content/www/us/en/develop/tools/math-kernel-library.html) libraries.
+The `intel` toolchain consists of the [Intel C, C++ and Fortran compilers](https://www.intel.com/content/www/us/en/developer/tools/oneapi/dpc-compiler.html) (on top of a `GCC` version
+controlled through EasyBuild) alongside the [Intel MPI](https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html) and [Intel MKL](https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html) libraries.
 
 Roughly every 6 months, a new version of these common toolchains is agreed upon
 in the EasyBuild community, after extensive testing.
 
-More information on these toolchains is available [in the EasyBuild documentation](https://easybuild.readthedocs.io/en/latest/Common-toolchains.html).
+More information on these toolchains is available [in the EasyBuild documentation](https://docs.easybuild.io/en/latest/Common-toolchains.html).
 
 ### *Modules*
 
@@ -289,7 +289,7 @@ the capabilities of the system architecture on which the software will be run.
 
 For that same reason, EasyBuild **optimizes software for the processor architecture of the build host**
 by default, via compiler options like ``-march=native`` (GCC), ``-xHost`` (Intel compilers), etc.
-This behaviour [may be changed via the ``--optarch`` configuration setting](https://easybuild.readthedocs.io/en/latest/Controlling_compiler_optimization_flags.html).
+This behaviour [may be changed via the ``--optarch`` configuration setting](https://docs.easybuild.io/en/latest/Controlling_compiler_optimization_flags.html).
 
 
 ### *Reproducibility*
@@ -313,15 +313,15 @@ software stack is controlled by EasyBuild.
 In a number of different ways, we try to encourage EasyBuild users to **collaborate** and help each other out.
 
 We actively recommend people to report problems and bugs, to submit ideas for additional features and improvements,
-and to [**contribute back**](https://easybuild.readthedocs.io/en/latest/Contributing.html) when possible, be it
+and to [**contribute back**](https://docs.easybuild.io/en/latest/Contributing.html) when possible, be it
 by opening pull requests to the <a href="#framework">EasyBuild framework</a>, <a href="#easyblocks">easyblocks</a>,
-<a href="#easyconfig-files">easyconfigs</a> repositories, or to the <a href="https://easybuild.readthedocs.io">EasyBuild documentation</a>.
+<a href="#easyconfig-files">easyconfigs</a> repositories, or to the <a href="https://docs.easybuild.io">EasyBuild documentation</a>.
 
-Through the ``foss`` and ``intel`` [**common toolchains**](https://easybuild.readthedocs.io/en/latest/Common-toolchains.html),
+Through the ``foss`` and ``intel`` [**common toolchains**](https://docs.easybuild.io/en/latest/Common-toolchains.html),
 we try to focus the efforts of the EasyBuild community a bit to specific toolchains,
 which increases the usefulness of the easyconfig files we collect in the [central repository](https://github.com/easybuilders/easybuild-easyconfigs).
 
-Last but not least, EasyBuild provides various [**GitHub integration features**](https://easybuild.readthedocs.io/en/latest/Integration_with_GitHub.html)
+Last but not least, EasyBuild provides various [**GitHub integration features**](https://docs.easybuild.io/en/latest/Integration_with_GitHub.html)
 that greatly facilitate the contribution process: opening, updating, and testing pull requests,
 reviewing incoming contributions, and much more can all be done directly from the EasyBuild
 command line. This not only saves time, effort, brain cycles, and mouse clicks for contributors,

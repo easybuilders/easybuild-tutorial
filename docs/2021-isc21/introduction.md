@@ -22,7 +22,7 @@ which is used and developed by hundreds of HPC centres and consortia worldwide.
 
 ---
 
-<a href="http://geek-and-poke.com/geekandpoke/2010/5/14/how-to-become-invaluable.html">
+<a href="https://geek-and-poke.com/geekandpoke/2010/5/14/how-to-become-invaluable.html">
 <img src="../../img/geek-and-poke-invaluable.png" style="float:right" width="45%"/>
 </a>
 
@@ -65,7 +65,7 @@ as it is performed.
 
 EasyBuild supports using a **custom module naming scheme**, allows for
 *hierarchical* module naming schemes, and **integrates with various other tools** ranging from  resource managers ([Slurm](https://slurm.schedmd.com) and [GC3Pie](https://github.com/gc3pie/gc3pie)),
-container tools ([Singularity](https://github.com/hpcng/singularity) and [Docker](https://www.docker.com)),
+container tools ([Singularity](https://github.com/apptainer/singularity) and [Docker](https://www.docker.com)),
 packaging tools ([FPM](https://fpm.readthedocs.io)), and so on.
 
 ---
@@ -112,11 +112,11 @@ We actively recommend people to report problems and bugs, to submit ideas for ad
 and to [**contribute back**](https://docs.easybuild.io/en/latest/Contributing.html) when possible, be it
 by opening pull requests to the [GitHub repositories](https://github.com/easybuilders) or the [documentation](https://docs.easybuild.io).
 
-Through the ``foss`` and ``intel`` [**common toolchains**](https://easybuild.readthedocs.io/en/latest/Common-toolchains.html),
+Through the ``foss`` and ``intel`` [**common toolchains**](https://docs.easybuild.io/en/latest/Common-toolchains.html),
 we try to focus the efforts of the EasyBuild community a bit to specific toolchains,
 which increases the usefulness of the easyconfig files we collect in the [central repository](https://github.com/easybuilders/easybuild-easyconfigs).
 
-Last but not least, EasyBuild provides various [**GitHub integration features**](https://easybuild.readthedocs.io/en/latest/Integration_with_GitHub.html)
+Last but not least, EasyBuild provides various [**GitHub integration features**](https://docs.easybuild.io/en/latest/Integration_with_GitHub.html)
 that greatly facilitate the contribution process: opening, updating, and testing pull requests,
 reviewing incoming contributions, and much more can all be done directly from the EasyBuild
 command line. This not only saves time, effort, brain cycles, and mouse clicks for contributors,

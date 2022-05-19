@@ -534,7 +534,7 @@ But, which one?
 
 Build instructions are usually included in a `README` file, or in the documentation.
 In this case, there's indeed a minimal [`README`
-file](https://github.com/easybuilders/easybuild-tutorial/tree/main/docs/files/eb-tutorial-1.0.1/README) available,
+file](https://github.com/easybuilders/easybuild-tutorial/blob/main/docs/files/eb-tutorial-1.0.1/README) available,
 which tells us that we should use the `cmake` command to configure the installation, followed by `make` and `make install`.
 
 [We briefly discussed](#easyblock) a generic easyblock that does exactly this: `CMakeMake`.

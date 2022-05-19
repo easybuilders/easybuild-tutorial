@@ -9,7 +9,7 @@
 
 For the sake of this tutorial, you can:
 
-* use the `#tutorial` channel in the [EasyBuild Slack](../getting_help) for asking questions or getting help;
+* use the `#tutorial` channel in the [EasyBuild Slack](getting_help) for asking questions or getting help;
 * use *AWS Cloud9* for the hands-on exercises (**only during the live tutorial on June 23rd 2020!**);
 
 A [container image](practical_information/#prepared-container-image) is available that can be run using either Docker or

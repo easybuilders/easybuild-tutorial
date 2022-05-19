@@ -41,7 +41,7 @@ Reasons to consider implementing a software-specific easyblock rather than using
 * complex or very non-standard installation procedure;
 
 Implementing easyblocks is out of scope for this basic tutorial, for more information please consult
-the [EasyBuild documentation](https://easybuild.readthedocs.io/en/latest/Implementing-easyblocks.html).
+the [EasyBuild documentation](https://docs.easybuild.io/en/latest/Implementing-easyblocks.html).
 
 ## Writing easyconfig files
 
@@ -126,7 +126,7 @@ You will definitely need to specify additional easyconfig parameters to get some
 We will cover the most commonly used ones here, but keep in mind that these are *not* mandatory.
 
 A full overview of all known easyconfig parameters can be obtained via "`eb --avail-easyconfig-params`"
-or just "`eb -a`" for short, or can be consulted in the [EasyBuild documentation](https://easybuild.readthedocs.io/en/latest/version-specific/easyconfig_parameters.html).
+or just "`eb -a`" for short, or can be consulted in the [EasyBuild documentation](https://docs.easybuild.io/en/latest/version-specific/easyconfig_parameters.html).
 
 #### Sources, patches, and checksums
 
@@ -172,9 +172,9 @@ Some things worth pointing out here:
   EasyBuild will use the value of the `version` easyconfig parameter to determine the actual name of the source
   file. This way the software version is only specified in one place and the easyconfig file is easier to
   update to other software versions. A list of template values can be consulted via the EasyBuild command
-  line via the `--avail-easyconfig-templates` option, or in the [EasyBuild documentation](https://easybuild.readthedocs.io/en/latest/version-specific/easyconfig_templates.html).
-* Source files can also be specified in ways other than just using a filename, see the [EasyBuild documentation](https://easybuild.readthedocs.io/en/latest/Writing_easyconfig_files.html#common-easyconfig-param-sources-alt) for more information.
-* Specified checksums are usually SHA256 checksum values, but [other types are also supported](https://easybuild.readthedocs.io/en/latest/Writing_easyconfig_files.html?highlight=checksums#checksums).
+  line via the `--avail-easyconfig-templates` option, or in the [EasyBuild documentation](https://docs.easybuild.io/en/latest/version-specific/easyconfig_templates.html).
+* Source files can also be specified in ways other than just using a filename, see the [EasyBuild documentation](https://docs.easybuild.io/en/latest/Writing_easyconfig_files.html#common-easyconfig-param-sources-alt) for more information.
+* Specified checksums are usually SHA256 checksum values, but [other types are also supported](https://docs.easybuild.io/en/latest/Writing_easyconfig_files.html?highlight=checksums#checksums).
   
 
 #### Easyblock
@@ -203,7 +203,7 @@ Here are a couple of commonly used generic easyblocks:
 * `PythonBundle`: a customized version of the `Bundle` generic easyblock to install a bundle of Python packages
   in a single installation directory;
 
-A full overview of the available generic easyblock is available in the [EasyBuild documentation](https://easybuild.readthedocs.io/en/latest/version-specific/generic_easyblocks.html). You can also consult the output of
+A full overview of the available generic easyblock is available in the [EasyBuild documentation](https://docs.easybuild.io/en/latest/version-specific/generic_easyblocks.html). You can also consult the output of
 `eb --list-easyblocks`, which gives an overview of *all* known easyblocks, and how they relate to each other.
 
 **Custom easyconfig parameters**
@@ -271,7 +271,7 @@ If this is not specified, it is assumed to be the empty string (`''`).
 Note how we use the '`%(pyver)s'` template value in the `SciPy-bundle` dependency
 specification, to avoid hardcoding the Python version in different places.
 
-See also the [EasyBuild documentation](https://easybuild.readthedocs.io/en/latest/Writing_easyconfig_files.html#dependencies) for additional options on specifying dependencies.
+See also the [EasyBuild documentation](https://docs.easybuild.io/en/latest/Writing_easyconfig_files.html#dependencies) for additional options on specifying dependencies.
 
 
 #### Version suffix
