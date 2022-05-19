@@ -39,22 +39,22 @@ Reasons to consider implementing a software-specific easyblock rather than using
       defines a number of variables used in the Makefile on the make command line to ensure that the right
       compilers are used (look for the `build_step` in the easyblock).
 * toolchain-specific aspects of the build and installation procedure (e.g., configure options);
-  * For example, the [easyblock for CP2K](https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/c/cp2k.py) 
-    will add several compiler options when compiling with gcc and gfortran, including the infamous
-    `-fallow-argument-mismatch` which is required from gfortran 10 on for many older codes.
+    * For example, the [easyblock for CP2K](https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/c/cp2k.py) 
+      will add several compiler options when compiling with gcc and gfortran, including the infamous
+      `-fallow-argument-mismatch` which is required from gfortran 10 on for many older codes.
 * custom (configure) options for dependencies;  
-  * For example, the [easyblock for VMD](https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/v/vmd.py)
-    will add configure options depending on the dependency list of the package.
+    * For example, the [easyblock for VMD](https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/v/vmd.py)
+      will add configure options depending on the dependency list of the package.
 * interactive commands that need to be run;  
-  * For example: The [easyblock for maple](https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/m/maple.py) 
-    responds to a number of interactive questions.
+    * For example: The [easyblock for maple](https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/m/maple.py) 
+      responds to a number of interactive questions.
 * having to create or adjust specific (configuration) files;  
-  * For example, the [easyblock for Siesta](https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/s/siesta.py)
-    edits one of the configuration files through regular expressions.
+    * For example, the [easyblock for Siesta](https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/s/siesta.py)
+      edits one of the configuration files through regular expressions.
 * 'hackish' usage of a generic easyblock;
 * complex or very non-standard installation procedure;  
-  * For example, the [easyblock to install the gcc compilers from source](https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/g/gcc.py),
-    bootstrapping with the system compiler and then re-installing with itself.
+    * For example, the [easyblock to install the gcc compilers from source](https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/g/gcc.py),
+      bootstrapping with the system compiler and then re-installing with itself.
 
 Implementing easyblocks is out of scope for this basic tutorial, for more information please consult
 the [EasyBuild documentation](https://docs.easybuild.io/en/latest/Implementing-easyblocks.html),
@@ -639,7 +639,7 @@ You can verify this via `eb -D` (equivalent with `eb --dry-run`):
 $ eb example.eb -D
  ...
  * [x] /easybuild/software/EasyBuild/4.3.3/easybuild/easyconfigs/g/GCC/GCC-11.2.0.eb (module: GCC/11.2.0)
- * [x] /easybuild/software/EasyBuild/4.3.3/easybuild/easyconfigs/c/CMake/CMake-3.22.1-GCCcore-10.2.0.eb (module: CMake/3.22.1-GCCcore-11.2.0)
+ * [x] /easybuild/software/EasyBuild/4.3.3/easybuild/easyconfigs/c/CMake/CMake-3.22.1-GCCcore-11.2.0.eb (module: CMake/3.22.1-GCCcore-11.2.0)
  * [ ] /home/example/example.eb (module: eb-tutorial/1.0.1-GCC-11.2.0)
 ```
 
@@ -735,7 +735,7 @@ We need to be a little bit careful with quotes here. If we use outer double quot
 we have to use single quotes to specify the actual value for the `EBTUTORIAL_MSG` configure option.
 That works fine here, but that's not always the case!
 In some cases we will have to use inner doubles quotes, for example to get environment variables
-expanded when the configure command is run (see [Exercise 7.1](#exercises)).
+expanded when the configure command is run (see [Exercise E.1](#exercises)).
 
 ### Sanity check
 
