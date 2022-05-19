@@ -276,6 +276,8 @@ Strictly speaking the configuration doesn't matter much for the sake of this
 exercise, but it may help with the step-wise approach we'll take and
 grasping the solutions.
 
+*Note:* If you run `eb --dry-run-short ...` you might first run into T.2 instead of T.1.
+
 Remember though: *no peeking* before you tried to solve each step yourself!
 
 ---
