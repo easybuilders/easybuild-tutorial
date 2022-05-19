@@ -53,8 +53,8 @@ Reasons to consider implementing a software-specific easyblock rather than using
     edits one of the configuration files through regular expressions.
 * 'hackish' usage of a generic easyblock;
 * complex or very non-standard installation procedure;  
-  *For example, the [easyblock to install the gcc compilers from source](https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/g/gcc.py),
-  bootstrapping with the system compiler and then re-installing with itself.* 
+  * For example, the [easyblock to install the gcc compilers from source](https://github.com/easybuilders/easybuild-easyblocks/blob/develop/easybuild/easyblocks/g/gcc.py),
+    bootstrapping with the system compiler and then re-installing with itself.
 
 Implementing easyblocks is out of scope for this basic tutorial, for more information please consult
 the [EasyBuild documentation](https://docs.easybuild.io/en/latest/Implementing-easyblocks.html),
