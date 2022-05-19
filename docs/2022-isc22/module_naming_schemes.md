@@ -605,4 +605,4 @@ module unuse $MODULEPATH
       ```
 ---
 
-[*next: Adding support for additional software*](adding_support_additional_software.md) - [*(back to overview page)*](index.md)
+[*next: EasyBuild at Jülich Supercomputing Centre*](jsc.md) - [*(back to overview page)*](index.md)
