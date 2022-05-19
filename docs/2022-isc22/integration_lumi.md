@@ -106,7 +106,7 @@ It is also possible to run heterogeneous jobs across multiple partitions.
     level we have no means currently to check who can use which software license. Hence we need a
     solution to distribute that responsibility also.
 
--   I personally believe that users really want a customised software stack. They may say they want 
+-   LUMI software support is based on the idea that users really want a customised software stack. They may say they want 
     a central stack but only as long as it contains the software they need and not much more as they 
     also do not want to search through long lists of modules. Nobody is waiting for 20 different
     configurations of a package, but the reality is that different users will want different versions
