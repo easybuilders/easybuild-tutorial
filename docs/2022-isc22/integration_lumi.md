@@ -181,7 +181,7 @@ Lmod modules.
 In the future we envision that more software stacks may become available on LUMI as at least one local support
 organisation wants to build their own stack. We also hope to find a solution
 to get the foss toolchain working on at least the CPU nodes of LUMI with minimal changes
-in a future collaboration with HPE .
+in a future collaboration with HPE.
 
 
 ### EasyBuild for software management
