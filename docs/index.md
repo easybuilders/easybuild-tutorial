@@ -58,6 +58,7 @@ EasyBuild requires:
 * Alan O'Cais ([`@ocaisa`](https://github.com/ocaisa), [Jülich Supercomputing Centre, Germany](https://www.fz-juelich.de/ias/jsc/EN/Home/home_node.html))
 * Bart Oldeman ([`@bartoldeman`](https://github.com/bartoldeman), [Compute Canada](https://www.computecanada.ca))
 * Åke Sandgren ([`@akesandgren`](https://github.com/akesandgren), [Umeå University, Sweden](https://www.umu.se/en/))
+* Sebastian Achilles ([`@SebastianAchilles`](https://github.com/SebastianAchilles), [Jülich Supercomputing Centre, Germany](https://www.fz-juelich.de/ias/jsc/EN/Home/home_node.html))
 
 ## Additional resources
 
