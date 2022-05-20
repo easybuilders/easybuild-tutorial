@@ -6,16 +6,16 @@
 
 **[EasyBuild](https://easybuild.io)** is a **software build and installation framework**
 that manages (scientific) software in an efficient way, without compromising on performance.
-Easybuild is especially tailored towards [**High Performance Computing (HPC)**](https://en.wikipedia.org/wiki/Supercomputer) systems,
+EasyBuild is especially tailored towards [**High Performance Computing (HPC)**](https://en.wikipedia.org/wiki/Supercomputer) systems,
 and provides a **command-line interface** to facilitate the installation and management of a scientific software stack.
 
 ### History
 
 EasyBuild as a project was conceived in 2008 by the [HPC team at Ghent University (Belgium)](https://www.ugent.be/hpc/en).
 The first public release of EasyBuild was made available early 2012.
-[EasyBuild v1.0.0](https://pypi.org/project/easybuild/#history) was released in November 2012, during the Supercomputing 2021 conference.
+[EasyBuild v1.0.0](https://pypi.org/project/easybuild/#history) was released in November 2012, during the Supercomputing 2012 conference.
 
-Following the public release and the projects introduction into the HPC community,
+Following the public release and the project's introduction into the HPC community,
 other sites started to use EasyBuild and actively contribute to the project.
 Over the years EasyBuild has grown into a **community project**,
 which is used and developed by hundreds of HPC centres and consortia worldwide.
