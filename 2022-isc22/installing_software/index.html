@@ -1223,6 +1223,62 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#enabling-dependency-resolution" class="md-nav__link">
+    Enabling dependency resolution
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trace-output" class="md-nav__link">
+    Trace output
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-installed-software" class="md-nav__link">
+    Using installed software
+  </a>
+  
+    <nav class="md-nav" aria-label="Using installed software">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resetting-your-environment" class="md-nav__link">
+    Resetting your environment
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stacking-software" class="md-nav__link">
+    Stacking software
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercises" class="md-nav__link">
+    Exercises
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1240,13 +1296,360 @@
 
 
 <h1 id="installing-software-with-easybuild">Installing software with EasyBuild<a class="headerlink" href="#installing-software-with-easybuild" title="Permanent link">&para;</a></h1>
+<p>You should now be able to make an informed decision on which easyconfig file you should use to
+make EasyBuild install the software you require.</p>
+<p>As mentioned before, installing an easyconfig is as simple as passing it to the <code>eb</code> command.</p>
+<p>So, let's try to install SAMtools version 1.14:</p>
+<div class="highlight"><pre><span></span><code>$ eb SAMtools-1.14-GCC-11.2.0.eb
+<span class="o">==</span> Temporary log file <span class="k">in</span> <span class="k">case</span> of crash /tmp/eb-os2fd8gv/easybuild-yda39z4b.log
+<span class="o">==</span> processing EasyBuild easyconfig /home/achilles/easybuild/easybuild-easyconfigs/easybuild/easyconfigs/s/SAMtools/SAMtools-1.14-GCC-11.2.0.eb
+<span class="o">==</span> building and installing SAMtools/1.14-GCC-11.2.0...
+<span class="o">==</span> fetching files...
+<span class="o">==</span> creating build dir, resetting environment...
+<span class="o">==</span> unpacking...
+<span class="o">==</span> ... <span class="o">(</span>took <span class="m">1</span> secs<span class="o">)</span>
+<span class="o">==</span> patching...
+<span class="o">==</span> preparing...
+<span class="o">==</span> ... <span class="o">(</span>took <span class="m">3</span> secs<span class="o">)</span>
+<span class="o">==</span> configuring...
+<span class="o">==</span> ... <span class="o">(</span>took <span class="m">6</span> secs<span class="o">)</span>
+<span class="o">==</span> building...
+<span class="o">==</span> ... <span class="o">(</span>took <span class="m">46</span> secs<span class="o">)</span>
+<span class="o">==</span> testing...
+<span class="o">==</span> installing...
+<span class="o">==</span> taking care of extensions...
+<span class="o">==</span> restore after iterating...
+<span class="o">==</span> postprocessing...
+<span class="o">==</span> sanity checking...
+<span class="o">==</span> ... <span class="o">(</span>took <span class="m">1</span> secs<span class="o">)</span>
+<span class="o">==</span> cleaning up...
+<span class="o">==</span> creating module...
+<span class="o">==</span> ... <span class="o">(</span>took <span class="m">1</span> secs<span class="o">)</span>
+<span class="o">==</span> permissions...
+<span class="o">==</span> packaging...
+<span class="o">==</span> COMPLETED: Installation ended successfully <span class="o">(</span>took <span class="m">1</span> min <span class="m">0</span> secs<span class="o">)</span>
+<span class="o">==</span> Results of the build can be found <span class="k">in</span> the log file<span class="o">(</span>s<span class="o">)</span> /project/def-maintainers/achilles/Rocky8/zen2/software/SAMtools/1.14-GCC-11.2.0/easybuild/easybuild-SAMtools-1.14-20220502.121241.log
+<span class="o">==</span> Build succeeded <span class="k">for</span> <span class="m">1</span> out of <span class="nv">1</span>
+<span class="o">==</span> Temporary log file<span class="o">(</span>s<span class="o">)</span> /tmp/eb-os2fd8gv/easybuild-yda39z4b.log* have been removed.
+<span class="o">==</span> Temporary directory /tmp/eb-os2fd8gv has been removed.
+</code></pre></div>
+<p>That was... easy. Is that really all there is to it? Well, almost...</p>
+<h3 id="enabling-dependency-resolution">Enabling dependency resolution<a class="headerlink" href="#enabling-dependency-resolution" title="Permanent link">&para;</a></h3>
+<p>The SAMtools installation worked like a charm, but remember that all required dependencies were already
+available (<a href="../basic_usage/#dry-run">see the section on checking dependencies</a>).</p>
+<p>If we try this with the <code>BCFtools-1.14-GCC-11.2.0.eb</code>, for which the required <code>GSL</code> and <code>HTSlib</code> dependencies are not available yet, it's less successful:</p>
+<div class="highlight"><pre><span></span><code>$ eb BCFtools-1.14-GCC-11.2.0.eb -M
+
+<span class="m">3</span> out of <span class="m">23</span> required modules missing:
+
+* GSL/2.7-GCC-11.2.0 <span class="o">(</span>GSL-2.7-GCC-11.2.0.eb<span class="o">)</span>
+* HTSlib/1.14-GCC-11.2.0 <span class="o">(</span>HTSlib-1.14-GCC-11.2.0.eb<span class="o">)</span>
+* BCFtools/1.14-GCC-11.4.0 <span class="o">(</span>BCFtools-1.14-GCC-11.2.0.eb<span class="o">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>$ eb BCFtools-1.14-GCC-11.2.0.eb
+...
+<span class="o">==</span> preparing...
+<span class="o">==</span> FAILED: Installation ended unsuccessfully <span class="o">(</span>build directory: /tmp/example/build/BCFtools/1.14/GCC-11.2.0<span class="o">)</span>: build failed <span class="o">(</span>first <span class="m">300</span> chars<span class="o">)</span>: Missing modules <span class="k">for</span> dependencies <span class="o">(</span>use --robot?<span class="o">)</span>: HTSlib/1.14-GCC-11.2.0, GSL/2.7-GCC-11.2.0 <span class="o">(</span>took <span class="m">1</span> secs<span class="o">)</span>
+<span class="o">==</span> Results of the build can be found <span class="k">in</span> the log file<span class="o">(</span>s<span class="o">)</span> /tmp/eb-66a5glv6/easybuild-BCFtools-1.14-20220502.145732.ElHDN.log
+ERROR: Build of /easybuild/software/EasyBuild/20220501-dev/easybuild/easyconfigs/b/BCFtools/BCFtools-1.14-GCC-11.2.0.eb failed <span class="o">(</span>err: <span class="s1">&#39;build failed (first 300 chars): Missing modules for dependencies (use --robot?): HTSlib/1.14-GCC-11.2.0, GSL/2.7-GCC-11.2.0&#39;</span><span class="o">)</span>
+</code></pre></div>
+<p>Oh my, what's this all about?</p>
+<p>If we filter the output a bit and focus on the actual error, the problem is clear:</p>
+<div class="highlight"><pre><span></span><code>Missing modules for dependencies (use --robot?): HTSlib/1.14-GCC-11.2.0, GSL/2.7-GCC-11.2.0
+</code></pre></div>
+<p>The required dependencies <code>HTSlib/1.14-GCC-11.2.0</code> and <code>GSL/2.7-GCC-11.2.0</code> are not installed yet,
+and EasyBuild does not automatically install missing dependencies unless it is told to do so.</p>
+<p>It helpfully suggests to use the <code>--robot</code> command line option, so let's try that:</p>
+<div class="highlight"><pre><span></span><code>$ eb BCFtools-1.14-GCC-11.2.0.eb --robot
+...
+<span class="o">==</span> resolving dependencies ...
+...
+<span class="o">==</span> building and installing HTSlib/1.14-GCC-11.2.0...
+...
+<span class="o">==</span> COMPLETED: Installation ended successfully <span class="o">(</span>took <span class="m">14</span> sec<span class="o">)</span>
+...
+<span class="o">==</span> building and installing GSL/2.7-GCC-11.2.0...
+...
+<span class="o">==</span> COMPLETED: Installation ended successfully <span class="o">(</span>took <span class="m">1</span> min <span class="m">10</span> sec<span class="o">)</span>
+...
+<span class="o">==</span> building and installing BCFtools/1.14-GCC-11.2.0...
+...
+<span class="o">==</span> COMPLETED: Installation ended successfully <span class="o">(</span>took <span class="m">8</span> sec<span class="o">)</span>
+...
+<span class="o">==</span> Build succeeded <span class="k">for</span> <span class="m">3</span> out of <span class="m">3</span>
+</code></pre></div>
+<p>With dependency resolution enabled the <code>HTSlib</code> and <code>GSL</code> modules get installed first,
+before EasyBuild proceeds with installing <code>BCFtools</code>. Great!</p>
+<hr />
+<h3 id="trace-output">Trace output<a class="headerlink" href="#trace-output" title="Permanent link">&para;</a></h3>
+<p>As you may have noticed if you tried the previous example hands-on,
+some installations take a while.
+An installation can be spending quite a bit of time during the build step, but what is actually going on there?</p>
+<p>To provide some more feedback as the installation progresses, you can enable the "<code>trace</code>" configuration setting.
+Let's do this by defining the <code>$EASYBUILD_TRACE</code> environment variable, just to avoid having to type <code>--trace</code>
+over and over again.</p>
+<p>We will redo the installation of <code>BCFtools-1.14-GCC-11.2.0.eb</code> by passing the <code>--rebuild</code>
+option to the <code>eb</code> command (try yourself what happens if you don't use the <code>--rebuild</code> option!):</p>
+<div class="highlight"><pre><span></span><code>$ <span class="nb">export</span> <span class="nv">EASYBUILD_TRACE</span><span class="o">=</span><span class="m">1</span>
+$ eb BCFtools-1.14-GCC-11.2.0.eb --rebuild
+...
+<span class="o">==</span> configuring...                                                                                                                    
+  &gt;&gt; running command:                                                                                                                
+        <span class="o">[</span>started at: <span class="m">2022</span>-05-02 <span class="m">15</span>:05:42<span class="o">]</span>                                                                                            
+        <span class="o">[</span>working dir: /tmp/example/build/BCFtools/1.14/GCC-11.2.0/bcftools-1.14<span class="o">]</span>                                                     
+        <span class="o">[</span>output logged <span class="k">in</span> /tmp/eb-tus8o1g4/easybuild-run_cmd-mjc8gj6x.log<span class="o">]</span>                                                           
+        /home/easybuild/.local/easybuild/sources/generic/eb_v4.5.5.dev0/ConfigureMake/config.guess                                   
+  &gt;&gt; <span class="nb">command</span> completed: <span class="nb">exit</span> <span class="m">0</span>, ran <span class="k">in</span> &lt; 1s                                                                                          
+  &gt;&gt; running command:                                                                                                                
+        <span class="o">[</span>started at: <span class="m">2022</span>-05-02 <span class="m">15</span>:05:42<span class="o">]</span>                                                                                            
+        <span class="o">[</span>working dir: /tmp/example/build/BCFtools/1.14/GCC-11.2.0/bcftools-1.14<span class="o">]</span>                                                     
+        <span class="o">[</span>output logged <span class="k">in</span> /tmp/eb-tus8o1g4/easybuild-run_cmd-cv6vncds.log<span class="o">]</span>                                                           
+        ./configure --prefix<span class="o">=</span>/home/example/easybuild/software/BCFtools/1.14-GCC-11.2.0  --build<span class="o">=</span>x86_64-pc-linux-gnu  --host<span class="o">=</span>x86_64-pc-linux-gnu --with-htslib<span class="o">=</span><span class="nv">$EBROOTHTSLIB</span> --enable-libgsl                                                                      
+  &gt;&gt; <span class="nb">command</span> completed: <span class="nb">exit</span> <span class="m">0</span>, ran <span class="k">in</span> <span class="nv">00h00m01s</span>                                                                         
+<span class="o">==</span> ... <span class="o">(</span>took <span class="m">1</span> secs<span class="o">)</span>                                                                                                                 
+<span class="o">==</span> building...                                                                                                                       
+  &gt;&gt; running command:                                                                                                                
+        <span class="o">[</span>started at: <span class="m">2022</span>-05-02 <span class="m">15</span>:05:43<span class="o">]</span>                                                                                            
+        <span class="o">[</span>working dir: /tmp/example/build/BCFtools/1.14/GCC-11.2.0/bcftools-1.14<span class="o">]</span>                                                     
+        <span class="o">[</span>output logged <span class="k">in</span> /tmp/eb-tus8o1g4/easybuild-run_cmd-wtsxpxf2.log<span class="o">]</span>                                                           
+        make  -j <span class="m">8</span>                                                                                                                   
+  &gt;&gt; <span class="nb">command</span> completed: <span class="nb">exit</span> <span class="m">0</span>, ran <span class="k">in</span> 00h00m03s
+</code></pre></div>
+<p>That's a bit more comforting to stare at...</p>
+<p>During the <em>configure</em> step, the <code>./configure</code> command is run with option to
+enable support for leveraging <code>HTSlib</code> and <code>GSL</code>.</p>
+<p>During the <em>build</em> step, the software is actually being compiled
+by running the <code>make</code> command. EasyBuild automatically uses the available cores on the system (in this case 8).</p>
+<p>We even get a pointer to a log file that contains the output of the command being run,
+so we can use <code>tail -f</code> to see in detail how it progresses.</p>
+<p>Once the <code>make</code> command completes, we get a message that the command completed with a exit code 0
+(implying success), and that it took 3 seconds to run. That's good to know.</p>
+<p>Later during the installation, we now also see this output during the sanity check step:</p>
+<div class="highlight"><pre><span></span><code>== sanity checking...
+  &gt;&gt; file &#39;bin/bcftools&#39; found: OK
+  &gt;&gt; file &#39;bin/plot-vcfstats&#39; found: OK
+  &gt;&gt; file &#39;bin/vcfutils.pl&#39; found: OK
+  &gt;&gt; (non-empty) directory &#39;libexec/bcftools&#39; found: OK
+</code></pre></div>
+<p>Thanks to enabling trace mode, EasyBuild tells us which files &amp; directories it is checking for
+in the installation, before declaring it a success. Nice!</p>
+<p>The extra output you get when trace mode is enabled is concise and hence not overwhelming,
+while it gives a better insight into what is going on during the installation.
+It may also help to spot unexpected actions being taken during the installation early on,
+so you can interrupt the installation before it completes, if deemed necessary.</p>
+<hr />
+<h2 id="using-installed-software">Using installed software<a class="headerlink" href="#using-installed-software" title="Permanent link">&para;</a></h2>
+<p>So far, we have already installed 4 different software packages (SAMtools, HTSlib, GSL, and BCFtools);
+we even installed BCFtools twice!</p>
+<p>A lot was going on underneath the covers: locating and unpacking
+the source tarballs, setting up the build environment, configuring the build, compiling,
+creating and populating the installation directory, performing a quick sanity check on the installation,
+cleaning things up, and finally generated the environment module file corresponding to the installation.</p>
+<p>That's great, but how do we now actually <em>use</em> these installations?</p>
+<p>This is where the generated module files come into play: they form the access portal to the software
+installations, and we'll use the ubiquitous <code>module</code> command to digest them.</p>
+<p>First, we need to make sure that the modules tool is aware of where the module files for
+our installations are located. If you're unsure where EasyBuild is installing stuff at this point,
+check the output of <code>eb --show-config</code>; the value of the <code>installpath</code> configuration setting is what we are interested in now:</p>
+<div class="highlight"><pre><span></span><code>$ eb --show-config
+...
+installpath    <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild
+...
+repositorypath <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild/ebfiles_repo
+...
+sourcepath     <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild/sources
+...
+</code></pre></div>
+<p>So, what's in this directory?</p>
+<div class="highlight"><pre><span></span><code>$ ls -l <span class="nv">$HOME</span>/easybuild
+total <span class="m">16</span>
+drwxrwxr-x <span class="m">5</span> example example <span class="m">4096</span> Jun <span class="m">10</span> <span class="m">20</span>:11 ebfiles_repo
+drwxrwxr-x <span class="m">5</span> example example <span class="m">4096</span> Jun <span class="m">10</span> <span class="m">20</span>:10 modules
+drwxrwxr-x <span class="m">6</span> example example <span class="m">4096</span> Jun <span class="m">10</span> <span class="m">20</span>:10 software
+drwxrwxr-x <span class="m">6</span> example example <span class="m">4096</span> Jun <span class="m">10</span> <span class="m">20</span>:10 sources
+</code></pre></div>
+<p>The <code>ebfiles_repo</code> and <code>sources</code> directories correspond to the <code>repositorypath</code> and <code>sourcepath</code> configuration
+settings, respectively. The <code>modules</code> and <code>software</code> directories are what we need now.</p>
+<p>The <code>modules</code> subdirectory consists of multiple subdirectories:</p>
+<div class="highlight"><pre><span></span><code>$ ls <span class="nv">$HOME</span>/easybuild/modules
+all  bio  devel  numlib  tools
+</code></pre></div>
+<p>Directories like <code>bio</code> and <code>numlib</code> correspond to different software categories,
+and contain symbolic links to the module files in the <code>all</code> directory,
+which contains all actual module files for software installed in this EasyBuild installation path.
+We'll ignore these separate category directories for now.</p>
+<p>Let's inform the modules tool about the existence of these module files using <code>"module use"</code>:</p>
+<div class="highlight"><pre><span></span><code>module use <span class="nv">$HOME</span>/easybuild/modules/all
+</code></pre></div>
+<p>This command does little more that updating the <code>$MODULEPATH</code> environment variable,
+which contains a list of paths that the modules tool should consider when looking for module files.</p>
+<p>Now the modules tool should be aware of our brand new installations:</p>
+<div class="highlight"><pre><span></span><code>$ module avail
+
+---------------------- /home/example/easybuild/modules/all -----------------------
+   BCFtools/1.14-GCC-11.2.0    GSL/2.7-GCC-11.2.0       SAMtools/1.14-GCC-11.2.0
+   EasyBuild/4.5.4             HTSlib/1.14-GCC-11.2.0   bzip2/1.0.8
+
+---------------------------- /easybuild/modules/all -----------------------------
+    ...
+</code></pre></div>
+<p>This output shows both the modules for our own installations as well as the "central" installations in <code>/easybuild</code> (which we omitted above for brevity).</p>
+<p>Now we can load these modules and start using these software installations.</p>
+<p>Let's test this for BCFtools. In our current environment, the <code>bcftools</code> command is not available yet:</p>
+<div class="highlight"><pre><span></span><code>$ module list
+No modules loaded
+
+$ bcftools
+-bash: bcftools: <span class="nb">command</span> not found
+</code></pre></div>
+<p>Loading the module for BCFtools changes that:</p>
+<div class="highlight"><pre><span></span><code>$ module load BCFtools/1.14-GCC-11.2.0
+
+$ module list
+Currently Loaded Modules:
+  <span class="m">1</span><span class="o">)</span> EasyBuild/4.5.4                <span class="m">7</span><span class="o">)</span> XZ/5.2.5-GCCcore-11.2.0
+  <span class="m">2</span><span class="o">)</span> GCCcore/11.2.0                 <span class="m">8</span><span class="o">)</span> OpenSSL/1.1
+  <span class="m">3</span><span class="o">)</span> zlib/1.2.11-GCCcore-11.2.0     <span class="m">9</span><span class="o">)</span> cURL/7.78.0-GCCcore-11.2.0
+  <span class="m">4</span><span class="o">)</span> binutils/2.37-GCCcore-11.2.0  <span class="m">10</span><span class="o">)</span> HTSlib/1.14-GCC-11.2.0
+  <span class="m">5</span><span class="o">)</span> GCC/11.2.0                    <span class="m">11</span><span class="o">)</span> GSL/2.7-GCC-11.2.0
+  <span class="m">6</span><span class="o">)</span> bzip2/1.0.8-GCCcore-11.2.0    <span class="m">12</span><span class="o">)</span> BCFtools/1.14-GCC-11.2.0
+
+$ bcftools --version
+bcftools <span class="m">1</span>.14
+Using htslib <span class="m">1</span>.14
+...
+</code></pre></div>
+<p>Note that the modules for the required dependencies, including the compiler toolchain (which provides runtime libraries
+like <code>libstdc++.so</code>), are loaded automatically. The "<code>module load</code>" command changes the active environment,
+by updating environment variables like <code>$PATH</code> for example, to make the software available for use.</p>
+<h5 id="resetting-your-environment">Resetting your environment<a class="headerlink" href="#resetting-your-environment" title="Permanent link">&para;</a></h5>
+<p>To restore your environment to a pristine state in which no modules are loaded, you can either
+unload the loaded modules one by one using "<code>module unload</code>", or you can unload all of them at once using
+"<code>module purge</code>".</p>
+<p><strong>If you are using an EasyBuild installation provided by a module,
+don't forget to load the <code>EasyBuild</code> module again after running "<code>module purge</code>".</strong></p>
+<hr />
+<h2 id="stacking-software">Stacking software<a class="headerlink" href="#stacking-software" title="Permanent link">&para;</a></h2>
+<p>Maybe you have overlooked how the software we are playing around with was not only installed across multiple
+different installation directories per software, we are also "stacking" our own installations (in <code>$HOME/easybuild</code>)
+on top of installations that are provided in a totally different location (<code>/easybuild</code>).</p>
+<p><strong>EasyBuild doesn't care <em>where</em> software is installed: as long as the module file that provides access to it
+is available, it is happy to pick it up and use it when required.</strong></p>
+<p>This implies that end users of an HPC system can easily install their
+own small software stack on top of what is provided centrally by the HPC support team,
+for example. They can even
+"replace" a central software installation for their purposes if they need to, since the modules tool will
+load the first module file that matches the request being made (there are some caveats with this, but we
+won't go into those here).</p>
+<hr />
+<h2 id="exercises">Exercises<a class="headerlink" href="#exercises" title="Permanent link">&para;</a></h2>
+<p><strong><em>Guidelines</em></strong></p>
+<p>Do yourself a favor: don't peek at the solution until you have made an attempt to solve the exercise yourself!</p>
+<p>Please do not spoil solutions for others before they have been discussed by the tutorial organisers.</p>
+<p>The exercises are based on the easyconfig files included with EasyBuild 4.5.4.</p>
+<hr />
+<p><strong><em>Exercise S.1</em></strong><em> - Installing software</em></p>
+<p>Install version 3.6.0 of the <code>h5py</code> Python package and all missing dependencies,
+using the <code>foss/2021b</code> toolchain, into <code>/tmp/$USER/easybuild</code>,
+while leveraging the already installed software available from <code>/easybuild</code>.</p>
+<p>Enable trace output so you can see which parts of the installation take a while.</p>
+<details class="success">
+<summary>(click to show solution)</summary>
+<p>First, determine the easyconfig file we can use for this:
+<div class="highlight"><pre><span></span><code>$ eb -S <span class="s1">&#39;h5py-3.6.0.*foss-2021b&#39;</span>
+<span class="nv">CFGS1</span><span class="o">=</span>/home/easybuilder/easybuild/software/EasyBuild/4.5.4/easybuild/easyconfigs/h/h5py
+* <span class="nv">$CFGS1</span>/h5py-3.6.0-foss-2021b.eb
+</code></pre></div></p>
+<p>Make sure the pre-installed software in <code>/easybuild/</code> is available:
+<div class="highlight"><pre><span></span><code>module use /easybuild/modules/all
+</code></pre></div></p>
+<p>Check which dependencies are missing to install this <code>h5py</code> easyconfig:
+<div class="highlight"><pre><span></span><code>$ eb h5py-3.6.0-foss-2021b.eb --missing
+
+<span class="m">2</span> out of <span class="m">63</span> required modules missing:
+
+* pkgconfig/1.5.5-GCCcore-11.2.0-python <span class="o">(</span>pkgconfig-1.5.5-GCCcore-11.2.0-python.eb<span class="o">)</span>
+* h5py/3.6.0-foss-2021b <span class="o">(</span>h5py-3.6.0-foss-2021b.eb<span class="o">)</span>
+</code></pre></div></p>
+<p>Install <code>h5py</code> by specifying the easyconfig file and enabling dependency resolution via <code>--robot</code>,
+while indicating that we want to install the software into <code>/tmp/$USER/easybuild</code> using the <code>--installpath</code>
+option. Also make sure that trace mode is enabled by defining the <code>$EASYBUILD_TRACE</code> environment variable.
+<div class="highlight"><pre><span></span><code>$ <span class="nb">export</span> <span class="nv">EASYBUILD_TRACE</span><span class="o">=</span><span class="m">1</span>
+$ eb h5py-3.6.0-foss-2021b.eb --robot --installpath /tmp/<span class="nv">$USER</span>/easybuild
+...
+<span class="o">==</span> building and installing pkgconfig/1.5.5-GCCcore-11.2.0-python...
+...
+<span class="o">==</span> building and installing h5py/3.6.0-foss-2021b...
+...
+<span class="o">==</span> installing...
+  &gt;&gt; running command:
+        <span class="o">[</span>started at: <span class="m">2022</span>-05-02 <span class="m">13</span>:38:37<span class="o">]</span>
+        <span class="o">[</span>working dir: /tmp/example/h5py/3.6.0/foss-2021b/h5py-3.6.0<span class="o">]</span>
+        <span class="o">[</span>output logged <span class="k">in</span> /tmp/eb-rjjkbqe1/easybuild-run_cmd-d_dkc4iz.log<span class="o">]</span>  
+        <span class="nv">HDF5_MPI</span><span class="o">=</span>ON <span class="nv">HDF5_DIR</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$EBROOTHDF5</span><span class="s2">&quot;</span> <span class="nv">H5PY_SETUP_REQUIRES</span><span class="o">=</span><span class="m">0</span>  pip install --prefix<span class="o">=</span>/tmp/achilles/easybuild/software/h5py/3.6.0-foss-2021b  --no-deps --ignore-installed  --no-index  --no-build-isolation  .
+  &gt;&gt; <span class="nb">command</span> completed: <span class="nb">exit</span> <span class="m">0</span>, ran <span class="k">in</span> 00h01m43s
+...
+<span class="o">==</span> COMPLETED: Installation ended successfully <span class="o">(</span>took <span class="m">2</span> min <span class="m">0</span> sec<span class="o">)</span>
+...
+<span class="o">==</span> Build succeeded <span class="k">for</span> <span class="m">2</span> out of <span class="m">2</span>
+</code></pre></div></p>
+<p>The trace output shows that most time is spent in the installing command,
+which runs <code>pip install</code>.</p>
+</details>
+<hr />
+<p><strong><em>Exercise S.2</em></strong><em> - Using installed software</em></p>
+<p>Using the <code>h5py</code> installation from the previous exercise to create an empty HDF5 file,
+using the following Python statements:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">h5py</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s2">&quot;empty.hdf5&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
+<p>Check the resulting file using the <code>h5stat</code> command.</p>
+<details class="success">
+<summary>(click to show solution)</summary>
+<p>First, we need to make the modules tool aware of the module files that were installed into <code>/tmp/$USER/easybuild</code>:
+<div class="highlight"><pre><span></span><code>module use /tmp/<span class="nv">$USER</span>/easybuild/modules/all
+</code></pre></div></p>
+<p>Then we can check the <code>h5py</code> module is available, and load it:
+<div class="highlight"><pre><span></span><code>$ module avail h5py
+------------ /tmp/example/easybuild/modules/all ------------
+h5py/3.6.0-foss-2021b
+</code></pre></div></p>
+<div class="highlight"><pre><span></span><code>module load h5py/3.6.0-foss-2021b
+</code></pre></div>
+<p>The Python code snippet can be run directly on the command line using "<code>python -c '...'</code>", since it's tiny:
+<div class="highlight"><pre><span></span><code>python -c <span class="s1">&#39;import h5py; f = h5py.File(&quot;empty.hdf5&quot;, &quot;w&quot;); f.close()&#39;</span>
+</code></pre></div>
+Of course you can also copy the Python code snippet in a file named <code>test_h5py.py</code>,
+and then run it with <code>python test_h5py.py</code>.</p>
+<p>Checking with the <code>h5stat</code> command shows that the resulting <code>empty.hdf5</code> is indeed a valid HDF5 file:
+<div class="highlight"><pre><span></span><code>$ ls -l empty.hdf5 
+-rw-rw-r-- <span class="m">1</span> example example <span class="m">800</span> Mai <span class="m">2</span> <span class="m">15</span>:48 empty.hdf5
+
+$ h5stat empty.hdf5
+Filename: empty.hdf5
+File information
+        <span class="c1"># of unique groups: 1</span>
+        <span class="c1"># of unique datasets: 0</span>
+...
+</code></pre></div></p>
+</details>
+<hr />
+<p>If you've made it through the hands-on exercises, congratulations!</p>
+<p>If not, don't worry too much about it. We covered a lot of ground here,
+and it's a lot to take in at once, take your time...</p>
+<p>Feel free to ask questions in the <code>#tutorial-isc22</code> channel in the <a href="https://docs.easybuild.io/en/latest/#getting-help">EasyBuild
+Slack</a>,
+we're happy to help!</p>
+<hr />
+<p><a href="../troubleshooting/"><em>next: Troubleshooting</em></a> - <a href="../"><em>(back to overview page)</em></a></p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 25, 2022</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 19, 2022</span>
       
     
   </small>

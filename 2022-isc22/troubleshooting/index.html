@@ -1223,6 +1223,75 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#easybuild-error-messages" class="md-nav__link">
+    EasyBuild error messages
+  </a>
+  
+    <nav class="md-nav" aria-label="EasyBuild error messages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#easybuild-log-files" class="md-nav__link">
+    EasyBuild log files
+  </a>
+  
+    <nav class="md-nav" aria-label="EasyBuild log files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#last-log" class="md-nav__link">
+    Last log
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#navigating-log-files" class="md-nav__link">
+    Navigating log files
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inspecting-the-build-directory" class="md-nav__link">
+    Inspecting the build directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    Exercise
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1240,13 +1309,369 @@
 
 
 <h1 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h1>
+<p>When installing scientific software you are bound to run into problems
+that make the installation fail sooner or later, even when using EasyBuild...</p>
+<p>In this part we take a look at how you can <strong>troubleshoot a failing installation</strong>,
+and focus on a couple of EasyBuild aspects that can be helpful in that context,
+like the <strong>error messages produced by EasyBuild</strong>, the detailed <strong>log file</strong> that is
+available for the installation and the <strong>build directory</strong> where most software is
+being compiled before it actually gets installed.</p>
+<p>At the end of this part an exercise is available in which you get
+to fix a failing installation, so pay attention!</p>
+<h2 id="easybuild-error-messages">EasyBuild error messages<a class="headerlink" href="#easybuild-error-messages" title="Permanent link">&para;</a></h2>
+<p>When EasyBuild detects that something went wrong, it will usually produce a
+short (and hopefully helpful) error message.</p>
+<p>Things that could go wrong during an installation include:</p>
+<ul>
+<li>missing source or patch files;</li>
+<li>a checksum error on a downloaded source or patch file;</li>
+<li>required dependencies that are not specified in the easyconfig file;</li>
+<li>failing shell commands;</li>
+<li>running out of available memory or disk space;</li>
+<li>a segmentation fault caused by a flipped bit triggered by a cosmic ray (<a href="https://blogs.oracle.com/linux/attack-of-the-cosmic-rays-v2">really, it happens!</a>);</li>
+</ul>
+<p>Unfortunately this is not an exhaustive list, there are plenty of other
+potential problems that could result in a failing installation...</p>
+<p>For each of the shell commands that EasyBuild executes during an
+installation, it will check the exit status.
+If the exit status is zero, EasyBuild will usually assume that the shell command
+ran correctly, and it will continue with the rest of the installation procedure.</p>
+<p>If the exit status of the shell command is anything but zero, EasyBuild will assume that a problem
+has occurred, and the installation will be interrupted.</p>
+<h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
+<p>Here is an example of an EasyBuild error message (slightly reformatted for clarity):</p>
+<div class="highlight"><pre><span></span><code>$ eb example.eb
+...
+== building...
+== FAILED: Installation ended unsuccessfully (build directory: /tmp/example/example/1.0/GCC-11.2.0):
+build failed (first 300 chars): cmd &quot;make&quot; exited with exit code 2 and output:
+/usr/bin/g++ -O2 -ftree-vectorize -march=native -fno-math-errno -std=c++14 -c -o core.o core.cpp
+g++: error: unrecognized command line option &#39;-std=c++14&#39; (took 1 sec)
+== Results of the build can be found in the log file(s) /tmp/eb-dbobppfh/easybuild-example-1.0-20200613.145414.aUEJA.log
+ERROR: Build of /home/easybuild/subread.eb failed (err: ...)
+</code></pre></div>
+<p>Let's break this down a bit: during the <code>build</code> step of the installation
+procedure EasyBuild was running <code>make</code> as a shell command, which
+failed (exit code 2, so not zero).
+The <code>make</code> command tripped over the compilation of <code>core.cpp</code> that failed because
+<code>-std=c++14</code> is not a known option to the <code>g++</code> command.</p>
+<p>OK fine, but now what? Can you spot something suspicious here?
+Wait a minute... Why is <code>make</code> using <code>/usr/bin/g++</code> for the compilation?!
+That's not where our toolchain compiler is installed,
+that's somewhere under <code>/easybuild/software</code>.</p>
+<p>Let's see what <code>/usr/bin/g++</code> is:</p>
+<div class="highlight"><pre><span></span><code>$ /usr/bin/g++ --version
+g++ <span class="o">(</span>GCC<span class="o">)</span> <span class="m">4</span>.8.5 <span class="m">20150623</span> <span class="o">(</span>Red Hat <span class="m">4</span>.8.5-44<span class="o">)</span>
+</code></pre></div>
+<p>Oh my that's pretty ancient (GCC 4.8.5 was released in June 2015).
+That could definitely explain why it doesn't know about the C++14 standard yet...</p>
+<p>Your next step in this case should probably be figuring
+out why <code>/usr/bin/g++</code> is being used rather than just <code>g++</code>, which would
+result in using the right compiler version because EasyBuild sets up the build
+environment carefully.</p>
+<p>This is a imaginary example of course, but hopefully it gives you a feeling
+of how errors that occur during the installation are handled.</p>
+<h2 id="easybuild-log-files">EasyBuild log files<a class="headerlink" href="#easybuild-log-files" title="Permanent link">&para;</a></h2>
+<p>Finding the cause of a problem that made the installation fail is, unfortunately, not always that straightforward...</p>
+<p>EasyBuild includes (only) the first 300 characters of the output produced by a failing
+shell command in the error message, which is a simple way to try include
+actionable information in the error message while not flooding your terminal
+with the full output of the command that failed.</p>
+<p>In some cases there won't be any useful information in there however,
+since the actual error message(s) could only appear way later, perhaps even after
+the command was already running for several minutes.</p>
+<p>In that case, you will have the dive into the log file that is created by EasyBuild for
+every installation, which is located in the unique temporary directory for the EasyBuild session.</p>
+<p>See for example this output line from our earlier example error message:</p>
+<div class="highlight"><pre><span></span><code>== Results of the build can be found in the log file(s) /tmp/eb-dbobppfh/easybuild-example-1.0-20200613.145414.aUEJA.log
+</code></pre></div>
+<p>You can open this file with your favorite text editor or a tool like <code>less</code>
+to take a look at the information collected in the log file, which includes
+things like:</p>
+<ul>
+<li>informative messages produced by both the EasyBuild framework and the easyblock
+  describing how the installation is progressing;</li>
+<li>how the build environment was set up: which modules were loaded, which environment variables were set;</li>
+<li>the exact shell commands that were executed, and in which directory they were run;</li>
+<li>the full output produced by these commands, and their exit code;</li>
+</ul>
+<p>Note that the installation log is also copied into each software installation
+directory for successful installation, into the <code>easybuild</code> subdirectory.
+For example:</p>
+<div class="highlight"><pre><span></span><code>/easybuild/software/HDF5/1.10.7-gompi-2020b/easybuild/easybuild-HDF5-1.10.7-20210616.055237.log
+</code></pre></div>
+<h3 id="last-log">Last log<a class="headerlink" href="#last-log" title="Permanent link">&para;</a></h3>
+<p>The <code>eb</code> command supports a handy little option that prints the location
+to the most recently updated build log. You can leverage this to quickly
+open the build log of the last failed EasyBuild session in an editor:</p>
+<div class="highlight"><pre><span></span><code>vim $(eb --last-log)
+</code></pre></div>
+<h3 id="navigating-log-files">Navigating log files<a class="headerlink" href="#navigating-log-files" title="Permanent link">&para;</a></h3>
+<p>Usually you want to go to the end of the log file and then work your way up,
+either by scrolling or by searching for specific patterns. Here are a couple
+of suggestions of patterns you can use to locate errors:</p>
+<ul>
+<li><code>ERROR</code></li>
+<li><code>Error 1</code></li>
+<li><code>error:</code></li>
+<li><code>failure</code></li>
+<li><code>not found</code></li>
+<li><code>No such file or directory</code></li>
+<li><code>bazel</code></li>
+<li><code>Segmentation fault</code></li>
+</ul>
+<p>Using "<code>error</code>" as a search pattern is not very useful: you will hit a lot of log lines
+that are not actually errors at all (like the compilation of an <code>error.c</code> file),
+and you will miss others that do include errors but mention <code>ERROR</code> or <code>Error</code>
+rather than <code>error</code>.</p>
+<p>When using <code>less</code> to view a log file, you can navigate it by:</p>
+<ul>
+<li>hitting '<code>$</code>' followed by '<code>G</code>' to go to the end of the log file;</li>
+<li>using your arrow keys to scroll up/down;</li>
+<li>typing '<code>?</code>' followed by some text and Enter to search backwards for a particular
+pattern ('<code>/</code>' to search forwards, '<code>n</code>' for next match);</li>
+<li>hitting '<code>q</code>' to exit;</li>
+</ul>
+<p>It can also be helpful to zoom in on a specific step of the installation procedure,
+which you can do by looking for step markers like these:</p>
+<div class="highlight"><pre><span></span><code>== 2020-06-13 01:34:48,816 example INFO configuring...
+== 2020-06-13 01:34:48,817 example INFO Starting configure step
+...
+== 2020-06-13 01:34:48,823 main.EB_HPL INFO Running method configure_step part of step configure
+</code></pre></div>
+<p>If you want to look at the start of the output produced by a particular command,
+you can look for the log message that looks like this (this is from the installation
+log for <code>HDF5</code>):</p>
+<div class="highlight"><pre><span></span><code>== 2020-06-09 13:11:19,968 run.py:222 INFO running cmd:  make install
+== 2020-06-09 13:11:25,186 run.py:538 INFO cmd &quot; make install &quot; exited with exit code 0 and output:
+Making install in src
+make[1]: Entering directory `/tmp/example/HDF5/1.10.7/gompi-2020b/hdf5-1.10.7/src&#39;
+...
+</code></pre></div>
+<p>It can be useful to look for the <em>first</em> error that occurred in the output of a command, since subsequent errors are
+often fallout from earlier errors. You can do this by first navigating
+to the start of the output for a command using "<code>INFO running cmd</code>" as a search pattern, and then looking for patterns
+like "<code>error:</code>" from there.</p>
+<h2 id="inspecting-the-build-directory">Inspecting the build directory<a class="headerlink" href="#inspecting-the-build-directory" title="Permanent link">&para;</a></h2>
+<p>When an installation fails the corresponding build directory is <em>not</em> cleaned up
+automatically, that is only done for successful installations.
+This allows you to dive in and check for clues in the files that are stored there.</p>
+<p>The location of the build directory is mentioned in the EasyBuild error message:</p>
+<div class="highlight"><pre><span></span><code>== FAILED: Installation ended unsuccessfully (build directory: /tmp/example/example/1.0/GCC-11.2.0): ...
+</code></pre></div>
+<p>For software using a classic <code>configure</code> script, you may have to locate
+and inspect the <code>config.log</code> file in the build directory to determine the underlying cause of an error. For software using CMake as a configuration tool you often have to check in
+<code>CMakeOutput.log</code> or <code>CMakeError.log</code> for clues, which are sneakily hidden by CMake in a <code>CMakeFiles</code> subdirectory of the build directory.</p>
+<p>As a side note here: as EasyBuild does not clean out build directories for failed builds, you will need to eventually manually remove them from the <code>buildpath</code> directory.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Let's work our way through a less smooth software installation,
+using the easyconfig file that is provided below.</p>
+<p>Don't worry if most of this is still unclear to you, we'll get
+to writing easyconfig files from scratch <a href="../adding_support_additional_software/">later in this tutorial</a>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;MakeCp&#39;</span>
+
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Subread&#39;</span>
+<span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;2.0.3&#39;</span>
+
+<span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;http://subread.sourceforge.net&#39;</span>
+<span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;High performance read alignment, quantification and mutation discovery&quot;</span>
+
+<span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;GCC&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;8.5.0&#39;</span><span class="p">}</span>
+
+<span class="c1"># download from https://download.sourceforge.net/subread/subread-2.0.3-source.tar.gz</span>
+<span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;subread-</span><span class="si">%(version)s</span><span class="s1">-source.tar.gz&#39;</span><span class="p">]</span>
+<span class="n">checksums</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;56cef3a2f914d432713069d5c282f48831c3a1ecc89432ad5580caa322a5f56b&#39;</span><span class="p">]</span>
+
+<span class="n">start_dir</span> <span class="o">=</span> <span class="s1">&#39;src&#39;</span>
+
+<span class="c1"># -fcommon is required to compile Subread 2.0.3 with GCC 10,</span>
+<span class="c1"># which uses -fno-common by default (see https://www.gnu.org/software/gcc/gcc-10/porting_to.html)</span>
+<span class="n">buildopts</span> <span class="o">=</span> <span class="s1">&#39;-f Makefile.Linux CFLAGS=&quot;-fast -fcommon&quot;&#39;</span>
+
+<span class="n">files_to_copy</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bin&#39;</span><span class="p">]</span>
+
+<span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;bin/featureCounts&#39;</span><span class="p">,</span> <span class="s1">&#39;bin/subread-align&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;bin/utilities&#39;</span><span class="p">],</span>
+<span class="p">}</span>
+
+<span class="n">sanity_check_commands</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;featureCounts --version&quot;</span><span class="p">]</span>
+
+<span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;bio&#39;</span>
+</code></pre></div>
+<p>Do you spot any potential problems yet with this easyconfig file?</p>
+<p><strong><em>Preparation</em></strong></p>
+<p>Start by copying the text above in a file named <code>subread.eb</code>,
+so you can gradually fix the problem you'll encounter.</p>
+<p>Also make sure that the pre-installed software stack is available,
+and that the EasyBuild module is loaded (unless you installed EasyBuild
+yourself):</p>
+<div class="highlight"><pre><span></span><code>module use /easybuild/modules/all
+module load EasyBuild
+</code></pre></div>
+<p>For this exercise, make sure EasyBuild is configured to
+use <code>$HOME/easybuild</code> as <code>prefix</code>, and to use <code>/tmp/$USER</code> as <code>buildpath</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">EASYBUILD_PREFIX</span><span class="o">=</span><span class="nv">$HOME</span>/easybuild
+<span class="nb">export</span> <span class="nv">EASYBUILD_BUILDPATH</span><span class="o">=</span>/tmp/<span class="nv">$USER</span>
+</code></pre></div>
+<p>Check your configuration via <code>eb --show-config</code>.</p>
+<p>Strictly speaking the configuration doesn't matter much for the sake of this
+exercise, but it may help with the step-wise approach we'll take and
+grasping the solutions.</p>
+<p><em>Note:</em> If you run <code>eb --dry-run-short ...</code> you might first run into T.2 instead of T.1.</p>
+<p>Remember though: <em>no peeking</em> before you tried to solve each step yourself!</p>
+<hr />
+<p><strong><em>Exercise T.1</em></strong><em> - Sources</em></p>
+<p>Try to install the <code>subread.eb</code> easyconfig file, see what happens.</p>
+<p>Can you fix the problem you run into, perhaps without even changing
+the easyconfig file?</p>
+<details class="success">
+<summary>(click to show solution)</summary>
+<p>The installation fails because the source file <code>subread-2.0.3-source.tar.gz</code>
+is not found:
+<div class="highlight"><pre><span></span><code>$ eb subread.eb
+...
+== FAILED: Installation ended unsuccessfully (build directory: /tmp/example/Subread/2.0.3/GCC-8.5.0): build failed (first 300 chars):
+Couldn&#39;t find file subread-2.0.3-source.tar.gz anywhere, and downloading it didn&#39;t work either...
+Paths attempted (in order): ...
+</code></pre></div></p>
+<p>In this case, the problem is that the easyconfig file does not specify
+where the sources can be downloaded from. Not automatically at least,
+but there is a helpful comment included:
+<div class="highlight"><pre><span></span><code><span class="c1"># download from https://download.sourceforge.net/subread/subread-2.0.3-source.tar.gz</span>
+<span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;subread-</span><span class="si">%(version)s</span><span class="s1">-source.tar.gz&#39;</span><span class="p">]</span>
+</code></pre></div></p>
+<p>We can download the source tarball ourselves,
+and move it to the location where EasyBuild expects to find it
+(in the <code>sourcepath</code> directory):
+<div class="highlight"><pre><span></span><code>curl -OL https://download.sourceforge.net/subread/subread-2.0.3-source.tar.gz
+mv subread-2.0.3-source.tar.gz $HOME/easybuild/sources/s/Subread/
+</code></pre></div></p>
+<p>If downloading is problematic for some reason, the source tarball is also available
+in <code>/easybuild/sources/s/Subread</code>.</p>
+<p>Or, we can change the easyconfig file to specify the location where
+the easyconfig file can be downloaded from:
+<div class="highlight"><pre><span></span><code><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://download.sourceforge.net/subread/&#39;</span><span class="p">]</span>
+<span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;subread-</span><span class="si">%(version)s</span><span class="s1">-source.tar.gz&#39;</span><span class="p">]</span>
+</code></pre></div>
+Note that the <code>source_urls</code> value is a <em>list</em> of candidate download URLs,
+<em>without</em> the filename of the source file itself.</p>
+<p>This way, EasyBuild will download the source file when running <code>eb subread.eb</code>.</p>
+<p>The source tarball is fairly large (23MB), so don't be alarmed if the download takes a little while.</p>
+<div class="highlight"><pre><span></span><code>$ ls -lh <span class="nv">$HOME</span>/easybuild/sources/s/Subread
+total 23M
+-rw-rw-r-- <span class="m">1</span> easybuild easybuild 23M Mai <span class="m">19</span> <span class="m">15</span>:21 subread-2.0.3-source.tar.gz
+</code></pre></div>
+</details>
+<hr />
+<p><strong><em>Exercise T.2</em></strong><em> - Toolchain</em></p>
+<p>After fixing the problem with missing source file, try the installation again.</p>
+<p>What's wrong now? How can you fix it quickly?</p>
+<p>Take into account that we just want to get this software package installed,
+we don't care too much about details like the version of the dependencies or
+the <em>toolchain</em> here...</p>
+<details class="success">
+<summary>(click to show solution)</summary>
+<p>The installation fails because the easyconfig specifies that GCC 8.5.0
+should be used as toolchain:
+<div class="highlight"><pre><span></span><code>$ eb subread.eb
+...
+== FAILED: Installation ended unsuccessfully (build directory: /tmp/easybuild/Subread/2.0.3/GCC-8.5.0): build failed (first 300 chars):
+No module found for toolchain: GCC/8.5.0 (took 1 sec)
+</code></pre></div></p>
+<p>We don't have this GCC version installed, but we do have GCC 11.2.0:</p>
+<div class="highlight"><pre><span></span><code>$ module avail GCC/
+----------------- /easybuild/modules/all ------------------
+   GCC/11.2.0
+</code></pre></div>
+<p>So let's try using that instead.</p>
+<p>Edit the easyconfig file so it contains this:</p>
+<div class="highlight"><pre><span></span><code><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;GCC&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;11.2.0&#39;</span><span class="p">}</span>
+</code></pre></div>
+</details>
+<hr />
+<p><strong><em>Exercise T.3</em></strong><em> - Build step</em></p>
+<p>With the first two problems fixed, now we can actually try to build the software.</p>
+<p>Can you fix the next problem you run into?</p>
+<details class="success">
+<summary>(click to show solution)</summary>
+<p>The compilation fails, but the error message we see is incomplete due to
+EasyBuild truncating the command output (only the 300 first characters of the output are shown):
+<div class="highlight"><pre><span></span><code>== FAILED: Installation ended unsuccessfully (build directory: /tmp/easybuild/Subread/2.0.3/GCC-11.2.0): build failed (first 300 chars):
+cmd &quot; make -j 1 -f Makefile.Linux CFLAGS=&quot;-fast -fcommon&quot;&quot; exited with exit code 2 and output:
+gcc  -mtune=core2  -O3 -DMAKE_FOR_EXON  -D MAKE_STANDALONE -D SUBREAD_VERSION=\&quot;&quot;2.0.3&quot;\&quot;  -D_FILE_OFFSET_BITS=64    -fmessage-length=0  -ggdb  -fast -fcommon  -c -o core.o core.c
+gcc: error: unrecognized command line opti (took 1 sec)
+</code></pre></div></p>
+<p>If you open the log file and scroll to the end,
+the error is pretty obvious:
+<div class="highlight"><pre><span></span><code>gcc: error: unrecognized command line option -fast; did you mean -Ofast?
+make: *** [core.o] Error 1
+</code></pre></div></p>
+<p>The easyconfig file hard specifies the <code>-fast</code> compiler flag via the <code>CFLAGS</code> argument to the build command:
+<div class="highlight"><pre><span></span><code><span class="c1"># -fcommon is required to compile Subread 2.0.3 with GCC 10,</span>
+<span class="c1"># which uses -fno-common by default (see https://www.gnu.org/software/gcc/gcc-10/porting_to.html)</span>
+<span class="n">buildopts</span> <span class="o">=</span> <span class="s1">&#39;-f Makefile.Linux CFLAGS=&quot;-fast -fcommon&quot;&#39;</span>
+</code></pre></div></p>
+<p>EasyBuild sets up the build environment, so there should be no need
+to hard specify compiler flags (certainly not incorrect ones).
+The comment above the <code>buildopts</code> definition makes it clear that the <code>-fcommon</code>
+flag <em>is</em> required though, because GCC 10 became a bit stricter by
+using <code>-fno-common</code> by default. Note that we are using <code>-fcommon</code>
+as an escape mechanism here: it would be better to fix the source code
+and create a patch file instead.</p>
+<p>An easy way to fix this problem is to replace the <code>-fast</code> with <code>-Ofast</code>,
+as the compiler error suggests.</p>
+<p>In this case it is advised to change the <code>CFLAGS</code> argument that is added
+to be build command to replace the <code>-fast</code> with <code>$CFLAGS</code>,
+which is defined in the build environment by EasyBuild.</p>
+<div class="highlight"><pre><span></span><code><span class="n">buildopts</span> <span class="o">=</span> <span class="s1">&#39;-f Makefile.Linux CFLAGS=&quot;$CFLAGS -fcommon&quot;&#39;</span>
+</code></pre></div>
+<p>Note that we need to be careful with quotes here: we use inner double quotes
+to ensure that <code>$CFLAGS</code> will be expanded to its value when the build command is run.</p>
+</details>
+<hr />
+<p><strong><em>Exercise T.4</em></strong><em> - Sanity check</em></p>
+<p>After fixing the compilation issue, you're really close to getting the installation working, we promise!</p>
+<p>Don't give up now, try one last time and fix the last problem that occurs...</p>
+<details class="success">
+<summary>(click to show solution)</summary>
+<p>Now the installation itself works but the sanity check fails,
+and hence the module file does not get generated:
+<div class="highlight"><pre><span></span><code>$ eb subread.eb
+...
+== FAILED: Installation ended unsuccessfully (build directory: /tmp/easybuild/Subread/2.0.3/GCC-11.2.0): build failed (first 300 chars):
+Sanity check failed: sanity check command featureCounts --version exited with code 255
+(output: featureCounts: unrecognized option &#39;--version&#39;
+...
+</code></pre></div></p>
+<p>If you look at the full output in the log file you can see
+that the correct option to check the version of the <code>featureCounts</code> command
+is "<code>-v</code>" rather than "<code>--version</code>", so we need to fix this in the easyconfig file.</p>
+<p>Make the following change in the easyconfig file:
+<div class="highlight"><pre><span></span><code><span class="n">sanity_check_commands</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;featureCounts -v&quot;</span><span class="p">]</span>
+</code></pre></div></p>
+<p>After doing so, <strong>you don't have to redo the installation
+from scratch</strong>, you can use the <code>--module-only</code> option to only run the
+sanity check and generate the module file again:
+<div class="highlight"><pre><span></span><code>eb subread.eb --module-only
+</code></pre></div></p>
+</details>
+<hr />
+<p>In the end, you should be able to install Subread 2.0.3 with the GCC 11.2.0 toolchain by fixing the problems with the <code>subread.eb</code> easyconfig file.</p>
+<p>Check your work by manually loading the module and checking the version
+via the <code>featureCounts</code> command, which should look like this:</p>
+<div class="highlight"><pre><span></span><code>$ featureCounts -v
+featureCounts v2.0.3
+</code></pre></div>
+<hr />
+<p><a href="../module_naming_schemes/"><em>next: Module naming schemes</em></a> - <a href="../"><em>(back to overview page)</em></a></p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 25, 2022</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 19, 2022</span>
       
     
   </small>
