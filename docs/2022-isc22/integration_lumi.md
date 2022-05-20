@@ -414,4 +414,6 @@ altogether from the module directory tree.
 -   Other sites with Cray hardware that also use EasyBuild
     -   [CSCS GitHub repository](https://github.com/eth-cscs/production)
 
+---
 
+[*next: The EasyBuild community*](community.md) - [*(back to overview page)*](index.md)
