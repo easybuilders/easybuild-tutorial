@@ -1223,6 +1223,95 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-easybuild" class="md-nav__link">
+    What is EasyBuild?
+  </a>
+  
+    <nav class="md-nav" aria-label="What is EasyBuild?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#history" class="md-nav__link">
+    History
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#easybuild-in-a-nutshell" class="md-nav__link">
+    EasyBuild in a nutshell
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    Key features
+  </a>
+  
+    <nav class="md-nav" aria-label="Key features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#focus-points" class="md-nav__link">
+    Focus points
+  </a>
+  
+    <nav class="md-nav" aria-label="Focus points">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#performance" class="md-nav__link">
+    Performance
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reproducibility" class="md-nav__link">
+    Reproducibility
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#community-effort" class="md-nav__link">
+    Community effort
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-easybuild-is-not" class="md-nav__link">
+    What EasyBuild is not
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1240,13 +1329,112 @@
 
 
 <h1 id="introduction-to-easybuild">Introduction to EasyBuild<a class="headerlink" href="#introduction-to-easybuild" title="Permanent link">&para;</a></h1>
+<p align="center"><img src="../../img/easybuild_logo_alpha.png" alt="EasyBuild logo" width="300px"/></p>
+
+<h2 id="what-is-easybuild">What is EasyBuild?<a class="headerlink" href="#what-is-easybuild" title="Permanent link">&para;</a></h2>
+<p><strong><a href="https://easybuild.io">EasyBuild</a></strong> is a <strong>software build and installation framework</strong>
+that manages (scientific) software in an efficient way, without compromising on performance.
+EasyBuild is especially tailored towards <a href="https://en.wikipedia.org/wiki/Supercomputer"><strong>High Performance Computing (HPC)</strong></a> systems,
+and provides a <strong>command-line interface</strong> to facilitate the installation and management of a scientific software stack.</p>
+<h3 id="history">History<a class="headerlink" href="#history" title="Permanent link">&para;</a></h3>
+<p>EasyBuild as a project was conceived in 2008 by the <a href="https://www.ugent.be/hpc/en">HPC team at Ghent University (Belgium)</a>.
+The first public release of EasyBuild was made available early 2012.
+<a href="https://pypi.org/project/easybuild/#history">EasyBuild v1.0.0</a> was released in November 2012, during the Supercomputing 2012 conference.</p>
+<p>Following the public release and the project's introduction into the HPC community,
+other sites started to use EasyBuild and actively contribute to the project.
+Over the years EasyBuild has grown into a <strong>community project</strong>,
+which is used and developed by hundreds of HPC centres and consortia worldwide.</p>
+<hr />
+<p><a href="https://geek-and-poke.com/geekandpoke/2010/5/14/how-to-become-invaluable.html">
+<img src="../../img/geek-and-poke-invaluable.png" style="float:right" width="45%"/>
+</a></p>
+<h2 id="easybuild-in-a-nutshell">EasyBuild in a nutshell<a class="headerlink" href="#easybuild-in-a-nutshell" title="Permanent link">&para;</a></h2>
+<p>EasyBuild intends to relieve HPC support teams from manually managing
+software installations while at the same time <strong>providing a consistent and well performing
+scientific software stack</strong> to end users of HPC systems.</p>
+<p>It serves as a <strong>uniform interface for installing scientific software</strong>
+and saves valuable time (and frustration) by the automation of tedious, boring and repetitive tasks.</p>
+<p>In addition, EasyBuild can <strong>empower scientific researchers to self-manage their software stack</strong>,
+and it can serve as a tool that can be leveraged for <strong>building optimized container images</strong>.</p>
+<p>The project has grown to become a <strong>platform for collaboration</strong> among HPC sites worldwide,
+and has become an "expert system" for installing scientific software on HPC systems.</p>
+<hr />
+<h2 id="key-features">Key features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<p>EasyBuild is capable of <strong>fully autonomously installing (scientific) software</strong>,
+including making sure that all necessary dependencies are installed,
+and automatically generating environment module files.</p>
+<p><strong><em>No</em></strong> <strong>admin privileges are required</strong>: it is sufficient to have write permissions
+to the preferred software installation prefix.</p>
+<p>EasyBuild is <a href="https://docs.easybuild.io/en/latest/Configuration.html"><strong>highly configurable</strong></a> via configuration files,
+environment variables, and command line options. The functionality can be
+<a href="https://docs.easybuild.io/en/latest/Including_additional_Python_modules.html"><strong>dynamically extended</strong></a> via plugins,
+and <a href="https://docs.easybuild.io/en/latest/Hooks.html"><strong>hooks</strong></a> are available for further site-specific customizations.</p>
+<p>The installation procedure executed by EasyBuild is thoroughly
+<a href="https://docs.easybuild.io/en/latest/Logfiles.html"><strong>logged</strong></a>, and is fully transparent via support for
+<a href="https://docs.easybuild.io/en/latest/Extended_dry_run.html"><strong>dry runs</strong></a> and
+<a href="https://docs.easybuild.io/en/latest/Tracing_progress.html"><strong>tracing</strong></a> the software installation procedure
+as it is performed.</p>
+<p>EasyBuild supports using a <strong>custom module naming scheme</strong>, allows for
+<em>hierarchical</em> module naming schemes, and <strong>integrates with various other tools</strong> ranging from  resource managers (<a href="https://slurm.schedmd.com">Slurm</a> and <a href="https://github.com/gc3pie/gc3pie">GC3Pie</a>),
+container tools (<a href="https://github.com/apptainer/singularity">Singularity</a> and <a href="https://www.docker.com">Docker</a>),
+packaging tools (<a href="https://fpm.readthedocs.io">FPM</a>), and so on.</p>
+<hr />
+<h3 id="focus-points">Focus points<a class="headerlink" href="#focus-points" title="Permanent link">&para;</a></h3>
+<p>EasyBuild was created specifically for <strong>installing scientific software on HPC systems</strong>,
+which is reflected in some of the design choices that were made.</p>
+<h4 id="performance">Performance<a class="headerlink" href="#performance" title="Permanent link">&para;</a></h4>
+<p>EasyBuild strongly prefers to <strong>build software from source code</strong>, whenever possible.</p>
+<p>This is important to ensure that the binaries that are installed can maximally exploit
+the capabilities of the system architecture on which the software will be run.</p>
+<p>For that same reason, EasyBuild <strong>optimizes software for the processor architecture of the build host</strong>
+by default, via compiler options like <code>-march=native</code> (GCC), <code>-xHost</code> (Intel compilers), etc.
+This behaviour <a href="https://docs.easybuild.io/en/latest/Controlling_compiler_optimization_flags.html">can be changed via the <code>--optarch</code> configuration setting</a>.</p>
+<h4 id="reproducibility">Reproducibility<a class="headerlink" href="#reproducibility" title="Permanent link">&para;</a></h4>
+<p>In addition to performance, <strong>reproducibility of installations</strong> is a core aspect of EasyBuild.</p>
+<p>Most software installations performed with EasyBuild use a <strong>particular compiler <a href="../terminology/#toolchains">toolchain</a></strong>,
+with which we aim to be in control over the build environment and avoid relying on tools and libraries
+provided by the operating system. For similar reasons, we try to <strong>provide all required dependencies through EasyBuild</strong> as well,
+with a few notable exceptions, like <code>OpenSSL</code> for security reasons, and Infiniband and GPU drivers which
+are too closely intertwined with the operating system.</p>
+<p>For both toolchains and dependencies, <strong>fixed software versions</strong> are specified in the
+<a href="../terminology/#easyconfig-files">easyconfig files</a>. That way, easyconfig files can easily be shared with others:
+if they worked for you it is very likely that they will work for others too, because the vast majority of the
+software stack is controlled by EasyBuild.</p>
+<h4 id="community-effort">Community effort<a class="headerlink" href="#community-effort" title="Permanent link">&para;</a></h4>
+<p>In a number of different ways, we try to encourage EasyBuild users to <strong>collaborate</strong> and help each other out.</p>
+<p>We actively recommend people to report problems and bugs, to submit ideas for additional features and improvements,
+and to <a href="https://docs.easybuild.io/en/latest/Contributing.html"><strong>contribute back</strong></a> when possible,
+by opening pull requests to the <a href="https://github.com/easybuilders">GitHub repositories</a> or the <a href="https://docs.easybuild.io">documentation</a>.</p>
+<p>Through the <code>foss</code> and <code>intel</code> <a href="https://docs.easybuild.io/en/latest/Common-toolchains.html"><strong>common toolchains</strong></a>,
+we try to focus the efforts of the EasyBuild community a bit to specific toolchains,
+which increases the usefulness of the easyconfig files we collect in the <a href="https://github.com/easybuilders/easybuild-easyconfigs">central repository</a>.</p>
+<p>Last but not least, EasyBuild provides various <a href="https://docs.easybuild.io/en/latest/Integration_with_GitHub.html"><strong>GitHub integration features</strong></a>
+that greatly facilitate the contribution process: opening, updating, and testing pull requests,
+reviewing incoming contributions, and much more can all be done directly from the EasyBuild
+command line. This not only saves time, effort, brain cycles, and mouse clicks for contributors,
+but it also makes the review process for <em>maintainers</em> significantly easier.
+All together this leads to improved stability and consistency.</p>
+<hr />
+<h3 id="what-easybuild-is-not">What EasyBuild is <em>not</em><a class="headerlink" href="#what-easybuild-is-not" title="Permanent link">&para;</a></h3>
+<p>EasyBuild is <strong><em>not</em></strong> <strong>YABT (Yet Another Build Tool)</strong>: it does <em>not</em> replace established build
+tools like CMake or <code>make</code>, it wraps around them.
+If the installation procedure of a software package involves running some unholy trinity of tools while whispering
+the correct magic incantations, EasyBuild automates this process for you.</p>
+<p>It is <strong><em>not</em></strong> <strong>a replacement for traditional Linux package managers</strong> like <code>yum</code>, <code>dnf</code> or <code>apt</code>.
+EasyBuild relies on certain tools and libraries provided by the operating system. This includes glibc, OpenSSL,
+drivers for Infiniband and GPUs, and so on. It is required that these tools are installed and managed by other means.
+This is typically done via the package management tool that comes with your Linux distribution.</p>
+<p>Finally, EasyBuild is <strong><em>not</em></strong> <strong>a magic solution to all your (software installation) problems</strong>.
+You may, and probably still will occasionally, run into compiler errors unless somebody has already taken care of the problem for you.</p>
+<hr />
+<p><a href="../terminology/"><em>next: Terminology</em></a> - <a href="../"><em>(back to overview page)</em></a></p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 25, 2022</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 20, 2022</span>
       
     
   </small>
