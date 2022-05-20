@@ -92,14 +92,14 @@ This behaviour [can be changed via the ``--optarch`` configuration setting](http
 
 In addition to performance, **reproducibility of installations** is a core aspect of EasyBuild.
 
-Most software installations performed with EasyBuild use a **particular compiler <a href="#toolchains">toolchain</a>**,
+Most software installations performed with EasyBuild use a **particular compiler [toolchain](terminology.md#toolchains)**,
 with which we aim to be in control over the build environment and avoid relying on tools and libraries
 provided by the operating system. For similar reasons, we try to **provide all required dependencies through EasyBuild** as well,
 with a few notable exceptions, like ``OpenSSL`` for security reasons, and Infiniband and GPU drivers which
 are too closely intertwined with the operating system.
 
 For both toolchains and dependencies, **fixed software versions** are specified in the
-<a href="#easyconfig-files">easyconfig files</a>. That way, easyconfig files can easily be shared with others:
+[easyconfig files](terminology.md#easyconfig-files). That way, easyconfig files can easily be shared with others:
 if they worked for you it is very likely that they will work for others too, because the vast majority of the
 software stack is controlled by EasyBuild.
 
