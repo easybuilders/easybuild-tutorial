@@ -41,9 +41,8 @@ number of other development clusters):
 [JUWELS](https://apps.fz-juelich.de/jsc/hps/juwels/configuration.html)
 is a milestone on the road to a new generation of ultra-flexible modular supercomputers
 targeting a broader range of tasks. It currently has 10.6 (CPU) + 1.7 (GPU) Petaflop per
-second peak performance. In the coming months, JUWELS will become the first
-supercomputer equipped with NVIDIA A100 GPU, when a new GPU module providing an
-additional 58 Petaflops will be installed. This module will make JUWELS the most
+second peak performance on the cluster module and an NVIDIA GPU booster module
+providing an additional 73 Petaflops. The booster module makes JUWELS the most
 powerful supercomputer in Europe.
 
 [JURECA](https://apps.fz-juelich.de/jsc/hps/jureca/configuration.html)
