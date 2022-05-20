@@ -132,7 +132,7 @@ The relatively new [***hooks*** feature](https://docs.easybuild.io/en/latest/Hoo
 of EasyBuild provides JSC with an opportunity to
 track upstream developments more closely.
 
-We are currently integrating a new hook that provides a lot of useful functionality:
+We have integrated, and continue to develop, a hook that provides a lot of useful functionality:
 
 * Facilitates ***userspace installations*** alongside system provided installations
   * EasyBuild is configured to allow both shared installations for a group and private
