@@ -82,7 +82,7 @@ MPI runtimes (`ParaStationMPI`, `OpenMPI` and `IntelMPI`)
 and mathematical libraries (`MKL`).
 
 Given the proliferation of toolchains required at our site, JSC has put a lot of effort
-into increasing the capabilities of the `--try-toolchain` option and has recently
+into increasing the capabilities of the `--try-toolchain` option and
 introduced the `--try-update-deps` experimental option to more easily adopt upstream changes and adapt them to our
 environment. 
 
