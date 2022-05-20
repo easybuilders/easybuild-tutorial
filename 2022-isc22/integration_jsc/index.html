@@ -15,7 +15,7 @@
     
     
       
-        <title>Integration of EasyBuild in JSC - EasyBuild tutorial</title>
+        <title>Integration of EasyBuild at Jülich Supercomputing Centre - EasyBuild tutorial</title>
       
     
     
@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#integration-of-easybuild-in-jsc" class="md-skip">
+        <a href="#integration-of-easybuild-at-julich-supercomputing-centre" class="md-skip">
           Skip to content
         </a>
       
@@ -93,7 +93,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Integration of EasyBuild in JSC
+              Integration of EasyBuild at Jülich Supercomputing Centre
             
           </span>
         </div>
@@ -1223,6 +1223,96 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#general-info" class="md-nav__link">
+    General info
+  </a>
+  
+    <nav class="md-nav" aria-label="General info">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#staff-user-base" class="md-nav__link">
+    Staff &amp; user base
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    Resources
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-of-easybuild-within-jsc" class="md-nav__link">
+    Usage of EasyBuild within JSC
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage of EasyBuild within JSC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-toolchains" class="md-nav__link">
+    Custom toolchains
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-module-naming-scheme" class="md-nav__link">
+    Custom module naming scheme
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-easyconfigs" class="md-nav__link">
+    Custom easyconfigs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hiding-dependencies" class="md-nav__link">
+    Hiding dependencies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage-of-hooks" class="md-nav__link">
+    Usage of hooks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upgrading-and-retiring-software" class="md-nav__link">
+    Upgrading and retiring software
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1239,14 +1329,190 @@
 
 
 
-<h1 id="integration-of-easybuild-in-jsc">Integration of EasyBuild in JSC<a class="headerlink" href="#integration-of-easybuild-in-jsc" title="Permanent link">&para;</a></h1>
+<h1 id="integration-of-easybuild-at-julich-supercomputing-centre">Integration of EasyBuild at Jülich Supercomputing Centre<a class="headerlink" href="#integration-of-easybuild-at-julich-supercomputing-centre" title="Permanent link">&para;</a></h1>
+<p>(<em>author: Alan O'Cais, Jülich Supercomputing Centre;
+          Sebastian Achilles, Jülich Supercomputing Centre)</em></p>
+<h2 id="general-info">General info<a class="headerlink" href="#general-info" title="Permanent link">&para;</a></h2>
+<p><img src="../../img/jsc.jpg" style="float:right" width="40%"/></p>
+<p>The Jülich Supercomputing Centre
+(JSC, <a href="https://www.fz-juelich.de/ias/jsc/EN">https://www.fz-juelich.de/ias/jsc</a>) at 
+Forschungszentrum Jülich has been operating the first German supercomputing centre since
+1987, and with the Jülich Institute for Advanced Simulation it is continuing the long
+tradition of scientific computing at Jülich. JSC operates one of the most powerful
+supercomputers in Europe (JUWELS), and computing time at the highest performance
+level is made available to researchers in Germany and Europe by means of an independent
+peer-review process.</p>
+<h3 id="staff-user-base">Staff &amp; user base<a class="headerlink" href="#staff-user-base" title="Permanent link">&para;</a></h3>
+<p>About 250 experts and contacts for all aspects of supercomputing and simulation sciences
+work at JSC. JSC's research and development concentrates on mathematical modelling and
+numerical simulation, especially parallel algorithms for quantum chemistry, molecular
+dynamics and
+Monte-Carlo simulations. The focus in the computer sciences is on cluster computing,
+performance analysis of parallel programs, visualization, computational steering and
+federated data services.</p>
+<p>In cooperation with hardware and software vendors like IBM, ATOS, Intel, NVIDIA and ParTec,
+JSC meets the challenges that arise from the development of exaflop systems - the
+computers of the next supercomputer generation. As a member of the German Gauss Centre
+for Supercomputing, JSC has also coordinated the construction
+of the European research infrastructure "PRACE - Partnership for Advanced Computing in
+Europe" since 2008.</p>
+<h3 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h3>
+<p>JSC currently manages 3 primary systems (in addition to a
+number of other development clusters):</p>
+<p><a href="https://apps.fz-juelich.de/jsc/hps/juwels/configuration.html">JUWELS</a>
+is a milestone on the road to a new generation of ultra-flexible modular supercomputers
+targeting a broader range of tasks. It currently has 10.6 (CPU) + 1.7 (GPU) Petaflop per
+second peak performance on the cluster module and an NVIDIA GPU booster module
+providing an additional 73 Petaflops. The booster module makes JUWELS the most
+powerful supercomputer in Europe.</p>
+<p><a href="https://apps.fz-juelich.de/jsc/hps/jureca/configuration.html">JURECA</a>
+is the precursor system to JUWELS and currently has 2 modules: the JURECA DC Module with 3.54 (CPU, AMD EPYC) +
+14.98 (GPU, NVIDIA A100) Petaflop per second peak performance, and the JURECA Booster Module with 5 (KNL) Petaflop per
+second peak performance. </p>
+<p><a href="https://apps.fz-juelich.de/jsc/hps/jusuf/cluster/configuration.html">JUSUF</a>
+combines an HPC cluster and a cloud platform in a single system with homogeneous
+hardware such that resources can be flexibly shifted between the partitions. The JUSUF
+compute nodes are equipped with two AMD EPYC Rome CPUs, each with 64 cores. One third of
+the compute nodes are furthermore equipped with one NVIDIA V100
+GPU. The JUSUF cluster partition will provide HPC resources for interactive workloads
+and batch jobs. The cloud partition will enable co-location of (web) services with these
+resources to enable new workflows and support community platforms.</p>
+<h2 id="usage-of-easybuild-within-jsc">Usage of EasyBuild within JSC<a class="headerlink" href="#usage-of-easybuild-within-jsc" title="Permanent link">&para;</a></h2>
+<p>As a large site with multiple systems and diverse requirements, JSC takes advantage of
+how easily EasyBuild
+can be extensively configured according to site policies, ranging from the software
+installation prefix to
+all aspects of the module naming scheme being used for the modules being generated.</p>
+<p>JSC maintains a <a href="https://github.com/easybuilders/JSC">public repository of the customisations and development environment
+for EasyBuild</a> that we use in our production
+environment. Below we highlight some particular cases of these customisations.</p>
+<h3 id="custom-toolchains">Custom toolchains<a class="headerlink" href="#custom-toolchains" title="Permanent link">&para;</a></h3>
+<p>As of June 2022,
+there are a total of 16 unique toolchain definitions in use at JSC, which reflect
+multiple
+combinations of compilers (<code>GCCcore</code>, <code>GCC</code>, <code>Intel</code> and <code>NVHPC</code>),
+MPI runtimes (<code>ParaStationMPI</code>, <code>OpenMPI</code> and <code>IntelMPI</code>)
+and mathematical libraries (<code>MKL</code>).</p>
+<p>Given the proliferation of toolchains required at our site, JSC has put a lot of effort
+into increasing the capabilities of the <code>--try-toolchain</code> option and
+introduced the <code>--try-update-deps</code> experimental option to more easily adopt upstream changes and adapt them to our
+environment. </p>
+<h3 id="custom-module-naming-scheme">Custom module naming scheme<a class="headerlink" href="#custom-module-naming-scheme" title="Permanent link">&para;</a></h3>
+<p>By default
+EasyBuild includes both the flat and hierarchical module naming schemes
+and these can be leveraged as examples for custom schemes.
+JSC employs such a
+<a href="https://github.com/easybuilders/JSC/blob/2020/Custom_MNS/flexible_custom_hierarchical_mns.py">custom scheme (based closely on the standard hierarchical
+scheme)</a>
+to control the exact structure of the
+hierarchy and the naming of some specific modules (such as
+the compilers and MPI runtimes).</p>
+<h3 id="custom-easyconfigs">Custom easyconfigs<a class="headerlink" href="#custom-easyconfigs" title="Permanent link">&para;</a></h3>
+<p>The upgrade cycle for our software stack does not exactly match that of EasyBuild (see
+<a href="#upgrading-and-retiring-software">below</a> for context on this). This means that the
+versions of software and dependencies that we provide may be slightly different than
+what is in the main repository (due to critical updates, releases of important software,
+etc.). Arising from this and the
+custom toolchains that we use, we maintain our own reference easyconfig repository (our
+<em>Golden</em> repository).</p>
+<p>We are actively trying to minimise the differences between the two (see our
+<a href="#usage-of-hooks">usage of hooks</a> below) as we recognise that this
+introduces an additional maintenance burden for us, and inhibits our ability to
+easily contribute back our easyconfigs to EasyBuild.</p>
+<h3 id="hiding-dependencies">Hiding dependencies<a class="headerlink" href="#hiding-dependencies" title="Permanent link">&para;</a></h3>
+<p>While we provide an extensive set of software, we try to minimize the packages exposed
+to the users by hiding a large set of dependencies which users
+are unlikely to require directly (via the <code>hide-deps</code> configuration setting). There are currently
+over 200 such hidden dependencies.  </p>
+<p>While hidden dependencies are not visible in the <code>module</code> view by default, users can
+expose them by the use of the <code>--show-hidden</code> argument in <code>Lmod</code>:
+<div class="highlight"><pre><span></span><code>module --show-hidden avail
+</code></pre></div></p>
+<h3 id="usage-of-hooks">Usage of hooks<a class="headerlink" href="#usage-of-hooks" title="Permanent link">&para;</a></h3>
+<p>The relatively new <a href="https://docs.easybuild.io/en/latest/Hooks.html"><strong><em>hooks</em></strong> feature</a>
+of EasyBuild provides JSC with an opportunity to
+track upstream developments more closely.</p>
+<p>We have integrated, and continue to develop, a hook that provides a lot of useful functionality:</p>
+<ul>
+<li>Facilitates <strong><em>userspace installations</em></strong> alongside system provided installations</li>
+<li>EasyBuild is configured to allow both shared installations for a group and private
+    installations (group installations are automatically picked up by Lmod for other
+    members of the group)</li>
+<li>Restricts users from installing non-supported compilers (in particular we don't want
+    people to install their own <code>GCCcore</code> since this would likely lead to an avalanche
+    of required dependencies) and MPI runtimes (since MPI installations
+    are heavily customised)</li>
+<li>Restricts users to only resolve dependencies from our <em>Golden</em> repository (as well
+    as from
+    their own installed software) but allows them to search in the upstream repositories<ul>
+<li>if they try to install something from the upstream repository, the hook advises
+  them how to do this <em>correctly</em> for our systems</li>
+</ul>
+</li>
+<li>Customises the final module files</li>
+<li>Customises the names of some modules (such as <code>Intel</code> over <code>iccifort</code> and
+    <code>IntelMPI</code> over <code>impi</code>)</li>
+<li>Injects an Lmod <em>family</em> in the modules of our compilers and MPI runtimes</li>
+<li>Adds Lmod <em>properties</em> for GPU enabled applications and user installed software so
+    that they can be easily identified in the <code>module</code> view</li>
+<li>Adds a <code>site_contact</code> for all modules</li>
+<li>Updates the Lmod cache when an installation is made system-wide</li>
+</ul>
+<p>We see potential in the use of hooks as a great way of encouraging, documenting and
+automating "correct" installation processes for our system.</p>
+<h3 id="upgrading-and-retiring-software">Upgrading and retiring software<a class="headerlink" href="#upgrading-and-retiring-software" title="Permanent link">&para;</a></h3>
+<p>The expected lifetime of a system like JURECA is roughly five years.
+Within that period one can expect updates to compilers every
+few months and updates to MPI implementations as the latest
+standards are integrated. This would mean that the entire
+software stack will require frequent upgrades. During such
+upgrades it is natural to expect that one would install the latest
+version of any particular software package.</p>
+<p>The project cycles at JSC lasts 12 months with two
+cycles per year. When new users get access to the machine,
+we want them to only be exposed to the latest software with the
+latest compilers. Originally, we had chosen six months
+as our upgrade period but found this to be cumbersome as the
+number of supported systems and toolchains grew, our upgrade period
+is now every 12 months. We chose to retire outdated software
+versions with the same frequency. We call these software
+upgrades "stages". For each 'stage', we select the toolchains that
+we will support and rebuild the latest versions of our supported
+software with these toolchains. We chose a prototype toolchain
+as a template and, once fully populated, migrate the changes
+to our other toolchains.</p>
+<p>We expect members of the support team to contribute to
+software installations since it is common that application
+software requires specific knowledge to be installed and tested
+appropriately. A common workflow is to create a personal installation
+of a package that can be tweaked, then a group installation for others
+to try out. Once a
+software package has been successfully built and tested, it is
+added to a <em>Golden</em> repository to be used in production.</p>
+<p>The default stage visible to users is controlled by a symbolic
+link. Stage upgrades are prepared in a separate environment
+to this default. Once the upgrade has been implemented, users
+are given three weeks notice and the symbolic link is updated
+during a maintenance window. Users are provided with the
+capability of continuing to use a retired stage if they wish
+to do so. However, additional software requests are (typically)
+only accepted for the current default stage.</p>
+<p>While stage upgrades may introduce some overhead for
+existing users (they may need to recompile their code and
+modules may be named differently in particular cases), there
+are clear benefits to using the latest compilers and software
+stack. In addition, these upgrades provide us with the opportunity
+to potentially change our module hierarchy or introduce
+new features related to Lmod.</p>
+<hr />
+<p><a href="../integration_eessi/"><em>next: Integration of EasyBuild in EESSI</em></a> - <a href="../"><em>(back to overview page)</em></a></p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 25, 2022</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 20, 2022</span>
       
     
   </small>
