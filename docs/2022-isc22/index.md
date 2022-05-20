@@ -19,8 +19,8 @@ All tutorial content will remain afterwards.
 
 (*all times are CEST)*
 
-* *[14:00-14:20]* [Introduction to EasyBuild](introduction.md): scope and [terminology](terminology.md)
-* *[14:20-14:30]* [Practical info w.r.t. prepared environment for hands-on](practical_info.md)
+* *[14:00-14:10]* [Practical info w.r.t. prepared environment for hands-on](practical_info.md)
+* *[14:10-14:30]* [Introduction to EasyBuild](introduction.md): scope and [terminology](terminology.md)
 * *[14:30-14:50]* [Installing](installation.md), [configuring](configuration.md) and [basic usage](basic_usage.md) of
   EasyBuild
 * *[14:50-15:30]* [Installing software](installing_software.md) + [troubleshooting](troubleshooting.md)
