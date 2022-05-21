@@ -109,7 +109,7 @@ file extension *does* matter when easyconfig files are being picked up in subdir
 File names for easyconfigs being mostly irrelevant is only correct with respect to the arguments passed to
 the `eb` command however. As we will learn soon, the name of easyconfig files *does* matter (a lot)
 when EasyBuild needs to locate easyconfigs that can be used to resolve a specified dependency
-(see [here](../installing_software#enabling-dependency-resolution)).
+(see [here](installing_software.md#enabling-dependency-resolution)).
 
 This explains why easyconfig files usually adhere to a very specific naming scheme,
 corresponding to `<name>-<version>-<toolchain><versionsuffix>.eb`, where:
@@ -118,7 +118,7 @@ corresponding to `<name>-<version>-<toolchain><versionsuffix>.eb`, where:
 * `<version>` represents the software version;
 * `<toolchain>` represents the toolchain used in the easyconfig file, which consists of the toolchain name
   and version separated with a dash (`-`), and which is omitted (including the preceding `-`) when the
-  [`system` toolchain](../terminology#system-toolchain) is used;
+  [`system` toolchain](terminology.md#system-toolchain) is used;
 * `<versionsuffix>` represents the value of the `versionsuffix` easyconfig parameter,
   which is sometimes used to distinguish multiple variants of particular software installations
   (and is empty by default);
