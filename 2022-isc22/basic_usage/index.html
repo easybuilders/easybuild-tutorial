@@ -1223,6 +1223,116 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overall-workflow" class="md-nav__link">
+    Overall workflow
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#specifying-easyconfigs" class="md-nav__link">
+    Specifying easyconfigs
+  </a>
+  
+    <nav class="md-nav" aria-label="Specifying easyconfigs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-command" class="md-nav__link">
+    Example command
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#easyconfig-filenames" class="md-nav__link">
+    Easyconfig filenames
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#searching-for-easyconfigs" class="md-nav__link">
+    Searching for easyconfigs
+  </a>
+  
+    <nav class="md-nav" aria-label="Searching for easyconfigs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#search-index" class="md-nav__link">
+    Search index
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inspecting-easyconfigs" class="md-nav__link">
+    Inspecting easyconfigs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checking-dependencies" class="md-nav__link">
+    Checking dependencies
+  </a>
+  
+    <nav class="md-nav" aria-label="Checking dependencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dry-run" class="md-nav__link">
+    Dry run
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#missing-dependencies" class="md-nav__link">
+    Missing dependencies
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inspecting-install-procedures" class="md-nav__link">
+    Inspecting install procedures
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercises" class="md-nav__link">
+    Exercises
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1240,13 +1350,455 @@
 
 
 <h1 id="basic-usage-of-easybuild">Basic usage of Easybuild<a class="headerlink" href="#basic-usage-of-easybuild" title="Permanent link">&para;</a></h1>
+<p>Now that we have <a href="../installation/">installed</a> and <a href="../configuration/">configured</a> EasyBuild,
+we can start using it for what it is intended for: getting scientific software installed
+without breaking a sweat, or having to resist the urge to shout out four-letter words.</p>
+<p>We will look at the high-level workflow first, and then cover each aspect in more detail.</p>
+<p>A couple of exercises are available at the end to help to make you more familiar with the
+EasyBuild command line interface, so pay attention!</p>
+<hr />
+<h2 id="overall-workflow">Overall workflow<a class="headerlink" href="#overall-workflow" title="Permanent link">&para;</a></h2>
+<p>Installing software with EasyBuild is as easy as specifying to the <strong><code>eb</code> command</strong> what we
+want to install, and then sitting back to enjoy a coffee or tea (or whatever beverage you prefer).</p>
+<p>This is typically done by <strong>specifying the name of one or more easyconfig files</strong>, often combined
+with the <code>--robot</code> option to let EasyBuild also install missing dependencies.
+Alternatively one can specify the name of an easystack file that specifies a collection of
+software to install, but this feature is currently still marked as * experimental* meaning
+that it may fail or that may change in incompatible ways in future versions of EasyBuild.</p>
+<p>It is recommended to first assess the current situation before letting EasyBuild install the software,
+and to check which <strong>dependencies</strong> are already installed and which are still missing. In addition,
+you may want to inspect the specifics of the <strong>installation procedure</strong> that will be performed by EasyBuild,
+and ensure that the active EasyBuild configuration is what it should be.</p>
+<hr />
+<h2 id="specifying-easyconfigs">Specifying easyconfigs<a class="headerlink" href="#specifying-easyconfigs" title="Permanent link">&para;</a></h2>
+<p>Letting EasyBuild know what should be installed can be done by specifying one or more easyconfig files,
+which is also the most common way. Alternative methods like using the <code>--software-name</code> option won't be
+covered in this tutorial, since they are not commonly used.</p>
+<p>Arguments passed to the <code>eb</code> command, being anything that is <em>not</em> an option (which starts with <code>-</code> or <code>--</code>) or
+is a value for a preceding configuration option, are assumed to refer to easyconfig files (with some exceptions).
+These could be:</p>
+<ul>
+<li>the <em>(absolute or relative) path</em> to an easyconfig file;</li>
+<li>the <em>name</em> of an easyconfig file;</li>
+<li>the path to a <em>directory</em> containing easyconfig files;</li>
+<li>an easystack file to specify a whole stack of software to install at once (via <code>eb --easystack</code>);</li>
+</ul>
+<p>Specified paths to files must of course point to existing files; if not, EasyBuild will print an appropriate error message:</p>
+<div class="highlight"><pre><span></span><code>$ eb /tmp/does_not_exist.eb
+ERROR: Can<span class="err">&#39;</span>t find path /tmp/does_not_exist.eb
+</code></pre></div>
+<p>When only the <em>name</em> of an easyconfig file is specified, EasyBuild will automatically try and locate it.
+First, it will consider the <em>current directory</em>. If no file with the specified name is found there,
+EasyBuild will search for the easyconfig file in the <a href="../configuration/#robot-search-path">robot search path</a>.</p>
+<p>If the path to an existing <em>directory</em> is provided, EasyBuild will walk through the entire directory
+(including all subdirectories), retain all files of which the name ends with <code>.eb</code>, and (try to) use these
+as easyconfig files.</p>
+<h3 id="example-command">Example command<a class="headerlink" href="#example-command" title="Permanent link">&para;</a></h3>
+<p>Suppose we have the current situation in our home directory:</p>
+<ul>
+<li>two (easyconfig) files named <code>example1.eb</code> and <code>example2.eb</code>;</li>
+<li>a subdirectory named <code>some_deps</code>, which has two easyconfig files <code>dep1.eb</code> and <code>dep2.eb</code>
+  alongside a text file named <code>list.txt</code>;</li>
+<li>a subdirectory named <code>more_deps</code> located <em>in</em> the <code>some_deps</code> subdirectory,
+  which contains another easyconfig file <code>dep3.eb</code>;</li>
+</ul>
+<p>Or, visually represented:</p>
+<div class="highlight"><pre><span></span><code>example1.eb
+example2.eb
+some_deps/
+<span class="p">|</span>-- dep1.eb
+<span class="p">|</span>-- dep2.eb
+<span class="p">|</span>-- list.txt
+<span class="p">|</span>-- more_deps/
+    <span class="p">|</span>-- dep3.eb
+</code></pre></div>
+<p>In this context, we run the following EasyBuild command from our home directory:</p>
+<div class="highlight"><pre><span></span><code>eb example1.eb bzip2-1.0.6.eb <span class="nv">$HOME</span>/example2.eb some_deps
+</code></pre></div>
+<p>EasyBuild will interpret each of these arguments as follows:</p>
+<ul>
+<li><code>example1.eb</code> is the name of a file in the current directory, so it can be used directly;</li>
+<li><code>bzip2-1.0.6.eb</code> is the name of an easyconfig file to locate via the robot search path
+  (since it does not exist in the current directory);</li>
+<li><code>$HOME/example2.eb</code> specifies the full path to an existing file, which can be used directly;</li>
+<li><code>some_deps</code> is the relative path to an existing directory, so EasyBuild will scan it and find three
+  easyconfig files: <code>some_deps/dep1.eb</code>, <code>some_deps/dep2.eb</code> and <code>some_deps/more_deps/dep3.eb</code>,
+  The <code>list.txt</code> file will be ignored since its name does not end with <code>.eb</code>.</li>
+</ul>
+<hr />
+<h3 id="easyconfig-filenames">Easyconfig filenames<a class="headerlink" href="#easyconfig-filenames" title="Permanent link">&para;</a></h3>
+<p>Note that the <code>eb</code> command does not care how easyconfig files are named, at least to some extent: the <code>.eb</code>
+file extension <em>does</em> matter when easyconfig files are being picked up in subdirectories.</p>
+<p>File names for easyconfigs being mostly irrelevant is only correct with respect to the arguments passed to
+the <code>eb</code> command however. As we will learn soon, the name of easyconfig files <em>does</em> matter (a lot)
+when EasyBuild needs to locate easyconfigs that can be used to resolve a specified dependency
+(see <a href="../installing_software/#enabling-dependency-resolution">here</a>).</p>
+<p>This explains why easyconfig files usually adhere to a very specific naming scheme,
+corresponding to <code>&lt;name&gt;-&lt;version&gt;-&lt;toolchain&gt;&lt;versionsuffix&gt;.eb</code>, where:</p>
+<ul>
+<li><code>&lt;name&gt;</code> represents the software name;</li>
+<li><code>&lt;version&gt;</code> represents the software version;</li>
+<li><code>&lt;toolchain&gt;</code> represents the toolchain used in the easyconfig file, which consists of the toolchain name
+  and version separated with a dash (<code>-</code>), and which is omitted (including the preceding <code>-</code>) when the
+  <a href="../terminology/#system-toolchain"><code>system</code> toolchain</a> is used;</li>
+<li><code>&lt;versionsuffix&gt;</code> represents the value of the <code>versionsuffix</code> easyconfig parameter,
+  which is sometimes used to distinguish multiple variants of particular software installations
+  (and is empty by default);</li>
+</ul>
+<hr />
+<h3 id="searching-for-easyconfigs">Searching for easyconfigs<a class="headerlink" href="#searching-for-easyconfigs" title="Permanent link">&para;</a></h3>
+<p>You will frequently need to determine the exact name of an easyconfig file you want to install,
+or just check which easyconfigs are available for a given software package. 
+This can be done by searching for easyconfigs using <strong><code>eb --search</code></strong> or <strong><code>eb -S</code></strong>.</p>
+<p>By default all directories listed in the <a href="../configuration#robot-search-path">robot search path</a> will be
+searched. If you want to search in additional directories without changing the robot search path,
+you can use the <code>search-paths</code> configuration setting, or you can change the robot search path via either
+the <code>robot</code> or <code>robot-paths</code> configuration options.</p>
+<p>Both the <code>--search</code> and <code>-S</code> options trigger the same search operation, but yield different output:
+<code>eb --search</code> will print the full path to each easyconfig file that matches the specified search pattern,
+while <code>eb -S</code> produces a more concise output.</p>
+<p>For example, let's check which easyconfig files are available for OpenFOAM 8 with a <code>foss</code> toolchain:</p>
+<div class="highlight"><pre><span></span><code>$ eb --search openfoam-8-foss
+ * /home/example/easybuild/software/EasyBuild/4.5.4/easybuild/easyconfigs/o/OpenFOAM/OpenFOAM-8-foss-2020a.eb
+ * /home/example/easybuild/software/EasyBuild/4.5.4/easybuild/easyconfigs/o/OpenFOAM/OpenFOAM-8-foss-2020b-20210316.eb
+ * /home/example/easybuild/software/EasyBuild/4.5.4/easybuild/easyconfigs/o/OpenFOAM/OpenFOAM-8-foss-2020b.eb
+</code></pre></div>
+<p>The output is a bit more condensed when using <code>eb -S</code>:</p>
+<div class="highlight"><pre><span></span><code>$ eb -S openfoam-8-foss
+<span class="nv">CFGS1</span><span class="o">=</span>/home/example/easybuild/software/EasyBuild/4.5.4/easybuild/easyconfigs/o/OpenFOAM
+ * <span class="nv">$CFGS1</span>/OpenFOAM-8-foss-2020a.eb
+ * <span class="nv">$CFGS1</span>/OpenFOAM-8-foss-2020b-20210316.eb
+ * <span class="nv">$CFGS1</span>/OpenFOAM-8-foss-2020b.eb
+</code></pre></div>
+<p>Note that the search is performed <em>case-insensitive</em>.</p>
+<p>The search pattern can include wildcards like <code>.*</code> and/or character groups like <code>[0-9]</code>,
+or other special characters like <code>^</code> or <code>$</code> to mark the start/end of the filename,
+but you need to be careful that <code>bash</code> does not expand these before the <code>eb</code> command is started,
+so it is recommended to wrap the search pattern in single quotes (<code>'...'</code>) when using wildcards.</p>
+<p>For example, to check which easyconfigs are available to install TensorFlow 2.6.0 with the <code>2021a</code> version of a toolchain:</p>
+<div class="highlight"><pre><span></span><code>$ eb -S <span class="s1">&#39;^tensorflow-2.6.0.*2021a&#39;</span>
+<span class="nv">CFGS1</span><span class="o">=</span>/home/example/easybuild/software/EasyBuild/4.5.4/easybuild/easyconfigs/t/TensorFlow
+ * <span class="nv">$CFGS1</span>/TensorFlow-2.6.0-foss-2021a-CUDA-11.3.1.eb
+ * <span class="nv">$CFGS1</span>/TensorFlow-2.6.0-foss-2021a.eb
+</code></pre></div>
+<hr />
+<h4 id="search-index">Search index<a class="headerlink" href="#search-index" title="Permanent link">&para;</a></h4>
+<p>When searching for easyconfig files, you may see a message like this pop up:</p>
+<div class="highlight"><pre><span></span><code>== found valid index for &lt;path&gt;, so using it...
+</code></pre></div>
+<p>This indicates that a <strong>search index</strong> was used for this particular directory which significantly speeds
+up the search procedure, especially when the easyconfig files are located on a shared filesystem where metadata
+operations involving lots of (small) files can be slow.</p>
+<p>For the easyconfig files included with an EasyBuild release, a search index is readily provided.
+For other directories, you can create a search index using <code>eb --create-index &lt;path&gt;</code>.
+<a href="https://docs.easybuild.io/en/latest/Easyconfigs_index.html">See the EasyBuild documentation for more information</a>.</p>
+<hr />
+<h2 id="inspecting-easyconfigs">Inspecting easyconfigs<a class="headerlink" href="#inspecting-easyconfigs" title="Permanent link">&para;</a></h2>
+<p>Once you have determined the name of the easyconfig file that corresponds to the software you want to install,
+you may want to take a closer look at its contents before employing it.</p>
+<p>Since easyconfig files are simple text files (in Python syntax), you could use the ubiquitous <code>cat</code> command
+or your favorite text editor (<code>vim</code>, what else). To avoid that you need to locate the easyconfig file first
+and copy-paste the full path to it, you can use <strong><code>eb --show-ec</code></strong>.</p>
+<p>For example, let's inspect the contents of the <code>bzip2-1.0.6.eb</code> easyconfig file:</p>
+<div class="highlight"><pre><span></span><code>$ eb --show-ec bzip2-1.0.8.eb
+<span class="o">==</span> temporary log file <span class="k">in</span> <span class="k">case</span> of crash /tmp/eb-jnpzclhl/easybuild-e37cbrj1.log
+<span class="o">==</span> Contents of /home/example/easybuild/software/EasyBuild/4.5.4/easybuild/easyconfigs/b/bzip2/bzip2-1.0.6.eb:
+<span class="nv">name</span> <span class="o">=</span> <span class="s1">&#39;bzip2&#39;</span>
+<span class="nv">version</span> <span class="o">=</span> <span class="s1">&#39;1.0.8&#39;</span>
+
+<span class="nv">homepage</span> <span class="o">=</span> <span class="s1">&#39;https://sourceware.org/bzip2&#39;</span>
+<span class="nv">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2"> bzip2 is a freely available, patent free, high-quality data compressor. It</span>
+<span class="s2"> typically compresses files to within 10% to 15% of the best available</span>
+<span class="s2"> techniques (the PPM family of statistical compressors), whilst being around</span>
+<span class="s2"> twice as fast at compression and six times faster at decompression.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="nv">toolchain</span> <span class="o">=</span> SYSTEM
+<span class="nv">toolchainopts</span> <span class="o">=</span> <span class="o">{</span><span class="s1">&#39;pic&#39;</span>: True<span class="o">}</span>
+
+<span class="nv">source_urls</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;https://sourceware.org/pub/%(name)s/&#39;</span><span class="o">]</span>
+<span class="nv">sources</span> <span class="o">=</span> <span class="o">[</span>SOURCE_TAR_GZ<span class="o">]</span>
+<span class="nv">patches</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;bzip2-%(version)s-pkgconfig.patch&#39;</span><span class="o">]</span>
+<span class="nv">checksums</span> <span class="o">=</span> <span class="o">[</span>
+    <span class="s1">&#39;ab5a03176ee106d3f0fa90e381da478ddae405918153cca248e682cd0c4a2269&#39;</span>,  <span class="c1"># bzip2-1.0.8.tar.gz</span>
+    <span class="s1">&#39;9299e8ee4d014ea973777b6ea90661fe329dfa991f822add4c763ea9ddb9aab1&#39;</span>,  <span class="c1"># bzip2-1.0.8-pkgconfig.patch</span>
+<span class="o">]</span>
+
+<span class="nv">builddependencies</span> <span class="o">=</span> <span class="o">[</span>
+    <span class="o">(</span><span class="s1">&#39;binutils&#39;</span>, <span class="s1">&#39;2.37&#39;</span><span class="o">)</span>,
+<span class="o">]</span>
+
+<span class="nv">buildopts</span> <span class="o">=</span> <span class="s2">&quot;CC=gcc CFLAGS=&#39;-Wall -Winline -O3 -fPIC -g </span><span class="k">$(</span>BIGFILES<span class="k">)</span><span class="s2">&#39;&quot;</span>
+
+<span class="c1"># building of shared libraries doesn&#39;t work on OS X (where &#39;gcc&#39; is actually Clang...)</span>
+<span class="nv">with_shared_libs</span> <span class="o">=</span> <span class="nv">OS_TYPE</span> <span class="o">==</span> <span class="s1">&#39;Linux&#39;</span>
+
+<span class="nv">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;tools&#39;</span>
+
+<span class="o">==</span> Temporary log file<span class="o">(</span>s<span class="o">)</span> /tmp/eb-jnpzclhl/easybuild-e37cbrj1.log* have been removed.
+<span class="o">==</span> Temporary directory /tmp/eb-jnpzclhl has been removed.
+</code></pre></div>
+<p>We'll get back to what all of this means later...</p>
+<hr />
+<h2 id="checking-dependencies">Checking dependencies<a class="headerlink" href="#checking-dependencies" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In some of the examples below, we assume that some software is already installed with EasyBuild.</p>
+<p>If you are following hands-on in a prepared environment, make sure these installations are visible
+in the output of "<code>module avail</code>" by informing the modules tool about the pre-installed software stack
+in <code>/easybuild</code>:</p>
+<pre><code>module use /easybuild/modules/all
+</code></pre>
+</div>
+<p>Before kicking off an installation, it is good practice to check which of the required dependencies
+are already installed, and which ones are still missing.</p>
+<p>This can be helpful to ensure that your EasyBuild configuration is set up correctly,
+and to prevent from accidentally installing an entirely new software stack from scratch
+in an unintended location (like <code>$HOME/.local/easybuild</code>, the
+<a href="../configuration/#install-path">default installation path</a>).</p>
+<hr />
+<h3 id="dry-run">Dry run<a class="headerlink" href="#dry-run" title="Permanent link">&para;</a></h3>
+<p>To get a complete overview of all required dependencies, and see which ones are already installed
+and which ones aren't yet, you can use <strong><code>eb --dry-run</code></strong>.</p>
+<p>Since <code>--dry-run</code> produces rather verbose output including the full path to each easyconfig file,
+there is a more concise equivalent available as well: <code>eb --dry-run-short</code>, which is equivalent with <strong><code>eb -D</code></strong>.</p>
+<p>For example, to check which of the required dependencies for <code>SAMtools-1.11-GCC-10.2.0.eb</code> are already installed:</p>
+<div class="highlight"><pre><span></span><code>$ eb SAMtools-1.14-GCC-11.2.0.eb -D
+<span class="o">==</span> temporary log file <span class="k">in</span> <span class="k">case</span> of crash /tmp/eb-x4qofiph/easybuild-ehhi9fb1.log
+<span class="o">==</span> found valid index <span class="k">for</span> /home/example/easybuild/software/EasyBuild/4.5.4/easybuild/easyconfigs, so using it...
+Dry run: printing build status of easyconfigs and dependencies
+<span class="nv">CFGS</span><span class="o">=</span>/home/example/easybuild/software/EasyBuild/4.5.4/easybuild/easyconfigs
+ ...
+ * <span class="o">[</span>x<span class="o">]</span> <span class="nv">$CFGS</span>/b/bzip2/bzip2-1.0.8-GCCcore-11.2.0.eb <span class="o">(</span>module: bzip2/1.0.8-GCCcore-11.2.0<span class="o">)</span>
+ * <span class="o">[</span>x<span class="o">]</span> <span class="nv">$CFGS</span>/x/XZ/XZ-5.2.5-GCCcore-11.2.0.eb <span class="o">(</span>module: XZ/5.2.5-GCCcore-11.2.0<span class="o">)</span>
+ * <span class="o">[</span>x<span class="o">]</span> <span class="nv">$CFGS</span>/g/GCC/GCC-11.2.0.eb <span class="o">(</span>module: GCC/11.2.0<span class="o">)</span>
+ * <span class="o">[</span>x<span class="o">]</span> <span class="nv">$CFGS</span>/n/ncurses/ncurses-6.2-GCCcore-11.2.0.eb <span class="o">(</span>module: ncurses/6.2-GCCcore-11.2.0<span class="o">)</span>
+ * <span class="o">[</span>x<span class="o">]</span> <span class="nv">$CFGS</span>/p/pkg-config/pkg-config-0.29.2.eb <span class="o">(</span>module: pkg-config/0.29.2<span class="o">)</span>
+ * <span class="o">[</span>x<span class="o">]</span> <span class="nv">$CFGS</span>/o/OpenSSL/OpenSSL-1.1.eb <span class="o">(</span>module: OpenSSL/1.1<span class="o">)</span>
+ * <span class="o">[</span>x<span class="o">]</span> <span class="nv">$CFGS</span>/c/cURL/cURL-7.78.0-GCCcore-11.2.0.eb <span class="o">(</span>module: cURL/7.78.0-GCCcore-11.2.0<span class="o">)</span>
+ * <span class="o">[</span> <span class="o">]</span> <span class="nv">$CFGS</span>/s/SAMtools/SAMtools-1.14-GCC-11.2.0.eb <span class="o">(</span>module: SAMtools/1.14-GCC-11.2.0<span class="o">)</span>
+</code></pre></div>
+<p>(We've trimmed the output a bit here, for the sake of brevity.)</p>
+<p>This output tells us that all dependencies required by <code>SAMtools-1.14-GCC-11.2.0.eb</code> are already installed,
+since they are all marked with <code>[x]</code>, whereas the easyconfig for <code>SAMtools</code> itself is not installed yet,
+as indicated by lack of an <code>x</code> in <code>[ ]</code>.</p>
+<hr />
+<h3 id="missing-dependencies">Missing dependencies<a class="headerlink" href="#missing-dependencies" title="Permanent link">&para;</a></h3>
+<p>If you are only interested in which dependencies are still <em>missing</em>,
+you can consult the output of <strong><code>eb --missing</code></strong>, or the equivalent <strong><code>eb -M</code></strong>.</p>
+<p>For example, let's see which dependencies are missing in order to get version 3.6.1 of the PyTables
+Python package installed using the <code>2021b</code> version of the <code>foss</code> toolchain:</p>
+<div class="highlight"><pre><span></span><code>$ eb PyTables-3.6.1-foss-2021b.eb -M
+
+<span class="m">3</span> out of <span class="m">69</span> required modules missing:
+
+* LZO/2.10-GCCcore-11.2.0 <span class="o">(</span>LZO-2.10-GCCcore-11.2.0.eb<span class="o">)</span>
+* Blosc/1.21.1-GCCcore-11.2.0 <span class="o">(</span>Blosc-1.21.1-GCCcore-11.2.0.eb<span class="o">)</span>
+* PyTables/3.6.1-foss-2021b <span class="o">(</span>PyTables-3.6.1-foss-2021b.eb<span class="o">)</span>
+</code></pre></div>
+<p>That should be pretty self-explanatory: out of the 69 required dependencies (which includes the <code>foss</code> toolchain
+and everything needed to install it), only 3 dependencies are missing. Great!</p>
+<hr />
+<h2 id="inspecting-install-procedures">Inspecting install procedures<a class="headerlink" href="#inspecting-install-procedures" title="Permanent link">&para;</a></h2>
+<p>Finally, before actually installing something you may want to assess <em>how</em> exactly EasyBuild is going
+to install the software.</p>
+<p>Perhaps you don't trust EasyBuild yet (you will eventually though, hopefully),
+or maybe you just want to double check that you have made the right choice before going through with
+the actual installation.</p>
+<p>Using <strong><code>eb --extended-dry-run</code></strong>, or just <strong><code>eb -x</code></strong> for short,
+you can get a <strong>detailed overview of the installation procedure that would be performed by EasyBuild</strong>,
+<strong>in a matter of seconds</strong>.</p>
+<p>By means of example, let's inspect some parts of the installation procedure for <code>Boost-1.74.0-GCC-10.2.0.eb</code>:</p>
+<div class="highlight"><pre><span></span><code>$ eb Boost-1.77.0-GCC-11.2.0.eb -x
+...
+
+preparing... <span class="o">[</span>DRY RUN<span class="o">]</span>
+
+<span class="o">[</span>prepare_step method<span class="o">]</span>
+Defining build environment, based on toolchain <span class="o">(</span>options<span class="o">)</span> and specified dependencies...
+
+Loading toolchain module...
+
+module load GCC/11.2.0
+
+Loading modules <span class="k">for</span> dependencies...
+
+module load bzip2/1.0.8-GCCcore-11.2.0
+module load zlib/1.2.11-GCCcore-11.2.0
+module load XZ/5.2.5-GCCcore-11.2.0
+
+...
+
+Defining build environment...
+
+  ...
+  <span class="nb">export</span> <span class="nv">CXX</span><span class="o">=</span><span class="s1">&#39;g++&#39;</span>
+  <span class="nb">export</span> <span class="nv">CXXFLAGS</span><span class="o">=</span><span class="s1">&#39;-O2 -ftree-vectorize -march=native -fno-math-errno -fPIC&#39;</span>
+  ...
+
+configuring... <span class="o">[</span>DRY RUN<span class="o">]</span>
+
+<span class="o">[</span>configure_step method<span class="o">]</span>
+  running <span class="nb">command</span> <span class="s2">&quot;./bootstrap.sh --with-toolset=gcc --prefix=/tmp/example/Boost/1.77.0-GCC-11.2.0 --without-libraries=python,mpi&quot;</span>
+  <span class="o">(</span><span class="k">in</span> /tmp/example/build/Boost/1.77.0/GCC-11.2.0/Boost-1.77.0<span class="o">)</span>
+
+...
+
+<span class="o">[</span>sanity_check_step method<span class="o">]</span>
+Sanity check paths - file <span class="o">[</span><span class="s1">&#39;files&#39;</span><span class="o">]</span>
+  * lib/libboost_system-mt-x64.so
+  * lib/libboost_system.so
+  * lib/libboost_thread-mt-x64.so
+Sanity check paths - <span class="o">(</span>non-empty<span class="o">)</span> directory <span class="o">[</span><span class="s1">&#39;dirs&#39;</span><span class="o">]</span>
+  * include/boost
+Sanity check commands
+  <span class="o">(</span>none<span class="o">)</span>
+
+...
+</code></pre></div>
+<p>We've obviously trimmed the generated output a bit, but it should be sufficient to explain what all this output means.</p>
+<p>An overview of the installation procedure is shown, following the installation steps as they would be
+performed by EasyBuild. The output above shows:</p>
+<ul>
+<li>how the build environment will be set up during the <code>prepare</code> step, by loading the module for both the
+  toolchains and the dependencies, and defining a set of environment variables like <code>$CXX</code>, <code>$CXXFLAGS</code>, etc.</li>
+<li>which command will be executed during the configuration step, and in which directory;</li>
+<li>the list of files and directories that will be checked during the sanity check step;</li>
+</ul>
+<p>If you were concerned about EasyBuild being too much of a black box, that is hopefully resolved now.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is important to highlight here that the reported installation procedure <em>may</em> not be 100% correct,
+since the <a href="../introduction/#easyblocks">easyblock</a> can change its mind based on the output of shell commands
+that were executed, or based on the contents of a file that was generated during the installation.
+Since all "actions" that would be performed during the installation are actually skipped when using <code>eb -x</code>,
+the reported installation procedure could be partially incorrect.</p>
+<p>In addition, the easyblock may trip over the fact that the installation procedure is not actually being
+executed, which sometimes leads to an unexpected error. These situations are handled gracefully by <code>eb -x</code>
+though, which will report any errors that occurred and then continue anyway with inspecting the remainder of the
+installation procedure. Although this obviously limits the value of the generated output,
+it doesn't make it completely useless.</p>
+</div>
+<h2 id="exercises">Exercises<a class="headerlink" href="#exercises" title="Permanent link">&para;</a></h2>
+<p><strong><em>Guidelines</em></strong></p>
+<p>Do yourself a favor: don't peek at the solution until you have made an attempt to solve the exercise yourself!</p>
+<p>Please do not share solutions with others before they have been discussed by the tutorial organisers.</p>
+<p>The exercises are based on the easyconfig files included with EasyBuild 4.5.4.</p>
+<hr />
+<p><strong><em>Exercise U.0</em></strong><em> - Making installed software available</em></p>
+<p>Before working on the exercises for this part of the tutorial,
+make sure that the software that is already installed in the prepared environment is available.</p>
+<p>We will assume that you have a small software stack installed using the <code>2021b</code> version of the <code>foss</code> toolchain.</p>
+<p><strong>Tip:</strong> execute a "<code>module use</code>" command, and verify with "<code>module avail</code>" that a bunch of software modules
+are available for loading.</p>
+<details class="success">
+<summary>(click to show solution)</summary>
+<p>Use the following command to make the modules for the software available that is pre-installed
+in the prepared environment:
+<div class="highlight"><pre><span></span><code>module use /easybuild/modules/all
+</code></pre></div></p>
+<p>If software is installed in a different location than <code>/easybuild/</code> in your environment,
+you should adjust the command accordingly.</p>
+<p>To verify that the pre-installed software is available, check whether the <code>foss/2020b</code> module is available:
+<div class="highlight"><pre><span></span><code>$ module avail foss/
+
+--------------------- /easybuild/modules/all ---------------------
+  foss/2021b
+</code></pre></div></p>
+</details>
+<hr />
+<p><strong><em>Exercise U.1</em></strong><em> - Searching easyconfigs</em></p>
+<p>See if EasyBuild provides any easyconfig files for installing GROMACS version 2021.5.</p>
+<details class="success">
+<summary>(click to show solution)</summary>
+<p>To check for available easyconfig files, we can use <code>eb --search</code> or <code>eb -S</code>:
+<div class="highlight"><pre><span></span><code>$ eb -S gromacs-2021.5
+<span class="o">==</span> found valid index <span class="k">for</span> /home/example/easybuild/software/EasyBuild/4.5.4/easybuild/easyconfigs, so using it...
+<span class="nv">CFGS1</span><span class="o">=</span>//home/example/easybuild/software/EasyBuild/4.5.4/easybuild/easyconfigs/g/GROMACS
+ * <span class="nv">$CFGS1</span>/GROMACS-2021.5-foss-2021b-CUDA-11.4.1.eb
+ * <span class="nv">$CFGS1</span>/GROMACS-2021.5-foss-2021b.eb
+ * <span class="nv">$CFGS1</span>/GROMACS-2021.5_fix_threads_gpu_Gmxapitests.patch
+</code></pre></div>
+This actually shows two easyconfig files but also a patch file. We can also search specifically
+for GROMACS 2021.5 in the <code>foss</code> and <code>fosscuda</code> toolchains using
+<div class="highlight"><pre><span></span><code>$ eb -S gromacs-2021.5-foss
+<span class="o">==</span> found valid index <span class="k">for</span> /home/example/easybuild/software/EasyBuild/4.5.4/easybuild/easyconfigs, so using it...
+<span class="nv">CFGS1</span><span class="o">=</span>/home/example/easybuild/software/EasyBuild/4.5.4/easybuild/easyconfigs/g/GROMACS
+ * <span class="nv">$CFGS1</span>/GROMACS-2021.5-foss-2021b-CUDA-11.4.1.eb
+ * <span class="nv">$CFGS1</span>/GROMACS-2021.5-foss-2021b.eb
+</code></pre></div>
+and now we find just the two easyconfig files.  </p>
+</details>
+<hr />
+<p><strong><em>Exercise U.2</em></strong><em> - Checking dependencies</em></p>
+<p>Check which dependencies are missing to install QuantumESPRESSO version 6.8 with the <code>2021b</code> version of the <code>foss</code> toolchain.</p>
+<details class="success">
+<summary>(click to show solution)</summary>
+<p>First, we need to determine the name of the easyconfig file for QuantumESPRESSO version 6.6:
+<div class="highlight"><pre><span></span><code>$ eb -S <span class="s1">&#39;QuantumESPRESSO-6.8.*foss-2021b&#39;</span>
+<span class="o">==</span> found valid index <span class="k">for</span> /home/example/easybuild/software/EasyBuild/4.5.4/easybuild/easyconfigs, so using it...
+<span class="nv">CFGS1</span><span class="o">=</span>/home/example/easybuild/software/EasyBuild/4.5.4/easybuild/easyconfigs/q/QuantumESPRESSO
+ * <span class="nv">$CFGS1</span>/QuantumESPRESSO-6.8-foss-2021b.eb
+</code></pre></div>
+To determine which dependencies are missing to install this QuantumESPRESSO easyconfig file, we can use <code>--missing</code>:
+<div class="highlight"><pre><span></span><code>$ eb QuantumESPRESSO-6.8-foss-2021b.eb --missing
+
+<span class="m">3</span> out of <span class="m">65</span> required modules missing:
+
+* libxc/5.1.6-GCC-11.2.0 <span class="o">(</span>libxc-5.1.6-GCC-11.2.0.eb<span class="o">)</span>
+* ELPA/2021.05.001-foss-2021b <span class="o">(</span>ELPA-2021.05.001-foss-2021b.eb<span class="o">)</span>
+* QuantumESPRESSO/6.8-foss-2021b <span class="o">(</span>QuantumESPRESSO-6.8-foss-2021b.eb<span class="o">)</span>
+</code></pre></div>
+(some nonessential output removed).</p>
+</details>
+<hr />
+<p><strong><em>Exercise U.3</em></strong><em> - Performing a dry run</em></p>
+<p>Figure out which command EasyBuild would use to compile
+the software provided by the <code>Bowtie2-2.4.4-GCC-11.2.0.eb</code> easyconfig file,
+without actually installing <code>Bowtie2</code>.</p>
+<p>Also, which binaries will EasyBuild check for to sanity check the installation?</p>
+<details class="success">
+<summary>(click to show solution)</summary>
+<p>To inspect the installation procedure, we can use <code>eb -x Bowtie2-2.4.4-GCC-11.2.0.eb</code>.</p>
+<p>The output for the build step shows the actual compilation command that would be performed (<code>make ...</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="o">[</span>build_step method<span class="o">]</span>
+&gt;&gt; running command:
+    <span class="o">[</span>started at: <span class="m">2021</span>-03-08 <span class="m">20</span>:15:08<span class="o">]</span>
+    <span class="o">[</span>working dir: /tmp/eb-0006djcd/__ROOT__/tmp/example/Bowtie2/2.4.4/GCC-11.2.0/Bowtie2-2.4.4<span class="o">]</span>
+    <span class="o">[</span>output logged <span class="k">in</span> /tmp/eb-0006djcd/easybuild-run_cmd-haojzisn.log<span class="o">]</span>
+    make -j <span class="m">8</span>  <span class="nv">CC</span><span class="o">=</span><span class="s2">&quot;gcc&quot;</span>  <span class="nv">CPP</span><span class="o">=</span><span class="s2">&quot;g++&quot;</span> <span class="nv">CXX</span><span class="o">=</span><span class="s2">&quot;g++&quot;</span>  <span class="nv">RELEASE_FLAGS</span><span class="o">=</span><span class="s2">&quot;-O2 -ftree-vectorize -march=native -fno-math-errno -fPIC -std=gnu++98&quot;</span>
+running <span class="nb">command</span> <span class="s2">&quot;make  -j 16  CC=&quot;</span>gcc<span class="s2">&quot;  CPP=&quot;</span>g++<span class="s2">&quot; CXX=&quot;</span>g++<span class="s2">&quot;  RELEASE_FLAGS=&quot;</span>-O2 -ftree-vectorize -march<span class="o">=</span>native -fno-math-errno -fPIC -std<span class="o">=</span>gnu++98<span class="s2">&quot;&quot;</span>
+<span class="o">(</span><span class="k">in</span> /tmp/example/Bowtie2/2.4.4/GCC-11.2.0/Bowtie2-2.4.4<span class="o">)</span>
+</code></pre></div>
+<p>If the output you get is less detailed, you may not have set <code>export EASYBUILD_TRACE=1</code>.</p>
+<p>The output for the sanity check step shows which binaries are expected to be installed:
+<div class="highlight"><pre><span></span><code>[sanity_check_step method]
+Sanity check paths - file [&#39;files&#39;]
+  * bin/LICENSE
+  * bin/MANUAL
+  * bin/MANUAL.markdown
+  * bin/NEWS
+  * bin/bowtie2
+  * bin/bowtie2-align-l
+  * bin/bowtie2-align-s
+  * bin/bowtie2-build
+  * bin/bowtie2-build-l
+  * bin/bowtie2-build-s
+  * bin/bowtie2-inspect
+  * bin/bowtie2-inspect-l
+  * bin/bowtie2-inspect-s
+</code></pre></div></p>
+</details>
+<hr />
+<p><a href="../installing_software/"><em>next: Installing software</em></a> - <a href="../"><em>(back to overview page)</em></a></p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 25, 2022</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 21, 2022</span>
       
     
   </small>
