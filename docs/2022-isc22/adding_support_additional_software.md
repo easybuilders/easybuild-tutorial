@@ -692,7 +692,7 @@ sources = [SOURCE_TAR_GZ]
 ```
 
 That way, we only have the software version specified *once* in the easyconfig file,
-via the `version` easyconfig parameter. That will come in useful later (see [Exercise 7.2](#exercises))...
+via the `version` easyconfig parameter. That will come in useful later (see [Exercise E.2](#exercises))...
 
 If now we try installing the easyconfig file again, EasyBuild complains
 that it can't find the specified source file anywhere:
