@@ -116,4 +116,3 @@ More information, including the dates and times of the next calls, is available 
 ---
 
 [*next: Contributing to EasyBuild*](contributing.md) - [*(back to overview page)*](index.md)
-# The EasyBuild community
