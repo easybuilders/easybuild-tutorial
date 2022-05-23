@@ -7,7 +7,7 @@
 The EasyBuild tutorial at [ISC'22](https://www.isc-hpc.com) takes place on [**Sunday 29 May 2022, 14:00-18:00 CEST**](https://app.swapcard.com/widget/event/isc-high-performance-2022/planning/UGxhbm5pbmdfODYxMTUy).
 
 To attend the live tutorial, you must be registered to ISC'22 ([more information
-here](https://www.isc-hpc.com/overview-372.html)).
+here](https://www.isc-hpc.com/overview-registration.html)).
 
 All tutorial content will remain afterwards.
 
