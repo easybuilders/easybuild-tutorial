@@ -152,7 +152,7 @@ To create a GitHub token:
 * Click *"Personal access tokens"*.
 * Click followed by *"Generate new token"*.
 * Give the token a name (for example *"Token for EasyBuild"*).
-* Select both the '`repo`' and '`gist`' scopes.
+* Select both the '`public_repo`' (in the '`repo`' section) and '`gist`' scopes.
 * Click the green *"Generate token"* button.
 * Copy the generated token.
 * Paste the token when asked by `--install-github-token` (and hit *Enter*).
