@@ -26,10 +26,10 @@ It is also possible to run heterogeneous jobs across multiple partitions.
     Each GPU compute node has a single 64 core AMD EPYC 7A53 "Trento" CPU and 4 MI250X GPUs. 
     Each MI250X package contains two GPU compute dies connected to each other via AMD's InfinityFabric
     interconnect and 8 HBM2e memory stacks, 4 per die. The GPUs and CPU are all connected through
-    AMD's InfinityFabric interconnect, creating a system with a cache coherent unified memory space.
+    AMD's InfinityFabric interconnect, creating a cache coherent unified memory space in each node.
     The Trento CPU is a zen3 generation product but with an optimised I/O die that can run the
     InfinityFabric interconnect at a higher speed than standard Milan CPUs.
-    Each node also have 4 200Gbit/s SlingShot 11 interconnect cards, each connected directly to 
+    Each node also has 4 200Gbit/s SlingShot 11 interconnect cards, each connected directly to 
     a different GPU package. Each node has 512GB HBM2e RAM spread evenly across the GPU dies and 
     512 GB of regular DDR4 DRAM connected to the CPU. The nodes are diskless nodes.
     The (very) theoretical peak performance of a GPU node is
@@ -95,7 +95,8 @@ It is also possible to run heterogeneous jobs across multiple partitions.
     consortium countries also have to assist in providing support. Given that neither the 
     LUMI User Support Team members nor the local support teams are employees of CSC this 
     also means that much of the application support has to be delivered with very little
-    rights on the system (at most a working directory that is readable for all users). So we 
+    rights on the system (at most a working directory that is readable for all users and writable for
+    support people). So we 
     need a setup where it is possible to help users installing applications while having
     only regular user rights on the system.
 
@@ -103,7 +104,7 @@ It is also possible to run heterogeneous jobs across multiple partitions.
     is a pain. Users come to LUMI through 11 different channels (some with subchannels). Moreover it
     is the responsibility of the PI to invite users to a project and to ensure that they are eligible
     for LUMI use (taking into account, e.g., the European and USA export restrictions). At the central
-    level we have no means currently to check who can use which software license. Hence we need a
+    level we have no means to check who can use which software license. Hence we need a
     solution to distribute that responsibility also.
 
 -   LUMI software support is based on the idea that users really want a customised software stack. They may say they want 
@@ -134,8 +135,10 @@ as they want to establish a European HPC ecosystem with a European technology op
 The developers of EasyBuild are also very accessible and it helps that the lead developer and several
 of the maintainers are from LUMI consortium countries.
 
-We use Lmod as the module tool. We basically had the choice between Lmod and the old C implementation
-of TCL Environment Modules as HPE Cray does not support the more modern Environment Modules 4 or 5 
+We use [Lmod](https://lmod.readthedocs.io/en/latest/) as the module tool. 
+We basically had the choice between Lmod and the old C implementation
+of TCL Environment Modules as HPE Cray does not support the more modern 
+[Environment Modules 4 or 5](http://modules.sourceforge.net/)
 developed in France. Support for Lmod is excellent in EasyBuild and Spack, and Lua is also
 a more modern language to work with than TCL.
 
@@ -144,7 +147,7 @@ a more modern language to work with than TCL.
 On LUMI we offer users the choice between multiple software stacks, offered through hand-written
 Lmod modules.
 
--   The *CrayEnv* stack is really just a small layer on top of the HPE Cray PE in which we provide
+-   The **CrayEnv** stack is really just a small layer on top of the HPE Cray PE in which we provide
     a few additional tools and help the user with managing the environment for the HPE Cray PE.
 
     The HPE Cray PE works with a universal compiler wrapper that sets some optimisation options for
@@ -155,19 +158,19 @@ Lmod modules.
     scientific libraries are typically loaded through the so-called `PrgEnv-*`  modules (one for each
     supported compiler). The CrayEnv software stack module will take care of ensuring that a proper
     set of target modules is loaded depending on the node type on which the module is loaded, and 
-    hence also reloading the proper target modules after a `module purge`. 
+    also ensure that the proper set of target modules is reloaded after a `module purge`. 
 
     The environment is also enriched with a number of build tools that are not installed in the OS image
     or only in an older version. These tools are often build with EasyBuild with the `SYSTEM` toolchain
     though we do not make EasyBuild itself available to users in that stack.
 
--   The *LUMI* stack is a software stack which is mostly managed with EasyBuild. The stack is versioned
+-   The **LUMI** stack is a software stack which is mostly managed with EasyBuild. The stack is versioned
     based on the version of the HPE Cray PE which makes it easy to retire a whole stack when the compilers
     are retired from the system. If we need the same software in two different stacks, it is simply compiled
     twice, even if it is only installed with the system compilers, to make retiring software easier without
     having to track dependencies (we now simply have to remove a few directories to remove a whole
     software stack which will not have an impact on the other stacks). The
-    exception are a few packages installed from binaries that are installed in a separate area across
+    exception are a few packages installed from binaries that are installed in a separate area and available across all
     software stacks (e.g., ARM Forge and Vampir). The LUMI stack provides optimised binaries for each node
     type of LUMI, but some software that is not performance-critical is compiled only once. To this end we 
     have a partition corresponding to each node type, but also a common partition which is included with 
