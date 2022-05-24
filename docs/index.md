@@ -48,6 +48,7 @@ EasyBuild requires:
 
 ## Contributors
 
+* Sebastian Achilles ([`@SebastianAchilles`](https://github.com/SebastianAchilles), [Jülich Supercomputing Centre, Germany](https://www.fz-juelich.de/ias/jsc/EN/Home/home_node.html))
 * Maxime Boissonneault ([`@mboisson`](https://github.com/mboisson), [Compute Canada](https://www.computecanada.ca))
 * Miguel Dias Costa ([`@migueldiascosta`](https://github.com/migueldiascosta), [National University of Singapore](https://nusit.nus.edu.sg/hpc/))
 * Markus Geimer ([`@geimer`](https://github.com/geimer), [Jülich Supercomputing Centre, Germany](https://www.fz-juelich.de/ias/jsc/EN/Home/home_node.html))
@@ -55,10 +56,10 @@ EasyBuild requires:
 * Michael Kelsey ([`@kelseymh`](https://github.com/kelseymh), [Texas A&M University, US](https://hprc.tamu.edu/))
 * Christian Kniep ([`@ChristianKniep`](https://github.com/ChristianKniep), [AWS](https://aws.amazon.com))
 * Terje Kvernes ([`@terjekv`](https://github.com/terjekv), [University of Oslo, Norway](https://www.uio.no/english/))
+* Kurt Lust ([ `@klust`](https://github.com/klust), [University of Antwerp, Belgium](https://www.uantwerpen.be/en/))
 * Alan O'Cais ([`@ocaisa`](https://github.com/ocaisa), [Jülich Supercomputing Centre, Germany](https://www.fz-juelich.de/ias/jsc/EN/Home/home_node.html))
 * Bart Oldeman ([`@bartoldeman`](https://github.com/bartoldeman), [Compute Canada](https://www.computecanada.ca))
 * Åke Sandgren ([`@akesandgren`](https://github.com/akesandgren), [Umeå University, Sweden](https://www.umu.se/en/))
-* Sebastian Achilles ([`@SebastianAchilles`](https://github.com/SebastianAchilles), [Jülich Supercomputing Centre, Germany](https://www.fz-juelich.de/ias/jsc/EN/Home/home_node.html))
 
 ## Additional resources
 
