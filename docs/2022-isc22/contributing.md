@@ -122,7 +122,7 @@ ssh-keygen -a 100 -t ed25519
 You can copy the SSH public key from the output of this command:
 
 ```shell
-cat .ssh/id_rsa.pub
+cat .ssh/id_ed25519.pub
 ```
 
 
