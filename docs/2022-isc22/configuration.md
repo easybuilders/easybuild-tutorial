@@ -330,7 +330,7 @@ configure EasyBuild through [sourcing](https://bash.cyberciti.biz/guide/Source_c
 
 ### `eb` command line options
 
-Finally, you can also configure EasyBuild by specifying one or options to the `eb` command.
+Finally, you can also configure EasyBuild by specifying one or more options to the `eb` command.
 
 As mentioned earlier, the values for configuration settings defined this way override the value that
 is specified through any other means. So if you want to be sure that a particular configuration setting
