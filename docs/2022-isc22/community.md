@@ -87,11 +87,11 @@ to the EasyBuild Slack channel.
 
 The [EasyBuild Slack](https://easybuild.slack.com/) is a quick and easy way
 to get in touch with the EasyBuild community.
-Over 450 people have joined it so far, and there is usually somebody awake in there
+Over 600 people have joined it so far, and there is usually somebody awake in there
 who may be able to help you out.
 
 **To join the EasyBuild Slack request an invitation via
-[https://easybuild-slack.herokuapp.com](https://easybuild-slack.herokuapp.com/).**
+[https://easybuild.io/join-slack](https://easybuild.io/join-slack).**
 
 If you are not a big fan of Slack, you can also consider joining the `#easybuild`
 IRC channel (available on the [Libera IRC network](https://libera.chat)).
