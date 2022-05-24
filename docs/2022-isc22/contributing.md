@@ -116,7 +116,7 @@ You need to have a GitHub account that has your SSH public key registered in it
 If you need to generate an SSH key pair, you can run the following command:
 
 ```shell
-ssh-keygen -t rsa -b 4096
+ssh-keygen -a 100 -t ed25519
 ```
 
 You can copy the SSH public key from the output of this command:
