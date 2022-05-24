@@ -1047,4 +1047,4 @@ Please also take this into account:
 
 ---
 
-[*next: Adding support for additional software*](adding_support_additional_software.md) - [*(back to overview page)*](index.md)
+[*next: Module naming schemes*](module_naming_schemes.md) - [*(back to overview page)*](index.md)
