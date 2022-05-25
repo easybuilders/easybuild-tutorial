@@ -79,6 +79,9 @@ this procedure while working your way through the tutorial:
     eb CMake-3.22.1-GCCcore-11.2.0.eb SciPy-bundle-2021.10-foss-2021b.eb --prefix $_PREFIX_ --robot
     ```
 
+Note that the installation can take a few hours and that some steps require a lot of CPU time (e.g., the testing
+done when installing SciPy), so you may not be able to do it on the login nodes of a cluster.
+
 ---
 
 [*next: Introduction*](introduction.md) - [*(back to overview page)*](index.md)
