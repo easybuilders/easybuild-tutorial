@@ -42,7 +42,7 @@ To get access to EESSI on a client system, it suffices to install [CernVM-FS](ht
 especially when using multiple client systems, [additional configuration of
 CernVM-FS](https://cvmfs.readthedocs.io/en/stable/cpt-squid.html) should be done to enjoy the benefits of a multi-level caching hierarchy.
 
-Once CernVM-FS is installed and configured for EESSI, you can prepare you environment for using the software provided
+Once CernVM-FS is installed and configured for EESSI, you can prepare your environment for using the software provided
 by EESSI, load the modules for the software you need, and start running your workloads:
 
 ```
