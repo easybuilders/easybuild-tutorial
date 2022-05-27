@@ -1611,52 +1611,50 @@ channel in the <a href="https://easybuild.slack.com">EasyBuild Slack</a>.</p>
 session.</p>
 <p>You can self-request an invitation to join the EasyBuild Slack via
 <a href="https://easybuild.io/join-slack">https://easybuild.io/join-slack</a>.</p>
-<p>??? Reproducing the tutorial environment at home (after the workshop) "(click to show steps)"</p>
-<pre><code>*Note:* These steps might differ on our system. Please reach out to us on Slack if you run into problems.
-
-The prepared environment remains available during the conference. If after the conference
+<details class="success">
+<summary>Reproducing the tutorial environment at home (after the workshop): (click to show steps)</summary>
+<p><em>Note:</em> These steps might differ on our system. Please reach out to us on Slack if you run into problems.</p>
+<p>The prepared environment remains available during the conference. If after the conference
 you want to go through the tutorial and try the exercises on your home system, you can follow
-this procedure while working your way through the tutorial:
-
--   [Install EasyBuild](installation.md). We recommend to use the 
-    ["Installing EasyBuild with EasyBuild" method](../installation/#method-2-installing-easybuild-with-easybuild),
-    but choosing a different directory for the `--prefix` argument. That directory should
-    then be used wherever `/easybuild` is used in the tutorial text.
-
-    Assume that the installation directory is stored in `$_PREFIX_`. The series of commands to install
-    EasyBuild and make the EasyBuild module available are
-    ```shell
-    module unuse $MODULEPATH
-    export EB_TMPDIR=/tmp/$USER/eb_tmp
-    python3 -m pip install --ignore-installed --prefix $EB_TMPDIR easybuild
-    export PATH=$EB_TMPDIR/bin:$PATH
-    export PYTHONPATH=$(/bin/ls -rtd -1 $EB_TMPDIR/lib*/python*/site-packages | tail -1):$PYTHONPATH
-    export EB_PYTHON=python3
-    eb --install-latest-eb-release --prefix $_PREFIX_
-    module use $_PREFIX_/modules/all
-    ```
-    The first line (the `module unuse` command) cleans the environment and assures that modules already
-    installed on the system will not screw up the installation that you intend to do.
-
-    Alternatively, when newer versions of EasyBuild are available than the version 4.5.4 used to prepare
-    this tutorial, the line with `eb --install-latest-eb-release` can be replaced with
-    ```shell
-    eb EasyBuild-4.5.4.eb --prefix $_PREFIX_
-    ```
-    to install the version of EasyBuild used for the preparation of this tutorial.
-
--   Install the software needed for the tutorial in the same directory structure as EasyBuild.
+this procedure while working your way through the tutorial:</p>
+<ul>
+<li>
+<p><a href="../installation/">Install EasyBuild</a>. We recommend to use the 
+    <a href="../installation/#method-2-installing-easybuild-with-easybuild">"Installing EasyBuild with EasyBuild" method</a>,
+    but choosing a different directory for the <code>--prefix</code> argument. That directory should
+    then be used wherever <code>/easybuild</code> is used in the tutorial text.</p>
+<p>Assume that the installation directory is stored in <code>$_PREFIX_</code>. The series of commands to install
+EasyBuild and make the EasyBuild module available are
+<div class="highlight"><pre><span></span><code>module unuse <span class="nv">$MODULEPATH</span>
+<span class="nb">export</span> <span class="nv">EB_TMPDIR</span><span class="o">=</span>/tmp/<span class="nv">$USER</span>/eb_tmp
+python3 -m pip install --ignore-installed --prefix <span class="nv">$EB_TMPDIR</span> easybuild
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$EB_TMPDIR</span>/bin:<span class="nv">$PATH</span>
+<span class="nb">export</span> <span class="nv">PYTHONPATH</span><span class="o">=</span><span class="k">$(</span>/bin/ls -rtd -1 <span class="nv">$EB_TMPDIR</span>/lib*/python*/site-packages <span class="p">|</span> tail -1<span class="k">)</span>:<span class="nv">$PYTHONPATH</span>
+<span class="nb">export</span> <span class="nv">EB_PYTHON</span><span class="o">=</span>python3
+eb --install-latest-eb-release --prefix <span class="nv">$_PREFIX_</span>
+module use <span class="nv">$_PREFIX_</span>/modules/all
+</code></pre></div>
+The first line (the <code>module unuse</code> command) cleans the environment and assures that modules already
+installed on the system will not screw up the installation that you intend to do.</p>
+<p>Alternatively, when newer versions of EasyBuild are available than the version 4.5.4 used to prepare
+this tutorial, the line with <code>eb --install-latest-eb-release</code> can be replaced with
+<div class="highlight"><pre><span></span><code>eb EasyBuild-4.5.4.eb --prefix <span class="nv">$_PREFIX_</span>
+</code></pre></div>
+to install the version of EasyBuild used for the preparation of this tutorial.</p>
+</li>
+<li>
+<p>Install the software needed for the tutorial in the same directory structure as EasyBuild.
     This can be done in a single command (after loading the EasyBuild module). The workings of this command is explained in the
-    ["Configuring EasyBuild"](configuration.md) and ["Basic usage of EasyBuild"](basic_usage.md)
+    <a href="../configuration/">"Configuring EasyBuild"</a> and <a href="../basic_usage/">"Basic usage of EasyBuild"</a>
     sections:
-    ```shell
-    module load EasyBuild
-    eb CMake-3.22.1-GCCcore-11.2.0.eb SciPy-bundle-2021.10-foss-2021b.eb --prefix $_PREFIX_ --robot
-    ```
-
-Note that the installation can take a few hours and that some steps require a lot of CPU time (e.g., the testing
-done when installing SciPy), so you may not be able to do it on the login nodes of a cluster.
-</code></pre>
+    <div class="highlight"><pre><span></span><code>module load EasyBuild
+eb CMake-3.22.1-GCCcore-11.2.0.eb SciPy-bundle-2021.10-foss-2021b.eb --prefix <span class="nv">$_PREFIX_</span> --robot
+</code></pre></div></p>
+</li>
+</ul>
+<p>Note that the installation can take a few hours and that some steps require a lot of CPU time (e.g., the testing
+done when installing SciPy), so you may not be able to do it on the login nodes of a cluster.</p>
+</details>
 <hr />
 <hr />
 <p><a href="../introduction/"><em>next: Introduction</em></a> - <a href="../"><em>(back to overview page)</em></a></p>
