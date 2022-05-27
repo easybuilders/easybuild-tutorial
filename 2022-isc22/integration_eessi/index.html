@@ -1223,6 +1223,49 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#high-level-overview" class="md-nav__link">
+    High-level overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-access" class="md-nav__link">
+    Getting access
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inspiration" class="md-nav__link">
+    Inspiration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-cases" class="md-nav__link">
+    Use cases
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#more-information" class="md-nav__link">
+    More information
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1240,6 +1283,79 @@
 
 
 <h1 id="integration-of-easybuild-in-eessi">Integration of EasyBuild in EESSI<a class="headerlink" href="#integration-of-easybuild-in-eessi" title="Permanent link">&para;</a></h1>
+<p align="center"><img src="../../img/eessi_logo.png" alt="EESSI logo" width="600px"/></p>
+
+<p>The <a href="https://www.eessi-hpc.org"><strong>European Environment for Scientific Software Installations</strong> (EESSI)</a> is
+a collaborative project, by and for the computational science community, with the main goal being to provide a
+<strong>shared central stack of (optimized) scientific software installations</strong> that can be used on a variety of systems,
+ranging from personal workstations to HPC system and cloud infrastructure, through supporting different CPUs,
+accelerators (such as GPUs), network interconnects, and operating systems.</p>
+<h3 id="high-level-overview">High-level overview<a class="headerlink" href="#high-level-overview" title="Permanent link">&para;</a></h3>
+<p>In order to achieve this ambitious goal, the project consists of three inter-operating and stacked layers that
+each serve a different purpose:</p>
+<p align="center"><img src="../../img/eessi_overview_layers.png" alt="EESSI - overview of layers" width="400px"/></p>
+
+<ul>
+<li>
+<p>The <em>filesystem layer</em> is responsible for distributing the software installations provided by EESSI
+  repository from centrally managed servers to client systems. This is done by using <a href="https://cernvm.cern.ch/fs">CernVM-FS</a>,
+  a read-only, globally distributed filesystem that is optimized for distributing software.
+  From the point of view of an end user this results in a transparent experience where software installations are
+  downloaded to the client system (and cached there) on-demand, as they are being used.</p>
+</li>
+<li>
+<p>The <em>compatibility layer</em> provides operating system libraries that are required by the scientific software
+  installations. It ensures that the software installations provided by EESSI work on different (versions of) operating
+  systems, as it alleviates relying on libraries provided by the operating system of the client. We use
+  <a href="https://wiki.gentoo.org/wiki/Project:Prefix">Gentoo Prefix</a> to build the compatibility layer,
+  since it is a Linux distribution that can be built from source in a given path (a 'prefix').</p>
+</li>
+<li>
+<p>The <em>software layer</em> consists of the actual scientific software installations, which are optimised for different
+  types and generations of microprocessors, and are built on top of the compatibility layer. These installations
+  were installed with <strong>EasyBuild</strong>, and corresponding environment modules are included so
+  <a href="https://lmod.readthedocs.io">Lmod</a> can be used to easily access the software installations.
+  The <a href="https://github.com/archspec/archspec">archspec</a> Python library is used to auto-detect the CPU microarchitecture
+  of the client system so that the best suited subset of software installations can be selected, which typically
+  significantly benefits performance.</p>
+</li>
+</ul>
+<h3 id="getting-access">Getting access<a class="headerlink" href="#getting-access" title="Permanent link">&para;</a></h3>
+<p>To get access to EESSI on a client system, it suffices to install <a href="https://cernvm.cern.ch/fs">CernVM-FS</a> and the
+<a href="https://github.com/EESSI/filesystem-layer/releases">EESSI configuration package</a>. For a production-quality setup,
+especially when using multiple client systems, <a href="https://cvmfs.readthedocs.io/en/stable/cpt-squid.html">additional configuration of
+CernVM-FS</a> should be done to enjoy the benefits of a multi-level caching hierarchy.</p>
+<p>Once CernVM-FS is installed and configured for EESSI, you can prepare your environment for using the software provided
+by EESSI, load the modules for the software you need, and start running your workloads:</p>
+<div class="highlight"><pre><span></span><code>$ source /cvmfs/pilot.eessi-hpc.org/latest/init/bash
+[EESSI pilot 2021.12] $ module load GROMACS
+[EESSI pilot 2021.12] $ gmx mdrun ...
+</code></pre></div>
+<p>For more information, see the <a href="https://easybuild.io/eum22/#eessi-getting-started"><em>Getting Started with EESSI</em> talk at the 7th EasyBuild User Meeting
+(EUM'22)</a>.</p>
+<h3 id="inspiration">Inspiration<a class="headerlink" href="#inspiration" title="Permanent link">&para;</a></h3>
+<p>The design of the EESSI project is heavily influenced by the <a href="https://ssl.linklings.net/conferences/pearc/pearc19_program/views/includes/files/pap139s3-file1.pdf">central software stack provided by the Advanced Research Computing (ARC)
+component of the Digital Research Alliance of Canada</a>,
+(formerly Compute Canada), where a similar approach is used to build a shared software stack that can be leveraged on the different Canadian HPC
+systems (and beyond). EESSI is significantly more ambitious however, by aiming to support a broader range of
+system architectures (incl. Arm, POWER, and eventually also RISC-V CPUs), and by intending to work together with
+the broader computational science community in building the shared software stack.</p>
+<h3 id="use-cases">Use cases<a class="headerlink" href="#use-cases" title="Permanent link">&para;</a></h3>
+<p>The primary goal of the EESSI project is to provide a software stack of optimized scientific software installations
+that can be used on a wide variety of platforms, including HPC clusters, cloud, servers, and laptops.</p>
+<p>The EESSI project also intends to go several steps further, by building a test suite to verify the
+correctness of the provided software installations and facilitate performance evaluation, and by working together
+with the developers of the scientific software that is included in EESSI, with the intent to have the software
+installations vetted.</p>
+<h3 id="more-information">More information<a class="headerlink" href="#more-information" title="Permanent link">&para;</a></h3>
+<ul>
+<li>EESSI website: <a href="https://www.eessi-hpc.org">https://www.eessi-hpc.org</a></li>
+<li>EESSI @ GitHub: <a href="https://github.com/EESSI">https://github.com/EESSI</a></li>
+<li>EESSI documentation: <a href="https://eessi.github.io/docs">https://eessi.github.io/docs</a></li>
+<li>recorded talk at EUM'21: <a href="https://easybuild.io/eum21/#eessi"><em>Introduction to EESSI</em></a></li>
+<li>recorded talk at EUM'22: <a href="https://easybuild.io/eum22/#eessi-getting-started"><em>Getting Started with EESSI</em></a></li>
+<li>paper: <a href="https://doi.org/10.1002/spe.3075"><em>EESSI: A cross-platform ready-to-use optimised scientific software stack</em></a></li>
+</ul>
 <hr />
 <p><a href="../integration_lumi/"><em>next: Integration of EasyBuild in LUMI</em></a> - <a href="../"><em>(back to overview page)</em></a></p>
 
@@ -1248,7 +1364,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 24, 2022</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 27, 2022</span>
       
     
   </small>
