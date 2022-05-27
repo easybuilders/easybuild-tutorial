@@ -14,39 +14,41 @@ repo_url: https://github.com/easybuilders
 edit_uri: easybuild-tutorial/edit/main/docs
 nav:
   - Home: index.md
-  - "ISC'21 (25 June 2021)":
-      - (overview): 2021-isc21/index.md
-      - Practical info: 2021-isc21/practical_info.md
-      - Introduction: 2021-isc21/introduction.md
-      - Terminology: 2021-isc21/terminology.md
-      - Installation: 2021-isc21/installation.md
-      - Configuration: 2021-isc21/configuration.md
-      - Basic usage: 2021-isc21/basic_usage.md
-      - Installing software: 2021-isc21/installing_software.md
-      - Troubleshooting: 2021-isc21/troubleshooting.md
-      - Module naming schemes: 2021-isc21/module_naming_schemes.md
-      - Support for additional software: 2021-isc21/adding_support_additional_software.md
-      - EasyBuild at JSC: 2021-isc21/jsc.md
-      - EasyBuild at Compute Canada: 2021-isc21/computecanada.md
-      - The EasyBuild community: 2021-isc21/community.md
-      - Contributing to EasyBuild: 2021-isc21/contributing.md
+  - "ISC'22 (29 May 2022)":
+      - (overview): 2022-isc22/index.md
+      - Practical info: 2022-isc22/practical_info.md
+      - Introduction: 2022-isc22/introduction.md
+      - Terminology: 2022-isc22/terminology.md
+      - Installation: 2022-isc22/installation.md
+      - Configuration: 2022-isc22/configuration.md
+      - Basic usage: 2022-isc22/basic_usage.md
+      - Installing software: 2022-isc22/installing_software.md
+      - Troubleshooting: 2022-isc22/troubleshooting.md
+      - Support for additional software: 2022-isc22/adding_support_additional_software.md
+      - Module naming schemes: 2022-isc22/module_naming_schemes.md
+      - Integration of EasyBuild in JSC: 2022-isc22/integration_jsc.md
+      - Integration of EasyBuild in EESSI: 2022-isc22/integration_eessi.md
+      - Integration of EasyBuild in LUMI: 2022-isc22/integration_lumi.md
+      - The EasyBuild community: 2022-isc22/community.md
+      - Contributing to EasyBuild: 2022-isc22/contributing.md
+      - Comparison with other tools: 2022-isc22/comparison_other_tools.md
   - Archive:
-      - "ISC'20 (June '20)":
-          - Start page: 2020-06-isc20/index.md
-          - Practical information: 2020-06-isc20/practical_information.md
-          - Introduction: 2020-06-isc20/introduction.md
-          - Installation: 2020-06-isc20/installation.md
-          - Configuration: 2020-06-isc20/configuration.md
-          - Basic usage: 2020-06-isc20/basic_usage.md
-          - Troubleshooting: 2020-06-isc20/troubleshooting.md
-          - Hierarchical module naming schemes: 2020-06-isc20/hmns.md
-          - Adding support for additional software: 2020-06-isc20/adding_support_software.md
-          - EasyBuild at Jülich Supercomputing Centre: 2020-06-isc20/jsc.md
-          - EasyBuild at Compute Canada: 2020-06-isc20/computecanada.md
-          - The EasyBuild community: 2020-06-isc20/community.md
-          - Contributing to EasyBuild: 2020-06-isc20/contributing.md
-          - Comparison with other tools: 2020-06-isc20/comparison_other_tools.md
-          - Getting help: 2020-06-isc20/getting_help.md
+      - "ISC'21 (25 June 2021)":
+          - (overview): 2021-isc21/index.md
+          - Practical info: 2021-isc21/practical_info.md
+          - Introduction: 2021-isc21/introduction.md
+          - Terminology: 2021-isc21/terminology.md
+          - Installation: 2021-isc21/installation.md
+          - Configuration: 2021-isc21/configuration.md
+          - Basic usage: 2021-isc21/basic_usage.md
+          - Installing software: 2021-isc21/installing_software.md
+          - Troubleshooting: 2021-isc21/troubleshooting.md
+          - Module naming schemes: 2021-isc21/module_naming_schemes.md
+          - Support for additional software: 2021-isc21/adding_support_additional_software.md
+          - EasyBuild at JSC: 2021-isc21/jsc.md
+          - EasyBuild at Compute Canada: 2021-isc21/computecanada.md
+          - The EasyBuild community: 2021-isc21/community.md
+          - Contributing to EasyBuild: 2021-isc21/contributing.md
       - "LUST (spring '21)":
           - (overview): 2021-lust/index.md
           - Introduction to EasyBuild:
@@ -74,6 +76,22 @@ nav:
               - Using external modules: 2021-lust/cray/external_modules.md
               - Custom Cray toolchains: 2021-lust/cray/custom_toolchains.md
               - EasyBuild at CSCS: 2021-lust/cray/easybuild_at_cscs.md
+      - "ISC'20 (June '20)":
+          - Start page: 2020-06-isc20/index.md
+          - Practical information: 2020-06-isc20/practical_information.md
+          - Introduction: 2020-06-isc20/introduction.md
+          - Installation: 2020-06-isc20/installation.md
+          - Configuration: 2020-06-isc20/configuration.md
+          - Basic usage: 2020-06-isc20/basic_usage.md
+          - Troubleshooting: 2020-06-isc20/troubleshooting.md
+          - Hierarchical module naming schemes: 2020-06-isc20/hmns.md
+          - Adding support for additional software: 2020-06-isc20/adding_support_software.md
+          - EasyBuild at Jülich Supercomputing Centre: 2020-06-isc20/jsc.md
+          - EasyBuild at Compute Canada: 2020-06-isc20/computecanada.md
+          - The EasyBuild community: 2020-06-isc20/community.md
+          - Contributing to EasyBuild: 2020-06-isc20/contributing.md
+          - Comparison with other tools: 2020-06-isc20/comparison_other_tools.md
+          - Getting help: 2020-06-isc20/getting_help.md
 plugins:
   # show revision date at bottom of each page
   - git-revision-date-localized
