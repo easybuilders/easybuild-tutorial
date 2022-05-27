@@ -3,7 +3,7 @@
 <p align="center"><img src="../../img/eessi_logo.png" alt="EESSI logo" width="600px"/></p>
 
 The [**European Environment for Scientific Software Installations** (EESSI)](https://www.eessi-hpc.org) is
-a collaborative project, by and for the computational science community, with as main goal to provide a
+a collaborative project, by and for the computational science community, with the main goal being to provide a
 **shared central stack of (optimized) scientific software installations** that can be used on a variety of systems,
 ranging from personal workstations to HPC system and cloud infrastructure, through supporting different CPUs,
 accelerators (such as GPUs), network interconnects, and operating systems.
@@ -30,8 +30,8 @@ each serve a different purpose:
   were installed with **EasyBuild**, and corresponding environment modules are included so
   [Lmod](https://lmod.readthedocs.io) can be used to easily access the software installations.
   The [archspec](https://github.com/archspec/archspec) Python library is used to auto-detect the CPU microarchitecture
-  of the client system so that the best suited subset of software installations can be selected, which significantly
-  benefits performance.
+  of the client system so that the best suited subset of software installations can be selected, which typically
+  significantly benefits performance.
 
 The design of the EESSI project is heavily influenced by the [Compute Canada software stack](https://ssl.linklings.net/conferences/pearc/pearc19_program/views/includes/files/pap139s3-file1.pdf),
 where a similar approach is used to build a shared software stack that can be leveraged on the different Canadian HPC
