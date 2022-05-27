@@ -1752,7 +1752,7 @@
 <a href="https://eurohpc-ju.europa.eu/discover-eurohpc-ju#ecl-inpage-211">EuroHPC pre-exascale systems</a> 
 meant to be installed in 2022-2023, 
 together with Leonardo (installed at Cineca) and MareNostrum5 (installed at BSC).
-LUMI, which stands for Large Unified Modern Infrastructure, is hosted by the 
+LUMI, which stands for <em>Large Unified Modern Infrastructure</em>, is hosted by the
 <a href="https://www.lumi-supercomputer.eu/lumi-consortium/">LUMI consortium</a>,
 a consortium of 10 countries: Finland, Belgium, Czech Republic, Denmark, Estonia, Iceland, 
 Norway, Poland, Sweden, and Switzerland. It was supposed to be installed by the end of 2021,
@@ -1761,39 +1761,52 @@ The final hardware should be installed before mid 2022.</p>
 <p><a href="https://www.lumi-supercomputer.eu/may-we-introduce-lumi/">
 <img src="../../img/lumi-snowflake.png" style="float:right" width="100%"/>
 </a></p>
-<p>LUMI is a HPE Cray EX supercomputer with several partitions targeted for different use cases.
+
+<p>LUMI is an <strong>HPE Cray EX supercomputer</strong> with several partitions targeted for different use cases.
 It is also possible to run heterogeneous jobs across multiple partitions.</p>
 <ul>
-<li>The main compute power is provided by the LUMI-G GPU compute partition consisting of 2560 nodes.
+<li>
+<p>The main compute power is provided by the <em>LUMI-G</em> GPU compute partition consisting of 2,560 nodes.
     The LUMI-G node is a revolutionary compute node in the x86+GPU-world. 
-    It is also truly a "GPU first" system.
-    Each GPU compute node has a single 64 core AMD EPYC 7A53 "Trento" CPU and 4 MI250X GPUs. 
-    Each MI250X package contains two GPU compute dies connected to each other via AMD's InfinityFabric
-    interconnect and 8 HBM2e memory stacks, 4 per die. The GPUs and CPU are all connected through
-    AMD's InfinityFabric interconnect, creating a cache coherent unified memory space in each node.
-    The Trento CPU is a zen3 generation product but with an optimised I/O die that can run the
-    InfinityFabric interconnect at a higher speed than standard Milan CPUs.
-    Each node also has 4 200Gbit/s SlingShot 11 interconnect cards, each connected directly to 
-    a different GPU package. Each node has 512GB HBM2e RAM spread evenly across the GPU dies and 
-    512 GB of regular DDR4 DRAM connected to the CPU. The nodes are diskless nodes.
-    The (very) theoretical peak performance of a GPU node is
-    around 200 Tflops for FP64 vector operations or 400 TFlops for FP64 matrix operations.</li>
-<li>The main CPU partition, called LUMI-C, consists of 1536 nodes with 2 64-core AMD
-    EPYC 7763 CPUs. Most nodes have 256 GB of RAM memory, but there are 128 nodes with
+    It is also truly a "GPU first" system.</p>
+<p>Each GPU compute node has a single 64 core AMD EPYC 7A53 "Trento" CPU and 4 MI250X GPUs. 
+Each MI250X package contains two GPU compute dies connected to each other via AMD's InfinityFabric
+interconnect and 8 HBM2e memory stacks, 4 per die. The GPUs and CPU are all connected through
+AMD's InfinityFabric interconnect, creating a cache coherent unified memory space in each node.
+The Trento CPU is a Zen3 generation product but with an optimised I/O die that can run the
+InfinityFabric interconnect at a higher speed than standard Milan CPUs.</p>
+<p>Each node also has 4 200Gbit/s SlingShot 11 interconnect cards, each connected directly to 
+a different GPU package. Each node has 512GB HBM2e RAM spread evenly across the GPU dies and 
+512 GB of regular DDR4 DRAM connected to the CPU. The nodes are diskless nodes.
+The (very) theoretical peak performance of a GPU node is
+around 200 Tflops for FP64 vector operations or 400 TFlops for FP64 matrix operations.</p>
+</li>
+<li>
+<p>The main CPU partition, called <em>LUMI-C</em>, consists of 1,536 nodes with two 64-core AMD
+    EPYC 7,763 CPUs. Most nodes have 256 GB of RAM memory, but there are 128 nodes with
     512 GB of RAM and 32 nodes with 1 TB of RAM. In the final system, each node will be equipped
-    with one 200 Gbit/s SlingShot 11 interconnect card. These nodes are diskless nodes.</li>
-<li>A section mostly meant for interactive data analysis consists of 8 nodes with 2 64-core
+    with one 200 Gbit/s SlingShot 11 interconnect card. These nodes are diskless nodes.</p>
+</li>
+<li>
+<p>A section mostly meant for interactive data analysis consists of 8 nodes with two 64-core
     AMD EPYC 7742 CPUs and 4 TB of RAM per node. These nodes are connected to the interconnect
-    through 2 100 Gbit/s SlingShot 10 links.</li>
-<li>The second part of LUMI-D, the data visualisation section, consists of 8 nodes with two 
+    through two 100 Gbit/s SlingShot 10 links.</p>
+</li>
+<li>
+<p>The second part of <em>LUMI-D</em>, the data visualisation section, consists of 8 nodes with two
     64-core AMD EPYC 7742 CPUs and 8 NVIDIA A40 GPUs each. Each node has 2 TB of RAM and is
-    connected to the interconnect through 2 100 Gbit/s SlingShot 10 links.</li>
-<li>LUMI-K will be an OpenShift/Kubernetes container cloud platform for running microservices
-    with roughly 50 nodes.</li>
-<li>LUMI also has an extensive storage system<ul>
+    connected to the interconnect through two 100 Gbit/s SlingShot 10 links.</p>
+</li>
+<li>
+<p><em>LUMI-K</em> will be an OpenShift/Kubernetes container cloud platform for running microservices
+    with roughly 50 nodes.</p>
+</li>
+<li>
+<p>LUMI also has an extensive storage system</p>
+<ul>
 <li>There is a 7 PB flash-based storage system with 2 TB/s of bandwidth and high IOPS
     capability using the Lustre parallel file system and Cray ClusterStor E1000 technology.</li>
-<li>The main disk based storage contains of 4 20 PB storage systems based on regular hard
+<li>The main disk based storage contains of four 20 PB storage systems based on regular hard
     disks and also using the Lustre parallel file system.</li>
 <li>A 30 PB Ceph-based encrypted object storage system for storing, sharing and staging data
     will become available at a later date.</li>
@@ -1803,14 +1816,15 @@ It is also possible to run heterogeneous jobs across multiple partitions.</p>
 <h2 id="challenges">Challenges<a class="headerlink" href="#challenges" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
-<p>LUMI comes with the HPE Cray Programming Environment (PE) with the Cray Compiling Environment
+<p>LUMI comes with the <em>HPE Cray Programming Environment (PE)</em> with the Cray Compiling Environment
     (a fully Clang/LLVM-based C/C++ compiler and a Fortran compiler using a Cray frontend but
     LLVM-based backend) and GNU and AMD compilers repackaged by Cray. The HPE Cray PE uses
     an MPICH-based MPI implementation (with libfabric backend on SlingShot 11) and also comes 
     with its own optimised mathematics libraries containing all the usual suspects you expect 
     from an EasyBuild toolchain. The HPE Cray PE environment is managed outside EasyBuild, but
     EasyBuild has a mechanism to integrate with it.</p>
-<p>Due to the specific hardware and software setup of LUMI using the EasyBuild common toolchains 
+<p>Due to the specific hardware and software setup of LUMI using the <a href="https://docs.easybuild.io/en/latest/Common-toolchains.html">EasyBuild common
+toolchains</a>
 is anything but straightforward. Getting Open MPI, a key component of the foss toolchain, to work 
 is a bit of a challenge at the moment. The Intel compilers are not a very good match with 
 AMD CPUs. One needs to be very careful when choosing the target architecture for code
@@ -1819,7 +1833,7 @@ performance problems and sometimes produce wrong results and some recent MPI ver
 cause problems with AMD CPUs.</p>
 </li>
 <li>
-<p>LUMI has only a small central support team of 9 FTE. It is obvious that we cannot give the same
+<p>LUMI has only a <em>small central support team of 9 FTE</em>. It is obvious that we cannot give the same
     level of support for software installations as some of the big sites such as JSC can do. Moreover,
     due to the nature of the LUMI environment with its Cray PE and novel AMD GPUs, installing software
     is more challenging than on your typical Intel + NVIDIA GPU cluster with NVIDIA/Mellanox
@@ -1873,9 +1887,11 @@ different virtual environments with different installations to do their work.</p
 </li>
 </ul>
 <h2 id="solution-with-easybuild-and-lmod">Solution with EasyBuild and Lmod<a class="headerlink" href="#solution-with-easybuild-and-lmod" title="Permanent link">&para;</a></h2>
-<p>On LUMI we selected EasyBuild as our primary software installation tool, but also offer some limited
+<p><a href="https://lumi-supercomputer.eu/easybuild-lumis-primary-software-installation-tool-introduced/">On LUMI we selected EasyBuild as our primary software installation
+tool</a>,
+but also offer some limited
 support for Spack. EasyBuild was selected as there is already a lot of experience with EasyBuild in
-several of the LUMI consortium countries and as it is a good fit with the goals of the EuroHPC JU
+several of the LUMI consortium countries, and as it is a good fit with the goals of the EuroHPC JU
 as they want to establish a European HPC ecosystem with a European technology option at every level.
 The developers of EasyBuild are also very accessible and it helps that the lead developer and several
 of the maintainers are from LUMI consortium countries.</p>
@@ -1935,8 +1951,8 @@ an installation done by one user on LUMI will reproduce easily in the environmen
 The fact that each easyconfig file contains a very precise list of dependencies, including versions and
 not only the names of the dependencies, is both a curse and a blessing. It is a curse when we need to upgrade
 to a new compiler and also want to upgrade versions of certain dependencies, as a lot of easyconfig files need
-to be checked and edited. In those cases the automatic concretiser of Spack may help to get running quicker.
-But that very precise description is also a blessing when communicating with users as you can 
+to be checked and edited. In those cases the automatic concretiser of Spack may help to get running quicker.</p>
+<p>However, that very precise description is also a blessing when communicating with users as you can
 communicate with them through EasyBuild recipes (and possibly an easystack file, which defines a list of 
 easyconfig files to install) rather than having a part of the specification in command line options of the
 tool. So a user doesn't need to copy long command lines and as a support person
@@ -2079,7 +2095,8 @@ to extract the information out of certain environment variables that are used by
 EasyBuild configuration modules take care of pointing to the right metadata file, which is specific for each version of the
 Cray PE and hence each version of the LUMI software stack.</p>
 <h3 id="software-specific-easyblocks">Software-specific easyblocks<a class="headerlink" href="#software-specific-easyblocks" title="Permanent link">&para;</a></h3>
-<p>EasyBuild comes with a lot of software-specific easyblocks. These have only been tested with the common toolchains
+<p>EasyBuild comes with a lot of <a href="https://docs.easybuild.io/en/latest/eb_list_easyblocks.html">software-specific easyblocks</a>.
+These have only been tested with the common toolchains
 in the automated EasyBuild test procedures. As a result, many of those easyblocks will fail with the Cray toolchains
 (and with many other custom toolchains). A common problem is that they don't recongnise the compilers as they test 
 for the presence of certain modules and hence simply stop with an error message that the compiler is not 
@@ -2137,7 +2154,7 @@ altogether from the module directory tree.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 24, 2022</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 27, 2022</span>
       
     
   </small>
