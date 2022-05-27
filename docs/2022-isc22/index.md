@@ -13,7 +13,7 @@ All tutorial content will remain afterwards.
 
 #### Slides
 
-The most recent version of the presentation slides are available [here](../files/EasyBuild-tutorial-ISC22-20210520.pdf).
+The most recent version of the presentation slides are available [here](../files/EasyBuild-tutorial-ISC22-20220529.pdf).
 
 #### Agenda
 
