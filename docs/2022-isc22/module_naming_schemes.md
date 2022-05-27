@@ -318,10 +318,11 @@ We can do this by defining this set of environment variables:
 
 ```shell
 export EASYBUILD_PREFIX=$HOME/easybuild
-export EASYBUILD_BUILDPATH=/tmp/$USER
+export EASYBUILD_BUILDPATH=/tmp/$USER/easybuild
 export EASYBUILD_INSTALLPATH_SOFTWARE=/easybuild/software
 export EASYBUILD_MODULE_NAMING_SCHEME=HierarchicalMNS
 export EASYBUILD_INSTALLPATH_MODULES=$HOME/hmns/modules
+export EASYBUILD_LOCKS_DIR=$HOME/easybuild/locks
 ```
 
 To make sure we didn't make any silly mistakes, we double check using `eb --show-config`:
@@ -333,11 +334,12 @@ $ eb --show-config
 # Current EasyBuild configuration
 # (C: command line argument, D: default value, E: environment variable, F: configuration file)
 #
-buildpath            (E) = /tmp/example
+buildpath            (E) = /tmp/example/easybuild
 containerpath        (E) = /home/example/easybuild/containers
 installpath          (E) = /home/example/easybuild
 installpath-modules  (E) = /home/example/hmns/modules
 installpath-software (E) = /easybuild/software
+locks-dir            (E) = /home/example/easybuild/locks
 module-naming-scheme (E) = HierarchicalMNS
 packagepath          (E) = /home/example/easybuild/packages
 prefix               (E) = /home/example/easybuild
