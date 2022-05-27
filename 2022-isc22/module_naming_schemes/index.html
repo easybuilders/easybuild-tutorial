@@ -2100,10 +2100,11 @@ pip3 install --user easybuild
 <p>First of all, we need to make sure that EasyBuild is properly configured.
 We can do this by defining this set of environment variables:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">EASYBUILD_PREFIX</span><span class="o">=</span><span class="nv">$HOME</span>/easybuild
-<span class="nb">export</span> <span class="nv">EASYBUILD_BUILDPATH</span><span class="o">=</span>/tmp/<span class="nv">$USER</span>
+<span class="nb">export</span> <span class="nv">EASYBUILD_BUILDPATH</span><span class="o">=</span>/tmp/<span class="nv">$USER</span>/easybuild
 <span class="nb">export</span> <span class="nv">EASYBUILD_INSTALLPATH_SOFTWARE</span><span class="o">=</span>/easybuild/software
 <span class="nb">export</span> <span class="nv">EASYBUILD_MODULE_NAMING_SCHEME</span><span class="o">=</span>HierarchicalMNS
 <span class="nb">export</span> <span class="nv">EASYBUILD_INSTALLPATH_MODULES</span><span class="o">=</span><span class="nv">$HOME</span>/hmns/modules
+<span class="nb">export</span> <span class="nv">EASYBUILD_LOCKS_DIR</span><span class="o">=</span><span class="nv">$HOME</span>/easybuild/locks
 </code></pre></div>
 <p>To make sure we didn't make any silly mistakes, we double check using <code>eb --show-config</code>:</p>
 <div class="highlight"><pre><span></span><code>$ eb --show-config
@@ -2111,11 +2112,12 @@ We can do this by defining this set of environment variables:</p>
 <span class="c1"># Current EasyBuild configuration</span>
 <span class="c1"># (C: command line argument, D: default value, E: environment variable, F: configuration file)</span>
 <span class="c1">#</span>
-buildpath            <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /tmp/example
+buildpath            <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /tmp/example/easybuild
 containerpath        <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild/containers
 installpath          <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild
 installpath-modules  <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/hmns/modules
 installpath-software <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /easybuild/software
+locks-dir            <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild/locks
 module-naming-scheme <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> HierarchicalMNS
 packagepath          <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild/packages
 prefix               <span class="o">(</span>E<span class="o">)</span> <span class="o">=</span> /home/example/easybuild
@@ -2327,7 +2329,7 @@ module spider SciPy-bundle/2021.10
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 19, 2022</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 27, 2022</span>
       
     
   </small>
