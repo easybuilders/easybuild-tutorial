@@ -37,13 +37,20 @@ session.
 You can self-request an invitation to join the EasyBuild Slack via
 [https://easybuild.io/join-slack](https://easybuild.io/join-slack).
 
-??? success "Reproducing the tutorial environment at home (after the workshop): (click to show steps)"
+??? tip "Reproducing the tutorial environment at home (after the workshop): (click to show steps)"
 
-    *Note:* These steps might differ on our system. Please reach out to us on Slack if you run into problems.
+    !!! warning
+
+        These steps might need to be tweaked for your system. Please reach out to us on Slack if you run into problems.
 
     The prepared environment remains available during the conference. If after the conference
     you want to go through the tutorial and try the exercises on your home system, you can follow
     this procedure while working your way through the tutorial:
+
+    -   EasyBuild has a set of [requirements](https://docs.easybuild.io/en/latest/Installation.html#requirements)
+        and [dependencies](https://docs.easybuild.io/en/latest/Installation.html#dependencies)
+        that it expects to find on your system (such as `make`, `patch`,... as well as a system C++ compiler to be
+        able to build GCC), you will need to ensure that these are available. 
 
     -   [Install EasyBuild](installation.md). We recommend to use the 
         ["Installing EasyBuild with EasyBuild" method](../installation/#method-2-installing-easybuild-with-easybuild),
