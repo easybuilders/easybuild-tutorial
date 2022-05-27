@@ -8,6 +8,8 @@ a collaborative project, by and for the computational science community, with th
 ranging from personal workstations to HPC system and cloud infrastructure, through supporting different CPUs,
 accelerators (such as GPUs), network interconnects, and operating systems.
 
+### High-level overview
+
 In order to achieve this ambitious goal, the project consists of three inter-operating and stacked layers that
 each serve a different purpose:
 
@@ -33,28 +35,52 @@ each serve a different purpose:
   of the client system so that the best suited subset of software installations can be selected, which typically
   significantly benefits performance.
 
-The design of the EESSI project is heavily influenced by the [Compute Canada software stack](https://ssl.linklings.net/conferences/pearc/pearc19_program/views/includes/files/pap139s3-file1.pdf),
-where a similar approach is used to build a shared software stack that can be leveraged on the different Canadian HPC
+### Getting access
+
+To get access to EESSI on a client system, it suffices to install [CernVM-FS](https://cernvm.cern.ch/fs) and the
+[EESSI configuration package](https://github.com/EESSI/filesystem-layer/releases). For a production-quality setup,
+especially when using multiple client systems, [additional configuration of
+CernVM-FS](https://cvmfs.readthedocs.io/en/stable/cpt-squid.html) should be done to enjoy the benefits of a multi-level caching hierarchy.
+
+Once CernVM-FS is installed and configured for EESSI, you can prepare you environment for using the software provided
+by EESSI, load the modules for the software you need, and start running your workloads:
+
+```
+$ source /cvmfs/pilot.eessi-hpc.org/latest/init/bash
+[EESSI pilot 2021.12] $ module load GROMACS
+[EESSI pilot 2021.12] $ gmx mdrun ...
+```
+
+For more information, see the [*Getting Started with EESSI* talk at the 7th EasyBuild User Meeting
+(EUM'22)](https://easybuild.io/eum22/#eessi-getting-started).
+
+### Inspiration
+
+The design of the EESSI project is heavily influenced by the [central software stack provided by the Advanced Research Computing (ARC)
+component of the Digital Research Alliance of Canada](https://ssl.linklings.net/conferences/pearc/pearc19_program/views/includes/files/pap139s3-file1.pdf),
+(formerly Compute Canada), where a similar approach is used to build a shared software stack that can be leveraged on the different Canadian HPC
 systems (and beyond). EESSI is significantly more ambitious however, by aiming to support a broader range of
 system architectures (incl. Arm, POWER, and eventually also RISC-V CPUs), and by intending to work together with
 the broader computational science community in building the shared software stack.
 
-Next to providing a central stack of scientific software installations that can be employed on a wide range of
-systems, the EESSI project also intends to go several steps further, by building a test suite to verify the
+### Use cases
+
+The primary goal of the EESSI project is to provide a software stack of optimized scientific software installations
+that can be used on a wide variety of platforms, including HPC clusters, cloud, servers, and laptops.
+
+The EESSI project also intends to go several steps further, by building a test suite to verify the
 correctness of the provided software installations and facilitate performance evaluation, and by working together
 with the developers of the scientific software that is included in EESSI, with the intent to have the software
 installations vetted.
 
-A p
-
-### Links
+### More information 
 
 * EESSI website: [https://www.eessi-hpc.org](https://www.eessi-hpc.org)
 * EESSI @ GitHub: [https://github.com/EESSI](https://github.com/EESSI)
 * EESSI documentation: [https://eessi.github.io/docs](https://eessi.github.io/docs)
-* Introduction to EESSI: [recording](https://www.youtube.com/watch?v=1CXwzIW_MsU&list=PLhnGtSmEGEQh0pCtmkFQsDzeoo6tbYnyZ&index=8), [slides (PDF)](https://easybuild.io/eum21/006_eum21_eessi.pdf)
-* Getting Started with EESSI: [recording](https://www.youtube.com/watch?v=sreSIQHTGL8&list=PLhnGtSmEGEQgCneeSQvYoIZrbv7wIKlo2), [slides (PDF)](https://easybuild.io/eum22/012_eum22_getting_started_with_EESSI.pdf)
-* [paper: *EESSI: A cross-platform ready-to-use optimised scientific software stack*](https://doi.org/10.1002/spe.3075)
+* recorded talk at EUM'21: [*Introduction to EESSI*](https://easybuild.io/eum21/#eessi)
+* recorded talk at EUM'22: [*Getting Started with EESSI*](https://easybuild.io/eum22/#eessi-getting-started)
+* paper: [*EESSI: A cross-platform ready-to-use optimised scientific software stack*](https://doi.org/10.1002/spe.3075)
 
 ---
 
