@@ -37,7 +37,7 @@ session.
 You can self-request an invitation to join the EasyBuild Slack via
 [https://easybuild.io/join-slack](https://easybuild.io/join-slack).
 
-??? success "Reproducing the tutorial environment at home (after the workshop): (click to show steps)"
+??? note "Reproducing the tutorial environment at home (after the workshop): (click to show steps)"
 
     !!! note
 
