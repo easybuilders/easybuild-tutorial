@@ -41,6 +41,16 @@ To check which Python version you have, use:
 python -V
 ```
 
+!!! note
+
+    It is possible that the ``python`` command is not available, which will trigger an error like:
+
+    ```
+    -bash: python: command not found
+    ```
+
+    If that is the case, consider using the ``python3`` command (or similar) instead.
+
 *No additional Python packages are required by EasyBuild*, the ones that come with the standard
 Python distribution are sufficient. Some additional Python packages *can* be leveraged for specific features.
 More on that later.
