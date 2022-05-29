@@ -363,7 +363,7 @@ the *toolchain* here...
     No module found for toolchain: GCC/8.5.0 (took 1 sec)
     ```
 
-    We don't have this GCC version installed, but we do have GCC 11.2.0:
+    We don't have this GCC version installed as a module, but we do have GCC 11.2.0:
 
     ```shell
     $ module avail GCC/
