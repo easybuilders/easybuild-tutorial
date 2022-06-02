@@ -131,8 +131,8 @@ The EasyBuild community also provides packages for two standard toolchains, call
 The so-called ``foss`` is based on free and open software (GNU compilers, FlexiBlas with OpenBLAS backend, LaPACK, FFTW and Open MPI)
 while the ``intel`` toolchain uses the full stack of Intel compilers, libraries and MPI. Currently these toolchains
 cannot be supported on LUMI though as getting Open MPI to run on LUMI is challenging and as the Intel libraries and
-some MPI versions also produce slow or incorrect results on AMD CPUs (and it is not clear if Intel MPI is compatible
-with SlingShot 11). 
+some MPI versions also produce slow or incorrect results on AMD CPUs (and it is not entirely clear if Intel MPI is compatible
+with SlingShot 11, though in principle it should). 
 Focusing the efforts on those two popular common toolchains makes it possible to support a lot of build recipes that are
 collected in the [central repository](https://github.com/easybuilders/easybuild-easyconfigs).
 They can still serve as a basis to develop build recipes for the HPE Cray Programming Environment.
@@ -228,23 +228,24 @@ HPC sites, consortia, and companies that use EasyBuild include (but are not limi
 <a href="https://www.vscentrum.be"><img src="../../../img/vsc_logo.png" alt="VSC logo" width="40%"></a>
 <a href="https://www.fz-juelich.de/ias/jsc"><img src="../../../img/jsc_logo.png" alt="JSC logo" width="28%"></a>
 <a href="https://hpcnow.com/"><img src="../../../img/hpcnow_logo.png" alt="HPCNow! logo" width="25%"></a>
-<a href="https://www.fredhutch.org/"><img src="../../../img/fredhutch_logo.png" alt="Fred Hutch logo" width="22%"></a>
-<a href="https://www.viennabiocenter.org/"><img src="../../../img/vienna_biocenter_logo.png" alt="Vienna BioCenter logo" width="23%"></a>
+<a href="https://www.fredhutch.org/"><img src="../../../img/fredhutch_logo.png" alt="Fred Hutch logo" width="25%"></a>
+<a href="https://www.viennabiocenter.org/"><img src="../../../img/vienna_biocenter_logo.png" alt="Vienna BioCenter logo" width="25%"></a>
+<a href="https://www.computecanada.ca/home/"><img src="../../../img/computecanada_logo.png" alt="Compute Canada logo" width="38%"></a>
+<a href="https://lumi-supercomputer.eu/"><img src="../../../img/lumi_logo.png" alt="LUMI logo" width="26%"></a>
 <a href="https://www.ceci-hpc.be/"><img src="../../../img/ceci_logo.png" alt="CÉCI logo" width="18%"></a>
-<a href="https://www.computecanada.ca/home/"><img src="../../../img/computecanada_logo.png" alt="Compute Canada logo" width="32%"></a>
 <a href="https://www.uio.no/english/services/it/research/hpc/"><img src="../../../img/uio_logo.png" alt="UiO logo" width="25%"></a>
 <a href="https://intranet.birmingham.ac.uk/bear"><img src="../../../img/bear_logo.png" alt="BEAR logo" width="20%"></a>
-<a href="https://www.snic.se/"><img src="../../../img/snic_logo.png" alt="SNIC logo" width="25%"></a>
+<a href="https://www.snic.se/"><img src="../../../img/snic_logo.png" alt="SNIC logo" width="30%"></a>
 <a href="https://nusit.nus.edu.sg/hpc/"><img src="../../../img/nus_logo.png" alt="National University of Singapore logo" width="25%"></a>
 <a href="https://www.it4i.cz/en"><img src="../../../img/it4innovations_logo.png" alt="IT4Innovations logo" width="20%"></a>
 <a href="https://hprc.tamu.edu/"><img src="../../../img/texas_am_logo.png" alt="Texas A&M logo" width="14%"></a>
 <a href="https://tu-dresden.de/zih/dienste/service-katalog/hpc?set_language=en"><img src="../../../img/tudresden_logo.png" alt="TU Dresden logo" width="28%"></a>
 <a href="https://dashboard.hpc.unimelb.edu.au/"><img src="../../../img/univ_melbourne_logo.png" alt="University of Melbourne logo" width="16%"></a>
 <a href="https://hpc.uni.lu/"><img src="../../../img/unilu_logo.png" alt="University of Luxembourg logo" width="18%"></a>
-<a href="https://www.epcc.ed.ac.uk/"><img src="../../../img/epcc_logo.png" alt="EPCC logo" width="21%"></a>
-<a href="https://hpcf.cyi.ac.cy/"><img src="../../../img/cyi_logo.png" alt="Cyprus Institute logo" width="26%"></a>
-<a href="https://scicore.unibas.ch/"><img src="../../../img/basel_logo.png" alt="University of Basel logo" width="26%"></a>
-<a href="https://techcommunity.microsoft.com/t5/azure-global/running-long-hpc-jobs-on-azure-with-checkpointing-using-lammps/ba-p/1335148"><img src="../../../img/microsoft_logo.png" alt="Microsoft logo" width="23%"></a>
+<a href="https://www.epcc.ed.ac.uk/"><img src="../../../img/epcc_logo.png" alt="EPCC logo" width="26%"></a>
+<a href="https://hpcf.cyi.ac.cy/"><img src="../../../img/cyi_logo.png" alt="Cyprus Institute logo" width="30%"></a>
+<a href="https://scicore.unibas.ch/"><img src="../../../img/basel_logo.png" alt="University of Basel logo" width="30%"></a>
+<a href="https://techcommunity.microsoft.com/t5/azure-global/running-long-hpc-jobs-on-azure-with-checkpointing-using-lammps/ba-p/1335148"><img src="../../../img/microsoft_logo.png" alt="Microsoft logo" width="26%"></a>
 
 ---
 

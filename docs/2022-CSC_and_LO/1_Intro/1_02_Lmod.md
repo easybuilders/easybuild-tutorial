@@ -156,7 +156,7 @@ one does
 module load MPI_D
 ```
 
-thent MPI_C gets unloaded, Lmod notices that it also has to unload/deactivate Appl_E, then will load MPI_D for Compiler_A and
+then MPI_C gets unloaded, Lmod notices that it also has to unload/deactivate Appl_E, then will load MPI_D for Compiler_A and
 finally will notice that there is an equivalent Appl_E module available again, and Lmod will load that one also. However,
 now loading Compiler_B will cause a warning that MPI_D and Appl_E have been deactivated as there is no module name MPI_D in
 any version for Compiler_B.
@@ -416,31 +416,31 @@ search for those too.
     This tells that there is no ``CMake`` module on the system but that two versions
     of ``CMake`` are provided in another module.
 
-  3. `module spider <extension name>/<version>` will show more information on the
-     extension, including which module provides the extension and which other modules
-     have to be loaded to make that module available. E.g., on LUMI,
-     ```
-     module spider CMake/3.22.2
-     ```
-     will output something along the lines of
-     ```
-     -----------------------------------------------------------------------
-      CMake: CMake/3.22.2 (E)
-    -----------------------------------------------------------------------
-        This extension is provided by the following modules. To access the 
-        extension you must load one of the following modules. Note that any 
-        module names in parentheses show the module location in the software 
-        hierarchy.
-
-           buildtools/21.12 (LUMI/21.12 partition/L)
-           buildtools/21.12 (LUMI/21.12 partition/G)
-           buildtools/21.12 (LUMI/21.12 partition/D)
-           buildtools/21.12 (LUMI/21.12 partition/C)
-           buildtools/21.12 (CrayEnv)
+3.  ``module spider <extension name>/<version>`` will show more information on the
+    extension, including which module provides the extension and which other modules
+    have to be loaded to make that module available. E.g., on LUMI,
     ```
-    (output abbreviated and slightly reformatted for readability). This tells that
-    ``CMake/3.22.2`` is provided by the ``bvuildtools/21.12`` module and that there
-    are 5 different ways to make that package available.
+    module spider CMake/3.22.2
+    ```
+    will output something along the lines of
+    ```
+    -----------------------------------------------------------------------
+     CMake: CMake/3.22.2 (E)
+    -----------------------------------------------------------------------
+       This extension is provided by the following modules. To access the 
+       extension you must load one of the following modules. Note that any 
+       module names in parentheses show the module location in the software 
+       hierarchy.
+
+          buildtools/21.12 (LUMI/21.12 partition/L)
+          buildtools/21.12 (LUMI/21.12 partition/G)
+          buildtools/21.12 (LUMI/21.12 partition/D)
+          buildtools/21.12 (LUMI/21.12 partition/C)
+          buildtools/21.12 (CrayEnv)
+     ```
+     (output abbreviated and slightly reformatted for readability). This tells that
+     ``CMake/3.22.2`` is provided by the ``bvuildtools/21.12`` module and that there
+     are 5 different ways to make that package available.
 
 ??? Bug "Restrictions with older Lmod versions"
     At the time of development of this tutorial, Cray is still using the pretty old
@@ -787,7 +787,7 @@ still fail to remove the 2.7 directory from ``PYTHONPATH``.
     the module as deactivated but not as unloaded.
 
     Lmod proceeds with loading the ``MyPython/3.6.10`` module. This will now set
-    ``PTHON_API_VERSION`` to ``3.6`` and add a directory with name ending on
+    ``PYTHON_API_VERSION`` to ``3.6`` and add a directory with name ending on
     ``level2/PythonAPI/3.6`` to ``MODULEPATH``.
 
     Things are not done yet though. As the ``MODULEPATH`` has changed, Lmod looks at its list

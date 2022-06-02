@@ -9,7 +9,7 @@ See that site for [credits to the contributors of those tutorials](https://easyb
 
 This is an introductory tutorial to [EasyBuild](https://easybuild.io),
 a command line tool for installing (scientific) software on High Performance Computing (HPC) systems.
-These tutorials are specifically for EasyBuild as implemented on [LUMI](https://lumi-supercomputer.eu)
+This tutorial is specifically for EasyBuild as implemented on [LUMI](https://lumi-supercomputer.eu)
 and has been developed for CSC and the Local Organisations within the LUMI consortium. Yet
 much of the material is useful to a broader community of EasyBuild users on Cray systems
 or even EasyBuild users in general.
@@ -32,23 +32,23 @@ with the project it could be interesting to step through it.
 
 Our main target audience includes:
 
--   Application experts in LUST and the local organizations who want to contribute to the
-    software stack on LUMI or support their users
--   Developers who want to make their developments available to LUMI users
--   Advanced users who want to customize available build recipes or develop their own recipes
+-   application experts in LUST and the local organizations who want to contribute to the
+    software stack on LUMI or support their users;
+-   developers who want to make their developments available to LUMI users;
+-   advanced users who want to customize available build recipes or develop their own recipes.
 
 
 ## Prerequisites
 
 We expect you to be (a little bit) familiar with:
 
--   using a Linux command line interface
--   the (absolute) basics of compiling software from source
+-   using a Linux command line interface;
+-   the (absolute) basics of compiling software from source.
 
 EasyBuild requires:
 
--   GNU/Linux (any distribution)
--   Python 2.7 or 3.5+
+-   GNU/Linux (any distribution),
+-   Python 2.7 or 3.5+, though a fairly recent version of Python 3 is highly recommended,
 -   an environment modules tool (see the ``module`` command). On LUMI we use [Lmod](https://lmod.readthedocs.io), 
     a modern environment modules tool implemented in Lua.
 
