@@ -437,10 +437,10 @@ search for those too.
           buildtools/21.12 (LUMI/21.12 partition/D)
           buildtools/21.12 (LUMI/21.12 partition/C)
           buildtools/21.12 (CrayEnv)
-     ```
-     (output abbreviated and slightly reformatted for readability). This tells that
-     ``CMake/3.22.2`` is provided by the ``bvuildtools/21.12`` module and that there
-     are 5 different ways to make that package available.
+    ```
+    (output abbreviated and slightly reformatted for readability). This tells that
+    ``CMake/3.22.2`` is provided by the ``bvuildtools/21.12`` module and that there
+    are 5 different ways to make that package available.
 
 ??? Bug "Restrictions with older Lmod versions"
     At the time of development of this tutorial, Cray is still using the pretty old
@@ -553,7 +553,9 @@ and the module file can also detect in which mode it is executing.
 Modes include "load", "unload" but also "spider".  E.g., when the mode is "load", the
 ``setenv`` function will set an environment variable to the indicated value while in 
 "unload" mode that environment variable will be unset, and in "spider" mode the 
-environment variable is left untouched. The working of ``prepend_path``, a function 
+environment variable is left untouched. 
+
+The working of ``prepend_path``, a function 
 that modifies PATH-style variables, depends a bit on how Lmod is configured (as it is
 possible to work with reference counts), but in its most basic mode, ``prepend_path``
 will add a given directory to a given PATH-style environment variable (or move it to
@@ -563,6 +565,7 @@ be generated should the directory that is used as the argument not be part of th
 in that PATH-style variable). When the mode is "spider", the function has special behaviour
 if it is used to change the ``MODULEPATH``. It will then note the change and add that
 directory to the list of directories that has to be searched for module files.
+
 This makes ``module spider`` a very expensive command as it may have to traverse a lot
 of directories and has to execute all module files in there. Therefore Lmod will build
 a so-called spider cache which can be pre-built in the system for  certain directories
@@ -598,21 +601,24 @@ whatis("Description: memory usage tester")
 It is not all that important to include all those lines in a module file, but some of
 those lines get a special treatment from Lmod. The line starting with ``Description``
 is used by ``module spider`` to provide some brief information about the module if it
-is not totally resolved. This comes with a limitation though: It is not show for each
+is not totally resolved. This comes with a limitation though: It is not shown for each
 version of the module, so ideally all "GROMACS" modules should contain the same
 description line and use other lines to provide further information about what
 distinguished a particular version. 
 Likewise the ``Category:`` line is used by the ``spider_decoration`` hook that can be
 used to add decoration to the spider level 1 output.
-All in all the ``whatis`` function if often overlooked in Lmod-based module functionx
+All in all the ``whatis`` function is often overlooked in Lmod-based module functionx
 but it is a very useful function to include in the proper way in module files.
+The EasyBuild support for the ``whatis`` lines is also far from ideal. It will autogenerate
+certain lines from information specified in the EasyBuild recipes, but it also allows to
+specify ``whatis`` lines yourself via a parameter in the EasyBuild recipes. However, 
+as soon as you specify the parameter, it will no longer auto-generate the other lines.
 
 A third function that provides information to the search commands is ``extensions``. 
 It can be used to list up the extensions supported by the module. The argument list
 may seem strange as it takes only a single argument, a string of comma-separated ``extension/version``
 elements, but that is because the number of arguments to a function is limited in
 Lua and that limit can actually be met easily by modules for Python, Perl or R packages.
-
 
 ---
 
@@ -631,13 +637,13 @@ and basing actions of modulefiles on their position in the hierarchy.
 
 One case where passing information between modules through environment variables will
 go wrong is when that environment variable is subsequently used to compute a directory
-name that should be added to a PATH-like variable. Assume we have two versions of
+name that is then added to a PATH-like variable. Assume we have two versions of
 a ``MyPython`` module, e.g., ``MyPython/2.7.18`` and ``MyPython/3.6.10``. That module then
 sets an environment variable ``PYTHON_API_VERSION`` to either ``2.7``  or ``3.6``.
 Next we have a module ``MyPythonPackage`` that makes a number of Python packages available
 for both Python modules. However, as some Python packages have to be installed separately
 for each Python version, it does so by adding a directory to the environment variable
-``PYTHON_PATH`` that contains the version which it gets by using the Lua function
+``PYTHONPATH`` that contains the version which it gets by using the Lua function
 ``os.getenv`` to request the value of ``PYTHON_API_VERSION``. 
 
 One problem becomes clear in the following scenario:
@@ -648,11 +654,11 @@ module load MyPython/3.6.10
 ```
 The ``module load MyPythonPackage`` will find the environment variable ``PYTHON_PACKAGE_API`` 
 with the value ``2.7``  as set by ``module load MyPython/2.7.18`` and hence add the directory
-for the packages for version 2.7 to ``PYTHON_PATH``. The ``module load MyPython/3.6.10`` 
+for the packages for version 2.7 to ``PYTHONPATH``. The ``module load MyPython/3.6.10`` 
 command will trigger two operations because of the *"one name rule"*: First it will 
 automatically unload ``MyPython/2.7.18`` (which will unset ``PYTHON_API_VERSIUON``) and
 next it will load ``MyPython/3.6.10`` which will set ``PYTHON_API_VERSION`` to ``3.6``. 
-However, ``MyPythonPackage`` is not reloaded so the ``PYTHON_PATH`` variable will now point
+However, ``MyPythonPackage`` is not reloaded so the ``PYTHONPATH`` variable will now point
 to the wrong directory. One would be tempted to think that the easy fix for the user would
 be to reload ``MyPythonPackage/1.0``:
 ``` bash
@@ -660,12 +666,12 @@ module load MyPythonPackage/1.0
 ```
 Because of the *"one name rule"* this will again trigger an unload followed by a load
 of the module. The problem is in the unload. One would expect that first unloading
-``MyPythonPackage`` would remove the 2.7 directory from the ``PYTHON_PATH`` but it 
+``MyPythonPackage`` would remove the 2.7 directory from the ``PYTHONPATH`` but it 
 will not. Lmod does not remember that last time it loaded ``MyPythonPackage`` it added
 the 2.7 directory to ``PythonPath``. Instead it will execute the commands in the 
 modulefile and reverse certain commands. Since ``PYTHON_API_VERSION`` has now the value
 ``3.6``, it will try to remove the directory for version ``3.6`` which is not in the
-``PYTHON_PATH``. The subsequent load will then add the 3.6 directory to ``PYTHON_PATH``
+``PYTHONPATH``. The subsequent load will then add the 3.6 directory to ``PYTHONPATH``
 so the environment variable now contains both directories. 
 
 In this simple case, a ``module purge`` after the first two ``module load`` commands would
@@ -692,9 +698,9 @@ still fail to remove the 2.7 directory from ``PYTHONPATH``.
         ``` lua
         LmodMessage( 'In ' ..  myModuleFullName() .. ' in mode '  .. mode() )
         LmodMessage( 'PYTHON_API_VERSION = ' .. ( os.getenv( 'PYTHON_API_VERSION' ) or '') )
-        prepend_path( 'PYTHON_PATH', 'someroot/python' .. 
+        prepend_path( 'PYTHONPATH', 'someroot/python' .. 
           ( os.getenv( 'PYTHON_API_VERSION' ) or 'TTT' ) .. '/packages' )
-        LmodMessage( 'PYTHON_PATH = ' .. ( os.getenv( 'PYTHON_PATH' ) or '') )
+        LmodMessage( 'PYTHONPATH = ' .. ( os.getenv( 'PYTHONPATH' ) or '') )
         ```
 ??? Note "Solution with a hierarchy"
     The better way in Lmod to implement the above scenario would be in a module hierarchy.
@@ -731,9 +737,9 @@ still fail to remove the 2.7 directory from ``PYTHONPATH``.
         LmodMessage( 'Detected Python API version from environment: ' ..
             ( os.getenv( 'PYTHON_API_VERSION' ) or '' ) )
 
-        prepend_path( 'PYTHON_PATH', 'someroot/python' .. python_api_version .. '/packages' )
+        prepend_path( 'PYTHONPATH', 'someroot/python' .. python_api_version .. '/packages' )
 
-        LmodMessage( 'PYTHON_PATH = ' .. (os.getenv( 'PYTHON_PATH' ) or '') )
+        LmodMessage( 'PYTHONPATH = ' .. (os.getenv( 'PYTHONPATH' ) or '') )
         ```
     
     Now add the ``level1`` subdirectory to ``MODULEPATH``, e.g., if you're in the directory
@@ -758,13 +764,13 @@ still fail to remove the 2.7 directory from ``PYTHONPATH``.
     ``module avail`` will show the ``MyPythonPackage/1.0`` module.
 
     The ``MyPythonPackage`` shows two ways to get the version of the Python API to use for
-    determining the right directory to add to ``PYTHON_PATH``. The fragile way is to enquire
+    determining the right directory to add to ``PYTHONPATH``. The fragile way is to enquire
     the value of the environment variable ``PYTHON_API_VERSION`` set by loading ``MyPython/2.7.18``.
     The more robust way is to use the Lmod introspection function ``myFileName()`` which returns
     the full path and file name of the module file that is executing, and extracting the version
     from the path with a pattern matching function. In this particular situation both computed
     values are the same so both would have worked to correctly add
-    ``somedir/python2.7/packages`` to the front of ``PYTHON_PATH``. 
+    ``somedir/python2.7/packages`` to the front of ``PYTHONPATH``. 
 
     The next command, ``module load MyPython/3.6.10`` triggers a chain of events.
 
@@ -777,11 +783,11 @@ still fail to remove the 2.7 directory from ``PYTHONPATH``.
     the change of the ``MODULEPATH`` the ``MyPythonPackage/1.0`` module which was loaded from
     ``.../level2/PythonAPI/2.7`` is no longer available so Lmod will continue with unloading
     that module. The interesting bit now is that ``PYTHON_API_VERSION`` is unset. So had we 
-    computed the name of the directory to add to ``PYTHON_PATH`` using the value of that 
+    computed the name of the directory to add to ``PYTHONPATH`` using the value of that 
     environment variable, the module would have failed to compute the correct directory name
-    to remove so ``prepend_path`` would have left the ``PYTHON_PATH`` environment variable
+    to remove so ``prepend_path`` would have left the ``PYTHONPATH`` environment variable
     untouched. However, by computing that value from the directory of the modulefile, we get
-    the right value and can correctly remove ``somedir/python2.7/packages`` from ``PYTHON_PATH``.
+    the right value and can correctly remove ``somedir/python2.7/packages`` from ``PYTHONPATH``.
     Lmod will also remember that the module was only unloaded due to a change in the
     ``MODULEPATH`` and not because a user explicitly unloaded the module. I.e., it considers
     the module as deactivated but not as unloaded.
@@ -794,7 +800,7 @@ still fail to remove the 2.7 directory from ``PYTHONPATH``.
     of deactivated modules and notices that a different version of ``MyPythonPackage/1.0`` is
     now available. Hence it will now automatically load that module from the 
     ``.../level2/PythonAPI/3.6`` subdirectory so that that module now correctly detects
-    that ``somedir/python3.6/package`` should be added to ``PYTHON_PATH``.
+    that ``somedir/python3.6/package`` should be added to ``PYTHONPATH``.
 
     Hence at the end of the cycle we have again a correctly configured environment with no
     trace of the ``2.7`` version that was loaded initially and with no action required from
@@ -803,7 +809,6 @@ still fail to remove the 2.7 directory from ``PYTHONPATH``.
 
     This idea is used on LUMI to implement the various versions of the software stack with
     for each software stack also optimised binaries for each of the node types.
-
 
 ---
 
