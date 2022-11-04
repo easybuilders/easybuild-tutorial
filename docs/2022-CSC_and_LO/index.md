@@ -2,7 +2,7 @@
 
 This tutorial is based extensively on the more generic EasyBuild tutorials build by
 the EasyBuild community and maintained on
-[the EasyBuild tutorial site](https://easybuilders.github.io/easybuild-tutorial/).
+[this site](https://easybuilders.github.io/easybuild-tutorial/).
 See that site for [credits to the contributors of those tutorials](https://easybuilders.github.io/easybuild-tutorial/#contributors).
 
 ## Scope
