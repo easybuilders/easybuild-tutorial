@@ -128,7 +128,7 @@ can create themselves. At this moment it does not yet include possible other eas
 
 ## Structure of an easyblock
 
-The example below shows the overal structure of an easyblock:
+The example below shows the overall structure of an easyblock:
 
 ```python
 from easybuild.framework.easyblock import EasyBlock
@@ -685,7 +685,7 @@ Your easyblock should:
     ```
 
     Running this example on LUMI is a little tricky as using ``--include-easyblocks`` to point EasyBuild to
-    our new easyblock interfers with settings already made by the EasyBuild configuration modules (``EasyBuild-user``)
+    our new easyblock interferes with settings already made by the EasyBuild configuration modules (``EasyBuild-user``)
     and causes error messages about the toolchains. So either the easyblock needs to be copied to the user location
     that can be found by looking at the output of ``eb --show-config`` or we simply need to extend the list of
     easyblocks that EasyBuild searches with the easyblocks in the current directory:
