@@ -1,6 +1,6 @@
 # Welcome to the official EasyBuild tutorial!
 
-<p align="center"><img src="img/easybuild_logo_alpha.png" alt="EasyBuild logo" width="300px"/></p>
+<p align="center"><img src="img/easybuild_logo_alpha.png" alt="EasyBuild logo" width="500px"/></p>
 
 
 ---
