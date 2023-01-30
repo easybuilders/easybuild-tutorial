@@ -115,7 +115,7 @@ are correct, EasyBuild will use these easyblocks when needed.
 
 ## Structure of an easyblock
 
-The example below shows the overal structure of an easyblock:
+The example below shows the overall structure of an easyblock:
 
 ```python
 from easybuild.framework.easyblock import EasyBlock
