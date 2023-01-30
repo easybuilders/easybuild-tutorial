@@ -17,6 +17,8 @@ jobs:
       uses: codespell-project/actions-codespell@master
       with:
         check_filenames: true
+        # Ignore a listed standard mistake in CodeSpell by listing it in the same case that it appears in that list
+        # See https://github.com/codespell-project/codespell/blob/v2.2.1/codespell_lib/data/dictionary.txt
         ignore_words_list: UES,ues
         uri_ignore_words_list: UES,ues
 
