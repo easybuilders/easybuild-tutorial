@@ -17,6 +17,8 @@ jobs:
       uses: codespell-project/actions-codespell@master
       with:
         check_filenames: true
+        ignore_words_list: UES
+        uri_ignore_words_list: UES
 
     #- name: Markdown Linting Action
     #  uses: avto-dev/markdown-lint@v1.2.0
