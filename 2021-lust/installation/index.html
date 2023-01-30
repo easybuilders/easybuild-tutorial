@@ -10,8 +10,14 @@
       
         <link rel="canonical" href="https://easybuilders.github.io/easybuild-tutorial/2021-lust/installation/">
       
+      
+        <link rel="prev" href="../terminology/">
+      
+      
+        <link rel="next" href="../configuration/">
+      
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.16">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.8">
     
     
       
@@ -19,12 +25,13 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.1c3799f8.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0d440cfe.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.cc9b2e1e.min.css">
-        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
       
+      
+
     
     
     
@@ -37,10 +44,11 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
+    
     
     
   </head>
@@ -51,7 +59,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
   
     
     
@@ -116,7 +124,7 @@
       </label>
       <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
         </button>
       </nav>
@@ -128,7 +136,7 @@
           <div class="md-search-result__meta">
             Initializing search
           </div>
-          <ol class="md-search-result__list"></ol>
+          <ol class="md-search-result__list" role="presentation"></ol>
         </div>
       </div>
     </div>
@@ -140,7 +148,7 @@
         <a href="https://github.com/easybuilders" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     EasyBuild @ GitHub
@@ -184,7 +192,7 @@
       <a href="https://github.com/easybuilders" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     EasyBuild @ GitHub
@@ -220,17 +228,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_2">
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
           ISC'22 (29 May 2022)
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="ISC'22 (29 May 2022)" data-md-level="1">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
           ISC'22 (29 May 2022)
@@ -494,17 +503,18 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
       
       
       
-      
-        <label class="md-nav__link" for="__nav_3">
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
           Archive
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Archive" data-md-level="1">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           Archive
@@ -520,17 +530,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_3_1">
+        <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
           ISC'21 (25 June 2021)
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="ISC'21 (25 June 2021)" data-md-level="2">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_3_1">
           <span class="md-nav__icon md-icon"></span>
           ISC'21 (25 June 2021)
@@ -765,17 +776,18 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" checked>
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
       
       
       
-      
-        <label class="md-nav__link" for="__nav_3_2">
+        <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
           LUST (spring '21)
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="LUST (spring '21)" data-md-level="2">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_3_2">
           <span class="md-nav__icon md-icon"></span>
           LUST (spring '21)
@@ -807,17 +819,18 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_2" type="checkbox" id="__nav_3_2_2" checked>
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2" checked>
       
       
       
-      
-        <label class="md-nav__link" for="__nav_3_2_2">
+        <label class="md-nav__link" for="__nav_3_2_2" id="__nav_3_2_2_label" tabindex="0">
           Introduction to EasyBuild
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Introduction to EasyBuild" data-md-level="3">
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_2_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_3_2_2">
           <span class="md-nav__icon md-icon"></span>
           Introduction to EasyBuild
@@ -875,7 +888,7 @@
   
     <li class="md-nav__item md-nav__item--active">
       
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
         
@@ -1183,17 +1196,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_3" type="checkbox" id="__nav_3_2_3" >
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_3" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_3_2_3">
+        <label class="md-nav__link" for="__nav_3_2_3" id="__nav_3_2_3_label" tabindex="0">
           Using EasyBuild
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Using EasyBuild" data-md-level="3">
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_3_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_3_2_3">
           <span class="md-nav__icon md-icon"></span>
           Using EasyBuild
@@ -1272,17 +1286,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_4" type="checkbox" id="__nav_3_2_4" >
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_4" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_3_2_4">
+        <label class="md-nav__link" for="__nav_3_2_4" id="__nav_3_2_4_label" tabindex="0">
           Advanced topics
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Advanced topics" data-md-level="3">
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_4_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_3_2_4">
           <span class="md-nav__icon md-icon"></span>
           Advanced topics
@@ -1389,17 +1404,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_5" type="checkbox" id="__nav_3_2_5" >
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_5" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_3_2_5">
+        <label class="md-nav__link" for="__nav_3_2_5" id="__nav_3_2_5_label" tabindex="0">
           EasyBuild on Cray systems
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="EasyBuild on Cray systems" data-md-level="3">
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_5_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_3_2_5">
           <span class="md-nav__icon md-icon"></span>
           EasyBuild on Cray systems
@@ -1499,17 +1515,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_3_3">
+        <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
           ISC'20 (June '20)
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="ISC'20 (June '20)" data-md-level="2">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_3_3">
           <span class="md-nav__icon md-icon"></span>
           ISC'20 (June '20)
@@ -1998,13 +2015,14 @@
               </div>
             
           
-          <div class="md-content" data-md-component="content">
-            <article class="md-content__inner md-typeset">
-              
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
                 
-  <a href="https://github.com/easybuilders/easybuild-tutorial/edit/main/docs/2021-lust/installation.md" title="Edit this page" class="md-content__button md-icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
-  </a>
+                  
+
+  
+  
 
 
 
@@ -2042,7 +2060,7 @@ like development or contributing back to the project.</p>
 <p>EasyBuild is implemented in Python, and is <strong>compatible with both Python 2.7 and Python 3.5+</strong>
 (that is, Python 3.5 or a newer version of Python 3).</p>
 <p>To check which Python version you have, use:</p>
-<div class="highlight"><pre><span></span><code>python -V
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-V
 </code></pre></div>
 <p><em>No additional Python packages are required by EasyBuild</em>, the ones that come with the standard
 Python distribution are sufficient. Some additional Python packages <em>can</em> be leveraged for specific features.
@@ -2112,24 +2130,24 @@ instead to install EasyBuild.</p>
 </div>
 <h4 id="running-pip-install">Running <code>pip install</code><a class="headerlink" href="#running-pip-install" title="Permanent link">&para;</a></h4>
 <p>Installing EasyBuild with <code>pip</code> is as simple as running the following command:</p>
-<div class="highlight"><pre><span></span><code>pip install easybuild
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>easybuild
 </code></pre></div>
 <p>However, you may need to slightly change this command depending on the context and your personal preferences:</p>
 <ul>
 <li>
 <p>To install EasyBuild <em>system-wide</em>, you can use <code>sudo</code> (if you have admin privileges):
-  <div class="highlight"><pre><span></span><code>sudo pip install easybuild
+  <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>easybuild
 </code></pre></div></p>
 </li>
 <li>
 <p>To install EasyBuild <em>in your personal home directory</em>, you can use the <code>--user</code> option:
-  <div class="highlight"><pre><span></span><code>pip install --user easybuild
+  <div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>--user<span class="w"> </span>easybuild
 </code></pre></div>
   This will result in an EasyBuild installation in <code>$HOME/.local/</code>.</p>
 </li>
 <li>
 <p>To install EasyBuild in a <em>specific directory</em> you can use the <code>--prefix</code> option:
-  <div class="highlight"><pre><span></span><code>pip install --prefix _PREFIX_ easybuild
+  <div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>--prefix<span class="w"> </span>_PREFIX_<span class="w"> </span>easybuild
 </code></pre></div>
   In this command, you should replace '<code>_PREFIX_</code>' with the location where you want to have EasyBuild installed
   (for example, <code>$HOME/tools</code> or <code>/tmp/$USER</code>).</p>
@@ -2156,7 +2174,7 @@ To avoid this, you can update one of the shell startup scripts in your home dire
 </div>
 <h4 id="updating-path">Updating <code>$PATH</code><a class="headerlink" href="#updating-path" title="Permanent link">&para;</a></h4>
 <p>Update the <code>$PATH</code> environment variable to make sure the <code>eb</code> command is available:
-<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span>_PREFIX_/bin:<span class="nv">$PATH</span>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span>_PREFIX_/bin:<span class="nv">$PATH</span>
 </code></pre></div>
 <strong>Replace '<code>_PREFIX_</code>' in this command</strong> with the directory path where EasyBuild was installed into
 (use <code>$HOME/.local</code> if you used <code>pip install --user</code>).</p>
@@ -2171,7 +2189,7 @@ it can find the EasyBuild Python packages.</p>
 <code>$HOME/.local</code> when searching for installed Python packages, or if you installed EasyBuild in a standard
 system-wide location.</p>
 <p>Update <code>$PYTHONPATH</code> by running a command like:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">PYTHONPATH</span><span class="o">=</span>_PREFIX_/lib/pythonX.Y/site-packages:<span class="nv">$PYTHONPATH</span>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONPATH</span><span class="o">=</span>_PREFIX_/lib/pythonX.Y/site-packages:<span class="nv">$PYTHONPATH</span>
 </code></pre></div>
 <p>Here, you need to replace the <code>X</code> and <code>Y</code> with the major and minor version of your Python installation,
 which you can determine by running <code>python -V</code>.
@@ -2180,7 +2198,7 @@ For example, if you are using Python 3.6, make sure you are using <code>/python3
 into.</p>
 <p>For example:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># update $PYTHONPATH if EasyBuild was installed in $HOME/tools with Python 3.6</span>
-<span class="nb">export</span> <span class="nv">PYTHONPATH</span><span class="o">=</span><span class="nv">$HOME</span>/tools/lib/python3.6/site-packages:<span class="nv">$PYTHONPATH</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONPATH</span><span class="o">=</span><span class="nv">$HOME</span>/tools/lib/python3.6/site-packages:<span class="nv">$PYTHONPATH</span>
 </code></pre></div>
 <h4 id="setting-eb_python">Setting <code>$EB_PYTHON</code><a class="headerlink" href="#setting-eb_python" title="Permanent link">&para;</a></h4>
 <p>If you want to control which Python version is used to run EasyBuild,
@@ -2189,17 +2207,17 @@ via the <code>$EB_PYTHON</code> environment variable.</p>
 <p>This may be required when you installing EasyBuild with a version of <code>pip</code> that does not correspond
 with the default Python version.</p>
 <p>For example, to ensure that <code>eb</code> uses <code>python3.6</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">EB_PYTHON</span><span class="o">=</span>python3.6
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">EB_PYTHON</span><span class="o">=</span>python3.6
 </code></pre></div>
 <h4 id="setting-eb_verbose">Setting <code>$EB_VERBOSE</code><a class="headerlink" href="#setting-eb_verbose" title="Permanent link">&para;</a></h4>
 <p>To determine which <code>python</code> commands are being considered by the <code>eb</code> command,
 you can define the <code>$EB_VERBOSE</code> environment variable. For example:</p>
-<div class="highlight"><pre><span></span><code>$ <span class="nv">EB_VERBOSE</span><span class="o">=</span><span class="m">1</span> eb --version
-&gt;&gt; Considering <span class="s1">&#39;python3.6&#39;</span>...
-&gt;&gt; <span class="s1">&#39;python3&#39;</span> version: <span class="m">3</span>.6.8, which matches Python <span class="m">3</span> version requirement <span class="o">(</span>&gt;<span class="o">=</span> <span class="m">3</span>.5<span class="o">)</span>
-&gt;&gt; Selected Python command: python3 <span class="o">(</span>/usr/bin/python3.6<span class="o">)</span>
-&gt;&gt; python3.6 -m easybuild.main --version
-This is EasyBuild <span class="m">4</span>.3.3 <span class="o">(</span>framework: <span class="m">4</span>.3.3, easyblocks: <span class="m">4</span>.3.3<span class="o">)</span> on host example
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nv">EB_VERBOSE</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>eb<span class="w"> </span>--version
+&gt;&gt;<span class="w"> </span>Considering<span class="w"> </span><span class="s1">&#39;python3.6&#39;</span>...
+&gt;&gt;<span class="w"> </span><span class="s1">&#39;python3&#39;</span><span class="w"> </span>version:<span class="w"> </span><span class="m">3</span>.6.8,<span class="w"> </span>which<span class="w"> </span>matches<span class="w"> </span>Python<span class="w"> </span><span class="m">3</span><span class="w"> </span>version<span class="w"> </span>requirement<span class="w"> </span><span class="o">(</span>&gt;<span class="o">=</span><span class="w"> </span><span class="m">3</span>.5<span class="o">)</span>
+&gt;&gt;<span class="w"> </span>Selected<span class="w"> </span>Python<span class="w"> </span>command:<span class="w"> </span>python3<span class="w"> </span><span class="o">(</span>/usr/bin/python3.6<span class="o">)</span>
+&gt;&gt;<span class="w"> </span>python3.6<span class="w"> </span>-m<span class="w"> </span>easybuild.main<span class="w"> </span>--version
+This<span class="w"> </span>is<span class="w"> </span>EasyBuild<span class="w"> </span><span class="m">4</span>.3.3<span class="w"> </span><span class="o">(</span>framework:<span class="w"> </span><span class="m">4</span>.3.3,<span class="w"> </span>easyblocks:<span class="w"> </span><span class="m">4</span>.3.3<span class="o">)</span><span class="w"> </span>on<span class="w"> </span>host<span class="w"> </span>example
 </code></pre></div>
 <hr />
 <h3 id="method-2-installing-easybuild-with-easybuild">Method 2: Installing EasyBuild with EasyBuild<a class="headerlink" href="#method-2-installing-easybuild-with-easybuild" title="Permanent link">&para;</a></h3>
@@ -2229,13 +2247,13 @@ maintained anymore.</p>
 The recommended way of doing this is <a href="#method-1-using-pip">using <code>pip</code></a>.</p>
 <p>For example, to install EasyBuild into a subdirectory <code>/tmp/$USER</code> using the default Python 3 version:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># pick installation prefix, and install EasyBuild into it</span>
-<span class="nb">export</span> <span class="nv">EB_TMPDIR</span><span class="o">=</span>/tmp/<span class="nv">$USER</span>/eb_tmp
-python3 -m pip install --ignore-installed --prefix <span class="nv">$EB_TMPDIR</span> easybuild
+<span class="nb">export</span><span class="w"> </span><span class="nv">EB_TMPDIR</span><span class="o">=</span>/tmp/<span class="nv">$USER</span>/eb_tmp
+python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--ignore-installed<span class="w"> </span>--prefix<span class="w"> </span><span class="nv">$EB_TMPDIR</span><span class="w"> </span>easybuild
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="c1"># update environment to use this temporary EasyBuild installation</span>
-<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$EB_TMPDIR</span>/bin:<span class="nv">$PATH</span>
-<span class="nb">export</span> <span class="nv">PYTHONPATH</span><span class="o">=</span><span class="k">$(</span>/bin/ls -rtd -1 <span class="nv">$EB_TMPDIR</span>/lib*/python*/site-packages <span class="p">|</span> tail -1<span class="k">)</span>:<span class="nv">$PYTHONPATH</span>
-<span class="nb">export</span> <span class="nv">EB_PYTHON</span><span class="o">=</span>python3
+<span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$EB_TMPDIR</span>/bin:<span class="nv">$PATH</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONPATH</span><span class="o">=</span><span class="k">$(</span>/bin/ls<span class="w"> </span>-rtd<span class="w"> </span>-1<span class="w"> </span><span class="nv">$EB_TMPDIR</span>/lib*/python*/site-packages<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-1<span class="k">)</span>:<span class="nv">$PYTHONPATH</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">EB_PYTHON</span><span class="o">=</span>python3
 </code></pre></div>
 <h4 id="step-2-using-easybuild-to-install-easybuild">Step 2: Using EasyBuild to install EasyBuild<a class="headerlink" href="#step-2-using-easybuild-to-install-easybuild" title="Permanent link">&para;</a></h4>
 <p>Once you have a working (recent) temporary EasyBuild installation, you can use it to
@@ -2244,7 +2262,7 @@ like to install other software too.</p>
 <p>You can use the <code>eb --install-latest-eb-release</code> command for this,
 combined with the <code>--prefix</code> option to control which directories are used by EasyBuild for the installation.</p>
 <p>For example, to install the latest version of EasyBuild as a module into <code>$HOME/easybuild</code>:</p>
-<div class="highlight"><pre><span></span><code>eb --install-latest-eb-release --prefix <span class="nv">$HOME</span>/easybuild
+<div class="highlight"><pre><span></span><code>eb<span class="w"> </span>--install-latest-eb-release<span class="w"> </span>--prefix<span class="w"> </span><span class="nv">$HOME</span>/easybuild
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -2255,12 +2273,12 @@ combined with the <code>--prefix</code> option to control which directories are 
 the EasyBuild installation. You will need to do this every time you start a new shell session.</p>
 <p>First, make the module available by running the following command (which will update the module search path
 environment variable <code>$MODULEPATH</code>):</p>
-<div class="highlight"><pre><span></span><code>module use _PREFIX_/modules/all
+<div class="highlight"><pre><span></span><code>module<span class="w"> </span>use<span class="w"> </span>_PREFIX_/modules/all
 </code></pre></div>
 <p><strong>Replace '<code>_PREFIX_</code>'</strong> with the path to the directory that you used when running step 2
 (for example, <code>$HOME/easybuild</code>).</p>
 <p>Then, load the <code>EasyBuild</code> module to update your environment and make EasyBuild available for use:</p>
-<div class="highlight"><pre><span></span><code>module load EasyBuild
+<div class="highlight"><pre><span></span><code>module<span class="w"> </span>load<span class="w"> </span>EasyBuild
 </code></pre></div>
 <p>Note that in this case, we don't need to make any changes to our environment for EasyBuild to work correctly.
 The environment module file that was generated by EasyBuild specifies all changes that need to be made.</p>
@@ -2269,43 +2287,43 @@ The environment module file that was generated by EasyBuild specifies all change
 version of EasyBuild that is being developed, you can consider <em>cloning</em> the 3 main EasyBuild repositories
 from GitHub, and updating your environment to run EasyBuild from there.</p>
 <p>This can be done as follows (into <code>$HOME/easybuild</code>):</p>
-<div class="highlight"><pre><span></span><code>mkdir -p <span class="nv">$HOME</span>/easybuild
-<span class="nb">cd</span> <span class="nv">$HOME</span>/easybuild
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$HOME</span>/easybuild
+<span class="nb">cd</span><span class="w"> </span><span class="nv">$HOME</span>/easybuild
 </code></pre></div>
 <p><div class="highlight"><pre><span></span><code><span class="c1"># clone EasyBuild repositories from GitHub</span>
-git clone https://github.com/easybuilders/easybuild-framework.git
-git clone https://github.com/easybuilders/easybuild-easyblocks.git
-git clone https://github.com/easybuilders/easybuild-easyconfigs.git
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/easybuilders/easybuild-framework.git
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/easybuilders/easybuild-easyblocks.git
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/easybuilders/easybuild-easyconfigs.git
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="c1"># update environment for running EasyBuild from there</span>
-<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$HOME</span>/easybuild/easybuild-framework:<span class="nv">$PATH</span>
-<span class="nb">export</span> <span class="nv">PYTHONPATH</span><span class="o">=</span><span class="nv">$HOME</span>/easybuild/easybuild-framework:<span class="nv">$HOME</span>/easybuild/easybuild-easyblocks:<span class="nv">$HOME</span>/easybuild/easybuild-easyconfigs:<span class="nv">$PYTHONPATH</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$HOME</span>/easybuild/easybuild-framework:<span class="nv">$PATH</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONPATH</span><span class="o">=</span><span class="nv">$HOME</span>/easybuild/easybuild-framework:<span class="nv">$HOME</span>/easybuild/easybuild-easyblocks:<span class="nv">$HOME</span>/easybuild/easybuild-easyconfigs:<span class="nv">$PYTHONPATH</span>
 
 <span class="c1"># control which Python command is used to run EasyBuild</span>
-<span class="nb">export</span> <span class="nv">EB_PYTHON</span><span class="o">=</span>python3
+<span class="nb">export</span><span class="w"> </span><span class="nv">EB_PYTHON</span><span class="o">=</span>python3
 </code></pre></div></p>
 <h2 id="verifying-the-installation">Verifying the installation<a class="headerlink" href="#verifying-the-installation" title="Permanent link">&para;</a></h2>
 <p>Regardless of how EasyBuild was installed, you can now run a couple of basic commands to verify the installation:</p>
 <h4 id="checking-the-version">Checking the version<a class="headerlink" href="#checking-the-version" title="Permanent link">&para;</a></h4>
 <p>To check which EasyBuild version you have installed, run:</p>
-<div class="highlight"><pre><span></span><code>eb --version
+<div class="highlight"><pre><span></span><code>eb<span class="w"> </span>--version
 </code></pre></div>
 <p>The output should match with the <a href="https://pypi.org/project/easybuild/">latest EasyBuild version</a>.</p>
 <h4 id="consulting-the-help-output">Consulting the help output<a class="headerlink" href="#consulting-the-help-output" title="Permanent link">&para;</a></h4>
 <p>You can consult the help output of the <code>eb</code> command, which produces a long list of available options
 along with a short informative message.</p>
-<div class="highlight"><pre><span></span><code>eb --help
+<div class="highlight"><pre><span></span><code>eb<span class="w"> </span>--help
 </code></pre></div>
 <h4 id="showing-the-default-easybuild-configuration">Showing the default EasyBuild configuration<a class="headerlink" href="#showing-the-default-easybuild-configuration" title="Permanent link">&para;</a></h4>
 <p>To inspect the current EasyBuild configuration, you can use this command:</p>
-<div class="highlight"><pre><span></span><code>eb --show-config
+<div class="highlight"><pre><span></span><code>eb<span class="w"> </span>--show-config
 </code></pre></div>
 <p>This should tell you that EasyBuild (ab)uses <code>$HOME/.local/easybuild</code> as a default location.
 More on configuring EasyBuild in the <a href="../configuration/">next part of the tutorial</a>.</p>
 <h4 id="system-information">System information<a class="headerlink" href="#system-information" title="Permanent link">&para;</a></h4>
 <p>You ask EasyBuild to collect and print some information about the
 system you are using it on (OS, CPU, Python, etc.) using this command:</p>
-<div class="highlight"><pre><span></span><code>eb --show-system-info
+<div class="highlight"><pre><span></span><code>eb<span class="w"> </span>--show-system-info
 </code></pre></div>
 <h2 id="updating-easybuild">Updating EasyBuild<a class="headerlink" href="#updating-easybuild" title="Permanent link">&para;</a></h2>
 <p>Before we wrap up here, a brief word about updating EasyBuild.</p>
@@ -2348,49 +2366,20 @@ with the rest of the tutorial!</strong></p>
   </small>
 </div>
 
-              
-            </article>
-          </div>
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
         </div>
         
       </main>
       
         <footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        
-        <a href="../terminology/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Terminology" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Terminology
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../configuration/" class="md-footer__link md-footer__link--next" aria-label="Next: Configuration" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Configuration
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -2412,7 +2401,7 @@ with the rest of the tutorial!</strong></p>
       
     
     <a href="https://twitter.com/easy_build" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
     </a>
   
     
@@ -2421,7 +2410,7 @@ with the rest of the tutorial!</strong></p>
       
     
     <a href="https://www.youtube.com/c/easybuilders" target="_blank" rel="noopener" title="www.youtube.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
     </a>
   
     
@@ -2430,7 +2419,7 @@ with the rest of the tutorial!</strong></p>
       
     
     <a href="https://easybuild.readthedocs.io" target="_blank" rel="noopener" title="easybuild.readthedocs.io" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M448 336V48c0-26.51-21.5-48-48-48H96C42.98 0 0 42.98 0 96v320c0 53.02 42.98 96 96 96h320c17.67 0 32-14.33 32-31.1 0-11.72-6.607-21.52-16-27.1v-81.36c9.8-9.64 16-22.24 16-36.44zM143.1 128h192c9.7 0 16.9 7.2 16.9 16s-7.2 16-16 16H143.1c-7.9 0-15.1-7.2-15.1-16s7.2-16 15.1-16zm0 64h192c9.7 0 16.9 7.2 16.9 16s-7.2 16-16 16H143.1c-7.9 0-15.1-7.2-15.1-16s7.2-16 15.1-16zM384 448H96c-17.67 0-32-14.33-32-32s14.33-32 32-32h288v64z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M96 0C43 0 0 43 0 96v320c0 53 43 96 96 96h320c17.7 0 32-14.3 32-32s-14.3-32-32-32v-64c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H96zm0 384h256v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16h192c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16zm16 48h192c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg>
     </a>
   
 </div>
@@ -2443,10 +2432,11 @@ with the rest of the tutorial!</strong></p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["instant"], "search": "../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["instant"], "search": "../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.3a4b43e5.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a00a7c5e.min.js"></script>
       
     
   </body>

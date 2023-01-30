@@ -10,8 +10,14 @@
       
         <link rel="canonical" href="https://easybuilders.github.io/easybuild-tutorial/2022-isc22/contributing/">
       
+      
+        <link rel="prev" href="../community/">
+      
+      
+        <link rel="next" href="../comparison_other_tools/">
+      
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.16">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.8">
     
     
       
@@ -19,12 +25,13 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.1c3799f8.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0d440cfe.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.cc9b2e1e.min.css">
-        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
       
+      
+
     
     
     
@@ -37,10 +44,11 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
+    
     
     
   </head>
@@ -51,7 +59,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
   
     
     
@@ -116,7 +124,7 @@
       </label>
       <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
         </button>
       </nav>
@@ -128,7 +136,7 @@
           <div class="md-search-result__meta">
             Initializing search
           </div>
-          <ol class="md-search-result__list"></ol>
+          <ol class="md-search-result__list" role="presentation"></ol>
         </div>
       </div>
     </div>
@@ -140,7 +148,7 @@
         <a href="https://github.com/easybuilders" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     EasyBuild @ GitHub
@@ -184,7 +192,7 @@
       <a href="https://github.com/easybuilders" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     EasyBuild @ GitHub
@@ -222,17 +230,18 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
       
       
       
-      
-        <label class="md-nav__link" for="__nav_2">
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
           ISC'22 (29 May 2022)
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="ISC'22 (29 May 2022)" data-md-level="1">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
           ISC'22 (29 May 2022)
@@ -458,7 +467,7 @@
   
     <li class="md-nav__item md-nav__item--active">
       
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
         
@@ -603,17 +612,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_3">
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
           Archive
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Archive" data-md-level="1">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           Archive
@@ -629,17 +639,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_3_1">
+        <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
           ISC'21 (25 June 2021)
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="ISC'21 (25 June 2021)" data-md-level="2">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_3_1">
           <span class="md-nav__icon md-icon"></span>
           ISC'21 (25 June 2021)
@@ -872,17 +883,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_3_2">
+        <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
           LUST (spring '21)
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="LUST (spring '21)" data-md-level="2">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_3_2">
           <span class="md-nav__icon md-icon"></span>
           LUST (spring '21)
@@ -912,17 +924,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_2" type="checkbox" id="__nav_3_2_2" >
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_3_2_2">
+        <label class="md-nav__link" for="__nav_3_2_2" id="__nav_3_2_2_label" tabindex="0">
           Introduction to EasyBuild
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Introduction to EasyBuild" data-md-level="3">
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_2_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_3_2_2">
           <span class="md-nav__icon md-icon"></span>
           Introduction to EasyBuild
@@ -1029,17 +1042,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_3" type="checkbox" id="__nav_3_2_3" >
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_3" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_3_2_3">
+        <label class="md-nav__link" for="__nav_3_2_3" id="__nav_3_2_3_label" tabindex="0">
           Using EasyBuild
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Using EasyBuild" data-md-level="3">
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_3_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_3_2_3">
           <span class="md-nav__icon md-icon"></span>
           Using EasyBuild
@@ -1118,17 +1132,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_4" type="checkbox" id="__nav_3_2_4" >
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_4" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_3_2_4">
+        <label class="md-nav__link" for="__nav_3_2_4" id="__nav_3_2_4_label" tabindex="0">
           Advanced topics
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Advanced topics" data-md-level="3">
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_4_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_3_2_4">
           <span class="md-nav__icon md-icon"></span>
           Advanced topics
@@ -1235,17 +1250,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_5" type="checkbox" id="__nav_3_2_5" >
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_5" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_3_2_5">
+        <label class="md-nav__link" for="__nav_3_2_5" id="__nav_3_2_5_label" tabindex="0">
           EasyBuild on Cray systems
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="EasyBuild on Cray systems" data-md-level="3">
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_5_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_3_2_5">
           <span class="md-nav__icon md-icon"></span>
           EasyBuild on Cray systems
@@ -1345,17 +1361,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_3_3">
+        <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
           ISC'20 (June '20)
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="ISC'20 (June '20)" data-md-level="2">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_3_3">
           <span class="md-nav__icon md-icon"></span>
           ISC'20 (June '20)
@@ -1694,13 +1711,14 @@
               </div>
             
           
-          <div class="md-content" data-md-component="content">
-            <article class="md-content__inner md-typeset">
-              
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
                 
-  <a href="https://github.com/easybuilders/easybuild-tutorial/edit/main/docs/2022-isc22/contributing.md" title="Edit this page" class="md-content__button md-icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
-  </a>
+                  
+
+  
+  
 
 
 
@@ -1710,9 +1728,9 @@ you will need to be a bit familiar with Git and GitHub. Or maybe not?</p>
 <h2 id="manual-contribution-procedure">Manual contribution procedure<a class="headerlink" href="#manual-contribution-procedure" title="Permanent link">&para;</a></h2>
 <p>0) Create and setup a <a href="https://github.com/join">GitHub account</a> (and register your SSH public key);</p>
 <p>1) Clone and fork the appropriate GitHub repository, for example when contributing an easyconfig file:</p>
-<div class="highlight"><pre><span></span><code>git clone git@github.com:easybuilders/easybuild-easyconfigs.git
-<span class="nb">cd</span> easybuild-easyconfigs
-git remote add my_fork git@github.com:your_github_account/easybuild-easyconfigs.git
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:easybuilders/easybuild-easyconfigs.git
+<span class="nb">cd</span><span class="w"> </span>easybuild-easyconfigs
+git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>my_fork<span class="w"> </span>git@github.com:your_github_account/easybuild-easyconfigs.git
 </code></pre></div>
 <p><strong>You should change '<code>your_github_account</code>' in the last line to your own GitHub user name!</strong></p>
 <p>2) Create and check out a new branch, starting from the (up-to-date) <code>develop</code> branch:</p>
@@ -1722,15 +1740,15 @@ git checkout -b example
 </code></pre></div>
 <p>3) Stage the changes you want to contribute, after you make sure that your easyconfig file has the
 <a href="../basic_usage/#easyconfig-filenames">correct filename</a>, and that it's located in the appropriate directory.</p>
-<div class="highlight"><pre><span></span><code>mkdir -p easybuild/easyconfigs/e/example/
-mv example.eb easybuild/easyconfigs/e/example/example-1.2.3-GCC-9.3.0.eb
-git add easybuild/easyconfigs/e/example/example-1.2.3-GCC-9.3.0.eb
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>easybuild/easyconfigs/e/example/
+mv<span class="w"> </span>example.eb<span class="w"> </span>easybuild/easyconfigs/e/example/example-1.2.3-GCC-9.3.0.eb
+git<span class="w"> </span>add<span class="w"> </span>easybuild/easyconfigs/e/example/example-1.2.3-GCC-9.3.0.eb
 </code></pre></div>
 <p>4) Commit those changes with a sensible commit message:</p>
-<div class="highlight"><pre><span></span><code>git commit -m <span class="s2">&quot;This is just an example&quot;</span>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;This is just an example&quot;</span>
 </code></pre></div>
 <p>5) Push your branch to your fork of the repository on GitHub:</p>
-<div class="highlight"><pre><span></span><code>git push my_fork example
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>push<span class="w"> </span>my_fork<span class="w"> </span>example
 </code></pre></div>
 <p>6) Open the pull request through the GitHub web interface, making sure that:</p>
 <ul>
@@ -1766,7 +1784,7 @@ and configuration.</p>
 <p><strong>Additional dependencies</strong></p>
 <p>Both the <code>GitPython</code> and <code>keyring</code> Python packages as well as the <code>keyrings.cryptfile</code> add-on package must be installed.
 In the prepared environment, you can do this via:</p>
-<div class="highlight"><pre><span></span><code>pip3 install --user GitPython keyring keyrings.cryptfile
+<div class="highlight"><pre><span></span><code>pip3<span class="w"> </span>install<span class="w"> </span>--user<span class="w"> </span>GitPython<span class="w"> </span>keyring<span class="w"> </span>keyrings.cryptfile
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1775,17 +1793,17 @@ which is a dependency of keyring. The underlying cause is that you need to have
 the <a href="https://www.rust-lang.org/"><code>Rust</code></a> compiler installed to install the latest version
 of <code>cryptography</code> (see <a href="https://github.com/pyca/cryptography/issues/5771">here</a>).</p>
 <p>You can work around this issue using:</p>
-<div class="highlight"><pre><span></span><code>pip3 install --user <span class="s1">&#39;cryptography&lt;3.4&#39;</span>
+<div class="highlight"><pre><span></span><code>pip3<span class="w"> </span>install<span class="w"> </span>--user<span class="w"> </span><span class="s1">&#39;cryptography&lt;3.4&#39;</span>
 </code></pre></div>
 </div>
 <p><strong>SSH public key in GitHub account</strong></p>
 <p>You need to have a GitHub account that has your SSH public key registered in it
 (via <a href="https://github.com/settings/keys">https://github.com/settings/keys</a>).</p>
 <p>If you need to generate an SSH key pair, you can run the following command:</p>
-<div class="highlight"><pre><span></span><code>ssh-keygen -a <span class="m">100</span> -t ed25519
+<div class="highlight"><pre><span></span><code>ssh-keygen<span class="w"> </span>-a<span class="w"> </span><span class="m">100</span><span class="w"> </span>-t<span class="w"> </span>ed25519
 </code></pre></div>
 <p>You can copy the SSH public key from the output of this command:</p>
-<div class="highlight"><pre><span></span><code>cat .ssh/id_ed25519.pub
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>.ssh/id_ed25519.pub
 </code></pre></div>
 <p><strong>Forked repository in GitHub</strong></p>
 <p>In addition, you must have <em>forked</em> the EasyBuild repository you want to contribute to
@@ -1797,8 +1815,8 @@ in GitHub with your credentials.</p>
 <p>To do this, you should define the <code>github-user</code> configuration option and
 run the "<code>eb --install-github-token</code>" command:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># replace &#39;ebtutorial&#39; with your own GitHub username!</span>
-$ <span class="nb">export</span> <span class="nv">EASYBUILD_GITHUB_USER</span><span class="o">=</span>ebtutorial
-$ eb --install-github-token
+$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">EASYBUILD_GITHUB_USER</span><span class="o">=</span>ebtutorial
+$<span class="w"> </span>eb<span class="w"> </span>--install-github-token
 </code></pre></div>
 <p>To create a GitHub token:</p>
 <ul>
@@ -1813,41 +1831,41 @@ $ eb --install-github-token
 <li>Enter a password to encrypt your GitHub token.</li>
 </ul>
 <p>The output should look something like this:</p>
-<div class="highlight"><pre><span></span><code>$ eb --install-github-token
-<span class="o">==</span> temporary log file <span class="k">in</span> <span class="k">case</span> of crash /tmp/eb-9z0bdve9/easybuild-hfpti62w.log
-Token: 
-Validating token...
-Token seems to be valid, installing it.
-Please <span class="nb">set</span> a password <span class="k">for</span> your new keyring: 
-Please confirm the password:
-Token <span class="s1">&#39;fed..987&#39;</span> installed!
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>eb<span class="w"> </span>--install-github-token
+<span class="o">==</span><span class="w"> </span>temporary<span class="w"> </span>log<span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">case</span><span class="w"> </span>of<span class="w"> </span>crash<span class="w"> </span>/tmp/eb-9z0bdve9/easybuild-hfpti62w.log
+Token:<span class="w"> </span>
+Validating<span class="w"> </span>token...
+Token<span class="w"> </span>seems<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>valid,<span class="w"> </span>installing<span class="w"> </span>it.
+Please<span class="w"> </span><span class="nb">set</span><span class="w"> </span>a<span class="w"> </span>password<span class="w"> </span><span class="k">for</span><span class="w"> </span>your<span class="w"> </span>new<span class="w"> </span>keyring:<span class="w"> </span>
+Please<span class="w"> </span>confirm<span class="w"> </span>the<span class="w"> </span>password:
+Token<span class="w"> </span><span class="s1">&#39;fed..987&#39;</span><span class="w"> </span>installed!
 </code></pre></div>
 <p><strong>Checking status of GitHub integration</strong></p>
 <p>You can check the status of the GitHub integration using "<code>eb --check-github</code>":</p>
-<div class="highlight"><pre><span></span><code>$ eb --check-github
-<span class="o">==</span> temporary log file <span class="k">in</span> <span class="k">case</span> of crash /tmp/eb-4ckdlyfy/easybuild-gp69ev2w.log
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>eb<span class="w"> </span>--check-github
+<span class="o">==</span><span class="w"> </span>temporary<span class="w"> </span>log<span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">case</span><span class="w"> </span>of<span class="w"> </span>crash<span class="w"> </span>/tmp/eb-4ckdlyfy/easybuild-gp69ev2w.log
 
-Checking status of GitHub integration...
+Checking<span class="w"> </span>status<span class="w"> </span>of<span class="w"> </span>GitHub<span class="w"> </span>integration...
 
-Making sure we<span class="err">&#39;</span>re online...OK
+Making<span class="w"> </span>sure<span class="w"> </span>we<span class="err">&#39;</span>re<span class="w"> </span>online...OK
 
-* GitHub user...ebtutorial <span class="o">=</span>&gt; OK
-Please enter password <span class="k">for</span> encrypted keyring:
-* GitHub token...fed..987 <span class="o">(</span>len: <span class="m">40</span><span class="o">)</span> <span class="o">=</span>&gt; OK <span class="o">(</span>validated<span class="o">)</span>
-* git command...OK <span class="o">(</span><span class="s2">&quot;git version 1.8.3.1; &quot;</span><span class="o">)</span>
-* GitPython module...OK <span class="o">(</span>GitPython version <span class="m">3</span>.1.3<span class="o">)</span>
-* push access to ebtutorial/easybuild-easyconfigs repo @ GitHub...OK
-* creating gists...OK
-* location to Git working dirs... not found <span class="o">(</span>suboptimal<span class="o">)</span>
+*<span class="w"> </span>GitHub<span class="w"> </span>user...ebtutorial<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>OK
+Please<span class="w"> </span>enter<span class="w"> </span>password<span class="w"> </span><span class="k">for</span><span class="w"> </span>encrypted<span class="w"> </span>keyring:
+*<span class="w"> </span>GitHub<span class="w"> </span>token...fed..987<span class="w"> </span><span class="o">(</span>len:<span class="w"> </span><span class="m">40</span><span class="o">)</span><span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>OK<span class="w"> </span><span class="o">(</span>validated<span class="o">)</span>
+*<span class="w"> </span>git<span class="w"> </span>command...OK<span class="w"> </span><span class="o">(</span><span class="s2">&quot;git version 1.8.3.1; &quot;</span><span class="o">)</span>
+*<span class="w"> </span>GitPython<span class="w"> </span>module...OK<span class="w"> </span><span class="o">(</span>GitPython<span class="w"> </span>version<span class="w"> </span><span class="m">3</span>.1.3<span class="o">)</span>
+*<span class="w"> </span>push<span class="w"> </span>access<span class="w"> </span>to<span class="w"> </span>ebtutorial/easybuild-easyconfigs<span class="w"> </span>repo<span class="w"> </span>@<span class="w"> </span>GitHub...OK
+*<span class="w"> </span>creating<span class="w"> </span>gists...OK
+*<span class="w"> </span>location<span class="w"> </span>to<span class="w"> </span>Git<span class="w"> </span>working<span class="w"> </span>dirs...<span class="w"> </span>not<span class="w"> </span>found<span class="w"> </span><span class="o">(</span>suboptimal<span class="o">)</span>
 
-All checks PASSed!
+All<span class="w"> </span>checks<span class="w"> </span>PASSed!
 
-Status of GitHub integration:
-* --from-pr: OK
-* --new-pr: OK
-* --review-pr: OK
-* --update-pr: OK
-* --upload-test-report: OK
+Status<span class="w"> </span>of<span class="w"> </span>GitHub<span class="w"> </span>integration:
+*<span class="w"> </span>--from-pr:<span class="w"> </span>OK
+*<span class="w"> </span>--new-pr:<span class="w"> </span>OK
+*<span class="w"> </span>--review-pr:<span class="w"> </span>OK
+*<span class="w"> </span>--update-pr:<span class="w"> </span>OK
+*<span class="w"> </span>--upload-test-report:<span class="w"> </span>OK
 </code></pre></div>
 <p>If you see '<code>OK</code>' for each of the status checks, you're all set
 to try out the GitHub integration features!</p>
@@ -1930,7 +1948,7 @@ and submit a test report in it.</p>
 <p>We first configure EasyBuild to target the <code>ebtutorial</code> GitHub account rather
 than the default <code>easybuilders</code> GitHub organisation,
 by defining the <code>pr-target-account</code> configuration setting:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">EASYBUILD_PR_TARGET_ACCOUNT</span><span class="o">=</span>ebtutorial
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">EASYBUILD_PR_TARGET_ACCOUNT</span><span class="o">=</span>ebtutorial
 </code></pre></div>
 <p>In the output of "<code>eb --show-config</code>" you should see a line like this:</p>
 <div class="highlight"><pre><span></span><code>pr-target-account (E) = ebtutorial
@@ -1939,32 +1957,32 @@ by defining the <code>pr-target-account</code> configuration setting:</p>
 example software are opened in the <a href="https://github.com/easybuilders/easybuild-easyconfigs">central easyconfigs repository</a>.</p>
 <p>Opening a pull request is as simple as running "<code>eb --new-pr</code>" and passing
 the easyconfig file:</p>
-<div class="highlight"><pre><span></span><code>$ eb --new-pr example.eb
-<span class="o">==</span> temporary log file <span class="k">in</span> <span class="k">case</span> of crash /tmp/eb-ggr6scbq/easybuild-hnk271xj.log
-<span class="o">==</span> found valid index <span class="k">for</span> /home/example/.local/easybuild/easyconfigs, so using it...
-<span class="o">==</span> fetching branch <span class="s1">&#39;develop&#39;</span> from https://github.com/ebtutorial/easybuild-easyconfigs.git...
-<span class="o">==</span> copying files to /tmp/eb-ggr6scbq/git-working-dirxwk1fzaw/easybuild-easyconfigs...
-<span class="o">==</span> pushing branch <span class="s1">&#39;20200622095415_new_pr_eb-tutorial100&#39;</span> to remote <span class="s1">&#39;github_ebtutorial_qgtfU&#39;</span> <span class="o">(</span>git@github.com:ebtutorial/easybuild-easyconfigs.git<span class="o">)</span>
-Enter passphrase <span class="k">for</span> key <span class="s1">&#39;/home/example/.ssh/id_rsa&#39;</span>: 
-Please enter password <span class="k">for</span> encrypted keyring:
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>eb<span class="w"> </span>--new-pr<span class="w"> </span>example.eb
+<span class="o">==</span><span class="w"> </span>temporary<span class="w"> </span>log<span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">case</span><span class="w"> </span>of<span class="w"> </span>crash<span class="w"> </span>/tmp/eb-ggr6scbq/easybuild-hnk271xj.log
+<span class="o">==</span><span class="w"> </span>found<span class="w"> </span>valid<span class="w"> </span>index<span class="w"> </span><span class="k">for</span><span class="w"> </span>/home/example/.local/easybuild/easyconfigs,<span class="w"> </span>so<span class="w"> </span>using<span class="w"> </span>it...
+<span class="o">==</span><span class="w"> </span>fetching<span class="w"> </span>branch<span class="w"> </span><span class="s1">&#39;develop&#39;</span><span class="w"> </span>from<span class="w"> </span>https://github.com/ebtutorial/easybuild-easyconfigs.git...
+<span class="o">==</span><span class="w"> </span>copying<span class="w"> </span>files<span class="w"> </span>to<span class="w"> </span>/tmp/eb-ggr6scbq/git-working-dirxwk1fzaw/easybuild-easyconfigs...
+<span class="o">==</span><span class="w"> </span>pushing<span class="w"> </span>branch<span class="w"> </span><span class="s1">&#39;20200622095415_new_pr_eb-tutorial100&#39;</span><span class="w"> </span>to<span class="w"> </span>remote<span class="w"> </span><span class="s1">&#39;github_ebtutorial_qgtfU&#39;</span><span class="w"> </span><span class="o">(</span>git@github.com:ebtutorial/easybuild-easyconfigs.git<span class="o">)</span>
+Enter<span class="w"> </span>passphrase<span class="w"> </span><span class="k">for</span><span class="w"> </span>key<span class="w"> </span><span class="s1">&#39;/home/example/.ssh/id_rsa&#39;</span>:<span class="w"> </span>
+Please<span class="w"> </span>enter<span class="w"> </span>password<span class="w"> </span><span class="k">for</span><span class="w"> </span>encrypted<span class="w"> </span>keyring:
 
-Opening pull request
-* target: ebtutorial/easybuild-easyconfigs:develop
-* from: ebtutorial/easybuild-easyconfigs:20200622095415_new_pr_eb-tutorial100
-* title: <span class="s2">&quot;{tools}[GCC/11.2.0] eb-tutorial v1.0.1&quot;</span>
-* labels: new
-* description:
+Opening<span class="w"> </span>pull<span class="w"> </span>request
+*<span class="w"> </span>target:<span class="w"> </span>ebtutorial/easybuild-easyconfigs:develop
+*<span class="w"> </span>from:<span class="w"> </span>ebtutorial/easybuild-easyconfigs:20200622095415_new_pr_eb-tutorial100
+*<span class="w"> </span>title:<span class="w"> </span><span class="s2">&quot;{tools}[GCC/11.2.0] eb-tutorial v1.0.1&quot;</span>
+*<span class="w"> </span>labels:<span class="w"> </span>new
+*<span class="w"> </span>description:
 <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">(created using `eb --new-pr`)</span>
 
 <span class="s2">&quot;&quot;&quot;</span>
-* overview of changes:
- easybuild/easyconfigs/e/eb-tutorial/eb-tutorial-1.0.1-GCC-11.2.0.eb <span class="p">|</span> <span class="m">26</span> ++++++++++++++++++++++++++
- <span class="m">1</span> file changed, <span class="m">26</span> insertions<span class="o">(</span>+<span class="o">)</span>
+*<span class="w"> </span>overview<span class="w"> </span>of<span class="w"> </span>changes:
+<span class="w"> </span>easybuild/easyconfigs/e/eb-tutorial/eb-tutorial-1.0.1-GCC-11.2.0.eb<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">26</span><span class="w"> </span>++++++++++++++++++++++++++
+<span class="w"> </span><span class="m">1</span><span class="w"> </span>file<span class="w"> </span>changed,<span class="w"> </span><span class="m">26</span><span class="w"> </span>insertions<span class="o">(</span>+<span class="o">)</span>
 
-Opened pull request: https://github.com/ebtutorial/easybuild-easyconfigs/pull/
-<span class="o">==</span> Temporary log file<span class="o">(</span>s<span class="o">)</span> /tmp/eb-ggr6scbq/easybuild-hnk271xj.log* have been removed.
-<span class="o">==</span> Temporary directory /tmp/eb-ggr6scbq has been removed.
+Opened<span class="w"> </span>pull<span class="w"> </span>request:<span class="w"> </span>https://github.com/ebtutorial/easybuild-easyconfigs/pull/
+<span class="o">==</span><span class="w"> </span>Temporary<span class="w"> </span>log<span class="w"> </span>file<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>/tmp/eb-ggr6scbq/easybuild-hnk271xj.log*<span class="w"> </span>have<span class="w"> </span>been<span class="w"> </span>removed.
+<span class="o">==</span><span class="w"> </span>Temporary<span class="w"> </span>directory<span class="w"> </span>/tmp/eb-ggr6scbq<span class="w"> </span>has<span class="w"> </span>been<span class="w"> </span>removed.
 </code></pre></div>
 <p>Take a moment to grasp what we did here: we ran <strong>a single <code>eb</code> command</strong> which
 took care of the <strong><a href="#manual-contribution-procedure">whole contribution procedure</a></strong> for us, including:</p>
@@ -1995,35 +2013,35 @@ This is just as easy as creating the pull request.</p>
 <p>First make sure that the pre-installed software in the prepared environment
 is available, since the required dependencies for <code>eb-tutorial</code> are already
 installed there:</p>
-<div class="highlight"><pre><span></span><code>module use /easybuild/modules/all
+<div class="highlight"><pre><span></span><code>module<span class="w"> </span>use<span class="w"> </span>/easybuild/modules/all
 </code></pre></div>
 <p>You can verify which dependencies are still missing using <code>--from-pr</code> combined with <code>--missing</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># change &#39;1&#39; to the ID of your own pull request (see output of --new-pr)</span>
-$ eb --from-pr <span class="m">123</span> --missing
-<span class="o">==</span> temporary log file <span class="k">in</span> <span class="k">case</span> of crash /tmp/eb-ioi9ywm1/easybuild-e3v0xa1b.log
-Please enter password <span class="k">for</span> encrypted keyring:
-<span class="o">==</span> found valid index <span class="k">for</span> /home/example/.local/easybuild/easyconfigs, so using it...
+$<span class="w"> </span>eb<span class="w"> </span>--from-pr<span class="w"> </span><span class="m">123</span><span class="w"> </span>--missing
+<span class="o">==</span><span class="w"> </span>temporary<span class="w"> </span>log<span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">case</span><span class="w"> </span>of<span class="w"> </span>crash<span class="w"> </span>/tmp/eb-ioi9ywm1/easybuild-e3v0xa1b.log
+Please<span class="w"> </span>enter<span class="w"> </span>password<span class="w"> </span><span class="k">for</span><span class="w"> </span>encrypted<span class="w"> </span>keyring:
+<span class="o">==</span><span class="w"> </span>found<span class="w"> </span>valid<span class="w"> </span>index<span class="w"> </span><span class="k">for</span><span class="w"> </span>/home/example/.local/easybuild/easyconfigs,<span class="w"> </span>so<span class="w"> </span>using<span class="w"> </span>it...
 
-<span class="m">1</span> out of <span class="m">20</span> required modules missing:
+<span class="m">1</span><span class="w"> </span>out<span class="w"> </span>of<span class="w"> </span><span class="m">20</span><span class="w"> </span>required<span class="w"> </span>modules<span class="w"> </span>missing:
 
-* eb-tutorial/1.0.1-GCC-11.2.0 <span class="o">(</span>eb-tutorial-1.0.1-GCC-11.2.0.eb<span class="o">)</span>
+*<span class="w"> </span>eb-tutorial/1.0.1-GCC-11.2.0<span class="w"> </span><span class="o">(</span>eb-tutorial-1.0.1-GCC-11.2.0.eb<span class="o">)</span>
 </code></pre></div>
 <p>Uploading a test report boils down to combining <code>--from-pr</code> with <code>--upload-test-report</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># change &#39;1&#39; to the ID of your own pull request (see output of --new-pr)</span>
-$ eb --rebuild --from-pr <span class="m">123</span> --upload-test-report
-Please enter password <span class="k">for</span> encrypted keyring:
+$<span class="w"> </span>eb<span class="w"> </span>--rebuild<span class="w"> </span>--from-pr<span class="w"> </span><span class="m">123</span><span class="w"> </span>--upload-test-report
+Please<span class="w"> </span>enter<span class="w"> </span>password<span class="w"> </span><span class="k">for</span><span class="w"> </span>encrypted<span class="w"> </span>keyring:
 ...
-<span class="o">==</span> processing EasyBuild easyconfig /tmp/eb-bnb1pv3n/files_pr65/e/eb-tutorial/eb-tutorial-1.0.1-GCC-11.2.0.eb
-<span class="o">==</span> building and installing eb-tutorial/1.0.1-GCC-11.2.0...
+<span class="o">==</span><span class="w"> </span>processing<span class="w"> </span>EasyBuild<span class="w"> </span>easyconfig<span class="w"> </span>/tmp/eb-bnb1pv3n/files_pr65/e/eb-tutorial/eb-tutorial-1.0.1-GCC-11.2.0.eb
+<span class="o">==</span><span class="w"> </span>building<span class="w"> </span>and<span class="w"> </span>installing<span class="w"> </span>eb-tutorial/1.0.1-GCC-11.2.0...
 ...
-<span class="o">==</span> COMPLETED: Installation ended successfully <span class="o">(</span>took <span class="m">2</span> sec<span class="o">)</span>
+<span class="o">==</span><span class="w"> </span>COMPLETED:<span class="w"> </span>Installation<span class="w"> </span>ended<span class="w"> </span>successfully<span class="w"> </span><span class="o">(</span>took<span class="w"> </span><span class="m">2</span><span class="w"> </span>sec<span class="o">)</span>
 ...
-Adding comment to easybuild-easyconfigs issue <span class="c1">#65: &#39;Test report by @ebtutorial</span>
+Adding<span class="w"> </span>comment<span class="w"> </span>to<span class="w"> </span>easybuild-easyconfigs<span class="w"> </span>issue<span class="w"> </span><span class="c1">#65: &#39;Test report by @ebtutorial</span>
 **SUCCESS**
-Build succeeded <span class="k">for</span> <span class="m">1</span> out of <span class="m">1</span> <span class="o">(</span><span class="m">1</span> easyconfigs <span class="k">in</span> this PR<span class="o">)</span>
-example - Linux centos linux <span class="m">8</span>.5, x86_64, Intel<span class="o">(</span>R<span class="o">)</span> Core<span class="o">(</span>TM<span class="o">)</span> E5-2660 v4 @ <span class="m">2</span>.00GHz <span class="o">(</span>broadwell<span class="o">)</span>, Python <span class="m">3</span>.6.8
-See https://gist.github.com/f7c74159c809029afd99e30e4d994ef1 <span class="k">for</span> a full <span class="nb">test</span> report.<span class="err">&#39;</span>
-<span class="o">==</span> Test report uploaded to https://gist.github.com/f7c74159c809029afd99e30e4d994ef1 and mentioned <span class="k">in</span> a comment <span class="k">in</span> easyconfigs PR#1
+Build<span class="w"> </span>succeeded<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="m">1</span><span class="w"> </span>out<span class="w"> </span>of<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="w"> </span>easyconfigs<span class="w"> </span><span class="k">in</span><span class="w"> </span>this<span class="w"> </span>PR<span class="o">)</span>
+example<span class="w"> </span>-<span class="w"> </span>Linux<span class="w"> </span>centos<span class="w"> </span>linux<span class="w"> </span><span class="m">8</span>.5,<span class="w"> </span>x86_64,<span class="w"> </span>Intel<span class="o">(</span>R<span class="o">)</span><span class="w"> </span>Core<span class="o">(</span>TM<span class="o">)</span><span class="w"> </span>E5-2660<span class="w"> </span>v4<span class="w"> </span>@<span class="w"> </span><span class="m">2</span>.00GHz<span class="w"> </span><span class="o">(</span>broadwell<span class="o">)</span>,<span class="w"> </span>Python<span class="w"> </span><span class="m">3</span>.6.8
+See<span class="w"> </span>https://gist.github.com/f7c74159c809029afd99e30e4d994ef1<span class="w"> </span><span class="k">for</span><span class="w"> </span>a<span class="w"> </span>full<span class="w"> </span><span class="nb">test</span><span class="w"> </span>report.<span class="err">&#39;</span>
+<span class="o">==</span><span class="w"> </span>Test<span class="w"> </span>report<span class="w"> </span>uploaded<span class="w"> </span>to<span class="w"> </span>https://gist.github.com/f7c74159c809029afd99e30e4d994ef1<span class="w"> </span>and<span class="w"> </span>mentioned<span class="w"> </span><span class="k">in</span><span class="w"> </span>a<span class="w"> </span>comment<span class="w"> </span><span class="k">in</span><span class="w"> </span>easyconfigs<span class="w"> </span>PR#1
 </code></pre></div>
 <p>Note that we may need to use <code>--rebuild</code> here since <code>eb-tutorial</code> may already be installed.</p>
 <p>This results in a comment being added to the pull request:</p>
@@ -2046,49 +2064,20 @@ See https://gist.github.com/f7c74159c809029afd99e30e4d994ef1 <span class="k">for
   </small>
 </div>
 
-              
-            </article>
-          </div>
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
         </div>
         
       </main>
       
         <footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        
-        <a href="../community/" class="md-footer__link md-footer__link--prev" aria-label="Previous: The EasyBuild community" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              The EasyBuild community
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../comparison_other_tools/" class="md-footer__link md-footer__link--next" aria-label="Next: Comparison with other tools" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Comparison with other tools
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -2110,7 +2099,7 @@ See https://gist.github.com/f7c74159c809029afd99e30e4d994ef1 <span class="k">for
       
     
     <a href="https://twitter.com/easy_build" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
     </a>
   
     
@@ -2119,7 +2108,7 @@ See https://gist.github.com/f7c74159c809029afd99e30e4d994ef1 <span class="k">for
       
     
     <a href="https://www.youtube.com/c/easybuilders" target="_blank" rel="noopener" title="www.youtube.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
     </a>
   
     
@@ -2128,7 +2117,7 @@ See https://gist.github.com/f7c74159c809029afd99e30e4d994ef1 <span class="k">for
       
     
     <a href="https://easybuild.readthedocs.io" target="_blank" rel="noopener" title="easybuild.readthedocs.io" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M448 336V48c0-26.51-21.5-48-48-48H96C42.98 0 0 42.98 0 96v320c0 53.02 42.98 96 96 96h320c17.67 0 32-14.33 32-31.1 0-11.72-6.607-21.52-16-27.1v-81.36c9.8-9.64 16-22.24 16-36.44zM143.1 128h192c9.7 0 16.9 7.2 16.9 16s-7.2 16-16 16H143.1c-7.9 0-15.1-7.2-15.1-16s7.2-16 15.1-16zm0 64h192c9.7 0 16.9 7.2 16.9 16s-7.2 16-16 16H143.1c-7.9 0-15.1-7.2-15.1-16s7.2-16 15.1-16zM384 448H96c-17.67 0-32-14.33-32-32s14.33-32 32-32h288v64z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M96 0C43 0 0 43 0 96v320c0 53 43 96 96 96h320c17.7 0 32-14.3 32-32s-14.3-32-32-32v-64c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H96zm0 384h256v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16h192c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16zm16 48h192c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg>
     </a>
   
 </div>
@@ -2141,10 +2130,11 @@ See https://gist.github.com/f7c74159c809029afd99e30e4d994ef1 <span class="k">for
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["instant"], "search": "../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["instant"], "search": "../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.3a4b43e5.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a00a7c5e.min.js"></script>
       
     
   </body>
