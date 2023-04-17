@@ -27,7 +27,8 @@ The most recent version of the presentation slides are available [here](../files
 
 *Thu 27 April 2023*
 
-- [10:00-10:15] Welcome + [Practical Info](easybuild-practical-info.md)
+- [10:00-10:05] Welcome + [Practical Info](easybuild-practical-info.md)
+- [10:05-10:15] [What is EasyBuild?](easybuild-introduction.md)
 - [10:15-10:30] [EasyBuild Terminology](easybuild-terminology.md)
 - [10:30-11:00] [Installation](easybuild-installation.md) and [configuration](easybuild-configuration.md) of EasyBuild *(hands-on)*
 - [11:00-12:00] [Basic Usage of EasyBuild](easybuild-basic-usage.md) *(hands-on)*
