@@ -3,7 +3,7 @@
 Before deep diving into the wonderful world of EasyBuild and getting your hands dirty with
 the hands on exercises coming up in this tutorial, you will need to install EasyBuild.
 
-In this section we outline a couple of different ways of doing this, and also the things you should pay attention to.
+In this section we outline three different ways of doing this, and also the things you should pay attention to.
 By the end of this section, you will have a functional EasyBuild installation that you can use
 for the remainder of this tutorial.
 
@@ -14,9 +14,9 @@ for the remainder of this tutorial.
         * Python 2.7 or 3.5+ (Python 3.6 is recommended)
         * An environment modules tool (Lmod is recommended)
     * *Installation methods*:
-        * <a href=#method-1-using-pip>``pip install easybuild``</a>
-        * <a href="#method-2-bootstrapping-easybuild">installing EasyBuild with EasyBuild</a>
-        * <a href="#method-3-development-setup">development setup</a>
+        * [``pip install easybuild``](#method-1-using-pip)
+        * [installing EasyBuild with EasyBuild](#method-2-bootstrapping-easybuild)
+        * [development setup](#method-3-development-setup)
     * Verify EasyBuild installation by running `eb` commands.
 
 ---
@@ -32,7 +32,7 @@ on HPC system where Linux is dominant operating system (to the point where
 EasyBuild is also compatible with *macOS*, but the included easyconfig files are heavily focused
 on Linux so most software installations supported by EasyBuild won't work out-of-the-box on macOS.
 You can still use the EasyBuild command line interface on macOS for other tasks though,
-like development or contributing back to the project.
+such as development or contributing back to the project.
 
 ### Python
 
@@ -117,11 +117,9 @@ of additional tricks up our sleeve!
 
 For EasyBuild it does not matter whether you install it on top of Python 2 or Python 3. The functionality
 provided is identical.
-However, since <a href="https://www.python.org/doc/sunset-python-2/">Python 2 is end-of-life</a>,
-we strongly recommend using Python 3 if you have the choice.
-
-Since compatibility with Python 2.7 and 3.5 will be removed soon in EasyBuild,
-we recommend to use Python 3.6, or a more recent version.
+However, <a href="https://www.python.org/doc/sunset-python-2/">Python 2 is end-of-life</a> and
+compatibility with Python 2.7 and 3.5 will be removed soon in EasyBuild, so we strongly recommend
+using Python 3 if you have the choice.
 
 By default EasyBuild will use the `python` command to run,
 but you <a href="#setting-eb_python">can control this if needed via ``$EB_PYTHON``</a>.
@@ -134,9 +132,9 @@ It is up to you which one you prefer, each result in a fully functional EasyBuil
 
 Time to get your hands dirty!
 
-* <a href=#method-1-using-pip>Method 1: Using ``pip``</a>
-* <a href="#method-2-installing-easybuild-with-easybuild">Method 2: installing EasyBuild with EasyBuild</a>
-* <a href="#method-3-development-setup">Method 3: Development setup</a>
+* [Method 1: Using ``pip``](#method-1-using-pip)
+* [Method 2: installing EasyBuild with EasyBuild](#method-2-installing-easybuild-with-easybuild)
+* [Method 3: Development setup](#method-3-development-setup)
 
 ---
 
@@ -407,7 +405,9 @@ To check which EasyBuild version you have installed, run:
 eb --version
 ```
 
-The output should match with the <a href="https://pypi.org/project/easybuild/">latest EasyBuild version</a>.
+The output should match with the [latest EasyBuild version](https://pypi.org/project/easybuild/), unless you
+installed the development version from method 3 above where the version string will include `dev` and git
+hashs for the framework and easyblock repositories.
 
 
 #### Consulting the help output
