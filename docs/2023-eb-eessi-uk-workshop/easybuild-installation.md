@@ -119,7 +119,7 @@ For EasyBuild it does not matter whether you install it on top of Python 2 or Py
 provided is identical.
 However, <a href="https://www.python.org/doc/sunset-python-2/">Python 2 is end-of-life</a> and
 compatibility with Python 2.7 and 3.5 will be removed soon in EasyBuild, so we strongly recommend
-using Python 3 if you have the choice.
+using Python 3.6 or a more recent Python 3 version if you have the choice.
 
 By default EasyBuild will use the `python` command to run,
 but you <a href="#setting-eb_python">can control this if needed via ``$EB_PYTHON``</a>.
@@ -407,7 +407,7 @@ eb --version
 
 The output should match with the [latest EasyBuild version](https://pypi.org/project/easybuild/), unless you
 installed the development version from method 3 above where the version string will include `dev` and git
-hashs for the framework and easyblock repositories.
+hashes for the framework and easyblock repositories.
 
 
 #### Consulting the help output
