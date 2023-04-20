@@ -407,7 +407,7 @@ eb --version
 
 The output should match with the [latest EasyBuild version](https://pypi.org/project/easybuild/), unless you
 installed the development version from method 3 above where the version string will include `dev` and git
-hashs for the framework and easyblock repositories.
+hashes for the framework and easyblock repositories.
 
 
 #### Consulting the help output
