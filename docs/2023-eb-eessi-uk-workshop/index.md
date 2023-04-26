@@ -31,10 +31,11 @@ The most recent version of the presentation slides are available [here](../files
 - [10:05-10:15] [What is EasyBuild?](easybuild-introduction.md)
 - [10:15-10:30] [EasyBuild Terminology](easybuild-terminology.md)
 - [10:30-11:00] [Installation](easybuild-installation.md) and [configuration](easybuild-configuration.md) of EasyBuild *(hands-on)*
-- [11:00-12:00] [Basic Usage of EasyBuild](easybuild-basic-usage.md) *(hands-on)*
+- [11:00-11:30] [Basic Usage of EasyBuild](easybuild-basic-usage.md) *(hands-on)*
+- [11:30-12:00] [Installing Software with EasyBuild](easybuild-installing-software.md) *(hands-on)*
 - [12:00-13:00] *(lunch break)*
-- [13:00-14:00] [Writing Easyconfigs](easybuild-writing-easyconfigs.md) *(hands-on)*
 - [14:00-15:00] [Troubleshooting](easybuild-troubleshooting.md) *(hands-on)*
+- [13:00-14:00] [Writing Easyconfigs](easybuild-writing-easyconfigs.md) *(hands-on)*
 - [15:00-15:30] *(coffee break)*
 - [15:30-16:30] [Module Naming Schemes](easybuild-module-naming-schemes.md) *(hands-on)*
 - [16:30-17:00] Q&A
