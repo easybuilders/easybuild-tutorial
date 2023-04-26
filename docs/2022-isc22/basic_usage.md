@@ -281,7 +281,7 @@ and which ones aren't yet, you can use **`eb --dry-run`**.
 Since `--dry-run` produces rather verbose output including the full path to each easyconfig file,
 there is a more concise equivalent available as well: `eb --dry-run-short`, which is equivalent with **`eb -D`**.
 
-For example, to check which of the required dependencies for `SAMtools-1.11-GCC-10.2.0.eb` are already installed:
+For example, to check which of the required dependencies for `SAMtools-1.14-GCC-11.2.0.eb` are already installed:
 
 ```shell
 $ eb SAMtools-1.14-GCC-11.2.0.eb -D
@@ -344,7 +344,7 @@ Using **`eb --extended-dry-run`**, or just **`eb -x`** for short,
 you can get a **detailed overview of the installation procedure that would be performed by EasyBuild**,
 **in a matter of seconds**.
 
-By means of example, let's inspect some parts of the installation procedure for `Boost-1.74.0-GCC-10.2.0.eb`:
+By means of example, let's inspect some parts of the installation procedure for `Boost-1.77.0-GCC-11.2.0.eb`:
 
 ```shell
 $ eb Boost-1.77.0-GCC-11.2.0.eb -x
