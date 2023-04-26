@@ -391,6 +391,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://easybuilders.github.io/easybuild-tutorial/2023-eb-eessi-uk-workshop/easybuild-installing-software/</loc>
+         <lastmod>2023-04-26</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://easybuilders.github.io/easybuild-tutorial/2023-eb-eessi-uk-workshop/easybuild-introduction/</loc>
          <lastmod>2023-04-26</lastmod>
          <changefreq>daily</changefreq>
