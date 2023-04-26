@@ -69,7 +69,7 @@ at [https://eum23.learnhpc.eu/](https://eum23.learnhpc.eu/), or via `ssh`:
         sections:
         ```shell
         module load EasyBuild
-        eb CMake-3.24.3-GCCcore-12.2.0.eb SciPy-bundle-2023.02-gfbf-2022b.eb --prefix $_PREFIX_ --robot
+        eb CMake-3.22.1-GCCcore-11.2.0.eb SciPy-bundle-2021.10-foss-2021b.eb --prefix $_PREFIX_ --robot
         ```
 
     Note that the installation can take a few hours and that some steps require a lot of CPU time (e.g., the testing
