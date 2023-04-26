@@ -1,8 +1,9 @@
-# EasyBuild Workshop: Practical info
+# EasyBuild + EESSI Workshop: Practical info
 
-<p align="center"><a href="https://easybuild.io"><img src="../../img/easybuild_logo_alpha.png" alt="EasyBuild logo" width="300px"/></a></p>
+<p align="center"><a href="https://easybuild.io"><img src="../../img/easybuild_logo_alpha.png" alt="EasyBuild logo" width="300px"/></a>
+<a href="https://eessi.github.io/docs"><img src="../EESSI_logo_horizontal_transparant.png" alt="EESSI logo" width="300px"/></a></p>
 
-This page explains how you can prepare for the EasyBuild tutorial
+This page explains how you can prepare for the EasyBuild and EESSI workshop
 that takes place just after the [EUM'23](https://easybuild.io/eum23/).
 
 ## Prepared environment
