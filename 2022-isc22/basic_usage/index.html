@@ -1985,7 +1985,7 @@ in an unintended location (like <code>$HOME/.local/easybuild</code>, the
 and which ones aren't yet, you can use <strong><code>eb --dry-run</code></strong>.</p>
 <p>Since <code>--dry-run</code> produces rather verbose output including the full path to each easyconfig file,
 there is a more concise equivalent available as well: <code>eb --dry-run-short</code>, which is equivalent with <strong><code>eb -D</code></strong>.</p>
-<p>For example, to check which of the required dependencies for <code>SAMtools-1.11-GCC-10.2.0.eb</code> are already installed:</p>
+<p>For example, to check which of the required dependencies for <code>SAMtools-1.14-GCC-11.2.0.eb</code> are already installed:</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>eb<span class="w"> </span>SAMtools-1.14-GCC-11.2.0.eb<span class="w"> </span>-D
 <span class="o">==</span><span class="w"> </span>temporary<span class="w"> </span>log<span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">case</span><span class="w"> </span>of<span class="w"> </span>crash<span class="w"> </span>/tmp/eb-x4qofiph/easybuild-ehhi9fb1.log
 <span class="o">==</span><span class="w"> </span>found<span class="w"> </span>valid<span class="w"> </span>index<span class="w"> </span><span class="k">for</span><span class="w"> </span>/home/example/easybuild/software/EasyBuild/4.5.4/easybuild/easyconfigs,<span class="w"> </span>so<span class="w"> </span>using<span class="w"> </span>it...
@@ -2031,7 +2031,7 @@ the actual installation.</p>
 <p>Using <strong><code>eb --extended-dry-run</code></strong>, or just <strong><code>eb -x</code></strong> for short,
 you can get a <strong>detailed overview of the installation procedure that would be performed by EasyBuild</strong>,
 <strong>in a matter of seconds</strong>.</p>
-<p>By means of example, let's inspect some parts of the installation procedure for <code>Boost-1.74.0-GCC-10.2.0.eb</code>:</p>
+<p>By means of example, let's inspect some parts of the installation procedure for <code>Boost-1.77.0-GCC-11.2.0.eb</code>:</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>eb<span class="w"> </span>Boost-1.77.0-GCC-11.2.0.eb<span class="w"> </span>-x
 ...
 
@@ -2220,7 +2220,7 @@ Sanity check paths - file [&#39;files&#39;]
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 21, 2022</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 26, 2023</span>
       
     
   </small>
