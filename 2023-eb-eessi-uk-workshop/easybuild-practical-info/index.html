@@ -13,7 +13,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.6">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.8">
     
     
       
@@ -22,9 +22,6 @@
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.ded33207.min.css">
-      
-        
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
       
       
 
@@ -50,14 +47,11 @@
   </head>
   
   
-    
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+    <body dir="ltr">
   
     
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -1509,6 +1503,21 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prepared-environment" class="md-nav__link">
+    Prepared environment
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1526,13 +1535,85 @@
 
 
 <h1 id="easybuild-workshop-practical-info">EasyBuild Workshop: Practical info<a class="headerlink" href="#easybuild-workshop-practical-info" title="Permanent link">&para;</a></h1>
+<p align="center"><a href="https://easybuild.io"><img src="../../img/easybuild_logo_alpha.png" alt="EasyBuild logo" width="300px"/></a></p>
+
+<p>This page explains how you can prepare for the EasyBuild tutorial
+that takes place just after the <a href="https://easybuild.io/eum23/">EUM'23</a>.</p>
+<h2 id="prepared-environment">Prepared environment<a class="headerlink" href="#prepared-environment" title="Permanent link">&para;</a></h2>
+<p>Tutorial attendees will be able to log in to a prepared environment
+where they can follow along with hands-on examples, or solve the
+tutorial exercises.</p>
+<p>You can create an account for the prepared environment by filling
+out the <a href="https://mokey.eum23.learnhpc.eu/auth/signup">account form</a>.
+The accounts will <em>not</em> be approved until the day before the event, so
+<strong>please remember to keep a record of your username and password</strong>.</p>
+<p>Once the account is approved, you will be able to access the system
+at <a href="https://eum23.learnhpc.eu/">https://eum23.learnhpc.eu/</a>, or via <code>ssh</code>:</p>
+<pre><code>ssh eum23.learnhpc.eu
+</code></pre>
+<details class="tip">
+<summary>Reproducing the tutorial environment at home (after the workshop): (click to show steps)</summary>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>These steps might need to be tweaked for your system. Please reach out to us on Slack if you run into problems.</p>
+</div>
+<p>The prepared environment remains available for a few days during the conference. If after the conference
+you want to go through the tutorial and try the exercises on your home system, you can follow
+this procedure while working your way through the tutorial:</p>
+<ul>
+<li>
+<p>EasyBuild has a set of <a href="https://docs.easybuild.io/en/latest/Installation.html#requirements">requirements</a>
+    and <a href="https://docs.easybuild.io/en/latest/Installation.html#dependencies">dependencies</a>
+    that it expects to find on your system (such as <code>make</code>, <code>patch</code>,... as well as a system C++ compiler to be
+    able to build GCC), you will need to ensure that these are available. </p>
+</li>
+<li>
+<p><a href="../easybuild-installation/">Install EasyBuild</a>. We recommend to use the 
+    <a href="../easybuild-installation/#method-2-installing-easybuild-with-easybuild">"Installing EasyBuild with EasyBuild" method</a>,
+    but choosing a different directory for the <code>--prefix</code> argument. That directory should
+    then be used wherever <code>/easybuild</code> is used in the tutorial text.</p>
+<p>Assume that the installation directory is stored in <code>$_PREFIX_</code>. The series of commands to install
+EasyBuild and make the EasyBuild module available are
+<div class="highlight"><pre><span></span><code>module<span class="w"> </span>unuse<span class="w"> </span><span class="nv">$MODULEPATH</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">EB_TMPDIR</span><span class="o">=</span>/tmp/<span class="nv">$USER</span>/eb_tmp
+python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--ignore-installed<span class="w"> </span>--prefix<span class="w"> </span><span class="nv">$EB_TMPDIR</span><span class="w"> </span>easybuild
+<span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$EB_TMPDIR</span>/bin:<span class="nv">$PATH</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONPATH</span><span class="o">=</span><span class="k">$(</span>/bin/ls<span class="w"> </span>-rtd<span class="w"> </span>-1<span class="w"> </span><span class="nv">$EB_TMPDIR</span>/lib*/python*/site-packages<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-1<span class="k">)</span>:<span class="nv">$PYTHONPATH</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">EB_PYTHON</span><span class="o">=</span>python3
+eb<span class="w"> </span>--install-latest-eb-release<span class="w"> </span>--prefix<span class="w"> </span><span class="nv">$_PREFIX_</span>
+module<span class="w"> </span>use<span class="w"> </span><span class="nv">$_PREFIX_</span>/modules/all
+</code></pre></div>
+The first line (the <code>module unuse</code> command) cleans the environment and assures that modules already
+installed on the system will not screw up the installation that you intend to do.</p>
+<p>Alternatively, when newer versions of EasyBuild are available than the version 4.7.1 used to prepare
+this tutorial, the line with <code>eb --install-latest-eb-release</code> can be replaced with
+<div class="highlight"><pre><span></span><code>eb<span class="w"> </span>EasyBuild-4.7.1.eb<span class="w"> </span>--prefix<span class="w"> </span><span class="nv">$_PREFIX_</span>
+</code></pre></div>
+to install the version of EasyBuild used for the preparation of this tutorial.</p>
+</li>
+<li>
+<p>Install the software needed for the tutorial in the same directory structure as EasyBuild.
+    This can be done in a single command (after loading the EasyBuild module). The workings of this command is explained in the
+    <a href="../easybuild-configuration/">"Configuring EasyBuild"</a> and <a href="../easybuild-basic-usage/">"Basic usage of EasyBuild"</a>
+    sections:
+    <div class="highlight"><pre><span></span><code>module<span class="w"> </span>load<span class="w"> </span>EasyBuild
+eb<span class="w"> </span>CMake-3.22.1-GCCcore-11.2.0.eb<span class="w"> </span>SciPy-bundle-2021.10-foss-2021b.eb<span class="w"> </span>--prefix<span class="w"> </span><span class="nv">$_PREFIX_</span><span class="w"> </span>--robot
+</code></pre></div></p>
+</li>
+</ul>
+<p>Note that the installation can take a few hours and that some steps require a lot of CPU time (e.g., the testing
+done when installing SciPy), so you may not be able to do it on the login nodes of a cluster.</p>
+</details>
+<hr />
+<hr />
+<p><a href="../easybuild-introduction/"><em>next: Introduction</em></a> - <a href="../"><em>(back to overview page)</em></a></p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 17, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 26, 2023</span>
       
     
   </small>
