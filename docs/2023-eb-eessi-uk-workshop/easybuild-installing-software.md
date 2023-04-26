@@ -1,4 +1,4 @@
-# Installing software with EasyBuild
+# Installing Software with EasyBuild
 
 You should now be able to make an informed decision on which easyconfig file you should use to
 make EasyBuild install the software you require.
@@ -47,7 +47,7 @@ That was... easy. Is that really all there is to it? Well, almost...
 ### Enabling dependency resolution
 
 The SAMtools installation worked like a charm, but remember that all required dependencies were already
-available ([see the section on checking dependencies](../basic_usage/#dry-run)).
+available ([see the section on checking dependencies](../easybuild-basic-usage/#dry-run)).
 
 If we try this with the `BCFtools-1.14-GCC-11.2.0.eb`, for which the required `GSL` and `HTSlib` dependencies are not available yet, it's less successful:
 
@@ -67,7 +67,7 @@ $ eb BCFtools-1.14-GCC-11.2.0.eb
 == preparing...
 == FAILED: Installation ended unsuccessfully (build directory: /tmp/example/build/BCFtools/1.14/GCC-11.2.0): build failed (first 300 chars): Missing modules for dependencies (use --robot?): HTSlib/1.14-GCC-11.2.0, GSL/2.7-GCC-11.2.0 (took 1 secs)
 == Results of the build can be found in the log file(s) /tmp/eb-66a5glv6/easybuild-BCFtools-1.14-20220502.145732.ElHDN.log
-ERROR: Build of /easybuild/software/EasyBuild/20220501-dev/easybuild/easyconfigs/b/BCFtools/BCFtools-1.14-GCC-11.2.0.eb failed (err: 'build failed (first 300 chars): Missing modules for dependencies (use --robot?): HTSlib/1.14-GCC-11.2.0, GSL/2.7-GCC-11.2.0')
+ERROR: Build of /easybuild/software/EasyBuild/4.7.1/easybuild/easyconfigs/b/BCFtools/BCFtools-1.14-GCC-11.2.0.eb failed (err: 'build failed (first 300 chars): Missing modules for dependencies (use --robot?): HTSlib/1.14-GCC-11.2.0, GSL/2.7-GCC-11.2.0')
 ```
 
 Oh my, what's this all about?
@@ -130,7 +130,7 @@ $ eb BCFtools-1.14-GCC-11.2.0.eb --rebuild
         [started at: 2022-05-02 15:05:42]                                                                                            
         [working dir: /tmp/example/build/BCFtools/1.14/GCC-11.2.0/bcftools-1.14]                                                     
         [output logged in /tmp/eb-tus8o1g4/easybuild-run_cmd-mjc8gj6x.log]                                                           
-        /home/easybuild/.local/easybuild/sources/generic/eb_v4.5.5.dev0/ConfigureMake/config.guess                                   
+        /home/easybuild/.local/easybuild/sources/generic/eb_v4.7.1/ConfigureMake/config.guess                                   
   >> command completed: exit 0, ran in < 1s                                                                                          
   >> running command:                                                                                                                
         [started at: 2022-05-02 15:05:42]                                                                                            
@@ -238,7 +238,7 @@ and contain symbolic links to the module files in the `all` directory,
 which contains all actual module files for software installed in this EasyBuild installation path.
 We'll ignore these separate category directories for now.
 
-Let's inform the modules tool about the existence of these module files using `"module use"`:
+Let's inform the modules tool about the existence of our additional module files using `"module use"`:
 
 ```shell
 module use $HOME/easybuild/modules/all
@@ -254,7 +254,7 @@ $ module avail
 
 ---------------------- /home/example/easybuild/modules/all -----------------------
    BCFtools/1.14-GCC-11.2.0    GSL/2.7-GCC-11.2.0       SAMtools/1.14-GCC-11.2.0
-   EasyBuild/4.5.4             HTSlib/1.14-GCC-11.2.0   bzip2/1.0.8
+   EasyBuild/4.7.1             HTSlib/1.14-GCC-11.2.0   bzip2/1.0.8
 
 ---------------------------- /easybuild/modules/all -----------------------------
     ...
@@ -281,7 +281,7 @@ $ module load BCFtools/1.14-GCC-11.2.0
 
 $ module list
 Currently Loaded Modules:
-  1) EasyBuild/4.5.4                7) XZ/5.2.5-GCCcore-11.2.0
+  1) EasyBuild/4.7.1                7) XZ/5.2.5-GCCcore-11.2.0
   2) GCCcore/11.2.0                 8) OpenSSL/1.1
   3) zlib/1.2.11-GCCcore-11.2.0     9) cURL/7.78.0-GCCcore-11.2.0
   4) binutils/2.37-GCCcore-11.2.0  10) HTSlib/1.14-GCC-11.2.0
@@ -335,7 +335,7 @@ Do yourself a favor: don't peek at the solution until you have made an attempt t
 
 Please do not spoil solutions for others before they have been discussed by the tutorial organisers.
 
-The exercises are based on the easyconfig files included with EasyBuild 4.5.4.
+The exercises are based on the easyconfig files included with EasyBuild 4.7.1.
 
 ---
 
@@ -351,7 +351,7 @@ Enable trace output so you can see which parts of the installation take a while.
     First, determine the easyconfig file we can use for this:
     ```shell
     $ eb -S 'h5py-3.6.0.*foss-2021b'
-    CFGS1=/home/easybuilder/easybuild/software/EasyBuild/4.5.4/easybuild/easyconfigs/h/h5py
+    CFGS1=/home/easybuilder/easybuild/software/EasyBuild/4.7.1/easybuild/easyconfigs/h/h5py
     * $CFGS1/h5py-3.6.0-foss-2021b.eb
     ```
 
@@ -456,10 +456,8 @@ If you've made it through the hands-on exercises, congratulations!
 If not, don't worry too much about it. We covered a lot of ground here,
 and it's a lot to take in at once, take your time...
 
-Feel free to ask questions in the `#tutorial-isc22` channel in the [EasyBuild
-Slack](https://docs.easybuild.io/en/latest/#getting-help),
-we're happy to help!
+Feel free to ask questions in the [EasyBuild Slack](https://docs.easybuild.io/#getting-help), we're happy to help!
 
 ---
 
-[*next: Troubleshooting*](troubleshooting.md) - [*(back to overview page)*](index.md)
+[*next: Troubleshooting*](easybuild-troubleshooting.md) - [*(back to overview page)*](index.md)
