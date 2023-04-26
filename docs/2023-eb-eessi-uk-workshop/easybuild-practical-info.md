@@ -36,7 +36,7 @@ at [https://eum23.learnhpc.eu/](https://eum23.learnhpc.eu/), or via `ssh`:
         that it expects to find on your system (such as `make`, `patch`,... as well as a system C++ compiler to be
         able to build GCC), you will need to ensure that these are available. 
 
-    -   [Install EasyBuild](installation.md). We recommend to use the 
+    -   [Install EasyBuild](easybuild-installation.md). We recommend to use the 
         ["Installing EasyBuild with EasyBuild" method](../easybuild-installation/#method-2-installing-easybuild-with-easybuild),
         but choosing a different directory for the `--prefix` argument. That directory should
         then be used wherever `/easybuild` is used in the tutorial text.
@@ -65,7 +65,7 @@ at [https://eum23.learnhpc.eu/](https://eum23.learnhpc.eu/), or via `ssh`:
 
     -   Install the software needed for the tutorial in the same directory structure as EasyBuild.
         This can be done in a single command (after loading the EasyBuild module). The workings of this command is explained in the
-        ["Configuring EasyBuild"](easybuild-configuration.md) and ["Basic usage of EasyBuild"](easybuild-basic_usage.md)
+        ["Configuring EasyBuild"](easybuild-configuration.md) and ["Basic usage of EasyBuild"](easybuild-basic-usage.md)
         sections:
         ```shell
         module load EasyBuild
