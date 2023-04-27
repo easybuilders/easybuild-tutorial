@@ -1,4 +1,4 @@
-# Using hooks to customise EasyBuild
+# Customizing EasyBuild Using Hooks
 
 Sometimes you may have the need to customise the behaviour of EasyBuild,
 while you want to avoid copying easyconfig files in order to make small changes
