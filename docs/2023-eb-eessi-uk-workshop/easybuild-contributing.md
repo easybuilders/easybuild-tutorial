@@ -435,5 +435,5 @@ The gist linked from this comment provides more detailed information:
 
 ---
 
-[*(back to overview page)*](index.md)
+[*next: Customizing EasyBuild Using Hooks*](easybuild-hooks.md) - [*(back to overview page)*](index.md)
 

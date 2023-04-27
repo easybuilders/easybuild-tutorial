@@ -294,3 +294,5 @@ $ module avail AUGUSTUS
 -------- /users/hkenneth/easybuild/modules/all --------
    AUGUSTUS/3.4.0-foss-2020b
 ```
+
+[*next: Using EasyBuild as a Python Library*](easybuild-python-library.md) - [*(back to overview page)*](index.md)

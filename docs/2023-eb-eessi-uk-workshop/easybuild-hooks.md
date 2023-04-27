@@ -180,3 +180,5 @@ def pre_install_hook(eb):
         with disable_templating(eb.cfg):
             eb.cfg['files_to_copy'].append('README')
 ```
+
+[*next: Implementing Easyblocks*](easybuild-implementing-easyblocks.md) - [*(back to overview page)*](index.md)
