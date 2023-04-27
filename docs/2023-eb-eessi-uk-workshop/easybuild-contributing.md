@@ -26,7 +26,7 @@ git checkout -b example
 ```
 
 3) Stage the changes you want to contribute, after you make sure that your easyconfig file has the
-[correct filename](../basic_usage/#easyconfig-filenames), and that it's located in the appropriate directory.
+[correct filename](easybuild-basic-usage/#easyconfig-filenames), and that it's located in the appropriate directory.
 
 ```shell
 mkdir -p easybuild/easyconfigs/e/example/
