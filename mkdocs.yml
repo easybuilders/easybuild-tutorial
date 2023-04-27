@@ -18,17 +18,21 @@ nav:
       - (overview): 2023-eb-eessi-uk-workshop/index.md
       - "Day 1: Introduction to EasyBuild":
           - Practical info: 2023-eb-eessi-uk-workshop/easybuild-practical-info.md
-          - Introduction: 2023-eb-eessi-uk-workshop/easybuild-introduction.md
+          - What is EasyBuild?: 2023-eb-eessi-uk-workshop/easybuild-introduction.md
           - Terminology: 2023-eb-eessi-uk-workshop/easybuild-terminology.md
-          - Installation: 2023-eb-eessi-uk-workshop/easybuild-installation.md
-          - Configuration: 2023-eb-eessi-uk-workshop/easybuild-configuration.md
-          - Basic usage: 2023-eb-eessi-uk-workshop/easybuild-basic-usage.md
+          - Installing EasyBuild: 2023-eb-eessi-uk-workshop/easybuild-installation.md
+          - Configuring EasyBuild: 2023-eb-eessi-uk-workshop/easybuild-configuration.md
+          - Basic usage of EasyBuild: 2023-eb-eessi-uk-workshop/easybuild-basic-usage.md
+          - Installing Software with EasyBuild: 2023-eb-eessi-uk-workshop/easybuild-installing-software.md
+          - Troubleshooting: 2023-eb-eessi-uk-workshop/easybuild-troubleshooting.md
+          - Writing Easyconfigs: 2023-eb-eessi-uk-workshop/easybuild-writing-easyconfigs.md
+          - Module Naming Schemes: 2023-eb-eessi-uk-workshop/easybuild-module-naming-schemes.md
       - "Day 2 (part 1): EasyBuild (advanced)":
-          - Contributing: 2023-eb-eessi-uk-workshop/easybuild-contributing.md
-          - Using hooks to customize EasyBuild: 2023-eb-eessi-uk-workshop/easybuild-hooks.md
+          - Contributing to EasyBuild: 2023-eb-eessi-uk-workshop/easybuild-contributing.md
+          - Customizing EasyBuild Using Hooks: 2023-eb-eessi-uk-workshop/easybuild-hooks.md
           - Implementing EasyBlocks: 2023-eb-eessi-uk-workshop/easybuild-implementing-easyblocks.md
           - Submitting installations as Slurm jobs: 2023-eb-eessi-uk-workshop/easybuild-slurm-jobs.md
-          - Using EasyBuild as a library: 2023-eb-eessi-uk-workshop/easybuild-python-library.md
+          - Using EasyBuild as a Python Library: 2023-eb-eessi-uk-workshop/easybuild-python-library.md
       - "Day 2 (part 2): EESSI": 2023-eb-eessi-uk-workshop/index.md
   - "ISC'22 (29 May 2022)":
       - (overview): 2022-isc22/index.md
