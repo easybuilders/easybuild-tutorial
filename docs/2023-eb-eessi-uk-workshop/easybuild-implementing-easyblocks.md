@@ -657,3 +657,5 @@ Your easyblock should only:
             return super(EB_eb_minus_tutorial, self).sanity_check_step(custom_paths=custom_paths,
                                                                        custom_commands=custom_commands)
     ```
+
+[*next: Submitting Installations as Slurm Jobs*](easybuild-slurm-jobs.md) - [*(back to overview page)*](index.md)

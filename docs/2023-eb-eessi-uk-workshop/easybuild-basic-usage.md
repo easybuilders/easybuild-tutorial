@@ -566,4 +566,4 @@ Also, which binaries will EasyBuild check for to sanity check the installation?
 
 ---
 
-[*next: Writing Easyconfigs*](easybuild-writing-easyconfigs.md) - [*(back to overview page)*](index.md)
+[*next: Installing Software with EasyBuild*](easybuild-installing-software.md) - [*(back to overview page)*](index.md)

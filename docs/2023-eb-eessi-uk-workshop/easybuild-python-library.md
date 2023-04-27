@@ -283,3 +283,5 @@ version: 2.0.0
 sources: ['subread-2.0.0-source.tar.gz']
 sanity_check_paths: {'files': ['bin/exactSNP', 'bin/featureCounts', 'bin/subindel', 'bin/subjunc', 'bin/sublong', 'bin/subread-align', 'bin/subread-buildindex'], 'dirs': ['bin/utilities']}
 ```
+
+[*next: Introduction to EESSI*](eessi-introduction.md) - [*(back to overview page)*](index.md)
