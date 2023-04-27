@@ -17,7 +17,7 @@
     
     
       
-        <title>Implementing Easyblocks - EasyBuild tutorial</title>
+        <title>Implementing EasyBlocks - EasyBuild tutorial</title>
       
     
     
@@ -93,7 +93,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Implementing Easyblocks
+              Implementing EasyBlocks
             
           </span>
         </div>
@@ -1503,6 +1503,179 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-basics" class="md-nav__link">
+    The basics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generic-vs-software-specific-easyblocks" class="md-nav__link">
+    Generic vs software-specific easyblocks
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#naming" class="md-nav__link">
+    Naming
+  </a>
+  
+    <nav class="md-nav" aria-label="Naming">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python-class-name" class="md-nav__link">
+    Python class name
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-module-name-and-location" class="md-nav__link">
+    Python module name and location
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#structure-of-an-easyblock" class="md-nav__link">
+    Structure of an easyblock
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deriving-from-existing-easyblocks" class="md-nav__link">
+    Deriving from existing easyblocks
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#easyconfig-parameters" class="md-nav__link">
+    Easyconfig parameters
+  </a>
+  
+    <nav class="md-nav" aria-label="Easyconfig parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#updating-parameters" class="md-nav__link">
+    Updating parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-parameters" class="md-nav__link">
+    Custom parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#easyblock-constructor" class="md-nav__link">
+    Easyblock constructor
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-operations" class="md-nav__link">
+    File operations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#executing-shell-commands" class="md-nav__link">
+    Executing shell commands
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manipulating-environment-variables" class="md-nav__link">
+    Manipulating environment variables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging-and-errors" class="md-nav__link">
+    Logging and errors
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-sanity-check" class="md-nav__link">
+    Custom sanity check
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#version-specific-parts" class="md-nav__link">
+    Version-specific parts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compatibility-with-extended-dry-run-and-module-only" class="md-nav__link">
+    Compatibility with --extended-dry-run and --module-only
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    Exercise
+  </a>
+  
+    <nav class="md-nav" aria-label="Exercise">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercise-i1" class="md-nav__link">
+    Exercise I.1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercise-i2" class="md-nav__link">
+    Exercise I.2
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1519,14 +1692,567 @@
   
 
 
-<h1 id="implementing-easyblocks">Implementing Easyblocks<a class="headerlink" href="#implementing-easyblocks" title="Permanent link">&para;</a></h1>
+<h1 id="implementing-easyblocks">Implementing EasyBlocks<a class="headerlink" href="#implementing-easyblocks" title="Permanent link">&para;</a></h1>
+<h2 id="the-basics">The basics<a class="headerlink" href="#the-basics" title="Permanent link">&para;</a></h2>
+<p>An <em>easyblock</em> is a Python module that implements a software build and installation procedure.</p>
+<p>This concept is essentially implemented as a Python script that plugs into the EasyBuild framework.</p>
+<p>EasyBuild will leverage easyblocks as needed, depending on which software packages it needs to install. Which easyblock is required is determined by the <code>easyblock</code> easyconfig parameter, if it is present, or by the software name.</p>
+<h2 id="generic-vs-software-specific-easyblocks">Generic vs software-specific easyblocks<a class="headerlink" href="#generic-vs-software-specific-easyblocks" title="Permanent link">&para;</a></h2>
+<p>Easyblocks can either be <em>generic</em> or <em>software-specific</em>.</p>
+<p><em>Generic</em> easyblocks implement a "standard" software build and installation procedure that is used by multiple different
+software packages.
+A commonly used example is the
+<a href="https://github.com/easybuilders/easybuild-easyblocks/blob/main/easybuild/easyblocks/generic/configuremake.py"><code>ConfigureMake</code></a>
+generic easyblock, which implements the standard <code>configure</code> - <code>make</code> - <code>make install</code> installation procedure used
+by most GNU software packages.</p>
+<p><em>Software-specific</em> easyblocks implement the build and installation procedure for a particular software package.
+Typically this involves highly customised steps, for example specifying dedicated configuration options, creating
+or adjusting specific files, executing non-standard shell commands, etc. Usually a custom implementation of the
+sanity check is also included.</p>
+<p>Using a generic easyblock requires specifying the <code>easyblock</code> parameter in the easyconfig file.
+If it is not specified, EasyBuild will try and find the software-specific easyblock derived from the software name.</p>
+<p>The distinction between generic and software-specific easyblocks can be made based on the naming scheme that is used
+for an easyblock (see below).</p>
+<h2 id="naming">Naming<a class="headerlink" href="#naming" title="Permanent link">&para;</a></h2>
+<p>Easyblocks need to follow a strict naming scheme, to ensure that EasyBuild can pick them up as needed. This involves two aspects:</p>
+<ul>
+<li>the name of the Python class;</li>
+<li>the name and location of the Python module file.</li>
+</ul>
+<h3 id="python-class-name">Python class name<a class="headerlink" href="#python-class-name" title="Permanent link">&para;</a></h3>
+<p>The name of the Python class is determined by the <em>software name</em> for software-specific easyblocks.
+It consists of a prefix '<code>EB_</code>', followed by the (encoded) software name.</p>
+<p>Because of limitations in Python on characters allowed in names of Python classes,
+only alphanumeric characters and underscores (<code>_</code>) are allowed. Any other characters are replaced following an encoding scheme:</p>
+<ul>
+<li>spaces are replaced by underscores (<code>_</code>);</li>
+<li>dashes <code>-</code> are replaced by <code>_minus_</code>;</li>
+<li>underscores are replaced by <code>_underscore_</code>;</li>
+</ul>
+<p>The <code>encode_class_name</code> function provided in <code>easybuild.tools.filetools</code> returns the expected class name
+for a given software name; for example:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>python3<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;from easybuild.tools.filetools import encode_class_name; print(encode_class_name(&#39;netCDF-Fortran&#39;))&quot;</span>
+EB_netCDF_minus_Fortran
+</code></pre></div>
+<p><strong>Python class name for <em>generic</em> easyblocks</strong></p>
+<p>For <em>generic</em> easyblocks, the class name does <em>not</em> include an <code>EB_</code> prefix (since there is no need for an escaping
+mechanism) and hence the name is fully free to choose, taking into account the restriction to alphanumeric characters
+and underscores.</p>
+<p>For code style reasons, the class name should start with a capital letter and use CamelCasing.</p>
+<p>Examples include <code>Bundle</code>, <code>ConfigureMake</code>, <code>CMakePythonPackage</code>.</p>
+<h3 id="python-module-name-and-location">Python module name and location<a class="headerlink" href="#python-module-name-and-location" title="Permanent link">&para;</a></h3>
+<p>The <em>filename</em> of the Python module is directly related to the name of Python class it provides.</p>
+<p>It should:</p>
+<ul>
+<li><em>not</em> include the <code>EB_</code> prefix of the class name for software-specific easyblocks;</li>
+<li>consists only of lower-case alphanumeric characters (<code>[a-z0-9]</code>) and underscores (<code>_</code>);<ul>
+<li>dashes (<code>-</code>) are replaced by underscores (<code>_</code>);</li>
+<li>any other non-alphanumeric characters (incl. spaces) are simply dropped;</li>
+</ul>
+</li>
+</ul>
+<p>Examples include:</p>
+<ul>
+<li><code>gcc.py</code> (for <em>GCC</em>)</li>
+<li><code>netcdf_fortran.py</code> (for <em>netCDF-Fortran</em>)</li>
+<li><code>gamess_us.py</code> (for <em>GAMESS (US)</em>)</li>
+</ul>
+<p>The <code>get_module_path</code> function provided by the EasyBuild framework in the
+<code>easybuild.framework.easyconfig.easyconfig</code> module returns the (full)
+module location for a particular software name or easyblock class name. For example:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">easybuild.framework.easyconfig.easyconfig</span> <span class="kn">import</span> <span class="n">get_module_path</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">get_module_path</span><span class="p">(</span><span class="s1">&#39;netCDF-Fortran&#39;</span><span class="p">)</span>
+<span class="s1">&#39;easybuild.easyblocks.netcdf_fortran&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">get_module_path</span><span class="p">(</span><span class="s1">&#39;EB_netCDF_minus_Fortran&#39;</span><span class="p">)</span>
+<span class="s1">&#39;easybuild.easyblocks.netcdf_fortran&#39;</span>
+</code></pre></div>
+<p>The location of the Python module is determined by whether the easyblock is generic or software-specific.
+Generic easyblocks are located in the <code>easybuid.easyblocks.generic</code> namespace, while software-specific easyblocks
+live in the <code>easybuild.easyblocks</code> namespace directly.</p>
+<p>To keep things organised, the actual Python module files
+for software-specific easyblocks are kept in 'letter' subdirectories,
+rather than in one large '<code>easyblocks</code>' directory
+(see
+<a href="https://github.com/easybuilders/easybuild-easyblocks/tree/main/easybuild/easyblocks">https://github.com/easybuilders/easybuild-easyblocks/tree/main/easybuild/easyblocks</a>),
+but this namespace is collapsed transparently by EasyBuild (you don't need to import from letter subpackages).</p>
+<p>To let EasyBuild pick up one or more new or customized easyblocks, you can use the <a href="https://docs.easybuild.io/en/latest/Including_additional_Python_modules.html#including-additional-easyblocks-include-easyblocks"><code>--include-easyblocks</code></a>
+configuration option. As long as both the filename of the Python module and the name of the Python class
+are correct, EasyBuild will use these easyblocks when needed.</p>
+<h2 id="structure-of-an-easyblock">Structure of an easyblock<a class="headerlink" href="#structure-of-an-easyblock" title="Permanent link">&para;</a></h2>
+<p>The example below shows the overall structure of an easyblock:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">easybuild.framework.easyblock</span> <span class="kn">import</span> <span class="n">EasyBlock</span>
+<span class="kn">from</span> <span class="nn">easybuild.tools.run</span> <span class="kn">import</span> <span class="n">run_cmd</span>
+
+
+<span class="k">class</span> <span class="nc">EB_Example</span><span class="p">(</span><span class="n">EasyBlock</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Custom easyblock for Example&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">configure_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Custom implementation of configure step for Example&quot;&quot;&quot;</span>
+
+        <span class="c1"># run configure.sh to configure the build</span>
+        <span class="n">run_cmd</span><span class="p">(</span><span class="s2">&quot;./configure.sh --install-prefix=</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">installdir</span><span class="p">)</span>
+</code></pre></div>
+<p>Each easyblock includes an implementation of a <code>class</code> that (directly or indirectly) derives from the abstract
+<code>EasyBlock</code> class.</p>
+<p>Typically some useful functions provided by the EasyBuild framework are imported at the top of the Python module.</p>
+<p>In the class definition, one or more '<code>*_step</code>' methods (and perhaps a couple of others) are redefined,
+to implement the corresponding step in the build and installation procedure.</p>
+<p>Each easyblock <em>must</em> implement the <code>configure</code>, <code>build</code> and <code>install</code> steps, since these are not implemented
+in the abstract <code>EasyBlock</code> class. This could be done explicitly by redefining the corresponding <code>*_step</code> methods,
+or implicitly by deriving from existing (generic) easyblocks.</p>
+<p>The full list of methods that can be redefined in an easyblock can be consulted in
+the <a href="https://docs.easybuild.io/en/latest/api/easybuild.framework.easyblock.html">API documentation</a>.</p>
+<h2 id="deriving-from-existing-easyblocks">Deriving from existing easyblocks<a class="headerlink" href="#deriving-from-existing-easyblocks" title="Permanent link">&para;</a></h2>
+<p>When implementing an easyblock, it is common to derive from an existing (usually generic) easyblock,
+and to leverage the functionality provided by it. This approach is typically used when only a specific part
+of the build and installation procedure needs to be customised.</p>
+<p>In the (fictitious) example below, we derive from the generic <code>ConfigureMake</code> easyblock to redefine the <code>configure</code>
+step. In this case, we are <em>extending</em> the <code>configure</code> step as implemented by <code>ConfigureMake</code> rather than
+redefining it entirely, since we call out to the original <code>configure_step</code> method at the end.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">easybuild.easyblocks.generic.configuremake</span> <span class="kn">import</span> <span class="n">ConfigureMake</span>
+<span class="kn">from</span> <span class="nn">easybuild.tools.filetools</span> <span class="kn">import</span> <span class="n">copy_file</span>
+
+
+<span class="k">class</span> <span class="nc">EB_Example</span><span class="p">(</span><span class="n">ConfigureMake</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Custom easyblock for Example&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">configure_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Custom implementation of configure step for Example&quot;&quot;&quot;</span>
+
+        <span class="c1"># use example make.cfg for x86-64</span>
+        <span class="n">copy_file</span><span class="p">(</span><span class="s1">&#39;make.cfg.x86&#39;</span><span class="p">,</span> <span class="s1">&#39;make.cfg&#39;</span><span class="p">)</span>
+
+        <span class="c1"># call out to original configure_step implementation of ConfigureMake easyblock</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">EB_Example</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">configure_step</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="easyconfig-parameters">Easyconfig parameters<a class="headerlink" href="#easyconfig-parameters" title="Permanent link">&para;</a></h2>
+<p>All of the easyconfig parameters that are defined in an easyconfig file
+are available via the <code>EasyConfig</code> instance that can be accessed through <code>self.cfg</code> in an easyblock.
+For instance, if the easyconfig file specifies</p>
+<div class="highlight"><pre><span></span><code><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;example&#39;</span>
+<span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;2.5.3&#39;</span>
+<span class="n">versionsuffix</span> <span class="o">=</span> <span class="s1">&#39;-Python-3.7.4&#39;</span>
+</code></pre></div>
+<p>then these three parameters are accessible within an easyblock via <code>self.cfg['name']</code>, <code>self.cfg['version']</code>
+and <code>self.cfg['versionsuffix']</code>.</p>
+<p>A few of the most commonly used parameters can be referenced directly:</p>
+<ul>
+<li><strong><code>self.name</code></strong> is equivalent with <code>self.cfg['name']</code>;</li>
+<li><strong><code>self.version</code></strong> is equivalent with <code>self.cfg['version']</code>;</li>
+<li><strong><code>self.toolchain</code></strong> is equivalent with <code>self.cfg['toolchain']</code>;</li>
+</ul>
+<h3 id="updating-parameters">Updating parameters<a class="headerlink" href="#updating-parameters" title="Permanent link">&para;</a></h3>
+<p>You will often find that you need to <em>update</em> some easyconfig parameters in an easyblock,
+for example <code>configopts</code> which specifies options for the configure command.</p>
+<p>Because of implementation details (related to
+how template values like <code>%(version)s</code> are handled), you need to be a bit careful here...</p>
+<p>To completely redefine the value of an easyconfig parameter, you can use simple assignment. For example:</p>
+<div class="highlight"><pre><span></span><code><span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;example&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;A new value for the example easyconfig parameter.&quot;</span>
+</code></pre></div>
+<p>If want to <em>add</em> to the existing value however, you <em>must</em> use the <code>self.cfg.update</code> method. For example:</p>
+<div class="highlight"><pre><span></span><code><span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s1">&#39;some_list&#39;</span><span class="p">,</span> <span class="s1">&#39;example&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>This will <strong><em>not</em></strong> work (because <code>self.cfg['some_list']</code> does not return a reference to the original value,
+but to a <em>temporary copy</em> thereof):</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># anti-pattern, this does NOT work as expected!</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;some_list&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;example&#39;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="custom-parameters">Custom parameters<a class="headerlink" href="#custom-parameters" title="Permanent link">&para;</a></h3>
+<p>Additional custom easyconfig parameters can be defined in an easyblock to allowing steering its behaviour.
+This is done via the <code>extra_options</code> <em>static</em> method. Custom parameters can be specified to be mandatory.</p>
+<p>The example below shows how this can be implemented:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">easybuild.easyblocks.generic.configuremake</span> <span class="kn">import</span> <span class="n">ConfigureMake</span>
+<span class="kn">from</span> <span class="nn">easybuild.framework.easyconfig</span> <span class="kn">import</span> <span class="n">CUSTOM</span><span class="p">,</span> <span class="n">MANDATORY</span>
+
+
+<span class="k">class</span> <span class="nc">EB_Example</span><span class="p">(</span><span class="n">ConfigureMake</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Custom easyblock for Example&quot;&quot;&quot;</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">extra_options</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Custom easyconfig parameters for Example&quot;&quot;&quot;</span>
+        <span class="n">extra_vars</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;required_example_param&#39;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;Example required custom parameter&quot;</span><span class="p">,</span> <span class="n">MANDATORY</span><span class="p">],</span>
+            <span class="s1">&#39;optional_example_param&#39;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;Example optional custom parameter&quot;</span><span class="p">,</span> <span class="n">CUSTOM</span><span class="p">],</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">ConfigureMake</span><span class="o">.</span><span class="n">extra_options</span><span class="p">(</span><span class="n">extra_vars</span><span class="p">)</span>
+</code></pre></div>
+<p>The first element in the list of a defined custom parameter corresponds to the default value for that parameter
+(both <code>None</code> in the example above). The second element provides some informative help text, and the last element
+indicates whether the parameter is mandatory (<code>MANDATORY</code>) or just an optional custom parameter (<code>CUSTOM</code>).</p>
+<h2 id="easyblock-constructor">Easyblock constructor<a class="headerlink" href="#easyblock-constructor" title="Permanent link">&para;</a></h2>
+<p>In the <code>class</code> constructor of the easyblock, i.e. the <code>__init__</code> method, one or more class variables
+can be initialised. These can be used for sharing information between different <code>*_step</code> methods in the easyblock.</p>
+<p>For example:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">easybuild.framework.easyblock</span> <span class="kn">import</span> <span class="n">EasyBlock</span>
+
+
+<span class="k">class</span> <span class="nc">EB_Example</span><span class="p">(</span><span class="n">EasyBlock</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Custom easyblock for Example&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor for Example easyblock, initialises class variables.&quot;&quot;&quot;</span>
+
+        <span class="c1"># call out to original constructor first, so &#39;self&#39; (i.e. the class instance) is initialised</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">EB_Example</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># initialise class variables</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">example_value</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">example_list</span> <span class="o">=</span> <span class="p">[]</span>
+</code></pre></div>
+<h2 id="file-operations">File operations<a class="headerlink" href="#file-operations" title="Permanent link">&para;</a></h2>
+<p>File operations is a common use case for implementing easyblocks, hence the EasyBuild framework provides a
+number of useful functions related to this, including:</p>
+<ul>
+<li>
+<p><code>read_file(&lt;path&gt;)</code>: read file at a specified location and returns its contents;</p>
+</li>
+<li>
+<p><code>write_file(&lt;path&gt;, &lt;text&gt;)</code> at a specified location with provided contents;
+  to append to an existing file, use <code>append=True</code> as an extra argument;</p>
+</li>
+<li>
+<p><code>copy_file(&lt;src&gt;, &lt;dest&gt;)</code> to copy an existing file;</p>
+</li>
+<li>
+<p><code>apply_regex_substitutions(&lt;path&gt;, &lt;list of regex substitutions&gt;)</code> to patch an existing file;</p>
+</li>
+</ul>
+<p>All of these functions are provided by the <a href="https://docs.easybuild.io/en/latest/api/easybuild.tools.filetools.html"><code>easybuild.tools.filetools</code></a> module.</p>
+<h2 id="executing-shell-commands">Executing shell commands<a class="headerlink" href="#executing-shell-commands" title="Permanent link">&para;</a></h2>
+<p>For executing shell commands two functions are provided by the
+<a href="https://docs.easybuild.io/en/latest/api/easybuild.tools.run.html"><code>easybuild.tools.run</code></a> module:</p>
+<ul>
+<li>
+<p><code>run_cmd(&lt;cmd&gt;)</code> to run a non-interactive shell command;</p>
+</li>
+<li>
+<p><code>run_cmd_qa(&lt;cmd&gt;, &lt;dict with questions &amp; answers&gt;)</code> to run an interactive shell command;</p>
+</li>
+</ul>
+<p>Both of these accept a number of optional arguments:</p>
+<ul>
+<li>
+<p><code>simple=True</code> to just return <code>True</code> or <code>False</code> to indicate a successful execution,
+  rather than the default return value, i.e., a tuple that provides the command output and the exit code (in that
+  order);</p>
+</li>
+<li>
+<p><code>path=&lt;path&gt;</code> to run the command in a specific subdirectory;</p>
+</li>
+</ul>
+<p>The <code>run_cmd_qa</code> function takes two additional specific arguments:</p>
+<ul>
+<li>
+<p><code>no_qa=&lt;list&gt;</code> to specify a list of patterns to recognize non-questions;</p>
+</li>
+<li>
+<p><code>std_qa=&lt;dict&gt;</code> to specify regular expression patterns for common questions, and the matching answer;</p>
+</li>
+</ul>
+<h2 id="manipulating-environment-variables">Manipulating environment variables<a class="headerlink" href="#manipulating-environment-variables" title="Permanent link">&para;</a></h2>
+<p>To (re)define environment variables, the <code>setvar</code> function provided by the
+<a href="https://docs.easybuild.io/en/latest/api/easybuild.tools.environment.html"><code>easybuild.tools.environment</code></a>
+module should be used.</p>
+<p>This makes sure that the changes being made to the specified environment variable are kept track of,
+and that they are handled correctly under <code>--extended-dry-run</code>.</p>
+<h2 id="logging-and-errors">Logging and errors<a class="headerlink" href="#logging-and-errors" title="Permanent link">&para;</a></h2>
+<p>It is good practice to include meaningful log messages in the <code>*_step</code> methods being customised in the easyblock,
+to enrich the EasyBuild log with useful information for later debugging or diagnostics.</p>
+<p>For logging, the provided <code>self.log</code> logger class should be used.
+You can use the <code>self.log.info</code> method to log an informative message.
+Similar methods are available for logging debug messages (<code>self.log.debug</code>), which are
+only emitted when <code>eb</code> is run with debugging mode enabled (<code>--debug</code> or <code>-d</code>),
+and for logging warning messages (<code>self.log.warning</code>).</p>
+<p>If something goes wrong, you can raise an <code>EasyBuildError</code> instance to report the error.</p>
+<p>For example:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">easybuild.framework.easyblock</span> <span class="kn">import</span> <span class="n">EasyBlock</span>
+<span class="kn">from</span> <span class="nn">easybuild.tools.build_log</span> <span class="kn">import</span> <span class="n">EasyBuildError</span>
+<span class="kn">from</span> <span class="nn">easybuild.tools.run</span> <span class="kn">import</span> <span class="n">run_cmd</span>
+
+
+<span class="k">class</span> <span class="nc">EB_Example</span><span class="p">(</span><span class="n">EasyBlock</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Custom easyblock for Example&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">configure_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Custom implementation of configure step for Example&quot;&quot;&quot;</span>
+
+        <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;./configure --prefix </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">installdir</span><span class="p">)</span>
+        <span class="n">out</span><span class="p">,</span> <span class="n">ec</span> <span class="o">=</span> <span class="n">run_cmd</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+
+        <span class="n">success</span> <span class="o">=</span> <span class="s1">&#39;SUCCESS&#39;</span>
+        <span class="k">if</span> <span class="n">success</span> <span class="ow">in</span> <span class="n">out</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Configuration command &#39;</span><span class="si">%s</span><span class="s2">&#39; completed with success.&quot;</span> <span class="o">%</span> <span class="n">cmd</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">EasyBuildError</span><span class="p">(</span><span class="s2">&quot;Pattern &#39;</span><span class="si">%s</span><span class="s2">&#39; was not found in output of &#39;</span><span class="si">%s</span><span class="s2">&#39;.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">success</span><span class="p">,</span> <span class="n">cmd</span><span class="p">))</span>
+</code></pre></div>
+<h2 id="custom-sanity-check">Custom sanity check<a class="headerlink" href="#custom-sanity-check" title="Permanent link">&para;</a></h2>
+<p>For software-specific easyblocks, a custom sanity check is usually included to verify that the installation was
+successful or not.</p>
+<p>This is done by redefining the <code>sanity_check_step</code> method in the easyblock. For example:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">easybuild.framework.easyblock</span> <span class="kn">import</span> <span class="n">EasyBlock</span>
+
+<span class="k">class</span> <span class="nc">EB_Example</span><span class="p">(</span><span class="n">EasyBlock</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Custom easyblock for Example&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">sanity_check_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Custom sanity check for Example.&quot;&quot;&quot;</span>
+
+        <span class="n">custom_paths</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;bin/example&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;dirs&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;lib/examples/&#39;</span><span class="p">],</span>
+        <span class="p">}</span>
+        <span class="n">custom_commands</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;example --version&#39;</span><span class="p">]</span>
+
+        <span class="c1"># call out to parent to do the actual sanity checking, pass through custom paths and commands</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">EB_Example</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">sanity_check_step</span><span class="p">(</span><span class="n">custom_paths</span><span class="o">=</span><span class="n">custom_paths</span><span class="p">,</span> <span class="n">custom_commands</span><span class="o">=</span><span class="n">custom_commands</span><span class="p">)</span>
+</code></pre></div>
+<p>You can both specify file paths and subdirectories to check for, which are specified relative to the installation directory,
+as well as simple commands that should execute successfully after completing the installation and loading the generated module file.</p>
+<p>It is up to you how extensive you make the sanity check, but it is recommended to make the check as complete
+as possible to catch any potential build or installation problems that may occur, while ensuring that it can
+run relatively quickly (in seconds, or at most a couple of minutes).</p>
+<h2 id="version-specific-parts">Version-specific parts<a class="headerlink" href="#version-specific-parts" title="Permanent link">&para;</a></h2>
+<p>In some cases version-specific actions or checks need to be included in an easyblock.
+For this, it is recommended to use <code>LooseVersion</code> rather than directly comparing version numbers using string values.</p>
+<p>For example:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">distutils.version</span> <span class="kn">import</span> <span class="n">LooseVersion</span>
+<span class="kn">from</span> <span class="nn">easybuild.framework.easyblock</span> <span class="kn">import</span> <span class="n">EasyBlock</span>
+
+
+<span class="k">class</span> <span class="nc">EB_Example</span><span class="p">(</span><span class="n">EasyBlock</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Custom easyblock for Example&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">sanity_check_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Custom sanity check for Example.&quot;&quot;&quot;</span>
+
+        <span class="n">custom_paths</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;dirs&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="p">}</span>
+
+        <span class="c1"># in older versions, the binary used to be named &#39;EXAMPLE&#39; rather than &#39;example&#39;</span>
+        <span class="k">if</span> <span class="n">LooseVersion</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">version</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">LooseVersion</span><span class="p">(</span><span class="s1">&#39;1.0&#39;</span><span class="p">):</span>
+            <span class="n">custom_paths</span><span class="p">[</span><span class="s1">&#39;files&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;bin/EXAMPLE&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">custom_paths</span><span class="p">[</span><span class="s1">&#39;files&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;bin/example&#39;</span><span class="p">)</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">EB_Example</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">sanity_check_step</span><span class="p">(</span><span class="n">custom_paths</span><span class="o">=</span><span class="n">custom_paths</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="compatibility-with-extended-dry-run-and-module-only">Compatibility with <code>--extended-dry-run</code> and <code>--module-only</code><a class="headerlink" href="#compatibility-with-extended-dry-run-and-module-only" title="Permanent link">&para;</a></h2>
+<p>Some special care must be taken to ensure that an easyblock is fully compatible with <code>--extended-dry-run</code> / <code>-x</code>
+(see <a href="../basic_usage/#inspecting-install-procedures">Inspecting install procedures</a>) and <code>--module-only</code>.</p>
+<p>For compatibility with <code>--extended-dry-run</code>, you need to take into account that specified operations
+like manipulating files or running shell commands will not actually be executed. You can check
+whether an easyblock is being run in dry run mode via <code>self.dry_run</code>.</p>
+<p>For example:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">easybuild.framework.easyblock</span> <span class="kn">import</span> <span class="n">EasyBlock</span>
+<span class="kn">from</span> <span class="nn">easybuild.tools.build_log</span> <span class="kn">import</span> <span class="n">EasyBuildError</span>
+<span class="kn">from</span> <span class="nn">easybuild.tools.run</span> <span class="kn">import</span> <span class="n">run_cmd</span>
+
+
+<span class="k">class</span> <span class="nc">EB_Example</span><span class="p">(</span><span class="n">EasyBlock</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Custom easyblock for Example&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">configure_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Custom implementation of configure step for Example&quot;&quot;&quot;</span>
+
+        <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;./configure --prefix </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">installdir</span><span class="p">)</span>
+        <span class="n">out</span><span class="p">,</span> <span class="n">ec</span> <span class="o">=</span> <span class="n">run_cmd</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+
+        <span class="n">success</span> <span class="o">=</span> <span class="s1">&#39;SUCCESS&#39;</span>
+        <span class="k">if</span> <span class="n">success</span> <span class="ow">in</span> <span class="n">out</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Configuration command &#39;</span><span class="si">%s</span><span class="s2">&#39; completed with success.&quot;</span> <span class="o">%</span> <span class="n">cmd</span><span class="p">)</span>
+
+        <span class="c1"># take into account that in dry run mode we won&#39;t get any output at all</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">dry_run</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Ignoring missing &#39;</span><span class="si">%s</span><span class="s2">&#39; pattern since we&#39;re running in dry run mode.&quot;</span> <span class="o">%</span> <span class="n">success</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">EasyBuildError</span><span class="p">(</span><span class="s2">&quot;Pattern &#39;</span><span class="si">%s</span><span class="s2">&#39; was not found in output of &#39;</span><span class="si">%s</span><span class="s2">&#39;.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">success</span><span class="p">,</span> <span class="n">cmd</span><span class="p">))</span>
+</code></pre></div>
+<p>For <code>--module-only</code>, you should make sure that both the <code>make_module_step</code>, including the <code>make_module_*</code> submethods,
+and the <code>sanity_check_step</code> methods do not make any assumptions about the presence of certain environment variables, or that class variables have been defined already.</p>
+<p>This is required because under <code>--module-only</code> the large majority of the <code>*_step</code> functions are
+simply <em>skipped</em> entirely. So, if the <code>configure_step</code> method is responsible for defining class variables that are
+picked up in <code>sanity_check_step</code>, the latter may run into unexpected initial values like <code>None</code>.
+A possible workaround is to define a separate custom method to define the class variables, and to call out to this
+method from <code>configure_step</code> and <code>sanity_check_step</code> (for the latter, conditionally, i.e., only if the class
+variables still have the initial values).</p>
+<p>For example:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">easybuild.framework.easyblock</span> <span class="kn">import</span> <span class="n">EasyBlock</span>
+
+
+<span class="k">class</span> <span class="nc">EB_Example</span><span class="p">(</span><span class="n">EasyBlock</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Custom easyblock for Example&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Easyblock constructor.&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">EB_Example</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">command</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">set_command</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize &#39;command&#39; class variable.&quot;&quot;&quot;</span>
+        <span class="c1"># $CC environment variable set by &#39;prepare&#39; step determines exact command</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">command</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;CC&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">configure_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Custom configure step for Example.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_command</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s1">&#39;configopts&#39;</span><span class="p">,</span> <span class="s2">&quot;COMMAND=</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">command</span><span class="p">)</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">EB_Example</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">configure_step</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">sanity_check_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Custom implementation of configure step for Example&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">command</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_command</span><span class="p">()</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">EB_Example</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">sanity_check_step</span><span class="p">(</span><span class="n">custom_commands</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">command</span><span class="p">])</span>
+</code></pre></div>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<h3 id="exercise-i1">Exercise I.1<a class="headerlink" href="#exercise-i1" title="Permanent link">&para;</a></h3>
+<p>Try implementing a new custom easyblock for <code>eb-tutorial</code>, which derives directly
+from the base <code>EasyBlock</code> class.</p>
+<p>Your easyblock should:</p>
+<ul>
+<li>define a custom mandatory easyconfig parameter named <code>message</code>;</li>
+<li>run <code>cmake</code> to configure the installation, which includes at least:<ul>
+<li>specifying the correct installation prefix (using the <code>-DCMAKE_INSTALL_PREFIX=...</code> option);</li>
+<li>passing down the value of <code>message</code> easyconfig parameter via <code>-DEBTUTORIAL_MSG=...</code></li>
+</ul>
+</li>
+<li>run <code>make</code> to build <code>eb-tutorial</code>;</li>
+<li>run <code>make install</code> to install the generated binary;</li>
+<li>perform a custom sanity check to ensure the installation is correct;</li>
+<li>pick up on commonly used easyconfig parameters like <code>configopts</code> and <code>preinstallopts</code> where appropriate;</li>
+</ul>
+<details class="success">
+<summary>(click to show solution)</summary>
+<p>Here's a complete custom easyblock for <code>eb-tutorial</code> that derives from the base <code>EasyBlock</code> class,
+which should be included in a file named <code>eb_tutorial.py</code>.</p>
+<p>We need to implement the <code>configure_step</code>, <code>build_step</code>, and <code>install_step</code> methods in
+order to have a fully functional easyblock.</p>
+<p>The configure, build, and install steps take into account the corresponding easyconfig
+parameters that allow customizing these commands from an easyconfig file.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">easybuild.framework.easyblock</span> <span class="kn">import</span> <span class="n">EasyBlock</span>
+<span class="kn">from</span> <span class="nn">easybuild.framework.easyconfig</span> <span class="kn">import</span> <span class="n">MANDATORY</span>
+<span class="kn">from</span> <span class="nn">easybuild.tools.run</span> <span class="kn">import</span> <span class="n">run_cmd</span>
+
+
+<span class="k">class</span> <span class="nc">EB_eb_minus_tutorial</span><span class="p">(</span><span class="n">EasyBlock</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Custom easyblock for eb-tutorial.&quot;&quot;&quot;</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">extra_options</span><span class="p">():</span>
+        <span class="n">extra</span> <span class="o">=</span> <span class="n">EasyBlock</span><span class="o">.</span><span class="n">extra_options</span><span class="p">()</span>
+        <span class="n">extra</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+            <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;Message that eb-tutorial command should print&quot;</span><span class="p">,</span> <span class="n">MANDATORY</span><span class="p">],</span>
+        <span class="p">})</span>
+        <span class="k">return</span> <span class="n">extra</span>
+
+    <span class="k">def</span> <span class="nf">configure_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Custom configure step for eb-tutorial: define EBTUTORIAL_MSG configuration option.&quot;&quot;&quot;</span>
+
+        <span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;preconfigopts&#39;</span><span class="p">],</span>
+            <span class="s2">&quot;cmake&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;-DCMAKE_INSTALL_PREFIX=&#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">installdir</span><span class="p">,</span>
+            <span class="s2">&quot;-DEBTUTORIAL_MSG=&#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">],</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;configopts&#39;</span><span class="p">],</span>
+        <span class="p">])</span>
+        <span class="n">run_cmd</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">build_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Build step for eb-tutorial&quot;&quot;&quot;</span>
+
+        <span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;prebuildopts&#39;</span><span class="p">],</span>
+            <span class="s2">&quot;make&quot;</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;buildopts&#39;</span><span class="p">],</span>
+        <span class="p">])</span>
+        <span class="n">run_cmd</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">install_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Install step for eb-tutorial&quot;&quot;&quot;</span>
+
+        <span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;preinstallopts&#39;</span><span class="p">],</span>
+            <span class="s2">&quot;make install&quot;</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;installopts&#39;</span><span class="p">],</span>
+        <span class="p">])</span>
+        <span class="n">run_cmd</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">sanity_check_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">custom_paths</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;bin/eb-tutorial&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;dirs&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="p">}</span>
+        <span class="n">custom_commands</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;eb-tutorial&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">EB_eb_minus_tutorial</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">sanity_check_step</span><span class="p">(</span><span class="n">custom_paths</span><span class="o">=</span><span class="n">custom_paths</span><span class="p">,</span>
+                                                                   <span class="n">custom_commands</span><span class="o">=</span><span class="n">custom_commands</span><span class="p">)</span>
+</code></pre></div>
+</details>
+<h3 id="exercise-i2">Exercise I.2<a class="headerlink" href="#exercise-i2" title="Permanent link">&para;</a></h3>
+<p>Try implementing another new custom easyblock for <code>eb-tutorial</code>,
+which derives from the generic <code>CMakeMake</code> easyblock.</p>
+<p>Your easyblock should only:</p>
+<ul>
+<li>define a custom mandatory easyconfig parameter named <code>message</code>;</li>
+<li>pass down the value of <code>message</code> easyconfig parameter via <code>-DEBTUTORIAL_MSG=...</code></li>
+<li>perform a custom sanity check to ensure the installation is correct;</li>
+</ul>
+<details class="success">
+<summary>(click to show solution)</summary>
+<p>When deriving from the <code>CMakeMake</code> generic easyblock, there is a lot less to worry about.</p>
+<p>We only need to customize the <code>configure_step</code> method to ensure that the <code>-DEBTUTORIAL_MSG</code> configuration
+option is specified; the <code>CMakeMake</code> easyblock already takes care of specifying the location of
+the installation directory (and a bunch of other configuration options, like compiler commands and flags, etc.).</p>
+<p>Implementing the <code>build_step</code> and <code>install_step</code> methods is no longer needed,
+the standard procedure that is run by the <code>CMakeMake</code> generic easyblock is fine,
+and even goes beyond what we did in the previous exercise (like building in parallel with <code>make -j</code>).</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">easybuild.easyblocks.generic.cmakemake</span> <span class="kn">import</span> <span class="n">CMakeMake</span>
+<span class="kn">from</span> <span class="nn">easybuild.framework.easyconfig</span> <span class="kn">import</span> <span class="n">MANDATORY</span>
+<span class="kn">from</span> <span class="nn">easybuild.tools.run</span> <span class="kn">import</span> <span class="n">run_cmd</span>
+
+<span class="k">class</span> <span class="nc">EB_eb_minus_tutorial</span><span class="p">(</span><span class="n">CMakeMake</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Custom easyblock for eb-tutorial.&quot;&quot;&quot;</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">extra_options</span><span class="p">():</span>
+        <span class="n">extra</span> <span class="o">=</span> <span class="n">CMakeMake</span><span class="o">.</span><span class="n">extra_options</span><span class="p">()</span>
+        <span class="n">extra</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+            <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;Message that eb-tutorial command should print&quot;</span><span class="p">,</span> <span class="n">MANDATORY</span><span class="p">],</span>
+        <span class="p">})</span>
+        <span class="k">return</span> <span class="n">extra</span>
+
+    <span class="k">def</span> <span class="nf">configure_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Custom configure step for eb-tutorial: define EBTUTORIAL_MSG configuration option.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s1">&#39;configopts&#39;</span><span class="p">,</span> <span class="s2">&quot;-DEBTUTORIAL_MSG=&#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">])</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">EB_eb_minus_tutorial</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">configure_step</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">sanity_check_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">custom_paths</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;bin/eb-tutorial&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;dirs&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="p">}</span>
+        <span class="n">custom_commands</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;eb-tutorial&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">EB_eb_minus_tutorial</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">sanity_check_step</span><span class="p">(</span><span class="n">custom_paths</span><span class="o">=</span><span class="n">custom_paths</span><span class="p">,</span>
+                                                                   <span class="n">custom_commands</span><span class="o">=</span><span class="n">custom_commands</span><span class="p">)</span>
+</code></pre></div>
+</details>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 17, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 27, 2023</span>
       
     
   </small>
