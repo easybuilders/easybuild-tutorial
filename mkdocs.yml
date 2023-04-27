@@ -33,12 +33,7 @@ nav:
           - Implementing EasyBlocks: 2023-eb-eessi-uk-workshop/easybuild-implementing-easyblocks.md
           - Submitting installations as Slurm jobs: 2023-eb-eessi-uk-workshop/easybuild-slurm-jobs.md
           - Using EasyBuild as a Python Library: 2023-eb-eessi-uk-workshop/easybuild-python-library.md
-      - "Day 2 (part 2): EESSI":
-          - Introduction to EESSI: 2023-eb-eessi-uk-workshop/eessi-introduction.md
-          - Getting access to EESSI: 2023-eb-eessi-uk-workshop/eessi-getting-access.md
-          - Using EESSI: 2023-eb-eessi-uk-workshop/eessi-usage.md
-          - Use Cases for EESSI: 2023-eb-eessi-uk-workshop/eessi-use-cases.md
-          - The EESSI Community: 2023-eb-eessi-uk-workshop/eessi-community.md
+      - "Day 2 (part 2): EESSI": 2023-eb-eessi-uk-workshop/index.md
   - "ISC'22 (29 May 2022)":
       - (overview): 2022-isc22/index.md
       - Practical info: 2022-isc22/practical_info.md

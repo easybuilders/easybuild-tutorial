@@ -46,23 +46,25 @@ The most recent version of the presentation slides are available [here](../files
 
 [10:00-12:00] EasyBuild: advanced topics (incl. demos)
 
-- [10:00-10:20] [Contributing to EasyBuild](easybuild-contributing.md)
-- [10:20-10:40] [Customizing EasyBuild Using Hooks](easybuild-hooks.md)
-- [10:40-11:00] [Implementing Easyblocks](easybuild-implementing-easyblocks.md)
-- [11:00-11:20] [Submitting Installations as Slurm Jobs](easybuild-slurm-jobs.md)
-- [11:20-11:40] [Using EasyBuild as a Python Library](easybuild-python-library.md)
-- [11:40-12:00] Q&A
+- [Contributing to EasyBuild](easybuild-contributing.md)
+- [Customizing EasyBuild Using Hooks](easybuild-hooks.md)
+- [Implementing Easyblocks](easybuild-implementing-easyblocks.md)
+- [Submitting Installations as Slurm Jobs](easybuild-slurm-jobs.md)
+- [Using EasyBuild as a Python Library](easybuild-python-library.md)
+- Q&A
 
 [12:00-13:00] *(lunch break)*
 
-[13:00-17:00] Introduction to EESSI
+[13:00-17:00] Introduction to EESSI (incl. demos + hands-on)
 
-- [13:00-13:15] [What is EESSI?](eessi-introduction.md#what-is-eessi)
-- [13:15-13:30] [High-level design of EESSI](eessi-introduction.md#high-level-design)
-- [13:30-13:45] [Current status of the project](eessi-introduction.md#current-status)
-- [13:45-14:30] [Getting access to EESSI](eessi-getting-access.md) *(hands-on)*
-- [14:30-15:00] [Using EESSI](eessi-usage.md) *(hands-on)*
-- [15:00-15:30] *(coffee break)*
-- [15:30-16:15] [Use Cases for EESSI](eessi-use-cases.md) *(hands-on)*
-- [16:15-16:30] [The EESSI Community](eessi-community.md)
-- [16:30-17:00] Q&A
+*(links redirect to EESSI documentation)*
+
+- [What is EESSI?](https://eessi.github.io/docs/overview)
+- [High-level design of EESSI](https://eessi.github.io/docs/overview/#layered-structure)
+- [Current status of the project](https://eessi.github.io/docs/overview/#current-status)
+- [The EESSI pilot repository](https://eessi.github.io/docs/pilot/)
+- Getting access to EESSI:
+    - [Native installation](https://eessi.github.io/docs/getting_access/native_installation/)
+    - [EESSI client container](https://eessi.github.io/docs/getting_access/eessi_container/)
+- [Using EESSI](https://eessi.github.io/docs/using_eessi/eessi_demos/)
+- [Use Cases for EESSI](https://eessi.github.io/docs/meetings/2022-09-amsterdam/EESSI-community-meeting-2022.09-003-EESSI-use-cases.pdf)
