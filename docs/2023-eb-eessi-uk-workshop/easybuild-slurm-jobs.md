@@ -165,7 +165,7 @@ subdirectory of ``installpath``) manually, or re-submit the job with ``eb --job 
 
 ## Example
 
-As an example, we will let EasyBuild submit jobs to install ``AUGUSTUS`` with the ``foss/2020b`` toolchain.
+As an example, we will let EasyBuild submit jobs to install ``AUGUSTUS`` with the ``foss/2021b`` toolchain.
 
 ### Configuration
 
@@ -210,38 +210,38 @@ Now we can let EasyBuild submit jobs for AUGUSTUS.
 Let's first check what is still missing:
 
 ```shell
-$ eb AUGUSTUS-3.4.0-foss-2020b.eb --missing
+$ eb AUGUSTUS-3.4.0-foss-2021b.eb --missing
 ...
-11 out of 61 required modules missing:
+11 out of 75 required modules missing:
 
-* HTSlib/1.11-GCC-10.2.0 (HTSlib-1.11-GCC-10.2.0.eb)
-* lpsolve/5.5.2.11-GCC-10.2.0 (lpsolve-5.5.2.11-GCC-10.2.0.eb)
-* Boost/1.74.0-GCC-10.2.0 (Boost-1.74.0-GCC-10.2.0.eb)
-* GSL/2.6-GCC-10.2.0 (GSL-2.6-GCC-10.2.0.eb)
-* SAMtools/1.11-GCC-10.2.0 (SAMtools-1.11-GCC-10.2.0.eb)
-* BCFtools/1.11-GCC-10.2.0 (BCFtools-1.11-GCC-10.2.0.eb)
-* METIS/5.1.0-GCCcore-10.2.0 (METIS-5.1.0-GCCcore-10.2.0.eb)
-* BamTools/2.5.1-GCC-10.2.0 (BamTools-2.5.1-GCC-10.2.0.eb)
-* MPFR/4.1.0-GCCcore-10.2.0 (MPFR-4.1.0-GCCcore-10.2.0.eb)
-* SuiteSparse/5.8.1-foss-2020b-METIS-5.1.0 (SuiteSparse-5.8.1-foss-2020b-METIS-5.1.0.eb)
-* AUGUSTUS/3.4.0-foss-2020b (AUGUSTUS-3.4.0-foss-2020b.eb)
+* gzip/1.10-GCCcore-11.2.0 (gzip-1.10-GCCcore-11.2.0.eb)
+* lpsolve/5.5.2.11-GCC-11.2.0 (lpsolve-5.5.2.11-GCC-11.2.0.eb)
+* lz4/1.9.3-GCCcore-11.2.0 (lz4-1.9.3-GCCcore-11.2.0.eb)
+* zstd/1.5.0-GCCcore-11.2.0 (zstd-1.5.0-GCCcore-11.2.0.eb)
+* BamTools/2.5.2-GCC-11.2.0 (BamTools-2.5.2-GCC-11.2.0.eb)
+* METIS/5.1.0-GCCcore-11.2.0 (METIS-5.1.0-GCCcore-11.2.0.eb)
+* ICU/69.1-GCCcore-11.2.0 (ICU-69.1-GCCcore-11.2.0.eb)
+* Boost/1.77.0-GCC-11.2.0 (Boost-1.77.0-GCC-11.2.0.eb)
+* MPFR/4.1.0-GCCcore-11.2.0 (MPFR-4.1.0-GCCcore-11.2.0.eb)
+* SuiteSparse/5.10.1-foss-2021b-METIS-5.1.0 (SuiteSparse-5.10.1-foss-2021b-METIS-5.1.0.eb)
+* AUGUSTUS/3.4.0-foss-2021b (AUGUSTUS-3.4.0-foss-2021b.eb)
 ```
 
 Several dependencies are not installed yet, so we will need to use ``--robot`` to ensure that
 EasyBuild also submits jobs to install these first.
 
-To speed up the installations a bit, we will request 10 cores for each submitted job (via ``--job-cores``).
-That should be sufficient to let each installation finish in (well) under 1 hour,
-so we only request 1 hour of walltime per job (via ``--job-max-walltime``).
+To speed up the installations a bit, we will request 4 cores for each submitted job (via ``--job-cores``).
+That should be sufficient to let each installation finish in a couple of hours,
+so we only request 5 hours of walltime per job (via ``--job-max-walltime``).
 
 In order to have some meaningful job output files, we also enable trace mode (via ``--trace``).
 
 ```
-$ eb AUGUSTUS-3.4.0-foss-2020b.eb --job --job-cores 10 --job-max-walltime 1 --robot --trace
+$ eb AUGUSTUS-3.4.0-foss-2021b.eb --job --job-cores 4 --job-max-walltime 5 --robot --trace
 ...
 == resolving dependencies ...
 ...
-== List of submitted jobs (11): Boost-1.74.0-GCC-10.2.0 (Boost/1.74.0-GCC-10.2.0): 1000011; GSL-2.6-GCC-10.2.0 (GSL/2.6-GCC-10.2.0): 1000004; SAMtools-1.11-GCC-10.2.0 (SAMtools/1.11-GCC-10.2.0): 1000005; HTSlib-1.11-GCC-10.2.0 (HTSlib/1.11-GCC-10.2.0): 1000006; BCFtools-1.11-GCC-10.2.0 (BCFtools/1.11-GCC-10.2.0): 1000001; lpsolve-5.5.2.11-GCC-10.2.0 (lpsolve/5.5.2.11-GCC-10.2.0): 1000007; BamTools-2.5.1-GCC-10.2.0 (BamTools/2.5.1-GCC-10.2.0): 1000008; METIS-5.1.0-GCCcore-10.2.0 (METIS/5.1.0-GCCcore-10.2.0): 1000009; MPFR-4.1.0-GCCcore-10.2.0 (MPFR/4.1.0-GCCcore-10.2.0): 1000010; SuiteSparse-5.8.1-foss-2020b-METIS-5.1.0 (SuiteSparse/5.8.1-foss-2020b-METIS-5.1.0): 1000002; AUGUSTUS-3.4.0-foss-2020b (AUGUSTUS/3.4.0-foss-2020b): 1000003
+== List of submitted jobs (11): lpsolve-5.5.2.11-GCC-11.2.0 (lpsolve/5.5.2.11-GCC-11.2.0): 246; ICU-69.1-GCCcore-11.2.0 (ICU/69.1-GCCcore-11.2.0): 247; gzip-1.10-GCCcore-11.2.0 (gzip/1.10-GCCcore-11.2.0): 248; BamTools-2.5.2-GCC-11.2.0 (BamTools/2.5.2-GCC-11.2.0): 249; lz4-1.9.3-GCCcore-11.2.0 (lz4/1.9.3-GCCcore-11.2.0): 250; METIS-5.1.0-GCCcore-11.2.0 (METIS/5.1.0-GCCcore-11.2.0): 251; zstd-1.5.0-GCCcore-11.2.0 (zstd/1.5.0-GCCcore-11.2.0): 252; Boost-1.77.0-GCC-11.2.0 (Boost/1.77.0-GCC-11.2.0): 253; MPFR-4.1.0-GCCcore-11.2.0 (MPFR/4.1.0-GCCcore-11.2.0): 254; SuiteSparse-5.10.1-foss-2021b-METIS-5.1.0 (SuiteSparse/5.10.1-foss-2021b-METIS-5.1.0): 255; AUGUSTUS-3.4.0-foss-2021b (AUGUSTUS/3.4.0-foss-2021b): 256
 == Submitted parallel build jobs, exiting now
 ```
 
@@ -250,47 +250,45 @@ $ eb AUGUSTUS-3.4.0-foss-2020b.eb --job --job-cores 10 --job-max-walltime 1 --ro
 Once EasyBuild has submitted the jobs, we can inspect them via Slurm's ``squeue`` command:
 
 ```
-$ squeue -u $USER -la
-  JOBID PARTITION     NAME     USER    STATE   TIME TIME_LIMI  NODES NODELIST(REASON)
-1000001     small BCFtools  user123  PENDING   0:00   2:00:00      1 (Dependency)
-1000002     small SuiteSpa  user123  PENDING   0:00   2:00:00      1 (Dependency)
-1000003     small AUGUSTUS  user123  PENDING   0:00   2:00:00      1 (Dependency)
-1000004     small GSL-2.6-  user123  RUNNING   0:21   2:00:00      1 node003
-1000005     small SAMtools  user123  RUNNING   0:21   2:00:00      1 node007
-1000006     small HTSlib-1  user123  RUNNING   0:21   2:00:00      1 node007
-1000007     small lpsolve-  user123  RUNNING   0:21   2:00:00      1 node011
-1000008     small BamTools  user123  RUNNING   0:21   2:00:00      1 node011
-1000009     small METIS-5.  user123  RUNNING   0:21   2:00:00      1 node013
-1000010     small MPFR-4.1  user123  RUNNING   0:21   2:00:00      1 node029
-1000011     small Boost-1.  user123  RUNNING   0:24   2:00:00      1 node029
+$ squeue -u $USER
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+               252 cpubase_b zstd-1.5   boegel PD       0:00      1 (Dependency)
+               253 cpubase_b Boost-1.   boegel PD       0:00      1 (Dependency)
+               254 cpubase_b MPFR-4.1   boegel PD       0:00      1 (Resources)
+               255 cpubase_b SuiteSpa   boegel PD       0:00      1 (Dependency)
+               256 cpubase_b AUGUSTUS   boegel PD       0:00      1 (Dependency)
+               246 cpubase_b lpsolve-   boegel  R       0:53      1 node1
+               247 cpubase_b ICU-69.1   boegel  R       0:53      1 node2
+               250 cpubase_b lz4-1.9.   boegel  R       0:10      1 node3
+               251 cpubase_b METIS-5.   boegel  R       0:08      1 node4
 ```
 
-Note that 3 jobs can not be started yet, because those installations require on one or more
+Note that a couple of jobs can not be started yet, because those installations require on one or more
 missing dependencies. As soon as the jobs for those dependencies (successfully) complete,
 these jobs will be able to start.
 
 ### Final result
 
-After about 20 minutes, AUGUSTUS and all missing dependencies should be installed:
+After a while, AUGUSTUS and all missing dependencies should be installed:
 
 ```
 $ ls -lrt $HOME/easybuild/modules/all/*/*.lua | tail -11
--rw-rw----. 1 example  example  1634 Mar 29 10:13 /users/example/easybuild/modules/all/HTSlib/1.11-GCC-10.2.0.lua
--rw-rw----. 1 example  example  1792 Mar 29 10:13 /users/example/easybuild/modules/all/SAMtools/1.11-GCC-10.2.0.lua
--rw-rw----. 1 example  example  1147 Mar 29 10:13 /users/example/easybuild/modules/all/BamTools/2.5.1-GCC-10.2.0.lua
--rw-rw----. 1 example  example   957 Mar 29 10:13 /users/example/easybuild/modules/all/lpsolve/5.5.2.11-GCC-10.2.0.lua
--rw-rw----. 1 example  example  1549 Mar 29 10:13 /users/example/easybuild/modules/all/METIS/5.1.0-GCCcore-10.2.0.lua
--rw-rw----. 1 example  example  1525 Mar 29 10:14 /users/example/easybuild/modules/all/GSL/2.6-GCC-10.2.0.lua
--rw-rw----. 1 example  example  1221 Mar 29 10:15 /users/example/easybuild/modules/all/MPFR/4.1.0-GCCcore-10.2.0.lua
--rw-rw----. 1 example  example  1678 Mar 29 10:15 /users/example/easybuild/modules/all/BCFtools/1.11-GCC-10.2.0.lua
--rw-rw----. 1 example  example  1292 Mar 29 10:21 /users/example/easybuild/modules/all/Boost/1.74.0-GCC-10.2.0.lua
--rw-rw----. 1 example  example  1365 Mar 29 10:28 /users/example/easybuild/modules/all/SuiteSparse/5.8.1-foss-2020b-METIS-5.1.0.lua
--rw-rw----. 1 example  example  2233 Mar 29 10:30 /users/example/easybuild/modules/all/AUGUSTUS/3.4.0-foss-2020b.lua
+-rw-rw-r--. 1 example example  987 Apr 27 20:40 /home/example/easybuild/modules/all/gzip/1.10-GCCcore-11.2.0.lua
+-rw-rw-r--. 1 example example 1144 Apr 27 20:40 /home/example/easybuild/modules/all/BamTools/2.5.2-GCC-11.2.0.lua
+-rw-rw-r--. 1 example example  954 Apr 27 20:40 /home/example/easybuild/modules/all/lpsolve/5.5.2.11-GCC-11.2.0.lua
+-rw-rw-r--. 1 example example 1351 Apr 27 20:40 /home/example/easybuild/modules/all/lz4/1.9.3-GCCcore-11.2.0.lua
+-rw-rw-r--. 1 example example 1546 Apr 27 20:40 /home/example/easybuild/modules/all/METIS/5.1.0-GCCcore-11.2.0.lua
+-rw-rw-r--. 1 example example 1317 Apr 27 20:43 /home/example/easybuild/modules/all/ICU/69.1-GCCcore-11.2.0.lua
+-rw-rw-r--. 1 example example 2050 Apr 27 20:43 /home/example/easybuild/modules/all/zstd/1.5.0-GCCcore-11.2.0.lua
+-rw-rw-r--. 1 example example 1218 Apr 27 20:44 /home/example/easybuild/modules/all/MPFR/4.1.0-GCCcore-11.2.0.lua
+-rw-rw-r--. 1 example example 1218 Apr 27 20:49 /home/example/easybuild/modules/all/Boost/1.77.0-GCC-11.2.0.lua
+-rw-rw-r--. 1 example example 1218 Apr 27 20:54 /home/example/easybuild/modules/all/SuiteSparse/5.10.1-foss-2021b-METIS-5.1.0.lua
+-rw-rw-r--. 1 example example 1218 Apr 27 20:58 /home/example/easybuild/modules/all/AUGUSTUS/3.4.0-foss-2021b.lua
 
 $ module use $HOME/easybuild/modules/all
 
 $ module avail AUGUSTUS
 
--------- /users/hkenneth/easybuild/modules/all --------
-   AUGUSTUS/3.4.0-foss-2020b
+-------- /home/example/easybuild/modules/all --------
+   AUGUSTUS/3.4.0-foss-2021b
 ```
