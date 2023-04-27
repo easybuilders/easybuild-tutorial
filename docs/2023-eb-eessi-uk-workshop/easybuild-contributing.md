@@ -435,5 +435,5 @@ The gist linked from this comment provides more detailed information:
 
 ---
 
-[*next: Comparison with other tools*](comparison_other_tools.md) - [*(back to overview page)*](index.md)
+[*(back to overview page)*](index.md)
 
