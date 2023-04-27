@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://easybuilders.github.io/easybuild-tutorial/2023-eb-eessi-uk-workshop/easybuild-troubleshooting/">
       
       
+        <link rel="prev" href="../easybuild-installing-software/">
+      
+      
+        <link rel="next" href="../easybuild-writing-easyconfigs/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.8">
@@ -215,14 +219,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
       
       
       
@@ -231,7 +237,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
           EasyBuild + EESSI UK workshop (April 2023)
@@ -256,14 +262,16 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
       
       
       
@@ -272,7 +280,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_2_2">
           <span class="md-nav__icon md-icon"></span>
           Day 1: Introduction to EasyBuild
@@ -300,7 +308,7 @@
   
     <li class="md-nav__item">
       <a href="../easybuild-introduction/" class="md-nav__link">
-        Introduction
+        What is EasyBuild?
       </a>
     </li>
   
@@ -328,7 +336,7 @@
   
     <li class="md-nav__item">
       <a href="../easybuild-installation/" class="md-nav__link">
-        Installation
+        Installing EasyBuild
       </a>
     </li>
   
@@ -342,7 +350,7 @@
   
     <li class="md-nav__item">
       <a href="../easybuild-configuration/" class="md-nav__link">
-        Configuration
+        Configuring EasyBuild
       </a>
     </li>
   
@@ -356,7 +364,158 @@
   
     <li class="md-nav__item">
       <a href="../easybuild-basic-usage/" class="md-nav__link">
-        Basic usage
+        Basic usage of EasyBuild
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../easybuild-installing-software/" class="md-nav__link">
+        Installing Software with EasyBuild
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Troubleshooting
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Troubleshooting
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#easybuild-error-messages" class="md-nav__link">
+    EasyBuild error messages
+  </a>
+  
+    <nav class="md-nav" aria-label="EasyBuild error messages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#easybuild-log-files" class="md-nav__link">
+    EasyBuild log files
+  </a>
+  
+    <nav class="md-nav" aria-label="EasyBuild log files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#last-log" class="md-nav__link">
+    Last log
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#navigating-log-files" class="md-nav__link">
+    Navigating log files
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inspecting-the-build-directory" class="md-nav__link">
+    Inspecting the build directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    Exercise
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../easybuild-writing-easyconfigs/" class="md-nav__link">
+        Writing Easyconfigs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../easybuild-module-naming-schemes/" class="md-nav__link">
+        Module Naming Schemes
       </a>
     </li>
   
@@ -404,7 +563,7 @@
   
     <li class="md-nav__item">
       <a href="../easybuild-contributing/" class="md-nav__link">
-        Contributing
+        Contributing to EasyBuild
       </a>
     </li>
   
@@ -418,7 +577,7 @@
   
     <li class="md-nav__item">
       <a href="../easybuild-hooks/" class="md-nav__link">
-        Using hooks to customize EasyBuild
+        Customizing EasyBuild Using Hooks
       </a>
     </li>
   
@@ -460,7 +619,7 @@
   
     <li class="md-nav__item">
       <a href="../easybuild-python-library/" class="md-nav__link">
-        Using EasyBuild as a library
+        Using EasyBuild as a Python Library
       </a>
     </li>
   
@@ -508,7 +667,7 @@
   
     <li class="md-nav__item">
       <a href="../eessi-introduction/" class="md-nav__link">
-        Introduction
+        Introduction to EESSI
       </a>
     </li>
   
@@ -522,7 +681,7 @@
   
     <li class="md-nav__item">
       <a href="../eessi-getting-access/" class="md-nav__link">
-        Getting access
+        Getting access to EESSI
       </a>
     </li>
   
@@ -550,7 +709,7 @@
   
     <li class="md-nav__item">
       <a href="../eessi-use-cases/" class="md-nav__link">
-        Use cases
+        Use Cases for EESSI
       </a>
     </li>
   
@@ -564,7 +723,7 @@
   
     <li class="md-nav__item">
       <a href="../eessi-community/" class="md-nav__link">
-        EESSI Community
+        The EESSI Community
       </a>
     </li>
   
