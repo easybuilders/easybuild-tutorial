@@ -55,16 +55,7 @@ The most recent version of the presentation slides are available [here](../files
 
 [12:00-13:00] *(lunch break)*
 
-[13:00-17:00] Introduction to EESSI (incl. demos + hands-on)
-
-*(links redirect to EESSI documentation)*
-
-- [What is EESSI?](https://eessi.github.io/docs/overview)
-- [High-level design of EESSI](https://eessi.github.io/docs/overview/#layered-structure)
-- [Current status of the project](https://eessi.github.io/docs/overview/#current-status)
-- [The EESSI pilot repository](https://eessi.github.io/docs/pilot/)
-- Getting access to EESSI:
-    - [Native installation](https://eessi.github.io/docs/getting_access/native_installation/)
-    - [EESSI client container](https://eessi.github.io/docs/getting_access/eessi_container/)
-- [Using EESSI](https://eessi.github.io/docs/using_eessi/eessi_demos/)
-- [Use Cases for EESSI](https://eessi.github.io/docs/meetings/2022-09-amsterdam/EESSI-community-meeting-2022.09-003-EESSI-use-cases.pdf)
+- [Introduction to EESSI](eessi-introduction.md)
+- [Getting access to EESSI](eessi-getting-access.md) *(hands-on)*
+- [Using EESSI](eessi-usage.md) *(hands-on)*
+- [Use Cases for EESSI](eessi-use-cases.md)
