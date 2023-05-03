@@ -225,7 +225,7 @@ sites leverage it, and integrate it with other tools like [Jenkins](https://www.
 
 HPC sites, consortia, and companies that use EasyBuild include (but are not limited to):
 
-a href="https://www.vscentrum.be"><img src="../../../img/vsc_logo.png" alt="VSC logo" width="40%"></a>
+<a href="https://www.vscentrum.be"><img src="../../../img/vsc_logo.png" alt="VSC logo" width="40%"></a>
 <a href="https://www.fz-juelich.de/ias/jsc"><img src="../../../img/jsc_logo.png" alt="JSC logo" width="28%"></a>
 <a href="https://hpcnow.com/"><img src="../../../img/hpcnow_logo.png" alt="HPCNow! logo" width="25%"></a>
 <a href="https://www.fredhutch.org/"><img src="../../../img/fredhutch_logo.png" alt="Fred Hutch logo" width="25%"></a>
