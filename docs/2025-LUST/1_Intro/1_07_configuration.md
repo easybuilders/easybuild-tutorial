@@ -28,8 +28,10 @@ and to configure EasyBuild according to your preferences and the system on which
 
     There are two more admin-only configuration modules for EasyBuild. The main one is
     ``EasyBuild-production`` which is used for software installations in the central software stack.
-    The other one is ``EasyBuild-infrastructure`` which is used to install infrastructure modules
-    that need to be installed in a pure Lmod hierarchy, e.g., the modules that load the toolchains.
+    The other one is ``EasyBuild-infrastructure`` which can be used to install infrastructure modules
+    that need to be installed in a pure Lmod hierarchy, e.g., the modules that do the EasyBuild
+    configuration (though these are currently not installed through EasyBuild) and the compiler
+    toolchain modules.
 
 
 ---
@@ -42,7 +44,7 @@ in a large amount of available configuration settings.
 
 The full list of configuration settings can be consulted via `eb --help`,
 which shows the corresponding command line option accompanied by a short description.
-At the time of writing, *over 240 different configuration settings* are supported by EasyBuild.
+At the time of writing, *over 270 different configuration settings* are supported by EasyBuild.
 
 For the sake of this tutorial we will focus on a specific subset of configuration settings,
 and cover only the most prominent and important ones.
@@ -105,7 +107,7 @@ and the default `software` and `modules/all` names for the subdirectories are us
     This makes it slightly easier to organise the module tree with user-friendly labeling, but above
     all also makes the synchronisation process of the 4 instances of the software directory more robust
     as it is now easy to synchronise all modules in the last step, which is a much quicker process than
-    syncrhonising the software installations.
+    synchronising the software installations.
 
     We also use short paths for software installations (to avoid overrunning the maximum length of a
     shebang line in scripts) while we use longer, more descriptive names for subdirectories in the 
@@ -139,8 +141,9 @@ or specific mount options like `noexec`).
 
     The configuration modules on LUMI will use a RAM disk for the build path. On the login nodes,
     ``$XDG_RUNTIME_DIR`` is used as that space is automatically cleared when the last session of a user
-    ends. However, on the compute nodes a job- or user-specific subdirectory of ``/dev/shm`` is currently used
-    as ``$XDG_RUNTIME_DIR`` does not exist.
+    ends. However, on the compute nodes a job- or user-specific subdirectory of ``/tmp`` is currently used
+    as ``$XDG_RUNTIME_DIR`` does not exist. The user can also overwrite the build directory by 
+    setting `EBU_WORKDIR` before loading the EasyBuild configuration module (e.g., `EasyBuild-user`).
 
 
 ---
@@ -562,7 +565,7 @@ Leave other configuration settings set to their default value.
 Try running the following command:
 
 ```shell
-eb bzip2-1.0.6.eb
+eb bzip2-1.0.8.eb
 ```
 
 Where do you expect to find the installation?
@@ -584,8 +587,8 @@ Where do you expect to find the installation?
     $ ls $HOME/easybuild/software
     bzip2
     $ ls $HOME/easybuild/software/bzip2
-    1.0.6
-    $ ls $HOME/easybuild/software/bzip2/1.0.6
+    1.0.8
+    $ ls $HOME/easybuild/software/bzip2/1.0.8
     bin  easybuild  include  lib  man
     ```
 
@@ -593,14 +596,14 @@ Where do you expect to find the installation?
     $ ls $HOME/easybuild/modules/all
     bzip2
     $ ls $HOME/easybuild/modules/all/bzip2
-    1.0.6.lua
+    1.0.8.lua
     ```
 
-    The source file for bzip2 1.0.6 was downloaded to `$HOME/easybuild/sources`:
+    The source file for bzip2 1.0.8 was downloaded to `$HOME/easybuild/sources`:
 
     ```shell
     $ ls $HOME/easybuild/sources/b/bzip2
-    bzip2-1.0.6.tar.gz
+    bzip2-1.0.8.tar.gz
     ```
 
     We will discuss this in more detail in the next part of the tutorial.

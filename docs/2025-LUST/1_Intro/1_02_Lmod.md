@@ -60,17 +60,17 @@ features such as link time optimization). This is even more important for MPI, a
 MPICH-derived MPI implementations have incompatible Application Binary Interfaces. This would lead
 to a hierarchy with 3 levels:
 
-1.  The ``Core`` level containing the modules for the compilers themselves, e.g., one or more versions
+1.  The `Core` level containing the modules for the compilers themselves, e.g., one or more versions
     of the GNU compiler suite and one or more versions of LLVM-based compilers.
 
     Loading a compiler module would then make the next level available:
 
-2.  The ``Compiler`` level, containing modules for libraries and packages that only rely on the compilers
+2.  The `Compiler` level, containing modules for libraries and packages that only rely on the compilers
     but do not use MPI, as well as the MPI modules, e.g., a version of Open MPI and a version of MPICH.
 
     Loading one of the MPI modules would then make the next level available:
 
-3.  The ``MPI`` level, containing libraries and applications that depend on the compiler used and the MPI
+3.  The `MPI` level, containing libraries and applications that depend on the compiler used and the MPI
     implementation.
 
 ??? Example "A simple Lmod hierarchy with a single compiler"
@@ -80,9 +80,9 @@ to a hierarchy with 3 levels:
 
     <div align="center"><img src="../../../img/hmns.png" width="60%"/></div>
 
-    In this example the ``Core`` level only includes a single module `GCC/9.3.0`,
-    while  the ``Compiler`` level includes two modules: `OpenMPI/4.0.3` and `MPICH/3.3.2`.
-    In the ``MPI `` level, three modules are available: one for `FFTW`, one for `ScaLAPACK`, 
+    In this example the `Core` level only includes a single module `GCC/9.3.0`,
+    while  the `Compiler` level includes two modules: `OpenMPI/4.0.3` and `MPICH/3.3.2`.
+    In the `MPI ` level, three modules are available: one for `FFTW`, one for `ScaLAPACK`, 
     and one for `HDF5`.
 
     Initially only the modules on the top level of a module hierarchy are available for loading.
@@ -93,20 +93,20 @@ to a hierarchy with 3 levels:
     next level below.
     To make additional modules available for loading one of these gateway modules has to be loaded. 
     In our example, loading the `GCC/9.3.0` module results in two additional modules coming into
-    view from the ``Compiler`` level, as indicated by the arrows: the modules for `OpenMPI` and `MPICH`. 
+    view from the `Compiler` level, as indicated by the arrows: the modules for `OpenMPI` and `MPICH`. 
     These correspond to installations of `OpenMPI`
     and `MPICH` that were built using `GCC/9.3.0`.
 
-    Similarly, the `OpenMPI/4.0.3` module serves as a gateway to the three modules in the ``MPI`` level. 
+    Similarly, the `OpenMPI/4.0.3` module serves as a gateway to the three modules in the `MPI` level. 
     Only by loading the `OpenMPI` module will these additional three modules become
-    available for loading. They correspond to software installations built using the ``GCC/9.3.0``
-    compiler with ``OpenMPI/4.0.3``. 
+    available for loading. They correspond to software installations built using the `GCC/9.3.0`
+    compiler with `OpenMPI/4.0.3`. 
 
 Now assume that we have two compilers in the hierarchy, Compiler_A and Compiler_B. Their modules would reside
-at the ``Core`` level. Both compilers provide the same MPI implementation, MPI_C. So there would be two modules
-for ``MPI_C`` in two different subdirectories at the ``Compiler`` level. And further assume that we have an
+at the `Core` level. Both compilers provide the same MPI implementation, MPI_C. So there would be two modules
+for `MPI_C` in two different subdirectories at the `Compiler` level. And further assume that we have an
 application, Appl_E, compiled with both Compiler_A and Compiler_B and using MPI_C. For that application there would
-also be two module files at the ``MPI`` level,  one in a subdirectory corresponding ao Compiler_A and MPI_C and one
+also be two module files at the `MPI` level,  one in a subdirectory corresponding ao Compiler_A and MPI_C and one
 in a subdirectory corresponding to Compiler_B and MPI_C. 
 
 ```mermaid
@@ -234,17 +234,17 @@ family('Compiler')
 prepend_path('MODULEPATH', 'moduleroot/Compiler/Compiler_A/version_A')
 ```
 
-There are now two different ``version_C.lua`` files. One contains the necessary calls to module functions to
+There are now two different `version_C.lua` files. One contains the necessary calls to module functions to
 initialise the environment to use the version compiled with Compiler_A/version_A while the other contains the
 necessary functions to do that for Compiler_B/version_B. Again, two more lines are needed to implement the hierarchy.
-E.g., for ``moduleroot/Compiler/Compiler_A/version_A/MPI_C/version_C.lua``: 
+E.g., for `moduleroot/Compiler/Compiler_A/version_A/MPI_C/version_C.lua`: 
 
 ```Lua
 family('MPI')
 prepend_path('MODULEPATH', 'moduleroot/MPI/Compiler_A/version_A/MPI_C/version_C')
 ```
 
-Finally two versions of the ``version_E.lua`` file are needed, one to prepare the environment for using the 
+Finally two versions of the `version_E.lua` file are needed, one to prepare the environment for using the 
 package with Compiler_A and MPI_C and one for using the package with Compiler_B and MPI_C. However, these
 are just regular modules and no additions are needed to work for the hierarchy.
 
@@ -262,7 +262,7 @@ particular version of the hardware for a particular section of LUMI.
 ## Finding modules
 
 In a hierarchical setup, not all modules are available at login. This implies that a user cannot use
-``module avail`` to discover which software is available on the system. To this end Lmod has powerful
+`module avail` to discover which software is available on the system. To this end Lmod has powerful
 search commands. It is important to understand how these commands work to ensure that the proper information
 is included in the module files to improve discoverability of software.
 
@@ -275,27 +275,27 @@ is included in the module files to improve discoverability of software.
 ### module spider command
 
 The available modules at any point in time are often only a subset of all installed modules on a
-system. However, Lmod provides the ``module spider`` command to search for a module with a given name 
+system. However, Lmod provides the `module spider` command to search for a module with a given name 
 among all installed modules and to tell you how this module can be loaded (i.e., which other modules
 need to be loaded to make the module available).
 
-The ``module spider`` command has three levels, producing different outputs:
+The `module spider` command has three levels, producing different outputs:
 
- 1. ``module spider`` without further arguments will produce a list of all
+ 1. `module spider` without further arguments will produce a list of all
     installed software and show some basic information about those packages.
-    Some packages may have an ``(E)`` behind their name and will appear in blue
+    Some packages may have an `(E)` behind their name and will appear in blue
     (in the default colour scheme) which means that they are part of a different
     package. These are called *extensions*  of packages or modules.
     This is explained a little further in this page.
 
-    Note that ``module spider`` will also search in packages that are hidden from
+    Note that `module spider` will also search in packages that are hidden from
     being displayed. These packages can be loaded and used. However administrators
     may have decided to hide them
     either because they are not useful to regular users or because they think that
     they will rarely or never be directly loaded by a user and want to avoid
     overloading the module display.
 
- 2. ``module spider <name of package>`` will search for the specific package. This
+ 2. `module spider <name of package>` will search for the specific package. This
     can be the name of a module, but it will also search some other information
     that can be included in the modules. The search is also case-insensitive.
     E.g., on LUMI
@@ -317,7 +317,7 @@ The ``module spider`` command has three levels, producing different outputs:
             gnuplot/5.4.3-cpeGNU-22.08
     ```
     so even though the capitalisation of the name was wrong, it can tell us that
-    there are two versions of gnuplot. The ``cpeGNU-22.08`` and ``cpeCray-22.08``
+    there are two versions of gnuplot. The `cpeGNU-22.08` and `cpeCray-22.08`
     tell that the difference is the compiler that was used to install gnuplot,
     being the GNU compiler (PrgEnv-gnu) and the Cray compiler (PrgEnv-cray)
     respectively.
@@ -347,7 +347,7 @@ The ``module spider`` command has three levels, producing different outputs:
           LUMI/24.03  partition/C
           LUMI/24.03  partition/G
           LUMI/24.03  partition/L
-          
+
         Help:
      ```
      (abbreviated output). Note that it also tells you which other modules need
@@ -382,25 +382,27 @@ e.g., to reduce module clutter but also to reduce the length of the search paths
 binaries, libraries or manual pages to speed up loading of applications.
 
 Lmod offers a way to make those individual packages installed in a module discoverable
-by declaring them as *extensions* of the module. The ``module spider`` command will
+by declaring them as *extensions* of the module. The `module spider` command will
 search for those too.
 
- 1. ``module spider`` without further arguments: The output may contain lines similar
+ 1. `module spider` without further arguments: The output may contain lines similar
     to
     ```
     -----------------------------------------------------------------------
     The following is a list of the modules and extensions currently available:
     -----------------------------------------------------------------------
-      Autoconf: Autoconf/2.71 (E)
-
-      CMake: CMake/3.21.2 (E), CMake/3.22.2 (E)
+      Autoconf: Autoconf/2.71 (E), Autoconf/2.72 (E)
+    
+    ...
+    
+      CMake: CMake/3.24.0 (E), CMake/3.25.2 (E), CMake/3.27.7 (E), ...
     ```
-    which tells that ``Autoconf`` and ``CMake`` are not available as modules themselves
+    which tells that `Autoconf` and `CMake` are not available as modules themselves
     but as extensions of another module, and it also tells the versions that are available,
     though that list may not be complete (and is not always complete for modules either
     as it is limited to one line of output).
 
-2.  ``module spider <name of package>`` will search for extensions also. E.g.,
+2.  `module spider <name of package>` will search for extensions also. E.g.,
     ```
     module spider CMake
     ```
@@ -410,53 +412,43 @@ search for those too.
       CMake:
     -----------------------------------------------------------------------
          Versions:
-            CMake/3.21.2 (E)
-            CMake/3.22.2 (E)
+            CMake/3.24.0 (E)
+            CMake/3.25.2 (E)
+            CMake/3.27.7 (E)
+            CMake/3.29.3 (E)
     ```
     (output abbreviated). 
-    This tells that there is no ``CMake`` module on the system but that two versions
-    of ``CMake`` are provided in another module.
+    This tells that there is no `CMake` module on the system but that two versions
+    of `CMake` are provided in another module.
 
-3.  ``module spider <extension name>/<version>`` will show more information on the
+3.  `module spider <extension name>/<version>` will show more information on the
     extension, including which module provides the extension and which other modules
     have to be loaded to make that module available. E.g., on LUMI,
     ```
-    module spider CMake/3.22.2
+    module spider CMake/3.29.3
     ```
     will output something along the lines of
     ```
     -----------------------------------------------------------------------
-     CMake: CMake/3.22.2 (E)
+     CMake: CMake/3.29.3 (E)
     -----------------------------------------------------------------------
        This extension is provided by the following modules. To access the 
        extension you must load one of the following modules. Note that any 
        module names in parentheses show the module location in the software 
        hierarchy.
 
-          buildtools/21.12 (LUMI/21.12 partition/L)
-          buildtools/21.12 (LUMI/21.12 partition/G)
-          buildtools/21.12 (LUMI/21.12 partition/D)
-          buildtools/21.12 (LUMI/21.12 partition/C)
-          buildtools/21.12 (CrayEnv)
+          buildtools/24.03 (LUMI/24.03 partition/L)
+          buildtools/24.03 (LUMI/24.03 partition/G)
+          buildtools/24.03 (LUMI/24.03 partition/C)
+          buildtools/24.03 (CrayEnv)
+          buildtools/23.12 (LUMI/23.12 partition/L)
+          buildtools/23.12 (LUMI/23.12 partition/G)
+          buildtools/23.12 (LUMI/23.12 partition/C)
+          buildtools/23.12 (CrayEnv)
     ```
     (output abbreviated and slightly reformatted for readability). This tells that
-    ``CMake/3.22.2`` is provided by the ``bvuildtools/21.12`` module and that there
+    `CMake/3.29.3` is provided by the `bvuildtools/21.12` module and that there
     are 5 different ways to make that package available.
-
-??? Bug "Restrictions with older Lmod versions"
-    At the time of development of this tutorial, Cray is still using the pretty old
-    8.3.1 version of Lmod. Even though extensions were supported since Lmod version 8.2.5,
-    Lmod 8.3.1 has several problems:
-
-    -   It is not possible to hide extensions in the output of ``module avail``, a feature
-        that only became available in version 8.5. This may be annoying to many users as
-        the extension list of packages such as Python, R and Perl can be very long (the
-        default EasyBuild installation of R contains on the order of 600 packages).
-
-        For that reason on LUMI extensions are only used for some modules.
-
-    -   ``module avail`` also shows extensions for modules that are not available which
-        makes no sense. This bug was only corrected in Lmod 8.6.13 and 8.6.14.
  
 
 ### module keyword
@@ -478,19 +470,13 @@ will return something along the lines of
 The following modules match your search criteria: "mp3"
 ----------------------------------------------------------------
 
-  LAME: LAME/3.100-cpeCray-21.08, LAME/3.100-cpeGNU-21.08
+  LAME: LAME/3.100-cpeAMD-22.08, LAME/3.100-cpeAMD-22.12, ...
     LAME is a high quality MPEG Audio Layer III (mp3) encoder
 ```
 though the output will depend on the version of Lmod. This may not be the most
 useful example on a supercomputer, but the library is in fact needed to be able
 to install some other packages even though the sound function is not immediately
 useful.
-
-??? bug "Know issue: Irrelevant output"
-    At the moment of the development of this tutorial, this command actually
-    returns a lot more output, referring to completely irrelevant extensions.
-    This is a bug in the HPE-Cray-provided version of Lmod (8.3.1 at the time
-    of development of this tutorial) that was only solved in more recent versions.
 
 
 ### module avail
@@ -507,13 +493,15 @@ in two ways:
  2. With the name of a module (or a part of the name) it will show all modules
     that match that (part of) a name. E.g.,
     ```bash
+    module load LUMI/24.03
     module avail gnuplot
     ```
     will show something along the lines of
     ```
-    ------ EasyBuild managed software for software stack LUMI/21.08 on LUMI-L ------
-       gnuplot/5.4.2-cpeCray-21.08    gnuplot/5.4.2-cpeGNU-21.08 (D)
-
+    ------ EasyBuild managed software for software stack LUMI/24.03 on LUMI-L -------
+       gnuplot/5.4.10-cpeAOCC-24.03    gnuplot/5.4.10-cpeGNU-24.03 (D)
+       gnuplot/5.4.10-cpeCray-24.03
+   
       Where:
        D:  Default Module
         (output abbreviated).
@@ -529,19 +517,19 @@ in two ways:
 ### Getting help
 
 One way to get help on a particular module has already been discussed on this
-page: ``module spider <name>/<version>`` will produce help about the package as
+page: `module spider <name>/<version>` will produce help about the package as
 soon as it can unambiguously determine the package. It is the only command that
 can produce help for all installed packages. The next two commands can only
 produce help about available packages.
 
-A second command is ``module whatis`` with the name or name and version of a
+A second command is `module whatis` with the name or name and version of a
 module. It will show the brief description of the module that is included in
 most modules on the system. If the full version of the module is not given, it
 will display the information for the default version of that module.
 
-The third command is ``module help``. Without any further argument it will display
+The third command is `module help`. Without any further argument it will display
 some brief help about the module command. However, when used as 
-``module help <name>`` or ``module help <name>/<version>`` it will produce help for either the
+`module help <name>` or `module help <name>/<version>` it will produce help for either the
 default version of the package (if the version is not specified) or the
 indicated version.
 
@@ -552,42 +540,42 @@ Lmod works by executing the module file. However, the actions of all Lmod-define
 functions will depend upon the mode in which Lmod is executing the module function,
 and the module file can also detect in which mode it is executing.
 Modes include "load", "unload" but also "spider".  E.g., when the mode is "load", the
-``setenv`` function will set an environment variable to the indicated value while in 
+`setenv` function will set an environment variable to the indicated value while in 
 "unload" mode that environment variable will be unset, and in "spider" mode the 
 environment variable is left untouched. 
 
-The working of ``prepend_path``, a function 
+The working of `prepend_path`, a function 
 that modifies PATH-style variables, depends a bit on how Lmod is configured (as it is
-possible to work with reference counts), but in its most basic mode, ``prepend_path``
+possible to work with reference counts), but in its most basic mode, `prepend_path`
 will add a given directory to a given PATH-style environment variable (or move it to
 the front of the PATH-style variable if the directory is already in there), while in
 "unload" mode that specific directory will be removed from the PATH (but no error will
 be generated should the directory that is used as the argument not be part of the path
 in that PATH-style variable). When the mode is "spider", the function has special behaviour
-if it is used to change the ``MODULEPATH``. It will then note the change and add that
+if it is used to change the `MODULEPATH`. It will then note the change and add that
 directory to the list of directories that has to be searched for module files.
 
-This makes ``module spider`` a very expensive command as it may have to traverse a lot
+This makes `module spider` a very expensive command as it may have to traverse a lot
 of directories and has to execute all module files in there. Therefore Lmod will build
 a so-called spider cache which can be pre-built in the system for  certain directories
-and otherwise will be build in the user's home directory (in the ``.lmod.d/.cache``
+and otherwise will be build in the user's home directory (in the `~/.cache/lmod`
 subdirectory). Our experience is that this cache tends to be rather fragile,
 in particular on Cray systems (and that has been confirmed in discussions with 
 people with access to some other Cray systems) so from time to time Lmod fails to
-note changes to the modules, at least when using commands such as ``module spider``.
+note changes to the modules, at least when using commands such as `module spider`.
 The actual loading and unloading of the module is not based on cached information.
 
 Lmod has several functions that can be used in module files to provide the information 
 that Lmod needs for the search-related and help commands.
 
-The ``help`` function defines the long help text used by ``module help`` and by
-``module spider`` as soon as there is no ambiguity anymore about which module is
+The `help` function defines the long help text used by `module help` and by
+`module spider` as soon as there is no ambiguity anymore about which module is
 being searched for.
 
-The ``whatis`` function is used to provide short information about a module. That 
-information is then used by ``module whatis`` and ``module keyword`` , but also
-for brief information shown by ``module spider`` when multiple modules or versions
-of modules are found by the command. A module file can contain multiple ``whatis``
+The `whatis` function is used to provide short information about a module. That 
+information is then used by `module whatis` and `module keyword`, but also
+for brief information shown by `module spider` when multiple modules or versions
+of modules are found by the command. A module file can contain multiple `whatis`
 commands and the Lmod manuel suggests to use those lines as a kind of database
 record. See, e.g., 
 [the Lmod manual page with module file examples](https://lmod.readthedocs.io/en/latest/100_modulefile_examples.html?highlight=whatis).
@@ -600,24 +588,24 @@ whatis("URL:         http://www.valgrind.org")
 whatis("Description: memory usage tester")
 ```
 It is not all that important to include all those lines in a module file, but some of
-those lines get a special treatment from Lmod. The line starting with ``Description``
-is used by ``module spider`` to provide some brief information about the module if it
+those lines get a special treatment from Lmod. The line starting with `Description`
+is used by `module spider` to provide some brief information about the module if it
 is not totally resolved. This comes with a limitation though: It is not shown for each
 version of the module, so ideally all "GROMACS" modules should contain the same
 description line and use other lines to provide further information about what
 distinguished a particular version. 
-Likewise the ``Category:`` line is used by the ``spider_decoration`` hook that can be
+Likewise the `Category:` line is used by the `spider_decoration` hook that can be
 used to add decoration to the spider level 1 output.
-All in all the ``whatis`` function is often overlooked in Lmod-based module functionx
+All in all the `whatis` function is often overlooked in Lmod-based module functionx
 but it is a very useful function to include in the proper way in module files.
-The EasyBuild support for the ``whatis`` lines is also far from ideal. It will autogenerate
+The EasyBuild support for the `whatis` lines is also far from ideal. It will autogenerate
 certain lines from information specified in the EasyBuild recipes, but it also allows to
-specify ``whatis`` lines yourself via a parameter in the EasyBuild recipes. However, 
+specify `whatis` lines yourself via a parameter in the EasyBuild recipes. However, 
 as soon as you specify the parameter, it will no longer auto-generate the other lines.
 
-A third function that provides information to the search commands is ``extensions``. 
+A third function that provides information to the search commands is `extensions`. 
 It can be used to list up the extensions supported by the module. The argument list
-may seem strange as it takes only a single argument, a string of comma-separated ``extension/version``
+may seem strange as it takes only a single argument, a string of comma-separated `extension/version`
 elements, but that is because the number of arguments to a function is limited in
 Lua and that limit can actually be met easily by modules for Python, Perl or R packages.
 
@@ -639,13 +627,13 @@ and basing actions of modulefiles on their position in the hierarchy.
 One case where passing information between modules through environment variables will
 go wrong is when that environment variable is subsequently used to compute a directory
 name that is then added to a PATH-like variable. Assume we have two versions of
-a ``MyPython`` module, e.g., ``MyPython/2.7.18`` and ``MyPython/3.6.10``. That module then
-sets an environment variable ``PYTHON_API_VERSION`` to either ``2.7``  or ``3.6``.
-Next we have a module ``MyPythonPackage`` that makes a number of Python packages available
+a `MyPython` module, e.g., `MyPython/2.7.18` and `MyPython/3.6.10`. That module then
+sets an environment variable `PYTHON_API_VERSION` to either `2.7`  or `3.6`.
+Next we have a module `MyPythonPackage` that makes a number of Python packages available
 for both Python modules. However, as some Python packages have to be installed separately
 for each Python version, it does so by adding a directory to the environment variable
-``PYTHONPATH`` that contains the version which it gets by using the Lua function
-``os.getenv`` to request the value of ``PYTHON_API_VERSION``. 
+`PYTHONPATH` that contains the version which it gets by using the Lua function
+`os.getenv` to request the value of `PYTHON_API_VERSION`. 
 
 One problem becomes clear in the following scenario:
 ``` bash
@@ -653,49 +641,50 @@ module load MyPython/2.7.18
 module load MyPythonPackage/1.0
 module load MyPython/3.6.10
 ```
-The ``module load MyPythonPackage`` will find the environment variable ``PYTHON_PACKAGE_API`` 
-with the value ``2.7``  as set by ``module load MyPython/2.7.18`` and hence add the directory
-for the packages for version 2.7 to ``PYTHONPATH``. The ``module load MyPython/3.6.10`` 
+The `module load MyPythonPackage` will find the environment variable `PYTHON_PACKAGE_API` 
+with the value `2.7`  as set by `module load MyPython/2.7.18` and hence add the directory
+for the packages for version 2.7 to `PYTHONPATH`. The `module load MyPython/3.6.10` 
 command will trigger two operations because of the *"one name rule"*: First it will 
-automatically unload ``MyPython/2.7.18`` (which will unset ``PYTHON_API_VERSIUON``) and
-next it will load ``MyPython/3.6.10`` which will set ``PYTHON_API_VERSION`` to ``3.6``. 
-However, ``MyPythonPackage`` is not reloaded so the ``PYTHONPATH`` variable will now point
+automatically unload `MyPython/2.7.18` (which will unset `PYTHON_API_VERSIUON`) and
+next it will load `MyPython/3.6.10` which will set `PYTHON_API_VERSION` to `3.6`. 
+However, `MyPythonPackage` is not reloaded so the `PYTHONPATH` variable will now point
 to the wrong directory. One would be tempted to think that the easy fix for the user would
-be to reload ``MyPythonPackage/1.0``:
+be to reload `MyPythonPackage/1.0`:
 ``` bash
 module load MyPythonPackage/1.0
 ```
 Because of the *"one name rule"* this will again trigger an unload followed by a load
 of the module. The problem is in the unload. One would expect that first unloading
-``MyPythonPackage`` would remove the 2.7 directory from the ``PYTHONPATH`` but it 
-will not. Lmod does not remember that last time it loaded ``MyPythonPackage`` it added
-the 2.7 directory to ``PythonPath``. Instead it will execute the commands in the 
-modulefile and reverse certain commands. Since ``PYTHON_API_VERSION`` has now the value
-``3.6``, it will try to remove the directory for version ``3.6`` which is not in the
-``PYTHONPATH``. The subsequent load will then add the 3.6 directory to ``PYTHONPATH``
+`MyPythonPackage` would remove the 2.7 directory from the `PYTHONPATH` but it 
+will not. Lmod does not remember that last time it loaded `MyPythonPackage` it added
+the 2.7 directory to `PythonPath`. Instead it will execute the commands in the 
+modulefile and reverse certain commands. Since `PYTHON_API_VERSION` has now the value
+`3.6`, it will try to remove the directory for version `3.6` which is not in the
+`PYTHONPATH`. The subsequent load will then add the 3.6 directory to `PYTHONPATH`
 so the environment variable now contains both directories. 
 
-In this simple case, a ``module purge`` after the first two ``module load`` commands would
+In this simple case, a `module purge` after the first two `module load` commands would
 still work as Lmod is able to figure out the right order to unload modules, but in more
-complicated examples this may also go wrong. However, a ``module purge`` command after
-the load of ``MyPython/3.6.10`` would also fail to clean up the environment as it would
-still fail to remove the 2.7 directory from ``PYTHONPATH``. 
+complicated examples this may also go wrong. However, a `module purge` command after
+the load of `MyPython/3.6.10` would also fail to clean up the environment as it would
+still fail to remove the 2.7 directory from `PYTHONPATH`. 
 
 ??? Note "Running the example"
     To test this example for yourself, create a directory and add that directory to 
-    the ``MODULEPATH`` using ``module use``. In that directory, create the following
+    the `MODULEPATH` using `module use`. In that directory, create the following
     subdirectories and files:
-    1.  ``MyPython/2.7.18.lua`` with content:
+    
+    1.  `MyPython/2.7.18.lua` with content:
         ``` lua
         LmodMessage( 'In ' ..  myModuleFullName() .. ' in mode '  .. mode() )
         setenv( 'PYTHON_API_VERSION', '2.7' )
         ```
-    2.  ``MyPython/3.6.10.lua`` with content:
+    2.  `MyPython/3.6.10.lua` with content:
         ``` lua
         LmodMessage( 'In ' ..  myModuleFullName() .. ' in mode '  .. mode() )
         setenv( 'PYTHON_API_VERSION', '3.6' )
         ```
-    3.  ``MyPythonPackage/1.0.lua`` with content:
+    3.  `MyPythonPackage/1.0.lua` with content:
         ``` lua
         LmodMessage( 'In ' ..  myModuleFullName() .. ' in mode '  .. mode() )
         LmodMessage( 'PYTHON_API_VERSION = ' .. ( os.getenv( 'PYTHON_API_VERSION' ) or '') )
@@ -707,12 +696,12 @@ still fail to remove the 2.7 directory from ``PYTHONPATH``.
     The better way in Lmod to implement the above scenario would be in a module hierarchy.
 
     Just to show the power of Lmod introspection functions combined with a proper hierarchy
-    we present a solution using only one version of the code for ``MyPython`` and one version
-    of the code for ``MyPythonPackages``.
+    we present a solution using only one version of the code for `MyPython` and one version
+    of the code for `MyPythonPackages`.
 
     It is best to start from a clean directory. In that directory, create:
 
-    1.  The files ``level1/MyPython/2.7.18.lua`` and ``level1/MyPython/3.6.10.lua``,
+    1.  The files `level1/MyPython/2.7.18.lua` and `level1/MyPython/3.6.10.lua`,
         both with the same contents:
         ``` lua
         LmodMessage( 'In ' ..  myModuleFullName() .. ' in mode '  .. mode() )
@@ -728,8 +717,8 @@ still fail to remove the 2.7 directory from ``PYTHONPATH``.
             os.getenv( 'MODULEPATH' ):gsub(  ':', '\n  ' ) )
         ```
 
-    2.  The files ``level2/PythonAPI/2.7/MyPythonPackage/1.0.lua`` and
-        ``level2/PythonAPI/3.6/MyPythonPackage/1.0.lua``, both with the contents:
+    2.  The files `level2/PythonAPI/2.7/MyPythonPackage/1.0.lua` and
+        `level2/PythonAPI/3.6/MyPythonPackage/1.0.lua`, both with the contents:
         ``` lua
         LmodMessage( 'In ' ..  myFileName() .. ' in mode '  .. mode() )
         
@@ -743,8 +732,8 @@ still fail to remove the 2.7 directory from ``PYTHONPATH``.
         LmodMessage( 'PYTHONPATH = ' .. (os.getenv( 'PYTHONPATH' ) or '') )
         ```
     
-    Now add the ``level1`` subdirectory to ``MODULEPATH``, e.g., if you're in the directory
-    containing the ``level1`` and ``level2`` subdirectories:
+    Now add the `level1` subdirectory to `MODULEPATH`, e.g., if you're in the directory
+    containing the `level1` and `level2` subdirectories:
     ``` bash
     module use $PWD/level1
     ```
@@ -758,58 +747,59 @@ still fail to remove the 2.7 directory from ``PYTHONPATH``.
     ```
     and pay attention to the output.
 
-    Initially ``module avail`` will show none of the ``MyPythonPackage`` modules. These are
-    installed modules but not available modules. ``module load MyPython/2.7.18`` will set the
-    environment variable ``PYTHON_API_VERSION`` to ``2.7`` and also add a directory to the front
-    of the ``MODULEPATH`` with the directory name ending on ``level2/PythonAPI/2.7``. Now
-    ``module avail`` will show the ``MyPythonPackage/1.0`` module.
+    Initially `module avail` will show none of the `MyPythonPackage` modules. These are
+    installed modules but not available modules. `module load MyPython/2.7.18` will set the
+    environment variable `PYTHON_API_VERSION` to `2.7` and also add a directory to the front
+    of the `MODULEPATH` with the directory name ending on `level2/PythonAPI/2.7`. Now
+    `module avail` will show the `MyPythonPackage/1.0` module.
 
-    The ``MyPythonPackage`` shows two ways to get the version of the Python API to use for
-    determining the right directory to add to ``PYTHONPATH``. The fragile way is to enquire
-    the value of the environment variable ``PYTHON_API_VERSION`` set by loading ``MyPython/2.7.18``.
-    The more robust way is to use the Lmod introspection function ``myFileName()`` which returns
+    The `MyPythonPackage` shows two ways to get the version of the Python API to use for
+    determining the right directory to add to `PYTHONPATH`. The fragile way is to enquire
+    the value of the environment variable `PYTHON_API_VERSION` set by loading `MyPython/2.7.18`.
+    The more robust way is to use the Lmod introspection function `myFileName()` which returns
     the full path and file name of the module file that is executing, and extracting the version
     from the path with a pattern matching function. In this particular situation both computed
     values are the same so both would have worked to correctly add
-    ``somedir/python2.7/packages`` to the front of ``PYTHONPATH``. 
+    `somedir/python2.7/packages` to the front of `PYTHONPATH`. 
 
-    The next command, ``module load MyPython/3.6.10`` triggers a chain of events.
+    The next command, `module load MyPython/3.6.10` triggers a chain of events.
 
     First, Lmod notices that there is already a module loaded with the same name, so it will
-    unload ``MyPython/2.7.18``. This will unset the environment variable ``PYTHON_API_VERSION``
-    (the inverse operation of ``setenv``) and will remove the ``.../level2/PythonAPI/2.7``
-    subdirectory from the ``MODULEPATH`` (the inverse action of ``prepend_path``). 
+    unload `MyPython/2.7.18`. This will unset the environment variable `PYTHON_API_VERSION`
+    (the inverse operation of `setenv`) and will remove the `.../level2/PythonAPI/2.7`
+    subdirectory from the `MODULEPATH` (the inverse action of `prepend_path`). 
     
     Now due to 
-    the change of the ``MODULEPATH`` the ``MyPythonPackage/1.0`` module which was loaded from
-    ``.../level2/PythonAPI/2.7`` is no longer available so Lmod will continue with unloading
-    that module. The interesting bit now is that ``PYTHON_API_VERSION`` is unset. So had we 
-    computed the name of the directory to add to ``PYTHONPATH`` using the value of that 
+    the change of the `MODULEPATH` the `MyPythonPackage/1.0` module which was loaded from
+    `.../level2/PythonAPI/2.7` is no longer available so Lmod will continue with unloading
+    that module. The interesting bit now is that `PYTHON_API_VERSION` is unset. So had we 
+    computed the name of the directory to add to `PYTHONPATH` using the value of that 
     environment variable, the module would have failed to compute the correct directory name
-    to remove so ``prepend_path`` would have left the ``PYTHONPATH`` environment variable
+    to remove so `prepend_path` would have left the `PYTHONPATH` environment variable
     untouched. However, by computing that value from the directory of the modulefile, we get
-    the right value and can correctly remove ``somedir/python2.7/packages`` from ``PYTHONPATH``.
+    the right value and can correctly remove `somedir/python2.7/packages` from `PYTHONPATH`.
     Lmod will also remember that the module was only unloaded due to a change in the
-    ``MODULEPATH`` and not because a user explicitly unloaded the module. I.e., it considers
+    `MODULEPATH` and not because a user explicitly unloaded the module. I.e., it considers
     the module as deactivated but not as unloaded.
 
-    Lmod proceeds with loading the ``MyPython/3.6.10`` module. This will now set
-    ``PYTHON_API_VERSION`` to ``3.6`` and add a directory with name ending on
-    ``level2/PythonAPI/3.6`` to ``MODULEPATH``.
+    Lmod proceeds with loading the `MyPython/3.6.10` module. This will now set
+    `PYTHON_API_VERSION` to `3.6` and add a directory with name ending on
+    `level2/PythonAPI/3.6` to `MODULEPATH`.
 
-    Things are not done yet though. As the ``MODULEPATH`` has changed, Lmod looks at its list
-    of deactivated modules and notices that a different version of ``MyPythonPackage/1.0`` is
+    Things are not done yet though. As the `MODULEPATH` has changed, Lmod looks at its list
+    of deactivated modules and notices that a different version of `MyPythonPackage/1.0` is
     now available. Hence it will now automatically load that module from the 
-    ``.../level2/PythonAPI/3.6`` subdirectory so that that module now correctly detects
-    that ``somedir/python3.6/package`` should be added to ``PYTHONPATH``.
+    `.../level2/PythonAPI/3.6` subdirectory so that that module now correctly detects
+    that `somedir/python3.6/package` should be added to `PYTHONPATH`.
 
     Hence at the end of the cycle we have again a correctly configured environment with no
-    trace of the ``2.7`` version that was loaded initially and with no action required from
-    the user to ensure that ``MyPythonPackage`` is unloaded and reloaded to ensure the 
+    trace of the `2.7` version that was loaded initially and with no action required from
+    the user to ensure that `MyPythonPackage` is unloaded and reloaded to ensure the 
     correct configuration.
 
     This idea is used on LUMI to implement the various versions of the software stack with
-    for each software stack also optimised binaries for each of the node types.
+    for each software stack also optimised binaries for each of the node types. Maybe we 
+    should have done so for toolchains also...
 
 ---
 

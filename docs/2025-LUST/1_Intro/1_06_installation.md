@@ -26,7 +26,7 @@ for the remainder of this tutorial.
 
 !!! summary
 
-    * *Requirements*: Linux, Python 2.7 or 3.5+, environment modules tool (Lmod is recommended).
+    * *Requirements*: Linux, Python 3.6+, environment modules tool (Lmod is recommended).
     * *Installation methods*:
         * <a href=#method-1-using-pip>``pip install easybuild``</a>
         * <a href="#method-2-bootstrapping-easybuild">installing EasyBuild with EasyBuild</a>
@@ -50,13 +50,20 @@ like development or contributing back to the project.
 
 ### Python
 
-EasyBuild is implemented in Python, and is **compatible with both Python 2.7 and Python 3.5+**
-(that is, Python 3.5 or a newer version of Python 3).
+EasyBuild is implemented in Python, and is **requires Python 3.6+**
+(that is, Python 3.6 or a newer version of Python 3), though Python 3.9 or more 
+recent is highly recommended.
 
 To check which Python version you have, use:
 
 ```shell
 python -V
+```
+
+or, if that command is not available,
+
+```shell
+python3 -V
 ```
 
 *No additional Python packages are required by EasyBuild*, the ones that come with the standard
@@ -77,7 +84,7 @@ To check if you have a modules tool installed, use:
 module --version
 ```
 
-If this produces output that starts with something like "`Modules based on Lua: Version 8.3.1`" you have Lmod installed,
+If this produces output that starts with something like "`Modules based on Lua: Version 8.7.32`" you have Lmod installed,
 which is the default modules tool used by EasyBuild, and you are all set for installing and using EasyBuild.
 Any sufficiently recent Lmod version (8.x or even 7.x) should be fine. 
 
@@ -99,9 +106,9 @@ we use Lmod as the default module system for users, and EasyBuild is configured 
 ## EasyBuild as a Python package
 
 EasyBuild consists of a number of interdependent Python packages,
-and is available via both GitHub at <a href="https://github.com/easybuilders">https://github.com/easybuilders</a>,
+and is available via both GitHub at <a href="github.com/easybuilders">https://github.com/easybuilders</a>,
 as well as via the standard Python Package Index (PyPI) at
-<a href="https://pypi.org/project/easybuild/">https://pypi.org/project/easybuild</a>.
+<a href="pypi.org/project/easybuild/">https://pypi.org/project/easybuild</a>.
 
 As you may be aware the Python packaging ecosystem is bit convoluted,
 which is reflected in the many different ways in which you can install a Python package.
@@ -119,16 +126,19 @@ via the standard *Python Package Index* (PyPI), through one of the standard Pyth
 And since EasyBuild is a software installation tool in its own right, we actually have a couple
 of additional tricks up our sleeve!
 
-### Python 2 or Python 3?
+### Which version of Python?
 
-For EasyBuild it does not matter much whether you install it on top of Python 2 or Python 3. 
-Since version 4.5, Python 3 does offer some optional features (requiring additional packages)
-that are not available with Python 2.
-Since <a href="https://www.python.org/doc/sunset-python-2/">Python 2 is end-of-life</a>,
-we strongly recommend using Python 3 if you have the choice.
+Recent versions of EasyBuild no longer support Python 2.7 and require version 3.6 or
+newer. Some functionality only works on Python 3.9 or more recent.
 
 By default EasyBuild will use the `python` command to run,
 but you <a href="#eb_python">can control this if needed via ``$EB_PYTHON``</a>.
+
+!!! Note "On LUMI"
+    On LUMI, we modify the scripts that run EasyBuild and hard-code the 
+    Python executable and Python path in the script. This avoids accidentally using
+    the wrong Python executable or interference with other Python software that may
+    be loaded.
 
 
 ## Installing EasyBuild
@@ -307,14 +317,6 @@ you can consider installing EasyBuild with EasyBuild. This can be done in 3 step
 * Step 2: Using EasyBuild to install EasyBuild as a module
 * Step 3: Loading the EasyBuild module
 
-!!! note
-    A [bootstrap script](https://docs.easybuild.io/en/latest/Installation.html#bootstrapping-easybuild)
-    is available that automates this procedure,
-    but is known to be problematic in some contexts, and is not being actively
-    maintained anymore.
-
-    As a result, we do not recommend using the bootstrap script anymore.
-
 
 #### Step 1: Installing EasyBuild into a temporary location
 
@@ -412,7 +414,7 @@ export EB_PYTHON=python3
 ### Approach on LUMI
 
 *Documentation on the inner workings of the LUMI software stack can be found in the 
-[LUMI-SoftwareStack GitHub, docs subdirectory](https://github.com/Lumi-supercomputer/LUMI-SoftwareStack/tree/main/docs).*
+[LUMI-SoftwareStack texts on the lumi-supercomputer.github.io](https://lumi-supercomputer.github.io/LUMI-SoftwareStack/).*
 
 To keep the different versions of the LUMI software stack as independent from one another as possible,
 EasyBuild is bootstrapped for each software stack by the ``prepare_LUMI_stack.sh`` script. We use the 
@@ -425,7 +427,7 @@ are each untarred and then installed into their location by running
 We do so only for the framework and easyblocks files as the easconfig files are not used to
 install EasyBuild. Instead we create our own EasyConfig file for EasyBuild which contains
 some additional packages that enable extra features in EasyBuild and also provide more information
-to Lmod. Next the configuration module for EasyBuild (see the next section, 
+to Lmod. Next we load the LUMI-specific configuration module for EasyBuild (see the next section, 
 ["Configuring EasyBuild"](../1_07_configuration), for more information) and use the temporary 
 installation of EasyBuild with our own EasyConfig file to do a proper installation of EasyBuild
 with module in the final location.

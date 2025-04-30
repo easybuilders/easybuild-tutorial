@@ -15,7 +15,8 @@ It is important to be familiar with these terms, so we'll briefly cover them one
 ## Toolchains
 
 A *compiler toolchain* (or just *toolchain* for short) is a **set of [compilers](https://en.wikipedia.org/wiki/Compiler)**,
-which are used to build software from source, together with a set of **additional libraries** that provide further core functionality.
+which are used to build software from source, together with a set of **additional libraries** 
+with pretty standard APIs that provide further core functionality.
 
 We refer to the different parts of a toolchain as **toolchain components**.
 
@@ -52,7 +53,7 @@ The toolchain concept also maps nicely on the Programming Environment concept in
 Programming Environment. Each ``PrgEnv-*`` module in fact provides a full toolchain in a
 typical Cray PE installation, except for the FFTW library. Note that systems could configure 
 the contents of a ``PrgEnv-*`` module differently as the MPI library and scientific library are 
-optional. In the Cray PE, the MPI library is provided by the ``cray-mpic`` module, 
+optional. In the Cray PE, the MPI library is provided by the ``cray-mpich`` module, 
 the BLAS, LAPACK and ScaLAPACK libraries by the ``cray-libsci`` module (for CPU-only nodes)
 and the FFTW library through the ``cray-fftw`` module.
 
@@ -66,11 +67,11 @@ organised in a hierarchy.
 The **`system` toolchain** is a special case which corresponds to using the compilers and libraries
 *provided by the operating system*, rather than using toolchain components that were installed using EasyBuild.
 
-It used sparingly, mostly to install software where no actual compilation is done or
+It is used sparingly, mostly to install software where no actual compilation is done or
 to build a set of toolchain compilers and its dependencies, since the versions of the system compilers
 and libraries are beyond the control of EasyBuild, which could affect the reproducibility of the installation.
 
-On LUMI however it is used a bit more and it takes some of the functions of the ``GCCcore`` toolchain in
+On LUMI however it is used a bit more and it takes some of the functions of the `GCCcore` toolchain in
 other EasyBuild toolchain hierarchies.
 
 
@@ -82,7 +83,7 @@ because they are widely adopted by the EasyBuild community.
 The `foss` toolchain consists of all open source components (hence the name:
 "FOSS" stands for Free & Open Source Software): [GCC](https://gcc.gnu.org/), [Open MPI](https://www.open-mpi.org/), [OpenBLAS](https://www.openblas.net/),
 [ScaLAPACK](https://www.netlib.org/scalapack/) and [FFTW](http://fftw.org/).
-In recent versions (since 2021a), [FlexiBLAS](https://www.mpi-magdeburg.mpg.de/projects/flexiblas)
+In more recent versions (since 2021a), [FlexiBLAS](https://www.mpi-magdeburg.mpg.de/projects/flexiblas)
 is used as the BLAS library, with OpenBLAS and LAPACK as the backend.
 
 The `intel` toolchain consists of the 
@@ -102,11 +103,13 @@ A[SYSTEM] --> B[GCCcore];
 B --> C[GCC];
 B --> D[iccifort];
 C --> E[gompi: Adds OpenMPI];
-D --> F[iimpi: Adds Intel MPI];
-D --> G[imkl: Adds Intel MKL];
-E --> H[foss: Adds OpenBLAS, LAPACK, ScaLAPACK, FFTW];
-F --> I[intel];
-G --> I;
+C --> F[gfbf: Adds FlexiBLAS, FFTW];
+D --> G[iimpi: Adds Intel MPI];
+D --> H[imkl: Adds Intel MKL];
+E --> I[foss: Adds ScaLAPACK];
+F --> I;
+G --> J[intel];
+H --> J;
 ```
 
 More information on these toolchains is available [in the EasyBuild documentation](https://docs.easybuild.io/en/latest/Common-toolchains.html).
@@ -116,7 +119,7 @@ More information on these toolchains is available [in the EasyBuild documentatio
 
 ## EasyBuild framework
 
-EasyBuild is written in Python and organised in three layers, represented by the three blocks in the logo:
+EasyBuild is written in Python and organised in three layers, represented by the three lines in the logo:
 the EasyBuild framework, easyblocks and Easyconfig files.
 
 The EasyBuild *framework* consists of a set of Python modules organised in packages (``easybuild.framework``,
@@ -169,20 +172,19 @@ EasyBuild.
 
 Some easyconfig parameters are **mandatory**. The following parameters *must* be defined in *every* easyconfig file:
 
-* ``name`` and ``version``, which specify the name and version of the software to install;
-* ``homepage`` and ``description``, which provide key metadata for the software;
-* ``toolchain``, which specifies the compiler toolchain to use to install the software (see
-  ``toolchains`` tab);
+* `name` and `version`, which specify the name and version of the software to install;
+* `homepage` and `description`, which provide key metadata for the software;
+* `toolchain`, which specifies the compiler toolchain to use to install the software;
 
 Other easyconfig parameters are **optional**: they can be used to provide required information,
 or to control specific aspects of the installation procedure performed by the easyblock.
 
 Some commonly used optional easyconfig parameters include:
 
-* ``easyblock``, which specifies which (generic) easyblock should be used for the installation;
-* ``sources`` and ``source_urls``, which specify the list of source files and where to download them;
-* ``dependencies`` and ``builddependencies``, which specify the list of (build) dependencies;
-* ``configopts``, ``buildopts``, and ``installopts``, which specify options for the configuration/build/install commands, respectively;
+* `easyblock`, which specifies which (generic) easyblock should be used for the installation;
+* `sources` and `source_urls`, which specify the list of source files and where to download them;
+* `dependencies` and `builddependencies`, which specify the list of (build) dependencies;
+* `configopts`, `buildopts`, and `installopts`, which specify options for the configuration/build/install commands, respectively;
 
 If no value is specified for an optional easyconfig parameter, the corresponding default value will be used.
 
@@ -278,6 +280,9 @@ There are three main types of dependencies for computer software:
 
 EasyBuild currently doesn't treat link-time dependencies differently from run-time dependencies
 and hence has no specific easyconfig parameter for them.
+(Even EasyBuild 5 doesn't even though that version defaults to "rpath"-linking so that no
+`LD_LIBRARY_PATH` is needed and hence modules that do not define other variables that are
+needed to run a package don't need to be loaded at runtime.)
 
 ---
 
