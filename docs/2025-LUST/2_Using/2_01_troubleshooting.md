@@ -66,8 +66,9 @@ The `make` command tripped over the compilation of `core.cpp` that failed becaus
 
 OK fine, but now what? Can you spot something suspicious here?
 Wait a minute... Why is `make` using `/usr/bin/g++` for the compilation?!
-That's not where our toolchain compiler is installed,
-that's somewhere under `/opt/cray/pe/gcc`.
+Aren't we using `g++-13` these days? 
+(Or before the `gcc-native` modules: That's not where our toolchain compiler is installed,
+that's somewhere under `/opt/cray/pe/gcc`.)
 
 Let's see what `/usr/bin/g++` is:
 
@@ -82,7 +83,7 @@ the base version, 7.1, is really from May 2, 2017, long before the Zen2 architec
 That could definitely explain why it doesn't know about the Zen2 architecture yet...
 
 Your next step in this case should probably be figuring
-out why `/usr/bin/g++` is being used rather than just `g++`, which would
+out why `/usr/bin/g++` is being used rather than the `CC` compiler wrapper, which would
 result in using the right compiler version because EasyBuild sets up the build
 environment carefully.
 
@@ -126,13 +127,13 @@ directory for successful installation, into the `easybuild` subdirectory.
 For example:
 
 ```
-/appl/lumi/SW/LUMI-21.12/L/EB/ncurses/6.2-cpeGNU-21.12/easybuild/easybuild-ncurses-6.2-20220302.110244.log
+/appl/lumi/SW/LUMI-24.03/L/EB/ncurses/6.4-cpeGNU-24.03/easybuild/easybuild-ncurses-6.4-20240912.211604.log
 ```
 
 ### Last log
 
 The `eb` command supports a handy little option that prints the location
-to the most recently updated build log. You can leverage this to quickly
+to the most recently updated build log: `--last-log`. You can leverage this to quickly
 open the build log of the last ***failed*** EasyBuild session in an editor:
 
 ```
@@ -232,7 +233,7 @@ version = '2.0.1'
 homepage = 'http://subread.sourceforge.net'
 description = "High performance read alignment, quantification and mutation discovery"
 
-toolchain = {'name': 'PrgEnv-gnu', 'version': '21.10'}
+toolchain = {'name': 'PrgEnv-gnu', 'version': '24.02'}
 
 # download from https://download.sourceforge.net/subread/subread-2.0.1-source.tar.gz
 sources = ['subread-%(version)s-source.tar.gz']
@@ -240,7 +241,7 @@ checksums = ['d808eb5b1823c572cb45a97c95a3c5acb3d8e29aa47ec74e3ca1eb345787c17b']
 
 start_dir = 'src'
 
-# -fcommon is required to compile Subread 2.0.1 with GCC 10/11,
+# -fcommon is required to compile Subread 2.0.1 from GCC 10 onwards,
 # which uses -fno-common by default (see https://www.gnu.org/software/gcc/gcc-10/porting_to.html)
 buildopts = '-f Makefile.Linux CFLAGS="-fast -fcommon"'
 
@@ -269,14 +270,14 @@ and that the EasyBuild-user module is loaded (unless you installed EasyBuild
 yourself):
 
 ```
-module load LUMI/21.12
+module load LUMI/24.03
 module load EasyBuild-user
 ```
 
 This will configure EasyBuild correctly for this exercise, though if you already have 
 an existing EasyBuild user installation you may want to work in a different one
 by pointing `$EBU_USER_PREFIX` to the desired work directory before loading 
-`LUMI/21.12`.
+`LUMI/24.03`.
 
 Check your configuration via `eb --show-config`.
 
@@ -305,8 +306,8 @@ the toolchain here...
     ```
     $ eb subread.eb
     ...
-    ERROR: Failed to process easyconfig /pfs/lustrep3/users/kurtlust/easybuild-tutorial/Troubleshooting/subread.eb: Toolchain PrgEnv-gnu not found, 
-    available toolchains: ...
+    ERROR: Failed to process easyconfig /pfs/lustrep4/users/kulust/easybuild-tutorial/subread.eb: 
+    Toolchain PrgEnv-gnu not found, available toolchains: ...
     ...
     ```
 
@@ -330,6 +331,12 @@ the toolchain here...
     also built for the LUMI toolchains. Those are called `cpeCray`, `cpeGNU`, `cpeAOCC` and `cpeAMD`
     and are maintained by LUST and available via the LUMI repositories.
 
+    In this example, we should have used `cpeGNU` as the toolchain and not `PrgEnv-gnu`:
+
+    ```python
+    toolchain = {'name': 'cpeGNU', 'version': '24.02'}
+    ```
+
 Note: Depending on how you use EasyBuild you may now first run into the problem of Exercise T.2 or 
 first run into the problem covered by Exercise T.3.
 
@@ -352,9 +359,10 @@ the easyconfig file?
     ```
     $ eb subread.eb
     ...
-    == FAILED: Installation ended unsuccessfully (build directory: /run/user/XXXXXXXX/easybuild/build/Subread/2.0.1/cpeGNU-21.12): build failed (first 300 chars):
-    Couldn't find file subread-2.0.1-source.tar.gz anywhere, and downloading it didn't work either...
-    Paths attempted (in order): ...
+    == FAILED: Installation ended unsuccessfully (build directory:
+    /run/user/327000143/easybuild/build/Subread/2.0.1/cpeGNU-24.03): build failed 
+    (first 300 chars): Couldn't find file subread-2.0.1-source.tar.gz anywhere, 
+    and downloading it didn't work either... Paths attempted (in order): ...
     ```
 
     In this case, the problem is that the easyconfig file does not specify
@@ -377,7 +385,10 @@ the easyconfig file?
     (assuming you have set `EBU_USER_PREFIX`, otherwise replace `$EBU_USER_PREFIX` with
     `$HOME/EasyBuild`).
 
-    Or, we can change the easyconfig file to specify the location where
+    The problem with this approach is that everybody who wants to use this EasyBuild recipe,
+    would have to do that (unless we place the source file in the system source file repository).
+    Of course it should be possible to do better. 
+    We can change the easyconfig file to specify the location where
     the easyconfig file can be downloaded from:
     ```python
     source_urls = ['https://download.sourceforge.net/subread/']
@@ -393,7 +404,7 @@ the easyconfig file?
     ```shell
     $ ls -lh $EBU_USER_PREFIX/sources/s/Subread
     total 23M
-    -rw-rw-r-- 1 XXXXXXXX XXXXXXXX 23M Mar 30 16:08 subread-2.0.1-source.tar.gz
+    -rw-rw-r-- 1 XXXXXXXX XXXXXXXX 23M May  5 19:24 subread-2.0.1-source.tar.gz
     ```
 
 ---
@@ -411,32 +422,34 @@ the toolchain here...
 
 ??? success "(click to show solution)"
 
-    The installation fails because the easyconfig specifies that `PrgEnv-gnu/21.12`
+    The installation fails because the easyconfig specifies that `cpeGNU/23.10`
     should be used as toolchain:
 
     ```shell
     $ eb subread.eb
     ...
     ERROR: Build of /pfs/lustrep3/users/kurtlust/easybuild-tutorial/Troubleshooting/subread.eb failed (err: 'build failed (first 300 chars): 
-    No module found for toolchain: cpeGNU/21.10')
+    No module found for toolchain: cpeGNU/23.10')
     ...
     ```
 
-    We don't have this `cpeGNU` version installed, but we do have `cpeGNU/21.12`:
+    We don't have this `cpeGNU` version installed, but we do have `cpeGNU/24.03`:
 
     ```shell
-    $ module avail cpeGNU/
-    ----- Infrastructure modules for the software stack LUMI/21.12 on LUMI-L -----
-       cpeGNU/21.12
+    $ module spider cpeGNU/
+    ----- Infrastructure modules for the software stack LUMI/24.03 on LUMI-L -----
+       cpeGNU/24.03
     ...
     ```
+
+    (and obviously we should have known since we are installing in `LUMI/24.03`.)
 
     So let's try using that instead.
 
     Edit the easyconfig file so it contains this:
 
     ```python
-    toolchain = {'name': 'cpeGNU', 'version': '21.12'}
+    toolchain = {'name': 'cpeGNU', 'version': '24.03'}
     ```
 
 ---
@@ -452,10 +465,12 @@ Can you fix the next problem you run into?
     The compilation fails, but the error message we see is incomplete due to
     EasyBuild truncating the command output (only the 300 first characters of the output are shown):
     ```
-    == FAILED: Installation ended unsuccessfully (build directory: /run/user/10012026/easybuild/build/Subread/2.0.1/cpeGNU-21.12): build failed
-    (first 300 chars): cmd " make  -j 256 -f Makefile.Linux CFLAGS="-fast -fcommon"" exited with exit code 2 and output:
-    gcc  -mtune=core2  -O3 -DMAKE_FOR_EXON  -D MAKE_STANDALONE -D SUBREAD_VERSION=\""2.0.1"\"  -D_FILE_OFFSET_BITS=64    -fmessage-length=0
-    -ggdb  -fast -fcommon -I/opt/cray/pe/libsci/21.08.1.2/GNU/9.1/x86 (took 4 secs)
+    == FAILED: Installation ended unsuccessfully (build directory:
+    /run/user/327000143/easybuild/build/Subread/2.0.1/cpeGNU-24.03): build failed (first 300 chars): 
+    cmd "make  -j 16 -f Makefile.Linux CFLAGS="-fast -fcommon"" exited with exit code 2 and output:
+    gcc  -mtune=core2  -O3 -DMAKE_FOR_EXON  -D MAKE_STANDALONE -D SUBREAD_VERSION=\""2.0.1"\"  
+    -D_FILE_OFFSET_BITS=64 -fmessage-length=0  -ggdb  -fast -fcommon 
+    -I/opt/cray/pe/libsci/24.03.0/GNU/12.3/x86_6 (took 5 secs)
     ```
 
     If you open the log file (e.g., with `view $(eb --last-log)`) and scroll to the end,
@@ -467,7 +482,7 @@ Can you fix the next problem you run into?
 
     The easyconfig file hard specifies the `-fast` compiler flag via the `CFLAGS` argument to the build command:
     ```python
-    # -fcommon is required to compile Subread 2.0.1 with GCC 10,
+    # -fcommon is required to compile Subread 2.0.1 from GCC 10 onwards,
     # which uses -fno-common by default (see https://www.gnu.org/software/gcc/gcc-10/porting_to.html)
     buildopts = '-f Makefile.Linux CFLAGS="-fast -fcommon"'
     ```
@@ -476,7 +491,7 @@ Can you fix the next problem you run into?
     to hard specify compiler flags (certainly not incorrect ones).
     The comment above the `buildopts` definition makes it clear that the `-fcommon`
     flag *is* required though, because GCC 10 became a bit stricter by
-    using `-fno-common` by default (and we're using GCC 11 in `cpeGNU/21.12`). 
+    using `-fno-common` by default (and we're using GCC 13 in `cpeGNU/24.03`). 
     Note that we are using `-fcommon`
     as an escape mechanism here: it would be better to fix the source code
     and create a patch file instead.
@@ -502,20 +517,20 @@ Can you fix the next problem you run into?
 
     Defining build environment...
 
-      export BLAS_INC_DIR='/opt/cray/pe/libsci/21.08.1.2/GNU/9.1/x86_64/include'
+      export BLAS_INC_DIR='/opt/cray/pe/libsci/24.03.0/GNU/12.3/x86_64/include'
     ...
       export CC='cc'
       export CFLAGS='-O2 -ftree-vectorize -fno-math-errno'
     ...
     [build_step method]
-      running command "make  -j 256 -f Makefile.Linux CFLAGS="$CFLAGS -fcommon""
-      (in /run/user/10012026/easybuild/build/Subread/2.0.1/cpeGNU-21.12/Subread-2.0.1/src)
+      running command "make  -j 16 -f Makefile.Linux CFLAGS="$CFLAGS -fcommon""
+      (in /rXXXX/build/Subread/2.0.1/cpeGNU-24.03/Subread-2.0.1/src)
     ...
     ```  
 
     EasyBuild will launch the command 
     ```
-    make  -j 256 -f Makefile.Linux CFLAGS="$CFLAGS -fcommon"
+    make  -j 16 -f Makefile.Linux CFLAGS="$CFLAGS -fcommon"
     ```
     in a shell where `CFLAGS` is defined and set to an appropriate value (determined by
     defaults in EasyBuild, settings in the EasyBuild configuration and settings in the
@@ -534,12 +549,14 @@ Don't give up now, try one last time and fix the last problem that occurs...
 
     Now the installation itself works but the sanity check fails,
     and hence the module file does not get generated:
+
     ```
     $ eb subread.eb
     ...
-    == FAILED: Installation ended unsuccessfully (build directory: /run/user/10012026/easybuild/build/Subread/2.0.1/cpeGNU-21.12): 
-    build failed (first 300 chars): Sanity check failed: sanity check command featureCounts --version exited with code 255 
-    (output: featureCounts: unrecognized option '--version'
+    == FAILED: Installation ended unsuccessfully (build directory:
+    /run/user/327000143/easybuild/build/Subread/2.0.1/cpeGNU-24.03): build failed (first 300 chars): 
+    Sanity check failed: sanity check command featureCounts --version exited with code 255 (output:
+    featureCounts: unrecognized option '--version'
     ...
     ...
     ```
@@ -566,14 +583,14 @@ Don't give up now, try one last time and fix the last problem that occurs...
 
 ***Exercise T.6**** - Post-install check of the log file*
 
-In the end, you should be able to install Subread 2.0.1 with the cpeGNU 21.12 toolchain by 
+In the end, you should be able to install Subread 2.0.1 with the cpeGNU 24.03 toolchain by 
 fixing the problems with the `subread.eb` easyconfig file.
 
 Check your work by manually loading the module and checking the version
 via the `featureCounts` command, which should look like this:
 
 ```shell
-$ module load Subread/2.0.1-cpeGNU-21.12
+$ module load Subread/2.0.1-cpeGNU-24.03
 ...
 $ featureCounts -v
 featureCounts v2.0.1
@@ -602,8 +619,8 @@ eb subread.eb -f
 
 (the last line to force a rebuild).
 
-Now go to the `$EBU_USER_PREFIX/SW/LUMI-21.12/L/Subread/2.0.1-cpeGNU-21.12/easybuild`
-(or `$HOME/EasyBuild/SW/LUMI-21.12/L/Subread/2.0.1-cpeGNU-21.12/easybuild`, depending on your configuration,) directory and open
+Now go to the `$EBU_USER_PREFIX/SW/LUMI-24.03/L/Subread/2.0.1-cpeGNU-24.03/easybuild`
+(or `$HOME/EasyBuild/SW/LUMI-24.03/L/Subread/2.0.1-cpeGNU-24.03/easybuild`, depending on your configuration,) directory and open
 the log file in your favourite editor. Search for the build step by searching for the string
 `INFO Starting build` and look carefully at how the program was actually build...
 
@@ -632,7 +649,7 @@ the tutorial, but try to figure out what could be wrong first though...
     run into (yours may differ since this is a parallel build) is
     
     ```
-    gcc  -mtune=core2  -O3 -DMAKE_FOR_EXON  -D MAKE_STANDALONE -D SUBREAD_VERSION=\""2.0.1"\"  -D_FILE_OFFSET_BITS=64    -fmessage-length=0  -ggdb  -O2 -ftree-vectorize -fno-math-errno -fcommon -I/opt/cray/pe/libsci/21.08.1.2/GNU/9.1/x86_64/include  -c -o core.o core.c
+    gcc  -mtune=core2  -O3 -DMAKE_FOR_EXON  -D MAKE_STANDALONE -D SUBREAD_VERSION=\""2.0.1"\"  -D_FILE_OFFSET_BITS=64    -fmessage-length=0  -ggdb  -O2 -ftree-vectorize -fno-math-errno -fcommon -I/opt/cray/pe/libsci/24.03.0/GNU/12.3/x86_64/include  -c -o core.o core.c
     ```
 
     The flags that we added via `CFLAGS` are in there but only after some other flags.
@@ -658,7 +675,7 @@ the tutorial, but try to figure out what could be wrong first though...
     a regular way.
 
     ```
-    pushd $EASYBUILD_BUILDPATH/Subread/2.0.1/cpeGNU-21.12
+    pushd $EASYBUILD_BUILDPATH/Subread/2.0.1/cpeGNU-24.03
     cd subread-2.0.1-source
     cd src
     ```
@@ -741,7 +758,7 @@ the tutorial, but try to figure out what could be wrong first though...
     directory) and check what happened now during the build step.
 
     As we scroll through the output of the build step, we still see a few lines mentioning
-    `gcc`... It turns out there is a second Makefile hidden in the subdirectory `longread-one` so we 
+    `-mtune=core2  -O3 -Wall`... It turns out there is a second Makefile hidden in the subdirectory `longread-one` so we 
     need to edit that one too... So following the second approach we can do this with
 
     ```python
