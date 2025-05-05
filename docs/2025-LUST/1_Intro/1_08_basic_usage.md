@@ -86,13 +86,13 @@ some_deps
 In this context, we run the following EasyBuild command from our home directory:
 
 ```shell
-eb example1.eb bzip2-1.0.6.eb $HOME/example2.eb some_deps
+eb example1.eb bzip2-1.0.8.eb $HOME/example2.eb some_deps
 ```
 
 EasyBuild will interpret each of these arguments as follows:
 
 * `example1.eb` is the name of a file in the current directory, so it can be used directly;
-* `bzip2-1.0.6.eb` is the name of an easyconfig file to locate via the robot search path
+* `bzip2-1.0.8.eb` is the name of an easyconfig file to locate via the robot search path
   (since it does not exist in the current directory);
 * `$HOME/example2.eb` specifies the full path to an existing file, which can be used directly;
 * `some_deps` is the relative path to an existing directory, so EasyBuild will scan it and find three
@@ -140,21 +140,19 @@ Both the `--search` and `-S` options trigger the same search operation, but yiel
 `eb --search` will print the full path to each easyconfig file that matches the specified search pattern,
 while `eb -S` produces a more concise output.
 
-For example, let's check which easyconfig files are available for OpenFOAM 8 with a `foss` toolchain:
+For example, let's check which easyconfig files are available for OpenFOAM 12:
 
 ```shell
-$ eb --search openfoam-9
- * /appl/lumi/LUMI-EasyBuild-contrib/easybuild/easyconfigs/o/OpenFOAM/OpenFOAM-9-cpeGNU-21.08.eb
- * /appl/lumi/LUMI-EasyBuild-contrib/easybuild/easyconfigs/o/OpenFOAM/OpenFOAM-9-cpeGNU-21.12.eb
+$ eb --search openfoam-12
+ * /appl/lumi/LUMI-EasyBuild-contrib/easybuild/easyconfigs/o/OpenFOAM/OpenFOAM-12-cpeGNU-24.03-master.eb
 ```
 
 The output is a bit more condensed when using `eb -S`:
 
 ```shell
-$ eb -S openfoam-9
+$ eb -S openfoam-12
 CFGS1=/appl/lumi/LUMI-EasyBuild-contrib/easybuild/easyconfigs/o/OpenFOAM
- * $CFGS1/OpenFOAM-9-cpeGNU-21.08.eb
- * $CFGS1/OpenFOAM-9-cpeGNU-21.12.eb
+ * $CFGS1/OpenFOAM-12-cpeGNU-24.03-master.eb
 ```
 
 Note that the search is performed *case-insensitive*.
@@ -164,17 +162,16 @@ or other special characters like `^` or `$` to mark the start/end of the filenam
 but you need to be careful that `bash` does not expand these before the `eb` command is started,
 so it is recommended to wrap the search pattern in single quotes (`'...'`) when using wildcards.
 
-For example, to check which easyconfigs are available to install GROMACS 2021 and subversions with 
+For example, to check which easyconfigs are available to install GROMACS 2024 and subversions with 
 the `cpeGNU` toolchains:
 
 ```shell
-$ eb -S '^gromacs-2021.*cpeGNU.*'
-CFGS1=/appl/lumi/LUMI-EasyBuild-contrib/easybuild/easyconfigs/g/GROMACS
- * $CFGS1/GROMACS-2021-cpeGNU-21.08-PLUMED-2.7.2-CPU.eb
- * $CFGS1/GROMACS-2021.3-cpeGNU-21.08-CPU.eb
- * $CFGS1/GROMACS-2021.4-cpeGNU-21.12-PLUMED-2.7.4-CPU.eb
- * $CFGS1/GROMACS-2021.4-cpeGNU-21.12-PLUMED-2.8.0-CPU.eb
- * $CFGS1/GROMACS-2021.5-cpeGNU-21.12-CPU.eb
+$ eb -S '^gromacs-2024.*cpeGNU.*'
+CFGS1=/appl/lumi/LUMI-EasyBuild-contrib/easybuild/easyconfigs
+ * $CFGS1/g/GROMACS/GROMACS-2024.3-cpeGNU-24.03-CPU.eb
+ * $CFGS1/g/GROMACS/GROMACS-2024.3-cpeGNU-24.03-PLUMED-2.9.3-cray-python-3.11.7-CPU.eb
+ * $CFGS1/g/GROMACS/GROMACS-2024.3-cpeGNU-24.03-PLUMED-2.9.3-noPython-CPU.eb
+ * $CFGS1/g/GROMACS/GROMACS-2024.3-cpeGNU-24.03-QMMM-PLUMED-2.9.3-noPython-CPU.eb
 ```
 
 ---
@@ -207,17 +204,19 @@ or your favorite text editor (`vim`, what else). To avoid that you need to locat
 and copy-paste the full path to it, you can use **`eb --show-ec`**.
 
 !!! Hint 
-    To follow the examples below on LUMI, load ``LUMI/21.12`` and ``EasyBuild-user``
+    To follow the examples below on LUMI, load ``LUMI/24.03`` and ``EasyBuild-user``
     (though results may differ or the examples not work anymore as the software installation
     on LUMI evolves).
 
-For example, let's inspect the contents of the `bzip2-1.0.6.eb` easyconfig file:
+For example, let's inspect the contents of the `bzip2-1.0.8-cpeCray-24.03.eb` easyconfig file:
 
 ```shell
-$ eb --show-ec bzip2-1.0.8-cpeCray-21.12.eb
-== Temporary log file in case of crash /run/user/10012026/easybuild/tmp/eb-53o823qb/easybuild-xn6nmt61.log
-== Contents of /appl/lumi/mgmt/ebrepo_files/LUMI-21.12/LUMI-L/bzip2/bzip2-1.0.8-cpeCray-21.12.eb:
+$ eb --show-ec bzip2-1.0.8-cpeCray-24.03.eb
+== Temporary log file in case of crash /run/user/327000143/easybuild/tmp/eb-3q47ilge/easybuild-9a3gdhr9.log
+== Contents of /appl/lumi/mgmt/ebfiles_repo/LUMI-24.03/LUMI-L/bzip2/bzip2-1.0.8-cpeCray-24.03.eb:
+# Built with EasyBuild version 4.9.2 on 2024-09-12_20-06-02
 # Contributed by Kurt Lust, LUMI project & UAntwerpen
+
 
 local_bzip2_version =        '1.0.8'         # http://www.bzip.org/downloads.html
 
@@ -228,7 +227,7 @@ homepage = 'https://www.sourceware.org/bzip2/'
 
 whatis = [
     'Description: bzip2 is a freely available, patent free, high-quality data compressor.',
-    'The module contains both executables and libraries.'
+    'Remarks: The module contains both executables and libraries.'
     'Keywords: BZ2',
 ]
 
@@ -250,19 +249,32 @@ docurls = [
     'Man pages available for bzcmp, bzdiff, bzegrep, bzfgrep, bzgrep, bzip2, bunzip2, bzless and bzmore',
 ]
 
-toolchain = {'name': 'cpeCray', 'version': '21.12'}
+software_license_urls = [
+    'https://www.sourceware.org/bzip2/manual/manual.html',
+]
+
+toolchain = {'name': 'cpeCray', 'version': '24.03'}
 toolchainopts = {'pic': True}
 
 source_urls = ['https://sourceware.org/pub/%(name)s/']
 sources =     [SOURCE_TAR_GZ]
 patches =     ['bzip2-%(version)s-pkgconfig-manpath.patch']
 checksums = [
-    'ab5a03176ee106d3f0fa90e381da478ddae405918153cca248e682cd0c4a2269',  # bzip2-1.0.8.tar.gz
-    'de11269dc6e4917023af4cee9ff83b204953ad9cde561dbc9d6fc70d9b9578e3',  # bzip2-1.0.8-pkgconfig-manpath.patch
+    {'bzip2-1.0.8.tar.gz': 'ab5a03176ee106d3f0fa90e381da478ddae405918153cca248e682cd0c4a2269'},
+    {'bzip2-1.0.8-pkgconfig-manpath.patch': 'de11269dc6e4917023af4cee9ff83b204953ad9cde561dbc9d6fc70d9b9578e3'}
 ]
 
 builddependencies = [ # Create a reproducible build environment.
     ('buildtools', '%(toolchain_version)s', '', True),
+]
+
+# Doesn't need MPI, ROCm or BLAS, and module unload never fails so this is safe.
+preconfigopts = 'module unload cray-libsci cray-mpich rocm xpmem && '
+prebuildopts = preconfigopts
+
+postinstallcmds = [
+    'mkdir -p %(installdir)s/share/licenses/%(name)s',
+    'cp LICENSE README %(installdir)s/share/licenses/%(name)s',
 ]
 
 local_bzip2_major_minor =  '.'.join(local_bzip2_version.split('.')[:2])
@@ -273,7 +285,8 @@ sanity_check_paths = {
                'lib/libbz2.%s.%s' % (SHLIB_EXT, local_bzip2_version),
                'include/bzlib.h' ] +
              [ 'bin/b%s' % x for x in ['unzip2', 'zcat', 'zdiff', 'zgrep', 'zip2', 'zip2recover', 'zmore'] ] +
-             [ 'share/man/man1/bz%s.1' % x for x in ['cmp', 'diff', 'egrep', 'fgrep', 'grep', 'ip2', 'less', 'more'] ],
+             [ 'share/man/man1/bz%s.1' % x for x in ['cmp', 'diff', 'egrep', 'fgrep', 'grep', 'ip2', 'less', 'more'] ] +
+             [ 'share/licenses/%(name)s/LICENSE' ],
     'dirs':  []
 }
 
@@ -284,8 +297,9 @@ sanity_check_commands = [
 
 moduleclass = 'tools'
 
-== Temporary log file(s) /run/user/10012026/easybuild/tmp/eb-53o823qb/easybuild-xn6nmt61.log* have been removed.
-== Temporary directory /run/user/10012026/easybuild/tmp/eb-53o823qb has been removed.
+== Temporary log file(s) /run/user/327000143/easybuild/tmp/eb-3q47ilge/easybuild-9a3gdhr9.log* have been removed.
+== Temporary directory /run/user/327000143/easybuild/tmp/eb-3q47ilge has been removed.
+
 ```
 The output may actually be longer for an easyconfig file that is already installed on the system 
 as a new easyconfig file is generated in the repository with some information about the installation
@@ -323,32 +337,40 @@ and which ones aren't yet, you can use **`eb --dry-run`**.
 Since `--dry-run` produces rather verbose output including the full path to each easyconfig file,
 there is a more concise equivalent available as well: `eb --dry-run-short`, which is equivalent with **`eb -D`**.
 
-For example, to check which of the required dependencies for `SAMtools-1.11-GCC-10.2.0.eb` are already installed:
+For example, to check which of the required dependencies for `SAMtools-1.20-cpeGNU-24.03.eb` are already installed:
 
 ```shell
-$ eb SAMtools-1.14-cpeGNU-21.12.eb -D
-== Temporary log file in case of crash /run/user/10012026/easybuild/tmp/eb-oo0lj9lq/easybuild-2cyomy8v.log
+$ eb SAMtools-1.20-cpeGNU-24.03.eb -D
+== Temporary log file in case of crash /run/user/327000143/easybuild/tmp/eb-7amg222s/easybuild-wc14pnz4.log
 Dry run: printing build status of easyconfigs and dependencies
 CFGS=/appl/lumi
- * [x] $CFGS/mgmt/ebrepo_files/LUMI-21.12/LUMI-common/buildtools/buildtools-21.12.eb (module: buildtools/21.12)
- * [x] $CFGS/mgmt/ebrepo_files/LUMI-21.12/LUMI-L/cpeGNU/cpeGNU-21.12.eb (module: cpeGNU/21.12)
- * [x] $CFGS/mgmt/ebrepo_files/LUMI-21.12/LUMI-L/ncurses/ncurses-6.2-cpeGNU-21.12.eb (module: ncurses/6.2-cpeGNU-21.12)
- * [x] $CFGS/mgmt/ebrepo_files/LUMI-21.12/LUMI-L/zlib/zlib-1.2.11-cpeGNU-21.12.eb (module: zlib/1.2.11-cpeGNU-21.12)
- * [x] $CFGS/mgmt/ebrepo_files/LUMI-21.12/LUMI-L/bzip2/bzip2-1.0.8-cpeGNU-21.12.eb (module: bzip2/1.0.8-cpeGNU-21.12)
- * [x] $CFGS/mgmt/ebrepo_files/LUMI-21.12/LUMI-L/gettext/gettext-0.21-cpeGNU-21.12-minimal.eb (module: gettext/0.21-cpeGNU-21.12-minimal)
- * [x] $CFGS/mgmt/ebrepo_files/LUMI-21.12/LUMI-L/XZ/XZ-5.2.5-cpeGNU-21.12.eb (module: XZ/5.2.5-cpeGNU-21.12)
- * [x] $CFGS/mgmt/ebrepo_files/LUMI-21.12/LUMI-L/Brotli/Brotli-1.0.9-cpeGNU-21.12.eb (module: Brotli/1.0.9-cpeGNU-21.12)
- * [x] $CFGS/mgmt/ebrepo_files/LUMI-21.12/LUMI-L/cURL/cURL-7.78.0-cpeGNU-21.12.eb (module: cURL/7.78.0-cpeGNU-21.12)
- * [ ] $CFGS/LUMI-EasyBuild-contrib/easybuild/easyconfigs/h/HTSlib/HTSlib-1.14-cpeGNU-21.12.eb (module: HTSlib/1.14-cpeGNU-21.12)
- * [ ] $CFGS/LUMI-EasyBuild-contrib/easybuild/easyconfigs/s/SAMtools/SAMtools-1.14-cpeGNU-21.12.eb (module: SAMtools/1.14-cpeGNU-21.12)
-== Temporary log file(s) /run/user/10012026/easybuild/tmp/eb-oo0lj9lq/easybuild-2cyomy8v.log* have been removed.
-== Temporary directory /run/user/10012026/easybuild/tmp/eb-oo0lj9lq has been removed.
+ * [x] $CFGS/mgmt/ebfiles_repo/LUMI-24.03/LUMI-common/buildtools/buildtools-24.03-bootstrap.eb (module: buildtools/24.03-bootstrap)
+ * [x] $CFGS/mgmt/ebfiles_repo/LUMI-24.03/LUMI-common/syslibs/syslibs-24.03-static.eb (module: syslibs/24.03-static)
+ * [x] $CFGS/mgmt/ebfiles_repo/LUMI-24.03/LUMI-L/cpeGNU/cpeGNU-24.03.eb (module: cpeGNU/24.03)
+ * [x] $CFGS/mgmt/ebfiles_repo/LUMI-24.03/LUMI-common/buildtools/buildtools-24.03.eb (module: buildtools/24.03)
+ * [x] $CFGS/mgmt/ebfiles_repo/LUMI-24.03/LUMI-L/ncurses/ncurses-6.4-cpeGNU-24.03.eb (module: ncurses/6.4-cpeGNU-24.03)
+ * [x] $CFGS/mgmt/ebfiles_repo/LUMI-24.03/LUMI-L/libdeflate/libdeflate-1.19-cpeGNU-24.03.eb (module: libdeflate/1.19-cpeGNU-24.03)
+ * [x] $CFGS/mgmt/ebfiles_repo/LUMI-24.03/LUMI-L/bzip2/bzip2-1.0.8-cpeGNU-24.03.eb (module: bzip2/1.0.8-cpeGNU-24.03)
+ * [x] $CFGS/mgmt/ebfiles_repo/LUMI-24.03/LUMI-L/gettext/gettext-0.22-cpeGNU-24.03-minimal.eb (module: gettext/0.22-cpeGNU-24.03-minimal)
+ * [x] $CFGS/mgmt/ebfiles_repo/LUMI-24.03/LUMI-L/XZ/XZ-5.4.4-cpeGNU-24.03.eb (module: XZ/5.4.4-cpeGNU-24.03)
+ * [x] $CFGS/mgmt/ebfiles_repo/LUMI-24.03/LUMI-L/zlib/zlib-1.3.1-cpeGNU-24.03.eb (module: zlib/1.3.1-cpeGNU-24.03)
+ * [x] $CFGS/mgmt/ebfiles_repo/LUMI-24.03/LUMI-L/Brotli/Brotli-1.1.0-cpeGNU-24.03.eb (module: Brotli/1.1.0-cpeGNU-24.03)
+ * [x] $CFGS/mgmt/ebfiles_repo/LUMI-24.03/LUMI-L/libpsl/libpsl-0.21.5-cpeGNU-24.03.eb (module: libpsl/0.21.5-cpeGNU-24.03)
+ * [x] $CFGS/mgmt/ebfiles_repo/LUMI-24.03/LUMI-L/cURL/cURL-8.3.0-cpeGNU-24.03.eb (module: cURL/8.3.0-cpeGNU-24.03)
+ * [ ] $CFGS/LUMI-EasyBuild-contrib/easybuild/easyconfigs/h/HTSlib/HTSlib-1.19.1-cpeGNU-24.03.eb (module: HTSlib/1.19.1-cpeGNU-24.03)
+ * [ ] $CFGS/LUMI-EasyBuild-contrib/easybuild/easyconfigs/s/SAMtools/SAMtools-1.20-cpeGNU-24.03.eb (module: SAMtools/1.20-cpeGNU-24.03)
+== Temporary log file(s) /run/user/327000143/easybuild/tmp/eb-7amg222s/easybuild-wc14pnz4.log* have been removed.
+== Temporary directory /run/user/327000143/easybuild/tmp/eb-7amg222s has been removed.
 ```
 
-This output tells you that most of the dependencies required by ``SAMtools-1.14-cpeGNU-21.12.eb`` are
+This output tells you that most of the dependencies required by ``SAMtools-1.20-cpeGNU-24.03.eb`` are
 already installed, since they are marked with ``[x]``. However, the easyconfig files for 
-``HTSLib-1.14-cpeGNU-21.12.eb`` and SAMtools itself are not installed yet, denoted by the
+``HTSlib-1.19.1-cpeGNU-24.03.eb`` and SAMtools itself are not installed yet, denoted by the
 lack of an ``x`` in ``[ ]``. 
+
+Note that in EasyBuild 5, the working of `-D` has changed and now ~-Dr` should be used to see
+all dependencies and not only the first level of dependencies, those that are explicitly
+mentioned in the easyconfig file.
 
 
 ---
@@ -362,14 +384,14 @@ For example, for the SAMtools easyconfig file used in the previous example we ge
 some lines removed from the output):
 
 ```shell
-$ eb SAMtools-1.14-cpeGNU-21.12.eb -M
-2 out of 11 required modules missing:
+$ eb SAMtools-1.20-cpeGNU-24.03.eb -M
+2 out of 15 required modules missing:
 
-* HTSlib/1.14-cpeGNU-21.12 (HTSlib-1.14-cpeGNU-21.12.eb)
-* SAMtools/1.14-cpeGNU-21.12 (SAMtools-1.14-cpeGNU-21.12.eb)
+* HTSlib/1.19.1-cpeGNU-24.03 (HTSlib-1.19.1-cpeGNU-24.03.eb)
+* SAMtools/1.20-cpeGNU-24.03 (SAMtools-1.20-cpeGNU-24.03.eb)
 ```
 
-That should be pretty self-explanatory: out of the 113 required dependencies (which includes the `cpeGNU` toolchain
+That should be pretty self-explanatory: out of the 15 required dependencies (which includes the `cpeGNU` toolchain
 and everything needed to install it), only 2 dependencies (including SAMtools itself) are missing. Great!
 
 ---
@@ -387,15 +409,15 @@ Using **`eb --extended-dry-run`**, or just **`eb -x`** for short,
 you can get a **detailed overview of the installation procedure that would be performed by EasyBuild**,
 **in a matter of seconds**.
 
-By means of example, let's inspect some parts of the installation procedure for ``HTSLib-1.14-cpeGNU-21.12.eb``:
+By means of example, let's inspect some parts of the installation procedure for `HTSlib-1.19.1-cpeGNU-24.03.eb`:
 
 ```shell
-$ eb HTSlib-1.14-cpeGNU-21.12.eb -x
+$ eb HTSlib-1.19.1-cpeGNU-24.03.eb -x
 ...
 
-*** DRY RUN using 'ConfigureMake' easyblock (easybuild.easyblocks.generic.configuremake @ /appl/lumi/SW/LUMI-21.12/common/EB/EasyBuild/4.5.3/lib/python3.6/site-packages/easybuild/easyblocks/generic/configuremake.py) ***
+*** DRY RUN using 'ConfigureMake' easyblock (easybuild.easyblocks.generic.configuremake @ /appl/lumi/SW/LUMI-24.03/common/EB/EasyBuild/4.9.2/lib/python3.6/site-packages/easybuild/easyblocks/generic/configuremake.py) ***
 
-== building and installing HTSlib/1.14-cpeGNU-21.12...
+== building and installing HTSlib/1.19.1-cpeGNU-24.03...
 fetching files... [DRY RUN]
 
 ...
@@ -405,15 +427,15 @@ Defining build environment, based on toolchain (options) and specified dependenc
 
 Loading toolchain module...
 
-module load cpeGNU/21.12
+module load cpeGNU/24.03
 
 Loading modules for dependencies...
 
-module load buildtools/21.12
-module load zlib/1.2.11-cpeGNU-21.12
-module load bzip2/1.0.8-cpeGNU-21.12
-module load XZ/5.2.5-cpeGNU-21.12
-module load cURL/7.78.0-cpeGNU-21.12
+module load buildtools/24.03
+module load libdeflate/1.19-cpeGNU-24.03
+module load bzip2/1.0.8-cpeGNU-24.03
+module load XZ/5.4.4-cpeGNU-24.03
+module load cURL/8.3.0-cpeGNU-24.03
 
 ...
 
@@ -429,14 +451,14 @@ Defining build environment...
 configuring... [DRY RUN]
 
 [configure_step method]
-  running command "./configure --prefix=/users/kurtlust/LUMI-user-appl/SW/LUMI-21.12/L/HTSlib/1.14-cpeGNU-21.12"
-  (in /run/user/10012026/easybuild/build/HTSlib/1.14/cpeGNU-21.12/HTSlib-1.14)
+  running command "module unload cray-libsci cray-mpich xpmem cray-dsmml ; module list ;  ./configure --prefix=/users/kulust/EasyBuild/SW/LUMI-24.03/L/HTSlib/1.19.1-cpeGNU-24.03 --with-libdeflate --enable-libcurl --enable-s3 --enable-gcs"
+  (in /run/user/327000143/easybuild/build/HTSlib/1.19.1/cpeGNU-24.03/HTSlib-1.19.1)
 
 building... [DRY RUN]
 
 [build_step method]
-  running command "make  -j 256"
-  (in /run/user/10012026/easybuild/build/HTSlib/1.14/cpeGNU-21.12/HTSlib-1.14)
+  running command "module unload cray-libsci cray-mpich xpmem cray-dsmml ; module list ;  make  -j 16"
+  (in /run/user/327000143/easybuild/build/HTSlib/1.19.1/cpeGNU-24.03/HTSlib-1.19.1)
 
 testing... [DRY RUN]
 
@@ -497,59 +519,63 @@ make EasyBuild install the software you require.
 
 As mentioned before, installing an easyconfig is as simple as passing it to the `eb` command.
 
-So, let's try to install libdap version 3.20.9 with the cpeGNU/21.12 toolchain.
+So, let's try to install libdap version 3.21.0-27 with the cpeGNU/24.03 toolchain.
 
 Let's first check if it has any dependencies that still need to be installed:
 
 ```shell
-$ eb libdap-3.20.9-cpeGNU-21.12.eb -D
-== Temporary log file in case of crash /run/user/10012026/easybuild/tmp/eb-wm_bk3j6/easybuild-puyu_559.log
+$ eb libdap-3.21.0-27-cpeGNU-24.03.eb -D
+== Temporary log file in case of crash /run/user/327000143/easybuild/tmp/eb-l0kav91s/easybuild-xsswnxoj.log
 Dry run: printing build status of easyconfigs and dependencies
- * [x] /appl/lumi/mgmt/ebrepo_files/LUMI-21.12/LUMI-common/buildtools/buildtools-21.12.eb (module: buildtools/21.12)
- * [x] /appl/lumi/mgmt/ebrepo_files/LUMI-21.12/LUMI-L/cpeGNU/cpeGNU-21.12.eb (module: cpeGNU/21.12)
- * [x] /appl/lumi/mgmt/ebrepo_files/LUMI-21.12/LUMI-L/zlib/zlib-1.2.11-cpeGNU-21.12.eb (module: zlib/1.2.11-cpeGNU-21.12)
- * [x] /appl/lumi/mgmt/ebrepo_files/LUMI-21.12/LUMI-L/libtirpc/libtirpc-1.3.2-cpeGNU-21.12.eb (module: libtirpc/1.3.2-cpeGNU-21.12)
- * [x] /appl/lumi/mgmt/ebrepo_files/LUMI-21.12/LUMI-L/Brotli/Brotli-1.0.9-cpeGNU-21.12.eb (module: Brotli/1.0.9-cpeGNU-21.12)
- * [x] /appl/lumi/mgmt/ebrepo_files/LUMI-21.12/LUMI-L/ICU/ICU-69.1-cpeGNU-21.12.eb (module: ICU/69.1-cpeGNU-21.12)
- * [x] /appl/lumi/mgmt/ebrepo_files/LUMI-21.12/LUMI-L/cURL/cURL-7.78.0-cpeGNU-21.12.eb (module: cURL/7.78.0-cpeGNU-21.12)
- * [x] /appl/lumi/mgmt/ebrepo_files/LUMI-21.12/LUMI-L/bzip2/bzip2-1.0.8-cpeGNU-21.12.eb (module: bzip2/1.0.8-cpeGNU-21.12)
- * [x] /appl/lumi/mgmt/ebrepo_files/LUMI-21.12/LUMI-L/ncurses/ncurses-6.2-cpeGNU-21.12.eb (module: ncurses/6.2-cpeGNU-21.12)
- * [x] /appl/lumi/mgmt/ebrepo_files/LUMI-21.12/LUMI-L/libreadline/libreadline-8.1-cpeGNU-21.12.eb (module: libreadline/8.1-cpeGNU-21.12)
- * [x] /appl/lumi/mgmt/ebrepo_files/LUMI-21.12/LUMI-L/gettext/gettext-0.21-cpeGNU-21.12-minimal.eb (module: gettext/0.21-cpeGNU-21.12-minimal)
- * [x] /appl/lumi/mgmt/ebrepo_files/LUMI-21.12/LUMI-L/PCRE2/PCRE2-10.37-cpeGNU-21.12.eb (module: PCRE2/10.37-cpeGNU-21.12)
- * [x] /appl/lumi/mgmt/ebrepo_files/LUMI-21.12/LUMI-L/XZ/XZ-5.2.5-cpeGNU-21.12.eb (module: XZ/5.2.5-cpeGNU-21.12)
- * [x] /appl/lumi/mgmt/ebrepo_files/LUMI-21.12/LUMI-L/libxml2/libxml2-2.9.12-cpeGNU-21.12.eb (module: libxml2/2.9.12-cpeGNU-21.12)
- * [x] /appl/lumi/mgmt/ebrepo_files/LUMI-21.12/LUMI-L/libxslt/libxslt-1.1.34-cpeGNU-21.12.eb (module: libxslt/1.1.34-cpeGNU-21.12)
- * [x] /appl/lumi/mgmt/ebrepo_files/LUMI-21.12/LUMI-L/gettext/gettext-0.21-cpeGNU-21.12.eb (module: gettext/0.21-cpeGNU-21.12)
- * [x] /appl/lumi/mgmt/ebrepo_files/LUMI-21.12/LUMI-L/file/file-5.41-cpeGNU-21.12.eb (module: file/5.41-cpeGNU-21.12)
- * [x] /appl/lumi/mgmt/ebrepo_files/LUMI-21.12/LUMI-L/util-linux/util-linux-2.37.1-cpeGNU-21.12.eb (module: util-linux/2.37.1-cpeGNU-21.12)
- * [ ] /pfs/lustrep3/users/kurtlust/LUMI/LUMI-EasyBuild-contrib/easybuild/easyconfigs/l/libdap/libdap-3.20.9-cpeGNU-21.12.eb (module: libdap/3.20.9-cpeGNU-21.12)
-== Temporary log file(s) /run/user/10012026/easybuild/tmp/eb-wm_bk3j6/easybuild-puyu_559.log* have been removed.
-== Temporary directory /run/user/10012026/easybuild/tmp/eb-wm_bk3j6 has been removed.
+CFGS=/appl/lumi
+ * [x] $CFGS/mgmt/ebfiles_repo/LUMI-24.03/LUMI-common/buildtools/buildtools-24.03-bootstrap.eb (module: buildtools/24.03-bootstrap)
+ * [x] $CFGS/mgmt/ebfiles_repo/LUMI-24.03/LUMI-common/syslibs/syslibs-24.03-static.eb (module: syslibs/24.03-static)
+ * [x] $CFGS/mgmt/ebfiles_repo/LUMI-24.03/LUMI-common/buildtools/buildtools-24.03.eb (module: buildtools/24.03)
+ * [x] $CFGS/mgmt/ebfiles_repo/LUMI-24.03/LUMI-L/cpeGNU/cpeGNU-24.03.eb (module: cpeGNU/24.03)
+ * [x] $CFGS/mgmt/ebfiles_repo/LUMI-24.03/LUMI-L/zlib/zlib-1.3.1-cpeGNU-24.03.eb (module: zlib/1.3.1-cpeGNU-24.03)
+ * [x] $CFGS/mgmt/ebfiles_repo/LUMI-24.03/LUMI-L/libtirpc/libtirpc-1.3.4-cpeGNU-24.03.eb (module: libtirpc/1.3.4-cpeGNU-24.03)
+ * [x] $CFGS/mgmt/ebfiles_repo/LUMI-24.03/LUMI-L/Brotli/Brotli-1.1.0-cpeGNU-24.03.eb (module: Brotli/1.1.0-cpeGNU-24.03)
+ * [x] $CFGS/mgmt/ebfiles_repo/LUMI-24.03/LUMI-L/ICU/ICU-74.1-cpeGNU-24.03.eb (module: ICU/74.1-cpeGNU-24.03)
+ * [x] $CFGS/mgmt/ebfiles_repo/LUMI-24.03/LUMI-L/libpsl/libpsl-0.21.5-cpeGNU-24.03.eb (module: libpsl/0.21.5-cpeGNU-24.03)
+ * [x] $CFGS/mgmt/ebfiles_repo/LUMI-24.03/LUMI-L/cURL/cURL-8.3.0-cpeGNU-24.03.eb (module: cURL/8.3.0-cpeGNU-24.03)
+ * [x] $CFGS/mgmt/ebfiles_repo/LUMI-24.03/LUMI-L/bzip2/bzip2-1.0.8-cpeGNU-24.03.eb (module: bzip2/1.0.8-cpeGNU-24.03)
+ * [x] $CFGS/mgmt/ebfiles_repo/LUMI-24.03/LUMI-L/ncurses/ncurses-6.4-cpeGNU-24.03.eb (module: ncurses/6.4-cpeGNU-24.03)
+ * [x] $CFGS/mgmt/ebfiles_repo/LUMI-24.03/LUMI-L/libreadline/libreadline-8.2-cpeGNU-24.03.eb (module: libreadline/8.2-cpeGNU-24.03)
+ * [x] $CFGS/mgmt/ebfiles_repo/LUMI-24.03/LUMI-L/gettext/gettext-0.22-cpeGNU-24.03-minimal.eb (module: gettext/0.22-cpeGNU-24.03-minimal)
+ * [x] $CFGS/mgmt/ebfiles_repo/LUMI-24.03/LUMI-L/PCRE2/PCRE2-10.42-cpeGNU-24.03.eb (module: PCRE2/10.42-cpeGNU-24.03)
+ * [x] $CFGS/mgmt/ebfiles_repo/LUMI-24.03/LUMI-L/XZ/XZ-5.4.4-cpeGNU-24.03.eb (module: XZ/5.4.4-cpeGNU-24.03)
+ * [x] $CFGS/mgmt/ebfiles_repo/LUMI-24.03/LUMI-L/libxml2/libxml2-2.11.5-cpeGNU-24.03.eb (module: libxml2/2.11.5-cpeGNU-24.03)
+ * [x] $CFGS/mgmt/ebfiles_repo/LUMI-24.03/LUMI-L/libxslt/libxslt-1.1.38-cpeGNU-24.03.eb (module: libxslt/1.1.38-cpeGNU-24.03)
+ * [x] $CFGS/mgmt/ebfiles_repo/LUMI-24.03/LUMI-L/gettext/gettext-0.22-cpeGNU-24.03.eb (module: gettext/0.22-cpeGNU-24.03)
+ * [x] $CFGS/mgmt/ebfiles_repo/LUMI-24.03/LUMI-L/file/file-5.43-cpeGNU-24.03.eb (module: file/5.43-cpeGNU-24.03)
+ * [x] $CFGS/mgmt/ebfiles_repo/LUMI-24.03/LUMI-L/util-linux/util-linux-2.39.3-cpeGNU-24.03.eb (module: util-linux/2.39.3-cpeGNU-24.03)
+ * [ ] $CFGS/LUMI-EasyBuild-contrib/easybuild/easyconfigs/l/libdap/libdap-3.21.0-27-cpeGNU-24.03.eb (module: libdap/3.21.0-27-cpeGNU-24.03)
+== Temporary log file(s) /run/user/327000143/easybuild/tmp/eb-l0kav91s/easybuild-xsswnxoj.log* have been removed.
+== Temporary directory /run/user/327000143/easybuild/tmp/eb-l0kav91s has been removed.
 ``` 
 
 and now install the library:
 
 ```shell
-$ eb libdap-3.20.9-cpeGNU-21.12.eb
-== Temporary log file in case of crash /run/user/10012026/easybuild/tmp/eb-kfphjoi8/easybuild-kcs00ai5.log
+$ eb libdap-3.21.0-27-cpeGNU-24.03.eb
+== Temporary log file in case of crash /run/user/327000143/easybuild/tmp/eb-ckcd12im/easybuild-hv611rb_.log
 == processing EasyBuild easyconfig
-/pfs/lustrep3/users/kurtlust/LUMI/LUMI-EasyBuild-contrib/easybuild/easyconfigs/l/libdap/libdap-3.20.9-cpeGNU-21.12.eb
-== building and installing libdap/3.20.9-cpeGNU-21.12...
+/appl/lumi/LUMI-EasyBuild-contrib/easybuild/easyconfigs/l/libdap/libdap-3.21.0-27-cpeGNU-24.03.eb
+== building and installing libdap/3.21.0-27-cpeGNU-24.03...
 == fetching files...
-== ... (took 2 secs)
+== ... (took 1 secs)
 == creating build dir, resetting environment...
 == unpacking...
 == patching...
 == preparing...
-== ... (took 6 secs)
+== ... (took 9 secs)
 == configuring...
-== ... (took 1 min 6 secs)
+== ... (took 2 mins 34 secs)
 == building...
-== ... (took 53 secs)
+== ... (took 1 min 19 secs)
 == testing...
 == installing...
-== ... (took 5 secs)
+== ... (took 8 secs)
 == taking care of extensions...
 == restore after iterating...
 == postprocessing...
@@ -557,15 +583,17 @@ $ eb libdap-3.20.9-cpeGNU-21.12.eb
 == ... (took 3 secs)
 == cleaning up...
 == creating module...
-== ... (took 2 secs)
+== ... (took 3 secs)
 == permissions...
 == packaging...
-== COMPLETED: Installation ended successfully (took 2 mins 20 secs)
-== Results of the build can be found in the log file(s)
-/users/kurtlust/LUMI-user-appl/SW/LUMI-21.12/L/libdap/3.20.9-cpeGNU-21.12/easybuild/easybuild-libdap-3.20.9-20220329.154535.log
+== COMPLETED: Installation ended successfully (took 4 mins 23 secs)
+== Results of the build can be found in the log file(s) /users/kulust/EasyBuild/SW/LUMI-24.03/L/libdap/3.21.0-27-cpeGNU-24
+.03/easybuild/easybuild-libdap-3.21.0-27-20250505.173345.log
+
 == Build succeeded for 1 out of 1
-== Temporary log file(s) /run/user/10012026/easybuild/tmp/eb-kfphjoi8/easybuild-kcs00ai5.log* have been removed.
-== Temporary directory /run/user/10012026/easybuild/tmp/eb-kfphjoi8 has been removed.
+== [end-hook] Clearing Lmod cache directory /users/kulust/.cache/lmod
+== Temporary log file(s) /run/user/327000143/easybuild/tmp/eb-ckcd12im/easybuild-hv611rb_.log* have been removed.
+== Temporary directory /run/user/327000143/easybuild/tmp/eb-ckcd12im has been removed.
 ```
 
 That was... easy. Is that really all there is to it? Well, almost...
@@ -575,27 +603,28 @@ That was... easy. Is that really all there is to it? Well, almost...
 The libdap installation worked like a charm, but remember that all required dependencies were already
 available (see [above](#dry-run)).
 
-If we try this with the `SAMtools-1.14-cpeGNU-21.12.eb`, for which the required `HTSlib` dependencies is not available yet, it's less successful:
+If we try this with the `SAMtools-1.20-cpeGNU-24.03.eb`, for which the required `HTSlib` dependencies is not available yet, it's less successful:
 
 ```shell
-$ eb SAMtools-1.14-cpeGNU-21.12.eb -M
+$ eb SAMtools-1.20-cpeGNU-24.03.eb -M
 
-2 out of 11 required modules missing:
+2 out of 15 required modules missing:
 
-* HTSlib/1.14-cpeGNU-21.12 (HTSlib-1.14-cpeGNU-21.12.eb)
-* SAMtools/1.14-cpeGNU-21.12 (SAMtools-1.14-cpeGNU-21.12.eb)
+* HTSlib/1.19.1-cpeGNU-24.03 (HTSlib-1.19.1-cpeGNU-24.03.eb)
+* SAMtools/1.20-cpeGNU-24.03 (SAMtools-1.20-cpeGNU-24.03.eb)
 ```
 
 ```shell
-$ eb SAMtools-1.14-cpeGNU-21.12.eb
+$ eb SAMtools-1.20-cpeGNU-24.03.eb
 ...
 == preparing...
-== FAILED: Installation ended unsuccessfully (build directory: /run/user/10012026/easybuild/build/SAMtools/1.14/cpeGNU-21.12): build failed
-(first 300 chars): Missing modules for dependencies (use --robot?): HTSlib/1.14-cpeGNU-21.12 (took 3 secs)
+== FAILED: Installation ended unsuccessfully (build directory:
+/run/user/327000143/easybuild/build/SAMtools/1.20/cpeGNU-24.03): build failed (first 300 chars): Missing modules for
+dependencies (use --robot?): HTSlib/1.19.1-cpeGNU-24.03 (took 4 secs)
 == Results of the build can be found in the log file(s)
-/run/user/10012026/easybuild/tmp/eb-rgj1v43y/easybuild-SAMtools-1.14-20220329.155911.ZtDcX.log
+/run/user/327000143/easybuild/tmp/eb-c2xuhyk1/easybuild-SAMtools-1.20-20250505.173544.kkxQI.log
 
-ERROR: Build of /appl/lumi/LUMI-EasyBuild-contrib/easybuild/easyconfigs/s/SAMtools/SAMtools-1.14-cpeGNU-21.12.eb failed (err: 'build failed (first 300 chars): Missing modules for dependencies (use --robot?): HTSlib/1.14-cpeGNU-21.12')
+ERROR: Build of /appl/lumi/LUMI-EasyBuild-contrib/easybuild/easyconfigs/s/SAMtools/SAMtools-1.20-cpeGNU-24.03.eb failed (err: 'build failed (first 300 chars): Missing modules for dependencies (use --robot?): HTSlib/1.19.1-cpeGNU-24.03')
 ```
 
 Oh my, what's this all about?
@@ -603,25 +632,25 @@ Oh my, what's this all about?
 If we filter the output a bit and focus on the actual error, the problem is clear:
 
 ```
-Missing modules for dependencies (use --robot?): HTSlib/1.14-cpeGNU-21.12')
+Missing modules for dependencies (use --robot?): HTSlib/1.19.1-cpeGNU-24.03')
 ```
 
-The required dependency `HTSlib/1.14-cpeGNU-21.12` is not installed yet,
+The required dependency `HTSlib/1.19.1-cpeGNU-24.03` is not installed yet,
 and EasyBuild does not automatically install missing dependencies unless it is told to do so
 (which we didn't do in the configuration for LUMI).
 
 It helpfully suggests to use the `--robot` (or '-r') command line option, so let's try that:
 
 ```shell
-$ eb SAMtools-1.14-cpeGNU-21.12.eb --robot
+$ eb SAMtools-1.20-cpeGNU-24.03.eb --robot
 ...
 == resolving dependencies ...
 ...
-== building and installing HTSlib/1.14-cpeGNU-21.12...
+== building and installing HTSlib/1.19.1-cpeGNU-24.03...
 ...
 == COMPLETED: Installation ended successfully (took 13 sec)
 ...
-== building and installing SAMtools/1.14-cpeGNU-21.12...
+== building and installing SAMtools/1.20-cpeGNU-24.0...
 ...
 == COMPLETED: Installation ended successfully (took 8 sec)
 ...
@@ -643,37 +672,39 @@ To provide some more feedback as the installation progresses, you can enable the
 Let's do this by defining the `$EASYBUILD_TRACE` environment variable, just to avoid having to type `--trace`
 over and over again.
 
-We will redo the installation of `SAMtools-1.14-cpeGNU-21.12.eb` by passing the `--rebuild`
+We will redo the installation of `SAMtools-1.20-cpeGNU-24.03.eb` by passing the `--rebuild`
 option to the `eb` command (try yourself what happens if you don't use the `--rebuild` option!):
 
 ```shell
 $ export EASYBUILD_TRACE=1
-$ eb SAMtools-1.14-cpeGNU-21.12.eb --rebuild
+$ eb SAMtools-1.20-cpeGNU-24.03.eb --rebuild
 ...
 == configuring...
   >> running command:
-        [started at: 2022-03-29 18:46:31]
-        [working dir: /run/user/10012026/easybuild/build/SAMtools/1.14/cpeGNU-21.12/samtools-1.14]
-        [output logged in /run/user/10012026/easybuild/tmp/eb-8p617dr7/easybuild-run_cmd-g7vd83qv.log]
-        /users/kurtlust/LUMI-user-appl/sources/generic/eb_v4.5.3/ConfigureMake/config.guess
+        [started at: 2025-05-05 17:45:53]
+        [working dir: /run/user/327000143/easybuild/build/SAMtools/1.20/cpeGNU-24.03/samtools-1.20]
+        [output logged in /run/user/327000143/easybuild/tmp/eb-gu78up7t/easybuild-run_cmd-t8sjtzd2.log]
+        /appl/lumi/sources/easybuild/generic/eb_v4.9.2/ConfigureMake/config.guess
   >> command completed: exit 0, ran in < 1s
   >> running command:
-        [started at: 2022-03-29 18:46:31]
-        [working dir: /run/user/10012026/easybuild/build/SAMtools/1.14/cpeGNU-21.12/samtools-1.14]
-        [output logged in /run/user/10012026/easybuild/tmp/eb-8p617dr7/easybuild-run_cmd-k0etfv8i.log]
-        ./configure --prefix=/users/kurtlust/LUMI-user-appl/SW/LUMI-21.12/L/SAMtools/1.14-cpeGNU-21.12  --build=x86_64-pc-linux-gnu
+        [started at: 2025-05-05 17:45:54]
+        [working dir: /run/user/327000143/easybuild/build/SAMtools/1.20/cpeGNU-24.03/samtools-1.20]
+        [output logged in /run/user/327000143/easybuild/tmp/eb-gu78up7t/easybuild-run_cmd-5h1b3trz.log]
+        module unload rocm cray-libsci cray-mpich xpmem cray-dsmml ; module list ;  ./configure
+--prefix=/users/kulust/EasyBuild/SW/LUMI-24.03/L/SAMtools/1.20-cpeGNU-24.03  --build=x86_64-pc-linux-gnu
 --host=x86_64-pc-linux-gnu --with-htslib=$EBROOTHTSLIB
-  >> command completed: exit 0, ran in 00h00m03s
-== ... (took 3 secs)
-== building...
-  >> running command:
-        [started at: 2022-03-29 18:46:34]
-        [working dir: /run/user/10012026/easybuild/build/SAMtools/1.14/cpeGNU-21.12/samtools-1.14]
-        [output logged in /run/user/10012026/easybuild/tmp/eb-8p617dr7/easybuild-run_cmd-svcps0yj.log]
-        make  -j 256  CC="cc"  CXX="CC"  CFLAGS="-O2 -ftree-vectorize -fno-math-errno -fPIC"  CXXFLAGS="-O2 -ftree-vectorize -fno-math-errno
--fPIC"
   >> command completed: exit 0, ran in 00h00m06s
 == ... (took 6 secs)
+== building...
+  >> running command:
+        [started at: 2025-05-05 17:46:00]
+        [working dir: /run/user/327000143/easybuild/build/SAMtools/1.20/cpeGNU-24.03/samtools-1.20]
+        [output logged in /run/user/327000143/easybuild/tmp/eb-gu78up7t/easybuild-run_cmd-evshlmfc.log]
+        module unload rocm cray-libsci cray-mpich xpmem cray-dsmml ; module list ;  make  -j 16  CC="cc"  CXX="CC"
+CFLAGS="-O2 -ftree-vectorize -fno-math-errno -fPIC"  CXXFLAGS="-O2 -ftree-vectorize -fno-math-errno -fPIC"
+  >> command completed: exit 0, ran in 00h00m06s
+== ... (took 6 secs)
+...
 ```
 
 That's a bit more comforting to stare at...
@@ -703,7 +734,7 @@ Later during the installation, we now also see this output during the sanity che
   >> file 'bin/export2sam.pl' found: OK
   >> file 'bin/interpolate_sam.pl' found: OK
 ...
-  >> loading modules: SAMtools/1.14-cpeGNU-21.12...
+  >> loading modules: SAMtools/1.20-cpeGNU-24.03...
   >> running command 'samtools version' ...
   >> result for command 'samtools version': OK
 ```
@@ -721,7 +752,7 @@ so you can interrupt the installation before it completes, if deemed necessary.
 
 ## Using installed software
 
-So far, we have already installed 4 different software packages (SAMtools, HTSlib, libdap);
+So far, we have already installed 34 different software packages (SAMtools, HTSlib, libdap);
 we even installed SAMtools twice!
 
 A lot was going on underneath the covers: locating and unpacking
@@ -752,11 +783,11 @@ processed easyconfig file.
 ```shell
 ml EasyBuild-user
 
-EasyBuild configured to install software from the LUMI/21.12 software stack for the LUMI/L
+EasyBuild configured to install software from the LUMI/24.03 software stack for the LUMI/L
 partition in the user tree at /users/kurtlust/LUMI-user-appl.
-  * Software installation directory: /users/kurtlust/LUMI-user-appl/SW/LUMI-21.12/L
-  * Modules installation directory: /users/kurtlust/LUMI-user-appl/modules/LUMI/21.12/partition/L
-  * Repository: /users/kurtlust/LUMI-user-appl/ebrepo_files/LUMI-21.12/LUMI-L
+  * Software installation directory: /users/kurtlust/LUMI-user-appl/SW/LUMI-24.03/L
+  * Modules installation directory: /users/kurtlust/LUMI-user-appl/modules/LUMI/24.03/partition/L
+  * Repository: /users/kurtlust/LUMI-user-appl/ebrepo_files/LUMI-24.03/LUMI-L
   * Work directory for builds and logs: /run/user/10012026/easybuild
     Clear work directory with clear-eb
 ```
@@ -777,10 +808,10 @@ $ eb --show-config
 ...
 buildpath             (E) = /run/user/XXXXXXXX/easybuild/build
 ...
-installpath-modules   (E) = /users/XXXXXXXX/LUMI-user/modules/LUMI/21.12/partition/L
-installpath-software  (E) = /users/XXXXXXXX/LUMI-user/SW/LUMI-21.12/L...
+installpath-modules   (E) = /users/XXXXXXXX/LUMI-user/modules/LUMI/24.03/partition/L
+installpath-software  (E) = /users/XXXXXXXX/LUMI-user/SW/LUMI-24.03/L...
 ...
-repositorypath        (E) = /users/XXXXXXXX/LUMI-user/ebrepo_files/LUMI-21.12/LUMI-L
+repositorypath        (E) = /users/XXXXXXXX/LUMI-user/ebrepo_files/LUMI-24.03/LUMI-L
 ...
 sourcepath            (E) = /users/XXXXXXXX/LUMI-user/sources:/appl/lumi/sources/easybuild
 ...
@@ -805,11 +836,11 @@ Now the modules tool should be aware of our brand new installations:
 ```shell
 $ module avail
 ...
--- EasyBuild managed user software for software stack LUMI/21.12 on LUMI-L ---
-   HTSlib/1.14-cpeGNU-21.12      libdap/3.20.9-cpeGNU-21.12
-   SAMtools/1.14-cpeGNU-21.12
+-- EasyBuild managed user software for software stack LUMI/24.03 on LUMI-L ---
+   HTSlib/1.19.1-cpeGNU-24.03    libdap/3.21.0-27-cpeGNU-24.03
+   SAMtools/1.20-cpeGNU-24.03    
 
------ EasyBuild managed software for software stack LUMI/21.12 on LUMI-L -----
+----- EasyBuild managed software for software stack LUMI/24.03 on LUMI-L -----
 ...
 ```
 
@@ -824,25 +855,29 @@ Let's test this for SAMtools. In our current environment, the `samtools` command
 $ module list
 
 Currently Loaded Modules:
-  1) perftools-base/21.12.0
-  2) cce/13.0.0
-  3) craype/2.7.13
-  4) cray-dsmml/0.2.2
-  5) cray-mpich/8.1.12
-  6) cray-libsci/21.08.1.2
-  7) PrgEnv-cray/8.2.0
-  8) ModuleLabel/label                     (S)
-  9) init-lumi/0.1                         (S)
- 10) craype-x86-rome
- 11) craype-accel-host
- 12) libfabric/1.11.0.4.106
- 13) craype-network-ofi
- 14) xpmem/2.2.40-2.1_3.9__g3cf3325.shasta
- 15) partition/L                           (S)
- 16) LUMI/21.12                            (S)
+  1) perftools-base/24.03.0
+  2) cce/17.0.1
+  3) craype/2.7.31.11
+  4) cray-dsmml/0.3.0
+  5) cray-mpich/8.1.29
+  6) cray-libsci/24.03.0
+  7) PrgEnv-cray/8.5.0
+  8) ModuleLabel/label                    (S)
+  9) lumi-tools/24.05                     (S)
+ 10) init-lumi/0.2                        (S)
+ 11) craype-x86-rome
+ 12) craype-accel-host
+ 13) libfabric/1.15.2.0
+ 14) craype-network-ofi
+ 15) xpmem/2.8.2-1.0_5.1__g84a27a5.shasta
+ 16) partition/L                          (S)
+ 17) LUMI/24.03                           (S)
+ 18) EasyBuild/4.9.2                      (H)
+ 19) EasyBuild-user/LUMI
 
   Where:
    S:  Module is Sticky, requires --force to unload or purge
+   H:             Hidden Module
 $ samtools
 -bash: samtools: command not found
 ```
@@ -850,50 +885,63 @@ $ samtools
 Loading the module for SAMtools changes that:
 
 ```shell
-$ module load SAMtools/1.14-cpeGNU-21.12
+$ module load SAMtools/1.20-cpeGNU-24.03
 
-Lmod is automatically replacing "cce/13.0.0" with "gcc/11.2.0".
-Lmod is automatically replacing "PrgEnv-cray/8.2.0" with "cpeGNU/21.12".
+Lmod is automatically replacing "cpeGNU/24.03" with "PrgEnv-gnu/8.5.0".
+
+
+Lmod is automatically replacing "cce/17.0.1" with "gcc-native/13.2".
+
+
+Lmod is automatically replacing "PrgEnv-cray/8.5.0" with "cpeGNU/24.03".
+
 
 Due to MODULEPATH changes, the following have been reloaded:
-  1) cray-mpich/8.1.12
+  1) cray-libsci/24.03.0     2) cray-mpich/8.1.29
 
 $ module list
 
+
 Currently Loaded Modules:
-  1) perftools-base/21.12.0
-  2) ModuleLabel/label                     (S)
-  3) init-lumi/0.1                         (S)
-  4) craype-x86-rome
-  5) craype-accel-host
-  6) libfabric/1.11.0.4.106
-  7) craype-network-ofi
-  8) xpmem/2.2.40-2.1_3.9__g3cf3325.shasta
-  9) partition/L                           (S)
- 10) LUMI/21.12                            (S)
- 11) gcc/11.2.0
- 12) craype/2.7.13
- 13) cray-mpich/8.1.12
- 14) cray-libsci/21.08.1.2
- 15) cray-dsmml/0.2.2
- 16) cpeGNU/21.12
- 17) ncurses/6.2-cpeGNU-21.12
- 18) zlib/1.2.11-cpeGNU-21.12
- 19) bzip2/1.0.8-cpeGNU-21.12
- 20) gettext/0.21-cpeGNU-21.12-minimal
- 21) XZ/5.2.5-cpeGNU-21.12
- 22) Brotli/1.0.9-cpeGNU-21.12
- 23) cURL/7.78.0-cpeGNU-21.12
- 24) HTSlib/1.14-cpeGNU-21.12
- 25) SAMtools/1.14-cpeGNU-21.12
+  1) perftools-base/24.03.0
+  2) ModuleLabel/label                    (S)
+  3) lumi-tools/24.05                     (S)
+  4) init-lumi/0.2                        (S)
+  5) craype-x86-rome
+  6) craype-accel-host
+  7) libfabric/1.15.2.0
+  8) craype-network-ofi
+  9) xpmem/2.8.2-1.0_5.1__g84a27a5.shasta
+ 10) partition/L                          (S)
+ 11) LUMI/24.03                           (S)
+ 12) EasyBuild/4.9.2                      (H)
+ 13) EasyBuild-user/LUMI
+ 14) PrgEnv-gnu/8.5.0
+ 15) craype/2.7.31.11
+ 16) cray-mpich/8.1.29
+ 17) cray-libsci/24.03.0
+ 18) cray-dsmml/0.3.0
+ 19) gcc-native/13.2
+ 20) cpeGNU/24.03
+ 21) ncurses/6.4-cpeGNU-24.03
+ 22) libdeflate/1.19-cpeGNU-24.03
+ 23) bzip2/1.0.8-cpeGNU-24.03
+ 24) XZ/5.4.4-cpeGNU-24.03
+ 25) zlib/1.3.1-cpeGNU-24.03
+ 26) Brotli/1.1.0-cpeGNU-24.03
+ 27) libpsl/0.21.5-cpeGNU-24.03
+ 28) cURL/8.3.0-cpeGNU-24.03
+ 29) HTSlib/1.19.1-cpeGNU-24.03
+ 30) SAMtools/1.20-cpeGNU-24.03
 
   Where:
    S:  Module is Sticky, requires --force to unload or purge
+   H:             Hidden Module
 
 $ samtools --version
-samtools 1.14
-Using htslib 1.14
-Copyright (C) 2021 Genome Research Ltd....
+samtools 1.20
+Using htslib 1.19.1
+Copyright (C) 2024 Genome Research Ltd.
 ...
 ```
 
@@ -914,23 +962,28 @@ $ module purge
 The following modules were not unloaded:
   (Use "module --force purge" to unload all):
 
-  1) LUMI/21.12               6) xpmem/2.2.40-2.1_3.9__g3cf3325.shasta
-  2) craype-x86-rome          7) partition/L
-  3) craype-accel-host        8) init-lumi/0.1
-  4) libfabric/1.11.0.4.106   9) ModuleLabel/label
-  5) craype-network-ofi
+  1) ModuleLabel/label   5) craype-accel-host                      9)  partition/L
+  2) lumi-tools/24.05    6) libfabric/1.15.2.0                     10) LUMI/24.03
+  3) init-lumi/0.2       7) craype-network-ofi
+  4) craype-x86-rome     8) xpmem/2.8.2-1.0_5.1__g84a27a5.shasta
+
+The following sticky modules could not be reloaded:
+
+  1) lumi-tools   2) partition/L
+
 $ module list
 
 Currently Loaded Modules:
-  1) LUMI/21.12                            (S)
-  2) craype-x86-rome
-  3) craype-accel-host
-  4) libfabric/1.11.0.4.106
-  5) craype-network-ofi
-  6) xpmem/2.2.40-2.1_3.9__g3cf3325.shasta
-  7) partition/L                           (S)
-  8) init-lumi/0.1                         (S)
-  9) ModuleLabel/label                     (S)
+  1) ModuleLabel/label                    (S)
+  2) lumi-tools/24.05                     (S)
+  3) init-lumi/0.2                        (S)
+  4) craype-x86-rome
+  5) craype-accel-host
+  6) libfabric/1.15.2.0
+  7) craype-network-ofi
+  8) xpmem/2.8.2-1.0_5.1__g84a27a5.shasta
+  9) partition/L                          (S)
+ 10) LUMI/24.03                           (S)
 
   Where:
    S:  Module is Sticky, requires --force to unload or purge
@@ -959,7 +1012,7 @@ or `$EBU_USER_PREFIX`) on top of installations that are provided in a totally di
 is available, it is happy to pick it up and use it when required.**
 
 This implies that end users of LUMI can easily install their
-own small software stack on top of what is provided centrally by the LUMI User Support,
+own small software stack on top of what is provided centrally by the LUMI User Support Team,
 for example. They can even
 "replace" a central software installation for their purposes if they need to, since the modules tool will
 load the first module file that matches the request being made (there are some caveats with this, but we
@@ -977,93 +1030,96 @@ Do yourself a favor: don't peek at the solution until you have made an attempt t
 Please do not spoil solutions to others before they have been discussed by the tutorial organisers.
 
 The exercises are based on the easyconfig files available on LUMI during the tutorial of
-May 2022.
+June 2025.
 
 ---
 
 ***Exercise U.1**** - Searching easyconfigs*
 
-See if EasyBuild on LUMI provides any easyconfig files for installing PLUMED in one of the 2.7 versions.
+See if EasyBuild on LUMI provides any easyconfig files for installing PLUMED in one of the 2.9 versions.
 
 ??? success "(click to show solution)"
     To check for available easyconfig files, we can use `eb --search` or `eb -S`:
 
     ```shell
-    eb -S PLUMED-2.7
+    eb -S PLUMED-2.9
     CFGS1=/appl/lumi/LUMI-EasyBuild-contrib/easybuild/easyconfigs
-    * $CFGS1/g/GROMACS/GROMACS-2020.6-cpeCray-21.08-PLUMED-2.7.2-CPU.eb
-    * $CFGS1/g/GROMACS/GROMACS-2020.6-cpeGNU-21.08-PLUMED-2.7.2-CPU.eb
-    * $CFGS1/g/GROMACS/GROMACS-2021-cpeCray-21.08-PLUMED-2.7.2-CPU.eb
-    * $CFGS1/g/GROMACS/GROMACS-2021-cpeGNU-21.08-PLUMED-2.7.2-CPU.eb
-    * $CFGS1/g/GROMACS/GROMACS-2021.4-cpeAOCC-21.12-PLUMED-2.7.4-CPU.eb
-    * $CFGS1/g/GROMACS/GROMACS-2021.4-cpeCray-21.12-PLUMED-2.7.4-CPU.eb
-    * $CFGS1/g/GROMACS/GROMACS-2021.4-cpeGNU-21.12-PLUMED-2.7.4-CPU.eb
-    * $CFGS1/p/PLUMED/PLUMED-2.7.2-cpeAMD-21.08.eb
-    * $CFGS1/p/PLUMED/PLUMED-2.7.2-cpeCray-21.08.eb
-    * $CFGS1/p/PLUMED/PLUMED-2.7.2-cpeGNU-21.08.eb
-    * $CFGS1/p/PLUMED/PLUMED-2.7.2-cpeGNU-21.12.eb
-    * $CFGS1/p/PLUMED/PLUMED-2.7.4-cpeAOCC-21.12.eb
-    * $CFGS1/p/PLUMED/PLUMED-2.7.4-cpeCray-21.12.eb
-    * $CFGS1/p/PLUMED/PLUMED-2.7.4-cpeGNU-21.12.eb
+     * $CFGS1/g/GROMACS/GROMACS-2021.7-cpeGNU-23.09-PLUMED-2.9.0-noPython-CPU.eb
+     * $CFGS1/g/GROMACS/GROMACS-2022.5-cpeGNU-23.09-PLUMED-2.9.0-noPython-CPU.eb
+     * $CFGS1/g/GROMACS/GROMACS-2024.3-cpeAMD-24.03-PLUMED-2.9.3-noPython-rocm.eb
+     * $CFGS1/g/GROMACS/GROMACS-2024.3-cpeCray-24.03-PLUMED-2.9.3-noPython-CPU.eb
+     * $CFGS1/g/GROMACS/GROMACS-2024.3-cpeGNU-24.03-PLUMED-2.9.3-cray-python-3.11.7-CPU.eb
+     * $CFGS1/g/GROMACS/GROMACS-2024.3-cpeGNU-24.03-PLUMED-2.9.3-noPython-CPU.eb
+     * $CFGS1/g/GROMACS/GROMACS-2024.3-cpeGNU-24.03-QMMM-PLUMED-2.9.3-noPython-CPU.eb
+     * $CFGS1/p/PLUMED/PLUMED-2.9.0-cpeGNU-23.09-noPython.eb
+     * $CFGS1/p/PLUMED/PLUMED-2.9.3-cpeAMD-24.03-noPython.eb
+     * $CFGS1/p/PLUMED/PLUMED-2.9.3-cpeCray-24.03-noPython.eb
+     * $CFGS1/p/PLUMED/PLUMED-2.9.3-cpeGNU-24.03-cray-python-3.11.7.eb
+     * $CFGS1/p/PLUMED/PLUMED-2.9.3-cpeGNU-24.03-noPython.eb
     ```
 
     We do get more output than we were hoping for as it also shows the GROMACS
     versions using PLUMED. One way around this is to use regular expressions:
 
     ```shell
-    $ eb -S ^PLUMED-2.7
-    CFGS1=/appl/lumi/LUMI-EasyBuild-contrib/easybuild/easyconfigs/p/PLUMED
-    * $CFGS1/PLUMED-2.7.2-cpeAMD-21.08.eb
-    * $CFGS1/PLUMED-2.7.2-cpeCray-21.08.eb
-    * $CFGS1/PLUMED-2.7.2-cpeGNU-21.08.eb
-    * $CFGS1/PLUMED-2.7.2-cpeGNU-21.12.eb
-    * $CFGS1/PLUMED-2.7.4-cpeAOCC-21.12.eb
-    * $CFGS1/PLUMED-2.7.4-cpeCray-21.12.eb
-    * $CFGS1/PLUMED-2.7.4-cpeGNU-21.12.eb
+    $ eb -S ^PLUMED-2.9
+    CFGS1=/appl/lumi/LUMI-EasyBuild-contrib/easybuild/easyconfigs
+     * $CFGS1/p/PLUMED/PLUMED-2.9.0-cpeGNU-23.09-noPython.eb
+     * $CFGS1/p/PLUMED/PLUMED-2.9.3-cpeAMD-24.03-noPython.eb
+     * $CFGS1/p/PLUMED/PLUMED-2.9.3-cpeCray-24.03-noPython.eb
+     * $CFGS1/p/PLUMED/PLUMED-2.9.3-cpeGNU-24.03-cray-python-3.11.7.eb
+     * $CFGS1/p/PLUMED/PLUMED-2.9.3-cpeGNU-24.03-noPython.eb
     ```
 
-    It is also possible to check for all 2.7 variants for the cpeGNU toolchain but
+    It is also possible to check for all 2.9 variants for the cpeGNU toolchain but
     this requires a bit more care in composing the regular expression to ensure that
     the shell does not try to expand the expression:
     
-    ```
-    eb -S '^PLUMED-2.7.*-cpeGNU'
-    CFGS1=/appl/lumi/LUMI-EasyBuild-contrib/easybuild/easyconfigs/p/PLUMED
-    * $CFGS1/PLUMED-2.7.2-cpeGNU-21.08.eb
-    * $CFGS1/PLUMED-2.7.2-cpeGNU-21.12.eb
-    * $CFGS1/PLUMED-2.7.4-cpeGNU-21.12.eb
+    ```shell
+    $ eb -S '^PLUMED-2.9.*-cpeGNU'
+    CFGS1=/appl/lumi/LUMI-EasyBuild-contrib/easybuild/easyconfigs
+     * $CFGS1/p/PLUMED/PLUMED-2.9.0-cpeGNU-23.09-noPython.eb
+     * $CFGS1/p/PLUMED/PLUMED-2.9.3-cpeGNU-24.03-cray-python-3.11.7.eb
+     * $CFGS1/p/PLUMED/PLUMED-2.9.3-cpeGNU-24.03-noPython.eb
     ```  
 
 ---
 
 ***Exercise U.2**** - Checking dependencies*
 
-Check which dependencies are missing to install GROMACS 2021.4 with the
+Check which dependencies are missing to install GROMACS 2024,3 with the
 `cpeGNU` toolchain and with the PLUMED plugin in the
 most recent version available in the LUMI recipes.
+You can take the simplest version if multiple versions show up.
 
 ??? success "(click to show solution)"
     First, we need to determine the name of the easyconfig file for the required
-    version of GROMACS. Easyconfigs would start with `GROMACS-2021.4-cpeGNU` so
+    version of GROMACS. Easyconfigs would start with `GROMACS-2024.3-cpeGNU` so
     let's simply search for that:
 
     ```shell
-    $ eb -S GROMACS-2021.4-cpeGNU
-    CFGS1=/appl/lumi/LUMI-EasyBuild-contrib/easybuild/easyconfigs/g/GROMACS
-    * $CFGS1/GROMACS-2021.4-cpeGNU-21.12-PLUMED-2.7.4-CPU.eb
-    * $CFGS1/GROMACS-2021.4-cpeGNU-21.12-PLUMED-2.8.0-CPU.eb
+    $ eb -S GROMACS-2024.3-cpeGNU
+    CFGS1=/appl/lumi/LUMI-EasyBuild-contrib/easybuild/easyconfigs
+     * $CFGS1/g/GROMACS/GROMACS-2024.3-cpeGNU-24.03-CPU.eb
+     * $CFGS1/g/GROMACS/GROMACS-2024.3-cpeGNU-24.03-PLUMED-2.9.3-cray-python-3.11.7-CPU.eb
+     * $CFGS1/g/GROMACS/GROMACS-2024.3-cpeGNU-24.03-PLUMED-2.9.3-noPython-CPU.eb
+     * $CFGS1/g/GROMACS/GROMACS-2024.3-cpeGNU-24.03-QMMM-PLUMED-2.9.3-noPython-CPU.eb
     ```
     
-    We want the one for the most recent `PLUMED` toolchian, hence the second one.
+    In this case, there 3 versions that indicate they have PLUMED in them. One also integrates
+    with Cray Python, and to know what the `QMMM` one is, one could simply inspect the easyconfig
+    file or check the [GROMACS page in the LUMI Software Library](https://lumi-supercomputer.github.io/LUMI-EasyBuild-docs/g/GROMACS/#user-installable-modules-and-easyconfigs).
+
+    Let's continue with the simplest case, `GROMACS-2024.3-cpeGNU-24.03-PLUMED-2.9.3-noPython-CPU.eb`.
 
     To determine which dependencies are missing to install this GROMACS easyconfig file, we can use `--missing`:
     ```shell
-    $ eb GROMACS-2021.4-cpeGNU-21.12-PLUMED-2.8.0-CPU.eb --missing
+    $ eb GROMACS-2024.3-cpeGNU-24.03-PLUMED-2.9.3-noPython-CPU.eb --missing
     
-    2 out of 15 required modules missing:
+    2 out of 17 required modules missing:
 
-    * PLUMED/2.8.0-cpeGNU-21.12 (PLUMED-2.8.0-cpeGNU-21.12.eb)
-    * GROMACS/2021.4-cpeGNU-21.12-PLUMED-2.8.0-CPU (GROMACS-2021.4-cpeGNU-21.12-PLUMED-2.8.0-CPU.eb)
+    * PLUMED/2.9.3-cpeGNU-24.03-noPython (PLUMED-2.9.3-cpeGNU-24.03-noPython.eb)
+    * GROMACS/2024.3-cpeGNU-24.03-PLUMED-2.9.3-noPython-CPU (GROMACS-2024.3-cpeGNU-24.03-PLUMED-2.9.3-noPython-CPU.eb)
     ```
     (some nonessential output removed).
 
@@ -1072,25 +1128,26 @@ most recent version available in the LUMI recipes.
 ***Exercise U.3**** - Performing a dry run*
 
 Figure out which command EasyBuild would use to compile
-the software provided by the `SAMtools-1.14-cpeGNU-21.12.eb` easyconfig file,
+the software provided by the `SAMtools-1.20-cpeGNU-24.03.eb` easyconfig file,
 without actually installing `SAMtools`.
 
 Also, which binaries will EasyBuild check for to sanity check the installation?
 
 ??? success "(click to show solution)"
-    To inspect the installation procedure, we can use `SAMtools-1.14-cpeGNU-21.12.eb`.
+    To inspect the installation procedure, we can use `eb SAMtools-1.20-cpeGNU-24.03.eb -x`.
 
     The output for the build step shows the actual compilation command that would be performed (`make ...`):
 
     ```shell
     [build_step method]
-      running command "make  -j 256  CC="cc"  CXX="CC"  CFLAGS="-O2 -ftree-vectorize -fno-math-errno -fPIC"  CXXFLAGS="-O2 -ftree-vectorize -fno-math-errno -fPIC""
-      (in /XXXX/build/SAMtools/1.14/cpeGNU-21.12/SAMtools-1.14)    
+      running command "module unload rocm cray-libsci cray-mpich xpmem cray-dsmml ; module list ;  make  -j 16  CC="cc"  CXX="CC"  CFLAGS="-O2 -ftree-vectorize -fno-math-errno -fPIC"  CXXFLAGS="-O2 -ftree-vectorize -fno-math-errno -fPIC""
+      (in /rXXXX/build/SAMtools/1.20/cpeGNU-24.03/SAMtools-1.20)
     ```
 
     (And if you also add `--trace` the output will even be a bit more detailed).
 
     The output for the sanity check step shows which binaries are expected to be installed:
+
     ```
     [sanity_check_step method]
     Sanity check paths - file ['files']
@@ -1121,63 +1178,69 @@ Also, which binaries will EasyBuild check for to sanity check the installation?
       * include/bam/sample.h
     ```
 
+    All but the last three are likely executable commands (as they are in the `bin` subdirectory).
+
 ---
 
 ***Exercise U.4**** - Installing software*
 
-Install version 2.0.5 of CDO using the cpeGNU toolchain (21.12 version)
+Install the version of CDO that is provided in the LUMI Software Library for cpeGNU/24.03,
 including all missing dependencies.
 
 Enable trace output so you can see which parts of the installation take a while.
 
 ??? success "(click to show solution)"
     First, determine the easyconfig file we can use for this:
-    ```shell
-    $ eb -S '^CDO.*cpeGNU-21.12'
+    ```
+    $ eb -S '^CDO.*cpeGNU-24.03'
     CFGS1=/appl/lumi/LUMI-EasyBuild-contrib/easybuild/easyconfigs/c/CDO
-     * $CFGS1/CDO-2.0.5-cpeGNU-21.12.eb
+     * $CFGS1/CDO-2.4.3-cpeGNU-24.03.eb
     ```
 
+    (Or you could just check the [list of EasyConfigs on the CDO page in the
+    LUMI Software Library](https://lumi-supercomputer.github.io/LUMI-EasyBuild-docs/c/CDO/#user-installable-modules-and-easyconfigs).)
+
     Check which dependencies are missing to install this CDO easyconfig:
-    ```shell
-    $ eb CDO-2.0.5-cpeGNU-21.12.eb
+    ```
+    $ eb CDO-2.4.3-cpeGNU-24.03.eb -M
 
-    4 out of 32 required modules missing:
+    4 out of 39 required modules missing:
 
-     * json-c/0.16-cpeGNU-21.12 (json-c-0.16-cpeGNU-21.12.eb)
-     * ecCodes/2.25.0-cpeGNU-21.12 (ecCodes-2.25.0-cpeGNU-21.12.eb)
-     * CMOR/3.6.1-cpeGNU-21.12 (CMOR-3.6.1-cpeGNU-21.12.eb)
-     * CDO/2.0.5-cpeGNU-21.12 (CDO-2.0.5-cpeGNU-21.12.eb)
+    * json-c/0.17-cpeGNU-24.03 (json-c-0.17-cpeGNU-24.03.eb)
+    * ecCodes/2.35.1-cpeGNU-24.03 (ecCodes-2.35.1-cpeGNU-24.03.eb)
+    * CMOR/3.8.0-cpeGNU-24.03 (CMOR-3.8.0-cpeGNU-24.03.eb)
+    * CDO/2.4.3-cpeGNU-24.03 (CDO-2.4.3-cpeGNU-24.03.eb)
     ```
 
     Install CDO by specifying the easyconfig file and enabling dependency resolution via `--robot`,
     Also make sure that trace mode is enabled by defining the `$EASYBUILD_TRACE` environment variable.
-    ```shell
+    ```
     $ export EASYBUILD_TRACE=1
-    $ eb CDO-2.0.5-cpeGNU-21.12.eb --robot
+    $ eb CDO-2.4.3-cpeGNU-24.03.eb --robot
     ...
-    == building and installing ecCodes/2.25.0-cpeGNU-21.12...
+    == building and installing ecCodes/2.35.1-cpeGNU-24.03...
     ...
-    == building and installing json-c/0.16-cpeGNU-21.12...
+    == building and installing json-c/0.17-cpeGNU-24.03...
     ...
-    == building and installing CMOR/3.6.1-cpeGNU-21.12...
+    == building and installing CMOR/3.8.0-cpeGNU-24.03...
     ...
-    == building and installing CDO/2.0.5-cpeGNU-21.12...
+    == building and installing CDO/2.4.3-cpeGNU-24.03...
     ...
     == configuring...
       >> running command:
     ...
       >> command completed: exit 0, ran in 00h01m52s
-    == ... (took 1 min 52 secs)
+      >> command completed: exit 0, ran in 00h03m33s
+    == ... (took 3 mins 33 secs)
     == building...
       >> running command:
-            [started at: 2022-05-09 20:07:44]
-            [working dir: /run/user/10012026/easybuild/build/CDO/2.0.5/cpeGNU-21.12/cdo-2.0.5]
-            [output logged in /run/user/10012026/easybuild/tmp/eb-0ihsqw7j/easybuild-run_cmd-pnuot3pi.log]
-            make  -j 256
-      >> command completed: exit 0, ran in 00h00m57s
+            [started at: 2025-05-05 18:36:10]
+            [working dir: /run/user/327000143/easybuild/build/CDO/2.4.3/cpeGNU-24.03/cdo-2.4.3]
+            [output logged in /run/user/327000143/easybuild/tmp/eb-5q2j1and/easybuild-run_cmd-xk0silt1.log]
+            module unload rocm &&  make  -j 16
+      >> command completed: exit 0, ran in 00h02m04s
     ...
-    == COMPLETED: Installation ended successfully (took 3 mins 14 secs)
+    == COMPLETED: Installation ended successfully (took 6 mins 9 secs)
     ...
     == Build succeeded for 4 out of 4
     ```
