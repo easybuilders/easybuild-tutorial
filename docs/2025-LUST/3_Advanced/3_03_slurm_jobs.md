@@ -62,6 +62,8 @@ export EASYBUILD_JOB_BACKEND='Slurm'
 
 On LUMI this is taken care of in the EasyBuild configuration modules such as ``EasyBuild-user``.
 
+In EasyBuild v5.x the default is already Slurm, and GC3Pie is deprecated.
+
 
 ### Job resources
 
@@ -156,8 +158,9 @@ login01 $ eb --job --buildpath /dev/shm/$USER/easybuild example.eb --robot
 The problems for the temporary log files are twofold. First, they may end up in a place
 that is not available on the compute nodes. E.g., for the same reasons as for the build
 path, the LUMI EasyBuild configuration will place the temporary files in a subdirectory of
-``$XDG_RUNTIME_DIR`` on the loginnodes but a subdirectory of ``/dev/shm/$USER`` on the
-compute nodes. The second problem however is that if an installation fails, those log files are
+``$XDG_RUNTIME_DIR`` on the loginnodes but a subdirectory of ``/tmp/$sLURM_JOBID`` on the
+compute nodes (as that one should be cleaned up at the end of the job). 
+The second problem however is that if an installation fails, those log files are
 not even accessible anymore which may leave you wondering about the actual cause of the failing 
 installation...
 

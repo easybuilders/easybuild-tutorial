@@ -42,11 +42,17 @@ community:
 Some site have really large hook files to implement policies and modify standard EasyBuild build recipes, e.g.,
 
 -   [The hooks file from Jülich Supercomputing Centre](https://github.com/easybuilders/JSC/blob/2022/Custom_Hooks/eb_hooks.py)
--   ComputeCanada [cc_hooks_common.py](https://github.com/ComputeCanada/easybuild-computecanada-config/blob/main/cc_hooks_common.py)
-    and [cc_hooks_gento.py](https://github.com/ComputeCanada/easybuild-computecanada-config/blob/main/cc_hooks_gentoo.py)
+-   Digital Research Alliance of Canada (formerly ComputeCanada) 
+    [cc_hooks_common.py](https://github.com/ComputeCanada/easybuild-computecanada-config/blob/main/cc_hooks_common.py)
+    and [2023/cc_hooks.py](https://github.com/ComputeCanada/easybuild-computecanada-config/blob/main/2023/cc_hooks.py)
+    files
 -   [The hooks file from the EESSI software stack](https://github.com/EESSI/software-layer/blob/main/eb_hooks.py). 
-   [EESSI](https://www.eessi-hpc.org/) is an effort to build a software stack distributed via 
-   [CernVM-FS](https://cernvm.cern.ch/fs/) using EasyBuild to build all software.
+    [EESSI](https://www.eessi.io/) is an effort to build a software stack distributed via 
+    [CernVM-FS](https://cernvm.cern.ch/fs/) using EasyBuild to build all software.
+
+On LUMI we also use hooks, but the definition file is rather small. e/g/.
+[the LUMI hooks file in use since LUMI/22.08](https://github.com/Lumi-supercomputer/LUMI-SoftwareStack/blob/main/easybuild/hooks/LUMI_site_hooks-22.08.py).
+
 
 ## Implementing and using hooks
 
@@ -90,6 +96,10 @@ These hooks can be implementing by defining a function named ``start_hook`` and 
 in the Python module file that is provided via the ``hooks`` configuration option.
 No arguments are provided when calling these hooks.
 
+*On LUMI, an end hook is used to clear the Lmod cache after installing software as otherwise
+a newly installed module may not be found immediately.*
+
+
 ### Parse hook
 
 The ``parse`` hook is triggered right after an easyconfig file is being parsed,
@@ -106,6 +116,7 @@ to check whether the corresponding module file is already installed, etc.
 This hook can be implemented via a function named ``parse_hook``, and exactly one
 argument is provided when it is called: the [``EasyConfig``](https://docs.easybuild.io/en/latest/api/easybuild.framework.easyconfig.easyconfig.html#easybuild.framework.easyconfig.easyconfig.EasyConfig)
 instance that represents the parsed easyconfig file.
+
 
 ### Pre/post-step hooks
 
