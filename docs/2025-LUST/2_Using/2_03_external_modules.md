@@ -24,9 +24,13 @@ dependencies = [('cray-fftw', EXTERNAL_MODULE)]
 
 For such dependencies, EasyBuild will:
 
-* load the module before initiating the software build and install procedure
+* load the module before initiating the software build and install procedure,
 
-* include a `module load` statement in the generated module file (for runtime dependencies)
+* include a `module load` statement in the generated module file (for runtime dependencies),
+
+* create `EBROOT*` and `EBVERSION*` environment variables if proper metadata is defined 
+  for the external module (see later in this section). The latter can be picked up by
+  easyblocks just as the corresponding variables set by regular EasyBuild-installed modules.
 
 !!! Note
     The default version of the external module will be loaded unless a specific version is given as dependency,
@@ -74,9 +78,14 @@ prefix = FFTW_DIR/..
 version = 3.3.8.10
 ```
 
-The environment variable `$EBROOTFFTW` will also be defined according to the `prefix` specified in the metadata file.
+The environment variable `$EBROOTFFTW` will also be defined according to the `prefix` specified in the metadata file,
+which is always pointing to an environment variable and starting a path relative from there.
 
-On LUMI, users in generally don't need to be too concerned about the metadata file as the EasyBuild-user (and other hidden
+As a result of this definition, to a correctly written easyblock, the `cray-fftw/3.3.8.10` module will appear as
+if it is the EasyBuild-installed `FFTW/3.3.8.10` module and during the installation process, the environment 
+variables `EBROOTFFTW` and `EBVERSIONFFTW` will be defined as expected.
+
+On LUMI, users don't need to be too concerned about the metadata file as the EasyBuild-user (and other hidden
 EasyBuild configuration modules) take care of pointing to the right metadata file, which is specific for each version of the
 Cray PE and hence each version of the LUMI software stack.
 

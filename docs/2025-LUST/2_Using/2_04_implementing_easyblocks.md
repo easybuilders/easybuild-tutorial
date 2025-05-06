@@ -28,11 +28,11 @@ by most GNU software packages.
 Typically this involves highly customised steps, for example specifying dedicated configuration options, creating
 or adjusting specific files, executing non-standard shell commands, etc. Usually a custom implementation of the
 sanity check is also included. Much of the work done in software-specific easyblocks can often also be done 
-in generic easyblocks using parameters such as ``confdigopts`` etc., but a software-specific easyblock can
+in generic easyblocks using parameters such as ``configopts`` etc., but a software-specific easyblock can
 hide some of that complexity from the user. Other software-specific easyblocks implement very specific
 installation procedures that do not fit in one of the generic ones.
 
-Using a generic easyblock requires specifying the ``easyblock`` parameter in the easyconfig file.
+Using a generic easyblock requires specifying the `easyblock` parameter in the easyconfig file.
 If it is not specified, EasyBuild will try and find the software-specific easyblock derived from the software name.
 
 The distinction between generic and software-specific easyblocks can be made based on the naming scheme that is used
@@ -92,7 +92,7 @@ Examples include:
 
 * ``gcc.py`` (for *GCC*)
 * ``netcdf_fortran.py`` (for *netCDF-Fortran*)
-* ``gamess_us.py`` (for *GAMESS (US)*)
+* ``gamess_us.py`` (for *GAMESS-US*)
 
 The ``get_module_path`` function provided by the EasyBuild framework in the
 ``easybuild.framework.easyconfig.easyconfig`` module returns the (full)
@@ -112,7 +112,7 @@ live in the ``easybuild.easyblocks`` namespace directly.
 
 To keep things organised, the actual Python module files
 for software-specific easyblocks are kept in 'letter' subdirectories,
-rather than in one large '``easyblocks``' directory
+rather than in one large '`easyblocks`' directory
 (see
 [https://github.com/easybuilders/easybuild-easyblocks/tree/main/easybuild/easyblocks](https://github.com/easybuilders/easybuild-easyblocks/tree/main/easybuild/easyblocks)),
 but this namespace is collapsed transparently by EasyBuild (you don't need to import from letter subpackages).
@@ -122,8 +122,8 @@ configuration option. As long as both the filename of the Python module and the 
 are correct, EasyBuild will use these easyblocks when needed.
 
 On LUMI, the EasyBuild configuration modules take care of setting this parameter (using the corresponding environment
-variable), pointing to custom easyblocks in the LUMI software stack itself and a repo (with a fixed name) that users
-can create themselves. At this moment it does not yet include possible other easyblock repositories in other repositories.
+variable), pointing to custom easyblocks in the LUMI software stack itself, the repo for contributed easyconfigs,
+and a repo (with a fixed name) that users can create themselves. 
 
 
 ## Structure of an easyblock
@@ -190,6 +190,9 @@ class EB_Example(ConfigureMake):
 ```
 
 ## Easyconfig parameters
+
+
+### Reading parameters
 
 All of the easyconfig parameters that are defined in an easyconfig file
 are available via the ``EasyConfig`` instance that can be accessed through ``self.cfg`` in an easyblock.
@@ -337,6 +340,10 @@ The ``run_cmd_qa`` function takes two additional specific arguments:
 * ``no_qa=<list>`` to specify a list of patterns to recognize non-questions;
 
 * ``std_qa=<dict>`` to specify regular expression patterns for common questions, and the matching answer;
+
+In EasyBuild 5, the new function `run_shell_cmd` is introduced to replace these functions,
+and both functions are deprecated and scheduled to be removed in EasyBuild 6.
+
 
 ## Manipulating environment variables
 
