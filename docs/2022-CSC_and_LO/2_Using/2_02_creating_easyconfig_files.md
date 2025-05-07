@@ -332,7 +332,7 @@ toolchains for which they are intended.
 When using the HPE Cray PE based toolchains, another type of dependency comes in: 
 [external modules](../2_03_external_modules) (discussed in the next section) that 
 are used to interface with modules provided by the HPE Cray PE but could also be
-used to interfact with other modules that do not contain the metadata that EasyBuild
+used to interface with other modules that do not contain the metadata that EasyBuild
 includes in module files that it generates. (EasyBuild sets a number of EasyBuild-specific
 environment variables in each module, including one pointing to the installation directory 
 and one specifying the version of the packages.)

@@ -105,7 +105,7 @@ and the default `software` and `modules/all` names for the subdirectories are us
     This makes it slightly easier to organise the module tree with user-friendly labeling, but above
     all also makes the synchronisation process of the 4 instances of the software directory more robust
     as it is now easy to synchronise all modules in the last step, which is a much quicker process than
-    syncrhonising the software installations.
+    synchronising the software installations.
 
     We also use short paths for software installations (to avoid overrunning the maximum length of a
     shebang line in scripts) while we use longer, more descriptive names for subdirectories in the 

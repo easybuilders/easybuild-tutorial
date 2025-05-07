@@ -361,7 +361,7 @@ The ``module spider`` command has three levels, producing different outputs:
     a package available, and the list of ways to make a module available may 
     also be incomplete.
 
-    The problem is somewhat aggrevated on LUMI because the Cray PE hierarchy sits
+    The problem is somewhat aggravated on LUMI because the Cray PE hierarchy sits
     next to the hierarchy of the software stack as the Cray PE is installed 
     separately and hence cannot be integrated in the way the Lmod developer had
     in mind.
