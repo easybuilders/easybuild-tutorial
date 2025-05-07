@@ -218,7 +218,7 @@ Before using ``--job``, let's make sure that EasyBuild is properly configured:
 ```shell
 # Load the EasyBuild-user module (central installations will not work at all
 # using job submission)
-module load LUMI/21.12
+module load LUMI/24.03
 module load partition/C
 module load EasyBuild-user
 
@@ -308,6 +308,12 @@ $ squeue -u $USER -la
 Note that 3 jobs can not be started yet, because those installations require on one or more
 missing dependencies. As soon as the jobs for those dependencies (successfully) complete,
 these jobs will be able to start.
+
+!!! Warning "Huge installations"
+    As the number of jobs a user can have in a partition is limited, really huge software
+    installations would fail as EasyBuild would try to submit too many jobs. You would have
+    to break up such installations by hand in smaller chunks.
+
 
 ### Final result
 
