@@ -4,12 +4,17 @@
 
 ---
 
+!!! Warning "May be outdated"
+    This section is mostly borrowed from the standard EasyBuild tutorials. 
+    It is likely also outdated with respect to the implementation of the
+    `HierarchicalMNS` naming scheme.
+
 Up until now we have used the naming scheme in use on LUMI which is for many practical purposes
 is indistinguishable from the default EasyBuild naming scheme (`EasyBuildMNS`).
 It produces module files with names that closely resemble to the names of the
 corresponding easyconfig files.
-For example, when installing `zlib-1.2.11-cpeGNU-21.12.eb` the generated module was named 
-`zlib/1.2.11-cpeGNU-21.12`.
+For example, when installing `zlib-1.3.1-cpeGNU-24.03.eb` the generated module was named 
+`zlib/1.3.1-cpeGNU-24.03`.
 
 EasyBuild supports several different module naming schemes:
 
@@ -51,7 +56,7 @@ In contrast, a *hierarchical* module naming scheme
 consists of a *hierarchy* of module files. 
 A fairly typical 3-level scheme (``Core``, ``Compiler`` and ``MPI``) has been
 discussed in the [section on Lmod](../../1_Intro/1_02_Lmod#lmod-hierarchy).
-This typical Lmod hierarcny would map very well on the EasyBuild common toolchains.
+This typical Lmod hierarchy would map very well on the EasyBuild common toolchains.
 
 In fact, for the example
 
@@ -67,7 +72,7 @@ would be installed using the regular ``foss`` toolchain or the ``gompi`` toolcha
 On LUMI, where software is installed through the Cray Programming Environment with no real choice of
 MPI implementation, a two-level arrangement would still make a lot of sense, with at the ``Core`` level
 all software compiled with the SYSTEM toolchain while there could be a ``PrgEnv`` level for software
-compiled with a particular programming environment aka cpeGNU/cpeCray/cpeAOCC toolchain. Such a scheme
+compiled with a particular programming environment aka cpeGNU/cpeCray/cpeAOCC/cpeAMD toolchain. Such a scheme
 is used on the Cray systems at CSCS.
 
 To recap, the characteristics of a module hierarchy are:
@@ -102,10 +107,10 @@ However, the are some minor disadvantages too:
 
 When using a flat module naming scheme, module names can be fairly long and perhaps confusing. For a `HDF5` installation 
 with the EasyBuild common toolchains for example,
-one might have `HDF5/1.12.1-gompi-2021b` as module name. The `-gompi-2021b` part of the name refers to the toolchain that was
+one might have `HDF5/1.14.5-gompi-2024a` as module name. The `-gompi-2024a` part of the name refers to the toolchain that was
 used for this installation, but it may be confusing to some people (what kind of Pokémon is a "gompi"?!).
 
-In the example module hierarchy shown above, the module for `HDF5` could simply be named `HDF5/1.12.1` which is basically the bare
+In the example module hierarchy shown above, the module for `HDF5` could simply be named `HDF5/1.14.5` which is basically the bare
 essentials: software name and version. That's way better, nice and clean!
 
 #### Amount of available modules
@@ -159,8 +164,9 @@ is available right after login, which could be the ones used in the most recent 
 recommended versions. More experienced users could then leverage the "`module spider`" command to navigate
 the module hierarchy.
 
-On LUMI this would mean loading a default software stack, but due to the the default modules are currently
-loaded on LUMI this was not possible to accomplish without losing other functionality of the module tree.
+On LUMI this would mean loading a default software stack and toolchain module (if the scheme were fully hierarchical).
+However, CSC gave preference to a login environment that looks like that on a typical Cray system.
+
 
 ## Using a custom module naming scheme
 

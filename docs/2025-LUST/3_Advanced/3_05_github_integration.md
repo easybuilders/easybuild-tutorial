@@ -18,6 +18,10 @@
     Since GitHub integration is not yet really used on LUMI, this section is not fully
     tested but left in the tutorial for completeness.
 
+    In the future we may also have to change the structure of the easyblocks repository
+    to have different repositories for different LUMI stacks as it is impossible to maintain
+    the easyblocks in a way that they keep working in all stacks.
+
 To contribute changes to the EasyBuild code (framework or easyblocks) or easyconfigs,
 you will need to be a bit familiar with Git and GitHub. Or maybe not?
 
