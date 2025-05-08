@@ -462,4 +462,4 @@ The gist linked from this comment provides more detailed information:
 
 ---
 
-*[[next: Additional reading]](../4_00_additional_reading.md)*
+*[[next: Miscellaneous typs and tricks]](../4_00_tips_and_tricks.md)*

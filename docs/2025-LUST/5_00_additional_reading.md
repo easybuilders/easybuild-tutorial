@@ -27,10 +27,9 @@
 ## HPE Cray Programming Environment
 
 -   [LUMI documentation: "Developing" section](https://docs.lumi-supercomputer.eu/development/)
--   The Cray PE is mostly documented through man pages. There used to be some documentation on the
-    Cray web site also but the documentation system got reworked after the merger with HPE.
-    The documentation is now in the [HPE Support Centre](https://support.hpe.com/) where it
-    is very difficult to find the right version of the documents.
+-   The Cray PE is mostly documented through man pages. There is now also
+    [online documentation](https://cpe.ext.hpe.com/docs/latest/index.html) largely
+    derived from those man pages.
 -   The [PE-Cray](https://github.com/PE-Cray) GitHub project also provides some additional 
     documentation, including
     -   [some whitepapers](https://github.com/PE-Cray/whitepapers),
@@ -43,8 +42,8 @@
 
 -   [LUMI web site](https://lumi-supercomputer.eu/)
 -   [LUMI User Documentation](https://docs.lumi-supercomputer.eu/)
-    -   [Lmod](https://docs.lumi-supercomputer.eu/computing/Lmod_modules/)
-    -   [Organisation of the software stack](https://docs.lumi-supercomputer.eu/computing/softwarestacks/)
+    -   [Lmod](https://docs.lumi-supercomputer.eu/runjobs/lumi_env/Lmod_modules/)
+    -   [Organisation of the software stack](https://docs.lumi-supercomputer.eu/runjobs/lumi_env/softwarestacks/)
     -   [EasyBuild on LUMI](https://docs.lumi-supercomputer.eu/software/installing/easybuild/)
 -   [EasyBuild on LUMI presentation](https://easybuild.io/eum22/#lumi)
     ([video](https://www.youtube.com/watch?v=hZezVG6lJNk&list=PLhnGtSmEGEQgCneeSQvYoIZrbv7wIKlo2)/[slides](https://easybuild.io/eum22/001_eum22_EasyBuild_on_LUMI.pdf))
