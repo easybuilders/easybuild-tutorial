@@ -1,6 +1,6 @@
 # Part I: Introduction to EasyBuild on Cray systems
 
-*[[back to start page]](index.md)*
+*[[back to start page]](../index.md)*
 
 -   [What is EasyBuild?](1_01_what_is_easybuild.md)
 -   [The Lmod module system](1_02_Lmod.md)

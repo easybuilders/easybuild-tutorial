@@ -1,6 +1,6 @@
 # Part III: Advanced topics
 
-*[[back to start page]](index.md)*
+*[[back to start page]](../index.md)*
 
 In this section we mostly cover "good to know that they exist" features as they are not used
 on LUMI, or not really accessible to regular user installations that are performed with the

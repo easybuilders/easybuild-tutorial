@@ -1,4 +1,4 @@
-# EasyBuild tutorial for CSC and the LUMI consortium
+# EasyBuild tutorial for CSC and the LUMI consortium - 2025 edition
 
 This tutorial is based extensively on the more generic EasyBuild tutorials build by
 the EasyBuild community and maintained on
@@ -59,7 +59,7 @@ freely available, so unless you have access to a system with this environment yo
 
 ## Contents
 
-- [Part I: **Introduction to EasyBuild on Cray systems**](1_Intro/index.md)
+-   [Part I: **Introduction to EasyBuild on Cray systems**](1_Intro/index.md)
     -   [What is EasyBuild?](1_Intro/1_01_what_is_easybuild.md)
     -   [The Lmod module system](1_Intro/1_02_Lmod.md)
     -   [The HPE Cray Programming Environment](1_Intro/1_03_CPE.md)
@@ -68,16 +68,18 @@ freely available, so unless you have access to a system with this environment yo
     -   [Installation](1_Intro/1_06_installation.md)
     -   [Configuration](1_Intro/1_07_configuration.md)
     -   [Basic usage](1_Intro/1_08_basic_usage.md) *(hands-on)*
-- [Part II: **Using EasyBuild**](2_Using/index.md)
+-   [Part II: **Using EasyBuild**](2_Using/index.md)
     -   [Troubleshooting](2_Using/2_01_troubleshooting.md) *(hands-on)*
     -   [Creating easyconfig files](2_Using/2_02_creating_easyconfig_files.md) *(hands-on)*
     -   [Using external modules from the Cray PE](2_Using/2_03_external_modules.md)
     -   [Implementing easyblocks](2_Using/2_04_implementing_easyblocks.md) *(hands-on)*
-- [Part III: **Advanced topics**](3_Advanced/index.md)
+-   [Part III: **Advanced topics**](3_Advanced/index.md)
     -    [Using EasyBuild as a library](3_Advanced/3_01_easybuild_library.md)
     -    [Using hooks to customise EasyBuild](3_Advanced/3_02_hooks.md)
     -    [Submitting installations as Slurm jobs](3_Advanced/3_03_slurm_jobs.md)
     -    [Module naming schemes (incl. hierarchical)](3_Advanced/3_04_module_naming_schemes.md)
     -    [GitHub integration to facilitate contributing to EasyBuild](3_Advanced/3_05_github_integration.md)
-- [**Miscellaneous tips and tricks](4_00_tips_and_tricks.md)
-- [**Additional reading**](5_00_additional_reading.md)
+-   [Part IV: **EasyBuild on LIUMI**](4_EasyBuild_on_LUMI/index.md)
+    -   [Managing EasyBuild-installed software on LUMI](4_EasyBuild_on_LUMI/4_01_managing_software_on_LUMI.md)
+    -   [EasyBuild tips & tricks](4_EasyBuild_on_LUMI/4_02_tips_and_tricks.md)
+-   [**Additional reading**](5_00_additional_reading.md)

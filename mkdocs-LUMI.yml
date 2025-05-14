@@ -37,7 +37,10 @@ nav:
             - Submitting installations as Slurm jobs: 2025-LUST/3_Advanced/3_03_slurm_jobs.md
             - Module naming schemes (incl. hierarchical): 2025-LUST/3_Advanced/3_04_module_naming_schemes.md
             - GitHub integration to facilitate contributing to EasyBuild: 2025-LUST/3_Advanced/3_05_github_integration.md
-        - Tips and tricks: 2025-LUST/4_00_tips_and_tricks.md
+        - EasyBuild on LUMI:
+            - 2025-LUST/4_EasyBuild_on_LUMI/index.md
+            - Managing software: 2025-LUST/4_EasyBuild_on_LUMI/4_01_managing_software_on_LUMI.md
+            - Tips & tricks: 2025-LUST/4_EasyBuild_on_LUMI/4_02_tips_and_tricks.md
         - Additional reading: 2025-LUST/5_00_additional_reading.md
     - "CSC (spring '22)":
         - 2022-CSC_and_LO/index.md

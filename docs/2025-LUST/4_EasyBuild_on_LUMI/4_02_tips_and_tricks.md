@@ -1,4 +1,4 @@
-# Tips and tricks
+# Tips & tricks
 
 ## Long lists of elements for `preconfigopts` or options for `configopts`.
 
