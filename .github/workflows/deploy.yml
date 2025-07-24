@@ -1,29 +1,18 @@
-# documentation: https://help.github.com/en/articles/workflow-syntax-for-github-actions
-name: deploy tutorial (only on push to main branch)
-on:
-  push:
-    branches: main
+name: Deploy
+on: [push]
+
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: checkout
-      uses: actions/checkout@v3
-      with:
-          fetch-depth: 0
-
-    - name: set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.8
-
-    - name: install mkdocs
-      run: |
-          pip install mkdocs mkdocs-material mkdocs-redirects mkdocs-git-revision-date-localized-plugin
-          mkdocs --version
-
-    - name: build tutorial
-      run: mkdocs build --strict
-
-    - name: deploy docs
-      run: mkdocs gh-deploy --force
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - run: pip install -r requirements.txt
+      - run: streamlit run reddygpt.py
+        env:
+          OPENAI_API_KEY: ${{ sk-...d4AA }}
+          GOOGLE_API_KEY: ${{ "AIzaSyCMXk_3KgfKGV7gcEXZNfp5ub2HzyiaeYM" }}
+          GOOGLE_CSE_ID: ${{ "41109254821714f8a" }}
+          SERPAPI_KEY: ${{ 683b4e70849d6408ff5a57989474b280e95874290032acf9b649c8a63161c761 }}
