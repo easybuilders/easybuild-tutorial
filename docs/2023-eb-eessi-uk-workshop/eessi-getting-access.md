@@ -6,7 +6,7 @@ of the EESSI repository.
 ## Is EESSI accessible?
 
 EESSI can be accessed via [a native (CernVM-FS) installation](#native-installation),
-or via [a container that includes CernVM-FS](#eessi-container).
+or via [a container that includes CernVM-FS](#eessi-client-container).
 
 Before you look into these options, check if EESSI is already accessible on your system.
 
@@ -26,7 +26,7 @@ host_injections  latest  versions
 ```
 
 For starting to use EESSI, continue reading about
-[Setting up environment](eessi-usage.md#setting-up-environment).
+[Setting up your environment](eessi-usage.md#setting-up-your-environment).
 
 If you see an error message as shown below, **EESSI is not yet accessible on your
 system**.
@@ -36,7 +36,7 @@ ls: /cvmfs/pilot.eessi-hpc.org: No such file or directory
 No worries, you don't need to be a :mage: to get access to EESSI.
 
 Continue reading about the [Native installation](#native-installation) of EESSI,
-or access via the [EESSI container](#eessi-container).
+or access via the [EESSI client container](#eessi-client-container).
 
 ## Native installation
 

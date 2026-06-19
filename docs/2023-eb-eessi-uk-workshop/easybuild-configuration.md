@@ -29,7 +29,7 @@ and cover only the most prominent and important ones.
     and omit the leading dashes (`--`) for the sake of clarity.
 
 Keep in mind that *every* configuration setting can be defined in 3 different ways,
-see [below](#consistency-across-configuration-levels) for more details.
+see [below](#configuration-levels) for more details.
 
 ---
 

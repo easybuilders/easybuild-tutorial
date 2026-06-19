@@ -53,7 +53,7 @@ If you run "`module avail`" with the example module hierarchy, you will only see
 
 Some modules in the top level of the hierarchy act as a "gateway" to modules in the
 next level below.
-To make additional modules available for loading one of these gateway modules has to be loaded. In our exampe, loading the `GCC/9.3.0` module results in two additional modules coming into view from the compiler level, as indicated by the arrows: the modules for `OpenMPI` and `MPICH`. These correspond to installations of `OpenMPI`
+To make additional modules available for loading one of these gateway modules has to be loaded. In our example, loading the `GCC/9.3.0` module results in two additional modules coming into view from the compiler level, as indicated by the arrows: the modules for `OpenMPI` and `MPICH`. These correspond to installations of `OpenMPI`
 and `MPICH` that were built using `GCC/9.3.0` as a (compiler-only) toolchain.
 
 Similarly, the `OpenMPI/4.0.3` module serves as a gateway to the three modules in the MPI level. Only by loading the `OpenMPI` module will these additional three modules become

@@ -6,15 +6,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # 7.0.0
 
     - name: set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
       with:
         python-version: 3.8
 
     - name: Codespell action
-      uses: codespell-project/actions-codespell@master
+      uses: codespell-project/actions-codespell@8f01853be192eb0f849a5c7d721450e7a467c579 # 2.2
       with:
         check_filenames: true
         # Ignore a listed standard mistake in CodeSpell by listing it in the same case that it appears in that list
@@ -23,7 +23,7 @@ jobs:
         uri_ignore_words_list: UES,ues
 
     #- name: Markdown Linting Action
-    #  uses: avto-dev/markdown-lint@v1.2.0
+    #  uses: avto-dev/markdown-lint@04d43ee9191307b50935a753da3b775ab695eceb # v1.5.0
     #  with:
         # rules: '/lint/rules/changelog.js'
         # config: '/lint/config/changelog.yml'
