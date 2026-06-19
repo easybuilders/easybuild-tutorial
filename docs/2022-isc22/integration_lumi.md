@@ -381,7 +381,7 @@ Cray PE and hence each version of the LUMI software stack.
 EasyBuild comes with a lot of [software-specific easyblocks](https://docs.easybuild.io/en/latest/eb_list_easyblocks.html).
 These have only been tested with the common toolchains
 in the automated EasyBuild test procedures. As a result, many of those easyblocks will fail with the Cray toolchains
-(and with many other custom toolchains). A common problem is that they don't recongnise the compilers as they test 
+(and with many other custom toolchains). A common problem is that they don't recognise the compilers as they test 
 for the presence of certain modules and hence simply stop with an error message that the compiler is not 
 recognised, but there may also be more subtle problems, like explicitly checking for the name of a dependency rather
 than for the presence of the corresponding `EBROOT` and `EBVERSION` environment variables through the EasyBuild API.
