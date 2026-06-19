@@ -350,7 +350,7 @@ Opened pull request: https://github.com/ebtutorial/easybuild-easyconfigs/pull/
 ```
 
 Take a moment to grasp what we did here: we ran **a single `eb` command** which
-took care of the **[whole contribution procedure](#contribution-procedure)** for us, including:
+took care of the **[whole contribution procedure](#manual-contribution-procedure)** for us, including:
 
 * Cloning the `easybuilders/easybuild-easyconfigs` repository and checking out the `develop` branch (in a temporary
   directory);

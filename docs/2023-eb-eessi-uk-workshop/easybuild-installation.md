@@ -15,7 +15,7 @@ for the remainder of this tutorial.
         * An environment modules tool (Lmod is recommended)
     * *Installation methods*:
         * [``pip install easybuild``](#method-1-using-pip)
-        * [installing EasyBuild with EasyBuild](#method-2-bootstrapping-easybuild)
+        * [installing EasyBuild with EasyBuild](#step-2-using-easybuild-to-install-easybuild)
         * [development setup](#method-3-development-setup)
     * Verify EasyBuild installation by running `eb` commands.
 
