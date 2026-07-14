@@ -1,4 +1,4 @@
-<p align="center"><img src="./docs/img/easybuild_logo_alpha.png" width="300px"/></p>
+å<p align="center"><img src="./docs/img/easybuild_logo_alpha.png" width="300px"/></p>
 
 Welcome to the repository that hosts the sources of the official **[EasyBuild](https://easybuild.io)
 tutorial**, see https://easybuilders.github.io/easybuild-tutorial.
@@ -20,13 +20,17 @@ which makes it very easy to preview the result of the changes you make locally.
 
 * Start the MkDocs built-in dev-server to preview the tutorial as you work on it:
 
-      make preview
+    ```bash
+    make preview
+    ```
 
-  or
+    or
 
-      mkdocs serve
+    ```bash
+    mkdocs serve
+    ```
 
-  Visit http://127.0.0.1:8000 to see the local live preview of the changes you make.
+    Visit http://127.0.0.1:8000 to see the local live preview of the changes you make.
 
 * If you prefer building a static preview you can use ``make`` or ``mkdocs build``,
   which should result in a ``site/`` subdirectory that contains the rendered documentation.
